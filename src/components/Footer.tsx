@@ -87,11 +87,11 @@ export default function Footer() {
     <footer style={{ background: "#040D1A", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
 
       {/* Main footer content */}
-      <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "64px 80px 48px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 1.6fr", gap: "48px" }}>
+      <div style={{ width: "1311.42px", marginLeft: "81.58px", paddingTop: "43px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "349.42px 1fr 1fr 1.6fr", gap: "48px" }}>
 
           {/* Col 1: Logo + desc */}
-          <div>
+          <div style={{ width: "349.42px", height: "223.43px" }}>
             {/* Logo */}
             <Link href="/" style={{ display: "inline-block", textDecoration: "none", marginBottom: "20px" }}>
               <Image src="/finsai-logo.png" alt="Finsai Trade" width={140} height={48} style={{ objectFit: "contain" }} />
@@ -99,9 +99,11 @@ export default function Footer() {
 
             <p style={{
               fontFamily: "var(--font-inter, Inter)",
-              fontSize: "13px",
-              lineHeight: "22px",
-              color: "rgba(255,255,255,0.5)",
+              fontWeight: 400,
+              fontSize: "14.6px",
+              lineHeight: "26.2px",
+              letterSpacing: 0,
+              color: "#D4D4D4",
               maxWidth: "300px",
             }}>
               An award-winning multi-asset trading platform delivering fast, transparent, and secure access to Forex, stocks, crypto, and commodities - powered by fully regulated, institutional-grade infrastructure built for modern traders.
@@ -138,13 +140,16 @@ export default function Footer() {
       {/* Bottom bar */}
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
         <div style={{
-          maxWidth: "1440px", margin: "0 auto", padding: "20px 80px",
+          width: "1311.42px", marginLeft: "81.58px", padding: "20px 0",
           display: "flex", alignItems: "center", justifyContent: "space-between",
         }}>
           <p style={{
             fontFamily: "var(--font-inter, Inter)",
-            fontSize: "13px",
-            color: "rgba(255,255,255,0.4)",
+            fontWeight: 400,
+            fontSize: "14.6px",
+            lineHeight: "29.2px",
+            letterSpacing: 0,
+            color: "#8C8C8C",
             margin: 0,
           }}>
             © Copyright 2026, All Rights Reserved by Finsai Trade
@@ -171,46 +176,50 @@ export default function Footer() {
 
       {/* Legal disclaimer */}
       <div style={{ background: "#020810" }}>
-        <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "32px 80px" }}>
-          <p style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "12px", lineHeight: "22px", color: "rgba(255,255,255,0.35)", margin: "0 0 6px" }}>
-            Finsai Trade (Mauritius) Ltd is a company regulated by the Financial Services Commission Mauritius with License no: GB25204899, Registered in Mauritius under company number C228371. Registered address: 3 Emerald Park, Trianon, Quatre Bornes 72257, MAURITIUS
-          </p>
-          <p style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "12px", lineHeight: "22px", color: "rgba(255,255,255,0.35)", margin: "0 0 6px" }}>
-            Physical Address Mauritius: 3rd Floor, Manor House, 30 St Georges Street, Port Louis, Mauritius
-          </p>
-          <p style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "12px", lineHeight: "22px", color: "rgba(255,255,255,0.35)", margin: "0 0 6px" }}>
-            Finsai Trade (Mauritius) Ltd
-          </p>
-          <p style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "12px", lineHeight: "22px", color: "rgba(255,255,255,0.35)", margin: "0 0 6px" }}>
-            Incorporated on – 19th November 2025, main License no : GB25204899, Regulated by Financial Services Commission Mauritius
-          </p>
-          <p style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "12px", lineHeight: "22px", color: "rgba(255,255,255,0.35)", margin: "0 0 6px" }}>
-            For Risk Disclosure and information <a href="#" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "underline" }}>visit here</a>
-          </p>
-          <p style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "12px", lineHeight: "22px", color: "rgba(255,255,255,0.35)", margin: "0 0 6px" }}>
-            Risk Disclaimer: An investment in derivatives may mean investors may lose an amount even greater than their original investment. Anyone wishing to invest in any of the products mentioned in www.finsaitrade.com should seek their own financial or professional advice.
-          </p>
-          <p style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "12px", lineHeight: "22px", color: "rgba(255,255,255,0.35)", margin: "0 0 6px" }}>
-            Investing and Trading of forex CFDs, stock market, commodities, options and futures, Cryptocurrencies CFDs, securities, may not be suitable for everyone as it involves significant risks and is not suitable for all investors. You should carefully consider your financial situation, investment objectives, experience, and risk tolerance before engaging in such transactions
-          </p>
-          <p style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "12px", lineHeight: "22px", color: "rgba(255,255,255,0.35)", margin: "0 0 6px" }}>
-            You must be aware of the risks and be willing to accept them in order to invest in the markets. Don&apos;t invest and trade with money which you can&apos;t afford to lose. Trading is not allowed in some countries, before investing your money, make sure whether your country is allowing this or not.
-          </p>
-          <p style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "12px", lineHeight: "22px", color: "rgba(255,255,255,0.35)", margin: "0 0 6px" }}>
-            Restricted Regions: Finsai Trade Ltd does not provide services for citizens/residents of the United States of America, Cuba, Iraq, Myanmar, North Korea, Sudan and UAE. The services of Finsai Trade Ltd are not intended for distribution to, or use by, any person in any country or jurisdiction where such distribution or use would be contrary to local law or regulation.
-          </p>
-          <p style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "12px", lineHeight: "22px", color: "rgba(255,255,255,0.35)", margin: "0 0 6px" }}>
-            OR
-          </p>
-          <p style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "12px", lineHeight: "22px", color: "rgba(255,255,255,0.35)", margin: "0 0 6px" }}>
-            Information on this site is not directed at residents in any country or jurisdiction where such distribution or use would be contrary to local law or regulation.
-          </p>
-          <p style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "12px", lineHeight: "22px", color: "rgba(255,255,255,0.35)", margin: "0 0 6px" }}>
-            We urge all users to undertake their own research and due diligence before making any investment decisions.
-          </p>
-          <p style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "12px", lineHeight: "22px", color: "rgba(255,255,255,0.35)", margin: 0 }}>
-            Thank you for choosing Finsai Trade Ltd. We prioritize the safety and well-being of our community and encourage informed and responsible trading.
-          </p>
+        <div style={{ width: "1311.42px", marginLeft: "81.58px", padding: "32px 0" }}>
+          {[
+            "Finsai Trade (Mauritius) Ltd is a company regulated by the Financial Services Commission Mauritius with License no: GB25204899, Registered in Mauritius under company number C228371. Registered address: 3 Emerald Park, Trianon, Quatre Bornes 72257, MAURITIUS",
+            "Physical Address Mauritius: 3rd Floor, Manor House, 30 St Georges Street, Port Louis, Mauritius",
+            "Finsai Trade (Mauritius) Ltd",
+            "Incorporated on – 19th November 2025, main License no : GB25204899, Regulated by Financial Services Commission Mauritius",
+            "For Risk Disclosure and information __VISIT_HERE__",
+            "Risk Disclaimer: An investment in derivatives may mean investors may lose an amount even greater than their original investment. Anyone wishing to invest in any of the products mentioned in www.finsaitrade.com should seek their own financial or professional advice.",
+            "Investing and Trading of forex CFDs, stock market, commodities, options and futures, Cryptocurrencies CFDs, securities, may not be suitable for everyone as it involves significant risks and is not suitable for all investors. You should carefully consider your financial situation, investment objectives, experience, and risk tolerance before engaging in such transactions",
+            "You must be aware of the risks and be willing to accept them in order to invest in the markets. Don't invest and trade with money which you can't afford to lose. Trading is not allowed in some countries, before investing your money, make sure whether your country is allowing this or not.",
+            "Restricted Regions: Finsai Trade Ltd does not provide services for citizens/residents of the United States of America, Cuba, Iraq, Myanmar, North Korea, Sudan and UAE. The services of Finsai Trade Ltd are not intended for distribution to, or use by, any person in any country or jurisdiction where such distribution or use would be contrary to local law or regulation.",
+            "OR",
+            "Information on this site is not directed at residents in any country or jurisdiction where such distribution or use would be contrary to local law or regulation.",
+            "We urge all users to undertake their own research and due diligence before making any investment decisions.",
+            "Thank you for choosing Finsai Trade Ltd. We prioritize the safety and well-being of our community and encourage informed and responsible trading.",
+          ].map((text, i, arr) => (
+            <p key={i} style={{
+              fontFamily: "var(--font-inter, Inter)",
+              fontWeight: 400,
+              fontSize: "14.6px",
+              lineHeight: "29.2px",
+              letterSpacing: 0,
+              color: "#8C8C8C",
+              margin: i === arr.length - 1 ? 0 : "0 0 6px",
+            }}>
+              {text.includes("__VISIT_HERE__") ? (
+                <>
+                  For Risk Disclosure and information{" "}
+                  <a href="#" style={{
+                    fontFamily: "var(--font-inter, Inter)",
+                    fontWeight: 400,
+                    fontSize: "14.6px",
+                    lineHeight: "29.2px",
+                    letterSpacing: 0,
+                    color: "#8C8C8C",
+                    textDecoration: "underline",
+                    textDecorationStyle: "solid",
+                    textUnderlineOffset: "auto",
+                    textDecorationSkipInk: "auto",
+                  }}>visit here</a>
+                </>
+              ) : text}
+            </p>
+          ))}
         </div>
       </div>
 

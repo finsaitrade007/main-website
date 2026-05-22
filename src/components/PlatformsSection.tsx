@@ -56,13 +56,13 @@ export default function PlatformsSection() {
             padding: "24px 28px",
             overflow: "visible",
           }}>
-            <p style={{
-              fontFamily: "var(--font-inter, Inter)",
-              fontSize: "13px",
-              lineHeight: "21px",
-              color: "rgba(255,255,255,0.55)",
-              maxWidth: "55%",
-              margin: 0,
+            <p className="platform-card-text" style={{
+              position: "absolute",
+              top: "20px",
+              left: "21px",
+              width: "315px",
+              height: "108px",
+              overflow: "hidden",
             }}>
               The industry&apos;s gold standard for multi-asset trading. Advanced charting, automated trading, real-time analysis, and multi-asset access.
             </p>
@@ -104,24 +104,24 @@ export default function PlatformsSection() {
             padding: "24px 28px",
             overflow: "visible",
           }}>
-            <p style={{
-              fontFamily: "var(--font-inter, Inter)",
-              fontSize: "13px",
-              lineHeight: "21px",
-              color: "rgba(255,255,255,0.55)",
-              maxWidth: "48%",
-              margin: 0,
+            <p className="platform-card-text" style={{
+              position: "absolute",
+              top: "20px",
+              left: "20.87px",
+              width: "447px",
+              height: "81px",
+              overflow: "hidden",
             }}>
               Designed for ease and speed, a browser-based solution that requires no downloads or installation. Perfect for traders who prefer accessibility and simplicity.
             </p>
 
             {/* Laptop + phone — overflows top-right */}
-            <div style={{ position: "absolute", right: "-10px", top: "-50px", zIndex: 10, pointerEvents: "none" }}>
+            <div style={{ position: "absolute", right: "-35px", top: "-60px", zIndex: 10, pointerEvents: "none" }}>
               <Image
                 src="/platforms/web-terminal-mockup.png"
                 alt="Web Terminal"
-                width={380}
-                height={280}
+                width={360}
+                height={270}
                 style={{ objectFit: "contain" }}
               />
             </div>
@@ -169,13 +169,13 @@ export default function PlatformsSection() {
               />
             </div>
 
-            <p style={{
-              fontFamily: "var(--font-inter, Inter)",
-              fontSize: "13px",
-              lineHeight: "21px",
-              color: "rgba(255,255,255,0.55)",
-              maxWidth: "65%",
-              margin: 0,
+            <p className="platform-card-text" style={{
+              position: "absolute",
+              top: "20.58px",
+              left: "21px",
+              width: "572px",
+              height: "81px",
+              overflow: "hidden",
             }}>
               Follow top-performing traders, mirror proven strategies in real time, and grow your portfolio with confidence — all from within the Finsai Trade platform.
             </p>
@@ -215,13 +215,13 @@ export default function PlatformsSection() {
               />
             </div>
 
-            <p style={{
-              fontFamily: "var(--font-inter, Inter)",
-              fontSize: "13px",
-              lineHeight: "21px",
-              color: "rgba(255,255,255,0.55)",
-              maxWidth: "72%",
-              margin: 0,
+            <p className="platform-card-text" style={{
+              position: "absolute",
+              top: "20.25px",
+              left: "21.32px",
+              width: "348.91px",
+              height: "81px",
+              overflow: "hidden",
             }}>
               Stay connected to the markets on the go with a fast, secure, and intuitive mobile trading experience.
             </p>
