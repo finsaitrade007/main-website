@@ -31,9 +31,46 @@ const CARD_DARK = "#06090F";
 const BORDER    = "1.16px solid rgba(5,111,180,0.4)";
 const RADIUS    = "20.91px";
 
+function CollapsedTab({ account, onClick }: { account: typeof accounts[0]; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        width: "76px",
+        flexShrink: 0,
+        background: CARD_DARK,
+        border: BORDER,
+        borderRadius: RADIUS,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
+        padding: 0,
+        transition: "border-color 0.2s",
+      }}
+    >
+      <span style={{
+        fontFamily: "var(--font-sora, Sora)",
+        fontWeight: 600,
+        fontSize: "13px",
+        letterSpacing: "0.08em",
+        color: "rgba(125,185,214,0.7)",
+        writingMode: "vertical-rl",
+        transform: "rotate(180deg)",
+        whiteSpace: "nowrap",
+      }}>
+        {account.label}
+      </span>
+    </button>
+  );
+}
+
 export default function AccountTypesSection() {
   const [activeId, setActiveId] = useState("choice");
-  const active = accounts.find((a) => a.id === activeId)!;
+  const activeIndex = accounts.findIndex((a) => a.id === activeId);
+  const active = accounts[activeIndex];
+  const before = accounts.slice(0, activeIndex);
+  const after = accounts.slice(activeIndex + 1);
 
   return (
     <section style={{ background: "#050208", padding: "100px 0" }}>
@@ -66,6 +103,11 @@ export default function AccountTypesSection() {
 
         {/* Card row */}
         <div style={{ display: "flex", gap: "10px", height: "476px" }}>
+
+          {/* ── Left: collapsed tabs for accounts BEFORE active ── */}
+          {before.map((account) => (
+            <CollapsedTab key={account.id} account={account} onClick={() => setActiveId(account.id)} />
+          ))}
 
           {/* ── Expanded active card ── */}
           <div style={{
@@ -160,7 +202,7 @@ export default function AccountTypesSection() {
                 bottom: 0,
                 left: "-1px",
                 width: "700px",
-                height: "140px",
+                height: "150px",
                 pointerEvents: "none",
                 userSelect: "none",
                 zIndex: 1,
@@ -168,41 +210,10 @@ export default function AccountTypesSection() {
             />
           </div>
 
-          {/* ── Collapsed tabs for inactive accounts ── */}
-          {accounts
-            .filter((a) => a.id !== activeId)
-            .map((account) => (
-              <button
-                key={account.id}
-                onClick={() => setActiveId(account.id)}
-                style={{
-                  width: "76px",
-                  flexShrink: 0,
-                  background: CARD_DARK,
-                  border: BORDER,
-                  borderRadius: RADIUS,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer",
-                  padding: 0,
-                  transition: "border-color 0.2s",
-                }}
-              >
-                <span style={{
-                  fontFamily: "var(--font-sora, Sora)",
-                  fontWeight: 600,
-                  fontSize: "13px",
-                  letterSpacing: "0.08em",
-                  color: "rgba(125,185,214,0.7)",
-                  writingMode: "vertical-rl",
-                  transform: "rotate(180deg)",
-                  whiteSpace: "nowrap",
-                }}>
-                  {account.label}
-                </span>
-              </button>
-            ))}
+          {/* ── Right: collapsed tabs for accounts AFTER active ── */}
+          {after.map((account) => (
+            <CollapsedTab key={account.id} account={account} onClick={() => setActiveId(account.id)} />
+          ))}
 
         </div>
       </div>
