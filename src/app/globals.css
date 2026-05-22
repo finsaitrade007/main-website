@@ -493,6 +493,56 @@ h1, h2, h3, h4, h5, h6 {
   gap: 6px;
 }
 
+.badge-text {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 19.2px;
+  line-height: 31.2px;
+  letter-spacing: -0.0001em;
+  text-transform: capitalize;
+  background: linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cta-btn {
+  position: relative;
+  background: #000000;
+  overflow: hidden;
+}
+
+.cta-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(5,111,180,0.7) 0%, #056FB4 100%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+.cta-btn:hover::after {
+  opacity: 1;
+}
+
+.cta-btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+.body-text {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0;
+}
+
 .body-text-muted {
   font-family: var(--font-inter), 'Inter', sans-serif;
   font-weight: 400;

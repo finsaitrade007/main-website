@@ -31,8 +31,14 @@ export default function FAQSection() {
     <section className="py-24 px-4 bg-[#050208]">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-4">
-          <span className="px-4 py-1.5 border border-white/20 rounded-full text-sm text-gray-400">
-            FAQ
+          <span style={{
+            display: "inline-flex",
+            alignItems: "center",
+            padding: "8px 22px",
+            border: "1px solid rgba(255,255,255,0.2)",
+            borderRadius: "60px",
+          }}>
+            <span className="badge-text">FAQ</span>
           </span>
         </div>
         <h2 className="section-title" style={{ textAlign: "center", marginBottom: "48px" }}>
@@ -79,7 +85,19 @@ export default function FAQSection() {
         <div className="text-center mt-10">
           <a
             href="/faq"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-gray-300 hover:text-white hover:border-white/40 rounded-full text-sm transition-all"
+            className="btn-text"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+              width: "166px",
+              height: "48px",
+              borderRadius: "8px",
+              padding: "11px 24px",
+              background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+              textDecoration: "none",
+            }}
           >
             Contact Us
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

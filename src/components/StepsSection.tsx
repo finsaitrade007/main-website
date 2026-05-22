@@ -35,11 +35,8 @@ export default function StepsSection() {
             background: "#000",
             border: "1px solid rgba(255,255,255,0.15)",
             borderRadius: "60px",
-            fontFamily: "var(--font-inter, Inter)",
-            fontSize: "14px",
-            color: "rgba(125,185,214,0.85)",
           }}>
-            Signup Procedure
+            <span className="badge-text">Signup Procedure</span>
           </span>
         </div>
 

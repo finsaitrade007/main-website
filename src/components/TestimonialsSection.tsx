@@ -55,11 +55,8 @@ export default function TestimonialsSection() {
             padding: "8px 22px",
             border: "1px solid rgba(255,255,255,0.2)",
             borderRadius: "60px",
-            fontFamily: "var(--font-inter, Inter)",
-            fontSize: "14px",
-            color: "rgba(125,185,214,0.85)",
           }}>
-            Testimonials
+            <span className="badge-text">Testimonials</span>
           </span>
         </div>
 

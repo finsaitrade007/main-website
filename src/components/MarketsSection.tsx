@@ -76,11 +76,8 @@ export default function MarketsSection() {
               padding: "8px 18px",
               border: "1px solid rgba(255,255,255,0.15)",
               borderRadius: "60px",
-              fontFamily: "var(--font-inter, Inter)",
-              fontSize: "14px",
-              color: "rgba(125,185,214,0.8)",
             }}>
-              Market You Can Trade
+              <span className="badge-text">Market You Can Trade</span>
             </span>
           </div>
 

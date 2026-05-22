@@ -114,19 +114,16 @@ export default function FeaturesSection() {
         {/* Badge */}
         <div className="flex justify-start mb-4">
           <div
-            className="flex items-center gap-2 px-4 py-2.5"
             style={{
+              display: "inline-flex",
+              alignItems: "center",
+              padding: "8px 22px",
               background: "#000000",
               border: "1.2px solid rgba(255,255,255,0.15)",
               borderRadius: "60px",
             }}
           >
-            <span
-              className="gradient-text text-base"
-              style={{ fontFamily: "var(--font-inter, Inter)", fontWeight: 400 }}
-            >
-              Features of Finsai Trade
-            </span>
+            <span className="badge-text">Features of Finsai Trade</span>
           </div>
         </div>
 

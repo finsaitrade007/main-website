@@ -32,11 +32,8 @@ export default function AwardsSection() {
             padding: "8px 22px",
             border: "1px solid rgba(255,255,255,0.2)",
             borderRadius: "60px",
-            fontFamily: "var(--font-inter, Inter)",
-            fontSize: "14px",
-            color: "rgba(255,255,255,0.6)",
           }}>
-            Our Awards
+            <span className="badge-text">Our Awards</span>
           </span>
         </div>
 

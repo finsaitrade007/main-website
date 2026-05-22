@@ -127,11 +127,8 @@ export default function JourneySection() {
             padding: "8px 22px",
             border: "1px solid rgba(255,255,255,0.2)",
             borderRadius: "60px",
-            fontFamily: "var(--font-inter, Inter)",
-            fontSize: "14px",
-            color: "rgba(255,255,255,0.6)",
           }}>
-            Learn And Grow
+            <span className="badge-text">Learn And Grow</span>
           </span>
         </div>
 

@@ -24,11 +24,8 @@ export default function PlatformsSection() {
             background: "#000",
             border: "1px solid rgba(255,255,255,0.15)",
             borderRadius: "60px",
-            fontFamily: "var(--font-inter, Inter)",
-            fontSize: "14px",
-            color: "rgba(125,185,214,0.85)",
           }}>
-            Choose The Best - Platform
+            <span className="badge-text">Choose The Best - Platform</span>
           </span>
         </div>
 
