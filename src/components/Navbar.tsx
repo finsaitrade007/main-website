@@ -16,9 +16,19 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-3">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between bg-[#0a0d1a]/80 backdrop-blur-md border border-white/10 rounded-full px-6 py-3">
+    <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, display: "flex", justifyContent: "center", padding: "12px 0" }}>
+      <div style={{ width: "1297.05px" }}>
+        <div style={{
+          width: "1297.05px",
+          height: "80.65px",
+          borderRadius: "41.57px",
+          border: "0.83px solid transparent",
+          background: "linear-gradient(90deg, #031823 0%, #01111A 100%) padding-box, linear-gradient(181.89deg, #747474 1.6%, #000000 98.4%) border-box",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "0 28px",
+        }}>
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -31,8 +41,18 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="px-4 py-1.5 text-sm text-gray-300 hover:text-white transition-colors rounded-full hover:bg-white/5"
-                style={{ fontFamily: "var(--font-inter, Inter)" }}
+                style={{
+                  fontFamily: "var(--font-inter, Inter)",
+                  fontWeight: 500,
+                  fontSize: "13.3px",
+                  lineHeight: "100%",
+                  letterSpacing: 0,
+                  color: "#FFFFFF",
+                  textDecoration: "none",
+                  padding: "6px 16px",
+                  borderRadius: "60px",
+                  transition: "background 0.2s",
+                }}
               >
                 {link.label}
               </Link>

@@ -130,7 +130,8 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   letter-spacing: -0.01em;
   color: #FFFFFF;
-  max-width: 789px;
+  width: 789px;
+  height: 124px;
   margin: 0;
 }
 
@@ -142,9 +143,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   font-size: 18px;
   line-height: 180%;
+  letter-spacing: 0;
   text-align: center;
   color: #E0E0E0;
-  max-width: 833px;
+  width: 833px;
+  height: 64px;
   margin: 0;
 }
 
@@ -188,8 +191,11 @@ h1, h2, h3, h4, h5, h6 {
   gap: 8px;
   width: 198.55px;
   height: 49.47px;
-  border-radius: 24.3955px;
-  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 24.4px;
+  border: 1.36px solid transparent;
+  background:
+    linear-gradient(#050208, #050208) padding-box,
+    linear-gradient(94.37deg, #056FB4 0.18%, rgba(5,111,180,0.6) 99.82%) border-box;
   padding: 0 14px 0 10px;
   margin-right: 13.56px;
   flex-shrink: 0;
@@ -209,22 +215,24 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
 }
 
-/* font-family: 'Inter'; font-weight: 600; font-size: 13.5531px; color: #ECF1F0 */
+/* font-family: 'Inter'; font-weight: 600; font-size: 13.55px; color: #ECF1F0 */
 .forex-pill__pair {
   font-family: var(--font-inter), 'Inter', sans-serif;
   font-weight: 600;
-  font-size: 13.5531px;
-  line-height: 16px;
+  font-size: 13.55px;
+  line-height: 100%;
+  letter-spacing: 0;
   color: #ECF1F0;
   white-space: nowrap;
 }
 
-/* font-family: 'Inter'; font-weight: 400; font-size: 10.8425px; color: #ECF1F0 */
+/* font-family: 'Inter'; font-weight: 400; font-size: 10.84px; color: #ECF1F0 */
 .forex-pill__price {
   font-family: var(--font-inter), 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 10.8425px;
-  line-height: 13px;
+  font-size: 10.84px;
+  line-height: 100%;
+  letter-spacing: 0;
   color: #ECF1F0;
   margin-left: auto;
   white-space: nowrap;

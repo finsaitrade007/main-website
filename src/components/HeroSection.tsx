@@ -50,13 +50,13 @@ export default function HeroSection() {
           <p className="hero__subtitle">
             The powerful multi-asset trading platform for modern traders — all in one unified ecosystem.
             <br />
-            <span style={{ color: "#7DB9D6" }}>Regulated Broker</span>
+            <span style={{ color: "#7DD5FF" }}>Regulated Broker</span>
             {" | "}
-            <span style={{ color: "#7DB9D6" }}>MT5 Platform</span>
+            <span style={{ color: "#7DD5FF" }}>MT5 Platform</span>
             {" | "}
-            <span style={{ color: "#7DB9D6" }}>Swap Free</span>
+            <span style={{ color: "#7DD5FF" }}>Swap Free</span>
             {" | "}
-            <span style={{ color: "#7DB9D6" }}>Reliable Support</span>
+            <span style={{ color: "#7DD5FF" }}>Reliable Support</span>
           </p>
 
           <div className="hero__ctas">
