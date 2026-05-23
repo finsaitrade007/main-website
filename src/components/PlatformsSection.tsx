@@ -12,7 +12,7 @@ const LARGE = "1.52fr";
 
 export default function PlatformsSection() {
   return (
-    <section style={{ background: "#050208", padding: "100px 0" }}>
+    <section style={{ background: "#050208", width: "1440px", height: "780px", padding: "0px 0", boxSizing: "border-box" }}>
       <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 80px" }}>
 
         {/* Badge */}
