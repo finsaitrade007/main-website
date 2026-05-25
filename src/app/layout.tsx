@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Sora, Inter } from "next/font/google";
+import { Sora, Inter, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,7 +7,13 @@ import Footer from "@/components/Footer";
 const sora = Sora({
   variable: "--font-sora",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["300", "400", "600", "700", "800"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 const inter = Inter({
@@ -30,7 +36,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sora.variable} ${inter.variable} h-full antialiased`}
+      className={`${sora.variable} ${inter.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#050208]">
         <Navbar />

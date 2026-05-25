@@ -30,7 +30,7 @@ export default function IBWhySection() {
   const [active, setActive] = useState(0);
 
   return (
-    <section style={{ background: "#050208", padding: "80px 0" }}>
+    <section style={{ background: "#050208", width: "1440px", height: "822px", padding: "80px 0", boxSizing: "border-box" }}>
       <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 80px" }}>
 
         {/* Title */}
@@ -117,7 +117,7 @@ export default function IBWhySection() {
               fontSize: "16px",
               lineHeight: "32px",
               letterSpacing: 0,
-              color: "rgba(255,255,255,0.65)",
+              color: "#FFFFFF",
               margin: 0,
             }}>
               {tabs[active].desc}
@@ -142,9 +142,9 @@ export default function IBWhySection() {
             <Image
               src="/ib-why.png"
               alt="IB Why"
-              width={520}
-              height={480}
-              style={{ objectFit: "contain" }}
+              width={472}
+              height={444}
+              style={{ objectFit: "contain", borderRadius: "20px" }}
             />
           </div>
         </div>

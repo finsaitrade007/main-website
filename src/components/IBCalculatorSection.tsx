@@ -9,82 +9,184 @@ export default function IBCalculatorSection() {
 
   return (
     <section style={{ background: "#050208", padding: "80px 0" }}>
+      <style>{`
+        .ib-slider {
+          -webkit-appearance: none;
+          appearance: none;
+          height: 10px;
+          border-radius: 4px;
+          background: rgba(255,255,255,0.15);
+          outline: none;
+          cursor: pointer;
+        }
+        .ib-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%);
+          cursor: pointer;
+          border: none;
+        }
+        .ib-slider::-moz-range-thumb {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%);
+          cursor: pointer;
+          border: none;
+        }
+      `}</style>
+
       <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 80px" }}>
         <div style={{
-          background: "linear-gradient(135deg, #0D1927 0%, #0a1628 100%)",
-          border: "1px solid rgba(5,111,180,0.3)",
-          borderRadius: "24px",
-          padding: "60px",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "60px",
-          alignItems: "center",
+          position: "relative",
+          width: "1286px",
+          height: "558px",
+          background: "#050208",
+          border: "1px solid #056FB4",
+          borderRadius: "30px",
+          boxSizing: "border-box",
+          margin: "0 auto",
         }}>
 
-          <div>
-            <h2 className="section-title" style={{ marginBottom: "8px" }}>
-              Unlock Your Earning Potential
-            </h2>
-            <p style={{
-              fontFamily: "var(--font-inter, Inter)",
-              fontSize: "14px",
-              color: "rgba(255,255,255,0.5)",
-              marginBottom: "40px",
-            }}>
-              Specify the expected values of your partner network
-            </p>
+          {/* Title */}
+          <h2 style={{
+            position: "absolute",
+            top: "72px",
+            left: "80px",
+            width: "548px",
+            height: "43px",
+            fontFamily: "var(--font-sora, Sora)",
+            fontWeight: 600,
+            fontSize: "36px",
+            lineHeight: "43px",
+            letterSpacing: 0,
+            color: "#FFFFFF",
+            margin: 0,
+          }}>
+            Unlock Your Earning Potential
+          </h2>
 
-            <div style={{ marginBottom: "32px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
-                <span style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "14px", color: "rgba(255,255,255,0.7)" }}>
-                  Active referral clients
-                </span>
-                <span style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "14px", color: "#056FB4", fontWeight: 600 }}>
-                  {clients} trades
-                </span>
-              </div>
-              <input
-                type="range"
-                min={0}
-                max={500}
-                value={clients}
-                onChange={(e) => setClients(Number(e.target.value))}
-                style={{ width: "100%", accentColor: "#056FB4" }}
-              />
-            </div>
+          {/* Subtitle */}
+          <p style={{
+            position: "absolute",
+            top: "133px",
+            left: "80px",
+            width: "455px",
+            height: "19px",
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 400,
+            fontSize: "16px",
+            lineHeight: "100%",
+            letterSpacing: 0,
+            color: "rgba(255,255,255,0.5)",
+            margin: 0,
+          }}>
+            Specify the expected values of your partner network
+          </p>
 
-            <div>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
-                <span style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "14px", color: "rgba(255,255,255,0.7)" }}>
-                  Average trade volume
-                </span>
-                <span style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "14px", color: "#056FB4", fontWeight: 600 }}>
-                  {volume} Lots
-                </span>
-              </div>
-              <input
-                type="range"
-                min={0}
-                max={1000}
-                value={volume}
-                onChange={(e) => setVolume(Number(e.target.value))}
-                style={{ width: "100%", accentColor: "#056FB4" }}
-              />
-            </div>
-          </div>
+          {/* Slider 1 label */}
+          <span className="slider-label" style={{ position: "absolute", top: "200px", left: "82px", width: "226px", height: "27px" }}>
+            Active referral clients
+          </span>
+          {/* Slider 1 count */}
+          <span style={{
+            position: "absolute",
+            top: "200px",
+            left: "316px",
+            width: "88px",
+            height: "27px",
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 500,
+            fontSize: "22px",
+            lineHeight: "100%",
+            letterSpacing: 0,
+            color: "#FFFFFF",
+          }}>
+            {clients} trades
+          </span>
 
+          {/* Slider 1 */}
+          <input
+            type="range"
+            className="ib-slider"
+            min={0}
+            max={500}
+            value={clients}
+            onChange={(e) => setClients(Number(e.target.value))}
+            style={{
+              position: "absolute",
+              top: "254px",
+              left: "82px",
+              width: "625px",
+              height: "10px",
+            }}
+          />
+
+          {/* Slider 2 label */}
+          <span className="slider-label" style={{ position: "absolute", top: "323px", left: "82px", width: "234px", height: "27px" }}>
+            Average trade volume
+          </span>
+          {/* Slider 2 count */}
+          <span style={{
+            position: "absolute",
+            top: "323px",
+            left: "324px",
+            width: "66px",
+            height: "27px",
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 500,
+            fontSize: "22px",
+            lineHeight: "100%",
+            letterSpacing: 0,
+            color: "#FFFFFF",
+          }}>
+            {volume} Lots
+          </span>
+
+          {/* Slider 2 */}
+          <input
+            type="range"
+            className="ib-slider"
+            min={0}
+            max={1000}
+            value={volume}
+            onChange={(e) => setVolume(Number(e.target.value))}
+            style={{
+              position: "absolute",
+              top: "377px",
+              left: "82px",
+              width: "625px",
+              height: "10px",
+            }}
+          />
+
+          {/* Revenue box */}
           <div style={{
-            background: "rgba(5,111,180,0.08)",
-            border: "1px solid rgba(5,111,180,0.3)",
-            borderRadius: "16px",
-            padding: "40px",
-            textAlign: "center",
+            position: "absolute",
+            top: "78px",
+            left: "834px",
+            width: "377px",
+            height: "165px",
+            borderRadius: "8px",
+            border: "1px solid #056FB4",
+            background: `
+              linear-gradient(0deg, rgba(10,10,10,0.7), rgba(10,10,10,0.7)),
+              linear-gradient(119.3deg, rgba(0,0,0,0) 23.34%, rgba(73,109,171,0.3) 96.36%)
+            `,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            boxSizing: "border-box",
           }}>
             <p style={{
               fontFamily: "var(--font-inter, Inter)",
               fontSize: "14px",
               color: "rgba(255,255,255,0.5)",
-              marginBottom: "16px",
+              margin: "0 0 12px",
             }}>
               Monthly revenue will be*
             </p>
@@ -93,34 +195,69 @@ export default function IBCalculatorSection() {
               fontWeight: 700,
               fontSize: "40px",
               color: "#FFFFFF",
-              margin: "0 0 32px",
+              margin: 0,
             }}>
               {monthlyRevenue} USD
             </p>
-            <button style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              padding: "14px 28px",
-              borderRadius: "8px",
-              background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-              border: "none",
-              cursor: "pointer",
-              fontFamily: "var(--font-sora, Sora)",
-              fontSize: "16px",
-              color: "#FFFFFF",
-            }}>
-              Yes, I&apos;m Ready! →
-            </button>
-            <p style={{
-              fontFamily: "var(--font-inter, Inter)",
-              fontSize: "11px",
-              color: "rgba(255,255,255,0.3)",
-              marginTop: "16px",
-            }}>
-              *Please note that the following calculations are estimations and subject to the trading of the instrument XAUUZ, earning which as a reference will be in determining the earnings.
-            </p>
           </div>
+
+          {/* Are you ready text */}
+          <span style={{
+            position: "absolute",
+            top: "280px",
+            left: "936px",
+            width: "172px",
+            height: "19px",
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 400,
+            fontSize: "16px",
+            lineHeight: "100%",
+            letterSpacing: 0,
+            color: "#FFFFFF99",
+          }}>
+            Are you ready to earn?
+          </span>
+
+          {/* Button */}
+          <button style={{
+            position: "absolute",
+            top: "309px",
+            left: "909px",
+            width: "226.02px",
+            height: "56.5px",
+            borderRadius: "28.83px",
+            background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+            border: "none",
+            cursor: "pointer",
+            fontFamily: "var(--font-sora, Sora)",
+            fontSize: "16px",
+            color: "#FFFFFF",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "8px",
+          }}>
+            Yes, I&apos;m Ready! →
+          </button>
+
+          {/* Note */}
+          <p style={{
+            position: "absolute",
+            top: "446px",
+            left: "80px",
+            width: "830px",
+            height: "34px",
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 400,
+            fontSize: "14px",
+            lineHeight: "100%",
+            letterSpacing: 0,
+            color: "#FFFFFF99",
+            margin: 0,
+            overflow: "hidden",
+          }}>
+            *Please note that the following calculations are preliminary and based on the trading of one instrument (GOLD), serving solely as a reference and not representing final earnings.
+          </p>
 
         </div>
       </div>

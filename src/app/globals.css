@@ -568,3 +568,13 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 25px;
   color: rgba(255,255,255,0.45);
 }
+
+
+.slider-label {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #FFFFFF99;
+}
