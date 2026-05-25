@@ -600,3 +600,14 @@ h1, h2, h3, h4, h5, h6 {
   color: #A7A9BE;
   margin: 0;
 }
+
+.platform-feature-text {
+  font-family: var(--font-sora), 'Sora', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: #FFFFFFBF;
+  vertical-align: middle;
+  white-space: pre-line;
+}
