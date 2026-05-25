@@ -3,84 +3,128 @@ import Image from "next/image";
 
 const steps = [
   {
-    img: "/steps/register.png",
+    number: 1,
     title: "Sign Up",
     desc: "Submit your application to become an IB.",
+    img: "/steps/register.png",
   },
   {
-    img: "/steps/verify.png",
+    number: 2,
     title: "Promote",
     desc: "Use our marketing materials to introduce traders to our trading platforms.",
+    img: "/steps/verify.png",
   },
   {
-    img: "/steps/start-trading.png",
+    number: 3,
     title: "Earn",
     desc: "Collect your commissions for every trade your referred traders execute.",
+    img: "/steps/start-trading.png",
   },
 ];
 
 export default function IBHowToSection() {
   return (
-    <section style={{ background: "#050208", padding: "80px 0" }}>
-      <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 80px", textAlign: "center" }}>
+    <section style={{ background: "#050208", position: "relative", width: "1440px", height: "707px", boxSizing: "border-box" }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 80px" }}>
 
-        <h2 className="section-title" style={{ marginBottom: "8px" }}>
+        {/* Title */}
+        <h2 className="section-title" style={{
+          position: "absolute",
+          top: "80px",
+          left: "143px",
+          width: "1154px",
+          height: "68px",
+          textAlign: "center",
+          margin: 0,
+        }}>
           Fast application. Fast process. So easy.
         </h2>
-        <p className="section-desc" style={{ marginBottom: "56px" }}>
-          How to become an IB
+
+        <p className="section-desc" style={{
+          position: "absolute",
+          top: "158px",
+          left: "595px",
+          width: "255px",
+          height: "29px",
+          textAlign: "center",
+          margin: 0,
+        }}>
+          How to become an IB?
         </p>
 
+        {/* Steps row */}
         <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "32px",
-          marginBottom: "48px",
+          position: "absolute",
+          top: "199px",
+          left: "108px",
+          width: "1225px",
+          height: "278px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
         }}>
-          {steps.map((step, i) => (
-            <div key={i} style={{
-              background: "linear-gradient(135deg, #0D1927 0%, #0a1628 100%)",
-              border: "1px solid rgba(5,111,180,0.3)",
-              borderRadius: "20px",
-              padding: "40px 32px",
+
+          {/* Connector line */}
+          <div style={{
+            position: "absolute",
+            top: "100px",
+            zIndex: 0,
+            left: "calc(16.67% + 100px)",
+            right: "calc(16.67% + 100px)",
+            height: "1px",
+            background: "linear-gradient(90deg, rgba(5,111,180,0.3) 0%, rgba(5,111,180,0.6) 50%, rgba(5,111,180,0.3) 100%)",
+          }} />
+
+          {steps.map((step) => (
+            <div key={step.number} style={{
+              flex: 1,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              gap: "16px",
+              textAlign: "center",
             }}>
-              <Image src={step.img} alt={step.title} width={64} height={64} style={{ objectFit: "contain" }} />
-              <h3 style={{
-                fontFamily: "var(--font-sora, Sora)",
-                fontWeight: 600,
-                fontSize: "20px",
-                color: "#FFFFFF",
-                margin: 0,
-              }}>
+              <div style={{ marginBottom: "32px", flexShrink: 0, position: "relative", zIndex: 1 }}>
+                <Image
+                  src={step.img}
+                  alt={step.title}
+                  width={200}
+                  height={200}
+                  style={{ display: "block" }}
+                />
+              </div>
+
+              <h3 className="step-title" style={{ marginBottom: "12px", fontSize: "32px" }}>
                 {step.title}
               </h3>
-              <p style={{
-                fontFamily: "var(--font-inter, Inter)",
-                fontSize: "15px",
-                lineHeight: "26px",
-                color: "rgba(255,255,255,0.6)",
-                margin: 0,
-              }}>
+
+              <p className="step-desc" style={{ maxWidth: "369px", fontSize: "18px" }}>
                 {step.desc}
               </p>
             </div>
           ))}
+
         </div>
 
+        {/* CTA button */}
         <Link href="/register" className="btn-text" style={{
+          position: "absolute",
+          top: "571px",
+          left: "627.01px",
+          width: "186px",
+          height: "56px",
+          borderRadius: "28.83px",
+          paddingTop: "14px",
+          paddingBottom: "14px",
+          paddingLeft: "32px",
+          paddingRight: "32px",
+          gap: "21px",
+          background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+          textDecoration: "none",
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
-          width: "195px",
-          height: "48px",
-          borderRadius: "8px",
-          background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-          textDecoration: "none",
           whiteSpace: "nowrap",
+          boxSizing: "border-box",
         }}>
           Become an IB
         </Link>
