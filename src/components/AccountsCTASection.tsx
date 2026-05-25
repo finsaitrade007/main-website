@@ -10,65 +10,78 @@ export default function AccountsCTASection() {
         borderRadius: "30px",
         border: "1px solid #056FB4",
         background: "linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
         flexShrink: 0,
+        position: "relative",
+        overflow: "hidden",
       }}>
 
-        {/* Content */}
-        <div style={{ position: "relative", textAlign: "center", padding: "0 80px" }}>
-          {/* Icon */}
-          <div style={{
-            width: "64px",
-            height: "64px",
-            background: "rgba(5,111,180,0.15)",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "0 auto 24px",
-          }}>
-            <Image src="/service/protection.png" alt="" width={32} height={32} style={{ objectFit: "contain" }} />
-          </div>
+        <Image
+          src="/accounts/wallet.png"
+          alt=""
+          width={157}
+          height={157}
+          style={{ position: "absolute", top: "33px", left: "518px", objectFit: "contain" }}
+        />
 
-          <h2 style={{
-            fontFamily: "var(--font-sora, Sora)",
-            fontWeight: 600,
-            fontSize: "36px",
-            lineHeight: "120%",
-            color: "#FFFFFF",
-            margin: "0 0 16px",
-          }}>
-            Ready to Start Trading with Finsai?
-          </h2>
+        <h2 style={{
+          position: "absolute",
+          top: "192px",
+          left: "244px",
+          width: "707px",
+          height: "50px",
+          fontFamily: "var(--font-sora, Sora)",
+          fontWeight: 600,
+          fontSize: "36px",
+          lineHeight: "50px",
+          letterSpacing: "0%",
+          textAlign: "center",
+          color: "#FFFFFF",
+          margin: 0,
+          overflow: "hidden",
+        }}>
+          Ready to Start Trading with Finsai?
+        </h2>
 
-          <p style={{
-            fontFamily: "var(--font-inter, Inter)",
-            fontWeight: 400,
-            fontSize: "16px",
-            lineHeight: "25px",
-            color: "rgba(255,255,255,0.6)",
-            maxWidth: "600px",
-            margin: "0 auto 36px",
-          }}>
-            Open a live account or start with a demo account and explore global markets with Finsai
-            Trade — at your pace, on your terms.
-          </p>
+        <p style={{
+          position: "absolute",
+          fontFamily: "var(--font-inter, Inter)",
+          fontWeight: 400,
+          fontSize: "16px",
+          lineHeight: "32px",
+          letterSpacing: "0%",
+          textAlign: "center",
+          color: "#FFFFFF",
+          margin: 0,
+          top: "254px",
+          left: "211px",
+          width: "773px",
+          height: "64px",
+        }}>
+          Open a live account or start with a demo account and explore global markets with Finsai
+          Trade — at your pace, on your terms.
+        </p>
 
-          <Link href="/register" className="btn-text" style={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "14px 40px",
-            borderRadius: "28.83px",
-            background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-            textDecoration: "none",
-          }}>
-            Deposit Funds
-          </Link>
-        </div>
+        <Link href="/register" className="btn-text" style={{
+          position: "absolute",
+          top: "330px",
+          left: "508px",
+          width: "178px",
+          height: "56px",
+          borderRadius: "28.83px",
+          paddingTop: "14px",
+          paddingBottom: "14px",
+          paddingLeft: "25px",
+          paddingRight: "25px",
+          background: "linear-gradient(90deg, rgba(5,111,180,0.7) 0%, #056FB4 100%)",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "16px",
+          textDecoration: "none",
+          boxSizing: "border-box",
+        }}>
+          Deposit Funds
+        </Link>
       </div>
     </section>
   );
