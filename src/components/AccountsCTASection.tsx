@@ -9,25 +9,13 @@ export default function AccountsCTASection() {
         height: "437px",
         borderRadius: "30px",
         border: "1px solid #056FB4",
-        background: "#000000",
-        position: "relative",
-        overflow: "hidden",
+        background: "linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         flexShrink: 0,
       }}>
-        {/* Glow */}
-        <div style={{
-          position: "absolute",
-          width: "600px",
-          height: "300px",
-          background: "rgba(5,111,180,0.15)",
-          borderRadius: "50%",
-          filter: "blur(100px)",
-          pointerEvents: "none",
-        }} />
 
         {/* Content */}
         <div style={{ position: "relative", textAlign: "center", padding: "0 80px" }}>

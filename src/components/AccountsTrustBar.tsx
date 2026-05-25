@@ -1,9 +1,12 @@
 import Image from "next/image";
 
+const INNER_BG = "linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)";
+const BORDER_GRADIENT = "linear-gradient(180deg, #056FB4 0%, #7DB9D6 100%)";
+
 const badges = [
-  { icon: "/service/protection.png",                label: "PCI DSS",   sub: "Complaint"  },
-  { icon: "/service/two-factor-authentication.png", label: "256-bit",   sub: "Encryption" },
-  { icon: "/service/efficient-power-management.png",label: "Verified",  sub: "Partners"   },
+  { icon: "/service/pci-dss.png",                 line1: "PCI DSS",  line2: "Complaint",  left: "656px",  imgTop: "20px", imgLeft: "21px", width: "170px", height: "76px" },
+  { icon: "/service/layer.png",  line1: "256-bit",  line2: "Encryption", left: "850px",  imgTop: "21px", imgLeft: "21px", width: "170px", height: "77px" },
+  { icon: "/service/verify.png", line1: "Verified", line2: "Partners",   left: "1044px", imgTop: "21px", imgLeft: "21px", width: "170px", height: "77px" },
 ];
 
 export default function AccountsTrustBar() {
@@ -11,84 +14,99 @@ export default function AccountsTrustBar() {
     <section style={{
       background: "#050208",
       width: "1440px",
-      padding: "0 76px 40px",
+      padding: "0 80px 40px",
       boxSizing: "border-box",
     }}>
+      {/* Gradient border wrapper */}
       <div style={{
-        width: "100%",
-        background: "#0A0B14",
-        border: "1px solid rgba(255,255,255,0.08)",
-        borderRadius: "16px",
-        padding: "28px 40px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
+        width: "1280px",
+        height: "197px",
+        borderRadius: "20px",
+        background: BORDER_GRADIENT,
+        padding: "1px",
         boxSizing: "border-box",
       }}>
-        {/* Left */}
-        <div style={{ display: "flex", alignItems: "center", gap: "16px", maxWidth: "560px" }}>
-          <div style={{
-            width: "52px",
-            height: "52px",
-            minWidth: "52px",
-            background: "rgba(5,111,180,0.15)",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}>
-            <Image src="/service/protection.png" alt="" width={26} height={26} style={{ objectFit: "contain" }} />
-          </div>
+        <div style={{
+          width: "100%",
+          height: "100%",
+          borderRadius: "19px",
+          background: INNER_BG,
+          padding: "0 40px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          boxSizing: "border-box",
+          position: "relative",
+        }}>
+          <Image
+            src="/accounts/badge.png"
+            alt=""
+            width={83.34}
+            height={106}
+            style={{ position: "absolute", top: "51px", left: "66px", objectFit: "contain" }}
+          />
+          {/* Left text — absolutely positioned per Figma */}
           <p style={{
+            position: "absolute",
+            top: "63px",
+            left: "157px",
+            width: "439px",
+            height: "70px",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
-            fontSize: "14px",
-            lineHeight: "22px",
-            color: "rgba(255,255,255,0.6)",
+            fontSize: "18px",
+            lineHeight: "196%",
+            letterSpacing: "0%",
+            color: "#E0E0E0",
             margin: 0,
+            overflow: "hidden",
           }}>
             Welcome to Finsai Trade&apos;s Introducing Broker (IB) Program. We offer a comprehensive partnership
           </p>
-        </div>
 
-        {/* Divider */}
-        <div style={{ width: "1px", height: "40px", background: "rgba(255,255,255,0.1)", flexShrink: 0 }} />
-
-        {/* Right badges */}
-        <div style={{ display: "flex", alignItems: "center", gap: "40px" }}>
-          {badges.map((b, i) => (
-            <div key={b.label} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-              {i > 0 && (
-                <div style={{ width: "1px", height: "36px", background: "rgba(255,255,255,0.1)", marginRight: "28px" }} />
-              )}
+          {/* Badges — absolutely positioned */}
+          {badges.map((b) => (
+            <div key={b.line1} style={{
+              position: "absolute",
+              top: "60px",
+              left: b.left,
+              width: b.width,
+              height: b.height,
+              borderRadius: "16px",
+            }}>
+              <Image
+                src={b.icon}
+                alt=""
+                width={36}
+                height={36}
+                style={{ position: "absolute", top: b.imgTop, left: b.imgLeft, objectFit: "contain" }}
+              />
               <div style={{
-                width: "40px",
-                height: "40px",
-                background: "rgba(255,255,255,0.06)",
-                borderRadius: "50%",
+                position: "absolute",
+                top: b.imgTop,
+                left: "65px",
                 display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
+                flexDirection: "column",
+                gap: "2px",
               }}>
-                <Image src={b.icon} alt="" width={20} height={20} style={{ objectFit: "contain" }} />
-              </div>
-              <div>
-                <div style={{
+                <span style={{
                   fontFamily: "var(--font-sora, Sora)",
-                  fontWeight: 600,
-                  fontSize: "14px",
-                  color: "#FFFFFF",
-                  lineHeight: "100%",
-                }}>{b.label}</div>
-                <div style={{
-                  fontFamily: "var(--font-inter, Inter)",
                   fontWeight: 400,
-                  fontSize: "12px",
-                  color: "rgba(255,255,255,0.5)",
+                  fontSize: "20px",
                   lineHeight: "100%",
-                  marginTop: "4px",
-                }}>{b.sub}</div>
+                  letterSpacing: "-0.02em",
+                  color: "#FFFFFF",
+                  whiteSpace: "nowrap",
+                }}>{b.line1}</span>
+                <span style={{
+                  fontFamily: "var(--font-sora, Sora)",
+                  fontWeight: 400,
+                  fontSize: "20px",
+                  lineHeight: "100%",
+                  letterSpacing: "-0.02em",
+                  color: "#FFFFFF",
+                  whiteSpace: "nowrap",
+                }}>{b.line2}</span>
               </div>
             </div>
           ))}
