@@ -168,7 +168,7 @@ export default function AccountTypesSection() {
 
             {/* CTA button */}
             <Link
-              href="/register"
+              href="/account-pricing"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
