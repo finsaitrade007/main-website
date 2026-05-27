@@ -4,12 +4,12 @@ const INNER_BG = "linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)";
 const BORDER_GRADIENT = "linear-gradient(180deg, #056FB4 0%, #7DB9D6 100%)";
 
 const badges = [
-  { icon: "/service/pci-dss.png",                 line1: "PCI DSS",  line2: "Complaint",  left: "656px",  imgTop: "20px", imgLeft: "21px", width: "170px", height: "76px" },
-  { icon: "/service/layer.png",  line1: "256-bit",  line2: "Encryption", left: "850px",  imgTop: "21px", imgLeft: "21px", width: "170px", height: "77px" },
-  { icon: "/service/verify.png", line1: "Verified", line2: "Partners",   left: "1044px", imgTop: "21px", imgLeft: "21px", width: "170px", height: "77px" },
+  { icon: "/service/pci-dss.png", line1: "PCI DSS",  line2: "Compliant",   left: "656px",  imgTop: "20px", imgLeft: "21px", width: "170px", height: "76px" },
+  { icon: "/service/Layer.png",   line1: "256-bit",  line2: "Encryption",  left: "850px",  imgTop: "21px", imgLeft: "21px", width: "170px", height: "77px" },
+  { icon: "/service/verify.png",  line1: "Verified", line2: "Partners",    left: "1044px", imgTop: "21px", imgLeft: "21px", width: "170px", height: "77px" },
 ];
 
-export default function AccountsTrustBar() {
+export default function PaymentsTrustBar() {
   return (
     <section style={{
       background: "#050208",
@@ -17,7 +17,6 @@ export default function AccountsTrustBar() {
       padding: "0 80px 40px",
       boxSizing: "border-box",
     }}>
-      {/* Gradient border wrapper */}
       <div style={{
         width: "1280px",
         height: "197px",
@@ -39,13 +38,12 @@ export default function AccountsTrustBar() {
           position: "relative",
         }}>
           <Image
-            src="/accounts/badge.png"
+            src="/service/badge.png"
             alt=""
             width={83.34}
             height={106}
             style={{ position: "absolute", top: "51px", left: "66px", objectFit: "contain" }}
           />
-          {/* Left text — absolutely positioned per Figma */}
           <p style={{
             position: "absolute",
             top: "63px",
@@ -56,15 +54,13 @@ export default function AccountsTrustBar() {
             fontWeight: 400,
             fontSize: "18px",
             lineHeight: "196%",
-            letterSpacing: "0%",
             color: "#E0E0E0",
             margin: 0,
             overflow: "hidden",
           }}>
-            Welcome to Finsai Trade&apos;s Introducing Broker (IB) Program. We offer a comprehensive partnership
+            Every transaction at Finsai Trade is protected by industry-leading security standards.
           </p>
 
-          {/* Badges — absolutely positioned */}
           {badges.map((b) => (
             <div key={b.line1} style={{
               position: "absolute",

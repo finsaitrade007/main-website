@@ -1,9 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function AccountsCTASection() {
+export default function PaymentsCTASection() {
   return (
-    <section style={{ background: "#050208", padding: "80px 0", display: "flex", justifyContent: "center" }}>
+    <section style={{
+      background: "#050208",
+      padding: "80px 0",
+      display: "flex",
+      justifyContent: "center",
+    }}>
       <div style={{
         width: "1194px",
         height: "437px",
@@ -14,7 +19,6 @@ export default function AccountsCTASection() {
         position: "relative",
         overflow: "hidden",
       }}>
-
         <Image
           src="/accounts/wallet.png"
           alt=""
@@ -33,13 +37,12 @@ export default function AccountsCTASection() {
           fontWeight: 600,
           fontSize: "36px",
           lineHeight: "50px",
-          letterSpacing: "0%",
           textAlign: "center",
           color: "#FFFFFF",
           margin: 0,
           overflow: "hidden",
         }}>
-          Ready to Start Trading with Finsai?
+          Ready to Fund Your Account?
         </h2>
 
         <p style={{
@@ -48,7 +51,6 @@ export default function AccountsCTASection() {
           fontWeight: 400,
           fontSize: "16px",
           lineHeight: "32px",
-          letterSpacing: "0%",
           textAlign: "center",
           color: "#FFFFFF",
           margin: 0,
@@ -57,8 +59,8 @@ export default function AccountsCTASection() {
           width: "773px",
           height: "64px",
         }}>
-          Open a live account or start with a demo account and explore global markets with Finsai
-          Trade — at your pace, on your terms.
+          Deposit instantly with the method you prefer — your funds are protected
+          end-to-end and available the moment they arrive.
         </p>
 
         <Link href="/register" className="btn-text" style={{
