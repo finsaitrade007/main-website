@@ -8,36 +8,88 @@ export default function AccountsHeroSection() {
         position: "relative",
         background: "#050208",
         width: "1440px",
-        height: "640px",
+        maxWidth: "100%",
+        height: "777px",
+        margin: "0 auto",
         overflow: "hidden",
       }}
     >
+      {/* Hero artwork: anchored per spec.  The right edge of the image
+          (762 + 744 = 1506) extends ~66px past the 1440 frame and gets
+          clipped by the section's overflow: hidden — matching the
+          design's intentional bleed off the right edge. */}
       <Image
-        src="/accounts/hero.png"
+        src="/accounts/heroaccounts.png"
         alt=""
-        width={580}
-        height={580}
+        width={744}
+        height={564}
         style={{
           position: "absolute",
-          top: "30px",
-          left: "820px",
+          top: "128px",
+          left: "762px",
+          width: "744px",
+          height: "564px",
+          opacity: 1,
           objectFit: "contain",
         }}
         priority
       />
 
+      {/* Headline + sub + CTAs.  Fixed 702-wide block per spec, with
+          24px gaps between children. */}
       <div
         style={{
           position: "absolute",
-          top: "180px",
+          top: "216.4px",
           left: "80px",
-          width: "640px",
+          width: "702px",
+          height: "351.2px",
           display: "flex",
           flexDirection: "column",
-          gap: "28px",
+          alignItems: "flex-start",
+          gap: "24px",
           zIndex: 3,
         }}
       >
+        {/* Wallet pill: 362.6 × 51.2 black badge with a gradient-filled
+            label.  Uses inline-flex + 8.4px gap so a leading icon can be
+            slotted later without re-jiggling the layout. */}
+        <div
+          style={{
+            boxSizing: "border-box",
+            width: "362.6px",
+            height: "51.2px",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "8.4px",
+            padding: "9.6px 16.8px",
+            borderRadius: "60px",
+            border: "1.2px solid #FFFFFF26",
+            background: "#000000",
+            whiteSpace: "nowrap",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--font-inter, Inter)",
+              fontWeight: 400,
+              fontSize: "19.2px",
+              lineHeight: "31.2px",
+              letterSpacing: 0,
+              textTransform: "uppercase",
+              backgroundImage:
+                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
+            }}
+          >
+            Sign in to your secure wallet!
+          </span>
+        </div>
+
         <h1
           style={{
             fontFamily: "var(--font-sora, Sora)",

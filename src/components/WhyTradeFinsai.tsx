@@ -54,8 +54,33 @@ function ReasonIcon({ iconKey }: { iconKey: IconKey }) {
 
 export default function WhyTradeFinsai() {
   return (
-    <section style={{ background: "#050208", padding: "100px 0" }}>
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 80px" }}>
+    <section
+      style={{
+        position: "relative",
+        width: "1440px",
+        maxWidth: "100%",
+        height: "772px",
+        margin: "0 auto",
+        background: "#050208",
+        opacity: 1,
+      }}
+    >
+      {/* Heading band: occupies the 0–229px region above the box,
+          vertically centered so the box can land at exactly top: 229px. */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "229px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "0 80px",
+        }}
+      >
         <h2
           className="section-title"
           style={{ textAlign: "center", marginBottom: "14px" }}
@@ -67,29 +92,51 @@ export default function WhyTradeFinsai() {
           style={{
             textAlign: "center",
             maxWidth: "620px",
-            margin: "0 auto 64px",
+            margin: 0,
             color: "rgba(255,255,255,0.6)",
           }}
         >
           Built for traders who expect more — transparent pricing, deep markets,
           and the tools to act on opportunity the moment it appears.
         </p>
+      </div>
 
+      {/* Reasons box: 1270 × 374 with the spec's stacked gradient
+          background and a 1px gradient stroke.  The outer wrapper
+          paints the gradient border (1px padding + gradient bg), the
+          inner div carries the 2-layer fill — same canonical workaround
+          we use elsewhere for combining border-image with border-radius. */}
+      <div
+        style={{
+          position: "absolute",
+          top: "229px",
+          left: "85px",
+          width: "1270px",
+          height: "374px",
+          padding: "1px",
+          borderRadius: "20px",
+          background:
+            "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+        }}
+      >
         <div
           style={{
+            width: "100%",
+            height: "100%",
+            borderRadius: "19px",
+            background:"linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)",
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateRows: "repeat(2, 1fr)",
+            padding: "28px 32px",
             gap: "20px",
+            boxSizing: "border-box",
           }}
         >
           {reasons.map((r) => (
             <div
               key={r.iconKey}
               style={{
-                background: "#06090F",
-                border: "1px solid rgba(255,255,255,0.06)",
-                borderRadius: "16px",
-                padding: "28px 24px",
                 display: "flex",
                 alignItems: "center",
                 gap: "18px",
