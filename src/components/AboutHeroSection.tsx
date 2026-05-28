@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AboutHeroSection() {
   return (
@@ -8,7 +9,7 @@ export default function AboutHeroSection() {
         background: "#050208",
         width: "1440px",
         maxWidth: "100%",
-        height: "520px",
+        height: "777px",
         margin: "0 auto",
         overflow: "hidden",
       }}
@@ -24,16 +25,36 @@ export default function AboutHeroSection() {
         }}
       />
 
-      {/* Right artwork — dotted world map */}
-      <WorldMapDots />
+      {/* Right artwork — illuminated dot world map.  Spec: 917 × 516
+          anchored at top:178, left:584. */}
+      <Image
+        src="/about/hero-map.png"
+        alt=""
+        width={917}
+        height={516}
+        priority
+        style={{
+          position: "absolute",
+          top: "178px",
+          left: "584px",
+          width: "917px",
+          height: "516px",
+          objectFit: "contain",
+          pointerEvents: "none",
+          userSelect: "none",
+        }}
+      />
 
-      {/* Left copy block */}
+      {/* Left copy block — 598 × 413.2 anchored at top:182, left:80 with a
+          uniform 24px gap between children (pill → headline → description →
+          CTA row). */}
       <div
         style={{
           position: "absolute",
-          top: "120px",
+          top: "182px",
           left: "80px",
           width: "598px",
+          height: "413.2px",
           display: "flex",
           flexDirection: "column",
           gap: "24px",
@@ -105,9 +126,8 @@ export default function AboutHeroSection() {
             color: "#94A3B8",
           }}
         >
-          We build the tools, infrastructure and partnerships that let traders
-          everywhere access institutional-grade markets — fast, secure and
-          always on.
+          Helping traders access multiple asset classes while benefiting from 
+          educational resources, loyalty rewards, and partnership opportunities.
         </p>
 
         <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
@@ -167,60 +187,3 @@ export default function AboutHeroSection() {
   );
 }
 
-function WorldMapDots() {
-  // Dot pattern roughly outlining continents — handcrafted in a compact form
-  // so we don't need an image asset.
-  const dots = generateDotMap();
-  return (
-    <svg
-      width="720"
-      height="420"
-      viewBox="0 0 720 420"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{
-        position: "absolute",
-        right: "40px",
-        top: "60px",
-        pointerEvents: "none",
-        userSelect: "none",
-        opacity: 0.95,
-      }}
-      aria-hidden
-    >
-      <defs>
-        <linearGradient id="wm-grad" x1="0" x2="1" y1="0" y2="1">
-          <stop stopColor="#7DB9D6" />
-          <stop offset="1" stopColor="#056FB4" />
-        </linearGradient>
-      </defs>
-      {dots.map(([x, y], i) => (
-        <circle key={i} cx={x} cy={y} r={1.6} fill="url(#wm-grad)" />
-      ))}
-    </svg>
-  );
-}
-
-function generateDotMap() {
-  // Stylised dot field — denser near the centre to suggest landmasses while
-  // keeping the artwork purely procedural.
-  const points: [number, number][] = [];
-  for (let x = 0; x < 720; x += 10) {
-    for (let y = 0; y < 420; y += 10) {
-      const cx = 360;
-      const cy = 200;
-      const dx = (x - cx) / 360;
-      const dy = (y - cy) / 200;
-      const r = Math.sqrt(dx * dx + dy * dy);
-      // simulate continents with sinusoidal modulation
-      const noise =
-        0.55 +
-        0.3 * Math.sin(x * 0.018) * Math.cos(y * 0.022) +
-        0.18 * Math.sin((x + y) * 0.012);
-      if (r < 0.95 && noise > 0.65 + r * 0.25) {
-        points.push([x, y]);
-      }
-    }
-  }
-  return points;
-}
