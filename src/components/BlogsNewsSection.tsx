@@ -188,7 +188,7 @@ export default function BlogsNewsSection() {
           Powerful platforms for Every Trader
         </h2>
 
-        <p className="section-desc" style={{ textAlign: "center", marginBottom: "48px", width: "851px", height: "57px", margin: "0 auto 48px" }}>
+        <p className="section-desc" style={{ textAlign: "center", width: "851px", height: "57px", margin: "0 auto 48px" }}>
           Trade with speed, stability, and total control from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs
         </p>
 
