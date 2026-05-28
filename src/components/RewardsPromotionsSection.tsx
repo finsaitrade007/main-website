@@ -33,15 +33,21 @@ export default function RewardsPromotionsSection() {
     <section
       id="promotions"
       style={{
+        position: "relative",
+        boxSizing: "border-box",
+        width: "1440px",
+        maxWidth: "100%",
+        height: "454px",
+        margin: "0 auto",
+        padding: "80px",
         background: "#050208",
-        padding: "80px 0",
       }}
     >
       <div
         style={{
-          width: "1280px",
-          maxWidth: "calc(100% - 80px)",
-          margin: "0 auto",
+          width: "100%",
+          height: "100%",
+          boxSizing: "border-box",
           padding: "40px",
           borderRadius: "20px",
           border: "1px solid rgba(125,185,214,0.2)",
