@@ -1,54 +1,184 @@
 type IconKey =
-  | "security"
-  | "execution"
-  | "spreads"
-  | "leverage"
-  | "support"
-  | "regulated";
+  | "runner"
+  | "users"
+  | "eyeOff"
+  | "infinity"
+  | "headset"
+  | "headphones";
 
-const reasons: { iconKey: IconKey; title: string }[] = [
-  { iconKey: "security", title: "Bank-Grade Security" },
-  { iconKey: "execution", title: "Ultra-Fast Execution" },
-  { iconKey: "spreads", title: "Competitive Spreads" },
-  { iconKey: "leverage", title: "Flexible Leverage" },
-  { iconKey: "support", title: "24/7 Expert Support" },
-  { iconKey: "regulated", title: "Globally Regulated" },
+type Reason = { iconKey: IconKey; title: string };
+
+const topRow: Reason[] = [
+  { iconKey: "runner", title: "Ultra fast\norder execution" },
+  { iconKey: "users", title: "Raw spreads on\nECN & Elite accounts" },
+  { iconKey: "eyeOff", title: "No hidden fees,\nno requotes" },
+  { iconKey: "infinity", title: "Swap free\naccount" },
+];
+
+const bottomRow: Reason[] = [
+  { iconKey: "headset", title: "Access MT5 on mobile,\ndesktop & web" },
+  { iconKey: "headphones", title: "Priority support\nfor smart elite traders" },
 ];
 
 function ReasonIcon({ iconKey }: { iconKey: IconKey }) {
-  const paths: Record<IconKey, string> = {
-    security:
-      "M12 3l8 4v5c0 4.5-3.2 8.6-8 10-4.8-1.4-8-5.5-8-10V7l8-4z",
-    execution:
-      "M13 2L4.5 12.5h6L11 22l8.5-10.5h-6L13 2z",
-    spreads:
-      "M3 17l6-6 4 4 8-8M14 7h7v7",
-    leverage:
-      "M21 12a9 9 0 1 1-9-9M21 3v6h-6M12 8v4l3 3",
-    support:
-      "M21 12a9 9 0 0 0-18 0v6a2 2 0 0 0 2 2h2v-8H5a7 7 0 0 1 14 0h-2v8h2a2 2 0 0 0 2-2v-6z",
-    regulated:
-      "M12 3l9 4-9 4-9-4 9-4zM3 11l9 4 9-4M3 15l9 4 9-4",
+  // Stroke gradient ID is keyed per icon so multiple icons on the page
+  // don't share / collide on the <defs>.
+  const gradId = `wt-${iconKey}`;
+  const stroke = `url(#${gradId})`;
+  const common = {
+    width: 28,
+    height: 28,
+    viewBox: "0 0 24 24",
+    fill: "none" as const,
+    stroke,
+    strokeWidth: 1.6,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
   };
+  const grad = (
+    <defs>
+      <linearGradient id={gradId} x1="0" y1="0" x2="24" y2="24">
+        <stop stopColor="#7DB9D6" />
+        <stop offset="1" stopColor="#2EA8FF" />
+      </linearGradient>
+    </defs>
+  );
+
+  switch (iconKey) {
+    case "runner":
+      return (
+        <svg {...common}>
+          {grad}
+          <circle cx="14.5" cy="5" r="1.5" />
+          <path d="M7 21l3-5 3 2 2-4-3-2 3-4" />
+          <path d="M4 14l2-3h3" />
+          <path d="M14 17l3 1 2 3" />
+        </svg>
+      );
+    case "users":
+      return (
+        <svg {...common}>
+          {grad}
+          <circle cx="9" cy="8" r="3.2" />
+          <path d="M2.5 20c.6-3.4 3.3-5.5 6.5-5.5s5.9 2.1 6.5 5.5" />
+          <circle cx="17" cy="9" r="2.6" />
+          <path d="M14.5 14.6c2.8-.2 5.7 1.1 7 4.4" />
+        </svg>
+      );
+    case "eyeOff":
+      return (
+        <svg {...common}>
+          {grad}
+          <path d="M3 3l18 18" />
+          <path d="M10.6 6.2A11 11 0 0 1 12 6c5 0 9.3 3.2 11 7-.5 1.2-1.3 2.3-2.3 3.3" />
+          <path d="M6.2 7.6C4.6 8.9 3.3 10.6 2.5 12.4c1.7 3.8 6 7 11 7 1.6 0 3.1-.3 4.5-.9" />
+          <path d="M9.5 10.7a3.4 3.4 0 0 0 4.8 4.8" />
+        </svg>
+      );
+    case "infinity":
+      return (
+        <svg {...common}>
+          {grad}
+          <path d="M6 12c0-2.2 1.6-4 3.7-4 1.6 0 2.7 1.1 3.6 2.4l1.5 2.4c.9 1.3 2 2.4 3.6 2.4 2 0 3.7-1.8 3.7-4s-1.6-4-3.7-4c-1.6 0-2.7 1.1-3.6 2.4l-1.5 2.4c-.9 1.3-2 2.4-3.6 2.4C7.6 16 6 14.2 6 12z" />
+        </svg>
+      );
+    case "headset":
+      return (
+        <svg {...common}>
+          {grad}
+          <path d="M4 13a8 8 0 0 1 16 0v3a3 3 0 0 1-3 3h-1v-5h4" />
+          <path d="M4 16v-3h4v5H7a3 3 0 0 1-3-3z" />
+          <path d="M12 21h-1.5a2 2 0 0 1-2-2" />
+        </svg>
+      );
+    case "headphones":
+      return (
+        <svg {...common}>
+          {grad}
+          <path d="M4 14v3a2 2 0 0 0 2 2h2v-6H6a2 2 0 0 0-2 2v-1" />
+          <path d="M4 13a8 8 0 0 1 16 0v1" />
+          <path d="M20 14v3a2 2 0 0 1-2 2h-2v-6h2a2 2 0 0 1 2 2v-1" />
+        </svg>
+      );
+  }
+}
+
+function IconCircle({ iconKey }: { iconKey: IconKey }) {
   return (
-    <svg
-      width="28"
-      height="28"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={`url(#g-${iconKey})`}
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+    <div
+      style={{
+        position: "relative",
+        width: "64px",
+        height: "64px",
+        borderRadius: "50%",
+        background:
+          "radial-gradient(circle at 30% 30%, rgba(70,140,210,0.25) 0%, rgba(5,111,180,0.08) 60%, rgba(0,0,0,0.6) 100%)",
+        border: "1px solid rgba(125,185,214,0.18)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexShrink: 0,
+      }}
     >
-      <path d={paths[iconKey]} />
-      <defs>
-        <linearGradient id={`g-${iconKey}`} x1="24" y1="12" x2="0" y2="12">
-          <stop stopColor="#7DB9D6" />
-          <stop offset="1" stopColor="#056FB4" />
-        </linearGradient>
-      </defs>
-    </svg>
+      <ReasonIcon iconKey={iconKey} />
+      {/* Notification dot: small badge in the upper-right corner of the
+          icon disc, matching the screenshot.  Sits on a 1px ring of the
+          panel background colour so it visually detaches from the disc. */}
+      <span
+        aria-hidden
+        style={{
+          position: "absolute",
+          top: "-2px",
+          right: "-2px",
+          width: "16px",
+          height: "16px",
+          borderRadius: "50%",
+          background: "#2EA8FF",
+          border: "2px solid #050208",
+          fontFamily: "var(--font-sora, Sora)",
+          fontSize: "9px",
+          fontWeight: 600,
+          color: "#FFFFFF",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          lineHeight: 1,
+        }}
+      >
+        1
+      </span>
+    </div>
+  );
+}
+
+function ReasonCell({ reason }: { reason: Reason }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "14px",
+        height: "100%",
+        padding: "0 16px",
+        textAlign: "center",
+      }}
+    >
+      <IconCircle iconKey={reason.iconKey} />
+      <span
+        style={{
+          fontFamily: "var(--font-sora, Sora)",
+          fontWeight: 400,
+          fontSize: "15px",
+          lineHeight: "22px",
+          color: "rgba(255,255,255,0.88)",
+          whiteSpace: "pre-line",
+        }}
+      >
+        {reason.title}
+      </span>
+    </div>
   );
 }
 
@@ -85,27 +215,25 @@ export default function WhyTradeFinsai() {
           className="section-title"
           style={{ textAlign: "center", marginBottom: "14px" }}
         >
-          Why Trade with Finsai
+          Why trade with Finsai
         </h2>
         <p
           className="section-desc"
           style={{
             textAlign: "center",
-            maxWidth: "620px",
+            maxWidth: "720px",
             margin: 0,
             color: "rgba(255,255,255,0.6)",
           }}
         >
-          Built for traders who expect more — transparent pricing, deep markets,
-          and the tools to act on opportunity the moment it appears.
+          Trade with speed, stability, and total control from your desk or on
+          the move. Finsai Trade delivers professional-grade platforms to match
+          your trading needs
         </p>
       </div>
 
-      {/* Reasons box: 1270 × 374 with the spec's stacked gradient
-          background and a 1px gradient stroke.  The outer wrapper
-          paints the gradient border (1px padding + gradient bg), the
-          inner div carries the 2-layer fill — same canonical workaround
-          we use elsewhere for combining border-image with border-radius. */}
+      {/* Reasons box: 1270 × 374, 1px gradient stroke, dark fill with
+          a subtle blue glow bleeding in from the bottom-right corner. */}
       <div
         style={{
           position: "absolute",
@@ -121,54 +249,87 @@ export default function WhyTradeFinsai() {
       >
         <div
           style={{
+            position: "relative",
             width: "100%",
             height: "100%",
             borderRadius: "19px",
-            background:"linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)",
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gridTemplateRows: "repeat(2, 1fr)",
-            padding: "28px 32px",
-            gap: "20px",
+            background:
+              "linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)",
+            display: "flex",
+            flexDirection: "column",
             boxSizing: "border-box",
+            overflow: "hidden",
           }}
         >
-          {reasons.map((r) => (
+          {/* Horizontal mid-divider — spec: 1267×1 @ top:187, left:2 from
+              box outer ⇒ inner-y 186, inner-x 1 (1px gradient border). */}
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              top: "186px",
+              left: "1px",
+              width: "1267px",
+              height: "1px",
+              background:
+                "linear-gradient(90deg, #0F0F10 0%, #387AFF 50%, #0F0F10 100%)",
+              pointerEvents: "none",
+              zIndex: 2,
+            }}
+          />
+
+          {/* Vertical column dividers (1px × 185, gradient fades top → blue
+              → bottom).  Spec coords are box-outer; inner = box − 1. */}
+          {[
+            { top: 1, left: 316 },
+            { top: 1, left: 700 },
+            { top: 1, left: 1021 },
+            { top: 186, left: 633 },
+          ].map((d) => (
             <div
-              key={r.iconKey}
+              key={`vdiv-${d.top}-${d.left}`}
+              aria-hidden
               style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "18px",
+                position: "absolute",
+                top: `${d.top}px`,
+                left: `${d.left}px`,
+                width: "1px",
+                height: "185px",
+                background:
+                  "linear-gradient(180deg, #0F0F10 0%, #387AFF 50%, #0F0F10 100%)",
+                pointerEvents: "none",
+                zIndex: 2,
               }}
-            >
-              <div
-                style={{
-                  width: "56px",
-                  height: "56px",
-                  borderRadius: "50%",
-                  background: "rgba(5,111,180,0.12)",
-                  border: "1px solid rgba(5,111,180,0.35)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                }}
-              >
-                <ReasonIcon iconKey={r.iconKey} />
-              </div>
-              <span
-                style={{
-                  fontFamily: "var(--font-sora, Sora)",
-                  fontSize: "16px",
-                  fontWeight: 500,
-                  color: "#FFFFFF",
-                }}
-              >
-                {r.title}
-              </span>
-            </div>
+            />
           ))}
+
+          {/* Top row — 4 cells with column widths derived from the spec
+              divider positions: 317 / 384 / 321 / 246 (last absorbs the
+              2px the inner content area loses to the gradient border). */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "317px 384px 321px 1fr",
+              height: "186px",
+            }}
+          >
+            {topRow.map((r) => (
+              <ReasonCell key={r.title} reason={r} />
+            ))}
+          </div>
+
+          {/* Bottom row — 2 cells split evenly at the spec divider x=634. */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              height: "186px",
+            }}
+          >
+            {bottomRow.map((r) => (
+              <ReasonCell key={r.title} reason={r} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
