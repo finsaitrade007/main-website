@@ -1,32 +1,38 @@
 "use client";
 
+import Image from "next/image";
 import { useRef, useState, type ChangeEvent, type DragEvent, type FormEvent } from "react";
 
 type Benefit = {
   title: string;
   description: string;
+  icon: string;
 };
 
 const BENEFITS: Benefit[] = [
   {
     title: "Collaborate with top talents",
     description:
-      "Work shoulder to shoulder with senior traders, engineers and designers shipping global products.",
+      "Deep dive into market dynamics with institutional tools.",
+    icon: "/careers/benefit-1.png",
   },
   {
     title: "Innovate & Make an Impact",
     description:
-      "Watch the systems you build move millions of dollars in markets every single day.",
+      "Real-time quotes and lightning-fast execution speed.",
+    icon: "/careers/benefit-2.png",
   },
   {
     title: "Growth & Development",
     description:
-      "Learning budgets, mentorship and internal mobility so your career grows as fast as you do.",
+      "Advanced calculators and margin alerts to stay safe.",
+    icon: "/careers/benefit-3.png",
   },
   {
     title: "Global & Inclusive Culture",
     description:
-      "12+ countries, 30+ languages — a team built around the people, not the postcodes.",
+      "Backtesting engines to refine your trading edge.",
+    icon: "/careers/benefit-4.png",
   },
 ];
 
@@ -34,21 +40,41 @@ export default function CareersWorkspaceFormSection() {
   return (
     <section
       id="apply"
-      style={{ background: "#050208", padding: "60px 0 100px" }}
+      style={{
+        position: "relative",
+        background: "#050208",
+        width: "1440px",
+        maxWidth: "100%",
+        height: "1103px",
+        margin: "0 auto",
+        padding: "139px 0 100px",
+        boxSizing: "border-box",
+        overflow: "hidden",
+      }}
     >
       <div
         style={{
           width: "1280px",
-          maxWidth: "calc(100% - 80px)",
+          maxWidth: "calc(100% - 160px)",
           margin: "0 auto",
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
+          gridTemplateColumns: "664px 1fr",
           gap: "64px",
           alignItems: "flex-start",
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          {/* Heading + description block — 664 × 139 with a uniform 24px gap
+              between the headline and the supporting paragraph. */}
+          <div
+            style={{
+              width: "664px",
+              height: "139px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "24px",
+            }}
+          >
             <h2
               style={{
                 margin: 0,
@@ -64,7 +90,7 @@ export default function CareersWorkspaceFormSection() {
             <p
               style={{
                 margin: 0,
-                maxWidth: "520px",
+                width: "664px",
                 fontFamily: "var(--font-inter, Inter)",
                 fontWeight: 400,
                 fontSize: "14px",
@@ -79,53 +105,116 @@ export default function CareersWorkspaceFormSection() {
             </p>
           </div>
 
+          {/* 2 × 2 benefit grid — each card is 318.37 × 99.56 with a 0.84px
+              gradient border (wrapper trick: outer div paints the gradient,
+              inner article carries the rounded background). */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "16px",
+              gridTemplateColumns: "318.37px 318.37px",
+              columnGap: "13.63px",
+              rowGap: "14px",
             }}
           >
             {BENEFITS.map((b) => (
-              <article
+              <div
                 key={b.title}
                 style={{
-                  padding: "20px",
-                  borderRadius: "14px",
-                  border: "1px solid rgba(125,185,214,0.18)",
+                  width: "318.37px",
+                  height: "99.56px",
+                  padding: "0.84px",
+                  borderRadius: "10.12px",
                   background:
-                    "linear-gradient(157.26deg, rgba(10,18,32,0.85) 0%, rgba(5,111,180,0.18) 100%)",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "8px",
+                    "linear-gradient(180deg, #056FB4 0%, #7DB9D6 100%)",
+                  boxSizing: "border-box",
                 }}
               >
-                <div
+                <article
                   style={{
-                    fontFamily: "var(--font-sora, Sora)",
-                    fontWeight: 600,
-                    fontSize: "14px",
-                    color: "#FFFFFF",
+                    width: "100%",
+                    height: "100%",
+                    padding: "20.25px",
+                    borderRadius: "9.28px",
+                    background:
+                      "linear-gradient(157.26deg, #050208 -0.93%, #056FB4 444.35%)",
+                    boxSizing: "border-box",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "13.5px",
                   }}
                 >
-                  {b.title}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "var(--font-inter, Inter)",
-                    fontWeight: 400,
-                    fontSize: "12px",
-                    lineHeight: "18px",
-                    color: "rgba(255,255,255,0.6)",
-                  }}
-                >
-                  {b.description}
-                </div>
-              </article>
+                  <Image
+                    src={b.icon}
+                    alt=""
+                    width={40}
+                    height={40}
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      flexShrink: 0,
+                      objectFit: "contain",
+                    }}
+                  />
+                  {/* Text block — 231.02 × 58.37 with a 3.37px gap between
+                      title and description, per Figma spec. */}
+                  <div
+                    style={{
+                      width: "231.02px",
+                      minWidth: "231.02px",
+                      height: "58.37px",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "3.37px",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontFamily: "var(--font-sora, Sora)",
+                        fontWeight: 600,
+                        fontSize: "14px",
+                        color: "#FFFFFF",
+                      }}
+                    >
+                      {b.title}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-inter, Inter)",
+                        fontWeight: 400,
+                        fontSize: "12px",
+                        lineHeight: "18px",
+                        color: "rgba(255,255,255,0.6)",
+                      }}
+                    >
+                      {b.description}
+                    </div>
+                  </div>
+                </article>
+              </div>
             ))}
           </div>
 
-          <TradingDeskArtwork />
+          {/* Trading-tools illustration anchored at top:575 / left:107
+              relative to the section (the section left is at 0 of the 1440
+              hero; the heading block sits at left:80, so the +27px nudges
+              the artwork inward by 27px and the +28px margin-top is on top
+              of the parent 28px flex gap → benefits end at 519 + 28 + 28 =
+              575). */}
+          <Image
+            src="/careers/desk.png"
+            alt=""
+            width={613}
+            height={409}
+            style={{
+              width: "613px",
+              height: "409px",
+              marginTop: "28px",
+              marginLeft: "27px",
+              objectFit: "contain",
+              pointerEvents: "none",
+              userSelect: "none",
+            }}
+          />
         </div>
 
         <ApplicationForm />
@@ -157,10 +246,67 @@ const inputStyle = {
   outline: "none",
 };
 
+// ---------------------------------------------------------------------------
+// Common dial-code list shown in the mobile-number country selector. Add
+// more entries here as the recruiting footprint grows.
+// ---------------------------------------------------------------------------
+const COUNTRY_CODES: { flag: string; code: string; name: string }[] = [
+  { flag: "🇮🇳", code: "+91", name: "India" },
+  { flag: "🇺🇸", code: "+1", name: "United States" },
+  { flag: "🇬🇧", code: "+44", name: "United Kingdom" },
+  { flag: "🇨🇦", code: "+1", name: "Canada" },
+  { flag: "🇦🇺", code: "+61", name: "Australia" },
+  { flag: "🇸🇬", code: "+65", name: "Singapore" },
+  { flag: "🇲🇾", code: "+60", name: "Malaysia" },
+  { flag: "🇮🇩", code: "+62", name: "Indonesia" },
+  { flag: "🇵🇭", code: "+63", name: "Philippines" },
+  { flag: "🇹🇭", code: "+66", name: "Thailand" },
+  { flag: "🇻🇳", code: "+84", name: "Vietnam" },
+  { flag: "🇭🇰", code: "+852", name: "Hong Kong" },
+  { flag: "🇨🇳", code: "+86", name: "China" },
+  { flag: "🇯🇵", code: "+81", name: "Japan" },
+  { flag: "🇰🇷", code: "+82", name: "South Korea" },
+  { flag: "🇹🇼", code: "+886", name: "Taiwan" },
+  { flag: "🇦🇪", code: "+971", name: "United Arab Emirates" },
+  { flag: "🇸🇦", code: "+966", name: "Saudi Arabia" },
+  { flag: "🇶🇦", code: "+974", name: "Qatar" },
+  { flag: "🇰🇼", code: "+965", name: "Kuwait" },
+  { flag: "🇧🇭", code: "+973", name: "Bahrain" },
+  { flag: "🇴🇲", code: "+968", name: "Oman" },
+  { flag: "🇵🇰", code: "+92", name: "Pakistan" },
+  { flag: "🇧🇩", code: "+880", name: "Bangladesh" },
+  { flag: "🇱🇰", code: "+94", name: "Sri Lanka" },
+  { flag: "🇳🇵", code: "+977", name: "Nepal" },
+  { flag: "🇩🇪", code: "+49", name: "Germany" },
+  { flag: "🇫🇷", code: "+33", name: "France" },
+  { flag: "🇮🇹", code: "+39", name: "Italy" },
+  { flag: "🇪🇸", code: "+34", name: "Spain" },
+  { flag: "🇳🇱", code: "+31", name: "Netherlands" },
+  { flag: "🇨🇭", code: "+41", name: "Switzerland" },
+  { flag: "🇸🇪", code: "+46", name: "Sweden" },
+  { flag: "🇳🇴", code: "+47", name: "Norway" },
+  { flag: "🇩🇰", code: "+45", name: "Denmark" },
+  { flag: "🇫🇮", code: "+358", name: "Finland" },
+  { flag: "🇵🇱", code: "+48", name: "Poland" },
+  { flag: "🇮🇪", code: "+353", name: "Ireland" },
+  { flag: "🇹🇷", code: "+90", name: "Turkey" },
+  { flag: "🇷🇺", code: "+7", name: "Russia" },
+  { flag: "🇧🇷", code: "+55", name: "Brazil" },
+  { flag: "🇲🇽", code: "+52", name: "Mexico" },
+  { flag: "🇦🇷", code: "+54", name: "Argentina" },
+  { flag: "🇨🇱", code: "+56", name: "Chile" },
+  { flag: "🇿🇦", code: "+27", name: "South Africa" },
+  { flag: "🇳🇬", code: "+234", name: "Nigeria" },
+  { flag: "🇰🇪", code: "+254", name: "Kenya" },
+  { flag: "🇪🇬", code: "+20", name: "Egypt" },
+  { flag: "🇳🇿", code: "+64", name: "New Zealand" },
+];
+
 function ApplicationForm() {
   const [accepted, setAccepted] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [dragOver, setDragOver] = useState(false);
+  const [dialIndex, setDialIndex] = useState("0");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -228,7 +374,80 @@ function ApplicationForm() {
               padding: "0 12px",
             }}
           >
-            <span style={{ fontSize: "14px" }}>🇮🇳 +91</span>
+            {/* Country dial-code picker — a native <select> is overlaid on
+                top of a custom display row.  In the collapsed state we only
+                show flag + code; the native dropdown panel still opens with
+                the full country names because the browser renders the
+                option list from the underlying <select>. */}
+            <div
+              style={{
+                position: "relative",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                color: "#FFFFFF",
+                fontFamily: "var(--font-inter, Inter)",
+                fontSize: "13px",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <span style={{ pointerEvents: "none" }}>
+                {COUNTRY_CODES[Number(dialIndex)].flag}{" "}
+                {COUNTRY_CODES[Number(dialIndex)].code}
+              </span>
+              <svg
+                width="10"
+                height="6"
+                viewBox="0 0 10 6"
+                fill="none"
+                aria-hidden
+                style={{ pointerEvents: "none" }}
+              >
+                <path
+                  d="M1 1l4 4 4-4"
+                  stroke="#7DB9D6"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <select
+                aria-label="Country dial code"
+                value={dialIndex}
+                onChange={(e) => setDialIndex(e.target.value)}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  opacity: 0,
+                  cursor: "pointer",
+                  border: "none",
+                  outline: "none",
+                  appearance: "none",
+                  WebkitAppearance: "none",
+                  MozAppearance: "none",
+                }}
+              >
+                {COUNTRY_CODES.map((c, i) => (
+                  <option
+                    key={`${c.name}-${c.code}-${i}`}
+                    value={String(i)}
+                    style={{ background: "#0F1626", color: "#FFFFFF" }}
+                  >
+                    {c.flag} {c.code} {c.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div
+              style={{
+                width: "1px",
+                height: "20px",
+                background: "rgba(125,185,214,0.25)",
+              }}
+              aria-hidden
+            />
             <input
               id="mobile"
               name="mobile"
@@ -366,14 +585,21 @@ function ApplicationForm() {
           type="checkbox"
           checked={accepted}
           onChange={(e) => setAccepted(e.target.checked)}
-          style={{ accentColor: "#056FB4", marginTop: "2px" }}
+          style={{
+            accentColor: "#056FB4",
+            marginTop: "2px",
+            flexShrink: 0,
+          }}
         />
-        I have read and accepted the terms and conditions specified in the{" "}
-        <a href="#" style={{ color: "#7DB9D6" }}>
-          Privacy Policy
-        </a>{" "}
-        and currently consent to the collecting, processing and disclosing of
-        the personal data provided by me to fulfil the above-said purposes.
+        <span>
+          I have read and accepted the terms and conditions specified in the{" "}
+          <a href="#" style={{ color: "#7DB9D6" }}>
+            Privacy Policy
+          </a>{" "}
+          and currently consent to the collecting, processing and disclosing
+          of the personal data provided by me to fulfil the above-said
+          purposes.
+        </span>
       </label>
 
       <button
@@ -399,76 +625,3 @@ function ApplicationForm() {
   );
 }
 
-function TradingDeskArtwork() {
-  return (
-    <svg
-      width="100%"
-      height="200"
-      viewBox="0 0 540 200"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden
-    >
-      <defs>
-        <linearGradient id="td-grad" x1="0" x2="1" y1="0" y2="1">
-          <stop stopColor="#7DB9D6" />
-          <stop offset="1" stopColor="#056FB4" />
-        </linearGradient>
-        <radialGradient id="td-glow" cx="0.5" cy="0.6" r="0.5">
-          <stop stopColor="rgba(5,111,180,0.35)" />
-          <stop offset="1" stopColor="rgba(0,0,0,0)" />
-        </radialGradient>
-      </defs>
-
-      <ellipse cx="270" cy="170" rx="240" ry="30" fill="url(#td-glow)" />
-
-      {/* Desk monitor row */}
-      <g transform="translate(60 30)">
-        {[0, 120, 240, 360].map((x) => (
-          <g key={x}>
-            <rect
-              x={x}
-              y="0"
-              width="100"
-              height="80"
-              rx="6"
-              fill="#0B1726"
-              stroke="url(#td-grad)"
-              strokeWidth="1.2"
-            />
-            <path
-              d={`M${x + 10} 60 L${x + 30} 40 L${x + 50} 50 L${x + 70} 25 L${x + 90} 35`}
-              stroke="url(#td-grad)"
-              strokeWidth="1.4"
-              fill="none"
-              strokeLinecap="round"
-            />
-            <rect
-              x={x + 30}
-              y="86"
-              width="40"
-              height="6"
-              rx="2"
-              fill="url(#td-grad)"
-              opacity="0.5"
-            />
-          </g>
-        ))}
-      </g>
-
-      {/* People silhouettes at the desk */}
-      <g transform="translate(80 130)">
-        {[0, 120, 240, 360].map((x) => (
-          <g key={x}>
-            <circle cx={x + 50} cy="14" r="10" fill="url(#td-grad)" opacity="0.55" />
-            <path
-              d={`M${x + 30} 50 a20 20 0 0 1 40 0Z`}
-              fill="url(#td-grad)"
-              opacity="0.55"
-            />
-          </g>
-        ))}
-      </g>
-    </svg>
-  );
-}
