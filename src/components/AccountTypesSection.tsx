@@ -28,13 +28,14 @@ const accounts = [
 ];
 
 const CARD_DARK = "#06090F";
-const BORDER = "1.16px solid rgba(5,111,180,0.4)";
-const BORDER_ACTIVE = "1.16px solid rgba(125,185,214,0.85)";
 const RADIUS = "20.91px";
 const COLLAPSED_PX = 76;
 const GAP_PX = 10;
 const SQUEEZE_EASING = "cubic-bezier(0.85, 0, 0.15, 1)";
 const SQUEEZE_DURATION = "0.55s";
+const CARD_BORDER_GRADIENT =
+  "linear-gradient(179.53deg, #056FB4 0.41%, rgba(5, 111, 180, 0.6) 99.59%)";
+const CARD_BACKGROUND = `linear-gradient(${CARD_DARK}, ${CARD_DARK}) padding-box, ${CARD_BORDER_GRADIENT} border-box`;
 
 type Account = (typeof accounts)[number];
 
@@ -60,13 +61,14 @@ function AccountCard({
         flexShrink: 0,
         width: isActive ? expandedWidth : `${COLLAPSED_PX}px`,
         height: "100%",
-        background: CARD_DARK,
-        border: isActive ? BORDER_ACTIVE : BORDER,
+        background: CARD_BACKGROUND,
+        border: "1.16px solid transparent",
         borderRadius: RADIUS,
         position: "relative",
         overflow: "hidden",
         cursor: isActive ? "default" : "pointer",
-        transition: `width ${SQUEEZE_DURATION} ${SQUEEZE_EASING}, border-color 0.35s ease`,
+        transition: `width ${SQUEEZE_DURATION} ${SQUEEZE_EASING}`,
+        boxSizing: "border-box",
       }}
     >
       <div

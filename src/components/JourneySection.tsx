@@ -7,8 +7,9 @@ import {
 
 const CARD_BG = "#0B1221";
 const RADIUS = "21.32px";
-const BORDER_SM = "1px solid rgba(5,111,180,0.35)";
-const BORDER_LG = "2px solid rgba(5,111,180,0.5)";
+const CARD_BORDER_GRADIENT =
+  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
+const CARD_BACKGROUND = `linear-gradient(${CARD_BG}, ${CARD_BG}) padding-box, ${CARD_BORDER_GRADIENT} border-box`;
 const GAP = "20px";
 
 const FALLBACK_HEADER = {
@@ -27,53 +28,73 @@ const FALLBACK_CARDS: StrapiJourneyCard[] = [
 ];
 
 function Card({ card, height }: { card: StrapiJourneyCard; height: string }) {
+  const isLarge = card.size === "large";
+  const imageTopPx = isLarge ? 12 : 22;
+  const imageBottomPx = imageTopPx + 128;
+
   return (
     <div
       style={{
-        background: CARD_BG,
-        border: card.size === "large" ? BORDER_LG : BORDER_SM,
+        background: CARD_BACKGROUND,
+        border: "2px solid transparent",
         borderRadius: RADIUS,
         height,
-        padding: "20px 24px 24px",
-        display: "flex",
-        flexDirection: "column",
+        position: "relative",
         overflow: "hidden",
       }}
     >
-      <div style={{ marginBottom: "16px" }}>
-        <span
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            padding: "6px 14px",
-            background: "rgba(255,255,255,0.08)",
-            borderRadius: "8px",
-            fontFamily: "var(--font-inter, Inter)",
-            fontSize: "13px",
-            fontWeight: 500,
-            color: "#FFFFFF",
-          }}
-        >
-          {card.label}
-        </span>
-      </div>
-
       <div
+        aria-hidden
         style={{
-          flex: 1,
-          background: "rgba(255,255,255,0.04)",
-          borderRadius: "12px",
-          marginBottom: "20px",
+          position: "absolute",
+          top: `${imageTopPx}px`,
+          left: "13px",
+          right: "13px",
+          height: "128px",
+          borderRadius: "16px",
+          background: "#B6B6B633",
         }}
       />
 
+      <span
+        style={{
+          position: "absolute",
+          top: isLarge ? "18px" : "28px",
+          left: "13px",
+          height: "34px",
+          padding: "7px 18px",
+          borderRadius: "5px",
+          background: "rgba(255,255,255,0.18)",
+          backdropFilter: "blur(34px)",
+          WebkitBackdropFilter: "blur(34px)",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "10px",
+          fontFamily: "var(--font-inter, Inter)",
+          fontSize: "13px",
+          fontWeight: 500,
+          letterSpacing: "0.01em",
+          color: "#FFFFFF",
+          boxSizing: "border-box",
+          whiteSpace: "nowrap",
+          zIndex: 2,
+        }}
+      >
+        {card.label}
+      </span>
+
       <p
         style={{
+          position: "absolute",
+          top: `${imageBottomPx + 20}px`,
+          left: "24px",
+          right: "24px",
+          margin: 0,
           fontFamily: "var(--font-inter, Inter)",
           fontSize: "14px",
           lineHeight: "24px",
           color: "rgba(255,255,255,0.75)",
-          margin: "0 0 14px",
         }}
       >
         {card.description}
@@ -82,6 +103,9 @@ function Card({ card, height }: { card: StrapiJourneyCard; height: string }) {
       <Link
         href={card.linkHref}
         style={{
+          position: "absolute",
+          bottom: "20px",
+          left: "24px",
           fontFamily: "var(--font-inter, Inter)",
           fontSize: "14px",
           color: "#056FB4",
