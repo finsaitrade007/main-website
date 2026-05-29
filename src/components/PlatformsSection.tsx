@@ -37,6 +37,7 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     order: 1,
     mockupImage: null,
     iconImage: null,
+    localMockupImage: "/platforms/mt-mockup.png",
   },
   {
     id: 3,
@@ -49,6 +50,8 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     order: 3,
     mockupImage: null,
     iconImage: null,
+    localMockupImage: "/platforms/web-terminal-mockup.png",
+    localIconImage: "/platforms/social-icon.png",
   },
   {
     id: 4,
@@ -61,12 +64,13 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     order: 4,
     mockupImage: null,
     iconImage: null,
+    localIconImage: "/platforms/app-icon.png",
   },
 ];
 
 function WidePlatformCard({ p }: { p: StrapiPlatform }) {
-  const mockup = strapiImageUrl(p.mockupImage);
-  const icon = strapiImageUrl(p.iconImage);
+  const mockup = strapiImageUrl(p.mockupImage) ?? p.localMockupImage;
+  const icon = strapiImageUrl(p.iconImage) ?? p.localIconImage;
 
   return (
     <div
@@ -148,8 +152,8 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
 }
 
 function PlatformCard({ p }: { p: StrapiPlatform }) {
-  const mockup = strapiImageUrl(p.mockupImage);
-  const icon = strapiImageUrl(p.iconImage);
+  const mockup = strapiImageUrl(p.mockupImage) ?? p.localMockupImage;
+  const icon = strapiImageUrl(p.iconImage) ?? p.localIconImage;
 
   return (
     <div

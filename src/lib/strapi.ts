@@ -19,6 +19,13 @@ type FetchOptions = {
 };
 
 export async function strapiFetch<T>(
+  _path: string,
+  _opts: FetchOptions = {},
+): Promise<T | null> {
+  return null;
+}
+
+export async function _strapiFetchReal<T>(
   path: string,
   { revalidate = 60, tags }: FetchOptions = {},
 ): Promise<T | null> {
@@ -172,6 +179,7 @@ export type StrapiMarket = {
   name: string;
   description: string;
   image: StrapiMedia;
+  localImage?: string;
   order: number;
 };
 
@@ -185,6 +193,8 @@ export type StrapiPlatform = {
   order: number;
   mockupImage: StrapiMedia;
   iconImage: StrapiMedia;
+  localMockupImage?: string;
+  localIconImage?: string;
 };
 
 export type StrapiStep = {

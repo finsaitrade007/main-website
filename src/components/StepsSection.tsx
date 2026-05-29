@@ -11,6 +11,12 @@ const FALLBACK_HEADER = {
   stepsTitle: "Trade Global Markets in 3 Simple Steps",
 };
 
+const LOCAL_STEP_IMAGES = [
+  "/steps/register.png",
+  "/steps/verify.png",
+  "/steps/start-trading.png",
+];
+
 const FALLBACK_STEPS: StrapiStep[] = [
   {
     id: 1,
@@ -98,8 +104,8 @@ export default async function StepsSection() {
             }}
           />
 
-          {steps.map((step) => {
-            const img = strapiImageUrl(step.image);
+          {steps.map((step, idx) => {
+            const img = strapiImageUrl(step.image) ?? LOCAL_STEP_IMAGES[idx];
             return (
               <div
                 key={step.id}

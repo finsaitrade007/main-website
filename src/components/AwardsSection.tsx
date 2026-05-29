@@ -20,6 +20,13 @@ const FALLBACK_AWARDS: StrapiAward[] = [
   { id: 4, documentId: "fb-4", title: "Innovative Startup in\nFinance Award 2023", image: null, order: 4 },
 ];
 
+const LOCAL_AWARD_IMAGES = [
+  "/awards/wld-fi-2024.png",
+  "/awards/wld-fi-2025.png",
+  "/awards/world-forex-award.png",
+  "/awards/innovative-startup.png",
+];
+
 export default async function AwardsSection() {
   const [home, fetched] = await Promise.all([getHomepage(), getAwards()]);
   const header = home ?? FALLBACK_HEADER;
@@ -61,8 +68,8 @@ export default async function AwardsSection() {
         </p>
 
         <div style={{ display: "flex", justifyContent: "center", gap: "32px" }}>
-          {awards.map((award) => {
-            const img = strapiImageUrl(award.image);
+          {awards.map((award, idx) => {
+            const img = strapiImageUrl(award.image) ?? LOCAL_AWARD_IMAGES[idx];
             return (
               <div
                 key={award.id}
@@ -90,7 +97,7 @@ export default async function AwardsSection() {
                       src={img}
                       alt={award.title}
                       fill
-                      style={{ objectFit: "cover" }}
+                      style={{ objectFit: "contain" }}
                     />
                   )}
                 </div>

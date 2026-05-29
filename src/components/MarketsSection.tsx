@@ -14,6 +14,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     description:
       "Trade major, minor, and exotic forex pairs with deep liquidity, competitive spreads, and ultra-fast execution on the global foreign exchange market.",
     image: null,
+    localImage: "/markets/forex.png",
     order: 1,
   },
   {
@@ -24,6 +25,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     description:
       "Access Bitcoin, Ethereum, and hundreds of altcoins. Trade crypto CFDs with leverage around the clock on a secure, regulated platform.",
     image: null,
+    localImage: "/markets/crypto.png",
     order: 2,
   },
   {
@@ -34,6 +36,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     description:
       "Trade top global stock indices and capture price movements across major economies, including US, European, Asian, and international markets.",
     image: null,
+    localImage: "/markets/indices.png",
     order: 3,
   },
   {
@@ -44,6 +47,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     description:
       "Diversify your portfolio with gold, silver, crude oil, natural gas, and other high-demand commodities traded across global markets.",
     image: null,
+    localImage: "/markets/metals.png",
     order: 4,
   },
   {
@@ -54,6 +58,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     description:
       "Invest and trade shares of leading international companies listed on major global stock exchanges through a professional online trading platform.",
     image: null,
+    localImage: "/markets/stocks.png",
     order: 5,
   },
 ];

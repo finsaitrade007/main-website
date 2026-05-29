@@ -98,7 +98,7 @@ export default function MarketsAccordion({
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
         <div style={{ position: "relative", width: "520px", height: "520px" }}>
           {markets.map((market, i) => {
-            const src = strapiImageUrl(market.image);
+            const src = strapiImageUrl(market.image) ?? market.localImage;
             if (!src) return null;
             return (
               <Image
