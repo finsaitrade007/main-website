@@ -14,6 +14,10 @@ const COL_GAP = "20px";
 const SMALL = "1fr";
 const LARGE = "1.52fr";
 
+const WIDE_CARD_BORDER_GRADIENT =
+  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
+const WIDE_CARD_BACKGROUND = `linear-gradient(${CARD_BG}, ${CARD_BG}) padding-box, ${WIDE_CARD_BORDER_GRADIENT} border-box`;
+
 const FALLBACK_HEADER = {
   platformsBadge: "Choose The Best - Platform",
   platformsTitle: "Powerful Platforms for Every Trader",
@@ -28,21 +32,9 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     title: "MT5",
     description:
       "The industry's gold standard for multi-asset trading. Advanced charting, automated trading, real-time analysis, and multi-asset access.",
-    size: "small",
-    row: 1,
-    order: 1,
-    mockupImage: null,
-    iconImage: null,
-  },
-  {
-    id: 2,
-    documentId: "fb-web",
-    title: "Finsai Web Terminal",
-    description:
-      "Designed for ease and speed, a browser-based solution that requires no downloads or installation. Perfect for traders who prefer accessibility and simplicity.",
     size: "large",
     row: 1,
-    order: 2,
+    order: 1,
     mockupImage: null,
     iconImage: null,
   },
@@ -71,6 +63,89 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     iconImage: null,
   },
 ];
+
+function WidePlatformCard({ p }: { p: StrapiPlatform }) {
+  const mockup = strapiImageUrl(p.mockupImage);
+  const icon = strapiImageUrl(p.iconImage);
+
+  return (
+    <div
+      style={{
+        position: "relative",
+        background: WIDE_CARD_BACKGROUND,
+        border: "1px solid transparent",
+        borderRadius: RADIUS,
+        height: "321px",
+        padding: "32px 40px",
+        overflow: "visible",
+        boxSizing: "border-box",
+      }}
+    >
+      <p
+        className="platform-card-text"
+        style={{
+          position: "absolute",
+          top: "32px",
+          left: "40px",
+          width: "640px",
+          overflow: "hidden",
+        }}
+      >
+        {p.description}
+      </p>
+
+      {mockup && (
+        <div
+          style={{
+            position: "absolute",
+            top: "-55px",
+            left: "885px",
+            width: "312px",
+            height: "376px",
+            zIndex: 10,
+            pointerEvents: "none",
+          }}
+        >
+          <Image
+            src={mockup}
+            alt={p.title}
+            fill
+            sizes="312px"
+            style={{ objectFit: "contain" }}
+          />
+        </div>
+      )}
+
+      {icon && (
+        <div style={{ position: "absolute", top: "32px", right: "40px", zIndex: 11 }}>
+          <Image
+            src={icon}
+            alt={p.title}
+            width={64}
+            height={64}
+            style={{ borderRadius: "14px" }}
+          />
+        </div>
+      )}
+
+      <h3
+        style={{
+          position: "absolute",
+          bottom: "32px",
+          left: "40px",
+          fontFamily: "var(--font-sora, Sora)",
+          fontWeight: 400,
+          fontSize: "40px",
+          lineHeight: "54px",
+          color: "#FFFFFF",
+          margin: 0,
+        }}
+      >
+        {p.title}
+      </h3>
+    </div>
+  );
+}
 
 function PlatformCard({ p }: { p: StrapiPlatform }) {
   const mockup = strapiImageUrl(p.mockupImage);
@@ -162,7 +237,10 @@ export default async function PlatformsSection() {
   const platforms =
     fetched && fetched.length > 0 ? fetched : FALLBACK_PLATFORMS;
 
-  const row1 = platforms.filter((p) => p.row === 1);
+  const row1All = platforms.filter((p) => p.row === 1);
+  const row1Wide =
+    row1All.find((p) => /mt\s?5/i.test(p.title)) ?? row1All[0];
+  const row1 = row1Wide ? [row1Wide] : [];
   const row2 = platforms.filter((p) => p.row === 2);
 
   return (
@@ -213,21 +291,27 @@ export default async function PlatformsSection() {
           {header.platformsDescription}
         </p>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns:
-              row1.length === 2 && row1[0].size === "small"
-                ? `${SMALL} ${LARGE}`
-                : `${LARGE} ${SMALL}`,
-            gap: COL_GAP,
-            marginBottom: ROW_GAP,
-          }}
-        >
-          {row1.map((p) => (
-            <PlatformCard key={p.id} p={p} />
-          ))}
-        </div>
+        {row1.length === 1 ? (
+          <div style={{ marginBottom: ROW_GAP }}>
+            <WidePlatformCard p={row1[0]} />
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns:
+                row1.length === 2 && row1[0].size === "small"
+                  ? `${SMALL} ${LARGE}`
+                  : `${LARGE} ${SMALL}`,
+              gap: COL_GAP,
+              marginBottom: ROW_GAP,
+            }}
+          >
+            {row1.map((p) => (
+              <PlatformCard key={p.id} p={p} />
+            ))}
+          </div>
+        )}
 
         <div
           style={{
