@@ -1,9 +1,9 @@
-import Image from "next/image";
 import {
   getHomepage,
   type StrapiHomepage,
   type StrapiFeatureItem,
 } from "@/lib/strapi";
+import FeaturesCryptoStack from "./FeaturesCryptoStack";
 
 const FALLBACK_FEATURES: StrapiFeatureItem[] = [
   { id: 1, iconKey: "transparency", title: "No Hidden Fees,\nTransparent Trades" },
@@ -23,80 +23,6 @@ const FALLBACK_HEADER: Pick<
   featuresDescription:
     "Trade securely across 1,000+ assets on a globally regulated platform with transparent pricing and 24/7 expert support.",
 };
-
-const cryptoRows = [
-  {
-    symbol: "BTC",
-    name: "Bitcoin",
-    price: "$1,236.21",
-    iconBg: "linear-gradient(180deg, #F9AA4B -0.02%, #F7931A 99.99%)",
-    iconText: "₿",
-    change: null,
-  },
-  {
-    symbol: "ETH",
-    name: "Ethereum",
-    price: "$2,236.21",
-    iconBg: "#5235E8",
-    iconText: "Ξ",
-    change: "up",
-  },
-  {
-    symbol: "OGN",
-    name: "Origin Protocol",
-    price: null,
-    iconBg: "#1A82FF",
-    iconText: "⊘",
-    change: "up",
-  },
-  {
-    symbol: "ACN",
-    name: "Achain",
-    price: "$165.8",
-    iconBg: "#767DFF",
-    iconText: "△",
-    change: null,
-  },
-  {
-    symbol: "USDT",
-    name: "Tether",
-    price: "$165.8",
-    iconBg: "#1BA27A",
-    iconText: "₮",
-    change: "down",
-  },
-];
-
-function MiniSparkline({ up }: { up: boolean }) {
-  return (
-    <svg viewBox="0 0 60 22" className="w-14 h-5">
-      <polyline
-        points={
-          up
-            ? "2,18 10,15 18,16 26,10 34,12 42,6 50,8 58,4"
-            : "2,4 10,8 18,6 26,12 34,10 42,15 50,14 58,18"
-        }
-        fill="none"
-        stroke={up ? "#11CABE" : "#FA2256"}
-        strokeWidth="1.2"
-      />
-      <defs>
-        <linearGradient id={`sg${up}`} x1="0" y1="0" x2="0" y2="1">
-          <stop stopColor={up ? "#11CABE" : "#FA2256"} stopOpacity="0.3" />
-          <stop offset="1" stopColor={up ? "#11CABE" : "#FA2256"} stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <path
-        d={
-          up
-            ? "M2,18 L10,15 L18,16 L26,10 L34,12 L42,6 L50,8 L58,4 L58,22 L2,22 Z"
-            : "M2,4 L10,8 L18,6 L26,12 L34,10 L42,15 L50,14 L58,18 L58,22 L2,22 Z"
-        }
-        fill={`url(#sg${up})`}
-      />
-    </svg>
-  );
-}
 
 function FeatureIcon({ iconKey }: { iconKey: StrapiFeatureItem["iconKey"] }) {
   const paths: Record<StrapiFeatureItem["iconKey"], string> = {
@@ -203,147 +129,7 @@ export default async function FeaturesSection() {
           </div>
 
           <div className="flex items-center justify-center relative">
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10 float-animate">
-              <Image
-                src="/trade-badge.png"
-                alt="Trade more than 1000+ products"
-                width={150}
-                height={150}
-                style={{ display: "block" }}
-              />
-            </div>
-
-            <div
-              style={{
-                background: "#050208",
-                boxShadow: "0px 0px 10.83px rgba(5,111,180,0.2)",
-                borderRadius: "14.44px",
-                width: "404px",
-                padding: "12px",
-                position: "relative",
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  width: "184px",
-                  height: "184px",
-                  right: "-40px",
-                  bottom: "-40px",
-                  background: "#496DAB",
-                  filter: "blur(71px)",
-                  borderRadius: "50%",
-                  opacity: 0.6,
-                  pointerEvents: "none",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  width: "184px",
-                  height: "184px",
-                  left: "-40px",
-                  top: "-60px",
-                  background: "#496DAB",
-                  filter: "blur(71px)",
-                  borderRadius: "50%",
-                  opacity: 0.6,
-                  pointerEvents: "none",
-                }}
-              />
-
-              {cryptoRows.map((row) => (
-                <div
-                  key={row.symbol}
-                  className="flex items-center gap-3 relative z-10"
-                  style={{
-                    background: "#1E1B21",
-                    boxShadow: "0px 0px 10.83px rgba(82,53,232,0.2)",
-                    borderRadius: "10.83px",
-                    padding: "10px 12px",
-                    marginBottom: "4px",
-                  }}
-                >
-                  <div
-                    className="shrink-0 flex items-center justify-center text-white text-sm font-bold"
-                    style={{
-                      width: "36px",
-                      height: "36px",
-                      borderRadius: "50%",
-                      background: row.iconBg,
-                    }}
-                  >
-                    {row.iconText}
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <span
-                      style={{
-                        fontFamily: "var(--font-sora, Sora)",
-                        fontSize: "14.44px",
-                        lineHeight: "160%",
-                        color: "#9C9CAB",
-                        letterSpacing: "0.005em",
-                      }}
-                    >
-                      {row.symbol}{" "}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-sora, Sora)",
-                        fontSize: "14.44px",
-                        lineHeight: "160%",
-                        color: "#FFFFFF",
-                        letterSpacing: "0.005em",
-                      }}
-                    >
-                      {row.name}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-2 shrink-0">
-                    {row.price && (
-                      <span
-                        style={{
-                          fontFamily: "var(--font-sora, Sora)",
-                          fontSize: "12.63px",
-                          lineHeight: "145%",
-                          color: "#056FB4",
-                        }}
-                      >
-                        {row.price}
-                      </span>
-                    )}
-                    {row.change && (
-                      <>
-                        <div
-                          className="flex items-center justify-center"
-                          style={{
-                            width: "14.44px",
-                            height: "14.44px",
-                            background:
-                              row.change === "up" ? "#11CABE" : "#FB3766",
-                            borderRadius: "3px",
-                          }}
-                        >
-                          <svg viewBox="0 0 10 10" className="w-2.5 h-2.5">
-                            <path
-                              d={
-                                row.change === "up"
-                                  ? "M5 2 L8 7 L2 7 Z"
-                                  : "M5 8 L8 3 L2 3 Z"
-                              }
-                              fill="white"
-                            />
-                          </svg>
-                        </div>
-                        <MiniSparkline up={row.change === "up"} />
-                      </>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <FeaturesCryptoStack />
           </div>
         </div>
       </div>

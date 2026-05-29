@@ -73,7 +73,7 @@ export default async function MarketsSection() {
     fetched && fetched.length > 0 ? fetched : FALLBACK_MARKETS;
 
   return (
-    <section style={{ background: "#050208", padding: "100px 0" }}>
+    <section style={{ background: "#050208" }}>
       <MarketsAccordion
         markets={markets}
         badge={header.marketsBadge}

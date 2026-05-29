@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { strapiImageUrl, type StrapiMarket } from "@/lib/strapi";
@@ -12,6 +12,8 @@ type Props = {
   description: string;
 };
 
+const VH_PER_MARKET = 40;
+
 export default function MarketsAccordion({
   markets,
   badge,
@@ -19,36 +21,100 @@ export default function MarketsAccordion({
   titleAccent,
   description,
 }: Props) {
-  const [active, setActive] = useState(markets[0]?.slug ?? "");
-  const activeMarket = markets.find((m) => m.slug === active) ?? markets[0];
-  const activeImg = strapiImageUrl(activeMarket?.image);
+  const outerRef = useRef<HTMLDivElement | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const total = markets.length;
+
+  useEffect(() => {
+    if (total <= 0) return;
+    let frame: number | null = null;
+
+    function update() {
+      frame = null;
+      const el = outerRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      const maxDistance = Math.max(1, rect.height - vh);
+      const distance = Math.max(0, -rect.top);
+      const progress = Math.min(1, distance / maxDistance);
+      const idx = Math.min(
+        total - 1,
+        Math.max(0, Math.floor(progress * total - 1e-6)),
+      );
+      setActiveIndex((prev) => (prev === idx ? prev : idx));
+    }
+
+    function onScroll() {
+      if (frame != null) return;
+      frame = window.requestAnimationFrame(update);
+    }
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", update);
+      if (frame != null) window.cancelAnimationFrame(frame);
+    };
+  }, [total]);
+
+  const activeMarket = markets[activeIndex] ?? markets[0];
 
   if (!activeMarket) return null;
 
   return (
     <div
+      ref={outerRef}
       style={{
-        maxWidth: "1280px",
-        margin: "0 auto",
-        padding: "0 80px",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "60px",
-        alignItems: "center",
+        position: "relative",
+        height: `calc(${total * VH_PER_MARKET}vh + 100vh)`,
       }}
     >
+      <div
+        style={{
+          position: "sticky",
+          top: 0,
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1280px",
+            margin: "0 auto",
+            padding: "0 80px",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "60px",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
         <div style={{ position: "relative", width: "520px", height: "520px" }}>
-          {activeImg && (
-            <Image
-              key={activeImg}
-              src={activeImg}
-              alt={activeMarket.name}
-              fill
-              style={{ objectFit: "contain" }}
-              priority
-            />
-          )}
+          {markets.map((market, i) => {
+            const src = strapiImageUrl(market.image);
+            if (!src) return null;
+            return (
+              <Image
+                key={market.slug}
+                src={src}
+                alt={market.name}
+                fill
+                style={{
+                  objectFit: "contain",
+                  opacity: i === activeIndex ? 1 : 0,
+                  transition: "opacity 0.5s ease",
+                }}
+                priority={i === 0}
+              />
+            );
+          })}
         </div>
       </div>
 
@@ -90,29 +156,32 @@ export default function MarketsAccordion({
         </p>
 
         <div>
-          {markets.map((market) => {
-            const isActive = active === market.slug;
+          {markets.map((market, i) => {
+            const isActive = i === activeIndex;
             return (
               <div key={market.slug}>
                 <div style={{ padding: "20px 0" }}>
-                  <button
-                    onClick={() => setActive(market.slug)}
+                  <div
                     className="market-heading"
                     style={{
-                      background: "none",
-                      border: "none",
-                      padding: 0,
-                      cursor: "pointer",
                       textAlign: "left",
                       width: "100%",
                       color: isActive ? "#FFFFFF" : "rgba(255,255,255,0.55)",
-                      transition: "color 0.2s",
+                      transition: "color 0.3s ease",
                     }}
                   >
                     {market.name}
-                  </button>
+                  </div>
 
-                  {isActive && (
+                  <div
+                    style={{
+                      overflow: "hidden",
+                      maxHeight: isActive ? "240px" : "0px",
+                      opacity: isActive ? 1 : 0,
+                      transition:
+                        "max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease",
+                    }}
+                  >
                     <div style={{ marginTop: "14px" }}>
                       <p
                         className="market-text"
@@ -136,7 +205,7 @@ export default function MarketsAccordion({
                         </svg>
                       </Link>
                     </div>
-                  )}
+                  </div>
                 </div>
 
                 <div
@@ -149,6 +218,8 @@ export default function MarketsAccordion({
               </div>
             );
           })}
+        </div>
+      </div>
         </div>
       </div>
     </div>
