@@ -1,7 +1,25 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getPaymentsPage, type StrapiPaymentsPage } from "@/lib/strapi";
 
-export default function PaymentsHeroSection() {
+const FALLBACK: Pick<
+  StrapiPaymentsPage,
+  | "heroBadge"
+  | "heroTitle"
+  | "heroDescription"
+  | "heroPrimaryCtaLabel"
+  | "heroPrimaryCtaHref"
+> = {
+  heroBadge: "SECURE DEPOSITS & WITHDRAWALS",
+  heroTitle: "Fast & Secure Account\nFunding at Finsai Trade",
+  heroDescription:
+    "Deposit and withdraw with confidence. Finsai Trade supports cards, UPI, e-wallets, crypto, and bank transfer — all secured by bank-grade encryption.",
+  heroPrimaryCtaLabel: "Deposit Funds",
+  heroPrimaryCtaHref: "/register",
+};
+
+export default async function PaymentsHeroSection() {
+  const data = (await getPaymentsPage()) ?? FALLBACK;
   return (
     <section
       style={{
@@ -53,7 +71,7 @@ export default function PaymentsHeroSection() {
             letterSpacing: "0.1em",
           }}
         >
-          SECURE DEPOSITS & WITHDRAWALS
+          {data.heroBadge}
         </span>
 
         <h1
@@ -65,11 +83,10 @@ export default function PaymentsHeroSection() {
             letterSpacing: "-0.01em",
             color: "#FFFFFF",
             margin: 0,
+            whiteSpace: "pre-line",
           }}
         >
-          Fast &amp; Secure Account
-          <br />
-          Funding at Finsai&nbsp;Trade
+          {data.heroTitle}
         </h1>
 
         <p
@@ -83,13 +100,11 @@ export default function PaymentsHeroSection() {
             margin: 0,
           }}
         >
-          Deposit and withdraw with confidence. Finsai Trade supports cards,
-          UPI, e-wallets, crypto, and bank transfer — all secured by bank-grade
-          encryption.
+          {data.heroDescription}
         </p>
 
         <Link
-          href="/register"
+          href={data.heroPrimaryCtaHref}
           className="btn-text"
           style={{
             padding: "14px 32px",
@@ -103,7 +118,7 @@ export default function PaymentsHeroSection() {
             alignSelf: "flex-start",
           }}
         >
-          Deposit Funds
+          {data.heroPrimaryCtaLabel}
         </Link>
       </div>
     </section>

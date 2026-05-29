@@ -2,6 +2,7 @@ import ToolsHeroSection from "@/components/ToolsHeroSection";
 import ToolsBuiltForSection from "@/components/ToolsBuiltForSection";
 import ToolsCardGrid, { type ToolCard } from "@/components/ToolsCardGrid";
 import ToolsCTASection from "@/components/ToolsCTASection";
+import { getToolsPage } from "@/lib/strapi";
 
 export const metadata = {
   title: "Tools | Finsai Trade",
@@ -383,23 +384,23 @@ const communityCards: ToolCard[] = [
   },
 ];
 
-export default function ToolsPage() {
+export default async function ToolsPage() {
+  const data = await getToolsPage();
   return (
     <>
       <ToolsHeroSection />
       <ToolsBuiltForSection />
 
       <ToolsCardGrid
-        title="Charting & Technical Analysis Tools"
-        description="Trade with speed, stability, and total control  from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs."
+        title={data?.chartingTitle ?? "Charting & Technical Analysis Tools"}
+        description={data?.chartingDescription ?? "Trade with speed, stability, and total control  from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs."}
         cards={chartingCards}
         height="629px"
       />
 
       <ToolsCardGrid
-        title="Market Data & News Tools"
-        description="Trade with speed, stability, and total control  from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs
-"
+        title={data?.marketDataTitle ?? "Market Data & News Tools"}
+        description={data?.marketDataDescription ?? "Trade with speed, stability, and total control  from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs"}
         cards={marketDataCards}
         height="685.02px"
         cardWidth="600px"
@@ -412,26 +413,23 @@ export default function ToolsPage() {
       />
 
       <ToolsCardGrid
-        title="Risk and Position Management Tools"
-        description="Trade with speed, stability, and total control  from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs
-"
+        title={data?.riskTitle ?? "Risk and Position Management Tools"}
+        description={data?.riskDescription ?? "Trade with speed, stability, and total control  from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs"}
         cards={riskCards}
         height="629px"
       />
 
       <ToolsCardGrid
-        title="Strategy and Automation Tools"
-        description="From idea to live trade — design, backtest and deploy strategies without leaving Finsai."
+        title={data?.strategyTitle ?? "Strategy and Automation Tools"}
+        description={data?.strategyDescription ?? "From idea to live trade — design, backtest and deploy strategies without leaving Finsai."}
         cards={strategyCards}
         height="629px"
         imageLayout="top"
       />
 
       <ToolsCardGrid
-        title="Community and Insight Tools"
-        description="Trade with speed, stability, and total control  from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs
-
-"
+        title={data?.communityTitle ?? "Community and Insight Tools"}
+        description={data?.communityDescription ?? "Trade with speed, stability, and total control  from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs"}
         cards={communityCards}
         height="629px"
         imageLayout="top"

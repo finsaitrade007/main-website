@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getServicesPage } from "@/lib/strapi";
 
 const features = [
   { img: "/service/efficient-power-management.png", title: "Lightning \n Fast Execution" },
@@ -9,7 +10,13 @@ const features = [
   { img: "/service/24-hours-support.png",           title: "24/7 Expert \n Support" },
 ];
 
-export default function ServicesFeaturesSection() {
+export default async function ServicesFeaturesSection() {
+  const data = await getServicesPage();
+  const badge = data?.featuresBadge ?? "Features of Finsai Trade";
+  const title = data?.featuresTitle ?? "Built to Perform. Designed for You";
+  const description =
+    data?.featuresDescription ??
+    "Finsai Trade platforms are engineered to deliver seamless execution, institutional-level tools, and reliable uptime so you stay in control, wherever you trade. Whether you're a beginner or a pro, our platforms help you trade smarter and faster.";
   return (
     <section style={{
       background: "#050208",
@@ -41,12 +48,12 @@ export default function ServicesFeaturesSection() {
               border: "1.2px solid rgba(255,255,255,0.15)",
               borderRadius: "60px",
             }}>
-              <span className="badge-text">Features of Finsai Trade</span>
+              <span className="badge-text">{badge}</span>
             </div>
           </div>
 
           <h2 className="section-title" style={{ marginBottom: "14px" }}>
-            Built to Perform. Designed for You
+            {title}
           </h2>
 
           <p style={{
@@ -57,7 +64,7 @@ export default function ServicesFeaturesSection() {
             color: "#FFFFFF",
             marginBottom: "32px",
           }}>
-            Finsai Trade platforms are engineered to deliver seamless execution, institutional-level tools, and reliable uptime so you stay in control, wherever you trade. Whether you&apos;re a beginner or a pro, our platforms help you trade smarter and faster.
+            {description}
           </p>
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-8">

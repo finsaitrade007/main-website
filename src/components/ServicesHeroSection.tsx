@@ -1,7 +1,25 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getServicesPage, type StrapiServicesPage } from "@/lib/strapi";
 
-export default function ServicesHeroSection() {
+const FALLBACK: Pick<
+  StrapiServicesPage,
+  | "heroBadge"
+  | "heroTitle"
+  | "heroDescription"
+  | "heroPrimaryCtaLabel"
+  | "heroPrimaryCtaHref"
+> = {
+  heroBadge: "SIGN IN TO YOUR SECURE WALLET",
+  heroTitle: "Your Platform. Your Strategy. Total Control",
+  heroDescription:
+    "Welcome to Finsai Trade's Introducing Broker (IB) Program. We offer a comprehensive partnership scheme where you can earn competitive",
+  heroPrimaryCtaLabel: "Start Trading →",
+  heroPrimaryCtaHref: "/register",
+};
+
+export default async function ServicesHeroSection() {
+  const data = (await getServicesPage()) ?? FALLBACK;
   return (
     <section style={{
       position: "relative",
@@ -49,7 +67,7 @@ export default function ServicesHeroSection() {
           color: "#FFFFFF",
           letterSpacing: "0.1em",
         }}>
-          SIGN IN TO YOUR SECURE WALLET
+          {data.heroBadge}
         </span>
 
         <h1 style={{
@@ -60,8 +78,9 @@ export default function ServicesHeroSection() {
           letterSpacing: "-0.01em",
           color: "#FFFFFF",
           margin: 0,
+          whiteSpace: "pre-line",
         }}>
-          Your Platform. Your Strategy. Total Control
+          {data.heroTitle}
         </h1>
 
         <p style={{
@@ -73,10 +92,10 @@ export default function ServicesHeroSection() {
           maxWidth: "560px",
           margin: 0,
         }}>
-          Welcome to Finsai Trade's Introducing Broker (IB) Program. We offer a comprehensive partnership scheme where you can earn competitive 
+          {data.heroDescription}
         </p>
 
-        <Link href="/register" className="btn-text" style={{
+        <Link href={data.heroPrimaryCtaHref} className="btn-text" style={{
           padding: "14px 32px",
           borderRadius: "28.83px",
           background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
@@ -86,7 +105,7 @@ export default function ServicesHeroSection() {
           justifyContent: "center",
           alignSelf: "flex-start",
         }}>
-          Start Trading →
+          {data.heroPrimaryCtaLabel}
         </Link>
       </div>
     </section>

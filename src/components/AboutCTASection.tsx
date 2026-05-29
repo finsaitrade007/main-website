@@ -1,6 +1,22 @@
 import Link from "next/link";
+import { getAboutPage, type StrapiAboutPage } from "@/lib/strapi";
 
-export default function AboutCTASection() {
+const FALLBACK: Pick<
+  StrapiAboutPage,
+  | "ctaTitle"
+  | "ctaDescription"
+  | "ctaPrimaryLabel"
+  | "ctaPrimaryHref"
+> = {
+  ctaTitle: "Ready to Take charge of Your Financial Future?",
+  ctaDescription:
+    "Open a free trial account and explore every Finsai market and tool — no commitment, full access.",
+  ctaPrimaryLabel: "Start Free Trial",
+  ctaPrimaryHref: "/register",
+};
+
+export default async function AboutCTASection() {
+  const data = (await getAboutPage()) ?? FALLBACK;
   return (
     <section style={{ background: "#050208", padding: "40px 0 100px" }}>
       <div
@@ -68,7 +84,7 @@ export default function AboutCTASection() {
             color: "#FFFFFF",
           }}
         >
-          Ready to Take charge of Your Financial Future?
+          {data.ctaTitle}
         </h2>
         <p
           style={{
@@ -81,11 +97,10 @@ export default function AboutCTASection() {
             color: "rgba(255,255,255,0.65)",
           }}
         >
-          Open a free trial account and explore every Finsai market and tool —
-          no commitment, full access.
+          {data.ctaDescription}
         </p>
         <Link
-          href="/register"
+          href={data.ctaPrimaryHref}
           className="btn-text"
           style={{
             padding: "14px 32px",
@@ -100,7 +115,7 @@ export default function AboutCTASection() {
             marginTop: "8px",
           }}
         >
-          Start Free Trial
+          {data.ctaPrimaryLabel}
         </Link>
       </div>
     </section>

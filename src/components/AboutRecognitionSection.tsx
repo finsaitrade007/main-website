@@ -1,6 +1,29 @@
 import Image from "next/image";
+import { getAboutPage, type StrapiAboutPage } from "@/lib/strapi";
 
-export default function AboutRecognitionSection() {
+const FALLBACK: Pick<
+  StrapiAboutPage,
+  | "recognitionTitlePrefix"
+  | "recognitionTitleAccent"
+  | "recognitionDescription"
+  | "recognitionStatPrimaryValue"
+  | "recognitionStatPrimaryLabel"
+  | "recognitionStatSecondaryValue"
+  | "recognitionStatSecondaryLabel"
+> = {
+  recognitionTitlePrefix: "Recognized for Elite Trading ",
+  recognitionTitleAccent: "Excellence",
+  recognitionDescription:
+    "Trade seamlessly on the go or from your desktop with our cutting-edge platforms.",
+  recognitionStatPrimaryValue: "168M+",
+  recognitionStatPrimaryLabel: "Monthly Deals",
+  recognitionStatSecondaryValue: "3M+",
+  recognitionStatSecondaryLabel: "Monthly Worldwide",
+};
+
+export default async function AboutRecognitionSection() {
+  const data = (await getAboutPage()) ?? FALLBACK;
+
   return (
     <section
       style={{
@@ -37,7 +60,7 @@ export default function AboutRecognitionSection() {
             color: "#FFFFFF",
           }}
         >
-          Recognized for Elite Trading{" "}
+          {data.recognitionTitlePrefix}
           <span
             style={{
               backgroundImage:
@@ -48,7 +71,7 @@ export default function AboutRecognitionSection() {
               color: "transparent",
             }}
           >
-            Excellence
+            {data.recognitionTitleAccent}
           </span>
         </h2>
         <p
@@ -62,12 +85,10 @@ export default function AboutRecognitionSection() {
             color: "rgba(255,255,255,0.65)",
           }}
         >
-          Trade seamlessly on the go or from your desktop with our cutting-edge platforms.
+          {data.recognitionDescription}
         </p>
-
       </div>
 
-      {/* Left award seal — 347 × 225 anchored at top:361 / left:80. */}
       <Image
         src="/about/award-seal.png"
         alt="World Forex Award"
@@ -85,9 +106,6 @@ export default function AboutRecognitionSection() {
         }}
       />
 
-      {/* Right award trophy — 385 × 224.88 anchored at top:361 / left:975
-          (slightly wider artwork than the left seal, so it sits at a
-          different left offset). */}
       <Image
         src="/about/award-seal-2.png"
         alt="Iconic Finance Expo"
@@ -105,9 +123,6 @@ export default function AboutRecognitionSection() {
         }}
       />
 
-      {/* Centre stat tile — 458.37 × 434.59 anchored at top:237 / left:472
-          inside the 1440 × 752 section, with a 26.99px border-radius and a
-          0.9px solid #056FB4 stroke. */}
       <div
         style={{
           position: "absolute",
@@ -122,10 +137,6 @@ export default function AboutRecognitionSection() {
           boxSizing: "border-box",
         }}
       >
-        {/* Inner text block — 315 × 283 anchored at top:76.21 / left:71.69
-            inside the stat tile.  Every text element below is positioned
-            absolutely with coordinates relative to THIS block (per Figma
-            export), not the outer stat tile. */}
         <div
           style={{
             position: "absolute",
@@ -135,8 +146,6 @@ export default function AboutRecognitionSection() {
             height: "283px",
           }}
         >
-          {/* "168M+" headline — 300 × 60 at top:5 / left:12 relative to the
-              inner block, Inter 700 / 88 / 60 in solid white. */}
           <div
             style={{
               position: "absolute",
@@ -155,12 +164,9 @@ export default function AboutRecognitionSection() {
               whiteSpace: "nowrap",
             }}
           >
-            168M+
+            {data.recognitionStatPrimaryValue}
           </div>
 
-          {/* "Monthly Deals" caption — 202 × 60 at top:85 / left:56 relative
-              to the inner block, Ageo Trial 700 / 32 / 60 in solid white.
-              Forced onto a single line via white-space: nowrap. */}
           <div
             style={{
               position: "absolute",
@@ -179,11 +185,9 @@ export default function AboutRecognitionSection() {
               whiteSpace: "nowrap",
             }}
           >
-            Monthly Deals
+            {data.recognitionStatPrimaryLabel}
           </div>
 
-          {/* "3M+" — 92 × 60 at top:192 / left:111 relative to the inner
-              block, Inter Black 40/60 in 50% white. */}
           <div
             style={{
               position: "absolute",
@@ -201,12 +205,9 @@ export default function AboutRecognitionSection() {
               textAlign: "center",
             }}
           >
-            3M+
+            {data.recognitionStatSecondaryValue}
           </div>
 
-          {/* "Monthly Worldwide" — 170 × 30 at top:246 / left:72 relative
-              to the inner block, Ageo Trial 700/20/30 with a vertical
-              white gradient painted onto the text. */}
           <div
             style={{
               position: "absolute",
@@ -228,11 +229,10 @@ export default function AboutRecognitionSection() {
               color: "transparent",
             }}
           >
-            Monthly Worldwide
+            {data.recognitionStatSecondaryLabel}
           </div>
         </div>
       </div>
     </section>
   );
 }
-

@@ -1,28 +1,30 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getPartnershipsPage } from "@/lib/strapi";
 
-const steps = [
-  {
-    number: 1,
-    title: "Sign Up",
-    desc: "Submit your application to become an IB.",
-    img: "/steps/register.png",
-  },
-  {
-    number: 2,
-    title: "Promote",
-    desc: "Use our marketing materials to introduce traders to our trading platforms.",
-    img: "/steps/verify.png",
-  },
-  {
-    number: 3,
-    title: "Earn",
-    desc: "Collect your commissions for every trade your referred traders execute.",
-    img: "/steps/start-trading.png",
-  },
+const STEP_IMAGES = ["/steps/register.png", "/steps/verify.png", "/steps/start-trading.png"];
+
+const fallbackSteps = [
+  { title: "Sign Up", description: "Submit your application to become an IB." },
+  { title: "Promote", description: "Use our marketing materials to introduce traders to our trading platforms." },
+  { title: "Earn", description: "Collect your commissions for every trade your referred traders execute." },
 ];
 
-export default function IBHowToSection() {
+export default async function IBHowToSection() {
+  const data = await getPartnershipsPage();
+  const title = data?.howToTitle ?? "Fast application. Fast process. So easy.";
+  const description = data?.howToDescription ?? "How to become an IB?";
+  const ctaLabel = data?.heroPrimaryCtaLabel ?? "Become an IB";
+  const ctaHref = data?.heroPrimaryCtaHref ?? "/register";
+
+  const rawSteps = data?.howToSteps?.length ? data.howToSteps : fallbackSteps;
+  const steps = rawSteps.slice(0, 3).map((step, i) => ({
+    number: i + 1,
+    title: step.title,
+    desc: ("description" in step ? step.description : "") ?? "",
+    img: STEP_IMAGES[i] ?? STEP_IMAGES[0],
+  }));
+
   return (
     <section style={{ background: "#050208", position: "relative", width: "1440px", height: "707px", boxSizing: "border-box" }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 80px" }}>
@@ -37,7 +39,7 @@ export default function IBHowToSection() {
           textAlign: "center",
           margin: 0,
         }}>
-          Fast application. Fast process. So easy.
+          {title}
         </h2>
 
         <p className="section-desc" style={{
@@ -49,7 +51,7 @@ export default function IBHowToSection() {
           textAlign: "center",
           margin: 0,
         }}>
-          How to become an IB?
+          {description}
         </p>
 
         {/* Steps row */}
@@ -106,7 +108,7 @@ export default function IBHowToSection() {
         </div>
 
         {/* CTA button */}
-        <Link href="/register" className="btn-text" style={{
+        <Link href={ctaHref} className="btn-text" style={{
           position: "absolute",
           top: "571px",
           left: "627.01px",
@@ -126,7 +128,7 @@ export default function IBHowToSection() {
           whiteSpace: "nowrap",
           boxSizing: "border-box",
         }}>
-          Become an IB
+          {ctaLabel}
         </Link>
 
       </div>

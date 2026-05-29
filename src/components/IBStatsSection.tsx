@@ -1,14 +1,41 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getPartnershipsPage } from "@/lib/strapi";
 
-const stats = [
-  { prefix: "Join", value: "20,000 +", label: "Companies helped" },
-  { prefix: "Over", value: "$10,000 +", label: "Revenue generated" },
-  { prefix: "Over", value: "330 +", label: "Companies helped" },
-  { prefix: "More than", value: "230 +", label: "Revenue generated" },
+const fallbackStats = [
+  { value: "20,000 +", label: "Join Companies helped" },
+  { value: "$10,000 +", label: "Over Revenue generated" },
+  { value: "330 +", label: "Over Companies helped" },
+  { value: "230 +", label: "More than Revenue generated" },
 ];
 
-export default function IBStatsSection() {
+function splitStatLabel(label: string): { prefix: string; label: string } {
+  const trimmed = label.trim();
+  const knownPrefixes = ["Join ", "Over ", "More than ", "Up to ", "Above ", "Around "];
+  for (const prefix of knownPrefixes) {
+    if (trimmed.startsWith(prefix)) {
+      return { prefix: prefix.trim(), label: trimmed.slice(prefix.length) };
+    }
+  }
+  const parts = trimmed.split(" ");
+  if (parts.length > 1) {
+    return { prefix: parts[0], label: parts.slice(1).join(" ") };
+  }
+  return { prefix: "", label: trimmed };
+}
+
+export default async function IBStatsSection() {
+  const data = await getPartnershipsPage();
+  const title = data?.statsTitle ?? "Join The Fastest Growing Partner Program Now";
+  const ctaLabel = data?.heroPrimaryCtaLabel ?? "Be Our Partner →";
+  const ctaHref = data?.heroPrimaryCtaHref ?? "/register";
+
+  const rawStats = data?.stats?.length ? data.stats : fallbackStats;
+  const stats = rawStats.map((s) => {
+    const { prefix, label } = splitStatLabel(s.label ?? "");
+    return { prefix, value: s.value, label };
+  });
+
   return (
     <section style={{ position: "relative", background: "#050208", width: "1440px", height: "696px", boxSizing: "border-box" }}>
 
@@ -77,7 +104,7 @@ export default function IBStatsSection() {
               color: "#FFFFFF",
               margin: "0 0 40px",
             }}>
-              Join The Fastest Growing Partner Program Now
+              {title}
             </h2>
 
 
@@ -187,7 +214,7 @@ export default function IBStatsSection() {
         ))}
       </div>
 
-      <Link href="/register" className="btn-text" style={{
+      <Link href={ctaHref} className="btn-text" style={{
         position: "absolute",
         top: "575px",
         left: "757px",
@@ -201,7 +228,7 @@ export default function IBStatsSection() {
         justifyContent: "center",
         whiteSpace: "nowrap",
       }}>
-        Be Our Partner →
+        {ctaLabel}
       </Link>
     </section>
   );

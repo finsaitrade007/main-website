@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getBlogsPage } from "@/lib/strapi";
 
-
-const newsCards = [
+const fallbackNewsCards = [
   {
     category: "News & Analysis",
     desc: "Stay updated with real-time market news, economic events, and expert commentary.",
@@ -34,8 +34,6 @@ const newsCards = [
     href: "/glossary",
   },
 ];
-
-const blogCards = [...newsCards];
 
 function ArticleCard({ category, desc, href }: { category: string; desc: string; href: string }) {
   return (
@@ -166,12 +164,27 @@ function SearchBar() {
   );
 }
 
-export default function BlogsNewsSection() {
+export default async function BlogsNewsSection() {
+  const data = await getBlogsPage();
+  const badge = data?.newsBadge ?? "Blogs & News";
+  const title = data?.newsTitle ?? "Powerful platforms for Every Trader";
+  const description =
+    data?.newsDescription ??
+    "Trade with speed, stability, and total control from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs";
+
+  const cards = data?.newsArticles?.length
+    ? data.newsArticles.map((article) => ({
+        category: article.title,
+        desc: article.description ?? "",
+        href: article.href ?? "#",
+      }))
+    : fallbackNewsCards;
+  const blogCards = cards;
+
   return (
     <section style={{ background: "#050208", marginTop: "73px" }}>
       <div style={{ maxWidth: "1440px", minHeight: "1834px", margin: "0 auto", padding: "0 80px" }}>
 
-        {/* Badge */}
         <div style={{ marginBottom: "24px", display: "flex", justifyContent: "center" }}>
           <span style={{
             display: "inline-flex",
@@ -180,19 +193,18 @@ export default function BlogsNewsSection() {
             border: "1px solid rgba(255,255,255,0.2)",
             borderRadius: "60px",
           }}>
-            <span className="badge-text">Blogs & News</span>
+            <span className="badge-text">{badge}</span>
           </span>
         </div>
 
         <h2 className="section-title" style={{ textAlign: "center", marginBottom: "16px" }}>
-          Powerful platforms for Every Trader
+          {title}
         </h2>
 
         <p className="section-desc" style={{ textAlign: "center", width: "851px", height: "57px", margin: "0 auto 48px" }}>
-          Trade with speed, stability, and total control from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs
+          {description}
         </p>
 
-        {/* ── Market News ── */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "24px" }}>
           <h2 className="section-title" style={{ fontWeight: 700, fontSize: "36px", lineHeight: "100%", letterSpacing: 0, color: "#FFFFFF" }}>Market News</h2>
           <SearchBar />
@@ -204,12 +216,11 @@ export default function BlogsNewsSection() {
           gap: "20px",
           marginBottom: "64px",
         }}>
-          {newsCards.map((card, i) => (
+          {cards.map((card, i) => (
             <ArticleCard key={i} {...card} />
           ))}
         </div>
 
-        {/* ── Blogs ── */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "24px" }}>
           <h2 className="section-title" style={{ fontWeight: 700, fontSize: "36px", lineHeight: "100%", letterSpacing: 0, color: "#FFFFFF" }}>Blogs</h2>
           <SearchBar />

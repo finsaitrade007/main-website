@@ -6,13 +6,20 @@ import IBHowToSection from "@/components/IBHowToSection";
 import IBMarketingSection from "@/components/IBMarketingSection";
 import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
+import { getPartnershipsPage } from "@/lib/strapi";
 
-export default function PartnershipsPage() {
+export default async function PartnershipsPage() {
+  const data = await getPartnershipsPage();
+
+  const calculatorTitle = data?.calculatorTitle ?? "Unlock Your Earning Potential";
+  const calculatorDescription =
+    data?.calculatorDescription ?? "Specify the expected values of your partner network";
+
   return (
     <>
       <IBHeroSection />
       <IBWhySection />
-      <IBCalculatorSection />
+      <IBCalculatorSection title={calculatorTitle} description={calculatorDescription} />
       <IBStatsSection />
       <IBHowToSection />
       <IBMarketingSection />

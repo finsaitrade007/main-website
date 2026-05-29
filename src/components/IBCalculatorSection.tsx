@@ -1,7 +1,12 @@
 "use client";
 import { useState } from "react";
 
-export default function IBCalculatorSection() {
+type Props = {
+  title: string;
+  description: string;
+};
+
+export default function IBCalculatorSection({ title, description }: Props) {
   const [clients, setClients] = useState(0);
   const [volume, setVolume] = useState(0);
 
@@ -66,7 +71,7 @@ export default function IBCalculatorSection() {
             color: "#FFFFFF",
             margin: 0,
           }}>
-            Unlock Your Earning Potential
+            {title}
           </h2>
 
           {/* Subtitle */}
@@ -84,7 +89,7 @@ export default function IBCalculatorSection() {
             color: "rgba(255,255,255,0.5)",
             margin: 0,
           }}>
-            Specify the expected values of your partner network
+            {description}
           </p>
 
           {/* Slider 1 label */}

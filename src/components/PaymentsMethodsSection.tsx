@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getPaymentsPage } from "@/lib/strapi";
 
 const CARD_INNER_BG = "linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)";
 const BORDER_GRADIENT = "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
@@ -159,7 +160,12 @@ function PaymentCard({ method }: { method: PaymentMethod }) {
   );
 }
 
-export default function PaymentsMethodsSection() {
+export default async function PaymentsMethodsSection() {
+  const data = await getPaymentsPage();
+  const sectionTitle = data?.methodsTitle ?? "Our Payment Partners";
+  const sectionDescription =
+    data?.methodsDescription ??
+    "Trade with speed, stability, and total control from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs.";
   return (
     <section style={{
       background: "#050208",
@@ -176,7 +182,7 @@ export default function PaymentsMethodsSection() {
           color: "#FFFFFF",
           margin: "0 0 16px",
         }}>
-          Our Payment Partners
+          {sectionTitle}
         </h2>
         <p style={{
           fontFamily: "var(--font-inter, Inter)",
@@ -187,8 +193,7 @@ export default function PaymentsMethodsSection() {
           maxWidth: "700px",
           margin: "0 auto",
         }}>
-          Trade with speed, stability, and total control from your desk or on the move. Finsai Trade
-          delivers professional-grade platforms to match your trading needs.
+          {sectionDescription}
         </p>
       </div>
 

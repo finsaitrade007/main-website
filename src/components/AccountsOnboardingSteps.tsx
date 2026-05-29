@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getAccountsPage } from "@/lib/strapi";
 
 type IconKey = "signup" | "verify" | "fund" | "trade";
 
@@ -59,7 +60,12 @@ function StepIcon({ iconKey }: { iconKey: IconKey }) {
   );
 }
 
-export default function AccountsOnboardingSteps() {
+export default async function AccountsOnboardingSteps() {
+  const data = await getAccountsPage();
+  const title = data?.onboardingTitle ?? "Fast application. Fast process. So easy.";
+  const description =
+    data?.onboardingDescription ??
+    "From signup to first trade in minutes — KYC is fast, deposits are instant, and our team is on hand 24/7.";
   return (
     <section style={{ background: "#050208", padding: "100px 0" }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 80px" }}>
@@ -67,7 +73,7 @@ export default function AccountsOnboardingSteps() {
           className="section-title"
           style={{ textAlign: "center", marginBottom: "12px" }}
         >
-          Fast application. Fast process. So easy.
+          {title}
         </h2>
         <p
           className="section-desc"
@@ -78,7 +84,7 @@ export default function AccountsOnboardingSteps() {
             color: "rgba(255,255,255,0.6)",
           }}
         >
-          Get fully verified and trading in under 10 minutes.
+          {description}
         </p>
 
         <div

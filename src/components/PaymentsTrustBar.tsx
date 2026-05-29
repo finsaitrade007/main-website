@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getPaymentsPage } from "@/lib/strapi";
 
 const INNER_BG = "linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)";
 const BORDER_GRADIENT = "linear-gradient(180deg, #056FB4 0%, #7DB9D6 100%)";
@@ -9,7 +10,11 @@ const badges = [
   { icon: "/service/verify.png",  line1: "Verified", line2: "Partners",    left: "1044px", imgTop: "21px", imgLeft: "21px", width: "170px", height: "77px" },
 ];
 
-export default function PaymentsTrustBar() {
+export default async function PaymentsTrustBar() {
+  const data = await getPaymentsPage();
+  const trustText =
+    data?.trustText ??
+    "Every transaction at Finsai Trade is protected by industry-leading security standards.";
   return (
     <section style={{
       background: "#050208",
@@ -58,7 +63,7 @@ export default function PaymentsTrustBar() {
             margin: 0,
             overflow: "hidden",
           }}>
-            Every transaction at Finsai Trade is protected by industry-leading security standards.
+            {trustText}
           </p>
 
           {badges.map((b) => (

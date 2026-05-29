@@ -1,7 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getRewardsPage, type StrapiRewardsPage } from "@/lib/strapi";
 
-export default function RewardsHeroSection() {
+const FALLBACK: Pick<
+  StrapiRewardsPage,
+  | "heroBadge"
+  | "heroTitle"
+  | "heroDescription"
+  | "heroPrimaryCtaLabel"
+  | "heroPrimaryCtaHref"
+  | "heroSecondaryCtaLabel"
+  | "heroSecondaryCtaHref"
+> = {
+  heroBadge: "Trading Rewards Hub",
+  heroTitle: "Rewards Built for\nActive Traders &\nPartners",
+  heroDescription:
+    "Earn more for trading and partnering with Finsai — across promotions, loyalty tiers and our global affiliate network.",
+  heroPrimaryCtaLabel: "Explore Rewards",
+  heroPrimaryCtaHref: "#promotions",
+  heroSecondaryCtaLabel: "Become an Affiliate",
+  heroSecondaryCtaHref: "/partnerships",
+};
+
+export default async function RewardsHeroSection() {
+  const data = (await getRewardsPage()) ?? FALLBACK;
   return (
     <section
       style={{
@@ -91,7 +113,7 @@ export default function RewardsHeroSection() {
               color: "transparent",
             }}
           >
-            Trading Rewards Hub
+            {data.heroBadge}
           </span>
         </div>
 
@@ -104,13 +126,10 @@ export default function RewardsHeroSection() {
             lineHeight: "110%",
             letterSpacing: "-0.01em",
             color: "#FFFFFF",
+            whiteSpace: "pre-line",
           }}
         >
-          Rewards Built for
-          <br />
-          Active Traders &amp;
-          <br />
-          Partners
+          {data.heroTitle}
         </h1>
 
         <p
@@ -124,13 +143,12 @@ export default function RewardsHeroSection() {
             color: "#94A3B8",
           }}
         >
-          Earn more for trading and partnering with Finsai — across promotions,
-          loyalty tiers and our global affiliate network.
+          {data.heroDescription}
         </p>
 
         <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
           <Link
-            href="#promotions"
+            href={data.heroPrimaryCtaHref}
             className="btn-text"
             style={{
               boxSizing: "border-box",
@@ -146,7 +164,7 @@ export default function RewardsHeroSection() {
               fontWeight: 500,
             }}
           >
-            Explore Rewards
+            {data.heroPrimaryCtaLabel}
           </Link>
           <div
             style={{
@@ -159,7 +177,7 @@ export default function RewardsHeroSection() {
             }}
           >
             <Link
-              href="/partnerships"
+              href={data.heroSecondaryCtaHref}
               style={{
                 boxSizing: "border-box",
                 height: "100%",
@@ -176,7 +194,7 @@ export default function RewardsHeroSection() {
                 color: "#FFFFFF",
               }}
             >
-              Become an Affiliate
+              {data.heroSecondaryCtaLabel}
             </Link>
           </div>
         </div>

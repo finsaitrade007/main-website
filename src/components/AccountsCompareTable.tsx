@@ -1,5 +1,9 @@
 import { Fragment } from "react";
-import { getAccountTiers, type StrapiAccountTier } from "@/lib/strapi";
+import {
+  getAccountTiers,
+  getAccountsPage,
+  type StrapiAccountTier,
+} from "@/lib/strapi";
 
 // Fallback dataset mirrors the 5-tier comparison table seeded in Strapi.
 // Order of features here is the canonical row order rendered in the table.
@@ -55,8 +59,15 @@ function isYes(value: string) {
 }
 
 export default async function AccountsCompareTable() {
-  const fetched = await getAccountTiers();
+  const [fetched, pageData] = await Promise.all([
+    getAccountTiers(),
+    getAccountsPage(),
+  ]);
   const tiers = fetched && fetched.length > 0 ? fetched : FALLBACK_TIERS;
+  const compareTitle = pageData?.compareTitle ?? "Account Type";
+  const compareDescription =
+    pageData?.compareDescription ??
+    "Trade with speed, stability, and total control from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs";
 
   // Preserve label order by first appearance across tiers. The CMS seed
   // is authoritative; this just keeps things stable if editors add a label
@@ -163,7 +174,7 @@ export default async function AccountsCompareTable() {
           className="section-title"
           style={{ textAlign: "center", marginBottom: "16px" }}
         >
-          Account Type
+          {compareTitle}
         </h2>
         <p
           className="section-desc"
@@ -174,9 +185,7 @@ export default async function AccountsCompareTable() {
             color: "rgba(255,255,255,0.6)",
           }}
         >
-          Trade with speed, stability, and total control from your desk or on
-          the move. Finsai Trade delivers professional-grade platforms to match
-          your trading needs
+          {compareDescription}
         </p>
       </div>
 

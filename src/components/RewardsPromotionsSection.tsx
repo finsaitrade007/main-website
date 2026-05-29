@@ -1,34 +1,69 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import {
+  getRewardsPage,
+  type StrapiIconFeature,
+  type StrapiRewardsPage,
+} from "@/lib/strapi";
 
-type PromoCard = {
-  title: string;
-  description: string;
-  icon: ReactNode;
+type FallbackData = Pick<
+  StrapiRewardsPage,
+  "promotionsTitle" | "promotionsDescription" | "promotionsCtaLabel" | "promotionsCtaHref"
+> & { promotionCards: StrapiIconFeature[] };
+
+const FALLBACK: FallbackData = {
+  promotionsTitle: "Promotions",
+  promotionsDescription:
+    "Boost every deposit, every trade and every milestone. Browse all our live offers and grab the ones that fit your strategy.",
+  promotionsCtaLabel: "View All Promotions",
+  promotionsCtaHref: "#",
+  promotionCards: [
+    {
+      id: 1,
+      title: "Bonuses",
+      description:
+        "Unlock deposit bonuses, signup credits and seasonal boosts as soon as you fund your account.",
+      iconKey: "percent",
+    },
+    {
+      id: 2,
+      title: "Risk-Free Trial Trades",
+      description:
+        "Test new strategies with protected positions — we cover the losses on qualifying trades.",
+      iconKey: "shield",
+    },
+    {
+      id: 3,
+      title: "Special Rewards",
+      description:
+        "Limited-time campaigns with cashback, free spreads and gear drops for active traders.",
+      iconKey: "gift",
+    },
+  ],
 };
 
-const PROMOS: PromoCard[] = [
-  {
-    title: "Bonuses",
-    description:
-      "Unlock deposit bonuses, signup credits and seasonal boosts as soon as you fund your account.",
-    icon: <PercentIcon />,
-  },
-  {
-    title: "Risk-Free Trial Trades",
-    description:
-      "Test new strategies with protected positions — we cover the losses on qualifying trades.",
-    icon: <ShieldIcon />,
-  },
-  {
-    title: "Special Rewards",
-    description:
-      "Limited-time campaigns with cashback, free spreads and gear drops for active traders.",
-    icon: <GiftIcon />,
-  },
-];
+function iconFor(key: string | null | undefined): ReactNode {
+  switch (key) {
+    case "shield":
+      return <ShieldIcon />;
+    case "gift":
+      return <GiftIcon />;
+    case "percent":
+    default:
+      return <PercentIcon />;
+  }
+}
 
-export default function RewardsPromotionsSection() {
+export default async function RewardsPromotionsSection() {
+  const data = await getRewardsPage();
+  const title = data?.promotionsTitle ?? FALLBACK.promotionsTitle;
+  const description = data?.promotionsDescription ?? FALLBACK.promotionsDescription;
+  const ctaLabel = data?.promotionsCtaLabel ?? FALLBACK.promotionsCtaLabel;
+  const ctaHref = data?.promotionsCtaHref ?? FALLBACK.promotionsCtaHref;
+  const promos =
+    data?.promotionCards && data.promotionCards.length > 0
+      ? data.promotionCards
+      : FALLBACK.promotionCards;
   return (
     <section
       id="promotions"
@@ -70,7 +105,7 @@ export default function RewardsPromotionsSection() {
               color: "#FFFFFF",
             }}
           >
-            Promotions
+            {title}
           </h2>
           <p
             style={{
@@ -82,11 +117,10 @@ export default function RewardsPromotionsSection() {
               color: "rgba(255,255,255,0.65)",
             }}
           >
-            Boost every deposit, every trade and every milestone. Browse all
-            our live offers and grab the ones that fit your strategy.
+            {description}
           </p>
           <Link
-            href="#"
+            href={ctaHref}
             className="btn-text"
             style={{
               alignSelf: "flex-start",
@@ -103,7 +137,7 @@ export default function RewardsPromotionsSection() {
               fontSize: "14px",
             }}
           >
-            View All Promotions
+            {ctaLabel}
           </Link>
         </div>
 
@@ -114,9 +148,9 @@ export default function RewardsPromotionsSection() {
             gap: "20px",
           }}
         >
-          {PROMOS.map((p) => (
+          {promos.map((p) => (
             <article
-              key={p.title}
+              key={p.id ?? p.title}
               style={{
                 position: "relative",
                 padding: "24px",
@@ -143,7 +177,7 @@ export default function RewardsPromotionsSection() {
                   justifyContent: "center",
                 }}
               >
-                {p.icon}
+                {iconFor(p.iconKey)}
               </div>
               <h3
                 style={{

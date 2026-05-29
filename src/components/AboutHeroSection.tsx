@@ -1,7 +1,30 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getAboutPage, type StrapiAboutPage } from "@/lib/strapi";
 
-export default function AboutHeroSection() {
+const FALLBACK: Pick<
+  StrapiAboutPage,
+  | "heroBadge"
+  | "heroTitle"
+  | "heroDescription"
+  | "heroPrimaryCtaLabel"
+  | "heroPrimaryCtaHref"
+  | "heroSecondaryCtaLabel"
+  | "heroSecondaryCtaHref"
+> = {
+  heroBadge: "About Finsai Trade Ltd",
+  heroTitle: "Making Global\nTrading Accessible\nand Rewarding",
+  heroDescription:
+    "Helping traders access multiple asset classes while benefiting from educational resources, loyalty rewards, and partnership opportunities.",
+  heroPrimaryCtaLabel: "Open Live Account",
+  heroPrimaryCtaHref: "/register",
+  heroSecondaryCtaLabel: "Explore Our Services",
+  heroSecondaryCtaHref: "/services",
+};
+
+export default async function AboutHeroSection() {
+  const data = (await getAboutPage()) ?? FALLBACK;
+
   return (
     <section
       style={{
@@ -14,7 +37,6 @@ export default function AboutHeroSection() {
         overflow: "hidden",
       }}
     >
-      {/* Soft glow behind the globe */}
       <div
         style={{
           position: "absolute",
@@ -25,8 +47,6 @@ export default function AboutHeroSection() {
         }}
       />
 
-      {/* Right artwork — illuminated dot world map.  Spec: 917 × 516
-          anchored at top:178, left:584. */}
       <Image
         src="/about/hero-map.png"
         alt=""
@@ -45,9 +65,6 @@ export default function AboutHeroSection() {
         }}
       />
 
-      {/* Left copy block — 598 × 413.2 anchored at top:182, left:80 with a
-          uniform 24px gap between children (pill → headline → description →
-          CTA row). */}
       <div
         style={{
           position: "absolute",
@@ -93,7 +110,7 @@ export default function AboutHeroSection() {
               color: "transparent",
             }}
           >
-            About Finsai Trade Ltd
+            {data.heroBadge}
           </span>
         </div>
 
@@ -106,13 +123,10 @@ export default function AboutHeroSection() {
             lineHeight: "110%",
             letterSpacing: "-0.01em",
             color: "#FFFFFF",
+            whiteSpace: "pre-line",
           }}
         >
-          Making Global
-          <br />
-          Trading Accessible
-          <br />
-          and Rewarding
+          {data.heroTitle}
         </h1>
 
         <p
@@ -126,13 +140,12 @@ export default function AboutHeroSection() {
             color: "#94A3B8",
           }}
         >
-          Helping traders access multiple asset classes while benefiting from 
-          educational resources, loyalty rewards, and partnership opportunities.
+          {data.heroDescription}
         </p>
 
         <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
           <Link
-            href="/register"
+            href={data.heroPrimaryCtaHref}
             className="btn-text"
             style={{
               boxSizing: "border-box",
@@ -148,7 +161,7 @@ export default function AboutHeroSection() {
               fontWeight: 500,
             }}
           >
-            Open Live Account
+            {data.heroPrimaryCtaLabel}
           </Link>
           <div
             style={{
@@ -161,7 +174,7 @@ export default function AboutHeroSection() {
             }}
           >
             <Link
-              href="/services"
+              href={data.heroSecondaryCtaHref}
               style={{
                 boxSizing: "border-box",
                 height: "100%",
@@ -178,7 +191,7 @@ export default function AboutHeroSection() {
                 color: "#FFFFFF",
               }}
             >
-              Explore Our Services
+              {data.heroSecondaryCtaLabel}
             </Link>
           </div>
         </div>
@@ -186,4 +199,3 @@ export default function AboutHeroSection() {
     </section>
   );
 }
-

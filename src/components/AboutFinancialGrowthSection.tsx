@@ -1,17 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  getAboutPage,
+  type StrapiAboutPage,
+  type StrapiStat,
+} from "@/lib/strapi";
 
-type Stat = {
-  value: string;
-  label: string;
+type Fallback = Pick<
+  StrapiAboutPage,
+  | "growthBadge"
+  | "growthTitle"
+  | "growthDescription1"
+  | "growthDescription2"
+  | "growthCtaLabel"
+  | "growthCtaHref"
+> & { growthStats: StrapiStat[] };
+
+const FALLBACK: Fallback = {
+  growthBadge: "Our Principal",
+  growthTitle: "We drive financial growth\nin the digital era.",
+  growthDescription1:
+    "By providing an integrated ecosystem that combines simplicity, innovation, and security, we aim to empower people to take charge of their financial future. Our goal is to create a financial environment where people can trade, invest, and bank with confidence by bridging the gap between conventional finance and technological breakthroughs.",
+  growthDescription2:
+    "By providing an integrated ecosystem that combines simplicity, innovation, and security, we aim to empower people to take charge of their financial future. Our goal is to create a financial environment where people can trade, invest, and bank with confidence by bridging the gap between conventional finance and technological breakthroughs.",
+  growthCtaLabel: "Contact Us",
+  growthCtaHref: "/contact",
+  growthStats: [
+    { id: 1, value: "4.8k", label: "Traders" },
+    { id: 2, value: "12+", label: "Industry Experience" },
+    { id: 3, value: "2.5k+", label: "World wide clients" },
+    { id: 4, value: "120+", label: "Won Awards" },
+  ],
 };
-
-const STATS: Stat[] = [
-  { value: "4.8k", label: "Traders" },
-  { value: "12+", label: "Industry Experience" },
-  { value: "2.5k+", label: "World wide clients" },
-  { value: "120+", label: "Won Awards" },
-];
 
 type Tile = {
   width: number;
@@ -28,13 +48,6 @@ const TILES: Tile[] = [
   { width: 264.11, height: 264.11, top: 448.37, left: 1033.52, rotate: -180 },
 ];
 
-// Figma rotates each tile so that its `border-top-left-radius: 50px`
-// rounded corner ends up at a different visual position.  Rotating the
-// element in CSS, however, also rotates the image inside it (turning the
-// lock upside-down at 180°, sideways at 90°, etc.).  Instead we keep the
-// image upright and translate the Figma rotation into the equivalent
-// CSS corner the rounded radius should sit on — the four tiles form a
-// "windmill" pattern with the rounded corner pointing outward.
 function roundedCornerFor(rotate: number): React.CSSProperties {
   if (rotate === 0) return { borderTopLeftRadius: "50px" };
   if (rotate === 180) return { borderTopRightRadius: "50px" };
@@ -43,7 +56,19 @@ function roundedCornerFor(rotate: number): React.CSSProperties {
   return { borderTopLeftRadius: "50px" };
 }
 
-export default function AboutFinancialGrowthSection() {
+export default async function AboutFinancialGrowthSection() {
+  const data = await getAboutPage();
+  const badge = data?.growthBadge ?? FALLBACK.growthBadge;
+  const title = data?.growthTitle ?? FALLBACK.growthTitle;
+  const description1 = data?.growthDescription1 ?? FALLBACK.growthDescription1;
+  const description2 = data?.growthDescription2 ?? FALLBACK.growthDescription2;
+  const ctaLabel = data?.growthCtaLabel ?? FALLBACK.growthCtaLabel;
+  const ctaHref = data?.growthCtaHref ?? FALLBACK.growthCtaHref;
+  const stats =
+    data?.growthStats && data.growthStats.length > 0
+      ? data.growthStats
+      : FALLBACK.growthStats;
+
   return (
     <section
       style={{
@@ -58,7 +83,6 @@ export default function AboutFinancialGrowthSection() {
         overflow: "hidden",
       }}
     >
-      {/* Left copy column */}
       <div
         style={{
           position: "absolute",
@@ -81,7 +105,7 @@ export default function AboutFinancialGrowthSection() {
             borderRadius: "60px",
           }}
         >
-          <span className="badge-text">Our Principal</span>
+          <span className="badge-text">{badge}</span>
         </span>
 
         <h2
@@ -92,11 +116,10 @@ export default function AboutFinancialGrowthSection() {
             fontSize: "36px",
             lineHeight: "44px",
             color: "#FFFFFF",
+            whiteSpace: "pre-line",
           }}
         >
-          We drive financial growth
-          <br />
-          in the digital era.
+          {title}
         </h2>
 
         <p
@@ -110,12 +133,7 @@ export default function AboutFinancialGrowthSection() {
             color: "rgba(255,255,255,0.65)",
           }}
         >
-          By providing an integrated ecosystem that combines simplicity,
-          innovation, and security, we aim to empower people to take charge of
-          their financial future. Our goal is to create a financial
-          environment where people can trade, invest, and bank with confidence
-          by bridging the gap between conventional finance and technological
-          breakthroughs.
+          {description1}
         </p>
         <p
           style={{
@@ -128,16 +146,11 @@ export default function AboutFinancialGrowthSection() {
             color: "rgba(255,255,255,0.65)",
           }}
         >
-          By providing an integrated ecosystem that combines simplicity,
-          innovation, and security, we aim to empower people to take charge of
-          their financial future. Our goal is to create a financial
-          environment where people can trade, invest, and bank with confidence
-          by bridging the gap between conventional finance and technological
-          breakthroughs.
+          {description2}
         </p>
 
         <Link
-          href="/contact"
+          href={ctaHref}
           className="btn-text"
           style={{
             alignSelf: "flex-start",
@@ -154,7 +167,7 @@ export default function AboutFinancialGrowthSection() {
             fontSize: "14px",
           }}
         >
-          Contact Us
+          {ctaLabel}
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
             <path
               d="M2.5 7h9M7.5 2.5l4.5 4.5-4.5 4.5"
@@ -167,9 +180,6 @@ export default function AboutFinancialGrowthSection() {
         </Link>
       </div>
 
-      {/* Right-side image tiles — the lock artwork stays upright in every
-          tile; only the rounded corner moves (per the Figma rotation) so
-          the four tiles still form the asymmetric quadrant pattern. */}
       {TILES.map((t, i) => (
         <div
           key={i}
@@ -198,8 +208,6 @@ export default function AboutFinancialGrowthSection() {
         </div>
       ))}
 
-      {/* Stats strip — anchored to the bottom of the section, spans across
-          all four columns. */}
       <div
         style={{
           position: "absolute",
@@ -212,9 +220,9 @@ export default function AboutFinancialGrowthSection() {
           zIndex: 2,
         }}
       >
-        {STATS.map((s) => (
+        {stats.map((s) => (
           <div
-            key={s.label}
+            key={s.id ?? s.label}
             style={{
               display: "flex",
               flexDirection: "column",

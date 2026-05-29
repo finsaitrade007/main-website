@@ -1,13 +1,22 @@
 import Image from "next/image";
+import { getServicesPage } from "@/lib/strapi";
 
-const suiteItems = [
-  { title: "Beginner Mode",      desc: "Guided trades, tutorials & Simplified Workflows" },
-  { title: "Pro Tools",          desc: "Guided trades, tutorials & Simplified Workflows" },
-  { title: "Seamless Switching", desc: "Guided trades, tutorials & Simplified Workflows" },
-  { title: "Multi Lingual Support", desc: "Guided trades, tutorials & Simplified Workflows" },
+const fallbackSuiteItems = [
+  { title: "Beginner Mode",      description: "Guided trades, tutorials & Simplified Workflows" },
+  { title: "Pro Tools",          description: "Guided trades, tutorials & Simplified Workflows" },
+  { title: "Seamless Switching", description: "Guided trades, tutorials & Simplified Workflows" },
+  { title: "Multi Lingual Support", description: "Guided trades, tutorials & Simplified Workflows" },
 ];
 
-export default function ServicesSuiteSection() {
+export default async function ServicesSuiteSection() {
+  const data = await getServicesPage();
+  const suiteTitle = data?.suiteTitle ?? "One platform suite\nEvery Trading Style";
+  const suiteDescription =
+    data?.suiteDescription ??
+    "Finsai Trade platforms are engineered to deliver seamless execution, institutional-level tools, and reliable uptime — so you stay in control, wherever you trade. Whether you're a beginner or a pro, our platforms help you trade smarter and faster.";
+  const suiteItems = data?.suiteItems?.length
+    ? data.suiteItems.map((item) => ({ title: item.title, description: item.description ?? "" }))
+    : fallbackSuiteItems;
   return (
     <section style={{
       background: "#050208",
@@ -56,8 +65,9 @@ export default function ServicesSuiteSection() {
               top: "-0.93px",
               left: "0.19px",
               overflow: "hidden",
+              whiteSpace: "pre-line",
             }}>
-              One platform suite<br />Every Trading Style
+              {suiteTitle}
             </h2>
 
             <p style={{
@@ -72,7 +82,7 @@ export default function ServicesSuiteSection() {
               height: "100px",
               overflow: "hidden",
             }}>
-              Finsai Trade platforms are engineered to deliver seamless execution, institutional-level tools, and reliable uptime — so you stay in control, wherever you trade. Whether you&apos;re a beginner or a pro, our platforms help you trade smarter and faster.
+              {suiteDescription}
             </p>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "28px", marginTop: "8px" }}>
@@ -117,7 +127,7 @@ export default function ServicesSuiteSection() {
                       letterSpacing: "0%",
                       margin: 0,
                     }}>
-                      {item.desc}
+                      {item.description}
                     </p>
                   </div>
                 </div>

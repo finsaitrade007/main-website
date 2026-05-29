@@ -1,27 +1,59 @@
 import Link from "next/link";
+import {
+  getRewardsPage,
+  type StrapiIconFeature,
+  type StrapiRewardsPage,
+  type StrapiTagline,
+} from "@/lib/strapi";
 
-type Tier = {
-  name: string;
-  description: string;
-  color: string;
+type FallbackData = Pick<
+  StrapiRewardsPage,
+  "loyaltyTitle" | "loyaltyDescription" | "loyaltyCtaLabel" | "loyaltyCtaHref"
+> & { loyaltyTiers: StrapiIconFeature[]; loyaltyPerks: StrapiTagline[] };
+
+const TIER_COLORS: Record<string, string> = {
+  bronze: "#B17646",
+  silver: "#C0C9D2",
+  gold: "#E5B94B",
+  platinum: "#A7B0BD",
+  diamond: "#7DB9D6",
 };
 
-const TIERS: Tier[] = [
-  { name: "Bronze", description: "Onboarding", color: "#B17646" },
-  { name: "Silver", description: "Active traders", color: "#C0C9D2" },
-  { name: "Gold", description: "Loyal members", color: "#E5B94B" },
-  { name: "Platinum", description: "Frequent traders", color: "#A7B0BD" },
-  { name: "Diamond", description: "Top performers", color: "#7DB9D6" },
-];
+const FALLBACK: FallbackData = {
+  loyaltyTitle: "Loyalty Program\nOverview",
+  loyaltyDescription:
+    "Compounds the more you trade. Climb from Bronze to Diamond and unlock progressively better cashback, tighter spreads and exclusive events that money can't normally buy.",
+  loyaltyCtaLabel: "Track Your Loyalty Level",
+  loyaltyCtaHref: "#",
+  loyaltyTiers: [
+    { id: 1, title: "Bronze", description: "Onboarding", iconKey: "bronze" },
+    { id: 2, title: "Silver", description: "Active traders", iconKey: "silver" },
+    { id: 3, title: "Gold", description: "Loyal members", iconKey: "gold" },
+    { id: 4, title: "Platinum", description: "Frequent traders", iconKey: "platinum" },
+    { id: 5, title: "Diamond", description: "Top performers", iconKey: "diamond" },
+  ],
+  loyaltyPerks: [
+    { id: 1, label: "Cashbacks" },
+    { id: 2, label: "Tradable Volume" },
+    { id: 3, label: "Exclusive Events" },
+    { id: 4, label: "Lifetime Perks" },
+  ],
+};
 
-const PERKS = [
-  "Cashbacks",
-  "Tradable Volume",
-  "Exclusive Events",
-  "Lifetime Perks",
-];
-
-export default function RewardsLoyaltyProgramSection() {
+export default async function RewardsLoyaltyProgramSection() {
+  const data = await getRewardsPage();
+  const title = data?.loyaltyTitle ?? FALLBACK.loyaltyTitle;
+  const description = data?.loyaltyDescription ?? FALLBACK.loyaltyDescription;
+  const ctaLabel = data?.loyaltyCtaLabel ?? FALLBACK.loyaltyCtaLabel;
+  const ctaHref = data?.loyaltyCtaHref ?? FALLBACK.loyaltyCtaHref;
+  const tiers =
+    data?.loyaltyTiers && data.loyaltyTiers.length > 0
+      ? data.loyaltyTiers
+      : FALLBACK.loyaltyTiers;
+  const perks =
+    data?.loyaltyPerks && data.loyaltyPerks.length > 0
+      ? data.loyaltyPerks
+      : FALLBACK.loyaltyPerks;
   return (
     <section style={{ background: "#050208", padding: "40px 0 80px" }}>
       <div
@@ -51,9 +83,7 @@ export default function RewardsLoyaltyProgramSection() {
               color: "#FFFFFF",
             }}
           >
-            Loyalty Program
-            <br />
-            Overview
+            <span style={{ whiteSpace: "pre-line" }}>{title}</span>
           </h2>
           <p
             style={{
@@ -65,12 +95,10 @@ export default function RewardsLoyaltyProgramSection() {
               color: "rgba(255,255,255,0.65)",
             }}
           >
-            Compounds the more you trade. Climb from Bronze to Diamond and
-            unlock progressively better cashback, tighter spreads and exclusive
-            events that money can&apos;t normally buy.
+            {description}
           </p>
           <Link
-            href="#"
+            href={ctaHref}
             className="btn-text"
             style={{
               alignSelf: "flex-start",
@@ -87,7 +115,7 @@ export default function RewardsLoyaltyProgramSection() {
               fontSize: "14px",
             }}
           >
-            Track Your Loyalty Level
+            {ctaLabel}
           </Link>
         </div>
 
@@ -99,9 +127,9 @@ export default function RewardsLoyaltyProgramSection() {
               gap: "16px",
             }}
           >
-            {TIERS.map((t) => (
+            {tiers.map((t) => (
               <div
-                key={t.name}
+                key={t.id ?? t.title}
                 style={{
                   position: "relative",
                   padding: "20px 12px",
@@ -116,7 +144,11 @@ export default function RewardsLoyaltyProgramSection() {
                   textAlign: "center",
                 }}
               >
-                <TierMedal color={t.color} />
+                <TierMedal
+                  color={
+                    TIER_COLORS[(t.iconKey ?? "").toLowerCase()] ?? "#7DB9D6"
+                  }
+                />
                 <div
                   style={{
                     fontFamily: "var(--font-sora, Sora)",
@@ -125,7 +157,7 @@ export default function RewardsLoyaltyProgramSection() {
                     color: "#FFFFFF",
                   }}
                 >
-                  {t.name}
+                  {t.title}
                 </div>
                 <div
                   style={{
@@ -149,9 +181,9 @@ export default function RewardsLoyaltyProgramSection() {
               gap: "16px",
             }}
           >
-            {PERKS.map((p) => (
+            {perks.map((p) => (
               <div
-                key={p}
+                key={p.id ?? p.label}
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -179,7 +211,7 @@ export default function RewardsLoyaltyProgramSection() {
                     color: "#FFFFFF",
                   }}
                 >
-                  {p}
+                  {p.label}
                 </span>
               </div>
             ))}

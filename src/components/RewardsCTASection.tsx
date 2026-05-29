@@ -1,6 +1,19 @@
 import Link from "next/link";
+import { getRewardsPage, type StrapiRewardsPage } from "@/lib/strapi";
 
-export default function RewardsCTASection() {
+const FALLBACK: Pick<
+  StrapiRewardsPage,
+  "ctaTitle" | "ctaDescription" | "ctaPrimaryLabel" | "ctaPrimaryHref"
+> = {
+  ctaTitle: "Trade With the right tools at your side",
+  ctaDescription:
+    "Unlock cashbacks, exclusive promotions and partner payouts that scale with every trade you make on Finsai.",
+  ctaPrimaryLabel: "Open Live Account",
+  ctaPrimaryHref: "/register",
+};
+
+export default async function RewardsCTASection() {
+  const data = (await getRewardsPage()) ?? FALLBACK;
   return (
     <section style={{ background: "#050208", padding: "40px 0 100px" }}>
       <div
@@ -39,7 +52,7 @@ export default function RewardsCTASection() {
             zIndex: 1,
           }}
         >
-          Trade With the right tools at your side
+          {data.ctaTitle}
         </h2>
 
         <p
@@ -55,12 +68,11 @@ export default function RewardsCTASection() {
             zIndex: 1,
           }}
         >
-          Unlock cashbacks, exclusive promotions and partner payouts that scale
-          with every trade you make on Finsai.
+          {data.ctaDescription}
         </p>
 
         <Link
-          href="/register"
+          href={data.ctaPrimaryHref}
           className="btn-text"
           style={{
             position: "relative",
@@ -77,7 +89,7 @@ export default function RewardsCTASection() {
             marginTop: "8px",
           }}
         >
-          Open Live Account
+          {data.ctaPrimaryLabel}
         </Link>
       </div>
     </section>

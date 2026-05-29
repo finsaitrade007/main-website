@@ -228,6 +228,327 @@ export type StrapiJourneyCard = {
   order: number;
 };
 
+// ─── Shared reusable component types ─────────────────────────────────
+
+export type StrapiPoint = { id: number; title: string; description: string };
+export type StrapiStat = { id: number; value: string; label: string };
+export type StrapiIconFeature = {
+  id: number;
+  title: string;
+  description?: string | null;
+  iconKey?: string | null;
+};
+export type StrapiBulletPoint = { id: number; key: string; value: string };
+export type StrapiBenefitCard = {
+  id: number;
+  title: string;
+  description?: string | null;
+  footer?: string | null;
+  iconKey?: string | null;
+  bullets?: StrapiBulletPoint[];
+};
+export type StrapiImageCard = {
+  id: number;
+  title: string;
+  description?: string | null;
+  href?: string | null;
+  image?: StrapiMedia;
+};
+export type StrapiPaymentMethod = {
+  id: number;
+  name: string;
+  description?: string | null;
+  fee?: string | null;
+  processingTime?: string | null;
+  icon?: StrapiMedia;
+};
+
+// ─── New page single-type domain types ───────────────────────────────
+
+export type StrapiAboutPage = {
+  id: number;
+  documentId: string;
+
+  heroBadge: string;
+  heroTitle: string;
+  heroDescription: string;
+  heroPrimaryCtaLabel: string;
+  heroPrimaryCtaHref: string;
+  heroSecondaryCtaLabel: string;
+  heroSecondaryCtaHref: string;
+
+  recognitionTitlePrefix: string;
+  recognitionTitleAccent: string;
+  recognitionDescription: string;
+  recognitionStatPrimaryValue: string;
+  recognitionStatPrimaryLabel: string;
+  recognitionStatSecondaryValue: string;
+  recognitionStatSecondaryLabel: string;
+
+  builtBadge: string;
+  builtTitle: string;
+  builtDescription: string;
+  builtPoints: StrapiPoint[];
+
+  growthBadge: string;
+  growthTitle: string;
+  growthDescription1: string;
+  growthDescription2: string;
+  growthCtaLabel: string;
+  growthCtaHref: string;
+  growthStats: StrapiStat[];
+
+  ctaBadge: string;
+  ctaTitle: string;
+  ctaDescription: string;
+  ctaPrimaryLabel: string;
+  ctaPrimaryHref: string;
+  ctaSecondaryLabel: string;
+  ctaSecondaryHref: string;
+};
+
+export type StrapiCareersPage = {
+  id: number;
+  documentId: string;
+
+  heroBadge: string;
+  heroTitle: string;
+  heroDescription: string;
+  heroPrimaryCtaLabel: string;
+  heroPrimaryCtaHref: string;
+  heroSecondaryCtaLabel: string;
+  heroSecondaryCtaHref: string;
+
+  workspaceTitle: string;
+  workspaceDescription: string;
+  workspaceBenefits: StrapiPoint[];
+
+  formTitle: string;
+  formSubmitLabel: string;
+  formTermsText: string;
+};
+
+export type StrapiRewardsPage = {
+  id: number;
+  documentId: string;
+
+  heroBadge: string;
+  heroTitle: string;
+  heroDescription: string;
+  heroPrimaryCtaLabel: string;
+  heroPrimaryCtaHref: string;
+  heroSecondaryCtaLabel: string;
+  heroSecondaryCtaHref: string;
+
+  promotionsTitle: string;
+  promotionsDescription: string;
+  promotionsCtaLabel: string;
+  promotionsCtaHref: string;
+  promotionCards: StrapiIconFeature[];
+
+  loyaltyTitle: string;
+  loyaltyDescription: string;
+  loyaltyCtaLabel: string;
+  loyaltyCtaHref: string;
+  loyaltyTiers: StrapiIconFeature[];
+  loyaltyPerks: StrapiTagline[];
+
+  ibTitle: string;
+  ibDescription: string;
+  ibCtaLabel: string;
+  ibCtaHref: string;
+  ibFeatures: StrapiIconFeature[];
+  ibStats: StrapiStat[];
+
+  ctaTitle: string;
+  ctaDescription: string;
+  ctaPrimaryLabel: string;
+  ctaPrimaryHref: string;
+};
+
+export type StrapiToolsPage = {
+  id: number;
+  documentId: string;
+
+  heroBadge: string;
+  heroTitle: string;
+  heroDescription: string;
+  heroProofText: string;
+  heroPrimaryCtaLabel: string;
+  heroPrimaryCtaHref: string;
+  heroSecondaryCtaLabel: string;
+  heroSecondaryCtaHref: string;
+
+  builtForBadge: string;
+  builtForTitle: string;
+  builtForDescription: string;
+  builtForFeatures: StrapiIconFeature[];
+
+  chartingTitle: string;
+  chartingDescription: string;
+  chartingCards: StrapiImageCard[];
+
+  marketDataTitle: string;
+  marketDataDescription: string;
+
+  riskTitle: string;
+  riskDescription: string;
+  riskCards: StrapiImageCard[];
+
+  strategyTitle: string;
+  strategyDescription: string;
+  strategyCards: StrapiImageCard[];
+
+  communityTitle: string;
+  communityDescription: string;
+  communityCards: StrapiImageCard[];
+
+  ctaTitle: string;
+  ctaDescription: string;
+  ctaPrimaryLabel: string;
+  ctaPrimaryHref: string;
+  ctaSecondaryLabel: string;
+  ctaSecondaryHref: string;
+};
+
+export type StrapiAccountsPage = {
+  id: number;
+  documentId: string;
+
+  heroBadge: string;
+  heroTitle: string;
+  heroDescription: string;
+  heroPrimaryCtaLabel: string;
+  heroPrimaryCtaHref: string;
+  heroSecondaryCtaLabel: string;
+  heroSecondaryCtaHref: string;
+
+  compareTitle: string;
+  compareDescription: string;
+
+  whyBadge: string;
+  whyTitle: string;
+  whyDescription: string;
+  whyFeatures: StrapiIconFeature[];
+
+  onboardingBadge: string;
+  onboardingTitle: string;
+  onboardingDescription: string;
+
+  benefitsBadge: string;
+  benefitsTitle: string;
+  benefitsDescription: string;
+  benefitsCards: StrapiBenefitCard[];
+};
+
+export type StrapiPaymentsPage = {
+  id: number;
+  documentId: string;
+
+  heroBadge: string;
+  heroTitle: string;
+  heroDescription: string;
+  heroPrimaryCtaLabel: string;
+  heroPrimaryCtaHref: string;
+  heroSecondaryCtaLabel: string;
+  heroSecondaryCtaHref: string;
+
+  trustText: string;
+
+  methodsBadge: string;
+  methodsTitle: string;
+  methodsDescription: string;
+  methods: StrapiPaymentMethod[];
+
+  ctaBadge: string;
+  ctaTitle: string;
+  ctaDescription: string;
+  ctaPrimaryLabel: string;
+  ctaPrimaryHref: string;
+};
+
+export type StrapiServicesPage = {
+  id: number;
+  documentId: string;
+
+  heroBadge: string;
+  heroTitle: string;
+  heroDescription: string;
+  heroPrimaryCtaLabel: string;
+  heroPrimaryCtaHref: string;
+  heroSecondaryCtaLabel: string;
+  heroSecondaryCtaHref: string;
+
+  featuresBadge: string;
+  featuresTitle: string;
+  featuresDescription: string;
+  features: StrapiIconFeature[];
+
+  platformsBadge: string;
+  platformsTitle: string;
+  platformsDescription: string;
+
+  suiteBadge: string;
+  suiteTitle: string;
+  suiteDescription: string;
+  suiteItems: StrapiIconFeature[];
+};
+
+export type StrapiPartnershipsPage = {
+  id: number;
+  documentId: string;
+
+  heroBadge: string;
+  heroTitle: string;
+  heroDescription: string;
+  heroPrimaryCtaLabel: string;
+  heroPrimaryCtaHref: string;
+  heroSecondaryCtaLabel: string;
+  heroSecondaryCtaHref: string;
+
+  whyBadge: string;
+  whyTitle: string;
+  whyDescription: string;
+  whyFeatures: StrapiIconFeature[];
+
+  calculatorBadge: string;
+  calculatorTitle: string;
+  calculatorDescription: string;
+
+  statsBadge: string;
+  statsTitle: string;
+  statsDescription: string;
+  stats: StrapiStat[];
+
+  howToBadge: string;
+  howToTitle: string;
+  howToDescription: string;
+  howToSteps: StrapiIconFeature[];
+
+  marketingBadge: string;
+  marketingTitle: string;
+  marketingDescription: string;
+  marketingItems: StrapiIconFeature[];
+};
+
+export type StrapiBlogsPage = {
+  id: number;
+  documentId: string;
+
+  heroBadge: string;
+  heroTitle: string;
+  heroDescription: string;
+  heroPrimaryCtaLabel: string;
+  heroPrimaryCtaHref: string;
+  heroSecondaryCtaLabel: string;
+  heroSecondaryCtaHref: string;
+
+  newsBadge: string;
+  newsTitle: string;
+  newsDescription: string;
+  newsArticles: StrapiImageCard[];
+};
+
 // ─── Domain queries ──────────────────────────────────────────────────
 
 export function getAccountTiers() {
@@ -286,5 +607,68 @@ export function getJourneyCards() {
   return strapiFetch<StrapiJourneyCard[]>(
     "journey-cards?sort=order:asc",
     { tags: ["journey-cards"] },
+  );
+}
+
+// ─── Page single-type queries ────────────────────────────────────────
+
+export function getAboutPage() {
+  return strapiFetch<StrapiAboutPage>("about-page?populate=*", {
+    tags: ["about-page"],
+  });
+}
+
+export function getCareersPage() {
+  return strapiFetch<StrapiCareersPage>("careers-page?populate=*", {
+    tags: ["careers-page"],
+  });
+}
+
+export function getRewardsPage() {
+  return strapiFetch<StrapiRewardsPage>(
+    "rewards-page?populate[promotionCards]=*&populate[loyaltyTiers]=*&populate[loyaltyPerks]=*&populate[ibFeatures]=*&populate[ibStats]=*",
+    { tags: ["rewards-page"] },
+  );
+}
+
+export function getToolsPage() {
+  return strapiFetch<StrapiToolsPage>(
+    "tools-page?populate[builtForFeatures]=*&populate[chartingCards][populate]=image&populate[riskCards][populate]=image&populate[strategyCards][populate]=image&populate[communityCards][populate]=image",
+    { tags: ["tools-page"] },
+  );
+}
+
+export function getAccountsPage() {
+  return strapiFetch<StrapiAccountsPage>(
+    "accounts-page?populate[whyFeatures]=*&populate[benefitsCards][populate]=bullets",
+    { tags: ["accounts-page"] },
+  );
+}
+
+export function getPaymentsPage() {
+  return strapiFetch<StrapiPaymentsPage>(
+    "payments-page?populate[methods][populate]=icon",
+    { tags: ["payments-page"] },
+  );
+}
+
+export function getServicesPage() {
+  return strapiFetch<StrapiServicesPage>(
+    "services-page?populate[features]=*&populate[suiteItems]=*",
+    { tags: ["services-page"] },
+  );
+}
+
+export function getPartnershipsPage() {
+  return strapiFetch<StrapiPartnershipsPage>(
+    "partnerships-page?populate[whyFeatures]=*&populate[stats]=*&populate[howToSteps]=*&populate[marketingItems]=*",
+    { tags: ["partnerships-page"] },
+  );
+}
+
+export function getBlogsPage() {
+  return strapiFetch<StrapiBlogsPage>(
+    "blogs-page?populate[newsArticles][populate]=image",
+    { tags: ["blogs-page"] },
   );
 }

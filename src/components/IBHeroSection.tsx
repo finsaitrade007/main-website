@@ -1,7 +1,23 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getPartnershipsPage, type StrapiPartnershipsPage } from "@/lib/strapi";
 
-export default function IBHeroSection() {
+const FALLBACK: Pick<
+  StrapiPartnershipsPage,
+  | "heroTitle"
+  | "heroDescription"
+  | "heroPrimaryCtaLabel"
+  | "heroPrimaryCtaHref"
+> = {
+  heroTitle: "Become an Introducing broker\nwith Finsai Trade",
+  heroDescription:
+    "Welcome to Finsai Trade's Introducing Broker (IB) Program. We offer a comprehensive partnership scheme where you can earn competitive commission for referring clients to us.",
+  heroPrimaryCtaLabel: "Become an IB",
+  heroPrimaryCtaHref: "/register",
+};
+
+export default async function IBHeroSection() {
+  const data = (await getPartnershipsPage()) ?? FALLBACK;
   return (
     <section className="hero">
       <div style={{
@@ -19,19 +35,16 @@ export default function IBHeroSection() {
 
       <div className="hero__content" style={{ marginTop: "-120px" }}>
         <div className="hero__text-wrap" style={{ width: "750px", height: "276px", gap: "24px" }}>
-          <h1 className="hero__title" style={{ width: "899px", height: "124px" }}>
-            Become an Introducing broker
-            <br />
-            with Finsai Trade
+          <h1 className="hero__title" style={{ width: "899px", height: "124px", whiteSpace: "pre-line" }}>
+            {data.heroTitle}
           </h1>
 
           <p className="hero__subtitle" style={{ width: "837px", height: "56px", lineHeight: "155%", fontSize: "18px", fontWeight: 400, letterSpacing: 0 }}>
-            Welcome to Finsai Trade&apos;s Introducing Broker (IB) Program. We offer a comprehensive
-            partnership scheme where you can earn competitive commission for referring clients to us.
+            {data.heroDescription}
           </p>
 
           <div className="hero__ctas">
-            <Link href="/register" className="btn-text" style={{
+            <Link href={data.heroPrimaryCtaHref} className="btn-text" style={{
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
@@ -42,7 +55,7 @@ export default function IBHeroSection() {
               textDecoration: "none",
               whiteSpace: "nowrap",
             }}>
-              Become an IB
+              {data.heroPrimaryCtaLabel}
             </Link>
           </div>
         </div>

@@ -1,40 +1,86 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import {
+  getRewardsPage,
+  type StrapiIconFeature,
+  type StrapiRewardsPage,
+  type StrapiStat,
+} from "@/lib/strapi";
 
-type Feature = {
-  title: string;
-  description: string;
-  icon: ReactNode;
+type FallbackData = Pick<
+  StrapiRewardsPage,
+  "ibTitle" | "ibDescription" | "ibCtaLabel" | "ibCtaHref"
+> & { ibFeatures: StrapiIconFeature[]; ibStats: StrapiStat[] };
+
+const FALLBACK: FallbackData = {
+  ibTitle: "IB Program",
+  ibDescription:
+    "Grow a global trading network with industry-leading payouts, deep sub-IB tools and a partner team that's actually responsive.",
+  ibCtaLabel: "View All Promotions",
+  ibCtaHref: "/partnerships",
+  ibFeatures: [
+    {
+      id: 1,
+      title: "Multi Asset",
+      description:
+        "Refer clients trading FX, crypto, indices, metals and stocks — earn on all volumes.",
+      iconKey: "asset",
+    },
+    {
+      id: 2,
+      title: "Personalized Dashboard",
+      description:
+        "Real-time commission tracking, sub-IB hierarchy and payout history at a glance.",
+      iconKey: "dashboard",
+    },
+    {
+      id: 3,
+      title: "Performance Bonus",
+      description:
+        "Hit monthly volume tiers and unlock booster commissions on top of base CPA.",
+      iconKey: "trophy",
+    },
+    {
+      id: 4,
+      title: "Strategy Support",
+      description:
+        "Dedicated success manager, co-branded creatives and conversion playbooks included.",
+      iconKey: "support",
+    },
+  ],
+  ibStats: [
+    { id: 1, value: "268", label: "Total IB Partner" },
+    { id: 2, value: "$36,702.35", label: "Total IB Earnings" },
+    { id: 3, value: "136", label: "Active Network" },
+  ],
 };
 
-const FEATURES: Feature[] = [
-  {
-    title: "Multi Asset",
-    description:
-      "Refer clients trading FX, crypto, indices, metals and stocks — earn on all volumes.",
-    icon: <AssetIcon />,
-  },
-  {
-    title: "Personalized Dashboard",
-    description:
-      "Real-time commission tracking, sub-IB hierarchy and payout history at a glance.",
-    icon: <DashboardIcon />,
-  },
-  {
-    title: "Performance Bonus",
-    description:
-      "Hit monthly volume tiers and unlock booster commissions on top of base CPA.",
-    icon: <TrophyIcon />,
-  },
-  {
-    title: "Strategy Support",
-    description:
-      "Dedicated success manager, co-branded creatives and conversion playbooks included.",
-    icon: <SupportIcon />,
-  },
-];
+function iconFor(key: string | null | undefined): ReactNode {
+  switch (key) {
+    case "dashboard":
+      return <DashboardIcon />;
+    case "trophy":
+      return <TrophyIcon />;
+    case "support":
+      return <SupportIcon />;
+    case "asset":
+    default:
+      return <AssetIcon />;
+  }
+}
 
-export default function RewardsIBProgramSection() {
+export default async function RewardsIBProgramSection() {
+  const data = await getRewardsPage();
+  const title = data?.ibTitle ?? FALLBACK.ibTitle;
+  const description = data?.ibDescription ?? FALLBACK.ibDescription;
+  const ctaLabel = data?.ibCtaLabel ?? FALLBACK.ibCtaLabel;
+  const ctaHref = data?.ibCtaHref ?? FALLBACK.ibCtaHref;
+  const features =
+    data?.ibFeatures && data.ibFeatures.length > 0
+      ? data.ibFeatures
+      : FALLBACK.ibFeatures;
+  const stats =
+    data?.ibStats && data.ibStats.length > 0 ? data.ibStats : FALLBACK.ibStats;
   return (
     <section style={{ background: "#050208", padding: "40px 0 80px" }}>
       <div
@@ -64,7 +110,7 @@ export default function RewardsIBProgramSection() {
               color: "#FFFFFF",
             }}
           >
-            IB Program
+            {title}
           </h2>
           <p
             style={{
@@ -77,12 +123,11 @@ export default function RewardsIBProgramSection() {
               color: "rgba(255,255,255,0.65)",
             }}
           >
-            Grow a global trading network with industry-leading payouts, deep
-            sub-IB tools and a partner team that&apos;s actually responsive.
+            {description}
           </p>
 
           <Link
-            href="/partnerships"
+            href={ctaHref}
             className="btn-text"
             style={{
               alignSelf: "flex-start",
@@ -99,7 +144,7 @@ export default function RewardsIBProgramSection() {
               fontSize: "14px",
             }}
           >
-            View All Promotions
+            {ctaLabel}
           </Link>
 
           <div
@@ -110,9 +155,9 @@ export default function RewardsIBProgramSection() {
               gap: "16px",
             }}
           >
-            {FEATURES.map((f) => (
+            {features.map((f) => (
               <div
-                key={f.title}
+                key={f.id ?? f.title}
                 style={{
                   padding: "16px",
                   borderRadius: "12px",
@@ -137,7 +182,7 @@ export default function RewardsIBProgramSection() {
                     justifyContent: "center",
                   }}
                 >
-                  {f.icon}
+                  {iconFor(f.iconKey)}
                 </div>
                 <div
                   style={{
@@ -158,7 +203,7 @@ export default function RewardsIBProgramSection() {
                     color: "rgba(255,255,255,0.6)",
                   }}
                 >
-                  {f.description}
+                  {f.description ?? ""}
                 </div>
               </div>
             ))}
@@ -175,9 +220,9 @@ export default function RewardsIBProgramSection() {
               gap: "16px",
             }}
           >
-            <StatTile label="Total IB Partner" value="268" />
-            <StatTile label="Total IB Earnings" value="$36,702.35" />
-            <StatTile label="Active Network" value="136" />
+            {stats.map((s) => (
+              <StatTile key={s.id ?? s.label} label={s.label} value={s.value} />
+            ))}
           </div>
         </div>
       </div>

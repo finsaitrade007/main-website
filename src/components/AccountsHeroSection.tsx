@@ -1,7 +1,29 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getAccountsPage, type StrapiAccountsPage } from "@/lib/strapi";
 
-export default function AccountsHeroSection() {
+const FALLBACK: Pick<
+  StrapiAccountsPage,
+  | "heroBadge"
+  | "heroTitle"
+  | "heroDescription"
+  | "heroPrimaryCtaLabel"
+  | "heroPrimaryCtaHref"
+  | "heroSecondaryCtaLabel"
+  | "heroSecondaryCtaHref"
+> = {
+  heroBadge: "Sign in to your secure wallet!",
+  heroTitle: "Trade Smart. Choose the\naccount that suits you",
+  heroDescription:
+    "Compare Finsai Trade account types side-by-side and pick the one that matches your style, risk, and trading goals.",
+  heroPrimaryCtaLabel: "Start Trading",
+  heroPrimaryCtaHref: "/register",
+  heroSecondaryCtaLabel: "Try Demo  →",
+  heroSecondaryCtaHref: "/demo",
+};
+
+export default async function AccountsHeroSection() {
+  const data = (await getAccountsPage()) ?? FALLBACK;
   return (
     <section
       style={{
@@ -86,7 +108,7 @@ export default function AccountsHeroSection() {
               color: "transparent",
             }}
           >
-            Sign in to your secure wallet!
+            {data.heroBadge}
           </span>
         </div>
 
@@ -99,11 +121,10 @@ export default function AccountsHeroSection() {
             letterSpacing: "-0.01em",
             color: "#FFFFFF",
             margin: 0,
+            whiteSpace: "pre-line",
           }}
         >
-          Trade Smart. Choose the
-          <br />
-          account that suits you
+          {data.heroTitle}
         </h1>
 
         <p
@@ -117,13 +138,12 @@ export default function AccountsHeroSection() {
             margin: 0,
           }}
         >
-          Compare Finsai Trade account types side-by-side and pick the one that
-          matches your style, risk, and trading goals.
+          {data.heroDescription}
         </p>
 
         <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
           <Link
-            href="/register"
+            href={data.heroPrimaryCtaHref}
             className="btn-text"
             style={{
               padding: "14px 32px",
@@ -137,14 +157,14 @@ export default function AccountsHeroSection() {
               fontWeight: 500,
             }}
           >
-            Start Trading
+            {data.heroPrimaryCtaLabel}
           </Link>
           <Link
-            href="/demo"
+            href={data.heroSecondaryCtaHref}
             className="btn-secondary"
             style={{ padding: "14px 32px" }}
           >
-            Try Demo &nbsp;→
+            {data.heroSecondaryCtaLabel}
           </Link>
         </div>
       </div>

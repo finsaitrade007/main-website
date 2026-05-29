@@ -1,6 +1,19 @@
 import Link from "next/link";
+import { getToolsPage, type StrapiToolsPage } from "@/lib/strapi";
 
-export default function ToolsCTASection() {
+const FALLBACK: Pick<
+  StrapiToolsPage,
+  "ctaTitle" | "ctaDescription" | "ctaPrimaryLabel" | "ctaPrimaryHref"
+> = {
+  ctaTitle: "Trade with the right tools at your side",
+  ctaDescription:
+    "Open a free trial account and explore every Finsai tool — no commitment, no commitment, full access.",
+  ctaPrimaryLabel: "Start a Free Trial",
+  ctaPrimaryHref: "/register",
+};
+
+export default async function ToolsCTASection() {
+  const data = (await getToolsPage()) ?? FALLBACK;
   return (
     <section style={{ background: "#050208", padding: "60px 0 100px" }}>
       <div
@@ -67,7 +80,7 @@ export default function ToolsCTASection() {
             className="section-title"
             style={{ margin: 0, maxWidth: "640px" }}
           >
-            Trade with the right tools at your side
+            {data.ctaTitle}
           </h2>
 
           <p
@@ -78,12 +91,11 @@ export default function ToolsCTASection() {
               color: "rgba(255,255,255,0.65)",
             }}
           >
-            Open a free trial account and explore every Finsai tool — no
-            commitment, no commitment, full access.
+            {data.ctaDescription}
           </p>
 
           <Link
-            href="/register"
+            href={data.ctaPrimaryHref}
             className="btn-text"
             style={{
               padding: "14px 32px",
@@ -98,7 +110,7 @@ export default function ToolsCTASection() {
               marginTop: "8px",
             }}
           >
-            Start a Free Trial
+            {data.ctaPrimaryLabel}
           </Link>
         </div>
       </div>

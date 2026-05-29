@@ -182,7 +182,14 @@ function ReasonCell({ reason }: { reason: Reason }) {
   );
 }
 
-export default function WhyTradeFinsai() {
+import { getAccountsPage } from "@/lib/strapi";
+
+export default async function WhyTradeFinsai() {
+  const data = await getAccountsPage();
+  const title = data?.whyTitle ?? "Why trade with Finsai";
+  const description =
+    data?.whyDescription ??
+    "Trade with speed, stability, and total control from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs";
   return (
     <section
       style={{
@@ -215,7 +222,7 @@ export default function WhyTradeFinsai() {
           className="section-title"
           style={{ textAlign: "center", marginBottom: "14px" }}
         >
-          Why trade with Finsai
+          {title}
         </h2>
         <p
           className="section-desc"
@@ -226,9 +233,7 @@ export default function WhyTradeFinsai() {
             color: "rgba(255,255,255,0.6)",
           }}
         >
-          Trade with speed, stability, and total control from your desk or on
-          the move. Finsai Trade delivers professional-grade platforms to match
-          your trading needs
+          {description}
         </p>
       </div>
 

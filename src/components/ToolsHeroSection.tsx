@@ -1,10 +1,32 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getToolsPage, type StrapiToolsPage } from "@/lib/strapi";
 
-const PROOF_POINTS_LINE =
-  "✔ Analyze markets with precision  ✔ Manage risk with confidenc ✔ Execute strategies with control";
+const FALLBACK: Pick<
+  StrapiToolsPage,
+  | "heroBadge"
+  | "heroTitle"
+  | "heroDescription"
+  | "heroProofText"
+  | "heroPrimaryCtaLabel"
+  | "heroPrimaryCtaHref"
+  | "heroSecondaryCtaLabel"
+  | "heroSecondaryCtaHref"
+> = {
+  heroBadge: "Your Trading Toolkit",
+  heroTitle: "Professional Trading\nTools that Give You\nThe Edge",
+  heroDescription:
+    "Analyze markets, manage risk, and execute strategies with powerful tools built for forex, crypto, commodities, and global markets.",
+  heroProofText:
+    "✔ Analyze markets with precision  ✔ Manage risk with confidenc ✔ Execute strategies with control",
+  heroPrimaryCtaLabel: "Open Live Account",
+  heroPrimaryCtaHref: "/register",
+  heroSecondaryCtaLabel: "Try Free Demo",
+  heroSecondaryCtaHref: "/demo",
+};
 
-export default function ToolsHeroSection() {
+export default async function ToolsHeroSection() {
+  const data = (await getToolsPage()) ?? FALLBACK;
   return (
     <section
       style={{
@@ -90,7 +112,7 @@ export default function ToolsHeroSection() {
               color: "transparent",
             }}
           >
-            Your Trading Toolkit
+            {data.heroBadge}
           </span>
         </div>
 
@@ -105,13 +127,10 @@ export default function ToolsHeroSection() {
             letterSpacing: "-0.01em",
             color: "#FFFFFF",
             margin: 0,
+            whiteSpace: "pre-line",
           }}
         >
-          Professional Trading
-          <br />
-          Tools that Give You
-          <br />
-          The Edge
+          {data.heroTitle}
         </h1>
 
         <p
@@ -127,13 +146,12 @@ export default function ToolsHeroSection() {
             margin: 0,
           }}
         >
-          Analyze markets, manage risk, and execute strategies with powerful
-          tools built for forex, crypto, commodities, and global markets.
+          {data.heroDescription}
         </p>
 
         <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
           <Link
-            href="/register"
+            href={data.heroPrimaryCtaHref}
             className="btn-text"
             style={{
               boxSizing: "border-box",
@@ -151,7 +169,7 @@ export default function ToolsHeroSection() {
               fontWeight: 500,
             }}
           >
-            Open Live Account
+            {data.heroPrimaryCtaLabel}
           </Link>
           {/* Try Free Demo — same 233 × 48 footprint as the primary CTA,
               but rendered with a 1px gradient stroke (outer wrapper paints
@@ -170,7 +188,7 @@ export default function ToolsHeroSection() {
             }}
           >
             <Link
-              href="/demo"
+              href={data.heroSecondaryCtaHref}
               style={{
                 boxSizing: "border-box",
                 width: "100%",
@@ -189,7 +207,7 @@ export default function ToolsHeroSection() {
                 color: "#FFFFFF",
               }}
             >
-              Try Free Demo
+              {data.heroSecondaryCtaLabel}
             </Link>
           </div>
         </div>
@@ -210,7 +228,7 @@ export default function ToolsHeroSection() {
             whiteSpace: "nowrap",
           }}
         >
-          {PROOF_POINTS_LINE}
+          {data.heroProofText}
         </div>
       </div>
     </section>

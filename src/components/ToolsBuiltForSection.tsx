@@ -1,33 +1,48 @@
+import {
+  getToolsPage,
+  type StrapiIconFeature,
+  type StrapiToolsPage,
+} from "@/lib/strapi";
+
 type FeatureKey = "charts" | "data" | "ai" | "alerts";
 
-type Feature = {
-  iconKey: FeatureKey;
-  title: string;
-  description: string;
-};
+const FALLBACK_TITLE = "Built for\nSmarter Trading";
+const FALLBACK_DESCRIPTION =
+  "Our suite of trading tools is designed to empower you at every step—from deep market analysis and strategy development to precise execution and robust risk control.";
 
-const features: Feature[] = [
+const fallbackFeatures: StrapiIconFeature[] = [
   {
+    id: 1,
     iconKey: "charts",
     title: "Professional Analysis",
     description: "Deep dive into market dynamics with institutional tools.",
   },
   {
+    id: 2,
     iconKey: "data",
     title: "Live Market Data",
     description: "Real-time quotes and lightning-fast execution speed.",
   },
   {
+    id: 3,
     iconKey: "ai",
     title: "Risk Management",
     description: "Advanced calculators and margin alerts to stay safe.",
   },
   {
+    id: 4,
     iconKey: "alerts",
     title: "Strategy Support",
     description: "Backtesting engines to refine your trading edge.",
   },
 ];
+
+const ICON_KEYS: FeatureKey[] = ["charts", "data", "ai", "alerts"];
+
+function resolveIconKey(value: string | null | undefined, fallback: FeatureKey): FeatureKey {
+  if (value && (ICON_KEYS as string[]).includes(value)) return value as FeatureKey;
+  return fallback;
+}
 
 function FeatureIcon({ iconKey }: { iconKey: FeatureKey }) {
   const id = `bf-${iconKey}`;
@@ -89,7 +104,14 @@ function FeatureIcon({ iconKey }: { iconKey: FeatureKey }) {
   }
 }
 
-export default function ToolsBuiltForSection() {
+export default async function ToolsBuiltForSection() {
+  const data: StrapiToolsPage | null = await getToolsPage();
+  const title = data?.builtForTitle ?? FALLBACK_TITLE;
+  const description = data?.builtForDescription ?? FALLBACK_DESCRIPTION;
+  const features =
+    data?.builtForFeatures && data.builtForFeatures.length > 0
+      ? data.builtForFeatures
+      : fallbackFeatures;
   return (
     <section
       style={{
@@ -130,9 +152,7 @@ export default function ToolsBuiltForSection() {
               margin: 0,
             }}
           >
-            Built for
-            <br />
-            Smarter Trading
+            <span style={{ whiteSpace: "pre-line" }}>{title}</span>
           </h2>
           <p
             style={{
@@ -147,10 +167,7 @@ export default function ToolsBuiltForSection() {
               margin: "20px 0 0",
             }}
           >
-            Our suite of trading tools is designed to empower
-you at every step—from deep market analysis and
-strategy development to precise execution and
-robust risk control.
+            {description}
           </p>
         </div>
 
@@ -163,9 +180,9 @@ robust risk control.
             rowGap: "24px",
           }}
         >
-          {features.map((f) => (
+          {features.map((f, i) => (
             <div
-              key={f.title}
+              key={f.id ?? f.title}
               style={{
                 width: "377.33px",
                 height: "118px",
@@ -203,7 +220,12 @@ robust risk control.
                     flexShrink: 0,
                   }}
                 >
-                  <FeatureIcon iconKey={f.iconKey} />
+                  <FeatureIcon
+                    iconKey={resolveIconKey(
+                      f.iconKey,
+                      ICON_KEYS[i % ICON_KEYS.length],
+                    )}
+                  />
                 </div>
                 <div
                   style={{
@@ -237,7 +259,7 @@ robust risk control.
                       color: "#94A3B8",
                     }}
                   >
-                    {f.description}
+                    {f.description ?? ""}
                   </div>
                 </div>
               </div>

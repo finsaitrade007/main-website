@@ -1,7 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getPaymentsPage, type StrapiPaymentsPage } from "@/lib/strapi";
 
-export default function PaymentsCTASection() {
+const FALLBACK: Pick<
+  StrapiPaymentsPage,
+  "ctaTitle" | "ctaDescription" | "ctaPrimaryLabel" | "ctaPrimaryHref"
+> = {
+  ctaTitle: "Ready to Fund Your Account?",
+  ctaDescription:
+    "Deposit instantly with the method you prefer — your funds are protected end-to-end and available the moment they arrive.",
+  ctaPrimaryLabel: "Deposit Funds",
+  ctaPrimaryHref: "/register",
+};
+
+export default async function PaymentsCTASection() {
+  const data = (await getPaymentsPage()) ?? FALLBACK;
   return (
     <section style={{
       background: "#050208",
@@ -42,7 +55,7 @@ export default function PaymentsCTASection() {
           margin: 0,
           overflow: "hidden",
         }}>
-          Ready to Fund Your Account?
+          {data.ctaTitle}
         </h2>
 
         <p style={{
@@ -59,11 +72,10 @@ export default function PaymentsCTASection() {
           width: "773px",
           height: "64px",
         }}>
-          Deposit instantly with the method you prefer — your funds are protected
-          end-to-end and available the moment they arrive.
+          {data.ctaDescription}
         </p>
 
-        <Link href="/register" className="btn-text" style={{
+        <Link href={data.ctaPrimaryHref} className="btn-text" style={{
           position: "absolute",
           top: "330px",
           left: "508px",
@@ -82,7 +94,7 @@ export default function PaymentsCTASection() {
           textDecoration: "none",
           boxSizing: "border-box",
         }}>
-          Deposit Funds
+          {data.ctaPrimaryLabel}
         </Link>
       </div>
     </section>

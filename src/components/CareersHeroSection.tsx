@@ -1,7 +1,29 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getCareersPage, type StrapiCareersPage } from "@/lib/strapi";
 
-export default function CareersHeroSection() {
+const FALLBACK: Pick<
+  StrapiCareersPage,
+  | "heroBadge"
+  | "heroTitle"
+  | "heroDescription"
+  | "heroPrimaryCtaLabel"
+  | "heroPrimaryCtaHref"
+  | "heroSecondaryCtaLabel"
+  | "heroSecondaryCtaHref"
+> = {
+  heroBadge: "Careers at Finsai Trade",
+  heroTitle: "Build the Future of\nMulti-Asset Trading",
+  heroDescription:
+    "Join a vibrant global team focused on fintech, trading technology, global markets, and customer growth. If you thrive on",
+  heroPrimaryCtaLabel: "View Open Roles →",
+  heroPrimaryCtaHref: "#open-roles",
+  heroSecondaryCtaLabel: "Join Our Team →",
+  heroSecondaryCtaHref: "#apply",
+};
+
+export default async function CareersHeroSection() {
+  const data = (await getCareersPage()) ?? FALLBACK;
   return (
     <section
       style={{
@@ -80,7 +102,7 @@ export default function CareersHeroSection() {
               color: "transparent",
             }}
           >
-            Careers at Finsai Trade
+            {data.heroBadge}
           </span>
         </div>
 
@@ -93,11 +115,10 @@ export default function CareersHeroSection() {
             lineHeight: "110%",
             letterSpacing: "-0.01em",
             color: "#FFFFFF",
+            whiteSpace: "pre-line",
           }}
         >
-          Build the Future of
-          <br />
-          Multi-Asset Trading
+          {data.heroTitle}
         </h1>
 
         <p
@@ -111,13 +132,12 @@ export default function CareersHeroSection() {
             color: "#94A3B8",
           }}
         >
-          Join a vibrant global team focused on fintech, trading technology, 
-          global markets, and customer growth. If you thrive on
+          {data.heroDescription}
         </p>
 
         <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
           <Link
-            href="#open-roles"
+            href={data.heroPrimaryCtaHref}
             className="btn-text"
             style={{
               boxSizing: "border-box",
@@ -133,7 +153,7 @@ export default function CareersHeroSection() {
               fontWeight: 500,
             }}
           >
-            View Open Roles →
+            {data.heroPrimaryCtaLabel}
           </Link>
           <div
             style={{
@@ -146,7 +166,7 @@ export default function CareersHeroSection() {
             }}
           >
             <Link
-              href="#apply"
+              href={data.heroSecondaryCtaHref}
               style={{
                 boxSizing: "border-box",
                 height: "100%",
@@ -163,7 +183,7 @@ export default function CareersHeroSection() {
                 color: "#FFFFFF",
               }}
             >
-              Join Our Team →
+              {data.heroSecondaryCtaLabel}
             </Link>
           </div>
         </div>

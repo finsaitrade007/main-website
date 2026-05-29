@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getPartnershipsPage } from "@/lib/strapi";
 
-const cards = [
+const fallbackCards = [
   { label: "News & Analysis", desc: "Stay updated with real-time market news, economic events, and expert commentary.", href: "/news" },
   { label: "Webinar", desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", href: "/webinars" },
   { label: "Glossary", desc: "Master trading terms and concepts with our comprehensive glossary built to help you trade with clarity and confidence.", href: "/glossary" },
@@ -107,17 +108,30 @@ function MarketingCard({ label, desc, href }: { label: string; desc: string; hre
   );
 }
 
-export default function IBMarketingSection() {
+export default async function IBMarketingSection() {
+  const data = await getPartnershipsPage();
+  const title = data?.marketingTitle ?? "Access Free Marketing Materials";
+  const description =
+    data?.marketingDescription ??
+    "Trade seamlessly on the go or from your desktop with our cutting-edge platforms.";
+  const cards = data?.marketingItems?.length
+    ? data.marketingItems.map((item) => ({
+        label: item.title,
+        desc: item.description ?? "",
+        href: item.iconKey ?? "#",
+      }))
+    : fallbackCards.map((c) => ({ label: c.label, desc: c.desc, href: c.href }));
+
   return (
     <section style={{ background: "#050208", padding: "80px 0" }}>
       <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 80px" }}>
 
         <div style={{ textAlign: "center", marginBottom: "48px" }}>
           <h2 className="section-title" style={{ marginBottom: "16px" }}>
-            Access Free Marketing Materials
+            {title}
           </h2>
           <p className="section-desc">
-            Trade seamlessly on the go or from your desktop with our cutting-edge platforms.
+            {description}
           </p>
         </div>
 
