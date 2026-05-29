@@ -248,7 +248,7 @@ export default async function PlatformsSection() {
       style={{
         background: "#050208",
         width: "1440px",
-        height: "780px",
+        height: "937px",
         padding: "0",
         boxSizing: "border-box",
       }}

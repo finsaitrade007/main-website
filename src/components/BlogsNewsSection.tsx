@@ -2,145 +2,124 @@ import Link from "next/link";
 import Image from "next/image";
 import { getBlogsPage } from "@/lib/strapi";
 
+const BORDER_GRADIENT = "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
+const CARD_INNER_BG = "linear-gradient(0deg, rgba(10,10,10,0.7), rgba(10,10,10,0.7)), linear-gradient(119.3deg, rgba(0,0,0,0) 23.34%, rgba(73,109,171,0.3) 96.36%)";
+
 const fallbackNewsCards = [
-  {
-    category: "News & Analysis",
-    desc: "Stay updated with real-time market news, economic events, and expert commentary.",
-    href: "/news",
-  },
-  {
-    category: "Webinar",
-    desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.",
-    href: "/webinars",
-  },
-  {
-    category: "Glossary",
-    desc: "Master trading terms and concepts with our comprehensive glossary built to help you trade with clarity and confidence.",
-    href: "/glossary",
-  },
-  {
-    category: "News & Analysis",
-    desc: "Stay updated with real-time market news, economic events, and expert commentary.",
-    href: "/news",
-  },
-  {
-    category: "Webinar",
-    desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.",
-    href: "/webinars",
-  },
-  {
-    category: "Glossary",
-    desc: "Master trading terms and concepts with our comprehensive glossary built to help you trade with clarity and confidence.",
-    href: "/glossary",
-  },
+  { category: "News & Analysis", desc: "Stay updated with real-time market news, economic events, and expert commentary.", href: "/news" },
+  { category: "Webinar",         desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", href: "/webinars" },
+  { category: "News & Analysis", desc: "Stay updated with real-time market news, economic events, and expert commentary.", href: "/news" },
+  { category: "Webinar",         desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", href: "/webinars" },
 ];
 
-function ArticleCard({ category, desc, href }: { category: string; desc: string; href: string }) {
+const fallbackLatestNews = [
+  "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.",
+  "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.",
+  "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.",
+  "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.",
+];
+
+const cardPositions = [
+  { top: "376px", left: "75px" },
+  { top: "376px", left: "507px" },
+  { top: "685px", left: "75px" },
+  { top: "685px", left: "507px" },
+];
+
+function ArticleCard({ category, desc, href, top, left }: { category: string; desc: string; href: string; top: string; left: string }) {
   return (
+    /* Gradient border wrapper */
     <div style={{
-      position: "relative",
+      position: "absolute",
+      top,
+      left,
       width: "415px",
       height: "285px",
       borderRadius: "21.32px",
-      border: "1px solid transparent",
-      background: `
-        linear-gradient(0deg, rgba(10,10,10,0.7), rgba(10,10,10,0.7)) padding-box,
-        linear-gradient(119.3deg, rgba(0,0,0,0) 23.34%, rgba(73,109,171,0.3) 96.36%) padding-box,
-        linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%) border-box
-      `,
-      overflow: "hidden",
+      background: BORDER_GRADIENT,
+      padding: "1px",
       boxSizing: "border-box",
     }}>
-      {/* Image */}
       <div style={{
-        position: "absolute",
-        top: "12px",
-        left: "17px",
-        width: "380px",
-        height: "116px",
-        borderRadius: "16px",
+        width: "100%",
+        height: "100%",
+        borderRadius: "20.32px",
+        background: CARD_INNER_BG,
         overflow: "hidden",
-      }}>
-        <Image
-          src="/blogs-placeholder.png"
-          alt=""
-          fill
-          style={{ objectFit: "cover" }}
-        />
-      </div>
-
-      {/* Category badge over image */}
-      <span style={{
-        position: "absolute",
-        top: "28px",
-        left: "17px",
-        width: "105px",
-        height: "34px",
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "10px",
-        paddingTop: "7px",
-        paddingBottom: "7px",
-        paddingLeft: "18px",
-        paddingRight: "18px",
-        borderRadius: "5px",
-        background: "#FFFFFF33",
-        backdropFilter: "blur(34px)",
-        fontFamily: "var(--font-sora, Sora)",
-        fontSize: "16px",
-        fontWeight: 400,
-        lineHeight: "100%",
-        letterSpacing: 0,
-        textAlign: "center",
-        color: "#FFFFFF",
+        position: "relative",
         boxSizing: "border-box",
       }}>
-        {category}
-      </span>
+        {/* Image */}
+        <div style={{
+          position: "absolute",
+          top: "12px",
+          left: "17px",
+          width: "380px",
+          height: "116px",
+          borderRadius: "16px",
+          overflow: "hidden",
+        }}>
+          <Image src="/blogs-placeholder.png" alt="" fill style={{ objectFit: "cover" }} />
+        </div>
 
-      {/* Description */}
-      <p style={{
-        position: "absolute",
-        top: "144px",
-        left: "21px",
-        width: "378px",
-        height: "81px",
-        fontFamily: "var(--font-inter, Inter)",
-        fontWeight: 400,
-        fontSize: "18px",
-        lineHeight: "27px",
-        letterSpacing: 0,
-        color: "#FFFFFFB2",
-        margin: 0,
-        overflow: "hidden",
-      }}>
-        {desc}
-      </p>
+        {/* Category badge */}
+        <span style={{
+          position: "absolute",
+          top: "22px",
+          left: "27px",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "7px 18px",
+          borderRadius: "5px",
+          background: "rgba(255,255,255,0.2)",
+          backdropFilter: "blur(34px)",
+          fontFamily: "var(--font-sora, Sora)",
+          fontSize: "14px",
+          fontWeight: 400,
+          color: "#FFFFFF",
+        }}>
+          {category}
+        </span>
 
-      {/* Read More */}
-      <Link href={href} style={{
-        position: "absolute",
-        top: "235.25px",
-        left: "21.32px",
-        width: "122px",
-        height: "27px",
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "9px",
-        fontFamily: "var(--font-inter, Inter)",
-        fontWeight: 400,
-        fontSize: "18px",
-        lineHeight: "27px",
-        letterSpacing: 0,
-        color: "#056FB4",
-        textDecoration: "none",
-      }}>
-        Read More
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      </Link>
+        {/* Description */}
+        <p style={{
+          position: "absolute",
+          top: "144px",
+          left: "21px",
+          width: "378px",
+          height: "81px",
+          fontFamily: "var(--font-inter, Inter)",
+          fontWeight: 400,
+          fontSize: "16px",
+          lineHeight: "27px",
+          color: "rgba(255,255,255,0.7)",
+          margin: 0,
+          overflow: "hidden",
+        }}>
+          {desc}
+        </p>
+
+        {/* Read More */}
+        <Link href={href} style={{
+          position: "absolute",
+          top: "238px",
+          left: "21px",
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "8px",
+          fontFamily: "var(--font-inter, Inter)",
+          fontWeight: 400,
+          fontSize: "16px",
+          color: "#056FB4",
+          textDecoration: "none",
+        }}>
+          Read More
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </Link>
+      </div>
     </div>
   );
 }
@@ -152,7 +131,7 @@ function SearchBar() {
       alignItems: "center",
       gap: "6px",
       fontFamily: "var(--font-inter, Inter)",
-      fontSize: "13px",
+      fontSize: "14px",
       color: "rgba(255,255,255,0.4)",
       cursor: "pointer",
     }}>
@@ -166,26 +145,25 @@ function SearchBar() {
 
 export default async function BlogsNewsSection() {
   const data = await getBlogsPage();
-  const badge = data?.newsBadge ?? "Blogs & News";
-  const title = data?.newsTitle ?? "Powerful platforms for Every Trader";
-  const description =
-    data?.newsDescription ??
-    "Trade with speed, stability, and total control from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs";
+  const badge       = data?.newsBadge       ?? "Blogs & News";
+  const title       = data?.newsTitle       ?? "Powerful platforms for Every Trader";
+  const description = data?.newsDescription ?? "Trade with speed, stability, and total control  from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs";
 
-  const cards = data?.newsArticles?.length
-    ? data.newsArticles.map((article) => ({
-        category: article.title,
-        desc: article.description ?? "",
-        href: article.href ?? "#",
-      }))
-    : fallbackNewsCards;
-  const blogCards = cards;
+  const strapiCards = data?.newsArticles?.length
+    ? data.newsArticles.map((a) => ({ category: a.title, desc: a.description ?? "", href: a.href ?? "#" }))
+    : [];
+
+  const cards = [
+    ...strapiCards,
+    ...fallbackNewsCards,
+  ].slice(0, 4);
 
   return (
-    <section style={{ background: "#050208", marginTop: "73px" }}>
-      <div style={{ maxWidth: "1440px", minHeight: "1834px", margin: "0 auto", padding: "0 80px" }}>
+    <section style={{ background: "#050208", width: "1440px" }}>
+      <div style={{ position: "relative", width: "1440px", height: "1030px", overflow: "visible" }}>
 
-        <div style={{ marginBottom: "24px", display: "flex", justifyContent: "center" }}>
+        {/* Badge */}
+        <div style={{ position: "absolute", top: "52px", left: 0, right: 0, display: "flex", justifyContent: "center" }}>
           <span style={{
             display: "inline-flex",
             alignItems: "center",
@@ -197,43 +175,136 @@ export default async function BlogsNewsSection() {
           </span>
         </div>
 
-        <h2 className="section-title" style={{ textAlign: "center", marginBottom: "16px" }}>
+        {/* Title */}
+        <h2 className="section-title" style={{
+          position: "absolute",
+          top: "108px",
+          left: 0,
+          right: 0,
+          textAlign: "center",
+          margin: 0,
+        }}>
           {title}
         </h2>
 
-        <p className="section-desc" style={{ textAlign: "center", width: "851px", height: "57px", margin: "0 auto 48px" }}>
+        {/* Description */}
+        <p className="section-desc" style={{
+          position: "absolute",
+          top: "185px",
+          left: "294px",
+          width: "851px",
+          textAlign: "center",
+          margin: 0,
+        }}>
           {description}
         </p>
 
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "24px" }}>
-          <h2 className="section-title" style={{ fontWeight: 700, fontSize: "36px", lineHeight: "100%", letterSpacing: 0, color: "#FFFFFF" }}>Market News</h2>
+        {/* "Blogs" heading + search bar */}
+        <div style={{
+          position: "absolute",
+          top: "300px",
+          left: "75px",
+          right: "75px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}>
+          <h2 style={{
+            fontFamily: "var(--font-sora, Sora)",
+            fontWeight: 700,
+            fontSize: "36px",
+            lineHeight: "100%",
+            color: "#FFFFFF",
+            margin: 0,
+          }}>
+            Blogs
+          </h2>
           <SearchBar />
         </div>
 
+        {/* Divider */}
         <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "20px",
-          marginBottom: "64px",
-        }}>
-          {cards.map((card, i) => (
-            <ArticleCard key={i} {...card} />
-          ))}
-        </div>
+          position: "absolute",
+          top: "347px",
+          left: "75px",
+          width: "1279px",
+          height: "0px",
+          border: "2px solid #056FB44D",
+        }} />
 
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "24px" }}>
-          <h2 className="section-title" style={{ fontWeight: 700, fontSize: "36px", lineHeight: "100%", letterSpacing: 0, color: "#FFFFFF" }}>Blogs</h2>
-          <SearchBar />
-        </div>
+        {/* 4 Article Cards */}
+        {cards.map((card, i) => (
+          <ArticleCard
+            key={i}
+            {...card}
+            top={cardPositions[i].top}
+            left={cardPositions[i].left}
+          />
+        ))}
 
+        {/* Right — Latest News box */}
         <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "20px",
+          position: "absolute",
+          top: "376px",
+          left: "964px",
+          width: "390px",
+          height: "594px",
+          borderRadius: "20px",
+          background: BORDER_GRADIENT,
+          padding: "1px",
+          boxSizing: "border-box",
         }}>
-          {blogCards.map((card, i) => (
-            <ArticleCard key={i} {...card} />
-          ))}
+          <div style={{
+            width: "100%",
+            height: "100%",
+            borderRadius: "19px",
+            background: CARD_INNER_BG,
+            paddingTop: "24px",
+            paddingRight: "21px",
+            paddingBottom: "16px",
+            paddingLeft: "19px",
+            boxSizing: "border-box",
+            display: "flex",
+            flexDirection: "column",
+            gap: "25px",
+          }}>
+            <h3 style={{
+              fontFamily: "var(--font-sora, Sora)",
+              fontWeight: 700,
+              fontSize: "20px",
+              lineHeight: "100%",
+              color: "#FFFFFF",
+              margin: 0,
+            }}>
+              Blogs & News
+            </h3>
+
+            <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+              {fallbackLatestNews.map((item, i) => (
+                <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                  <p style={{
+                    fontFamily: "var(--font-inter, Inter)",
+                    fontWeight: 400,
+                    fontSize: "14px",
+                    lineHeight: "22px",
+                    color: "rgba(255,255,255,0.7)",
+                    margin: 0,
+                  }}>
+                    {item}
+                  </p>
+                  {i < fallbackLatestNews.length - 1 && (
+                    <div style={{
+                      width: "329px",
+                      height: "0px",
+                      border: "2px solid transparent",
+                      borderImage: "linear-gradient(90deg, rgba(255,255,255,0.014) -2.94%, rgba(5,111,180,0.7) 51.23%, rgba(255,255,255,0.014) 102.37%) 1",
+                      marginTop: "16px",
+                    }} />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
       </div>
