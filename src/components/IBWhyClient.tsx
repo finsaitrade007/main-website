@@ -130,7 +130,7 @@ export default function IBWhyClient({ title, description, ctaLabel, ctaHref, tab
 
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Image
-              src="/ib-why.png"
+              src="/why-ib.png"
               alt="IB Why"
               width={472}
               height={444}

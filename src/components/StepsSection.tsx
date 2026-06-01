@@ -6,16 +6,19 @@ import {
   type StrapiStep,
 } from "@/lib/strapi";
 
+const LOCAL_STEP_IMAGES = [
+  "/platforms/register.png",
+  "/platforms/verify.png",
+  "/platforms/trading.png",
+];
+
+const CIRCLE_POSITIONS = [116, 556, 996];
+const CIRCLE_SIZE = 112;
+
 const FALLBACK_HEADER = {
   stepsBadge: "Signup Procedure",
   stepsTitle: "Trade Global Markets in 3 Simple Steps",
 };
-
-const LOCAL_STEP_IMAGES = [
-  "/steps/register.png",
-  "/steps/verify.png",
-  "/steps/start-trading.png",
-];
 
 const FALLBACK_STEPS: StrapiStep[] = [
   {
@@ -54,8 +57,8 @@ export default async function StepsSection() {
   const steps = fetched && fetched.length > 0 ? fetched : FALLBACK_STEPS;
 
   return (
-    <section style={{ background: "#050208", padding: "100px 0" }}>
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 80px" }}>
+    <section style={{ background: "#050208", width: "1440px", height: "564px", boxSizing: "border-box" }}>
+      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "24px" }}>
           <span
             style={{
@@ -83,89 +86,142 @@ export default async function StepsSection() {
           style={{ textAlign: "center", maxWidth: "520px", margin: "0 auto 80px" }}
         />
 
+        {/* Main container: 1225×278px, centered (107px margins in 1440px section) */}
         <div
           style={{
             position: "relative",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
+            width: "1225px",
+            height: "278px",
+            margin: "0 auto",
           }}
         >
+          {/* Connector line */}
           <div
             style={{
               position: "absolute",
-              top: "100px",
-              left: "calc(16.67% + 100px)",
-              right: "calc(16.67% + 100px)",
+              top: "56px",
+              left: "166px",
+              width: "891.5px",
               height: "1px",
               background:
-                "linear-gradient(90deg, rgba(5,111,180,0.3) 0%, rgba(5,111,180,0.6) 50%, rgba(5,111,180,0.3) 100%)",
-              zIndex: 0,
+                "linear-gradient(90deg, rgba(255,255,255,0.014) -2.94%, rgba(5,111,180,0.7) 51.23%, rgba(255,255,255,0.014) 102.37%)",
+              boxShadow: "0px 0px 24px 0px #FF63333D",
             }}
           />
 
+          {/* Small accent circles with numbers */}
+          {[212, 650, 1090].map((left, i) => (
+            <div
+              key={left}
+              style={{
+                position: "absolute",
+                top: "11px",
+                left: `${left}px`,
+                width: "24px",
+                height: "24px",
+                borderRadius: "50%",
+                background: "#056FB4",
+                border: "1px solid #056FB499",
+                boxSizing: "border-box",
+                zIndex: 2,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <span style={{
+                fontFamily: "var(--font-inter, Inter)",
+                fontWeight: 400,
+                fontSize: "16px",
+                lineHeight: "100%",
+                letterSpacing: "0%",
+                textAlign: "center",
+                color: "#FFFFFF",
+              }}>
+                {i + 1}
+              </span>
+            </div>
+          ))}
+
           {steps.map((step, idx) => {
+            const circleLeft = CIRCLE_POSITIONS[idx];
+            const circleCenter = circleLeft + CIRCLE_SIZE / 2;
+            const textLeft = circleCenter - 140;
             const img = strapiImageUrl(step.image) ?? LOCAL_STEP_IMAGES[idx];
+
             return (
-              <div
-                key={step.id}
-                style={{
-                  flex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                }}
-              >
+              <div key={step.id}>
+                {/* Circle */}
                 <div
                   style={{
-                    marginBottom: "32px",
-                    flexShrink: 0,
-                    position: "relative",
+                    position: "absolute",
+                    left: `${circleLeft}px`,
+                    top: 0,
+                    width: `${CIRCLE_SIZE}px`,
+                    height: `${CIRCLE_SIZE}px`,
+                    borderRadius: "50%",
+                    background: "#020303",
+                    border: "2px solid #056FB499",
+                    boxShadow: "0px 0px 24px 16px #056FB43D",
+                    boxSizing: "border-box",
                     zIndex: 1,
-                    width: "200px",
-                    height: "200px",
                   }}
                 >
                   {img && (
                     <Image
                       src={img}
                       alt={step.title}
-                      width={200}
-                      height={200}
-                      style={{ display: "block" }}
+                      width={56}
+                      height={56}
+                      style={{
+                        position: "absolute",
+                        top: "28px",
+                        left: "28px",
+                        objectFit: "contain",
+                      }}
                     />
                   )}
                 </div>
 
-                <h3
+                {/* Text */}
+                <div
                   style={{
-                    fontFamily: "var(--font-sora, Sora)",
-                    fontWeight: 400,
-                    fontSize: "32px",
-                    lineHeight: "43.49px",
-                    letterSpacing: "0%",
-                    color: "#FFFFFF",
-                    marginBottom: "12px",
-                  }}
-                >
-                  {step.title}
-                </h3>
-
-                <p
-                  style={{
-                    fontFamily: "var(--font-inter, Inter)",
-                    fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "23px",
-                    letterSpacing: "0%",
-                    color: "#FFFFFFB2",
+                    position: "absolute",
+                    left: `${textLeft}px`,
+                    top: "144px",
+                    width: "280px",
                     textAlign: "center",
-                    maxWidth: "280px",
                   }}
                 >
-                  {step.description}
-                </p>
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-sora, Sora)",
+                      fontWeight: 400,
+                      fontSize: "32px",
+                      lineHeight: "43.49px",
+                      letterSpacing: "0%",
+                      color: "#FFFFFF",
+                      marginBottom: "12px",
+                    }}
+                  >
+                    {step.title}
+                  </h3>
+
+                  <p
+                    style={{
+                      fontFamily: "var(--font-inter, Inter)",
+                      fontWeight: 400,
+                      fontSize: "16px",
+                      lineHeight: "23px",
+                      letterSpacing: "0%",
+                      color: "#FFFFFFB2",
+                      textAlign: "center",
+                      margin: 0,
+                    }}
+                  >
+                    {step.description}
+                  </p>
+                </div>
               </div>
             );
           })}

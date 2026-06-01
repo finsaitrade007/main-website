@@ -36,7 +36,7 @@ function Card({ card, height }: { card: StrapiJourneyCard; height: string }) {
     <div
       style={{
         background: CARD_BACKGROUND,
-        border: "2px solid transparent",
+        border: isLarge ? "2px solid transparent" : "1px solid transparent",
         borderRadius: RADIUS,
         height,
         position: "relative",
@@ -130,7 +130,7 @@ export default async function JourneySection() {
   const row2 = cards.filter((c) => c.row === "row2");
 
   return (
-    <section style={{ background: "#050208", padding: "100px 0" }}>
+    <section style={{ background: "#050208", width: "1440px", height: "811px", paddingTop: "50px", boxSizing: "border-box" }}>
       <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 80px" }}>
         <div style={{ textAlign: "center", marginBottom: "24px" }}>
           <span

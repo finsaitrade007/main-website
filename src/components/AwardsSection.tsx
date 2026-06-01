@@ -33,7 +33,7 @@ export default async function AwardsSection() {
   const awards = fetched && fetched.length > 0 ? fetched : FALLBACK_AWARDS;
 
   return (
-    <section style={{ background: "#050208", padding: "100px 0" }}>
+    <section style={{ background: "#050208", width: "1440px", height: "616px", boxSizing: "border-box" }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 80px" }}>
         <div style={{ textAlign: "center", marginBottom: "24px" }}>
           <span
