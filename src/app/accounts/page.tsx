@@ -2,7 +2,6 @@ import AccountsHeroSection from "@/components/AccountsHeroSection";
 import AccountsCompareTable from "@/components/AccountsCompareTable";
 import WhyTradeFinsai from "@/components/WhyTradeFinsai";
 import AccountsOnboardingSteps from "@/components/AccountsOnboardingSteps";
-import AccountsBenefitsCards from "@/components/AccountsBenefitsCards";
 import FAQSection from "@/components/FAQSection";
 
 export const metadata = {
@@ -18,7 +17,6 @@ export default function AccountsPage() {
       <AccountsCompareTable />
       <WhyTradeFinsai />
       <AccountsOnboardingSteps />
-      <AccountsBenefitsCards />
       <FAQSection />
     </>
   );

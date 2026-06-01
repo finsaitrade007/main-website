@@ -13,7 +13,7 @@ const FALLBACK: Pick<
   heroBadge: "SIGN IN TO YOUR SECURE WALLET",
   heroTitle: "Your Platform. Your Strategy. Total Control",
   heroDescription:
-    "Welcome to Finsai Trade's Introducing Broker (IB) Program. We offer a comprehensive partnership scheme where you can earn competitive",
+    "Execute trades faster with real-time insights, powerful charts, and secure access online.",
   heroPrimaryCtaLabel: "Start Trading →",
   heroPrimaryCtaHref: "/register",
 };
@@ -54,21 +54,38 @@ export default async function ServicesHeroSection() {
         gap: "24px",
         zIndex: 3,
       }}>
-        <span style={{
+        <div style={{
           display: "inline-flex",
           alignSelf: "flex-start",
-          padding: "8px 22px",
-          background: "rgba(0,0,0,0.6)",
-          border: "1px solid rgba(255,255,255,0.2)",
+          alignItems: "center",
+          gap: "8.4px",
+          paddingTop: "9.6px",
+          paddingBottom: "9.6px",
+          paddingLeft: "16.8px",
+          paddingRight: "16.8px",
+          width: "362.6px",
+          height: "51.2px",
           borderRadius: "60px",
-          fontFamily: "var(--font-sora, Sora)",
-          fontWeight: 400,
-          fontSize: "12px",
-          color: "#FFFFFF",
-          letterSpacing: "0.1em",
+          border: "1.2px solid #FFFFFF26",
+          background: "#000000",
+          boxSizing: "border-box",
         }}>
-          {data.heroBadge}
-        </span>
+          <span style={{
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 400,
+            fontSize: "19.2px",
+            lineHeight: "31.2px",
+            letterSpacing: "-0.01%",
+            textTransform: "uppercase",
+            background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            whiteSpace: "nowrap",
+          }}>
+            Sign in to your secure wallet!
+          </span>
+        </div>
 
         <h1 style={{
           fontFamily: "var(--font-sora, Sora)",
@@ -78,9 +95,11 @@ export default async function ServicesHeroSection() {
           letterSpacing: "-0.01em",
           color: "#FFFFFF",
           margin: 0,
-          whiteSpace: "pre-line",
+          width: "678px",
+          height: "186px",
+          overflow: "hidden",
         }}>
-          {data.heroTitle}
+          Advanced Trading Platforms for Forex, Crypto &amp; Indices
         </h1>
 
         <p style={{
@@ -96,14 +115,21 @@ export default async function ServicesHeroSection() {
         </p>
 
         <Link href={data.heroPrimaryCtaHref} className="btn-text" style={{
-          padding: "14px 32px",
-          borderRadius: "28.83px",
+          width: "236px",
+          height: "48px",
+          borderRadius: "8px",
+          paddingTop: "11px",
+          paddingBottom: "11px",
+          paddingLeft: "24px",
+          paddingRight: "24px",
+          gap: "16px",
           background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
           textDecoration: "none",
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
           alignSelf: "flex-start",
+          boxSizing: "border-box",
         }}>
           {data.heroPrimaryCtaLabel}
         </Link>
