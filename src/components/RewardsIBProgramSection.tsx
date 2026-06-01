@@ -1,73 +1,130 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { ReactNode } from "react";
-import {
-  getRewardsPage,
-  type StrapiIconFeature,
-  type StrapiRewardsPage,
-  type StrapiStat,
-} from "@/lib/strapi";
+import { getRewardsPage, type StrapiRewardsPage } from "@/lib/strapi";
 
 type FallbackData = Pick<
   StrapiRewardsPage,
   "ibTitle" | "ibDescription" | "ibCtaLabel" | "ibCtaHref"
-> & { ibFeatures: StrapiIconFeature[]; ibStats: StrapiStat[] };
+>;
 
 const FALLBACK: FallbackData = {
   ibTitle: "IB Program",
   ibDescription:
-    "Grow a global trading network with industry-leading payouts, deep sub-IB tools and a partner team that's actually responsive.",
+    "Finsai Trade platforms are engineered to deliver seamless execution, institutional-level tools, and reliable uptime — so you stay in control, wherever you trade. Whether you're a beginner or a pro, our platforms help you trade smarter and faster.",
   ibCtaLabel: "View All Promotions",
   ibCtaHref: "/partnerships",
-  ibFeatures: [
-    {
-      id: 1,
-      title: "Multi Asset",
-      description:
-        "Refer clients trading FX, crypto, indices, metals and stocks — earn on all volumes.",
-      iconKey: "asset",
-    },
-    {
-      id: 2,
-      title: "Personalized Dashboard",
-      description:
-        "Real-time commission tracking, sub-IB hierarchy and payout history at a glance.",
-      iconKey: "dashboard",
-    },
-    {
-      id: 3,
-      title: "Performance Bonus",
-      description:
-        "Hit monthly volume tiers and unlock booster commissions on top of base CPA.",
-      iconKey: "trophy",
-    },
-    {
-      id: 4,
-      title: "Strategy Support",
-      description:
-        "Dedicated success manager, co-branded creatives and conversion playbooks included.",
-      iconKey: "support",
-    },
-  ],
-  ibStats: [
-    { id: 1, value: "268", label: "Total IB Partner" },
-    { id: 2, value: "$36,702.35", label: "Total IB Earnings" },
-    { id: 3, value: "136", label: "Active Network" },
-  ],
 };
 
-function iconFor(key: string | null | undefined): ReactNode {
-  switch (key) {
-    case "dashboard":
-      return <DashboardIcon />;
-    case "trophy":
-      return <TrophyIcon />;
-    case "support":
-      return <SupportIcon />;
-    case "asset":
-    default:
-      return <AssetIcon />;
-  }
+const FEATURE_CARD_BG =
+  "linear-gradient(157.26deg, #050208 -0.93%, #056FB4 444.35%) padding-box, linear-gradient(180deg, #056FB4 0%, #7DB9D6 100%) border-box";
+
+type Feature = {
+  title: string;
+  description: string;
+  icon: ReactNode;
+  top: number;
+  left: number;
+};
+
+function CommissionsIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <rect x="3" y="7" width="18" height="13" rx="2" stroke="#56A4E0" strokeWidth="1.6" />
+      <path d="M3 11h18" stroke="#56A4E0" strokeWidth="1.6" />
+      <path
+        d="M8 7V5a4 4 0 0 1 8 0v2"
+        stroke="#56A4E0"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
 }
+
+function DashboardIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M5 19V11" stroke="#56A4E0" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M12 19V5" stroke="#56A4E0" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M19 19v-6" stroke="#56A4E0" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M3 21h18" stroke="#56A4E0" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function PromoToolsIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3Z"
+        stroke="#56A4E0"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path
+        d="m9 12 2 2 4-4"
+        stroke="#56A4E0"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function StrategyIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M4 20V7m8 13V4m8 16v-9"
+        stroke="#56A4E0"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <circle cx="4" cy="7" r="1.6" fill="#56A4E0" />
+      <circle cx="12" cy="4" r="1.6" fill="#56A4E0" />
+      <circle cx="20" cy="11" r="1.6" fill="#56A4E0" />
+    </svg>
+  );
+}
+
+const FEATURES_TOP = 382.31;
+const FEATURES_LEFT = 98;
+const CARD_W = 318.37;
+const CARD_H = 99.56;
+const CARD_GAP = 20.25;
+
+const FEATURES: Feature[] = [
+  {
+    title: "Multi-tier Commissions",
+    description: "Deep dive into market dynamics with institutional tools.",
+    icon: <CommissionsIcon />,
+    top: FEATURES_TOP,
+    left: FEATURES_LEFT,
+  },
+  {
+    title: "Live Dashboard",
+    description: "Real-time quotes and lightning-fast execution speed.",
+    icon: <DashboardIcon />,
+    top: FEATURES_TOP,
+    left: FEATURES_LEFT + CARD_W + CARD_GAP,
+  },
+  {
+    title: "Promo code & Tools",
+    description: "Advanced calculators and margin alerts to stay safe.",
+    icon: <PromoToolsIcon />,
+    top: FEATURES_TOP + CARD_H + CARD_GAP,
+    left: FEATURES_LEFT,
+  },
+  {
+    title: "Strategy Support",
+    description: "Backtesting engines to refine your trading edge.",
+    icon: <StrategyIcon />,
+    top: FEATURES_TOP + CARD_H + CARD_GAP,
+    left: FEATURES_LEFT + CARD_W + CARD_GAP,
+  },
+];
 
 export default async function RewardsIBProgramSection() {
   const data = await getRewardsPage();
@@ -75,313 +132,205 @@ export default async function RewardsIBProgramSection() {
   const description = data?.ibDescription ?? FALLBACK.ibDescription;
   const ctaLabel = data?.ibCtaLabel ?? FALLBACK.ibCtaLabel;
   const ctaHref = data?.ibCtaHref ?? FALLBACK.ibCtaHref;
-  const features =
-    data?.ibFeatures && data.ibFeatures.length > 0
-      ? data.ibFeatures
-      : FALLBACK.ibFeatures;
-  const stats =
-    data?.ibStats && data.ibStats.length > 0 ? data.ibStats : FALLBACK.ibStats;
+
   return (
-    <section style={{ background: "#050208", padding: "40px 0 80px" }}>
+    <section
+      style={{
+        position: "relative",
+        width: "1440px",
+        height: "740px",
+        margin: "0 auto",
+        background: "#050208",
+        boxSizing: "border-box",
+      }}
+    >
+      {/* Left: title + description */}
       <div
         style={{
-          width: "1280px",
-          maxWidth: "calc(100% - 80px)",
-          margin: "0 auto",
-          padding: "40px",
-          borderRadius: "20px",
-          border: "1px solid rgba(125,185,214,0.2)",
-          background:
-            "linear-gradient(157.26deg, rgba(10,18,32,0.85) 0%, rgba(5,111,180,0.18) 100%)",
-          display: "grid",
-          gridTemplateColumns: "1.05fr 1fr",
-          gap: "48px",
-          alignItems: "flex-start",
+          position: "absolute",
+          top: "113px",
+          left: "80px",
+          width: "660px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-          <h2
-            style={{
-              margin: 0,
-              fontFamily: "var(--font-sora, Sora)",
-              fontWeight: 600,
-              fontSize: "32px",
-              lineHeight: "40px",
-              color: "#FFFFFF",
-            }}
-          >
-            {title}
-          </h2>
-          <p
-            style={{
-              margin: 0,
-              maxWidth: "440px",
-              fontFamily: "var(--font-inter, Inter)",
-              fontWeight: 400,
-              fontSize: "14px",
-              lineHeight: "22px",
-              color: "rgba(255,255,255,0.65)",
-            }}
-          >
-            {description}
-          </p>
+        <h2
+          style={{
+            margin: 0,
+            fontFamily: "var(--font-sora, Sora)",
+            fontWeight: 600,
+            fontSize: "44px",
+            lineHeight: "100%",
+            letterSpacing: "-0.01em",
+            color: "#FFFFFF",
+          }}
+        >
+          {title}
+        </h2>
+        <p
+          style={{
+            margin: 0,
+            maxWidth: "640px",
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 400,
+            fontSize: "16px",
+            lineHeight: "26px",
+            color: "rgba(255,255,255,0.7)",
+          }}
+        >
+          {description}
+        </p>
+      </div>
 
-          <Link
-            href={ctaHref}
-            className="btn-text"
-            style={{
-              alignSelf: "flex-start",
-              boxSizing: "border-box",
-              padding: "11px 22px",
-              borderRadius: "8px",
-              background:
-                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-              textDecoration: "none",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: 500,
-              fontSize: "14px",
-            }}
-          >
-            {ctaLabel}
-          </Link>
+      {/* View All Promotions button */}
+      <Link
+        href={ctaHref}
+        className="btn-text"
+        style={{
+          position: "absolute",
+          top: "298px",
+          left: "98px",
+          width: "277.108px",
+          height: "56px",
+          paddingTop: "14px",
+          paddingBottom: "14px",
+          paddingLeft: "33px",
+          paddingRight: "33px",
+          gap: "18px",
+          borderRadius: "28.83px",
+          background:
+            "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+          textDecoration: "none",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#FFFFFF",
+          fontFamily: "var(--font-sora, Sora)",
+          fontWeight: 500,
+          fontSize: "16px",
+          lineHeight: "100%",
+          boxSizing: "border-box",
+          whiteSpace: "nowrap",
+        }}
+      >
+        <span>{ctaLabel}</span>
+        <ArrowRightIcon />
+      </Link>
 
-          <div
-            style={{
-              marginTop: "8px",
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "16px",
-            }}
-          >
-            {features.map((f) => (
-              <div
-                key={f.id ?? f.title}
-                style={{
-                  padding: "16px",
-                  borderRadius: "12px",
-                  border: "1px solid rgba(125,185,214,0.18)",
-                  background:
-                    "linear-gradient(157.26deg, #050208 -0.93%, #056FB4 444.35%)",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "8px",
-                }}
-              >
-                <div
-                  style={{
-                    width: "36px",
-                    height: "36px",
-                    borderRadius: "8px",
-                    background:
-                      "linear-gradient(180deg, rgba(125,185,214,0.18) 0%, rgba(5,111,180,0.08) 100%)",
-                    border: "1px solid rgba(125,185,214,0.25)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  {iconFor(f.iconKey)}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "var(--font-sora, Sora)",
-                    fontWeight: 600,
-                    fontSize: "14px",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  {f.title}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "var(--font-inter, Inter)",
-                    fontWeight: 400,
-                    fontSize: "12px",
-                    lineHeight: "18px",
-                    color: "rgba(255,255,255,0.6)",
-                  }}
-                >
-                  {f.description ?? ""}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* 2x2 feature cards */}
+      {FEATURES.map((f) => (
+        <FeatureCard key={f.title} feature={f} />
+      ))}
 
-        {/* Right side — network diagram + stat tiles */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          <NetworkDiagram />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "16px",
-            }}
-          >
-            {stats.map((s) => (
-              <StatTile key={s.id ?? s.label} label={s.label} value={s.value} />
-            ))}
-          </div>
-        </div>
+      {/* Right-side image */}
+      <div
+        style={{
+          position: "absolute",
+          top: "113px",
+          left: "803px",
+          width: "558px",
+          height: "506px",
+        }}
+      >
+        <Image
+          src="/rewards/ib-network.png"
+          alt="IB Performance"
+          fill
+          sizes="558px"
+          priority
+          style={{ objectFit: "contain" }}
+        />
       </div>
     </section>
   );
 }
 
-function StatTile({ label, value }: { label: string; value: string }) {
+function FeatureCard({ feature }: { feature: Feature }) {
   return (
     <div
       style={{
-        padding: "14px 16px",
-        borderRadius: "12px",
-        border: "1px solid rgba(125,185,214,0.18)",
-        background:
-          "linear-gradient(180deg, rgba(15,21,35,0.85) 0%, rgba(5,111,180,0.08) 100%)",
+        position: "absolute",
+        top: `${feature.top}px`,
+        left: `${feature.left}px`,
+        width: "318.37px",
+        height: "99.56px",
+        borderRadius: "10.12px",
+        border: "0.84px solid transparent",
+        background: FEATURE_CARD_BG,
+        backdropFilter: "blur(8.4375px)",
+        WebkitBackdropFilter: "blur(8.4375px)",
+        padding: "20.25px",
+        boxSizing: "border-box",
         display: "flex",
-        flexDirection: "column",
-        gap: "6px",
+        alignItems: "flex-start",
+        gap: "13.5px",
       }}
     >
-      <span
+      <div
         style={{
-          fontFamily: "var(--font-inter, Inter)",
-          fontWeight: 400,
-          fontSize: "11px",
-          color: "rgba(255,255,255,0.55)",
-          textTransform: "uppercase",
-          letterSpacing: "0.5px",
+          flexShrink: 0,
+          width: "32px",
+          height: "32px",
+          borderRadius: "8px",
+          background:
+            "linear-gradient(180deg, rgba(125,185,214,0.18) 0%, rgba(5,111,180,0.08) 100%)",
+          border: "1px solid rgba(125,185,214,0.25)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        {label}
-      </span>
-      <span
-        style={{
-          fontFamily: "var(--font-sora, Sora)",
-          fontWeight: 600,
-          fontSize: "20px",
-          color: "#FFFFFF",
-        }}
-      >
-        {value}
-      </span>
+        {feature.icon}
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: "4px", minWidth: 0 }}>
+        <h3
+          style={{
+            margin: 0,
+            fontFamily: "var(--font-sora, Sora)",
+            fontWeight: 600,
+            fontSize: "14px",
+            lineHeight: "20px",
+            color: "#FFFFFF",
+          }}
+        >
+          {feature.title}
+        </h3>
+        <p
+          style={{
+            margin: 0,
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 400,
+            fontSize: "12px",
+            lineHeight: "18px",
+            color: "rgba(255,255,255,0.6)",
+          }}
+        >
+          {feature.description}
+        </p>
+      </div>
     </div>
   );
 }
 
-function NetworkDiagram() {
+function ArrowRightIcon() {
   return (
-    <div
-      style={{
-        position: "relative",
-        height: "260px",
-        borderRadius: "16px",
-        border: "1px solid rgba(125,185,214,0.18)",
-        background:
-          "radial-gradient(circle at 50% 50%, rgba(5,111,180,0.18) 0%, rgba(0,0,0,0) 60%), #060B14",
-        overflow: "hidden",
-      }}
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
-      <svg
-        viewBox="0 0 540 260"
-        width="100%"
-        height="100%"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden
-      >
-        <defs>
-          <linearGradient id="ib-grad" x1="0" x2="1" y1="0" y2="1">
-            <stop stopColor="#7DB9D6" />
-            <stop offset="1" stopColor="#056FB4" />
-          </linearGradient>
-        </defs>
-
-        {/* Connecting lines */}
-        <g stroke="rgba(125,185,214,0.4)" strokeWidth="1">
-          <line x1="270" y1="130" x2="80" y2="50" />
-          <line x1="270" y1="130" x2="80" y2="210" />
-          <line x1="270" y1="130" x2="460" y2="50" />
-          <line x1="270" y1="130" x2="460" y2="210" />
-          <line x1="270" y1="130" x2="540" y2="130" />
-          <line x1="270" y1="130" x2="0" y2="130" />
-        </g>
-
-        {/* Satellite avatars */}
-        {[
-          [80, 50],
-          [80, 210],
-          [460, 50],
-          [460, 210],
-          [20, 130],
-          [520, 130],
-        ].map(([x, y]) => (
-          <g key={`${x}-${y}`}>
-            <circle cx={x} cy={y} r="22" fill="#0B1726" stroke="url(#ib-grad)" strokeWidth="1.4" />
-            <circle cx={x} cy={y - 6} r="6" fill="url(#ib-grad)" />
-            <path
-              d={`M${x - 10} ${y + 12} a10 10 0 0 1 20 0`}
-              fill="url(#ib-grad)"
-            />
-          </g>
-        ))}
-
-        {/* Central avatar */}
-        <circle cx="270" cy="130" r="36" fill="#0B1726" stroke="url(#ib-grad)" strokeWidth="1.6" />
-        <circle cx="270" cy="120" r="10" fill="url(#ib-grad)" />
-        <path d="M255 145a15 15 0 0 1 30 0" fill="url(#ib-grad)" />
-      </svg>
-    </div>
-  );
-}
-
-function AssetIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
-      <circle cx="9" cy="9" r="6.5" stroke="#7DB9D6" strokeWidth="1.5" />
-      <path d="M9 2.5v13M2.5 9h13" stroke="#7DB9D6" strokeWidth="1.5" />
-    </svg>
-  );
-}
-
-function DashboardIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
-      <rect x="2.5" y="2.5" width="13" height="13" rx="2" stroke="#7DB9D6" strokeWidth="1.5" />
-      <path d="M2.5 7h13" stroke="#7DB9D6" strokeWidth="1.5" />
-      <path d="M7 7v8.5" stroke="#7DB9D6" strokeWidth="1.5" />
-    </svg>
-  );
-}
-
-function TrophyIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
       <path
-        d="M5 2.5h8v3a4 4 0 0 1-8 0v-3Z"
-        stroke="#7DB9D6"
-        strokeWidth="1.5"
+        d="M5 12h14m0 0-6-6m6 6-6 6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path d="M9 9.5v3" stroke="#7DB9D6" strokeWidth="1.5" strokeLinecap="round" />
-      <path d="M6 15.5h6" stroke="#7DB9D6" strokeWidth="1.5" strokeLinecap="round" />
-      <path d="M5 4h-2v2a2 2 0 0 0 2 2M13 4h2v2a2 2 0 0 1-2 2" stroke="#7DB9D6" strokeWidth="1.5" />
-    </svg>
-  );
-}
-
-function SupportIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
-      <circle cx="9" cy="9" r="6.5" stroke="#7DB9D6" strokeWidth="1.5" />
-      <path
-        d="M9 6.5a1.6 1.6 0 0 1 1.4 2.4c-.3.6-1.4.8-1.4 1.6"
-        stroke="#7DB9D6"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <circle cx="9" cy="12.5" r="0.7" fill="#7DB9D6" />
     </svg>
   );
 }

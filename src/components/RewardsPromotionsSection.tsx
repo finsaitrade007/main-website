@@ -1,58 +1,54 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
-import {
-  getRewardsPage,
-  type StrapiIconFeature,
-  type StrapiRewardsPage,
-} from "@/lib/strapi";
+import Image from "next/image";
+import { getRewardsPage, type StrapiRewardsPage } from "@/lib/strapi";
 
 type FallbackData = Pick<
   StrapiRewardsPage,
   "promotionsTitle" | "promotionsDescription" | "promotionsCtaLabel" | "promotionsCtaHref"
-> & { promotionCards: StrapiIconFeature[] };
+>;
 
 const FALLBACK: FallbackData = {
   promotionsTitle: "Promotions",
   promotionsDescription:
-    "Boost every deposit, every trade and every milestone. Browse all our live offers and grab the ones that fit your strategy.",
+    "Our suite of trading tools is designed to empower you at every step—from deep market analysis and strategy development to precise execution and robust risk control.",
   promotionsCtaLabel: "View All Promotions",
   promotionsCtaHref: "#",
-  promotionCards: [
-    {
-      id: 1,
-      title: "Bonuses",
-      description:
-        "Unlock deposit bonuses, signup credits and seasonal boosts as soon as you fund your account.",
-      iconKey: "percent",
-    },
-    {
-      id: 2,
-      title: "Risk-Free Trial Trades",
-      description:
-        "Test new strategies with protected positions — we cover the losses on qualifying trades.",
-      iconKey: "shield",
-    },
-    {
-      id: 3,
-      title: "Special Rewards",
-      description:
-        "Limited-time campaigns with cashback, free spreads and gear drops for active traders.",
-      iconKey: "gift",
-    },
-  ],
 };
 
-function iconFor(key: string | null | undefined): ReactNode {
-  switch (key) {
-    case "shield":
-      return <ShieldIcon />;
-    case "gift":
-      return <GiftIcon />;
-    case "percent":
-    default:
-      return <PercentIcon />;
-  }
-}
+const CARD_BG =
+  "linear-gradient(159.73deg, #050208 63.16%, #056FB4 447.31%) padding-box, linear-gradient(180deg, #056FB4 0%, #7DB9D6 100%) border-box";
+
+type Promo = {
+  image: string;
+  title: string;
+  description: string;
+  ctaHref: string;
+  left: number;
+};
+
+const PROMOS: Promo[] = [
+  {
+    image: "/rewards/clock.png",
+    title: "Bonus Hours",
+    description: "Deep dive into market dynamics with institutional tools.",
+    ctaHref: "#",
+    left: 74,
+  },
+  {
+    image: "/rewards/shield.png",
+    title: "Risk Free First Trade",
+    description: "Deep dive into market dynamics with institutional tools.",
+    ctaHref: "#",
+    left: 74 + 273,
+  },
+  {
+    image: "/rewards/gift.png",
+    title: "Deposit Rewards",
+    description: "Deep dive into market dynamics with institutional tools.",
+    ctaHref: "#",
+    left: 74 + 546,
+  },
+];
 
 export default async function RewardsPromotionsSection() {
   const data = await getRewardsPage();
@@ -60,10 +56,7 @@ export default async function RewardsPromotionsSection() {
   const description = data?.promotionsDescription ?? FALLBACK.promotionsDescription;
   const ctaLabel = data?.promotionsCtaLabel ?? FALLBACK.promotionsCtaLabel;
   const ctaHref = data?.promotionsCtaHref ?? FALLBACK.promotionsCtaHref;
-  const promos =
-    data?.promotionCards && data.promotionCards.length > 0
-      ? data.promotionCards
-      : FALLBACK.promotionCards;
+
   return (
     <section
       id="promotions"
@@ -71,208 +64,200 @@ export default async function RewardsPromotionsSection() {
         position: "relative",
         boxSizing: "border-box",
         width: "1440px",
-        maxWidth: "100%",
         height: "454px",
         margin: "0 auto",
-        padding: "80px",
         background: "#050208",
       }}
     >
+      {/* Cards */}
+      {PROMOS.map((promo) => (
+        <PromoCard key={promo.title} promo={promo} />
+      ))}
+
+      {/* Right content: title + description */}
       <div
         style={{
-          width: "100%",
-          height: "100%",
-          boxSizing: "border-box",
-          padding: "40px",
-          borderRadius: "20px",
-          border: "1px solid rgba(125,185,214,0.2)",
-          background:
-            "linear-gradient(157.26deg, rgba(10,18,32,0.85) 0%, rgba(5,111,180,0.18) 100%)",
-          display: "grid",
-          gridTemplateColumns: "320px 1fr",
-          gap: "40px",
-          alignItems: "center",
+          position: "absolute",
+          top: "76px",
+          left: "964px",
+          width: "402px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          <h2
-            style={{
-              margin: 0,
-              fontFamily: "var(--font-sora, Sora)",
-              fontWeight: 600,
-              fontSize: "36px",
-              lineHeight: "44px",
-              color: "#FFFFFF",
-            }}
-          >
-            {title}
-          </h2>
-          <p
-            style={{
-              margin: 0,
-              fontFamily: "var(--font-inter, Inter)",
-              fontWeight: 400,
-              fontSize: "14px",
-              lineHeight: "22px",
-              color: "rgba(255,255,255,0.65)",
-            }}
-          >
-            {description}
-          </p>
-          <Link
-            href={ctaHref}
-            className="btn-text"
-            style={{
-              alignSelf: "flex-start",
-              boxSizing: "border-box",
-              padding: "11px 22px",
-              borderRadius: "8px",
-              background:
-                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-              textDecoration: "none",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: 500,
-              fontSize: "14px",
-            }}
-          >
-            {ctaLabel}
-          </Link>
-        </div>
-
-        <div
+        <h2
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "20px",
+            margin: 0,
+            fontFamily: "var(--font-sora, Sora)",
+            fontWeight: 600,
+            fontSize: "36px",
+            lineHeight: "44px",
+            color: "#FFFFFF",
           }}
         >
-          {promos.map((p) => (
-            <article
-              key={p.id ?? p.title}
-              style={{
-                position: "relative",
-                padding: "24px",
-                borderRadius: "16px",
-                border: "1px solid rgba(125,185,214,0.18)",
-                background:
-                  "linear-gradient(157.26deg, #050208 -0.93%, #056FB4 444.35%)",
-                display: "flex",
-                flexDirection: "column",
-                gap: "14px",
-                minHeight: "220px",
-              }}
-            >
-              <div
-                style={{
-                  width: "44px",
-                  height: "44px",
-                  borderRadius: "10px",
-                  background:
-                    "linear-gradient(180deg, rgba(125,185,214,0.18) 0%, rgba(5,111,180,0.08) 100%)",
-                  border: "1px solid rgba(125,185,214,0.25)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {iconFor(p.iconKey)}
-              </div>
-              <h3
-                style={{
-                  margin: 0,
-                  fontFamily: "var(--font-sora, Sora)",
-                  fontWeight: 600,
-                  fontSize: "18px",
-                  lineHeight: "24px",
-                  color: "#FFFFFF",
-                }}
-              >
-                {p.title}
-              </h3>
-              <p
-                style={{
-                  margin: 0,
-                  flex: 1,
-                  fontFamily: "var(--font-inter, Inter)",
-                  fontWeight: 400,
-                  fontSize: "13px",
-                  lineHeight: "20px",
-                  color: "rgba(255,255,255,0.6)",
-                }}
-              >
-                {p.description}
-              </p>
-              <Link
-                href="#"
-                style={{
-                  marginTop: "auto",
-                  fontFamily: "var(--font-inter, Inter)",
-                  fontWeight: 500,
-                  fontSize: "13px",
-                  color: "#7DB9D6",
-                  textDecoration: "none",
-                }}
-              >
-                Learn more →
-              </Link>
-            </article>
-          ))}
-        </div>
+          {title}
+        </h2>
+        <p
+          style={{
+            margin: 0,
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 400,
+            fontSize: "15px",
+            lineHeight: "24px",
+            color: "rgba(255,255,255,0.7)",
+          }}
+        >
+          {description}
+        </p>
       </div>
+
+      {/* View All Promotions button */}
+      <Link
+        href={ctaHref}
+        className="btn-text"
+        style={{
+          position: "absolute",
+          top: "300px",
+          left: "964px",
+          width: "277.108px",
+          height: "56px",
+          paddingTop: "14px",
+          paddingBottom: "14px",
+          paddingLeft: "33px",
+          paddingRight: "33px",
+          gap: "18px",
+          borderRadius: "28.83px",
+          background:
+            "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+          textDecoration: "none",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#FFFFFF",
+          fontFamily: "var(--font-sora, Sora)",
+          fontWeight: 500,
+          fontSize: "16px",
+          lineHeight: "100%",
+          boxSizing: "border-box",
+          whiteSpace: "nowrap",
+        }}
+      >
+        <span>{ctaLabel}</span>
+        <ArrowRightIcon />
+      </Link>
     </section>
   );
 }
 
-function PercentIcon() {
+function PromoCard({ promo }: { promo: Promo }) {
   return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden>
-      <circle cx="6.5" cy="6.5" r="2.5" stroke="#7DB9D6" strokeWidth="1.5" />
-      <circle cx="15.5" cy="15.5" r="2.5" stroke="#7DB9D6" strokeWidth="1.5" />
-      <path d="M17 5L5 17" stroke="#7DB9D6" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
+    <div
+      style={{
+        position: "absolute",
+        top: "76px",
+        left: `${promo.left}px`,
+        width: "257px",
+        height: "301px",
+        borderRadius: "12px",
+        border: "1px solid transparent",
+        background: CARD_BG,
+        boxSizing: "border-box",
+        overflow: "hidden",
+      }}
+    >
+      <Image
+        src={promo.image}
+        alt={promo.title}
+        width={148}
+        height={148}
+        style={{
+          position: "absolute",
+          top: "3px",
+          left: "54px",
+          objectFit: "contain",
+        }}
+      />
+
+      <div
+        style={{
+          position: "absolute",
+          top: "168px",
+          left: "20px",
+          right: "20px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "8px",
+        }}
+      >
+        <h3
+          style={{
+            margin: 0,
+            fontFamily: "var(--font-sora, Sora)",
+            fontWeight: 600,
+            fontSize: "18px",
+            lineHeight: "24px",
+            color: "#FFFFFF",
+          }}
+        >
+          {promo.title}
+        </h3>
+        <p
+          style={{
+            margin: 0,
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 400,
+            fontSize: "13px",
+            lineHeight: "20px",
+            color: "rgba(255,255,255,0.6)",
+          }}
+        >
+          {promo.description}
+        </p>
+      </div>
+
+      <Link
+        href={promo.ctaHref}
+        style={{
+          position: "absolute",
+          bottom: "20px",
+          left: "20px",
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "6px",
+          fontFamily: "var(--font-inter, Inter)",
+          fontWeight: 400,
+          fontStyle: "normal",
+          fontSize: "18px",
+          lineHeight: "27px",
+          letterSpacing: "0%",
+          color: "#056FB4",
+          textDecoration: "none",
+        }}
+      >
+        <span>Learn More</span>
+        <ArrowRightIcon small />
+      </Link>
+    </div>
   );
 }
 
-function ShieldIcon() {
+function ArrowRightIcon({ small = false }: { small?: boolean }) {
+  const size = small ? 14 : 18;
   return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
       <path
-        d="M11 2.75 4 5.25v5c0 4.4 2.85 7.3 7 9 4.15-1.7 7-4.6 7-9v-5L11 2.75Z"
-        stroke="#7DB9D6"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="m7.5 11 2.5 2.5L15 9"
-        stroke="#7DB9D6"
-        strokeWidth="1.5"
+        d="M5 12h14m0 0-6-6m6 6-6 6"
+        stroke="currentColor"
+        strokeWidth="2"
         strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function GiftIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden>
-      <rect
-        x="3"
-        y="8"
-        width="16"
-        height="11"
-        rx="1.5"
-        stroke="#7DB9D6"
-        strokeWidth="1.5"
-      />
-      <path d="M3 12h16" stroke="#7DB9D6" strokeWidth="1.5" />
-      <path d="M11 8v11" stroke="#7DB9D6" strokeWidth="1.5" />
-      <path
-        d="M11 8c-2-3-6-2-5 0 .8 1.5 5 0 5 0Zm0 0c2-3 6-2 5 0-.8 1.5-5 0-5 0Z"
-        stroke="#7DB9D6"
-        strokeWidth="1.5"
         strokeLinejoin="round"
       />
     </svg>

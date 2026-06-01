@@ -1,6 +1,5 @@
 import RewardsHeroSection from "@/components/RewardsHeroSection";
 import RewardsPromotionsSection from "@/components/RewardsPromotionsSection";
-import RewardsLoyaltyProgramSection from "@/components/RewardsLoyaltyProgramSection";
 import RewardsIBProgramSection from "@/components/RewardsIBProgramSection";
 import RewardsCTASection from "@/components/RewardsCTASection";
 
@@ -15,7 +14,6 @@ export default function RewardsPage() {
     <>
       <RewardsHeroSection />
       <RewardsPromotionsSection />
-      <RewardsLoyaltyProgramSection />
       <RewardsIBProgramSection />
       <RewardsCTASection />
     </>
