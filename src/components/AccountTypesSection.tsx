@@ -1,38 +1,65 @@
 "use client";
-import { useState } from "react";
-import Image from "next/image";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 
 const accounts = [
   {
     id: "choice",
     label: "Smart Choice",
-    watermark: "CHOICE",
+    watermark: {
+      text: "CHOICE",
+      fontSize: "209.11px",
+      lineHeight: "209.11px",
+      width: "873px",
+      height: "210px",
+      left: "-137.08px",
+      stroke: "1.16px",
+    },
     desc: "A Beginner-Friendly Account With Low Entry Requirements - Ideal For New Traders Starting Their Journey.",
     features: ["Low Minimum Deposit", "Competitive Spreads", "Zero Commission"],
   },
   {
     id: "pro",
     label: "Smart Pro",
-    watermark: "PRO",
+    watermark: {
+      text: "PRO",
+      fontSize: "180px",
+      lineHeight: "180px",
+      width: "550px",
+      height: "180px",
+      left: "50%",
+      stroke: "1px",
+    },
     desc: "An Intermediate Account Designed For Growing Traders Who Want Better Conditions And More Control.",
     features: ["Lower Spreads", "Higher Leverage", "Priority Support"],
   },
   {
     id: "ecn",
     label: "SMART ECN",
-    watermark: "ECN",
+    watermark: {
+      text: "ECN",
+      fontSize: "180px",
+      lineHeight: "180px",
+      width: "550px",
+      height: "180px",
+      left: "50%",
+      stroke: "1px",
+    },
     desc: "A Professional Account With Raw ECN Spreads And Ultra-Fast Execution For Serious Traders.",
     features: ["Raw ECN Spreads", "Fastest Execution", "Dedicated Manager"],
   },
 ];
 
+const ACCOUNT_ORDER = ["choice", "pro", "ecn"];
+const CYCLE_DELAY = 5000;
+
+// Approximation of spring: mass=1, stiffness=14.69, damping=8.57 (overdamped, ζ≈1.12)
+const SPRING_TRANSITION = "width 0.95s cubic-bezier(0.4, 0, 0.2, 1)";
+
 const CARD_DARK = "#06090F";
 const RADIUS = "20.91px";
 const COLLAPSED_PX = 76;
 const GAP_PX = 10;
-const SQUEEZE_EASING = "cubic-bezier(0.85, 0, 0.15, 1)";
-const SQUEEZE_DURATION = "0.55s";
 const CARD_BORDER_GRADIENT =
   "linear-gradient(179.53deg, #056FB4 0.41%, rgba(5, 111, 180, 0.6) 99.59%)";
 const CARD_BACKGROUND = `linear-gradient(${CARD_DARK}, ${CARD_DARK}) padding-box, ${CARD_BORDER_GRADIENT} border-box`;
@@ -67,7 +94,7 @@ function AccountCard({
         position: "relative",
         overflow: "hidden",
         cursor: isActive ? "default" : "pointer",
-        transition: `width ${SQUEEZE_DURATION} ${SQUEEZE_EASING}`,
+        transition: SPRING_TRANSITION,
         boxSizing: "border-box",
       }}
     >
@@ -105,7 +132,7 @@ function AccountCard({
         style={{
           position: "absolute",
           inset: 0,
-          padding: "52px 48px 0",
+          padding: "36px 48px 0",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -124,7 +151,7 @@ function AccountCard({
             fontWeight: 700,
             fontSize: "36px",
             color: "#FFFFFF",
-            marginBottom: "18px",
+            marginBottom: "12px",
             whiteSpace: "nowrap",
           }}
         >
@@ -134,11 +161,15 @@ function AccountCard({
         <p
           style={{
             fontFamily: "var(--font-inter, Inter)",
-            fontSize: "14px",
-            lineHeight: "23px",
-            color: "rgba(255,255,255,0.55)",
+            fontWeight: 400,
+            fontSize: "15px",
+            lineHeight: "27.68px",
+            letterSpacing: "0%",
+            textAlign: "center",
+            textTransform: "capitalize",
+            color: "#FFFFFF",
             maxWidth: "620px",
-            marginBottom: "28px",
+            marginBottom: "16px",
           }}
         >
           {account.desc}
@@ -149,7 +180,7 @@ function AccountCard({
             display: "flex",
             alignItems: "center",
             gap: "28px",
-            marginBottom: "40px",
+            marginBottom: "24px",
           }}
         >
           {account.features.map((f) => (
@@ -160,8 +191,13 @@ function AccountCard({
                 alignItems: "center",
                 gap: "8px",
                 fontFamily: "var(--font-inter, Inter)",
-                fontSize: "14px",
-                color: "rgba(255,255,255,0.85)",
+                fontWeight: 400,
+                fontSize: "15px",
+                lineHeight: "27.68px",
+                letterSpacing: "0%",
+                textAlign: "center",
+                textTransform: "capitalize",
+                color: "#FFFFFF",
                 whiteSpace: "nowrap",
               }}
             >
@@ -196,26 +232,40 @@ function AccountCard({
             zIndex: 2,
           }}
         >
-          Open An Account &nbsp;→
+          Open Account &nbsp;→
         </Link>
 
-        <Image
+        <div
           aria-hidden
-          src="/choice-watermark.png"
-          alt=""
-          width={700}
-          height={150}
           style={{
             position: "absolute",
-            bottom: 0,
-            left: "-1px",
-            width: "700px",
-            height: "150px",
+            bottom: "-25px",
+            left: account.watermark.left,
+            transform: account.watermark.left === "50%" ? "translateX(-50%)" : undefined,
+            width: account.watermark.width,
             pointerEvents: "none",
             userSelect: "none",
             zIndex: 1,
           }}
-        />
+        >
+          <span
+            style={{
+              fontFamily: "var(--font-sora, Sora)",
+              fontWeight: 400,
+              fontSize: account.watermark.fontSize,
+              lineHeight: account.watermark.lineHeight,
+              letterSpacing: "0%",
+              textAlign: "center",
+              textTransform: "uppercase",
+              color: "transparent",
+              WebkitTextStroke: `${account.watermark.stroke} #606060`,
+              width: "100%",
+              display: "block",
+            }}
+          >
+            {account.watermark.text}
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -223,6 +273,32 @@ function AccountCard({
 
 export default function AccountTypesSection() {
   const [activeId, setActiveId] = useState("choice");
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startCycle = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setActiveId((prev) => {
+        const idx = ACCOUNT_ORDER.indexOf(prev);
+        return ACCOUNT_ORDER[(idx + 1) % ACCOUNT_ORDER.length];
+      });
+    }, CYCLE_DELAY);
+  }, []);
+
+  useEffect(() => {
+    startCycle();
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [startCycle]);
+
+  const handleClick = useCallback(
+    (id: string) => {
+      setActiveId(id);
+      startCycle();
+    },
+    [startCycle],
+  );
 
   return (
     <section style={{ background: "#050208", padding: "100px 0" }}>
@@ -262,7 +338,7 @@ export default function AccountTypesSection() {
               account={account}
               isActive={account.id === activeId}
               total={accounts.length}
-              onClick={() => setActiveId(account.id)}
+              onClick={() => handleClick(account.id)}
             />
           ))}
         </div>

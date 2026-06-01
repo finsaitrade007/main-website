@@ -31,7 +31,7 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     documentId: "fb-mt5",
     title: "MT5",
     description:
-      "The industry's gold standard for multi-asset trading. Advanced charting, automated trading, real-time analysis, and multi-asset access.",
+      "MetaTrader 5 is an advanced trading platform for Forex, stocks, and other assets. It offers powerful tools for analysis, automated trading, backtesting, and risk management, catering to both beginners and expert traders.Our platform equips you with an array of sophisticated instruments designed to help you analyze market trends, track real-time data, and make informed decisions. Whether you're charting patterns, setting indicators, or monitoring volatility, our comprehensive suite of tools offers the edge you need to navigate the crypto markets confidently. Experience the synergy of technology and trading at its finest with Finsai Trade.",
     size: "large",
     row: 1,
     order: 1,
@@ -50,7 +50,6 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     order: 3,
     mockupImage: null,
     iconImage: null,
-    localMockupImage: "/platforms/web-terminal-mockup.png",
     localIconImage: "/platforms/social-icon.png",
   },
   {
@@ -89,9 +88,10 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
         className="platform-card-text"
         style={{
           position: "absolute",
-          top: "32px",
-          left: "40px",
-          width: "640px",
+          top: "20px",
+          left: "21px",
+          width: "831px",
+          height: "162px",
           overflow: "hidden",
         }}
       >
@@ -159,11 +159,8 @@ function PlatformCard({ p }: { p: StrapiPlatform }) {
     <div
       style={{
         position: "relative",
-        background: CARD_BG,
-        border:
-          p.size === "large"
-            ? "2px solid rgba(5,111,180,0.4)"
-            : "1px solid rgba(5,111,180,0.35)",
+        background: `linear-gradient(${CARD_BG}, ${CARD_BG}) padding-box, ${WIDE_CARD_BORDER_GRADIENT} border-box`,
+        border: p.size === "large" ? "2px solid transparent" : "1px solid transparent",
         borderRadius: RADIUS,
         height: H,
         padding: "24px 28px",
@@ -287,9 +284,11 @@ export default async function PlatformsSection() {
         <p
           className="section-desc"
           style={{
+            width: "862px",
+            height: "120.02px",
             textAlign: "center",
-            maxWidth: "560px",
             margin: "0 auto 56px",
+            overflow: "hidden",
           }}
         >
           {header.platformsDescription}

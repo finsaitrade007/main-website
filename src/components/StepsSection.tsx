@@ -141,8 +141,10 @@ export default async function StepsSection() {
                 <h3
                   style={{
                     fontFamily: "var(--font-sora, Sora)",
-                    fontWeight: 600,
-                    fontSize: "20px",
+                    fontWeight: 400,
+                    fontSize: "32px",
+                    lineHeight: "43.49px",
+                    letterSpacing: "0%",
                     color: "#FFFFFF",
                     marginBottom: "12px",
                   }}
@@ -153,9 +155,12 @@ export default async function StepsSection() {
                 <p
                   style={{
                     fontFamily: "var(--font-inter, Inter)",
-                    fontSize: "14px",
-                    lineHeight: "24px",
-                    color: "rgba(255,255,255,0.5)",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "23px",
+                    letterSpacing: "0%",
+                    color: "#FFFFFFB2",
+                    textAlign: "center",
                     maxWidth: "280px",
                   }}
                 >
