@@ -11,9 +11,9 @@ const FALLBACK: Pick<
   | "heroPrimaryCtaHref"
 > = {
   heroBadge: "SECURE DEPOSITS & WITHDRAWALS",
-  heroTitle: "Fast & Secure Account\nFunding at Finsai Trade",
+  heroTitle: " Fund Your Trading Account with Fast and Trusted Options",
   heroDescription:
-    "Deposit and withdraw with confidence. Finsai Trade supports cards, UPI, e-wallets, crypto, and bank transfer — all secured by bank-grade encryption.",
+    "Access reliable payment solutions built for modern traders, with secure deposits and withdrawals through UPI, PayPal, crypto, cards, bank transfers, and more. ",
   heroPrimaryCtaLabel: "Deposit Funds",
   heroPrimaryCtaHref: "/register",
 };
@@ -47,32 +47,53 @@ export default async function PaymentsHeroSection() {
       <div
         style={{
           position: "absolute",
-          top: "200px",
+          top: "168px",
           left: "80px",
-          width: "650px",
+          width: "702px",
+          height: "441.2px",
           display: "flex",
           flexDirection: "column",
           gap: "24px",
           zIndex: 3,
         }}
       >
-        <span
+        <div
           style={{
             display: "inline-flex",
             alignSelf: "flex-start",
-            padding: "8px 22px",
-            background: "rgba(0,0,0,0.6)",
-            border: "1px solid rgba(255,255,255,0.2)",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "8.4px",
+            width: "342.6px",
+            height: "51.2px",
+            paddingTop: "9.6px",
+            paddingBottom: "9.6px",
+            paddingLeft: "16.8px",
+            paddingRight: "16.8px",
             borderRadius: "60px",
-            fontFamily: "var(--font-sora, Sora)",
-            fontWeight: 400,
-            fontSize: "12px",
-            color: "#FFFFFF",
-            letterSpacing: "0.1em",
+            border: "1.2px solid #FFFFFF26",
+            background: "#000000",
+            boxSizing: "border-box",
           }}
         >
-          {data.heroBadge}
-        </span>
+          <span
+            style={{
+              fontFamily: "var(--font-inter, Inter)",
+              fontWeight: 400,
+              fontSize: "19.2px",
+              lineHeight: "31.2px",
+              letterSpacing: "-0.01%",
+              background:
+                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              whiteSpace: "nowrap",
+            }}
+          >
+            Flexible Payment Solutions
+          </span>
+        </div>
 
         <h1
           style={{
@@ -107,8 +128,14 @@ export default async function PaymentsHeroSection() {
           href={data.heroPrimaryCtaHref}
           className="btn-text"
           style={{
-            padding: "14px 32px",
-            borderRadius: "28.83px",
+            width: "195px",
+            height: "48px",
+            paddingTop: "11px",
+            paddingBottom: "11px",
+            paddingLeft: "24px",
+            paddingRight: "24px",
+            gap: "16px",
+            borderRadius: "8px",
             background:
               "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
             textDecoration: "none",
@@ -116,11 +143,32 @@ export default async function PaymentsHeroSection() {
             alignItems: "center",
             justifyContent: "center",
             alignSelf: "flex-start",
+            boxSizing: "border-box",
           }}
         >
           {data.heroPrimaryCtaLabel}
         </Link>
       </div>
+
+      <div
+        style={{
+          position: "absolute",
+          top: "650px",
+          left: "782px",
+          width: "658px",
+          height: "127px",
+          background:
+            "linear-gradient(180deg, rgba(5,2,8,0) 0%, rgba(5,2,8,0.85) 60%, #050208 100%)",
+          backdropFilter: "blur(54px)",
+          WebkitBackdropFilter: "blur(54px)",
+          WebkitMaskImage:
+            "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,1) 100%)",
+          maskImage:
+            "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,1) 100%)",
+          pointerEvents: "none",
+          zIndex: 4,
+        }}
+      />
     </section>
   );
 }
