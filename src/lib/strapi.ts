@@ -19,10 +19,10 @@ type FetchOptions = {
 };
 
 export async function strapiFetch<T>(
-  _path: string,
-  _opts: FetchOptions = {},
+  path: string,
+  opts: FetchOptions = {},
 ): Promise<T | null> {
-  return null;
+  return _strapiFetchReal<T>(path, opts);
 }
 
 export async function _strapiFetchReal<T>(
@@ -65,10 +65,8 @@ export type StrapiMedia = {
 } | null;
 
 /** Resolve a Strapi media `url` to an absolute URL (Strapi may return relative paths in local dev). */
-export function strapiImageUrl(media: StrapiMedia | undefined | null): string | null {
-  if (!media?.url) return null;
-  if (media.url.startsWith("http")) return media.url;
-  return `${STRAPI_URL}${media.url}`;
+export function strapiImageUrl(_media: StrapiMedia | undefined | null): string | null {
+  return null;
 }
 
 // ─── Existing domain types ───────────────────────────────────────────
@@ -235,6 +233,14 @@ export type StrapiJourneyCard = {
   linkHref: string;
   row: "row1" | "row2";
   size: "small" | "large" | "equal";
+  order: number;
+};
+
+export type StrapiNavItem = {
+  id: number;
+  documentId: string;
+  label: string;
+  href: string;
   order: number;
 };
 
@@ -676,9 +682,31 @@ export function getPartnershipsPage() {
   );
 }
 
+export function getNavItems() {
+  return strapiFetch<StrapiNavItem[]>("nav-items?sort=order:asc", { tags: ["nav-items"] });
+}
+
 export function getBlogsPage() {
   return strapiFetch<StrapiBlogsPage>(
     "blogs-page?populate[newsArticles][populate]=image",
     { tags: ["blogs-page"] },
   );
+}
+
+export async function fetchOgImage(url: string): Promise<string | null> {
+  if (!url || url === "#" || url.startsWith("/")) return null;
+  try {
+    const res = await fetch(url, {
+      next: { revalidate: 86400 },
+      headers: { "User-Agent": "facebookexternalhit/1.1" },
+    });
+    if (!res.ok) return null;
+    const html = await res.text();
+    const m =
+      html.match(/property=["']og:image["'][^>]+content=["']([^"']+)["']/i) ||
+      html.match(/content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
+    return m?.[1] ?? null;
+  } catch {
+    return null;
+  }
 }

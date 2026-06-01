@@ -3,7 +3,9 @@ import { useState } from "react";
 import Link from "next/link";
 
 
-const navLinks = [
+type NavLink = { label: string; href: string };
+
+const DEFAULT_NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Partnerships", href: "/partnerships" },
@@ -12,7 +14,8 @@ const navLinks = [
   { label: "Blogs", href: "/blogs" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ navLinks: propLinks }: { navLinks?: NavLink[] }) {
+  const navLinks = propLinks?.length ? propLinks : DEFAULT_NAV_LINKS;
   const [open, setOpen] = useState(false);
 
   return (

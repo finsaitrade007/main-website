@@ -148,23 +148,26 @@ export default async function RewardsIBProgramSection() {
       <div
         style={{
           position: "absolute",
-          top: "113px",
-          left: "80px",
-          width: "660px",
+          top: "130px",
+          left: "104px",
+          width: "664px",
+          height: "139px",
           display: "flex",
           flexDirection: "column",
-          gap: "20px",
+          gap: "24px",
         }}
       >
         <h2
           style={{
             margin: 0,
             fontFamily: "var(--font-sora, Sora)",
-            fontWeight: 600,
-            fontSize: "44px",
-            lineHeight: "100%",
-            letterSpacing: "-0.01em",
-            color: "#FFFFFF",
+            fontWeight: 400,
+            fontStyle: "normal",
+            fontSize: "36px",
+            lineHeight: "40px",
+            letterSpacing: "0%",
+            verticalAlign: "middle",
+            color: "#F8FAFC",
           }}
         >
           {title}
@@ -172,12 +175,14 @@ export default async function RewardsIBProgramSection() {
         <p
           style={{
             margin: 0,
-            maxWidth: "640px",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
+            fontStyle: "normal",
             fontSize: "16px",
-            lineHeight: "26px",
-            color: "rgba(255,255,255,0.7)",
+            lineHeight: "25px",
+            letterSpacing: "0%",
+            verticalAlign: "middle",
+            color: "#FFFFFFBF",
           }}
         >
           {description}

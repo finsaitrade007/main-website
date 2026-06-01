@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getPartnershipsPage } from "@/lib/strapi";
+import { getPartnershipsPage, fetchOgImage } from "@/lib/strapi";
 
 const fallbackCards = [
   { label: "News & Analysis", desc: "Stay updated with real-time market news, economic events, and expert commentary.", href: "/news" },
@@ -11,7 +11,7 @@ const fallbackCards = [
   { label: "Glossary", desc: "Master trading terms and concepts with our comprehensive glossary built to help you trade with clarity and confidence.", href: "/glossary" },
 ];
 
-function MarketingCard({ label, desc, href }: { label: string; desc: string; href: string }) {
+function MarketingCard({ label, desc, href, ogImage }: { label: string; desc: string; href: string; ogImage: string | null }) {
   return (
     <div style={{
       position: "relative",
@@ -35,8 +35,9 @@ function MarketingCard({ label, desc, href }: { label: string; desc: string; hre
         height: "116px",
         borderRadius: "16px",
         overflow: "hidden",
+        background: ogImage ? undefined : "rgba(255,255,255,0.05)",
       }}>
-        <Image src="/blogs-placeholder.png" alt="" fill style={{ objectFit: "cover" }} />
+        {ogImage && <Image src={ogImage} alt="" fill style={{ objectFit: "cover" }} />}
       </div>
 
       <span style={{
@@ -122,6 +123,8 @@ export default async function IBMarketingSection() {
       }))
     : fallbackCards.map((c) => ({ label: c.label, desc: c.desc, href: c.href }));
 
+  const ogImages = await Promise.all(cards.map((c) => fetchOgImage(c.href)));
+
   return (
     <section style={{ background: "#050208", padding: "80px 0" }}>
       <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 80px" }}>
@@ -141,7 +144,7 @@ export default async function IBMarketingSection() {
           gap: "20px",
         }}>
           {cards.map((card, i) => (
-            <MarketingCard key={i} {...card} />
+            <MarketingCard key={i} {...card} ogImage={ogImages[i]} />
           ))}
         </div>
 
