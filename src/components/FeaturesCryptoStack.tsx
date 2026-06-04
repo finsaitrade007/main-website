@@ -9,45 +9,42 @@ type CryptoRow = {
   price: string | null;
   icon: string;
   change: "up" | "down" | null;
+  tvKey: string;
 };
 
-const cryptoRows: CryptoRow[] = [
-  {
-    symbol: "BTC",
-    name: "Bitcoin",
-    price: "$1,236.21",
-    icon: "/crypto/btc.svg",
-    change: null,
-  },
-  {
-    symbol: "ETH",
-    name: "Ethereum",
-    price: "$2,236.21",
-    icon: "/crypto/eth.svg",
-    change: "up",
-  },
-  {
-    symbol: "OGN",
-    name: "Origin Protocol",
-    price: null,
-    icon: "/crypto/ogn.svg",
-    change: "up",
-  },
-  {
-    symbol: "ACN",
-    name: "Achain",
-    price: "$165.8",
-    icon: "/crypto/act.svg",
-    change: null,
-  },
-  {
-    symbol: "USDT",
-    name: "Tether",
-    price: "$165.8",
-    icon: "/crypto/usdt.svg",
-    change: "down",
-  },
+type PriceEntry = { price: number; change: number };
+type PriceMap = Record<string, PriceEntry>;
+
+const STATIC_ROWS: Omit<CryptoRow, "price" | "change">[] = [
+  { symbol: "BTC",  name: "Bitcoin",         icon: "/crypto/btc.svg",  tvKey: "BINANCE:BTCUSDT"  },
+  { symbol: "ETH",  name: "Ethereum",        icon: "/crypto/eth.svg",  tvKey: "BINANCE:ETHUSDT"  },
+  { symbol: "OGN",  name: "Origin Protocol", icon: "/crypto/ogn.svg",  tvKey: "BINANCE:OGNUSDT"  },
+  { symbol: "ACN",  name: "Achain",          icon: "/crypto/act.svg",  tvKey: "BINANCE:ACTUSDT"  },
+  { symbol: "USDT", name: "Tether",          icon: "/crypto/usdt.svg", tvKey: "BINANCE:USDTUSDC" },
 ];
+
+const FALLBACK_PRICES: Record<string, string> = {
+  "BINANCE:BTCUSDT":  "$1,236.21",
+  "BINANCE:ETHUSDT":  "$2,236.21",
+  "BINANCE:OGNUSDT":  null as unknown as string,
+  "BINANCE:ACTUSDT":  "$165.8",
+  "BINANCE:USDTUSDC": "$165.8",
+};
+
+function buildRows(live: PriceMap): CryptoRow[] {
+  return STATIC_ROWS.map((r) => {
+    const entry = live[r.tvKey];
+    const price = entry
+      ? "$" + (entry.price > 1000
+          ? entry.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+          : entry.price.toFixed(4))
+      : FALLBACK_PRICES[r.tvKey] ?? null;
+    const change = entry
+      ? entry.change > 0 ? "up" : "down"
+      : (r.tvKey === "BINANCE:ETHUSDT" || r.tvKey === "BINANCE:OGNUSDT" ? "up" : r.tvKey === "BINANCE:USDTUSDC" ? "down" : null);
+    return { ...r, price, change } as CryptoRow;
+  });
+}
 
 function MiniSparkline({ up }: { up: boolean }) {
   return (
@@ -90,6 +87,21 @@ export default function FeaturesCryptoStack() {
   const tileRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [progress, setProgress] = useState(0);
   const [badgeY, setBadgeY] = useState(0);
+  const [livePrices, setLivePrices] = useState<PriceMap>({});
+
+  useEffect(() => {
+    async function fetchPrices() {
+      try {
+        const res = await fetch("/api/prices");
+        if (!res.ok) return;
+        const { crypto } = await res.json() as { crypto: PriceMap };
+        setLivePrices(crypto);
+      } catch { /* keep fallback */ }
+    }
+    fetchPrices();
+    const id = setInterval(fetchPrices, 30_000);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     let frame: number | null = null;
@@ -208,7 +220,7 @@ export default function FeaturesCryptoStack() {
         }}
       />
 
-      {cryptoRows.map((row, i) => {
+      {buildRows(livePrices).map((row, i) => {
         const offset = getOffset(i);
         return (
           <div
