@@ -6,7 +6,7 @@ const DEFAULT_NAV_LINKS = [
   { label: "Services", href: "/services" },
   { label: "Partnerships", href: "/partnerships" },
   { label: "Accounts", href: "/accounts" },
-  { label: "Webinar", href: "/webinar" },
+  { label: "Webinar", href: "https://lms.finsaitrade.com/#webinars" },
   { label: "Blogs", href: "/blogs" },
 ];
 

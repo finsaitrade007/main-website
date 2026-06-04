@@ -15,7 +15,7 @@ const FALLBACK: Pick<
   heroDescription:
     "Access reliable payment solutions built for modern traders, with secure deposits and withdrawals through UPI, PayPal, crypto, cards, bank transfers, and more. ",
   heroPrimaryCtaLabel: "Deposit Funds",
-  heroPrimaryCtaHref: "/register",
+  heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
 };
 
 export default async function PaymentsHeroSection() {

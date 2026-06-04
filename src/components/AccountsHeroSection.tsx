@@ -17,7 +17,7 @@ const FALLBACK: Pick<
   heroDescription:
     "Compare Finsai Trade account types side-by-side and pick the one that matches your style, risk, and trading goals.",
   heroPrimaryCtaLabel: "Start Trading",
-  heroPrimaryCtaHref: "/register",
+  heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
   heroSecondaryCtaLabel: "Try Demo  →",
   heroSecondaryCtaHref: "/demo",
 };

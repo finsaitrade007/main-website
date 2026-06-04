@@ -23,7 +23,7 @@ export default async function IBHowToSection() {
   const title = data?.howToTitle ?? "Fast application. Fast process. So easy.";
   const description = data?.howToDescription ?? "How to become an IB?";
   const ctaLabel = data?.heroPrimaryCtaLabel ?? "Become an IB";
-  const ctaHref = data?.heroPrimaryCtaHref ?? "/register";
+  const ctaHref = data?.heroPrimaryCtaHref ?? "https://fx.finsaitrade.com/auth/register";
 
   const rawSteps = data?.howToSteps?.length ? data.howToSteps : fallbackSteps;
   const steps = rawSteps.slice(0, 3).map((step, i) => ({

@@ -28,7 +28,7 @@ export default async function IBStatsSection() {
   const data = await getPartnershipsPage();
   const title = data?.statsTitle ?? "Join The Fastest Growing Partner Program Now";
   const ctaLabel = data?.heroPrimaryCtaLabel ?? "Be Our Partner →";
-  const ctaHref = data?.heroPrimaryCtaHref ?? "/register";
+  const ctaHref = data?.heroPrimaryCtaHref ?? "https://fx.finsaitrade.com/auth/register";
 
   const rawStats = data?.stats?.length ? data.stats : fallbackStats;
   const stats = rawStats.map((s) => {

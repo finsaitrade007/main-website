@@ -10,7 +10,7 @@ const FALLBACK: Pick<
   ctaDescription:
     "Deposit instantly with the method you prefer — your funds are protected end-to-end and available the moment they arrive.",
   ctaPrimaryLabel: "Deposit Funds",
-  ctaPrimaryHref: "/register",
+  ctaPrimaryHref: "https://fx.finsaitrade.com/auth/register",
 };
 
 export default async function PaymentsCTASection() {

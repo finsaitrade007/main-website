@@ -41,7 +41,7 @@ export default function IBFeaturesSection() {
                 }}>
                   {item.desc}
                 </p>
-                <Link href="/register" className="btn-text" style={{
+                <Link href="https://fx.finsaitrade.com/auth/register" className="btn-text" style={{
                   display: "inline-flex",
                   alignItems: "center",
                   gap: "8px",

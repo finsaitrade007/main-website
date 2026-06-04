@@ -15,7 +15,7 @@ const FALLBACK: Pick<
   heroDescription:
     "Execute trades faster with real-time insights, powerful charts, and secure access online.",
   heroPrimaryCtaLabel: "Start Trading →",
-  heroPrimaryCtaHref: "/register",
+  heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
 };
 
 export default async function ServicesHeroSection() {

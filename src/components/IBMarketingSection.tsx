@@ -4,10 +4,10 @@ import { getPartnershipsPage, fetchOgImage } from "@/lib/strapi";
 
 const fallbackCards = [
   { label: "News & Analysis", desc: "Stay updated with real-time market news, economic events, and expert commentary.", href: "/news" },
-  { label: "Webinar", desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", href: "/webinars" },
+  { label: "Webinar", desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", href: "https://lms.finsaitrade.com/#webinars" },
   { label: "Glossary", desc: "Master trading terms and concepts with our comprehensive glossary built to help you trade with clarity and confidence.", href: "/glossary" },
   { label: "News & Analysis", desc: "Stay updated with real-time market news, economic events, and expert commentary.", href: "/news" },
-  { label: "Webinar", desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", href: "/webinars" },
+  { label: "Webinar", desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", href: "https://lms.finsaitrade.com/#webinars" },
   { label: "Glossary", desc: "Master trading terms and concepts with our comprehensive glossary built to help you trade with clarity and confidence.", href: "/glossary" },
 ];
 

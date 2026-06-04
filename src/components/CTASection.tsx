@@ -33,7 +33,7 @@ const FALLBACK: Pick<
   ctaFooterText:
     "Trading Forex and CFDs involves significant risk and may not be suitable for all investors. Please\nensure you fully understand the risks involved.",
   ctaButton1Label: "Start Trading",
-  ctaButton1Href: "/register",
+  ctaButton1Href: "https://fx.finsaitrade.com/auth/register",
   ctaButton2Label: "Try Demo",
   ctaButton2Href: "/demo",
   ctaButton3Label: "Contact Us",

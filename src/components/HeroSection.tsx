@@ -21,7 +21,7 @@ const FALLBACK: Pick<
     { id: 4, label: "Reliable Support" },
   ],
   heroCtaPrimaryLabel: "Start Trading Now",
-  heroCtaPrimaryHref: "/register",
+  heroCtaPrimaryHref: "https://fx.finsaitrade.com/auth/register",
   heroCtaSecondaryLabel: "Try Demo",
   heroCtaSecondaryHref: "/demo",
 };

@@ -20,7 +20,7 @@ const FALLBACK_TIERS: StrapiAccountTier[] = [
     featured: false,
     order: 1,
     ctaLabel: "Open Account",
-    ctaHref: "/register",
+    ctaHref: "https://fx.finsaitrade.com/auth/register",
     features: [
       { id: 1, label: "Maximum Leverage", value: "1:400" },
       { id: 2, label: "Trading Instruments", value: "5000+" },
@@ -37,7 +37,7 @@ const FALLBACK_TIERS: StrapiAccountTier[] = [
     featured: true,
     order: 2,
     ctaLabel: "Open Account",
-    ctaHref: "/register",
+    ctaHref: "https://fx.finsaitrade.com/auth/register",
     features: [
       { id: 5, label: "Maximum Leverage", value: "1:400" },
       { id: 6, label: "Trading Instruments", value: "5000+" },
@@ -56,7 +56,7 @@ const FALLBACK_TIERS: StrapiAccountTier[] = [
     featured: false,
     order: 3,
     ctaLabel: "Open Account",
-    ctaHref: "/register",
+    ctaHref: "https://fx.finsaitrade.com/auth/register",
     features: [
       { id: 11, label: "Maximum Leverage", value: "1:400" },
       { id: 12, label: "Trading Instruments", value: "5000+" },
@@ -218,7 +218,7 @@ function PricingCard({ tier }: { tier: StrapiAccountTier }) {
       </ul>
 
       <Link
-        href={tier.ctaHref || "/register"}
+        href={tier.ctaHref || "https://fx.finsaitrade.com/auth/register"}
         style={{
           alignSelf: "center",
           display: "inline-flex",

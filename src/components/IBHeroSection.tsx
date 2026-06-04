@@ -13,7 +13,7 @@ const FALLBACK: Pick<
   heroDescription:
     "Join Finsai Trade's IB Program and earn competitive commissions from your network's activity. Get the tools, support, and payouts you need to build a scalable business from day one.",
   heroPrimaryCtaLabel: "Become an IB",
-  heroPrimaryCtaHref: "/register",
+  heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
 };
 
 export default async function IBHeroSection() {

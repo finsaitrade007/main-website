@@ -46,7 +46,7 @@ const FALLBACK_TIERS: StrapiAccountTier[] = (() => {
     featured: col === 2,
     order: col + 1,
     ctaLabel: "Open Account",
-    ctaHref: "/register",
+    ctaHref: "https://fx.finsaitrade.com/auth/register",
     features: FEATURES.map((f, i) => ({ id: i * 5 + col + 1, label: f.label, value: f.values[col as 0 | 1 | 2 | 3 | 4] })),
   }));
 })();

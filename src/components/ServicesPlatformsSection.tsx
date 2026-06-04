@@ -29,7 +29,7 @@ const platforms: Platform[] = [
       "Trade the world's most popular forex and currency pairs with a trusted forex broker.\nAccess 40+ major, minor and exotic forex pairs with low spreads from 0.0. Start trading the world's leading CFD products such as Forex in EUR/USD, GBP/USD, and USD/JPY.\n\nTo trade CFD products such as Forex, you will need to open a live trading account to access the global forex markets whether you are from Thailand, Philippines or beyond.",
     image: "/service/mt5-platform.png",
     ctaLabel: "Learn Forex",
-    ctaHref: "/register",
+    ctaHref: "https://fx.finsaitrade.com/auth/register",
   },
   {
     id: "social",
@@ -40,7 +40,7 @@ const platforms: Platform[] = [
       "Follow and copy strategies from top-performing traders worldwide. Build your portfolio by learning from experienced investors and replicating their trades in real time.\n\nOur social trading platform connects you with a global community of traders, offering transparent performance data and seamless one-click copying.",
     image: "/service/mt5-platform.png",
     ctaLabel: "Explore Social",
-    ctaHref: "/register",
+    ctaHref: "https://fx.finsaitrade.com/auth/register",
   },
   {
     id: "app",
@@ -51,7 +51,7 @@ const platforms: Platform[] = [
       "Execute trades instantly from anywhere with our upcoming mobile trading app. Monitor funds, view charts, and receive alerts on the go.\n\nTailored for mobile-first investors and active traders, the app brings the full power of Finsai's trading suite to your pocket.",
     image: "/service/mt5-platform.png",
     ctaLabel: "Notify Me",
-    ctaHref: "/register",
+    ctaHref: "https://fx.finsaitrade.com/auth/register",
     comingSoon: true,
   },
 ];

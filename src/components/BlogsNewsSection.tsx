@@ -7,9 +7,9 @@ const CARD_INNER_BG = "linear-gradient(0deg, rgba(10,10,10,0.7), rgba(10,10,10,0
 
 const fallbackNewsCards = [
   { category: "News & Analysis", desc: "Stay updated with real-time market news, economic events, and expert commentary.", href: "/news" },
-  { category: "Webinar",         desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", href: "/webinars" },
+  { category: "Webinar",         desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", href: "https://lms.finsaitrade.com/#webinars" },
   { category: "News & Analysis", desc: "Stay updated with real-time market news, economic events, and expert commentary.", href: "/news" },
-  { category: "Webinar",         desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", href: "/webinars" },
+  { category: "Webinar",         desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", href: "https://lms.finsaitrade.com/#webinars" },
 ];
 
 const fallbackLatestNews = [

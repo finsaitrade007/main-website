@@ -185,7 +185,7 @@ export default async function AccountsOnboardingSteps() {
 
         <div style={{ textAlign: "center" }}>
           <Link
-            href="/register"
+            href="https://fx.finsaitrade.com/auth/register"
             style={{
               display: "inline-flex",
               alignItems: "center",

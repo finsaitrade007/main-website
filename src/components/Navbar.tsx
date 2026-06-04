@@ -10,7 +10,7 @@ const DEFAULT_NAV_LINKS: NavLink[] = [
   { label: "Services", href: "/services" },
   { label: "Partnerships", href: "/partnerships" },
   { label: "Accounts", href: "/accounts" },
-  { label: "Webinar", href: "/webinar" },
+  { label: "Webinar", href: "https://lms.finsaitrade.com/#webinars" },
   { label: "Blogs", href: "/blogs" },
 ];
 
@@ -64,7 +64,7 @@ export default function Navbar({ navLinks: propLinks }: { navLinks?: NavLink[] }
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <Link href="/login" style={{
+            <Link href="https://fx.finsaitrade.com/auth/login" style={{
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
@@ -84,7 +84,7 @@ export default function Navbar({ navLinks: propLinks }: { navLinks?: NavLink[] }
             }}>
               Login
             </Link>
-            <Link href="/register" style={{
+            <Link href="https://fx.finsaitrade.com/auth/register" style={{
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
@@ -134,10 +134,10 @@ export default function Navbar({ navLinks: propLinks }: { navLinks?: NavLink[] }
               </Link>
             ))}
             <div className="flex gap-3 mt-2 pt-3 border-t border-white/10">
-              <Link href="/login" className="flex-1 text-center btn-primary text-sm justify-center">
+              <Link href="https://fx.finsaitrade.com/auth/login" className="flex-1 text-center btn-primary text-sm justify-center">
                 Login
               </Link>
-              <Link href="/register" className="flex-1 text-center btn-secondary text-sm justify-center">
+              <Link href="https://fx.finsaitrade.com/auth/register" className="flex-1 text-center btn-secondary text-sm justify-center">
                 Start Trading
               </Link>
             </div>

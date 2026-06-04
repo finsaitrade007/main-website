@@ -17,7 +17,7 @@ const FALLBACK: Pick<
   heroDescription:
     "Helping traders access multiple asset classes while benefiting from educational resources, loyalty rewards, and partnership opportunities.",
   heroPrimaryCtaLabel: "Open Live Account",
-  heroPrimaryCtaHref: "/register",
+  heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
   heroSecondaryCtaLabel: "Explore Our Services",
   heroSecondaryCtaHref: "/services",
 };

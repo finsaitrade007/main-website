@@ -20,7 +20,7 @@ const FALLBACK: Pick<
   heroProofText:
     "✔ Analyze markets with precision  ✔ Manage risk with confidenc ✔ Execute strategies with control",
   heroPrimaryCtaLabel: "Open Live Account",
-  heroPrimaryCtaHref: "/register",
+  heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
   heroSecondaryCtaLabel: "Try Free Demo",
   heroSecondaryCtaHref: "/demo",
 };

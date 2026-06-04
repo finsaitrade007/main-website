@@ -23,7 +23,7 @@ const FALLBACK_CARDS: StrapiJourneyCard[] = [
   { id: 1, documentId: "fb-1", label: "Blogs", description: "Explore professional insights on trading strategies, psychology, platform guides, and market trends.", linkLabel: "Read Latest Articles", linkHref: "/blogs", row: "row1", size: "small", order: 1 },
   { id: 2, documentId: "fb-2", label: "Finsai Academy", description: "Master trading with beginner-friendly lessons, advanced courses, and practical market education.", linkLabel: "Start Learning Free", linkHref: "/academy", row: "row1", size: "large", order: 2 },
   { id: 3, documentId: "fb-3", label: "News & Analysis", description: "Stay updated with real-time market news, economic events, and expert commentary.", linkLabel: "Explore Now", linkHref: "/news", row: "row2", size: "equal", order: 3 },
-  { id: 4, documentId: "fb-4", label: "Webinar", description: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", linkLabel: "Browse Webinars", linkHref: "/webinars", row: "row2", size: "equal", order: 4 },
+  { id: 4, documentId: "fb-4", label: "Webinar", description: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", linkLabel: "Browse Webinars", linkHref: "https://lms.finsaitrade.com/#webinars", row: "row2", size: "equal", order: 4 },
   { id: 5, documentId: "fb-5", label: "Glossary", description: "Master trading terms and concepts with our comprehensive glossary built to help you trade with clarity and confidence.", linkLabel: "Explore Glossary", linkHref: "/glossary", row: "row2", size: "equal", order: 5 },
 ];
 

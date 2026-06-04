@@ -1,7 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const quickLinks = ["About Us", "Webinar", "Partnerships", "Blogs", "Contact Us"];
+const quickLinks = [
+  { label: "About Us",     href: "/about" },
+  { label: "Webinar",      href: "https://lms.finsaitrade.com/#webinars" },
+  { label: "Partnerships", href: "/partnerships" },
+  { label: "Blogs",        href: "/blogs" },
+  { label: "Contact Us",   href: "/contact" },
+];
 
 const helpLinks = ["Customer Support", "Terms & Conditions", "Privacy Policy", "FAQs"];
 
@@ -114,7 +120,7 @@ export default function Footer() {
           <div>
             <h4 style={HEADING_STYLE}>Quick Link</h4>
             {quickLinks.map((l) => (
-              <a key={l} href="#" style={LINK_STYLE}>{l}</a>
+              <a key={l.label} href={l.href} style={LINK_STYLE}>{l.label}</a>
             ))}
           </div>
 

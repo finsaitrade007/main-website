@@ -35,7 +35,7 @@ export default async function IBWhySection() {
   const description =
     data?.whyDescription ?? "Smart, secure, and reliable trading for everyone, everywhere.";
   const ctaLabel = data?.heroPrimaryCtaLabel ?? "Explore More →";
-  const ctaHref = data?.heroPrimaryCtaHref ?? "/register";
+  const ctaHref = data?.heroPrimaryCtaHref ?? "https://fx.finsaitrade.com/auth/register";
 
   const tabs =
     data?.whyFeatures?.length

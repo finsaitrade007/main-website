@@ -10,7 +10,7 @@ const FALLBACK: Pick<
   ctaDescription:
     "Open a live account or start with a demo account and explore global markets with Finsai Trade — at your pace, on your terms.",
   ctaPrimaryLabel: "Open Live Account",
-  ctaPrimaryHref: "/register",
+  ctaPrimaryHref: "https://fx.finsaitrade.com/auth/register",
 };
 
 export default async function RewardsCTASection() {

@@ -12,7 +12,7 @@ const FALLBACK: Pick<
   ctaDescription:
     "Open a free trial account and explore every Finsai market and tool — no commitment, full access.",
   ctaPrimaryLabel: "Start Free Trial",
-  ctaPrimaryHref: "/register",
+  ctaPrimaryHref: "https://fx.finsaitrade.com/auth/register",
 };
 
 export default async function AboutCTASection() {
