@@ -82,7 +82,7 @@ export default function IBHeroSection() {
           color: "#FFFFFF",
           margin: 0,
         }}>
-          Learn, Analyze, and<br />Trade like a Pro
+          Market Insights & Education
         </h1>
 
         {/* Description */}
@@ -92,10 +92,10 @@ export default function IBHeroSection() {
           fontSize: "18px",
           lineHeight: "155%",
           color: "rgba(255,255,255,0.7)",
-          maxWidth: "560px",
+          maxWidth: "590px",
           margin: 0,
         }}>
-          Expert analysis, live sessions, and courses - built to keep you ahead.
+          Sharp market insights, real trading education, and analysis you can actually act on.
         </p>
 
         {/* CTA */}
@@ -117,7 +117,7 @@ export default function IBHeroSection() {
           whiteSpace: "nowrap",
           boxSizing: "border-box",
         }}>
-          Explore Academy
+          Explore Insights
         </Link>
       </div>
     </section>

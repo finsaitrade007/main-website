@@ -3,7 +3,7 @@ import Image from "next/image";
 import { getBlogsPage } from "@/lib/strapi";
 
 const BORDER_GRADIENT = "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
-const CARD_INNER_BG = "linear-gradient(0deg, rgba(10,10,10,0.7), rgba(10,10,10,0.7)), linear-gradient(119.3deg, rgba(0,0,0,0) 23.34%, rgba(73,109,171,0.3) 96.36%)";
+const CARD_INNER_BG = "linear-gradient(157.26deg, #050208 -0.93%, #056FB4 444.35%)";
 
 const fallbackNewsCards = [
   { category: "News & Analysis", desc: "Stay updated with real-time market news, economic events, and expert commentary.", href: "/news" },
@@ -28,7 +28,6 @@ const cardPositions = [
 
 function ArticleCard({ category, desc, href, top, left }: { category: string; desc: string; href: string; top: string; left: string }) {
   return (
-    /* Gradient border wrapper */
     <div style={{
       position: "absolute",
       top,
@@ -36,16 +35,14 @@ function ArticleCard({ category, desc, href, top, left }: { category: string; de
       width: "415px",
       height: "285px",
       borderRadius: "21.32px",
-      background: BORDER_GRADIENT,
-      padding: "1px",
+      border: "1px solid transparent",
+      background: `${CARD_INNER_BG} padding-box, ${BORDER_GRADIENT} border-box`,
       boxSizing: "border-box",
+      overflow: "hidden",
     }}>
       <div style={{
         width: "100%",
         height: "100%",
-        borderRadius: "20.32px",
-        background: CARD_INNER_BG,
-        overflow: "hidden",
         position: "relative",
         boxSizing: "border-box",
       }}>
@@ -145,9 +142,9 @@ function SearchBar() {
 
 export default async function BlogsNewsSection() {
   const data = await getBlogsPage();
-  const badge       = data?.newsBadge       ?? "Blogs & News";
-  const title       = data?.newsTitle       ?? "Powerful platforms for Every Trader";
-  const description = data?.newsDescription ?? "Trade with speed, stability, and total control  from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs";
+  const badge       = data?.newsBadge       ?? "Market News & Analysis ";
+  const title       = data?.newsTitle       ?? "Stay Ahead of Every Market Move";
+  const description = data?.newsDescription ?? "Track market-moving events, technical setups, and macro trends shaping forex, crypto, commodities, and indices.";
 
   const strapiCards = data?.newsArticles?.length
     ? data.newsArticles.map((a) => ({ category: a.title, desc: a.description ?? "", href: a.href ?? "#" }))
@@ -178,7 +175,7 @@ export default async function BlogsNewsSection() {
         {/* Title */}
         <h2 className="section-title" style={{
           position: "absolute",
-          top: "108px",
+          top: "130px",
           left: 0,
           right: 0,
           textAlign: "center",
@@ -250,15 +247,13 @@ export default async function BlogsNewsSection() {
           width: "390px",
           height: "594px",
           borderRadius: "20px",
-          background: BORDER_GRADIENT,
-          padding: "1px",
+          border: "1px solid transparent",
+          background: `${CARD_INNER_BG} padding-box, ${BORDER_GRADIENT} border-box`,
           boxSizing: "border-box",
         }}>
           <div style={{
             width: "100%",
             height: "100%",
-            borderRadius: "19px",
-            background: CARD_INNER_BG,
             paddingTop: "24px",
             paddingRight: "21px",
             paddingBottom: "16px",
