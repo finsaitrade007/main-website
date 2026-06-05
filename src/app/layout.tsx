@@ -22,10 +22,25 @@ const inter = Inter({
   weight: ["400", "500", "600"],
 });
 
+// Site-wide metadata defaults. Per-page `generateMetadata()` (driven by the
+// Strapi `shared.seo` component on every page single-type) overrides these.
 export const metadata: Metadata = {
-  title: "Finsai Trade — Trade Global Markets Without Limits",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.finsaitrade.com",
+  ),
+  title: {
+    default: "Finsai Trade — Trade Global Markets Without Limits",
+    template: "%s | Finsai Trade",
+  },
   description:
     "The powerful multi-asset trading platform for modern traders. Trade Forex, Crypto, Stocks, Indices, and Metals with tight spreads, up to 500x leverage, and 24/7 support.",
+  applicationName: "Finsai Trade",
+  authors: [{ name: "Finsai Trade", url: "https://www.finsaitrade.com" }],
+  generator: "Next.js",
+  referrer: "origin-when-cross-origin",
+  formatDetection: { email: false, address: false, telephone: false },
+  icons: { icon: "/favicon.ico" },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({

@@ -172,6 +172,8 @@ export type StrapiHomepage = {
   ctaButton2Href: string;
   ctaButton3Label: string;
   ctaButton3Href: string;
+
+  seo?: StrapiSeo;
 };
 
 export type StrapiMarket = {
@@ -246,6 +248,29 @@ export type StrapiNavItem = {
   label: string;
   href: string;
   order: number;
+};
+
+// ─── SEO types ───────────────────────────────────────────────────────
+
+export type StrapiMetaSocial = {
+  id: number;
+  socialNetwork: "Facebook" | "Twitter" | "LinkedIn";
+  title: string;
+  description: string;
+  image?: StrapiMedia;
+};
+
+export type StrapiSeo = {
+  id: number;
+  metaTitle: string;
+  metaDescription: string;
+  keywords?: string | null;
+  metaRobots?: string | null;
+  canonicalURL?: string | null;
+  metaViewport?: string | null;
+  structuredData?: Record<string, unknown> | null;
+  metaImage?: StrapiMedia;
+  metaSocial?: StrapiMetaSocial[];
 };
 
 // ─── Shared reusable component types ─────────────────────────────────
@@ -325,6 +350,8 @@ export type StrapiAboutPage = {
   ctaPrimaryHref: string;
   ctaSecondaryLabel: string;
   ctaSecondaryHref: string;
+
+  seo?: StrapiSeo;
 };
 
 export type StrapiCareersPage = {
@@ -346,6 +373,8 @@ export type StrapiCareersPage = {
   formTitle: string;
   formSubmitLabel: string;
   formTermsText: string;
+
+  seo?: StrapiSeo;
 };
 
 export type StrapiRewardsPage = {
@@ -459,6 +488,8 @@ export type StrapiAccountsPage = {
   benefitsTitle: string;
   benefitsDescription: string;
   benefitsCards: StrapiBenefitCard[];
+
+  seo?: StrapiSeo;
 };
 
 export type StrapiPaymentsPage = {
@@ -485,6 +516,8 @@ export type StrapiPaymentsPage = {
   ctaDescription: string;
   ctaPrimaryLabel: string;
   ctaPrimaryHref: string;
+
+  seo?: StrapiSeo;
 };
 
 export type StrapiServicesPage = {
@@ -512,6 +545,8 @@ export type StrapiServicesPage = {
   suiteTitle: string;
   suiteDescription: string;
   suiteItems: StrapiIconFeature[];
+
+  seo?: StrapiSeo;
 };
 
 export type StrapiPartnershipsPage = {
@@ -549,6 +584,8 @@ export type StrapiPartnershipsPage = {
   marketingTitle: string;
   marketingDescription: string;
   marketingItems: StrapiIconFeature[];
+
+  seo?: StrapiSeo;
 };
 
 export type StrapiBlogsPage = {
@@ -567,6 +604,30 @@ export type StrapiBlogsPage = {
   newsTitle: string;
   newsDescription: string;
   newsArticles: StrapiImageCard[];
+
+  seo?: StrapiSeo;
+};
+
+export type StrapiContactusPage = {
+  id: number;
+  documentId: string;
+
+  heroBadge: string;
+  heroTitle: string;
+  heroDescription: string;
+  heroPrimaryCtaLabel: string;
+  heroPrimaryCtaHref: string;
+  heroSecondaryCtaLabel: string;
+  heroSecondaryCtaHref: string;
+
+  supportTitle: string;
+  supportDescription: string;
+  supportBenefits: StrapiPoint[];
+
+  formSubmitLabel: string;
+  formTermsText: string;
+
+  seo?: StrapiSeo;
 };
 
 // ─── Domain queries ──────────────────────────────────────────────────
@@ -583,9 +644,10 @@ export function getFaqs() {
 }
 
 export function getHomepage() {
-  return strapiFetch<StrapiHomepage>("homepage?populate=*", {
-    tags: ["homepage"],
-  });
+  return strapiFetch<StrapiHomepage>(
+    "homepage?populate[heroTaglines]=*&populate[featureItems]=*&populate[seo][populate]=*",
+    { tags: ["homepage"] },
+  );
 }
 
 export function getMarkets() {
@@ -633,15 +695,17 @@ export function getJourneyCards() {
 // ─── Page single-type queries ────────────────────────────────────────
 
 export function getAboutPage() {
-  return strapiFetch<StrapiAboutPage>("about-page?populate=*", {
-    tags: ["about-page"],
-  });
+  return strapiFetch<StrapiAboutPage>(
+    "about-page?populate[builtPoints]=*&populate[growthStats]=*&populate[seo][populate]=*",
+    { tags: ["about-page"] },
+  );
 }
 
 export function getCareersPage() {
-  return strapiFetch<StrapiCareersPage>("careers-page?populate=*", {
-    tags: ["careers-page"],
-  });
+  return strapiFetch<StrapiCareersPage>(
+    "careers-page?populate[workspaceBenefits]=*&populate[seo][populate]=*",
+    { tags: ["careers-page"] },
+  );
 }
 
 export function getRewardsPage() {
@@ -660,28 +724,28 @@ export function getToolsPage() {
 
 export function getAccountsPage() {
   return strapiFetch<StrapiAccountsPage>(
-    "accounts-page?populate[whyFeatures]=*&populate[benefitsCards][populate]=bullets",
+    "accounts-page?populate[whyFeatures]=*&populate[benefitsCards][populate]=bullets&populate[seo][populate]=*",
     { tags: ["accounts-page"] },
   );
 }
 
 export function getPaymentsPage() {
   return strapiFetch<StrapiPaymentsPage>(
-    "payments-page?populate[methods][populate]=icon",
+    "payments-page?populate[methods][populate]=icon&populate[seo][populate]=*",
     { tags: ["payments-page"] },
   );
 }
 
 export function getServicesPage() {
   return strapiFetch<StrapiServicesPage>(
-    "services-page?populate[features]=*&populate[suiteItems]=*",
+    "services-page?populate[features]=*&populate[suiteItems]=*&populate[seo][populate]=*",
     { tags: ["services-page"] },
   );
 }
 
 export function getPartnershipsPage() {
   return strapiFetch<StrapiPartnershipsPage>(
-    "partnerships-page?populate[whyFeatures]=*&populate[stats]=*&populate[howToSteps]=*&populate[marketingItems]=*",
+    "partnerships-page?populate[whyFeatures]=*&populate[stats]=*&populate[howToSteps]=*&populate[marketingItems]=*&populate[seo][populate]=*",
     { tags: ["partnerships-page"] },
   );
 }
@@ -692,11 +756,80 @@ export function getNavItems() {
 
 export function getBlogsPage() {
   return strapiFetch<StrapiBlogsPage>(
-    "blogs-page?populate[newsArticles][populate]=image",
+    "blogs-page?populate[newsArticles][populate]=image&populate[seo][populate]=*",
     { tags: ["blogs-page"] },
+  );
+}
+
+export function getContactusPage() {
+  return strapiFetch<StrapiContactusPage>(
+    "contactus-page?populate[supportBenefits]=*&populate[seo][populate]=*",
+    { tags: ["contactus-page"] },
   );
 }
 
 export async function fetchOgImage(_url: string): Promise<string | null> {
   return null;
+}
+
+// ─── SEO → Next.js Metadata adapter ──────────────────────────────────
+
+import type { Metadata } from "next";
+
+/**
+ * Convert a Strapi `shared.seo` payload into the Next.js `Metadata` object.
+ * Falls back gracefully when fields are missing so the calling page can pass
+ * its own defaults via the second argument.
+ */
+export function seoToMetadata(
+  seo: StrapiSeo | undefined | null,
+  fallback: { title: string; description: string; url?: string },
+): Metadata {
+  const title = seo?.metaTitle?.trim() || fallback.title;
+  const description = seo?.metaDescription?.trim() || fallback.description;
+  const url = seo?.canonicalURL || fallback.url;
+  const robots = seo?.metaRobots?.trim() || "index, follow";
+  const keywords =
+    typeof seo?.keywords === "string" && seo.keywords.trim().length > 0
+      ? seo.keywords
+          .split(/[,\n]/)
+          .map((k) => k.trim())
+          .filter(Boolean)
+      : undefined;
+
+  const imageUrl = strapiImageUrl(seo?.metaImage);
+
+  const facebook = seo?.metaSocial?.find(
+    (s) => s.socialNetwork === "Facebook",
+  );
+  const twitter = seo?.metaSocial?.find((s) => s.socialNetwork === "Twitter");
+
+  return {
+    title,
+    description,
+    keywords,
+    robots,
+    alternates: url ? { canonical: url } : undefined,
+    openGraph: {
+      title: facebook?.title ?? title,
+      description: facebook?.description ?? description,
+      url,
+      siteName: "Finsai Trade",
+      type: "website",
+      images: imageUrl
+        ? [{ url: imageUrl, alt: seo?.metaImage?.alternativeText ?? title }]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: twitter?.title ?? title,
+      description: twitter?.description ?? description,
+      images: imageUrl ? [imageUrl] : undefined,
+    },
+    other: seo?.structuredData
+      ? {
+          "structured-data": JSON.stringify(seo.structuredData),
+        }
+      : undefined,
+  };
 }
