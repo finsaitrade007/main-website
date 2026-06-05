@@ -10,58 +10,46 @@ type Fallback = Pick<
   StrapiAboutPage,
   | "growthBadge"
   | "growthTitle"
-  | "growthDescription1"
-  | "growthDescription2"
   | "growthCtaLabel"
   | "growthCtaHref"
 > & { growthStats: StrapiStat[] };
 
 const FALLBACK: Fallback = {
   growthBadge: "Our Principal",
-  growthTitle: "We drive financial growth\nin the digital era.",
-  growthDescription1:
-    "By providing an integrated ecosystem that combines simplicity, innovation, and security, we aim to empower people to take charge of their financial future. Our goal is to create a financial environment where people can trade, invest, and bank with confidence by bridging the gap between conventional finance and technological breakthroughs.",
-  growthDescription2:
-    "By providing an integrated ecosystem that combines simplicity, innovation, and security, we aim to empower people to take charge of their financial future. Our goal is to create a financial environment where people can trade, invest, and bank with confidence by bridging the gap between conventional finance and technological breakthroughs.",
+  growthTitle: "Your Trading Journey,\nStructured for Success.",
   growthCtaLabel: "Contact Us",
   growthCtaHref: "/contact",
   growthStats: [
-    { id: 1, value: "4.8k", label: "Traders" },
-    { id: 2, value: "12+", label: "Industry Experience" },
-    { id: 3, value: "2.5k+", label: "World wide clients" },
-    { id: 4, value: "120+", label: "Won Awards" },
+    { id: 1, value: "50,000+", label: "Traders" },
+    { id: 2, value: "20+", label: "Industry Experience" },
+    { id: 3, value: "120+", label: "World wide clients" },
+    { id: 4, value: "15+", label: "Industry Recognitions" },
   ],
 };
 
-type Tile = {
-  width: number;
-  height: number;
-  top: number;
-  left: number;
-  rotate: number;
-};
-
-const TILES: Tile[] = [
-  { width: 264.11, height: 264.11, top: 142, left: 743, rotate: 0 },
-  { width: 253, height: 253, top: 173, left: 1034, rotate: 180 },
-  { width: 220.09, height: 220.09, top: 432.53, left: 787.02, rotate: 90 },
-  { width: 264.11, height: 264.11, top: 448.37, left: 1033.52, rotate: -180 },
+const FEATURES: { title: string; description: string }[] = [
+  {
+    title: "Transparent Trading",
+    description: "Clear pricing and straightforward trading conditions.",
+  },
+  {
+    title: "Trader-First Experience",
+    description: "Built to make trading simple, smooth, and accessible.",
+  },
+  {
+    title: "Reliable Technology",
+    description: "Fast execution with dependable platform performance.",
+  },
+  {
+    title: "Learn & Grow",
+    description: "Educational resources to help traders improve continuously.",
+  },
 ];
-
-function roundedCornerFor(rotate: number): React.CSSProperties {
-  if (rotate === 0) return { borderTopLeftRadius: "50px" };
-  if (rotate === 180) return { borderTopRightRadius: "50px" };
-  if (rotate === 90) return { borderBottomLeftRadius: "50px" };
-  if (rotate === -180) return { borderBottomRightRadius: "50px" };
-  return { borderTopLeftRadius: "50px" };
-}
 
 export default async function AboutFinancialGrowthSection() {
   const data = await getAboutPage();
   const badge = data?.growthBadge ?? FALLBACK.growthBadge;
   const title = data?.growthTitle ?? FALLBACK.growthTitle;
-  const description1 = data?.growthDescription1 ?? FALLBACK.growthDescription1;
-  const description2 = data?.growthDescription2 ?? FALLBACK.growthDescription2;
   const ctaLabel = data?.growthCtaLabel ?? FALLBACK.growthCtaLabel;
   const ctaHref = data?.growthCtaHref ?? FALLBACK.growthCtaHref;
   const stats =
@@ -78,20 +66,20 @@ export default async function AboutFinancialGrowthSection() {
         maxWidth: "100%",
         height: "919px",
         margin: "0 auto",
-        padding: "80px 0",
         boxSizing: "border-box",
         overflow: "hidden",
       }}
     >
+      {/* Left content column */}
       <div
         style={{
           position: "absolute",
-          top: "80px",
+          top: "89px",
           left: "80px",
-          width: "560px",
+          width: "540px",
           display: "flex",
           flexDirection: "column",
-          gap: "20px",
+          gap: "24px",
           zIndex: 2,
         }}
       >
@@ -103,18 +91,23 @@ export default async function AboutFinancialGrowthSection() {
             padding: "8px 18px",
             border: "1px solid rgba(255,255,255,0.15)",
             borderRadius: "60px",
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 500,
+            fontSize: "14px",
+            lineHeight: "20px",
+            color: "#57A1CB",
           }}
         >
-          <span className="badge-text">{badge}</span>
+          {badge}
         </span>
 
         <h2
           style={{
             margin: 0,
             fontFamily: "var(--font-sora, Sora)",
-            fontWeight: 700,
+            fontWeight: 600,
             fontSize: "36px",
-            lineHeight: "44px",
+            lineHeight: "52px",
             color: "#FFFFFF",
             whiteSpace: "pre-line",
           }}
@@ -122,32 +115,54 @@ export default async function AboutFinancialGrowthSection() {
           {title}
         </h2>
 
-        <p
+        <div
           style={{
-            margin: 0,
-            maxWidth: "520px",
-            fontFamily: "var(--font-inter, Inter)",
-            fontWeight: 400,
-            fontSize: "14px",
-            lineHeight: "22px",
-            color: "rgba(255,255,255,0.65)",
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            marginTop: "8px",
           }}
         >
-          {description1}
-        </p>
-        <p
-          style={{
-            margin: 0,
-            maxWidth: "520px",
-            fontFamily: "var(--font-inter, Inter)",
-            fontWeight: 400,
-            fontSize: "14px",
-            lineHeight: "22px",
-            color: "rgba(255,255,255,0.65)",
-          }}
-        >
-          {description2}
-        </p>
+          {FEATURES.map((f) => (
+            <div
+              key={f.title}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "6px",
+              }}
+            >
+              <h3
+                style={{
+                  margin: 0,
+                  fontFamily: "var(--font-raleway, Raleway)",
+                  fontWeight: 600,
+                  fontStyle: "normal",
+                  fontSize: "24px",
+                  lineHeight: "30px",
+                  letterSpacing: 0,
+                  color: "#FFFFFF",
+                }}
+              >
+                {f.title}
+              </h3>
+              <p
+                style={{
+                  margin: 0,
+                  fontFamily: "var(--font-raleway, Raleway)",
+                  fontWeight: 400,
+                  fontStyle: "normal",
+                  fontSize: "18px",
+                  lineHeight: "30px",
+                  letterSpacing: 0,
+                  color: "#E0E5F3",
+                }}
+              >
+                {f.description}
+              </p>
+            </div>
+          ))}
+        </div>
 
         <Link
           href={ctaHref}
@@ -165,6 +180,7 @@ export default async function AboutFinancialGrowthSection() {
             gap: "10px",
             fontWeight: 500,
             fontSize: "14px",
+            color: "#FFFFFF",
           }}
         >
           {ctaLabel}
@@ -180,34 +196,26 @@ export default async function AboutFinancialGrowthSection() {
         </Link>
       </div>
 
-      {TILES.map((t, i) => (
-        <div
-          key={i}
-          style={{
-            position: "absolute",
-            top: `${t.top}px`,
-            left: `${t.left}px`,
-            width: `${t.width}px`,
-            height: `${t.height}px`,
-            overflow: "hidden",
-            zIndex: 1,
-            ...roundedCornerFor(t.rotate),
-          }}
-        >
-          <Image
-            src="/about/growth-tile.png"
-            alt=""
-            fill
-            sizes="265px"
-            style={{
-              objectFit: "cover",
-              pointerEvents: "none",
-              userSelect: "none",
-            }}
-          />
-        </div>
-      ))}
+      {/* Right illustration */}
+      <Image
+        src="/about/trading-journey.png"
+        alt=""
+        width={666}
+        height={666}
+        style={{
+          position: "absolute",
+          top: "89px",
+          left: "653px",
+          width: "666px",
+          height: "666px",
+          objectFit: "contain",
+          pointerEvents: "none",
+          userSelect: "none",
+          zIndex: 1,
+        }}
+      />
 
+      {/* Stats row */}
       <div
         style={{
           position: "absolute",
@@ -226,17 +234,20 @@ export default async function AboutFinancialGrowthSection() {
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "4px",
+              gap: "6px",
               alignItems: "center",
               textAlign: "center",
             }}
           >
             <span
               style={{
-                fontFamily: "var(--font-sora, Sora)",
+                fontFamily: "var(--font-inter, Inter)",
                 fontWeight: 700,
-                fontSize: "40px",
-                lineHeight: "44px",
+                fontStyle: "normal",
+                fontSize: "48px",
+                lineHeight: "100%",
+                letterSpacing: 0,
+                textAlign: "center",
                 backgroundImage:
                   "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
                 WebkitBackgroundClip: "text",
@@ -251,8 +262,12 @@ export default async function AboutFinancialGrowthSection() {
               style={{
                 fontFamily: "var(--font-inter, Inter)",
                 fontWeight: 400,
-                fontSize: "13px",
-                color: "rgba(255,255,255,0.7)",
+                fontStyle: "normal",
+                fontSize: "20px",
+                lineHeight: "100%",
+                letterSpacing: 0,
+                textAlign: "center",
+                color: "#E0E5F3",
               }}
             >
               {s.label}

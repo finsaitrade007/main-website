@@ -15,7 +15,7 @@ const FALLBACK: Pick<
   heroBadge: "Careers at Finsai Trade",
   heroTitle: "Build the Future of\nMulti-Asset Trading",
   heroDescription:
-    "Join a vibrant global team focused on fintech, trading technology, global markets, and customer growth. If you thrive on",
+    "Join a vibrant global team focused on fintech, trading technology, global markets, and customer growth.",
   heroPrimaryCtaLabel: "View Open Roles →",
   heroPrimaryCtaHref: "#open-roles",
   heroSecondaryCtaLabel: "Join Our Team →",
@@ -137,55 +137,32 @@ export default async function CareersHeroSection() {
 
         <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
           <Link
-            href={data.heroPrimaryCtaHref}
+            href={data.heroSecondaryCtaHref}
             className="btn-text"
             style={{
               boxSizing: "border-box",
+              width: "233px",
               height: "48px",
-              padding: "11px 24px",
+              gap: "16px",
               borderRadius: "8px",
+              paddingTop: "11px",
+              paddingRight: "24px",
+              paddingBottom: "11px",
+              paddingLeft: "24px",
+              border: "1px solid transparent",
               background:
-                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+                "linear-gradient(#050208, #050208) padding-box, linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%) border-box",
               textDecoration: "none",
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
               fontWeight: 500,
+              color: "#FFFFFF",
+              whiteSpace: "nowrap",
             }}
           >
-            {data.heroPrimaryCtaLabel}
+            {data.heroSecondaryCtaLabel}
           </Link>
-          <div
-            style={{
-              boxSizing: "border-box",
-              height: "48px",
-              padding: "1px",
-              borderRadius: "8px",
-              background:
-                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-            }}
-          >
-            <Link
-              href={data.heroSecondaryCtaHref}
-              style={{
-                boxSizing: "border-box",
-                height: "100%",
-                padding: "10px 23px",
-                borderRadius: "7px",
-                background: "#050208",
-                textDecoration: "none",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontFamily: "var(--font-sora, Sora)",
-                fontWeight: 500,
-                fontSize: "14px",
-                color: "#FFFFFF",
-              }}
-            >
-              {data.heroSecondaryCtaLabel}
-            </Link>
-          </div>
         </div>
       </div>
     </section>

@@ -13,9 +13,9 @@ const FALLBACK: Pick<
   | "heroSecondaryCtaHref"
 > = {
   heroBadge: "About Finsai Trade Ltd",
-  heroTitle: "Making Global\nTrading Accessible\nand Rewarding",
+  heroTitle: "Our Mission, Our Markets, Our Edge",
   heroDescription:
-    "Helping traders access multiple asset classes while benefiting from educational resources, loyalty rewards, and partnership opportunities.",
+    "Helping traders access multiple asset classes while benefiting from educational resources, loyalty rewards, and partnership opportunities. ",
   heroPrimaryCtaLabel: "Open Live Account",
   heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
   heroSecondaryCtaLabel: "Explore Our Services",

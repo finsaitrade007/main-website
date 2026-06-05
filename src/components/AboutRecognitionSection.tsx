@@ -14,9 +14,9 @@ const FALLBACK: Pick<
   recognitionTitlePrefix: "Recognized for Elite Trading ",
   recognitionTitleAccent: "Excellence",
   recognitionDescription:
-    "Trade seamlessly on the go or from your desktop with our cutting-edge platforms.",
-  recognitionStatPrimaryValue: "168M+",
-  recognitionStatPrimaryLabel: "Monthly Deals",
+    " Trusted by a growing community of traders for reliable execution, modern trading tools, and scalable partnership opportunities. ",
+  recognitionStatPrimaryValue: "53k+",
+  recognitionStatPrimaryLabel: "Registered Users",
   recognitionStatSecondaryValue: "3M+",
   recognitionStatSecondaryLabel: "Monthly Worldwide",
 };

@@ -12,13 +12,13 @@ const FALLBACK: Pick<
   | "heroSecondaryCtaLabel"
   | "heroSecondaryCtaHref"
 > = {
-  heroBadge: "Sign in to your secure wallet!",
-  heroTitle: "Trade Smart. Choose the\naccount that suits you",
+  heroBadge: "Multi-Asset Trading Accounts",
+  heroTitle: "Find the Right Account for Your Trading Style",
   heroDescription:
-    "Compare Finsai Trade account types side-by-side and pick the one that matches your style, risk, and trading goals.",
-  heroPrimaryCtaLabel: "Start Trading",
+    "From first-time traders to advanced professionals, Finsai Trade offers flexible account types built for every stage of your trading journey.",
+  heroPrimaryCtaLabel: "Open Live Account",
   heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
-  heroSecondaryCtaLabel: "Try Demo  →",
+  heroSecondaryCtaLabel: "Try Free Demo",
   heroSecondaryCtaHref: "/demo",
 };
 
@@ -141,31 +141,87 @@ export default async function AccountsHeroSection() {
           {data.heroDescription}
         </p>
 
-        <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-          <Link
-            href={data.heroPrimaryCtaHref}
-            className="btn-text"
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+            alignItems: "flex-start",
+          }}
+        >
+          <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+            <Link
+              href={data.heroPrimaryCtaHref}
+              className="btn-text"
+              style={{
+                boxSizing: "border-box",
+                width: "233px",
+                height: "48px",
+                gap: "16px",
+                borderRadius: "8px",
+                paddingTop: "11px",
+                paddingRight: "24px",
+                paddingBottom: "11px",
+                paddingLeft: "24px",
+                background:
+                  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 500,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {data.heroPrimaryCtaLabel}
+            </Link>
+            <Link
+              href={data.heroSecondaryCtaHref}
+              className="btn-text"
+              style={{
+                boxSizing: "border-box",
+                width: "233px",
+                height: "48px",
+                gap: "16px",
+                borderRadius: "8px",
+                paddingTop: "11px",
+                paddingRight: "24px",
+                paddingBottom: "11px",
+                paddingLeft: "24px",
+                border: "1px solid transparent",
+                background:
+                  "linear-gradient(#050208, #050208) padding-box, linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%) border-box",
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: 500,
+                color: "#FFFFFF",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {data.heroSecondaryCtaLabel}
+            </Link>
+          </div>
+
+          <div
             style={{
-              padding: "14px 32px",
-              borderRadius: "8px",
-              background:
-                "linear-gradient(90deg, #496DAB 0%, #496DAB 50%, #41ABE7 75%, #48C3F4 100%)",
-              textDecoration: "none",
-              display: "inline-flex",
+              display: "flex",
               alignItems: "center",
-              justifyContent: "center",
+              gap: "24px",
+              fontFamily: "var(--font-inter, Inter)",
               fontWeight: 500,
+              fontSize: "14px",
+              lineHeight: "20px",
+              color: "#57A1CB",
+              whiteSpace: "nowrap",
             }}
           >
-            {data.heroPrimaryCtaLabel}
-          </Link>
-          <Link
-            href={data.heroSecondaryCtaHref}
-            className="btn-secondary"
-            style={{ padding: "14px 32px" }}
-          >
-            {data.heroSecondaryCtaLabel}
-          </Link>
+            <span>From $100 Minimum Deposit</span>
+            <span>Up to 1:500 Leverage</span>
+            <span>MT5 Across All Devices</span>
+            <span>No Swap Fee</span>
+          </div>
         </div>
       </div>
     </section>
