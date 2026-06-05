@@ -54,7 +54,7 @@ export default async function TestimonialsSection() {
 
   return (
     <section style={{ background: "#050208", padding: "100px 0" }}>
-      <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 80px" }}>
+      <div style={{ maxWidth: "1440px", maxHeight: "397px",margin: "0 auto", padding: "0 80px" }}>
         <div style={{ textAlign: "center", marginBottom: "24px" }}>
           <span
             style={{

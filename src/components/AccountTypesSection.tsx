@@ -243,28 +243,70 @@ function AccountCard({
             left: account.watermark.left,
             transform: account.watermark.left === "50%" ? "translateX(-50%)" : undefined,
             width: account.watermark.width,
+            height: account.watermark.lineHeight,
+            overflow: "hidden",
             pointerEvents: "none",
             userSelect: "none",
             zIndex: 1,
           }}
         >
-          <span
-            style={{
-              fontFamily: "var(--font-sora, Sora)",
-              fontWeight: 400,
-              fontSize: account.watermark.fontSize,
-              lineHeight: account.watermark.lineHeight,
-              letterSpacing: "0%",
-              textAlign: "center",
-              textTransform: "uppercase",
-              color: "transparent",
-              WebkitTextStroke: `${account.watermark.stroke} #606060`,
-              width: "100%",
-              display: "block",
-            }}
-          >
-            {account.watermark.text}
-          </span>
+          {account.watermark.left === "50%" ? (
+            <div
+              key={isActive ? "active" : "inactive"}
+              className="account-watermark-track"
+              style={{
+                display: "flex",
+                width: "max-content",
+                height: "100%",
+                animationDuration: "5.5s",
+                animationPlayState: isActive ? "running" : "paused",
+              }}
+            >
+              {[0, 1].map((i) => (
+                <span
+                  key={i}
+                  style={{
+                    flexShrink: 0,
+                    width: account.watermark.width,
+                    fontFamily: "var(--font-sora, Sora)",
+                    fontWeight: 400,
+                    fontSize: account.watermark.fontSize,
+                    lineHeight: account.watermark.lineHeight,
+                    letterSpacing: "0%",
+                    textAlign: "center",
+                    textTransform: "uppercase",
+                    color: "transparent",
+                    WebkitTextStroke: `${account.watermark.stroke} #606060`,
+                    display: "block",
+                  }}
+                >
+                  {account.watermark.text}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <span
+              key={isActive ? "active" : "inactive"}
+              className="account-watermark-track-single"
+              style={{
+                fontFamily: "var(--font-sora, Sora)",
+                fontWeight: 400,
+                fontSize: account.watermark.fontSize,
+                lineHeight: account.watermark.lineHeight,
+                letterSpacing: "0%",
+                textAlign: "center",
+                textTransform: "uppercase",
+                color: "transparent",
+                WebkitTextStroke: `${account.watermark.stroke} #606060`,
+                width: "100%",
+                display: "block",
+                animationDuration: "5.5s",
+                animationPlayState: isActive ? "running" : "paused",
+              }}
+            >
+              {account.watermark.text}
+            </span>
+          )}
         </div>
       </div>
     </div>

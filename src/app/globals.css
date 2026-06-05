@@ -613,3 +613,35 @@ h1, h2, h3, h4, h5, h6 {
   white-space: pre-line;
 }
 
+.account-watermark-track,
+.account-watermark-track-single {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.account-watermark-track {
+  animation-name: accountWatermarkScroll;
+}
+
+.account-watermark-track-single {
+  animation-name: accountWatermarkScrollSingle;
+}
+
+@keyframes accountWatermarkScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes accountWatermarkScrollSingle {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .account-watermark-track,
+  .account-watermark-track-single {
+    animation: none !important;
+  }
+}
+
