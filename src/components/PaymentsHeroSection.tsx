@@ -11,9 +11,9 @@ const FALLBACK: Pick<
   | "heroPrimaryCtaHref"
 > = {
   heroBadge: "SECURE DEPOSITS & WITHDRAWALS",
-  heroTitle: " Fund Your Trading Account with Fast and Trusted Options",
+  heroTitle: "Fund Your Trading Account with Secure Payments",
   heroDescription:
-    "Access reliable payment solutions built for modern traders, with secure deposits and withdrawals through UPI, PayPal, crypto, cards, bank transfers, and more. ",
+    "Deposit and withdraw funds seamlessly using trusted, fast and secure options.",
   heroPrimaryCtaLabel: "Deposit Funds",
   heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
 };

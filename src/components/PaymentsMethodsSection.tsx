@@ -81,9 +81,9 @@ const CARDS: CardData[] = [
     left: 74,
     icon: "/payments/deposit.png",
     iconAlt: "Deposit",
-    title: "Crypto & Fiat Deposit",
+    title: "Payment Stack",
     description:
-      "Fund your account using crypto, cards, bank transfer and trusted local payment methods",
+      "Choose from convenient funding and withdrawal options designed for global traders.",
     footer: {
       type: "logos",
       logos: [
@@ -100,9 +100,9 @@ const CARDS: CardData[] = [
     left: 515,
     icon: "/payments/withdraw.png",
     iconAlt: "Withdraw",
-    title: "Instant Withdrawal",
+    title: "Fast Processing",
     description:
-      "Fund your account using crypto, cards, bank transfer and trusted local payment methods",
+      "Fund your account instantly and access withdrawals without unnecessary delays.",
     footer: {
       type: "pill",
       label: "Fast Processing",
@@ -117,12 +117,12 @@ const CARDS: CardData[] = [
     left: 956,
     icon: "/payments/support.png",
     iconAlt: "Support",
-    title: "IT Customer Support",
+    title: "Secure Transactions",
     description:
-      "Fund your account using crypto, cards, bank transfer and trusted local payment methods",
+      "Advanced security systems help protect every deposit and payout.",
     footer: {
       type: "pill",
-      label: "24/7 Assistant",
+      label: "100% secure",
       icon: "shield",
       width: 186,
       height: 56,
@@ -310,10 +310,10 @@ function PaymentCard({ card }: { card: CardData }) {
 
 export default async function PaymentsMethodsSection() {
   const data = await getPaymentsPage();
-  const sectionTitle = data?.methodsTitle ?? "Our Payment Partners";
+  const sectionTitle = data?.methodsTitle ?? "Deposits & Withdrawals You Can Trust .";
   const sectionDescription =
     data?.methodsDescription ??
-    "Trade with speed, stability, and total control from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs.";
+    "Deposits hit your account in seconds. Withdrawals are processed quickly, so your funds stay safe, accessible, and always within reach.";
   return (
     <section
       style={{

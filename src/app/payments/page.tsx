@@ -1,6 +1,7 @@
 import PaymentsHeroSection from "@/components/PaymentsHeroSection";
 import PaymentsTrustBar from "@/components/PaymentsTrustBar";
 import PaymentsMethodsSection from "@/components/PaymentsMethodsSection";
+import PaymentsFlowSection from "@/components/PaymentsFlowSection";
 import PaymentsCTASection from "@/components/PaymentsCTASection";
 import FAQSection from "@/components/FAQSection";
 
@@ -16,6 +17,7 @@ export default function PaymentsPage() {
       <PaymentsHeroSection />
       <PaymentsTrustBar />
       <PaymentsMethodsSection />
+      <PaymentsFlowSection />
       <PaymentsCTASection />
       <FAQSection />
     </>
