@@ -18,7 +18,7 @@ const FALLBACK: Fallback = {
   growthBadge: "Our Principal",
   growthTitle: "Your Trading Journey,\nStructured for Success.",
   growthCtaLabel: "Contact Us",
-  growthCtaHref: "/contact",
+  growthCtaHref: "/contactus",
   growthStats: [
     { id: 1, value: "50,000+", label: "Traders" },
     { id: 2, value: "20+", label: "Industry Experience" },

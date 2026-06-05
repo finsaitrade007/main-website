@@ -2,14 +2,23 @@ import Link from "next/link";
 import Image from "next/image";
 
 const quickLinks = [
+  { label: "Home",         href: "/" },
   { label: "About Us",     href: "/about" },
-  { label: "Webinar",      href: "https://lms.finsaitrade.com/#webinars" },
+  { label: "Services",     href: "/services" },
   { label: "Partnerships", href: "/partnerships" },
+  { label: "Accounts",     href: "/accounts" },
+  { label: "Payments",     href: "/payments" },
   { label: "Blogs",        href: "/blogs" },
-  { label: "Contact Us",   href: "/contact" },
 ];
 
-const helpLinks = ["Customer Support", "Terms & Conditions", "Privacy Policy", "FAQs"];
+const helpLinks: { label: string; href: string }[] = [
+  { label: "Contact Us",        href: "/contactus" },
+  { label: "Careers",           href: "/careers" },
+  { label: "Customer Support",  href: "/contactus" },
+  { label: "FAQs",              href: "#" },
+  { label: "Terms & Conditions", href: "#" },
+  { label: "Privacy Policy",    href: "#" },
+];
 
 const legalLinks = [
   "Regulations",
@@ -128,7 +137,7 @@ export default function Footer() {
           <div>
             <h4 style={HEADING_STYLE}>Help</h4>
             {helpLinks.map((l) => (
-              <a key={l} href="#" style={LINK_STYLE}>{l}</a>
+              <a key={l.label} href={l.href} style={LINK_STYLE}>{l.label}</a>
             ))}
           </div>
 

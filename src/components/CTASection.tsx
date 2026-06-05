@@ -37,7 +37,7 @@ const FALLBACK: Pick<
   ctaButton2Label: "Try Demo",
   ctaButton2Href: "/demo",
   ctaButton3Label: "Contact Us",
-  ctaButton3Href: "/contact",
+  ctaButton3Href: "/contactus",
 };
 
 export default async function CTASection() {

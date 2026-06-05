@@ -22,7 +22,7 @@ const FALLBACK = {
   ctaButton1Label: "Become an IB Partner",
   ctaButton1Href: "https://fx.finsaitrade.com/auth/register",
   ctaButton2Label: "Talk to Us",
-  ctaButton2Href: "/contact",
+  ctaButton2Href: "/contactus",
   ctaButton3Label: "Start a Demo Account",
   ctaButton3Href: "/demo",
 };
