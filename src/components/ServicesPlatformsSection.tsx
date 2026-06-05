@@ -1,111 +1,357 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const BTN_GRADIENT = "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
-const BLUE_GRADIENT_TEXT = "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
+const BTN_GRADIENT =
+  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
+const TITLE_GRADIENT =
+  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
 
 type Platform = {
   id: string;
-  badge: string;
   title: string;
   subtitle: string;
   description: string;
+  features: string[];
   image: string;
-  ctaLabel: string;
-  ctaHref: string;
-  comingSoon?: boolean;
+  imageAlt: string;
+  cta?: { label: string; href: string };
+  showAppStores?: boolean;
+  reverse?: boolean;
 };
 
 const platforms: Platform[] = [
   {
     id: "mt5",
-    badge: "MT5",
-    title: "Driving Excellence with a Leading CFD Broker",
-    subtitle: "Meta Trading 5(MT5)",
+    title: "MT5",
+    subtitle: "The World's Most Powerful Trading Platform",
     description:
-      "Trade the world's most popular forex and currency pairs with a trusted forex broker.\nAccess 40+ major, minor and exotic forex pairs with low spreads from 0.0. Start trading the world's leading CFD products such as Forex in EUR/USD, GBP/USD, and USD/JPY.\n\nTo trade CFD products such as Forex, you will need to open a live trading account to access the global forex markets whether you are from Thailand, Philippines or beyond.",
+      "Experience MetaTrader 5 - the globally trusted trading platform known for lightning-fast execution, elite analysis tools, and unmatched flexibility.",
+    features: [
+      "44+ advanced charting tools",
+      "38 built-in indicators",
+      "2,000+ custom indicators",
+      "Analyze markets across 21 timeframes",
+      "Build and automate strategies with Expert Advisors (EAs)",
+      "Advanced  Back-testing tools",
+    ],
     image: "/service/mt5-platform.png",
-    ctaLabel: "Learn Forex",
-    ctaHref: "https://fx.finsaitrade.com/auth/register",
+    imageAlt: "MetaTrader 5 platform",
+    cta: {
+      label: "Learn More About MT5",
+      href: "https://fx.finsaitrade.com/auth/register",
+    },
+    reverse: false,
   },
   {
     id: "social",
-    badge: "Social",
-    title: "Trade Together with Social Trading",
-    subtitle: "Social Trading",
+    title: "Social Trading",
+    subtitle: "Copy, Trade, or Earn with Social Trading",
     description:
-      "Follow and copy strategies from top-performing traders worldwide. Build your portfolio by learning from experienced investors and replicating their trades in real time.\n\nOur social trading platform connects you with a global community of traders, offering transparent performance data and seamless one-click copying.",
-    image: "/service/mt5-platform.png",
-    ctaLabel: "Explore Social",
-    ctaHref: "https://fx.finsaitrade.com/auth/register",
+      "Follow experienced traders or become a strategy provider. Copy expert trades live, or share your strategy and earn rewards.",
+    features: [
+      "Auto-Copy Execution",
+      "Strategy Monetization",
+      "Integrated Risk Controls",
+      "Verified Performance Metrics",
+    ],
+    image: "/service/social-trading.png",
+    imageAlt: "Social trading network",
+    cta: {
+      label: "Learn More About Social Trading",
+      href: "https://fx.finsaitrade.com/auth/register",
+    },
+    reverse: true,
   },
   {
     id: "app",
-    badge: "App",
-    title: "All-in-One Trading from Your Smartphone",
-    subtitle: "Finsai Mobile App",
+    title: "App (Coming Soon)",
+    subtitle: "Powerful Mobile Trading On The Go",
     description:
-      "Execute trades instantly from anywhere with our upcoming mobile trading app. Monitor funds, view charts, and receive alerts on the go.\n\nTailored for mobile-first investors and active traders, the app brings the full power of Finsai's trading suite to your pocket.",
-    image: "/service/mt5-platform.png",
-    ctaLabel: "Notify Me",
-    ctaHref: "https://fx.finsaitrade.com/auth/register",
-    comingSoon: true,
+      "The Finsai Trade App puts fast, seamless multi-asset trading directly in your hands - anytime, anywhere.",
+    features: [
+      "1,000+ Instruments, One Tap",
+      "Live News & Market Insights",
+      "Risk-Free Demo Trading",
+      "Copy Trading & Expert Signals",
+      "Multi-Currency, All-in-One",
+    ],
+    image: "/service/app-coming-soon.png",
+    imageAlt: "Finsai Trade mobile app",
+    showAppStores: true,
+    reverse: false,
   },
 ];
 
-const tabs = [
-  { id: "mt5", label: "MT5" },
-  { id: "social", label: "Social Trading" },
-  { id: "app", label: "App - coming soon" },
-];
+function PlayStoreBadge() {
+  return (
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="10" fill="#000000" stroke="#1F2A44" />
+      <path
+        d="M16.4 14.6c-.3.3-.4.7-.4 1.3v16.2c0 .6.1 1 .4 1.3l.1.1L25.5 24v-.2l-9-9.3-.1.1z"
+        fill="#5BC9F4"
+      />
+      <path
+        d="M28.5 27 25.5 24v-.2l3-3 .1.1 3.6 2c1 .6 1 1.5 0 2.1l-3.7 2z"
+        fill="#FCD009"
+      />
+      <path
+        d="M28.6 27 25.5 24l-9.1 9.1c.3.3.9.4 1.6 0L28.6 27z"
+        fill="#E73730"
+      />
+      <path
+        d="M28.6 21 17 14.4c-.7-.4-1.3-.3-1.6 0L24.5 24l4.1-3z"
+        fill="#11C176"
+      />
+    </svg>
+  );
+}
+
+function AppStoreBadge() {
+  return (
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="10" fill="#000000" stroke="#1F2A44" />
+      <path
+        d="M30.6 25.4c0-3 2.4-4.4 2.5-4.5-1.4-2-3.5-2.3-4.3-2.3-1.8-.2-3.5 1.1-4.4 1.1-.9 0-2.3-1-3.8-1-2 0-3.8 1.1-4.8 2.9-2 3.6-.5 8.9 1.5 11.8 1 1.4 2.1 3 3.6 3 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.4-2.9 1.1-1.6 1.5-3.2 1.6-3.3-.1 0-3-1.2-3-4.7zm-3-8.6c.8-1 1.3-2.3 1.2-3.6-1.1.1-2.5.8-3.3 1.7-.7.8-1.4 2.2-1.2 3.4 1.3.1 2.5-.6 3.3-1.5z"
+        fill="#FFFFFF"
+      />
+    </svg>
+  );
+}
+
+function FeatureBullet({ text }: { text: string }) {
+  return (
+    <li
+      style={{
+        position: "relative",
+        paddingLeft: "20px",
+        fontFamily: "var(--font-inter, Inter)",
+        fontWeight: 400,
+        fontSize: "16px",
+        lineHeight: "28px",
+        letterSpacing: 0,
+        color: "#FFFFFF",
+        listStyle: "none",
+      }}
+    >
+      <span
+        style={{
+          position: "absolute",
+          left: 0,
+          top: "11px",
+          width: "6px",
+          height: "6px",
+          borderRadius: "50%",
+          background: "#FFFFFF",
+        }}
+      />
+      {text}
+    </li>
+  );
+}
+
+function PlatformBlock({ platform }: { platform: Platform }) {
+  const text = (
+    <div
+      style={{
+        flexShrink: 0,
+        width: "568px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+      }}
+    >
+      <h3
+        style={{
+          fontFamily: "var(--font-sora, Sora)",
+          fontWeight: 700,
+          fontSize: "44px",
+          lineHeight: "110%",
+          letterSpacing: "-0.01em",
+          margin: 0,
+          background: TITLE_GRADIENT,
+          WebkitBackgroundClip: "text",
+          backgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          color: "transparent",
+        }}
+      >
+        {platform.title}
+      </h3>
+
+      <p
+        style={{
+          fontFamily: "var(--font-sora, Sora)",
+          fontWeight: 600,
+          fontSize: "20px",
+          lineHeight: "130%",
+          letterSpacing: 0,
+          color: "#FFFFFF",
+          margin: 0,
+        }}
+      >
+        {platform.subtitle}
+      </p>
+
+      <p
+        style={{
+          fontFamily: "var(--font-inter, Inter)",
+          fontWeight: 400,
+          fontSize: "16px",
+          lineHeight: "26px",
+          letterSpacing: 0,
+          color: "rgba(255,255,255,0.85)",
+          margin: 0,
+          maxWidth: "520px",
+        }}
+      >
+        {platform.description}
+      </p>
+
+      <ul
+        style={{
+          margin: "8px 0 0",
+          padding: 0,
+          display: "flex",
+          flexDirection: "column",
+          gap: "4px",
+        }}
+      >
+        {platform.features.map((f) => (
+          <FeatureBullet key={f} text={f} />
+        ))}
+      </ul>
+
+      {platform.cta && !platform.showAppStores && (
+        <Link
+          href={platform.cta.href}
+          className="btn-text"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            alignSelf: "flex-start",
+            marginTop: "16px",
+            paddingTop: "12px",
+            paddingBottom: "12px",
+            paddingLeft: "26px",
+            paddingRight: "26px",
+            borderRadius: "60px",
+            background: BTN_GRADIENT,
+            textDecoration: "none",
+            color: "#FFFFFF",
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 500,
+            fontSize: "15px",
+            lineHeight: "100%",
+            whiteSpace: "nowrap",
+            boxSizing: "border-box",
+          }}
+        >
+          {platform.cta.label}
+        </Link>
+      )}
+
+      {platform.showAppStores && (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            marginTop: "16px",
+          }}
+        >
+          <Link href="#" aria-label="Get it on Google Play" style={{ display: "inline-flex" }}>
+            <PlayStoreBadge />
+          </Link>
+          <Link href="#" aria-label="Download on the App Store" style={{ display: "inline-flex" }}>
+            <AppStoreBadge />
+          </Link>
+        </div>
+      )}
+    </div>
+  );
+
+  const visual = (
+    <div
+      style={{
+        flexShrink: 0,
+        width: "488px",
+        height: "430px",
+        position: "relative",
+        background: "#000000",
+        borderRadius: "20px",
+        overflow: "hidden",
+      }}
+    >
+      <Image
+        src={platform.image}
+        alt={platform.imageAlt}
+        fill
+        sizes="488px"
+        style={{ objectFit: "cover" }}
+      />
+    </div>
+  );
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: "80px",
+        width: "100%",
+        flexDirection: platform.reverse ? "row-reverse" : "row",
+      }}
+    >
+      {text}
+      {visual}
+    </div>
+  );
+}
 
 export default function ServicesPlatformsSection() {
-  const [activeId, setActiveId] = useState<string>("mt5");
-  const active = platforms.find((p) => p.id === activeId) ?? platforms[0];
-
   return (
     <section
       style={{
         background: "#050208",
         width: "1440px",
-        height: "807px",
         boxSizing: "border-box",
+        padding: "80px 0 100px",
         position: "relative",
         overflow: "hidden",
       }}
     >
       <div
         style={{
-          width: "1440px",
-          height: "100%",
+          width: "100%",
+          maxWidth: "1280px",
           margin: "0 auto",
-          position: "relative",
+          padding: "0 80px",
           boxSizing: "border-box",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "96px",
         }}
       >
-        {/* LEFT — content */}
+        {/* Header */}
         <div
           style={{
-            position: "absolute",
-            top: "95px",
-            left: "74px",
-            width: "571px",
-            height: "620px",
+            textAlign: "center",
             display: "flex",
             flexDirection: "column",
-            gap: "24px",
+            alignItems: "center",
+            gap: "20px",
+            maxWidth: "780px",
           }}
         >
-          {/* Pill badge */}
           <div
             style={{
               display: "inline-flex",
-              alignSelf: "flex-start",
               alignItems: "center",
               justifyContent: "center",
+              boxSizing: "border-box",
               paddingTop: "8px",
               paddingBottom: "8px",
               paddingLeft: "20px",
@@ -113,9 +359,6 @@ export default function ServicesPlatformsSection() {
               borderRadius: "60px",
               border: "1px solid #FFFFFF26",
               background: "#000000",
-              boxSizing: "border-box",
-              minWidth: "72px",
-              height: "36px",
             }}
           >
             <span
@@ -125,161 +368,62 @@ export default function ServicesPlatformsSection() {
                 fontSize: "14px",
                 lineHeight: "100%",
                 letterSpacing: 0,
-                background: BLUE_GRADIENT_TEXT,
+                background: TITLE_GRADIENT,
                 WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
                 whiteSpace: "nowrap",
               }}
             >
-              {active.badge}
+              Choose Your Platform
             </span>
           </div>
 
-          {/* Title */}
           <h2
             style={{
               fontFamily: "var(--font-sora, Sora)",
-              fontWeight: 600,
+              fontWeight: 700,
               fontSize: "44px",
               lineHeight: "118%",
               letterSpacing: "-0.01em",
               color: "#FFFFFF",
               margin: 0,
-              maxWidth: "520px",
             }}
           >
-            {active.title}
+            Three Premium Platforms.
+            <br />
+            Unlimited Trading Potential.
           </h2>
 
-          {/* Tabs row */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "stretch",
-              gap: "8px",
-              marginTop: "8px",
-            }}
-          >
-            {tabs.map((tab) => {
-              const isActive = tab.id === activeId;
-              return (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => setActiveId(tab.id)}
-                  style={{
-                    position: "relative",
-                    background: isActive
-                      ? "linear-gradient(180deg, rgba(5, 2, 8, 0.3) 0%, rgba(50, 108, 223, 0.3) 100%)"
-                      : "transparent",
-                    border: "none",
-                    borderBottom: "2px solid transparent",
-                    borderImageSource: isActive
-                      ? "linear-gradient(90deg, #0F0F10 0%, #387AFF 50%, #0F0F10 100%)"
-                      : undefined,
-                    borderImageSlice: isActive ? 1 : undefined,
-                    padding: "10px 18px",
-                    cursor: "pointer",
-                    fontFamily: "var(--font-sora, Sora)",
-                    fontWeight: 400,
-                    fontSize: "20px",
-                    lineHeight: "100%",
-                    letterSpacing: "0%",
-                    color: "#FFFFFF",
-                    whiteSpace: "nowrap",
-                    transition: "background 150ms ease",
-                  }}
-                >
-                  {tab.label}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Subtitle */}
-          <h3
-            style={{
-              fontFamily: "var(--font-sora, Sora)",
-              fontWeight: 700,
-              fontSize: "28px",
-              lineHeight: "120%",
-              letterSpacing: 0,
-              margin: "8px 0 0",
-              background: BLUE_GRADIENT_TEXT,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            {active.subtitle}
-          </h3>
-
-          {/* Description */}
           <p
             style={{
               fontFamily: "var(--font-inter, Inter)",
               fontWeight: 400,
-              fontSize: "15px",
-              lineHeight: "24px",
+              fontSize: "16px",
+              lineHeight: "26px",
               letterSpacing: 0,
-              color: "rgba(255,255,255,0.75)",
+              color: "rgba(255,255,255,0.7)",
               margin: 0,
-              whiteSpace: "pre-line",
-              maxWidth: "490px",
+              maxWidth: "640px",
             }}
           >
-            {active.description}
+            From advanced algorithmic trading to social copy trading, discover
+            the ultimate platform for your trading style.
           </p>
-
-          {/* CTA button */}
-          <Link
-            href={active.ctaHref}
-            className="btn-text"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              alignSelf: "flex-start",
-              marginTop: "8px",
-              paddingTop: "12px",
-              paddingBottom: "12px",
-              paddingLeft: "26px",
-              paddingRight: "26px",
-              borderRadius: "8px",
-              background: BTN_GRADIENT,
-              textDecoration: "none",
-              color: "#FFFFFF",
-              fontFamily: "var(--font-inter, Inter)",
-              fontWeight: 500,
-              fontSize: "15px",
-              lineHeight: "100%",
-              whiteSpace: "nowrap",
-              boxSizing: "border-box",
-            }}
-          >
-            {active.ctaLabel}
-          </Link>
         </div>
 
-        {/* RIGHT — visual */}
+        {/* Three platform blocks */}
         <div
           style={{
-            position: "absolute",
-            top: "51px",
-            left: "703px",
-            width: "707px",
-            height: "707px",
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            gap: "120px",
           }}
         >
-          <Image
-            src={active.image}
-            alt={active.subtitle}
-            fill
-            priority
-            sizes="707px"
-            style={{ objectFit: "contain" }}
-          />
+          {platforms.map((platform) => (
+            <PlatformBlock key={platform.id} platform={platform} />
+          ))}
         </div>
       </div>
     </section>
