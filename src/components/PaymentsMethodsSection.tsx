@@ -79,27 +79,24 @@ type CardData = {
 const CARDS: CardData[] = [
   {
     left: 74,
-    icon: "/payments/deposit.png",
-    iconAlt: "Deposit",
+    icon: "/payments/payment-stack-icon.png",
+    iconAlt: "Payment Stack",
     title: "Payment Stack",
     description:
       "Choose from convenient funding and withdrawal options designed for global traders.",
     footer: {
       type: "logos",
       logos: [
-        { src: "/accounts/upi.png", w: 56, h: 32, alt: "UPI" },
-        { src: "/accounts/visa.png", w: 56, h: 24, alt: "Visa" },
-        { src: "/accounts/mastercard.png", w: 40, h: 28, alt: "Mastercard" },
-        { src: "/accounts/bitcoin.png", w: 28, h: 28, alt: "Bitcoin" },
-        { src: "/accounts/ethereum.png", w: 28, h: 28, alt: "Ethereum" },
-        { src: "/accounts/tether.png", w: 28, h: 28, alt: "Tether" },
+        { src: "/crypto/btc.svg", w: 36, h: 36, alt: "Bitcoin" },
+        { src: "/crypto/eth.svg", w: 36, h: 36, alt: "Ethereum" },
+        { src: "/crypto/usdt.svg", w: 36, h: 36, alt: "Tether" },
       ],
     },
   },
   {
     left: 515,
-    icon: "/payments/withdraw.png",
-    iconAlt: "Withdraw",
+    icon: "/payments/fast-processing-icon.png",
+    iconAlt: "Fast Processing",
     title: "Fast Processing",
     description:
       "Fund your account instantly and access withdrawals without unnecessary delays.",
@@ -115,8 +112,8 @@ const CARDS: CardData[] = [
   },
   {
     left: 956,
-    icon: "/payments/support.png",
-    iconAlt: "Support",
+    icon: "/payments/secure-transactions-icon.png",
+    iconAlt: "Secure Transactions",
     title: "Secure Transactions",
     description:
       "Advanced security systems help protect every deposit and payout.",
@@ -253,8 +250,8 @@ function PaymentCard({ card }: { card: CardData }) {
               height: "40px",
               display: "flex",
               alignItems: "center",
-              justifyContent: "space-between",
-              gap: "8px",
+              justifyContent: "center",
+              gap: "32px",
             }}
           >
             {card.footer.logos.map((logo) => (

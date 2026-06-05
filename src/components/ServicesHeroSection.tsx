@@ -11,9 +11,9 @@ const FALLBACK: Pick<
   | "heroPrimaryCtaHref"
 > = {
   heroBadge: "SIGN IN TO YOUR SECURE WALLET",
-  heroTitle: "Your Platform. Your Strategy. Total Control",
+  heroTitle: "Powerful Trading Platforms for Every Trader ",
   heroDescription:
-    "Execute trades faster with real-time insights, powerful charts, and secure access online.",
+    "Discover three powerful trading environments built for ambitious beginners, active traders, and professional market participants.",
   heroPrimaryCtaLabel: "Start Trading →",
   heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
 };
@@ -99,7 +99,7 @@ export default async function ServicesHeroSection() {
           height: "186px",
           overflow: "hidden",
         }}>
-          Advanced Trading Platforms for Forex, Crypto &amp; Indices
+          Powerful Trading Platforms for Every Trader 
         </h1>
 
         <p style={{
