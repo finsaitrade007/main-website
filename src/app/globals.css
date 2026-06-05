@@ -106,6 +106,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 160px;
   z-index: 3;
 }
 
@@ -115,7 +116,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   padding: 0 21px;
   gap: 24px;
-  width: 875px;
+  width: 1029px;
   max-width: 100%;
 }
 
@@ -130,7 +131,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   letter-spacing: -0.01em;
   color: #FFFFFF;
-  width: 789px;
+  width: 1029px;
   height: 124px;
   margin: 0;
 }
@@ -147,7 +148,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   color: #E0E0E0;
   width: 833px;
-  height: 64px;
+  height: 96px;
   margin: 0;
 }
 

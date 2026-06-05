@@ -19,7 +19,7 @@ const WIDE_CARD_BORDER_GRADIENT =
 const WIDE_CARD_BACKGROUND = `linear-gradient(${CARD_BG}, ${CARD_BG}) padding-box, ${WIDE_CARD_BORDER_GRADIENT} border-box`;
 
 const FALLBACK_HEADER = {
-  platformsBadge: "Choose The Best - Platform",
+  platformsBadge: "Seamless Trading Experience",
   platformsTitle: "Powerful Platforms for Every Trader",
   platformsDescription:
     "Trade with speed, stability, and total control from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs.",
@@ -31,7 +31,7 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     documentId: "fb-mt5",
     title: "MT5",
     description:
-      "MetaTrader 5 is an advanced trading platform for Forex, stocks, and other assets. It offers powerful tools for analysis, automated trading, backtesting, and risk management, catering to both beginners and expert traders.Our platform equips you with an array of sophisticated instruments designed to help you analyze market trends, track real-time data, and make informed decisions. Whether you're charting patterns, setting indicators, or monitoring volatility, our comprehensive suite of tools offers the edge you need to navigate the crypto markets confidently. Experience the synergy of technology and trading at its finest with Finsai Trade.",
+      " Access 44+ advanced charting tools, 38 built-in indicators, and 2,000+ custom indicators for deeper market analysis. Monitor price action across 21 timeframes, create custom Expert Advisors (EAs) with MQL5, and test strategies faster with multi-threaded optimization.",
     size: "large",
     row: 1,
     order: 1,
@@ -78,7 +78,7 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
         background: WIDE_CARD_BACKGROUND,
         border: "1px solid transparent",
         borderRadius: RADIUS,
-        height: "321px",
+        height: "249px",
         padding: "32px 40px",
         overflow: "visible",
         boxSizing: "border-box",
@@ -102,10 +102,10 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
         <div
           style={{
             position: "absolute",
-            top: "-55px",
-            left: "885px",
-            width: "312px",
-            height: "376px",
+            top: "-51px",
+            left: "1004px",
+            width: "233px",
+            height: "281px",
             zIndex: 10,
             pointerEvents: "none",
           }}
@@ -139,14 +139,24 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
           left: "40px",
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 400,
-          fontSize: "40px",
-          lineHeight: "54px",
+          fontSize: "62px",
+          lineHeight: "62px",
           color: "#FFFFFF",
           margin: 0,
         }}
       >
         {p.title}
       </h3>
+
+      <div style={{ position: "absolute", top: "150px", left: "180px", zIndex: 11 }}>
+        <Image
+          src="/mt5.png"
+          alt="MT5"
+          width={60}
+          height={60}
+          style={{ objectFit: "contain" }}
+        />
+      </div>
     </div>
   );
 }

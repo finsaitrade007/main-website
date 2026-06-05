@@ -3,38 +3,39 @@ import IBWhyClient from "./IBWhyClient";
 
 const FALLBACK_TABS = [
   {
-    label: "Robust Support",
-    title: "Trade global currency pairs with tight spreads and fast execution.",
+    label: "Rebates",
+    title: "Earn More from Every Active Client",
     description:
-      "Access the world's most liquid financial market and trade majors, minors, and exotics 24/5 with real-time pricing and advanced tools.",
+      "Competitive rebates designed to reward performance as your network grows.",
   },
   {
-    label: "Transparency",
-    title: "Full transparency on every trade and commission earned.",
+    label: "Detailed Reports",
+    title: "Track Every Result with Clarity",
     description:
-      "We provide clear and honest reporting on all your referrals, trades, and commissions — no hidden fees, no surprises.",
+      "Monitor referrals, trading activity, commissions, and payouts through detailed live reports.",
   },
   {
-    label: "Attractive Rebates",
-    title: "Earn competitive rebates on every trade your clients make.",
+    label: "Multi-Tier Mode",
+    title: "Scale Your Network More Efficiently",
     description:
-      "Our rebate structure is designed to maximize your earnings with every referral, giving you a reliable and growing income stream.",
+      "Build and manage multi-level partner structures designed for long-term growth.",
   },
   {
-    label: "Competitive Tools",
-    title: "Access powerful tools to grow your partner network.",
+    label: "Regulated Broker",
+    title: "Trade with Confidence and Trust",
     description:
-      "From marketing materials to real-time dashboards, we equip you with everything you need to succeed as an introducing broker.",
+      "Partner with a secure and transparent trading environment built for modern traders.",
   },
 ];
 
 export default async function IBWhySection() {
   const data = await getPartnershipsPage();
 
-  const title = data?.whyTitle ?? "Why Become an IB with Finsai Trade?";
+  const title = data?.whyTitle ?? "Why Top IBs Choose Finsai Trade";
   const description =
-    data?.whyDescription ?? "Smart, secure, and reliable trading for everyone, everywhere.";
-  const ctaLabel = data?.heroPrimaryCtaLabel ?? "Explore More →";
+    data?.whyDescription ??
+    "Built for partners who want faster growth, stronger earnings, and long-term success";
+  const ctaLabel = data?.heroPrimaryCtaLabel ?? "Start Earning Today →";
   const ctaHref = data?.heroPrimaryCtaHref ?? "https://fx.finsaitrade.com/auth/register";
 
   const tabs =

@@ -189,16 +189,16 @@ export default function IBCalculatorSection({ title, description }: Props) {
           }}>
             <p style={{
               fontFamily: "var(--font-inter, Inter)",
-              fontSize: "14px",
+              fontSize: "22px",
               color: "rgba(255,255,255,0.5)",
               margin: "0 0 12px",
             }}>
-              Monthly revenue will be*
+              Estimated Monthly Revenue
             </p>
             <p style={{
               fontFamily: "var(--font-sora, Sora)",
-              fontWeight: 700,
-              fontSize: "40px",
+              fontWeight: 500,
+              fontSize: "36px",
               color: "#FFFFFF",
               margin: 0,
             }}>
@@ -235,8 +235,9 @@ export default function IBCalculatorSection({ title, description }: Props) {
             border: "none",
             cursor: "pointer",
             fontFamily: "var(--font-sora, Sora)",
-            fontSize: "16px",
+            fontSize: "18.45px",
             color: "#FFFFFF",
+            fontWeight: 600,
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",

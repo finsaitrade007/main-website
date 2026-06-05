@@ -17,10 +17,19 @@ type Props = {
   tabs: Tab[];
 };
 
+const TAB_IMAGES = [
+  "/why-ib.png",
+  "/why-ib-reports.png",
+  "/why-ib-multitier.png",
+  "/why-ib-regulated.png",
+];
+
 export default function IBWhyClient({ title, description, ctaLabel, ctaHref, tabs }: Props) {
   const [active, setActive] = useState(0);
   const safeTabs = tabs.length ? tabs : [{ label: "", title: "", description: "" }];
-  const current = safeTabs[Math.min(active, safeTabs.length - 1)];
+  const activeIndex = Math.min(active, safeTabs.length - 1);
+  const current = safeTabs[activeIndex];
+  const currentImage = TAB_IMAGES[activeIndex] ?? TAB_IMAGES[0];
 
   return (
     <section style={{ background: "#050208", width: "1440px", height: "822px", padding: "80px 0", boxSizing: "border-box" }}>
@@ -89,21 +98,34 @@ export default function IBWhyClient({ title, description, ctaLabel, ctaHref, tab
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             <h3 style={{
               fontFamily: "var(--font-sora, Sora)",
+              fontWeight: 600,
+              fontStyle: "normal",
+              fontSize: "36px",
+              lineHeight: "50px",
+              letterSpacing: 0,
+              color: "#056FB4",
+              margin: 0,
+            }}>
+              {current.label}
+            </h3>
+            <p style={{
+              fontFamily: "var(--font-sora, Sora)",
               fontWeight: 400,
+              fontStyle: "normal",
               fontSize: "24px",
               lineHeight: "48px",
               letterSpacing: 0,
               color: "#FFFFFF",
-              margin: 0,
               width: "692px",
-              height: "96px",
-              overflow: "hidden",
+              height: "48px",
+              margin: 0,
             }}>
               {current.title}
-            </h3>
+            </p>
             <p style={{
               fontFamily: "var(--font-inter, Inter)",
               fontWeight: 500,
+              fontStyle: "normal",
               fontSize: "16px",
               lineHeight: "32px",
               letterSpacing: 0,
@@ -116,12 +138,15 @@ export default function IBWhyClient({ title, description, ctaLabel, ctaHref, tab
               <Link href={ctaHref} className="btn-text" style={{
                 display: "inline-flex",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: "8px",
-                padding: "14px 32px",
-                borderRadius: "60px",
+                width: "276px",
+                height: "57px",
+                borderRadius: "28.83px",
                 background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
                 textDecoration: "none",
                 whiteSpace: "nowrap",
+                boxSizing: "border-box",
               }}>
                 {ctaLabel}
               </Link>
@@ -130,8 +155,9 @@ export default function IBWhyClient({ title, description, ctaLabel, ctaHref, tab
 
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Image
-              src="/why-ib.png"
-              alt="IB Why"
+              key={currentImage}
+              src={currentImage}
+              alt={current.label || "IB Why"}
               width={472}
               height={444}
               style={{ objectFit: "contain", borderRadius: "20px" }}

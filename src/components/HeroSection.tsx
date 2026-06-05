@@ -11,14 +11,13 @@ const FALLBACK: Pick<
   | "heroCtaSecondaryLabel"
   | "heroCtaSecondaryHref"
 > = {
-  heroTitle: "Trade Global Markets Without Limits",
+  heroTitle: "Trade Global Markets on a Powerful Multi-Asset Trading Platform",
   heroSubtitle:
-    "The powerful multi-asset trading platform for modern traders — all in one unified ecosystem.",
+    "Finsai Trade is a secure trading platform that gives modern traders access to forex, stocks, commodities, and indices through one advanced trading ecosystem.",
   heroTaglines: [
-    { id: 1, label: "Regulated Broker" },
-    { id: 2, label: "MT5 Platform" },
-    { id: 3, label: "Swap Free" },
-    { id: 4, label: "Reliable Support" },
+    { id: 1, label: "Fast Execution" },
+    { id: 2, label: "Advanced Trading Tools" },
+    { id: 3, label: "Secure & Regulated Infrastructure" },
   ],
   heroCtaPrimaryLabel: "Start Trading Now",
   heroCtaPrimaryHref: "https://fx.finsaitrade.com/auth/register",

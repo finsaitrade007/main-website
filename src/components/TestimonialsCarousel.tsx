@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import type { StrapiTestimonial } from "@/lib/strapi";
 
 const CARD_BG = "#0B1221";
@@ -22,6 +22,19 @@ export default function TestimonialsCarousel({
   const [active, setActive] = useState(
     Math.min(1, Math.max(0, testimonials.length - 1)),
   );
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startCycle = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setActive((a) => (a + 1) % testimonials.length);
+    }, 3000);
+  }, [testimonials.length]);
+
+  useEffect(() => {
+    startCycle();
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [startCycle]);
 
   if (testimonials.length === 0) return null;
 
@@ -42,7 +55,7 @@ export default function TestimonialsCarousel({
         }}
       >
         <button
-          onClick={() => setActive(prev)}
+          onClick={() => { setActive(prev); startCycle(); }}
           style={{
             width: "285px",
             height: "179px",
@@ -176,7 +189,7 @@ export default function TestimonialsCarousel({
         </div>
 
         <button
-          onClick={() => setActive(next)}
+          onClick={() => { setActive(next); startCycle(); }}
           style={{
             width: "285px",
             height: "179px",
@@ -255,7 +268,7 @@ export default function TestimonialsCarousel({
         {testimonials.map((_, i) => (
           <button
             key={i}
-            onClick={() => setActive(i)}
+            onClick={() => { setActive(i); startCycle(); }}
             style={{
               width: i === active ? "32px" : "10px",
               height: "10px",

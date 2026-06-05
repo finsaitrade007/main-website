@@ -78,8 +78,8 @@ export default async function IBStatsSection() {
               overflow: "hidden",
             }}>
               <Image
-                src="/corporate-group.png"
-                alt="Partner team"
+                src="/ib-stats.png"
+                alt="IB partner program"
                 fill
                 style={{ objectFit: "cover" }}
               />
@@ -88,11 +88,46 @@ export default async function IBStatsSection() {
 
       <div style={{
         position: "absolute",
-        top: "83px",
+        top: "28px",
         left: "757px",
         width: "568px",
-        height: "541px",
       }}>
+          <div style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxSizing: "border-box",
+            width: "247.6px",
+            height: "51.2px",
+            gap: "8.4px",
+            borderRadius: "60px",
+            border: "1.2px solid #FFFFFF26",
+            background: "#000000",
+            paddingTop: "9.6px",
+            paddingRight: "16.8px",
+            paddingBottom: "9.6px",
+            paddingLeft: "16.8px",
+            marginBottom: "24px",
+          }}>
+            <span style={{
+              fontFamily: "var(--font-inter, Inter)",
+              fontWeight: 400,
+              fontStyle: "normal",
+              fontSize: "19.2px",
+              lineHeight: "31.2px",
+              letterSpacing: 0,
+              textTransform: "capitalize",
+              verticalAlign: "middle",
+              background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
+            }}>
+              Built for Ambitious IBs
+            </span>
+          </div>
+
           <div>
             <h2 style={{
               fontFamily: "var(--font-sora, Sora)",

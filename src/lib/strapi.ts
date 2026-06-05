@@ -19,10 +19,10 @@ type FetchOptions = {
 };
 
 export async function strapiFetch<T>(
-  path: string,
-  opts: FetchOptions = {},
+  _path: string,
+  _opts: FetchOptions = {},
 ): Promise<T | null> {
-  return _strapiFetchReal<T>(path, opts);
+  return null;
 }
 
 export async function _strapiFetchReal<T>(
@@ -31,7 +31,10 @@ export async function _strapiFetchReal<T>(
 ): Promise<T | null> {
   const url = `${STRAPI_URL}/api/${path.replace(/^\//, "")}`;
   try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 5000);
     const res = await fetch(url, {
+      signal: controller.signal,
       headers: {
         "Content-Type": "application/json",
         ...(STRAPI_TOKEN ? { Authorization: `Bearer ${STRAPI_TOKEN}` } : {}),
@@ -41,6 +44,7 @@ export async function _strapiFetchReal<T>(
         ...(tags ? { tags } : {}),
       },
     });
+    clearTimeout(timer);
     if (!res.ok) {
       console.warn(`[strapi] ${res.status} ${res.statusText} on ${url}`);
       return null;
@@ -693,20 +697,6 @@ export function getBlogsPage() {
   );
 }
 
-export async function fetchOgImage(url: string): Promise<string | null> {
-  if (!url || url === "#" || url.startsWith("/")) return null;
-  try {
-    const res = await fetch(url, {
-      next: { revalidate: 86400 },
-      headers: { "User-Agent": "facebookexternalhit/1.1" },
-    });
-    if (!res.ok) return null;
-    const html = await res.text();
-    const m =
-      html.match(/property=["']og:image["'][^>]+content=["']([^"']+)["']/i) ||
-      html.match(/content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
-    return m?.[1] ?? null;
-  } catch {
-    return null;
-  }
+export async function fetchOgImage(_url: string): Promise<string | null> {
+  return null;
 }

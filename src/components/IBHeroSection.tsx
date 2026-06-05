@@ -9,9 +9,9 @@ const FALLBACK: Pick<
   | "heroPrimaryCtaLabel"
   | "heroPrimaryCtaHref"
 > = {
-  heroTitle: "Build a Business with\nEvery Trader You Refer",
+  heroTitle: "Join Finsai Trade as an Introducing Broker",
   heroDescription:
-    "Join Finsai Trade's IB Program and earn competitive commissions from your network's activity. Get the tools, support, and payouts you need to build a scalable business from day one.",
+    "Earn attractive commissions from every client trade with higher conversions and stronger client retention.",
   heroPrimaryCtaLabel: "Become an IB",
   heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
 };
@@ -23,7 +23,7 @@ export default async function IBHeroSection() {
       position: "relative",
       background: "#050208",
       width: "1440px",
-      height: "777px",
+      height: "707px",
       overflow: "hidden",
     }}>
       {/* Hero image — right side */}

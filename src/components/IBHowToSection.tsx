@@ -13,15 +13,15 @@ const NUMBER_POSITIONS = [212, 650, 1090];
 const CIRCLE_SIZE = 112;
 
 const fallbackSteps = [
-  { title: "Sign Up", description: "Submit your application to become an IB." },
-  { title: "Promote", description: "Use our marketing materials to introduce traders to our trading platforms." },
-  { title: "Earn", description: "Collect your commissions for every trade your referred traders execute." },
+  { title: "Sign Up", description: "Create your IB account and access your partner tools." },
+  { title: "Refer Clients", description: "Share your referral link and grow your network." },
+  { title: "Earn More", description: "Get rewarded from every eligible client trade." },
 ];
 
 export default async function IBHowToSection() {
   const data = await getPartnershipsPage();
-  const title = data?.howToTitle ?? "Fast application. Fast process. So easy.";
-  const description = data?.howToDescription ?? "How to become an IB?";
+  const title = data?.howToTitle ?? " How to Become a Successful Introducing Broker";
+  const description = data?.howToDescription ?? "Start earning with an easy partner program built for long-term growth.";
   const ctaLabel = data?.heroPrimaryCtaLabel ?? "Become an IB";
   const ctaHref = data?.heroPrimaryCtaHref ?? "https://fx.finsaitrade.com/auth/register";
 
@@ -64,9 +64,10 @@ export default async function IBHowToSection() {
           style={{
             position: "absolute",
             top: "158px",
-            left: "595px",
-            width: "255px",
+            left: "321px",
+            width: "803px",
             height: "29px",
+            fontSize: "24px",
             textAlign: "center",
             margin: 0,
           }}
@@ -78,7 +79,7 @@ export default async function IBHowToSection() {
         <div
           style={{
             position: "absolute",
-            top: "220px",
+            top: "262px",
             left: "107px",
             width: "1225px",
             height: "278px",

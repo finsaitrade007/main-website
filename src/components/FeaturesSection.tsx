@@ -18,8 +18,8 @@ const FALLBACK_HEADER: Pick<
   StrapiHomepage,
   "featuresBadge" | "featuresTitle" | "featuresDescription"
 > = {
-  featuresBadge: "Features of Finsai Trade",
-  featuresTitle: "Discover Why Traders Trust and Choose Finsai Trade",
+  featuresBadge: "What Sets Us Apart ",
+  featuresTitle: "Why Top Traders Choose Finsai Trade",
   featuresDescription:
     "Trade securely across 1,000+ assets on a globally regulated platform with transparent pricing and 24/7 expert support.",
 };
