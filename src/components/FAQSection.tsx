@@ -49,7 +49,10 @@ export default async function FAQSection() {
   const faqs = fetched && fetched.length > 0 ? fetched : FALLBACK_FAQS;
 
   return (
-    <section className="py-24 px-4 bg-[#050208]">
+    <section
+      className="page-section bg-[#050208]"
+      style={{ paddingBottom: "96px" }}
+    >
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-4">
           <span

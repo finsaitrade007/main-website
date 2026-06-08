@@ -313,12 +313,13 @@ export default async function PaymentsMethodsSection() {
     "Deposits hit your account in seconds. Withdrawals are processed quickly, so your funds stay safe, accessible, and always within reach.";
   return (
     <section
+      className="page-section"
       style={{
         background: "#050208",
-        width: "1440px",
-        height: "771px",
+        width: "100%",
+        maxWidth: "1440px",
+        minHeight: "771px",
         position: "relative",
-        boxSizing: "border-box",
       }}
     >
       <div

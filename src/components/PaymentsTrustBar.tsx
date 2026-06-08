@@ -16,12 +16,15 @@ export default async function PaymentsTrustBar() {
     data?.trustText ??
     "Every transaction at Finsai Trade is protected by industry-leading security standards.";
   return (
-    <section style={{
-      background: "#050208",
-      width: "1440px",
-      padding: "0 80px 40px",
-      boxSizing: "border-box",
-    }}>
+    <section
+      className="page-section"
+      style={{
+        background: "#050208",
+        width: "100%",
+        maxWidth: "1440px",
+        paddingBottom: "40px",
+      }}
+    >
       <div style={{
         width: "1280px",
         height: "197px",

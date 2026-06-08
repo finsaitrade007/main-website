@@ -87,7 +87,7 @@ export default function MarketsAccordion({
           style={{
             maxWidth: "1280px",
             margin: "0 auto",
-            padding: "0 80px",
+            padding: "80px 80px 96px",
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "60px",

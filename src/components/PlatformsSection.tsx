@@ -256,15 +256,16 @@ export default async function PlatformsSection() {
 
   return (
     <section
+      className="page-section"
       style={{
         background: "#050208",
-        width: "1440px",
-        height: "830px",
-        padding: "0",
-        boxSizing: "border-box",
+        width: "100%",
+        maxWidth: "1440px",
+        minHeight: "830px",
+        paddingBottom: "96px",
       }}
     >
-      <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 80px" }}>
+      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "28px" }}>
           <span
             style={{

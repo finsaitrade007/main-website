@@ -83,11 +83,12 @@ export default async function AccountsCompareTable() {
 
   return (
     <section
+      className="page-section"
       style={{
         position: "relative",
-        width: "1440px",
-        maxWidth: "100%",
-        height: `${SECTION_HEIGHT}px`,
+        width: "100%",
+        maxWidth: "1440px",
+        minHeight: `${SECTION_HEIGHT}px`,
         margin: "0 auto",
         background: "#050208",
         opacity: 1,

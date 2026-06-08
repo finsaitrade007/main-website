@@ -55,7 +55,10 @@ export default async function RewardsLoyaltyProgramSection() {
       ? data.loyaltyPerks
       : FALLBACK.loyaltyPerks;
   return (
-    <section style={{ background: "#050208", padding: "40px 0 80px" }}>
+    <section
+      className="page-section"
+      style={{ background: "#050208", paddingBottom: "80px" }}
+    >
       <div
         style={{
           width: "1280px",

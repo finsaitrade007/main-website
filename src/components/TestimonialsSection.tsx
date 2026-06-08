@@ -53,8 +53,11 @@ export default async function TestimonialsSection() {
     fetched && fetched.length > 0 ? fetched : FALLBACK_TESTIMONIALS;
 
   return (
-    <section style={{ background: "#050208", padding: "100px 0" }}>
-      <div style={{ maxWidth: "1440px", maxHeight: "397px",margin: "0 auto", padding: "0 80px" }}>
+    <section
+      className="page-section"
+      style={{ background: "#050208", paddingBottom: "96px" }}
+    >
+      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "24px" }}>
           <span
             style={{

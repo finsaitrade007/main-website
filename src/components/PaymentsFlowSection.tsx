@@ -278,12 +278,13 @@ function FlowCardView({ card }: { card: FlowCard }) {
 export default function PaymentsFlowSection() {
   return (
     <section
+      className="page-section"
       style={{
         background: "#050208",
-        width: "1440px",
-        height: "718px",
-        boxSizing: "border-box",
-        padding: "60px 0",
+        width: "100%",
+        maxWidth: "1440px",
+        minHeight: "718px",
+        paddingBottom: "60px",
         position: "relative",
         overflow: "hidden",
       }}
@@ -293,7 +294,6 @@ export default function PaymentsFlowSection() {
           width: "100%",
           maxWidth: "1320px",
           margin: "0 auto",
-          padding: "0 80px",
           boxSizing: "border-box",
           display: "flex",
           flexDirection: "column",

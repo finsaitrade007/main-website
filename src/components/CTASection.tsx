@@ -50,9 +50,10 @@ export default async function CTASection() {
 
   return (
     <section
+      className="page-section"
       style={{
         background: "#050208",
-        padding: "80px 0",
+        paddingBottom: "80px",
         display: "flex",
         justifyContent: "center",
       }}

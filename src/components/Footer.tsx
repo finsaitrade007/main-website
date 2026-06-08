@@ -16,19 +16,20 @@ const helpLinks: { label: string; href: string }[] = [
   { label: "Careers",           href: "/careers" },
   { label: "Customer Support",  href: "/contactus" },
   { label: "FAQs",              href: "#" },
-  { label: "Terms & Conditions", href: "#" },
-  { label: "Privacy Policy",    href: "#" },
+  { label: "Terms & Conditions", href: "/client-agreement" },
+  { label: "Privacy Policy",    href: "/privacy-policy" },
 ];
 
-const legalLinks = [
-  "Regulations",
-  "Anti-Money Laundering Policy",
-  "Conflicts Of Interest Policy",
-  "Refund Policy",
-  "Risk Disclosure & Warnings Notice",
-  "Upfront Disclosure",
-  "Complaints Management",
-  "Client Agreement",
+const legalLinks: { label: string; href: string }[] = [
+  { label: "Regulations",                       href: "#" },
+  { label: "Anti-Money Laundering Policy",      href: "/aml-policy" },
+  { label: "Conflicts Of Interest Policy",      href: "/conflicts-of-interest-policy" },
+  { label: "Privacy Policy",                    href: "/privacy-policy" },
+  { label: "Refund Policy",                     href: "/refund-policy" },
+  { label: "Risk Disclosure & Warnings Notice", href: "#" },
+  { label: "Upfront Disclosure",                href: "/upfront-disclosure" },
+  { label: "Complaints Management",             href: "/complaints-management" },
+  { label: "Client Agreement",                  href: "/client-agreement" },
 ];
 
 const socials = [
@@ -145,7 +146,7 @@ export default function Footer() {
           <div>
             <h4 style={HEADING_STYLE}>Legal Documents</h4>
             {legalLinks.map((l) => (
-              <a key={l} href="#" style={LINK_STYLE}>{l}</a>
+              <Link key={l.label} href={l.href} style={LINK_STYLE}>{l.label}</Link>
             ))}
           </div>
 

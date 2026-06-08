@@ -60,11 +60,12 @@ export default async function RewardsPromotionsSection() {
   return (
     <section
       id="promotions"
+      className="page-section"
       style={{
         position: "relative",
-        boxSizing: "border-box",
-        width: "1440px",
-        height: "454px",
+        width: "100%",
+        maxWidth: "1440px",
+        minHeight: "454px",
         margin: "0 auto",
         background: "#050208",
       }}

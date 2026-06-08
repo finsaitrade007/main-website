@@ -37,7 +37,10 @@ export default async function IBStatsSection() {
   });
 
   return (
-    <section style={{ position: "relative", background: "#050208", width: "1440px", height: "696px", boxSizing: "border-box" }}>
+    <section
+      className="page-section"
+      style={{ position: "relative", background: "#050208", width: "100%", maxWidth: "1440px", minHeight: "696px" }}
+    >
 
           {/* Image stack container */}
           <div style={{

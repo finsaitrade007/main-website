@@ -15,12 +15,14 @@ const FALLBACK: Pick<
 export default async function ToolsCTASection() {
   const data = (await getToolsPage()) ?? FALLBACK;
   return (
-    <section style={{ background: "#050208", padding: "60px 0 100px" }}>
+    <section
+      className="page-section"
+      style={{ background: "#050208", paddingBottom: "100px" }}
+    >
       <div
         style={{
           maxWidth: "1440px",
           margin: "0 auto",
-          padding: "0 80px",
         }}
       >
         <div

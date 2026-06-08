@@ -10,8 +10,11 @@ const items = [
 
 export default function IBFeaturesSection() {
   return (
-    <section style={{ background: "#050208", padding: "80px 0" }}>
-      <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 80px" }}>
+    <section
+      className="page-section"
+      style={{ background: "#050208", paddingBottom: "80px" }}
+    >
+      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",

@@ -156,8 +156,20 @@ export default async function BlogsNewsSection() {
   ].slice(0, 4);
 
   return (
-    <section style={{ background: "#050208", width: "1440px" }}>
-      <div style={{ position: "relative", width: "1440px", height: "1030px", overflow: "visible" }}>
+    <section
+      className="page-section"
+      style={{
+        background: "#050208",
+        width: "100%",
+        maxWidth: "1440px",
+        // The inner layout uses absolute positions designed against a full
+        // 1440px-wide container, so we drop the page-section's horizontal
+        // padding here to keep the section visually centered on the page.
+        paddingLeft: 0,
+        paddingRight: 0,
+      }}
+    >
+      <div style={{ position: "relative", width: "100%", maxWidth: "1440px", minHeight: "1030px", margin: "0 auto", overflow: "visible" }}>
 
         {/* Badge */}
         <div style={{ position: "absolute", top: "52px", left: 0, right: 0, display: "flex", justifyContent: "center" }}>

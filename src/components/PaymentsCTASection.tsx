@@ -16,12 +16,15 @@ const FALLBACK: Pick<
 export default async function PaymentsCTASection() {
   const data = (await getPaymentsPage()) ?? FALLBACK;
   return (
-    <section style={{
-      background: "#050208",
-      padding: "80px 0",
-      display: "flex",
-      justifyContent: "center",
-    }}>
+    <section
+      className="page-section"
+      style={{
+        background: "#050208",
+        paddingBottom: "80px",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
       <div style={{
         width: "1194px",
         height: "437px",

@@ -18,19 +18,19 @@ export default async function ServicesSuiteSection() {
     ? data.suiteItems.map((item) => ({ title: item.title, description: item.description ?? "" }))
     : fallbackSuiteItems;
   return (
-    <section style={{
-      background: "#050208",
-      width: "1440px",
-      height: "732.72px",
-      boxSizing: "border-box",
-      paddingTop: "79.75px",
-      paddingBottom: "79.75px",
-      paddingLeft: "55.38px",
-      paddingRight: "55.38px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-    }}>
+    <section
+      className="page-section"
+      style={{
+        background: "#050208",
+        width: "100%",
+        maxWidth: "1440px",
+        minHeight: "732.72px",
+        paddingBottom: "79.75px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
       <div style={{ width: "100%" }}>
         <div style={{
           display: "grid",

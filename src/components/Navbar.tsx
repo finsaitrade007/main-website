@@ -19,7 +19,24 @@ export default function Navbar({ navLinks: propLinks }: { navLinks?: NavLink[] }
   const [open, setOpen] = useState(false);
 
   return (
-    <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, display: "flex", justifyContent: "center", padding: "12px 0" }}>
+    <nav
+      style={{
+        position: "fixed",
+        top: "1.2px",
+        left: "50%",
+        transform: "translateX(-50%)",
+        width: "100%",
+        maxWidth: "1440px",
+        zIndex: 50,
+        display: "flex",
+        justifyContent: "center",
+        paddingTop: "15.6px",
+        paddingBottom: "15.6px",
+        background: "#0000001C",
+        backdropFilter: "blur(114px)",
+        WebkitBackdropFilter: "blur(114px)",
+      }}
+    >
       <div style={{ width: "1297.05px" }}>
         <div style={{
           width: "1297.05px",

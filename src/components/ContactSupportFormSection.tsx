@@ -166,21 +166,21 @@ export default function ContactSupportFormSection() {
   return (
     <section
       id="contact-form"
+      className="page-section"
       style={{
         position: "relative",
         background: "#050208",
-        width: "1440px",
-        maxWidth: "100%",
+        width: "100%",
+        maxWidth: "1440px",
         margin: "0 auto",
-        padding: "100px 0",
-        boxSizing: "border-box",
+        paddingBottom: "100px",
         overflow: "hidden",
       }}
     >
       <div
         style={{
           width: "1280px",
-          maxWidth: "calc(100% - 160px)",
+          maxWidth: "100%",
           margin: "0 auto",
           display: "grid",
           gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)",

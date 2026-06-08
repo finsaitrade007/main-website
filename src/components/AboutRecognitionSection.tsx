@@ -26,15 +26,15 @@ export default async function AboutRecognitionSection() {
 
   return (
     <section
+      className="page-section"
       style={{
         position: "relative",
         background: "#050208",
-        width: "1440px",
-        maxWidth: "100%",
-        height: "752px",
+        width: "100%",
+        maxWidth: "1440px",
+        minHeight: "752px",
         margin: "0 auto",
-        padding: "60px 0 80px",
-        boxSizing: "border-box",
+        paddingBottom: "80px",
         overflow: "hidden",
       }}
     >

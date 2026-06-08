@@ -135,13 +135,14 @@ export default async function RewardsIBProgramSection() {
 
   return (
     <section
+      className="page-section"
       style={{
         position: "relative",
-        width: "1440px",
-        height: "740px",
+        width: "100%",
+        maxWidth: "1440px",
+        minHeight: "740px",
         margin: "0 auto",
         background: "#050208",
-        boxSizing: "border-box",
       }}
     >
       {/* Left: title + description */}

@@ -126,8 +126,11 @@ export default async function IBMarketingSection() {
   const ogImages = await Promise.all(cards.map((c) => fetchOgImage(c.href)));
 
   return (
-    <section style={{ background: "#050208", padding: "80px 0" }}>
-      <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 80px" }}>
+    <section
+      className="page-section"
+      style={{ background: "#050208", paddingBottom: "80px" }}
+    >
+      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
 
         <div style={{ textAlign: "center", marginBottom: "48px" }}>
           <h2 className="section-title" style={{ marginBottom: "16px" }}>

@@ -74,12 +74,13 @@ export default async function AccountsOnboardingSteps() {
 
   return (
     <section
+      className="page-section"
       style={{
         position: "relative",
         background: "#000000",
-        width: "1440px",
-        height: "707px",
-        boxSizing: "border-box",
+        width: "100%",
+        maxWidth: "1440px",
+        minHeight: "707px",
       }}
     >
       <div style={{ maxWidth: "1440px", margin: "0 auto" }}>

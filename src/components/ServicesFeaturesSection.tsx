@@ -18,18 +18,18 @@ export default async function ServicesFeaturesSection() {
     data?.featuresDescription ??
     "Finsai Trade platforms are engineered to deliver seamless execution, institutional-level tools, and reliable uptime so you stay in control, wherever you trade. Whether you're a beginner or a pro, our platforms help you trade smarter and faster.";
   return (
-    <section style={{
-      background: "#050208",
-      width: "1440px",
-      height: "700.51px",
-      boxSizing: "border-box",
-      paddingTop: "79.75px",
-      paddingBottom: "79.75px",
-      paddingLeft: "55.38px",
-      paddingRight: "55.38px",
-      display: "flex",
-      alignItems: "center",
-    }}>
+    <section
+      className="page-section"
+      style={{
+        background: "#050208",
+        width: "100%",
+        maxWidth: "1440px",
+        minHeight: "700.51px",
+        paddingBottom: "79.75px",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
       <div style={{
         display: "grid",
         gridTemplateColumns: "1fr 1fr",

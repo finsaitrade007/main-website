@@ -68,7 +68,10 @@ export default async function FeaturesSection() {
       : FALLBACK_FEATURES;
 
   return (
-    <section className="py-24 px-4 bg-[#050208]">
+    <section
+      className="page-section bg-[#050208]"
+      style={{ paddingBottom: "96px" }}
+    >
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-start mb-4">
           <div

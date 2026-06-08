@@ -13,7 +13,10 @@ export default function IBCalculatorSection({ title, description }: Props) {
   const monthlyRevenue = (clients * volume * 0.05).toFixed(2);
 
   return (
-    <section style={{ background: "#050208", padding: "80px 0" }}>
+    <section
+      className="page-section"
+      style={{ background: "#050208", paddingBottom: "80px" }}
+    >
       <style>{`
         .ib-slider {
           -webkit-appearance: none;
@@ -44,7 +47,7 @@ export default function IBCalculatorSection({ title, description }: Props) {
         }
       `}</style>
 
-      <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 80px" }}>
+      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
         <div style={{
           position: "relative",
           width: "1286px",

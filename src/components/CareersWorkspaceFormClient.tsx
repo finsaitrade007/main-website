@@ -41,22 +41,22 @@ export default function CareersWorkspaceFormClient({
   return (
     <section
       id="apply"
+      className="page-section"
       style={{
         position: "relative",
         background: "#050208",
-        width: "1440px",
-        maxWidth: "100%",
-        height: "1103px",
+        width: "100%",
+        maxWidth: "1440px",
+        minHeight: "1103px",
         margin: "0 auto",
-        padding: "139px 0 100px",
-        boxSizing: "border-box",
+        paddingBottom: "100px",
         overflow: "hidden",
       }}
     >
       <div
         style={{
           width: "1280px",
-          maxWidth: "calc(100% - 160px)",
+          maxWidth: "100%",
           margin: "0 auto",
           display: "grid",
           gridTemplateColumns: "664px 1fr",

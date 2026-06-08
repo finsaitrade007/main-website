@@ -32,8 +32,11 @@ export default function IBWhyClient({ title, description, ctaLabel, ctaHref, tab
   const currentImage = TAB_IMAGES[activeIndex] ?? TAB_IMAGES[0];
 
   return (
-    <section style={{ background: "#050208", width: "1440px", height: "822px", padding: "80px 0", boxSizing: "border-box" }}>
-      <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 80px" }}>
+    <section
+      className="page-section"
+      style={{ background: "#050208", width: "100%", maxWidth: "1440px", minHeight: "822px", paddingBottom: "80px" }}
+    >
+      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
 
         <div style={{ textAlign: "center", marginBottom: "48px" }}>
           <h2 className="section-title" style={{ marginBottom: "16px" }}>

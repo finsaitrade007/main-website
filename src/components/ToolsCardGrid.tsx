@@ -66,16 +66,16 @@ export default function ToolsCardGrid({
 
   return (
     <section
+      className="page-section"
       style={{
         position: "relative",
-        width: "1440px",
-        maxWidth: "100%",
-        height: height ?? "auto",
+        width: "100%",
+        maxWidth: "1440px",
+        minHeight: height ?? "auto",
         margin: "0 auto",
         background: "#050208",
         opacity: 1,
-        padding: height ? "0" : "70px 0",
-        boxSizing: "border-box",
+        paddingBottom: height ? "0" : "70px",
       }}
     >
       {/* Heading block — 1013×120.02 anchored at top:68, left:213 with

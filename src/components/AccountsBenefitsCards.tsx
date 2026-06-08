@@ -100,14 +100,16 @@ function Dot() {
 
 export default function AccountsBenefitsCards() {
   return (
-    <section style={{ background: "#050208", padding: "60px 0 100px" }}>
+    <section
+      className="page-section"
+      style={{ background: "#050208", paddingBottom: "100px" }}
+    >
       <div
         style={{
           display: "flex",
           justifyContent: "center",
           gap: "24px",
           flexWrap: "wrap",
-          padding: "0 80px",
         }}
       >
         {cards.map((c) => (

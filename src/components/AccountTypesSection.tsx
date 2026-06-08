@@ -58,7 +58,7 @@ const SPRING_TRANSITION = "width 0.95s cubic-bezier(0.4, 0, 0.2, 1)";
 
 const CARD_DARK = "#06090F";
 const RADIUS = "20.91px";
-const COLLAPSED_PX = 76;
+const COLLAPSED_PX = 130;
 const GAP_PX = 10;
 const CARD_BORDER_GRADIENT =
   "linear-gradient(179.53deg, #056FB4 0.41%, rgba(5, 111, 180, 0.6) 99.59%)";
@@ -343,8 +343,11 @@ export default function AccountTypesSection() {
   );
 
   return (
-    <section style={{ background: "#050208", padding: "100px 0" }}>
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 80px" }}>
+    <section
+      className="page-section"
+      style={{ background: "#050208", paddingBottom: "96px" }}
+    >
+      <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "24px" }}>
           <span
             style={{

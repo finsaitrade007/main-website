@@ -150,11 +150,18 @@ function FeatureBullet({ text }: { text: string }) {
 }
 
 function PlatformBlock({ platform }: { platform: Platform }) {
+  // For Social Trading the visual sits on the left, so its text column lands
+  // on the right. Pad the column on the left so the heading and copy line up
+  // vertically with the MT5 / App images sitting above and below it.
+  const isSocial = platform.id === "social";
+
   const text = (
     <div
       style={{
         flexShrink: 0,
         width: "568px",
+        boxSizing: "border-box",
+        paddingLeft: isSocial ? "80px" : undefined,
         display: "flex",
         flexDirection: "column",
         gap: "16px",
@@ -281,6 +288,9 @@ function PlatformBlock({ platform }: { platform: Platform }) {
         background: "#000000",
         borderRadius: "20px",
         overflow: "hidden",
+        // Nudge the Social Trading visual slightly to the left so it sits
+        // just above the text column rather than flush against the right gap.
+        transform: platform.id === "social" ? "translateX(-40px)" : undefined,
       }}
     >
       <Image
@@ -313,11 +323,12 @@ function PlatformBlock({ platform }: { platform: Platform }) {
 export default function ServicesPlatformsSection() {
   return (
     <section
+      className="page-section"
       style={{
         background: "#050208",
-        width: "1440px",
-        boxSizing: "border-box",
-        padding: "80px 0 100px",
+        width: "100%",
+        maxWidth: "1440px",
+        paddingBottom: "100px",
         position: "relative",
         overflow: "hidden",
       }}
@@ -327,7 +338,6 @@ export default function ServicesPlatformsSection() {
           width: "100%",
           maxWidth: "1280px",
           margin: "0 auto",
-          padding: "0 80px",
           boxSizing: "border-box",
           display: "flex",
           flexDirection: "column",

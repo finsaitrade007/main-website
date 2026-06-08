@@ -430,6 +430,19 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 10px;
 }
 
+/* ─── Standard page section padding (non-hero sections) ─────
+   Every non-hero section across pages uses 80px top padding and
+   80px horizontal padding for consistent breathing room. Bottom
+   padding is intentionally left to each section to preserve the
+   existing rhythm between sections. */
+
+.page-section {
+  padding-top: 80px;
+  padding-left: 80px;
+  padding-right: 80px;
+  box-sizing: border-box;
+}
+
 /* ─── Generic section badge ───────────────────────────────── */
 
 .section-badge {

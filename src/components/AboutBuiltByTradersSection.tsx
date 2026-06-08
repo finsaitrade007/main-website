@@ -46,15 +46,15 @@ export default async function AboutBuiltByTradersSection() {
 
   return (
     <section
+      className="page-section"
       style={{
         position: "relative",
         background: "#050208",
-        width: "1440px",
-        maxWidth: "100%",
-        height: "830.51px",
+        width: "100%",
+        maxWidth: "1440px",
+        minHeight: "830.51px",
         margin: "0 auto",
-        padding: "79.75px 55.38px",
-        boxSizing: "border-box",
+        paddingBottom: "79.75px",
         overflow: "hidden",
       }}
     >

@@ -19,7 +19,10 @@ const FALLBACK: Pick<
 export default async function AboutCTASection() {
   const data = (await getAboutPage()) ?? FALLBACK;
   return (
-    <section style={{ background: "#050208", padding: "40px 0 100px" }}>
+    <section
+      className="page-section"
+      style={{ background: "#050208", paddingBottom: "100px" }}
+    >
       <div
         style={{
           boxSizing: "border-box",

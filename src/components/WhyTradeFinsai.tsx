@@ -192,11 +192,12 @@ export default async function WhyTradeFinsai() {
     "Trade with speed, stability, and total control from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs";
   return (
     <section
+      className="page-section"
       style={{
         position: "relative",
-        width: "1440px",
-        maxWidth: "100%",
-        height: "772px",
+        width: "100%",
+        maxWidth: "1440px",
+        minHeight: "772px",
         margin: "0 auto",
         background: "#050208",
         opacity: 1,

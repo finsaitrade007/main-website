@@ -17,9 +17,10 @@ export default async function RewardsCTASection() {
   const data = (await getRewardsPage()) ?? FALLBACK;
   return (
     <section
+      className="page-section"
       style={{
         background: "#050208",
-        padding: "40px 0 100px",
+        paddingBottom: "100px",
         display: "flex",
         justifyContent: "center",
       }}

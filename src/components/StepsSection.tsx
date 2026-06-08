@@ -57,7 +57,10 @@ export default async function StepsSection() {
   const steps = fetched && fetched.length > 0 ? fetched : FALLBACK_STEPS;
 
   return (
-    <section style={{ background: "#050208", width: "1440px", height: "564px", boxSizing: "border-box" }}>
+    <section
+      className="page-section"
+      style={{ background: "#050208", width: "100%", maxWidth: "1440px", minHeight: "564px", paddingBottom: "96px" }}
+    >
       <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "24px" }}>
           <span

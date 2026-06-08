@@ -33,8 +33,11 @@ export default async function AwardsSection() {
   const awards = fetched && fetched.length > 0 ? fetched : FALLBACK_AWARDS;
 
   return (
-    <section style={{ background: "#050208", width: "1440px", height: "616px", boxSizing: "border-box" }}>
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 80px" }}>
+    <section
+      className="page-section"
+      style={{ background: "#050208", width: "100%", maxWidth: "1440px", minHeight: "616px", paddingBottom: "96px" }}
+    >
+      <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "24px" }}>
           <span
             style={{
@@ -67,7 +70,7 @@ export default async function AwardsSection() {
           {header.awardsDescription}
         </p>
 
-        <div style={{ display: "flex", justifyContent: "center", gap: "32px" }}>
+        <div style={{ display: "flex", justifyContent: "center", gap: "62px" }}>
           {awards.map((award, idx) => {
             const img = strapiImageUrl(award.image) ?? LOCAL_AWARD_IMAGES[idx];
             return (

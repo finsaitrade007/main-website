@@ -246,12 +246,14 @@ export default async function AccountPricing() {
   const tiers = fetched && fetched.length > 0 ? fetched : FALLBACK_TIERS;
 
   return (
-    <section style={{ background: "#050208", padding: "100px 0" }}>
+    <section
+      className="page-section"
+      style={{ background: "#050208", paddingBottom: "100px" }}
+    >
       <div
         style={{
           maxWidth: "1280px",
           margin: "0 auto",
-          padding: "0 80px",
         }}
       >
         <div style={{ textAlign: "center", marginBottom: "22px" }}>

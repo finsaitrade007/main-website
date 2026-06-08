@@ -130,8 +130,11 @@ export default async function JourneySection() {
   const row2 = cards.filter((c) => c.row === "row2");
 
   return (
-    <section style={{ background: "#050208", width: "1440px", height: "811px", paddingTop: "50px", boxSizing: "border-box" }}>
-      <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "0 80px" }}>
+    <section
+      className="page-section"
+      style={{ background: "#050208", width: "100%", maxWidth: "1440px", minHeight: "811px" }}
+    >
+      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "24px" }}>
           <span
             style={{
