@@ -7,6 +7,7 @@ import {
   type DragEvent,
   type FormEvent,
 } from "react";
+import { useRecaptcha } from "@/lib/useRecaptcha";
 
 type IconKey = "quick" | "transparency" | "dedicated" | "multilang";
 
@@ -355,18 +356,30 @@ function ContactForm() {
     | { kind: "error"; message: string }
   >({ kind: "idle" });
   const inputRef = useRef<HTMLInputElement>(null);
+  const recaptcha = useRecaptcha();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!accepted || status.kind === "submitting") return;
 
-    const fd = new FormData(e.currentTarget);
+    const formEl = e.currentTarget;
+    const fd = new FormData(formEl);
     fd.set("formType", "contact");
     fd.set("dialCode", COUNTRY_CODES[Number(dialIndex)].code);
     if (file) fd.set("cv", file);
 
     setStatus({ kind: "submitting" });
     try {
+      if (recaptcha.enabled) {
+        const token = await recaptcha.execute("contact_submit");
+        if (!token) {
+          throw new Error(
+            "Couldn't verify you're human — please refresh and try again.",
+          );
+        }
+        fd.set("recaptchaToken", token);
+      }
+
       const res = await fetch("/api/contact", { method: "POST", body: fd });
       const data = (await res.json().catch(() => ({}))) as {
         ok?: boolean;
@@ -375,7 +388,7 @@ function ContactForm() {
       if (!res.ok || !data.ok) {
         throw new Error(data.error ?? "Could not send your message.");
       }
-      e.currentTarget.reset();
+      formEl.reset();
       setFile(null);
       setAccepted(false);
       setStatus({ kind: "success" });
@@ -754,6 +767,38 @@ function ContactForm() {
           }}
         >
           {status.message}
+        </p>
+      ) : null}
+
+      {recaptcha.enabled ? (
+        <p
+          style={{
+            margin: 0,
+            fontFamily: "var(--font-inter, Inter)",
+            fontSize: "11px",
+            lineHeight: "16px",
+            color: "rgba(255,255,255,0.45)",
+          }}
+        >
+          This site is protected by reCAPTCHA and the Google{" "}
+          <a
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#7DB9D6", textDecoration: "none" }}
+          >
+            Privacy Policy
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://policies.google.com/terms"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#7DB9D6", textDecoration: "none" }}
+          >
+            Terms of Service
+          </a>{" "}
+          apply.
         </p>
       ) : null}
     </form>

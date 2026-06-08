@@ -19,6 +19,72 @@ function pickString(form: FormData, key: string): string | undefined {
   return typeof v === "string" && v.trim().length > 0 ? v.trim() : undefined;
 }
 
+/**
+ * Verify the reCAPTCHA v3 token with Google. Returns `true` if verification
+ * passes (score above threshold) OR if reCAPTCHA isn't configured server-side
+ * (so local dev works without keys). Configure via:
+ *   - RECAPTCHA_SECRET_KEY     – server secret (enables verification)
+ *   - RECAPTCHA_MIN_SCORE      – threshold, default 0.5
+ *   - RECAPTCHA_EXPECTED_ACTION – optional; reject if mismatched
+ */
+async function verifyRecaptcha(
+  token: string | undefined,
+  expectedAction?: string,
+): Promise<{ ok: true } | { ok: false; reason: string }> {
+  const secret = process.env.RECAPTCHA_SECRET_KEY?.trim();
+  if (!secret) return { ok: true };
+
+  if (!token) {
+    return { ok: false, reason: "Captcha token missing." };
+  }
+
+  try {
+    const params = new URLSearchParams({ secret, response: token });
+    const res = await fetch(
+      "https://www.google.com/recaptcha/api/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params.toString(),
+        cache: "no-store",
+      },
+    );
+    const data = (await res.json()) as {
+      success?: boolean;
+      score?: number;
+      action?: string;
+      "error-codes"?: string[];
+    };
+
+    if (!data.success) {
+      return {
+        ok: false,
+        reason: `Captcha verification failed (${
+          data["error-codes"]?.join(",") ?? "unknown"
+        }).`,
+      };
+    }
+
+    const minScore = Number(process.env.RECAPTCHA_MIN_SCORE ?? "0.5");
+    if (typeof data.score === "number" && data.score < minScore) {
+      return {
+        ok: false,
+        reason: "Captcha score too low — please try again.",
+      };
+    }
+
+    const expected =
+      expectedAction ?? process.env.RECAPTCHA_EXPECTED_ACTION?.trim();
+    if (expected && data.action && data.action !== expected) {
+      return { ok: false, reason: "Captcha action mismatch." };
+    }
+
+    return { ok: true };
+  } catch {
+    return { ok: false, reason: "Captcha verification unavailable." };
+  }
+}
+
 export async function POST(req: NextRequest) {
   let form: FormData;
   try {
@@ -37,6 +103,17 @@ export async function POST(req: NextRequest) {
   if (!fullName || !email) {
     return NextResponse.json(
       { ok: false, error: "Full name and email are required." },
+      { status: 400 },
+    );
+  }
+
+  const captcha = await verifyRecaptcha(
+    pickString(form, "recaptchaToken"),
+    formType === "careers" ? "careers_submit" : "contact_submit",
+  );
+  if (!captcha.ok) {
+    return NextResponse.json(
+      { ok: false, error: captcha.reason },
       { status: 400 },
     );
   }

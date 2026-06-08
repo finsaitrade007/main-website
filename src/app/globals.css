@@ -645,3 +645,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Hide the floating reCAPTCHA v3 badge — Google permits this as long as the
+   "protected by reCAPTCHA" notice is shown inline next to the submit button.
+   Both forms render that notice via <RecaptchaNotice />. */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
