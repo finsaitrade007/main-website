@@ -310,12 +310,44 @@ function ApplicationForm({
   const [file, setFile] = useState<File | null>(null);
   const [dragOver, setDragOver] = useState(false);
   const [dialIndex, setDialIndex] = useState("0");
+  const [status, setStatus] = useState<
+    | { kind: "idle" }
+    | { kind: "submitting" }
+    | { kind: "success" }
+    | { kind: "error"; message: string }
+  >({ kind: "idle" });
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Frontend-only submit stub — wire up to an API route or Strapi later.
-    // For now we just no-op so the button is interactive.
+    if (!accepted || status.kind === "submitting") return;
+
+    const fd = new FormData(e.currentTarget);
+    fd.set("formType", "careers");
+    fd.set("dialCode", COUNTRY_CODES[Number(dialIndex)].code);
+    if (file) fd.set("cv", file);
+
+    setStatus({ kind: "submitting" });
+    try {
+      const res = await fetch("/api/contact", { method: "POST", body: fd });
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+      };
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error ?? "Could not send your application.");
+      }
+      e.currentTarget.reset();
+      setFile(null);
+      setAccepted(false);
+      setStatus({ kind: "success" });
+    } catch (err) {
+      setStatus({
+        kind: "error",
+        message:
+          err instanceof Error ? err.message : "Something went wrong.",
+      });
+    }
   };
 
   const handleDrop = (e: DragEvent<HTMLDivElement>) => {
@@ -599,7 +631,7 @@ function ApplicationForm({
 
       <button
         type="submit"
-        disabled={!accepted}
+        disabled={!accepted || status.kind === "submitting"}
         className="btn-text"
         style={{
           height: "48px",
@@ -607,15 +639,44 @@ function ApplicationForm({
           border: "none",
           background:
             "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-          cursor: accepted ? "pointer" : "not-allowed",
-          opacity: accepted ? 1 : 0.6,
+          cursor:
+            accepted && status.kind !== "submitting"
+              ? "pointer"
+              : "not-allowed",
+          opacity: accepted && status.kind !== "submitting" ? 1 : 0.6,
           fontWeight: 600,
           fontSize: "13px",
           letterSpacing: "0.5px",
         }}
       >
-        {submitLabel}
+        {status.kind === "submitting" ? "Sending..." : submitLabel}
       </button>
+
+      {status.kind === "success" ? (
+        <p
+          style={{
+            margin: 0,
+            fontFamily: "var(--font-inter, Inter)",
+            fontSize: "13px",
+            color: "#7DB9D6",
+          }}
+        >
+          Thanks — your application has been sent. We&apos;ll get back to you
+          shortly.
+        </p>
+      ) : null}
+      {status.kind === "error" ? (
+        <p
+          style={{
+            margin: 0,
+            fontFamily: "var(--font-inter, Inter)",
+            fontSize: "13px",
+            color: "#FF6B6B",
+          }}
+        >
+          {status.message}
+        </p>
+      ) : null}
     </form>
   );
 }
