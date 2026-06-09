@@ -159,6 +159,8 @@ export default function RefundPolicyPage() {
             Client Agreement available on the Company&apos;s website at{" "}
             <a
               href="https://www.finsaitrade.com"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{ color: "#7DB9D6", textDecoration: "underline" }}
             >
               www.finsaitrade.com

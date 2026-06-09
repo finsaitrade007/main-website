@@ -50,8 +50,9 @@ export default async function FAQSection() {
 
   return (
     <section
+      id="faq"
       className="page-section bg-[#050208]"
-      style={{ paddingBottom: "96px" }}
+      style={{ paddingBottom: "96px", scrollMarginTop: "100px" }}
     >
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-4">
@@ -78,7 +79,7 @@ export default async function FAQSection() {
 
         <div className="text-center mt-10">
           <a
-            href="/faq"
+            href="/contactus"
             className="btn-text"
             style={{
               display: "inline-flex",

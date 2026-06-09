@@ -42,6 +42,8 @@ export default function ClientAgreementPage() {
           platform or any visitor to our official website{" "}
           <a
             href="https://www.finsaitrade.com"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ color: "#7DB9D6", textDecoration: "underline" }}
           >
             www.finsaitrade.com
@@ -545,6 +547,8 @@ export default function ClientAgreementPage() {
           shall mean the Company&apos;s website at{" "}
           <a
             href="https://www.finsaitrade.com"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ color: "#7DB9D6", textDecoration: "underline" }}
           >
             www.finsaitrade.com

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/SmartLink";
 
 const BTN_TYPOGRAPHY = {
   fontFamily: "var(--font-inter, Inter)",

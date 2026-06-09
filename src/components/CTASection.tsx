@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/SmartLink";
 import { getHomepage, type StrapiHomepage } from "@/lib/strapi";
 
 const BTN_TYPOGRAPHY = {

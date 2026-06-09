@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/SmartLink";
 import Image from "next/image";
 import { getPaymentsPage, type StrapiPaymentsPage } from "@/lib/strapi";
 

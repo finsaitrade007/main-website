@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/SmartLink";
 import Image from "next/image";
 import { getAccountsPage, type StrapiAccountsPage } from "@/lib/strapi";
 
@@ -17,7 +17,7 @@ const FALLBACK: Pick<
   heroDescription:
     "From first-time traders to advanced professionals, Finsai Trade offers flexible account types built for every stage of your trading journey.",
   heroPrimaryCtaLabel: "Open Live Account",
-  heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
+  heroPrimaryCtaHref: "/accounts",
   heroSecondaryCtaLabel: "Try Free Demo",
   heroSecondaryCtaHref: "/demo",
 };

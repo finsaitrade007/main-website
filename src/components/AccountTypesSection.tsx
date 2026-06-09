@@ -216,7 +216,7 @@ function AccountCard({
         </div>
 
         <Link
-          href="/account-pricing"
+          href="/accounts"
           style={{
             display: "inline-flex",
             alignItems: "center",

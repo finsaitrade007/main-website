@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/SmartLink";
 import Image from "next/image";
 import { getRewardsPage, type StrapiRewardsPage } from "@/lib/strapi";
 
@@ -10,7 +10,7 @@ const FALLBACK: Pick<
   ctaDescription:
     "Open a live account or start with a demo account and explore global markets with Finsai Trade — at your pace, on your terms.",
   ctaPrimaryLabel: "Open Live Account",
-  ctaPrimaryHref: "https://fx.finsaitrade.com/auth/register",
+  ctaPrimaryHref: "/accounts",
 };
 
 export default async function RewardsCTASection() {

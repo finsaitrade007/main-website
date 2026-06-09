@@ -234,6 +234,8 @@ export default function AmlPolicyPage() {
           Agreement and can be found on the Company&apos;s website at{" "}
           <a
             href="https://www.finsaitrade.com"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ color: "#7DB9D6", textDecoration: "underline" }}
           >
             www.finsaitrade.com

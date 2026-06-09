@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import FAQLink from "./FAQLink";
 
 const quickLinks = [
   { label: "Home",         href: "/" },
@@ -136,9 +137,17 @@ export default function Footer() {
           {/* Col 3: Help */}
           <div>
             <h4 style={HEADING_STYLE}>Help</h4>
-            {helpLinks.map((l) => (
-              <a key={l.label} href={l.href} style={LINK_STYLE}>{l.label}</a>
-            ))}
+            {helpLinks.map((l) =>
+              l.label === "FAQs" ? (
+                <FAQLink key={l.label} style={LINK_STYLE}>
+                  {l.label}
+                </FAQLink>
+              ) : (
+                <a key={l.label} href={l.href} style={LINK_STYLE}>
+                  {l.label}
+                </a>
+              ),
+            )}
           </div>
 
           {/* Col 4: Legal Documents */}

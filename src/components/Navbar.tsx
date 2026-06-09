@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
+import Link from "@/components/SmartLink";
 
 type SubLink = { label: string; href: string };
 type NavItem =
@@ -152,12 +152,19 @@ function NavDropdown({ label, items }: { label: string; items: SubLink[] }) {
   );
 }
 
+function isExternal(href: string): boolean {
+  return /^(https?:)?\/\//i.test(href);
+}
+
 function DropdownLink({ href, label }: { href: string; label: string }) {
   const [hover, setHover] = useState(false);
+  const external = isExternal(href);
   return (
     <Link
       href={href}
       role="menuitem"
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
@@ -190,10 +197,13 @@ function MobileItem({
   const [open, setOpen] = useState(false);
 
   if (item.kind === "link") {
+    const external = isExternal(item.href);
     return (
       <Link
         href={item.href}
         onClick={onNavigate}
+        target={external ? "_blank" : undefined}
+        rel={external ? "noopener noreferrer" : undefined}
         className="block px-4 py-2 text-sm text-gray-300 hover:text-white rounded-lg hover:bg-white/5"
       >
         {item.label}
@@ -214,16 +224,21 @@ function MobileItem({
       </button>
       {open && (
         <div className="flex flex-col pl-3 mt-1 gap-1 border-l border-white/10 ml-4">
-          {item.items.map((sub) => (
-            <Link
-              key={sub.label}
-              href={sub.href}
-              onClick={onNavigate}
-              className="px-4 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5"
-            >
-              {sub.label}
-            </Link>
-          ))}
+          {item.items.map((sub) => {
+            const external = isExternal(sub.href);
+            return (
+              <Link
+                key={sub.label}
+                href={sub.href}
+                onClick={onNavigate}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noopener noreferrer" : undefined}
+                className="px-4 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5"
+              >
+                {sub.label}
+              </Link>
+            );
+          })}
         </div>
       )}
     </div>
@@ -302,6 +317,8 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <Link
               href="https://fx.finsaitrade.com/auth/login"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -326,6 +343,8 @@ export default function Navbar() {
             </Link>
             <Link
               href="https://fx.finsaitrade.com/auth/register"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -391,12 +410,16 @@ export default function Navbar() {
             <div className="flex gap-3 mt-2 pt-3 border-t border-white/10">
               <Link
                 href="https://fx.finsaitrade.com/auth/login"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex-1 text-center btn-primary text-sm justify-center"
               >
                 Login
               </Link>
               <Link
                 href="https://fx.finsaitrade.com/auth/register"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex-1 text-center btn-secondary text-sm justify-center"
               >
                 Start Trading

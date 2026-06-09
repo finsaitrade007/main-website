@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/SmartLink";
 import { getAboutPage, type StrapiAboutPage } from "@/lib/strapi";
 
 const FALLBACK: Pick<

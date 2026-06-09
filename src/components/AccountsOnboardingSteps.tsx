@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/SmartLink";
 import { getAccountsPage } from "@/lib/strapi";
 
 type IconKey = "signup" | "verify" | "fund" | "trade";
@@ -69,7 +69,7 @@ function StepIcon({ iconKey }: { iconKey: IconKey }) {
 export default async function AccountsOnboardingSteps() {
   const data = await getAccountsPage();
   const title = data?.onboardingTitle ?? "Open Your Trading Account";
-  const ctaHref = "https://fx.finsaitrade.com/auth/register";
+  const ctaHref = "/accounts";
   const ctaLabel = "Open Live Account";
 
   return (

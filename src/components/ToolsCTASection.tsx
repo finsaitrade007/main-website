@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/SmartLink";
 import { getToolsPage, type StrapiToolsPage } from "@/lib/strapi";
 
 const FALLBACK: Pick<

@@ -150,6 +150,8 @@ export default function RiskDisclosurePage() {
           subject to fees, available on the Company&apos;s website{" "}
           <a
             href="https://www.finsaitrade.com"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ color: "#7DB9D6", textDecoration: "underline" }}
           >
             www.finsaitrade.com

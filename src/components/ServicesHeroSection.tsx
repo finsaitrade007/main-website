@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/SmartLink";
 import Image from "next/image";
 import { getServicesPage, type StrapiServicesPage } from "@/lib/strapi";
 
@@ -114,23 +114,28 @@ export default async function ServicesHeroSection() {
           {data.heroDescription}
         </p>
 
-        <Link href={data.heroPrimaryCtaHref} className="btn-text" style={{
-          width: "236px",
-          height: "48px",
-          borderRadius: "8px",
-          paddingTop: "11px",
-          paddingBottom: "11px",
-          paddingLeft: "24px",
-          paddingRight: "24px",
-          gap: "16px",
-          background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-          textDecoration: "none",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          alignSelf: "flex-start",
-          boxSizing: "border-box",
-        }}>
+        <Link
+          href={data.heroPrimaryCtaHref}
+          className="btn-text"
+          style={{
+            width: "236px",
+            height: "48px",
+            borderRadius: "8px",
+            paddingTop: "11px",
+            paddingBottom: "11px",
+            paddingLeft: "24px",
+            paddingRight: "24px",
+            gap: "16px",
+            background:
+              "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+            textDecoration: "none",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            alignSelf: "flex-start",
+            boxSizing: "border-box",
+          }}
+        >
           {data.heroPrimaryCtaLabel}
         </Link>
       </div>

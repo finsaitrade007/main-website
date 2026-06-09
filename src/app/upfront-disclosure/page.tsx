@@ -294,6 +294,8 @@ export default function UpfrontDisclosurePage() {
               value: (
                 <a
                   href="https://www.finsaitrade.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{ color: "#7DB9D6", textDecoration: "underline" }}
                 >
                   www.finsaitrade.com

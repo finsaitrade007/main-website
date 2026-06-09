@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/SmartLink";
 import Image from "next/image";
 import { getAboutPage, type StrapiAboutPage } from "@/lib/strapi";
 
@@ -17,7 +17,7 @@ const FALLBACK: Pick<
   heroDescription:
     "Helping traders access multiple asset classes while benefiting from educational resources, loyalty rewards, and partnership opportunities. ",
   heroPrimaryCtaLabel: "Open Live Account",
-  heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
+  heroPrimaryCtaHref: "/accounts",
   heroSecondaryCtaLabel: "Explore Our Services",
   heroSecondaryCtaHref: "/services",
 };

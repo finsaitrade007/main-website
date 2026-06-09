@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/SmartLink";
 import Image from "next/image";
 import { getToolsPage, type StrapiToolsPage } from "@/lib/strapi";
 
@@ -20,7 +20,7 @@ const FALLBACK: Pick<
   heroProofText:
     "✔ Analyze markets with precision  ✔ Manage risk with confidenc ✔ Execute strategies with control",
   heroPrimaryCtaLabel: "Open Live Account",
-  heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
+  heroPrimaryCtaHref: "/accounts",
   heroSecondaryCtaLabel: "Try Free Demo",
   heroSecondaryCtaHref: "/demo",
 };
