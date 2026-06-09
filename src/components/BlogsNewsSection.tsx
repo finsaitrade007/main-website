@@ -6,10 +6,10 @@ const BORDER_GRADIENT = "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.
 const CARD_INNER_BG = "linear-gradient(157.26deg, #050208 -0.93%, #056FB4 444.35%)";
 
 const fallbackNewsCards = [
-  { category: "News & Analysis", desc: "Stay updated with real-time market news, economic events, and expert commentary.", href: "/news" },
-  { category: "Webinar",         desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", href: "https://lms.finsaitrade.com/#webinars" },
-  { category: "News & Analysis", desc: "Stay updated with real-time market news, economic events, and expert commentary.", href: "/news" },
-  { category: "Webinar",         desc: "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.", href: "https://lms.finsaitrade.com/#webinars" },
+  { category: "News & Analysis", desc: "Markets in 2026 are moving faster than most traditional trading systems were designed to handle. ", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQCLPR-yYSYFQIHmmlZcr3CPAWKtzhHB-U95dbAO-AFRwTM?rtime=YV9y0DXG3kg" },
+  { category: "Webinar",         desc: "Inflation cycles. Currency devaluation. Banking crises. Wars. Interest-rate shocks. Market crashes. ", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQBIWDpJAe2nTZyLRe2bACIUAUAED3Op9W9-Wd6xzaQjY0s?e=5UaJ0X&or=EXCEL-WEB.BODY.NT&ct=1780317151897" },
+  { category: "News & Analysis", desc: "Explore the latest market outlook and uncover key trading trends shaping Q2 2026.....", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQBmuU7Usz7xWCiWRVE5f8ADAQ1irXr1MZoIBGkdG8gV-zE?e=wpszAU&or=EXCEL-WEB.BODY.NT&ct=1780582819508" },
+  { category: "Webinar",         desc: "Learn how trading psychology and discipline impact execution, risk management, and long-term performance. ", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQAJDU6Mk4hoX6taBaBDmDEPAXlZ3ZpmVaa8ffChIfPuovE?e=4d8Sy3&or=EXCEL-WEB.BODY.NT&ct=1780582698069" },
 ];
 
 const fallbackLatestNews = [
@@ -88,7 +88,7 @@ function ArticleCard({ category, desc, href, top, left }: { category: string; de
           height: "81px",
           fontFamily: "var(--font-inter, Inter)",
           fontWeight: 400,
-          fontSize: "16px",
+          fontSize: "18px",
           lineHeight: "27px",
           color: "rgba(255,255,255,0.7)",
           margin: 0,
@@ -104,10 +104,11 @@ function ArticleCard({ category, desc, href, top, left }: { category: string; de
           left: "21px",
           display: "inline-flex",
           alignItems: "center",
+          lineHeight: "27px",
           gap: "8px",
           fontFamily: "var(--font-inter, Inter)",
           fontWeight: 400,
-          fontSize: "16px",
+          fontSize: "18px",
           color: "#056FB4",
           textDecoration: "none",
         }}>
@@ -292,8 +293,8 @@ export default async function BlogsNewsSection() {
                   <p style={{
                     fontFamily: "var(--font-inter, Inter)",
                     fontWeight: 400,
-                    fontSize: "14px",
-                    lineHeight: "22px",
+                    fontSize: "18px",
+                    lineHeight: "27px",
                     color: "rgba(255,255,255,0.7)",
                     margin: 0,
                   }}>

@@ -150,18 +150,12 @@ function FeatureBullet({ text }: { text: string }) {
 }
 
 function PlatformBlock({ platform }: { platform: Platform }) {
-  // For Social Trading the visual sits on the left, so its text column lands
-  // on the right. Pad the column on the left so the heading and copy line up
-  // vertically with the MT5 / App images sitting above and below it.
-  const isSocial = platform.id === "social";
-
   const text = (
     <div
       style={{
         flexShrink: 0,
-        width: "568px",
+        width: "567px",
         boxSizing: "border-box",
-        paddingLeft: isSocial ? "80px" : undefined,
         display: "flex",
         flexDirection: "column",
         gap: "16px",
@@ -175,7 +169,7 @@ function PlatformBlock({ platform }: { platform: Platform }) {
           lineHeight: "110%",
           letterSpacing: "-0.01em",
           margin: 0,
-          background: TITLE_GRADIENT,
+          background: "rgba(5, 111, 180, 1)",
           WebkitBackgroundClip: "text",
           backgroundClip: "text",
           WebkitTextFillColor: "transparent",
@@ -282,22 +276,19 @@ function PlatformBlock({ platform }: { platform: Platform }) {
     <div
       style={{
         flexShrink: 0,
-        width: "488px",
-        height: "430px",
+        width: "557px",
+        height: "557px",
         position: "relative",
         background: "#000000",
         borderRadius: "20px",
         overflow: "hidden",
-        // Nudge the Social Trading visual slightly to the left so it sits
-        // just above the text column rather than flush against the right gap.
-        transform: platform.id === "social" ? "translateX(-40px)" : undefined,
       }}
     >
       <Image
         src={platform.image}
         alt={platform.imageAlt}
         fill
-        sizes="488px"
+        sizes="557px"
         style={{ objectFit: "cover" }}
       />
     </div>
@@ -310,7 +301,7 @@ function PlatformBlock({ platform }: { platform: Platform }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        gap: "80px",
+        gap: "83px",
         width: "100%",
         flexDirection: platform.reverse ? "row-reverse" : "row",
         scrollMarginTop: "120px",
@@ -330,7 +321,8 @@ export default function ServicesPlatformsSection() {
         background: "#050208",
         width: "100%",
         maxWidth: "1440px",
-        paddingBottom: "100px",
+        minHeight: "2125px",
+        paddingBottom: "75px",
         position: "relative",
         overflow: "hidden",
       }}
@@ -376,9 +368,9 @@ export default function ServicesPlatformsSection() {
             <span
               style={{
                 fontFamily: "var(--font-inter, Inter)",
-                fontWeight: 500,
-                fontSize: "14px",
-                lineHeight: "100%",
+                fontWeight: 400,
+                fontSize: "19.2px",
+                lineHeight: "31.2px",
                 letterSpacing: 0,
                 background: TITLE_GRADIENT,
                 WebkitBackgroundClip: "text",
@@ -428,9 +420,10 @@ export default function ServicesPlatformsSection() {
         <div
           style={{
             width: "100%",
+            maxWidth: "1207px",
             display: "flex",
             flexDirection: "column",
-            gap: "120px",
+            gap: "41px",
           }}
         >
           {platforms.map((platform) => (

@@ -1,23 +1,23 @@
 type IconKey =
-  | "runner"
-  | "users"
-  | "eyeOff"
-  | "infinity"
-  | "headset"
-  | "headphones";
+  | "chart"
+  | "bolt"
+  | "scale"
+  | "moon"
+  | "devices"
+  | "globe";
 
 type Reason = { iconKey: IconKey; title: string };
 
 const topRow: Reason[] = [
-  { iconKey: "runner", title: "Ultra fast\norder execution" },
-  { iconKey: "users", title: "Raw spreads on\nECN & Elite accounts" },
-  { iconKey: "eyeOff", title: "No hidden fees,\nno requotes" },
-  { iconKey: "infinity", title: "Swap free\naccount" },
+  { iconKey: "chart", title: "Tight spreads across\naccount types" },
+  { iconKey: "bolt", title: "Fast and reliable trade\n execution" },
+  { iconKey: "scale", title: "Flexible leverage\n options" },
+  { iconKey: "moon", title: "Swap-free Islamic\n accounts available" },
 ];
 
 const bottomRow: Reason[] = [
-  { iconKey: "headset", title: "Access MT5 on mobile,\ndesktop & web" },
-  { iconKey: "headphones", title: "Priority support\nfor smart elite traders" },
+  { iconKey: "devices", title: "MT5 access on desktop,\n web, and mobile" },
+  { iconKey: "globe", title: "Dedicated multilingual\n support" },
 ];
 
 function ReasonIcon({ iconKey }: { iconKey: IconKey }) {
@@ -45,59 +45,66 @@ function ReasonIcon({ iconKey }: { iconKey: IconKey }) {
   );
 
   switch (iconKey) {
-    case "runner":
+    case "chart":
       return (
         <svg {...common}>
           {grad}
-          <circle cx="14.5" cy="5" r="1.5" />
-          <path d="M7 21l3-5 3 2 2-4-3-2 3-4" />
-          <path d="M4 14l2-3h3" />
-          <path d="M14 17l3 1 2 3" />
+          <path d="M3 21h18" />
+          <line x1="6" y1="20" x2="6" y2="13" />
+          <line x1="11" y1="20" x2="11" y2="8" />
+          <line x1="16" y1="20" x2="16" y2="4" />
+          <line x1="20" y1="20" x2="20" y2="11" />
         </svg>
       );
-    case "users":
+    case "bolt":
       return (
         <svg {...common}>
           {grad}
-          <circle cx="9" cy="8" r="3.2" />
-          <path d="M2.5 20c.6-3.4 3.3-5.5 6.5-5.5s5.9 2.1 6.5 5.5" />
-          <circle cx="17" cy="9" r="2.6" />
-          <path d="M14.5 14.6c2.8-.2 5.7 1.1 7 4.4" />
+          <path
+            d="M13 2L4 14h7l-2 8 11-13h-7l2-7z"
+            strokeLinejoin="round"
+          />
         </svg>
       );
-    case "eyeOff":
+    case "scale":
       return (
         <svg {...common}>
           {grad}
-          <path d="M3 3l18 18" />
-          <path d="M10.6 6.2A11 11 0 0 1 12 6c5 0 9.3 3.2 11 7-.5 1.2-1.3 2.3-2.3 3.3" />
-          <path d="M6.2 7.6C4.6 8.9 3.3 10.6 2.5 12.4c1.7 3.8 6 7 11 7 1.6 0 3.1-.3 4.5-.9" />
-          <path d="M9.5 10.7a3.4 3.4 0 0 0 4.8 4.8" />
+          <line x1="12" y1="4" x2="12" y2="20" />
+          <line x1="5" y1="21" x2="19" y2="21" />
+          <line x1="5" y1="6" x2="19" y2="6" />
+          <circle cx="12" cy="4" r="1" />
+          <path d="M3 14l3-7 3 7c0 1.7-1.3 3-3 3s-3-1.3-3-3z" />
+          <path d="M15 14l3-7 3 7c0 1.7-1.3 3-3 3s-3-1.3-3-3z" />
         </svg>
       );
-    case "infinity":
+    case "moon":
       return (
         <svg {...common}>
           {grad}
-          <path d="M6 12c0-2.2 1.6-4 3.7-4 1.6 0 2.7 1.1 3.6 2.4l1.5 2.4c.9 1.3 2 2.4 3.6 2.4 2 0 3.7-1.8 3.7-4s-1.6-4-3.7-4c-1.6 0-2.7 1.1-3.6 2.4l-1.5 2.4c-.9 1.3-2 2.4-3.6 2.4C7.6 16 6 14.2 6 12z" />
+          <path d="M20 14.5A8.5 8.5 0 1 1 10.5 5 7 7 0 0 0 20 14.5z" />
+          <path d="M17.2 3.5l.7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7z" />
         </svg>
       );
-    case "headset":
+    case "devices":
       return (
         <svg {...common}>
           {grad}
-          <path d="M4 13a8 8 0 0 1 16 0v3a3 3 0 0 1-3 3h-1v-5h4" />
-          <path d="M4 16v-3h4v5H7a3 3 0 0 1-3-3z" />
-          <path d="M12 21h-1.5a2 2 0 0 1-2-2" />
+          <rect x="2" y="5" width="14" height="10" rx="1.4" />
+          <line x1="1" y1="18" x2="14" y2="18" />
+          <rect x="16" y="10" width="6" height="10" rx="1.2" />
+          <line x1="18" y1="18" x2="20" y2="18" />
         </svg>
       );
-    case "headphones":
+    case "globe":
       return (
         <svg {...common}>
           {grad}
-          <path d="M4 14v3a2 2 0 0 0 2 2h2v-6H6a2 2 0 0 0-2 2v-1" />
-          <path d="M4 13a8 8 0 0 1 16 0v1" />
-          <path d="M20 14v3a2 2 0 0 1-2 2h-2v-6h2a2 2 0 0 1 2 2v-1" />
+          <circle cx="12" cy="12" r="9" />
+          <ellipse cx="12" cy="12" rx="9" ry="3.6" />
+          <line x1="12" y1="3" x2="12" y2="21" />
+          <path d="M3.6 9c5.6-2 11.2-2 16.8 0" />
+          <path d="M3.6 15c5.6 2 11.2 2 16.8 0" />
         </svg>
       );
   }
