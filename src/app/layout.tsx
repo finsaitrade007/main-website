@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Sora, Inter, DM_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/NavbarWrapper";
 import Footer from "@/components/Footer";
@@ -57,6 +58,10 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Script
+          src="https://portal.finsaitrade.com/chat/widget.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

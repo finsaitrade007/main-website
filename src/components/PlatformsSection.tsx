@@ -1,10 +1,18 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   getHomepage,
   getPlatforms,
   strapiImageUrl,
   type StrapiPlatform,
 } from "@/lib/strapi";
+
+function platformHref(title: string): string {
+  const t = title.toLowerCase();
+  if (/mt\s?5/.test(t)) return "/services#mt5";
+  if (t.includes("social")) return "/services#social";
+  return "/services#app";
+}
 
 const CARD_BG = "#0D1927";
 const RADIUS = "21.32px";
@@ -72,9 +80,14 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
   const icon = strapiImageUrl(p.iconImage) ?? p.localIconImage;
 
   return (
-    <div
+    <Link
+      href={platformHref(p.title)}
+      aria-label={`Learn more about ${p.title}`}
       style={{
         position: "relative",
+        display: "block",
+        textDecoration: "none",
+        color: "inherit",
         background: WIDE_CARD_BACKGROUND,
         border: "1px solid transparent",
         borderRadius: RADIUS,
@@ -157,7 +170,7 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
           style={{ objectFit: "contain" }}
         />
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -166,9 +179,14 @@ function PlatformCard({ p }: { p: StrapiPlatform }) {
   const icon = strapiImageUrl(p.iconImage) ?? p.localIconImage;
 
   return (
-    <div
+    <Link
+      href={platformHref(p.title)}
+      aria-label={`Learn more about ${p.title}`}
       style={{
         position: "relative",
+        display: "block",
+        textDecoration: "none",
+        color: "inherit",
         background: `linear-gradient(${CARD_BG}, ${CARD_BG}) padding-box, ${WIDE_CARD_BORDER_GRADIENT} border-box`,
         border: p.size === "large" ? "2px solid transparent" : "1px solid transparent",
         borderRadius: RADIUS,
@@ -238,7 +256,7 @@ function PlatformCard({ p }: { p: StrapiPlatform }) {
       >
         {p.title}
       </h3>
-    </div>
+    </Link>
   );
 }
 
@@ -298,7 +316,7 @@ export default async function PlatformsSection() {
             width: "862px",
             height: "120.02px",
             textAlign: "center",
-            margin: "0 auto 56px",
+            margin: "0 auto 0",
             overflow: "hidden",
           }}
         >

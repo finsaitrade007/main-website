@@ -305,6 +305,7 @@ function PlatformBlock({ platform }: { platform: Platform }) {
 
   return (
     <div
+      id={platform.id}
       style={{
         display: "flex",
         alignItems: "center",
@@ -312,6 +313,7 @@ function PlatformBlock({ platform }: { platform: Platform }) {
         gap: "80px",
         width: "100%",
         flexDirection: platform.reverse ? "row-reverse" : "row",
+        scrollMarginTop: "120px",
       }}
     >
       {text}

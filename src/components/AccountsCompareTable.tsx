@@ -37,10 +37,10 @@ function isYes(value: string) {
 
 export default async function AccountsCompareTable() {
   const pageData = await getAccountsPage();
-  const compareTitle = pageData?.compareTitle ?? "Account Type";
+  const compareTitle = pageData?.compareTitle ?? "Which Account Fits You Best?";
   const compareDescription =
     pageData?.compareDescription ??
-    "Trade with speed, stability, and total control from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs";
+    "Choose the trading conditions that match your goals, strategy, and experience level.";
 
   // Box geometry (gradient border = 3px wrapper padding around inner).
   const BORDER = 3;

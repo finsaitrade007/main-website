@@ -7,6 +7,7 @@ import {
   type DragEvent,
   type FormEvent,
 } from "react";
+import Image from "next/image";
 import { useRecaptcha } from "@/lib/useRecaptcha";
 
 type IconKey = "quick" | "transparency" | "dedicated" | "multilang";
@@ -339,6 +340,29 @@ function LeftPanel() {
             </article>
           </div>
         ))}
+      </div>
+
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          maxWidth: "440px",
+          left: "90px",
+          aspectRatio: "1 / 1",
+          marginTop: "8px",
+        }}
+      >
+        <Image
+          src="/contact/globe.png"
+          alt="Global support across markets"
+          fill
+          sizes="(max-width: 768px) 90vw, 650px"
+          style={{
+            objectFit: "contain",
+            pointerEvents: "none",
+            userSelect: "none",
+          }}
+        />
       </div>
     </div>
   );

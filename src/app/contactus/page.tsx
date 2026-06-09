@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import ContactUsHeroSection from "@/components/ContactUsHeroSection";
 import ContactSupportChannelsSection from "@/components/ContactSupportChannelsSection";
-import ContactGlobeSection from "@/components/ContactGlobeSection";
 import ContactSupportFormSection from "@/components/ContactSupportFormSection";
 import { getContactusPage, seoToMetadata } from "@/lib/strapi";
 
@@ -19,7 +18,6 @@ export default function ContactUsPage() {
     <>
       <ContactUsHeroSection />
       <ContactSupportChannelsSection />
-      <ContactGlobeSection />
       <ContactSupportFormSection />
     </>
   );
