@@ -6,10 +6,10 @@ const BORDER_GRADIENT = "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.
 const CARD_INNER_BG = "linear-gradient(157.26deg, #050208 -0.93%, #056FB4 444.35%)";
 
 const fallbackNewsCards = [
-  { category: "News & Analysis", desc: "Markets in 2026 are moving faster than most traditional trading systems were designed to handle. ", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQCLPR-yYSYFQIHmmlZcr3CPAWKtzhHB-U95dbAO-AFRwTM?rtime=YV9y0DXG3kg" },
-  { category: "Webinar",         desc: "Inflation cycles. Currency devaluation. Banking crises. Wars. Interest-rate shocks. Market crashes. ", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQBIWDpJAe2nTZyLRe2bACIUAUAED3Op9W9-Wd6xzaQjY0s?e=5UaJ0X&or=EXCEL-WEB.BODY.NT&ct=1780317151897" },
-  { category: "News & Analysis", desc: "Explore the latest market outlook and uncover key trading trends shaping Q2 2026.....", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQBmuU7Usz7xWCiWRVE5f8ADAQ1irXr1MZoIBGkdG8gV-zE?e=wpszAU&or=EXCEL-WEB.BODY.NT&ct=1780582819508" },
-  { category: "Webinar",         desc: "Learn how trading psychology and discipline impact execution, risk management, and long-term performance. ", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQAJDU6Mk4hoX6taBaBDmDEPAXlZ3ZpmVaa8ffChIfPuovE?e=4d8Sy3&or=EXCEL-WEB.BODY.NT&ct=1780582698069" },
+  { category: "News & Analysis", image: "/blogs/markets.png", desc: "Markets in 2026 are moving faster than most traditional trading systems were designed to handle. ", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQCLPR-yYSYFQIHmmlZcr3CPAWKtzhHB-U95dbAO-AFRwTM?rtime=YV9y0DXG3kg" },
+  { category: "Webinar", image: "/blogs/inflation.png", desc: "Inflation cycles. Currency devaluation. Banking crises. Wars. Interest-rate shocks. Market crashes. ", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQBIWDpJAe2nTZyLRe2bACIUAUAED3Op9W9-Wd6xzaQjY0s?e=5UaJ0X&or=EXCEL-WEB.BODY.NT&ct=1780317151897" },
+  { category: "News & Analysis", image: "/blogs/layout.png", desc: "Explore the latest market outlook and uncover key trading trends shaping Q2 2026.....", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQBmuU7Usz7xWCiWRVE5f8ADAQ1irXr1MZoIBGkdG8gV-zE?e=wpszAU&or=EXCEL-WEB.BODY.NT&ct=1780582819508" },
+  { category: "Webinar", image: "/blogs/trading.png", desc: "Learn how trading psychology and discipline impact execution, risk management, and long-term performance. ", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQAJDU6Mk4hoX6taBaBDmDEPAXlZ3ZpmVaa8ffChIfPuovE?e=4d8Sy3&or=EXCEL-WEB.BODY.NT&ct=1780582698069" },
 ];
 
 const fallbackLatestNews = [
@@ -26,7 +26,7 @@ const cardPositions = [
   { top: "685px", left: "507px" },
 ];
 
-function ArticleCard({ category, desc, href, top, left }: { category: string; desc: string; href: string; top: string; left: string }) {
+function ArticleCard({ desc, href, image, top, left }: { desc: string; href: string; image: string; top: string; left: string }) {
   return (
     <div style={{
       position: "absolute",
@@ -56,28 +56,8 @@ function ArticleCard({ category, desc, href, top, left }: { category: string; de
           borderRadius: "16px",
           overflow: "hidden",
         }}>
-          <Image src="/blogs-placeholder.png" alt="" fill style={{ objectFit: "cover" }} />
+          <Image src={image} alt="" fill sizes="380px" style={{ objectFit: "cover" }} />
         </div>
-
-        {/* Category badge */}
-        <span style={{
-          position: "absolute",
-          top: "22px",
-          left: "27px",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "7px 18px",
-          borderRadius: "5px",
-          background: "rgba(255,255,255,0.2)",
-          backdropFilter: "blur(34px)",
-          fontFamily: "var(--font-sora, Sora)",
-          fontSize: "14px",
-          fontWeight: 400,
-          color: "#FFFFFF",
-        }}>
-          {category}
-        </span>
 
         {/* Description */}
         <p style={{
@@ -148,7 +128,12 @@ export default async function BlogsNewsSection() {
   const description = data?.newsDescription ?? "Track market-moving events, technical setups, and macro trends shaping forex, crypto, commodities, and indices.";
 
   const strapiCards = data?.newsArticles?.length
-    ? data.newsArticles.map((a) => ({ category: a.title, desc: a.description ?? "", href: a.href ?? "#" }))
+    ? data.newsArticles.map((a) => ({
+        category: a.title,
+        desc: a.description ?? "",
+        href: a.href ?? "#",
+        image: "/blogs/hero.png",
+      }))
     : [];
 
   const cards = [

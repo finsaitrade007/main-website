@@ -6,8 +6,8 @@ const BORDER_GRADIENT = "linear-gradient(180deg, #056FB4 0%, #7DB9D6 100%)";
 
 const badges = [
   { icon: "/service/pci-dss.png", line1: "PCI DSS",  line2: "Compliant",   left: "656px",  imgTop: "20px", imgLeft: "21px", width: "170px", height: "76px" },
-  { icon: "/service/Layer.png",   line1: "256-bit",  line2: "Encryption",  left: "850px",  imgTop: "21px", imgLeft: "21px", width: "170px", height: "77px" },
-  { icon: "/service/verify.png",  line1: "Verified", line2: "Partners",    left: "1044px", imgTop: "21px", imgLeft: "21px", width: "170px", height: "77px" },
+  { icon: "/service/Layer.png",   line1: "KYC & AML",  line2: "Encryption",  left: "850px",  imgTop: "21px", imgLeft: "21px", width: "170px", height: "77px" },
+  { icon: "/service/verify.png",  line1: "2FA", line2: "Partners",    left: "1044px", imgTop: "21px", imgLeft: "21px", width: "170px", height: "77px" },
 ];
 
 export default async function PaymentsTrustBar() {
