@@ -21,12 +21,12 @@ const helpLinks: { label: string; href: string }[] = [
 ];
 
 const legalLinks: { label: string; href: string }[] = [
-  { label: "Regulations",                       href: "#" },
+  { label: "Regulations",                       href: "/regulations" },
   { label: "Anti-Money Laundering Policy",      href: "/aml-policy" },
   { label: "Conflicts Of Interest Policy",      href: "/conflicts-of-interest-policy" },
   { label: "Privacy Policy",                    href: "/privacy-policy" },
   { label: "Refund Policy",                     href: "/refund-policy" },
-  { label: "Risk Disclosure & Warnings Notice", href: "#" },
+  { label: "Risk Disclosure & Warnings Notice", href: "/risk-disclosure" },
   { label: "Upfront Disclosure",                href: "/upfront-disclosure" },
   { label: "Complaints Management",             href: "/complaints-management" },
   { label: "Client Agreement",                  href: "/client-agreement" },
