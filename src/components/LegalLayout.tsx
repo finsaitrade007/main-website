@@ -47,9 +47,9 @@ export function LegalLayout({
     <div style={{ background: "#050208", width: "100%" }}>
       <div
         style={{
-          maxWidth: "880px",
-          margin: "0 auto",
-          padding: "120px 80px 120px",
+          minWidth: "880px",
+          margin: "120px 120px",
+          padding: "120px 0px 120px",
           display: "flex",
           flexDirection: "column",
           gap: "56px",
