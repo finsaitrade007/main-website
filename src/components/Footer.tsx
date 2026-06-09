@@ -16,8 +16,7 @@ const helpLinks: { label: string; href: string }[] = [
   { label: "Careers",           href: "/careers" },
   { label: "Customer Support",  href: "/contactus" },
   { label: "FAQs",              href: "#" },
-  { label: "Terms & Conditions", href: "/client-agreement" },
-  { label: "Privacy Policy",    href: "/privacy-policy" },
+  { label: "Terms & Conditions", href: "/terms-conditions" },
 ];
 
 const legalLinks: { label: string; href: string }[] = [
@@ -100,7 +99,7 @@ const HEADING_STYLE: React.CSSProperties = {
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#040D1A", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+    <footer style={{ background: "linear-gradient(114.32deg, #050208 1.5%, #056FB4 778.83%)", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
 
       {/* Main footer content */}
       <div style={{ width: "1311.42px", marginLeft: "81.58px", paddingTop: "43px" }}>
@@ -191,7 +190,7 @@ export default function Footer() {
       </div>
 
       {/* Legal disclaimer */}
-      <div style={{ background: "#020810" }}>
+      <div>
         <div style={{ width: "1311.42px", marginLeft: "81.58px", padding: "32px 0" }}>
           {[
             "Finsai Trade (Mauritius) Ltd is a company regulated by the Financial Services Commission Mauritius with License no: GB25204899, Registered in Mauritius under company number C228371. Registered address: 3 Emerald Park, Trianon, Quatre Bornes 72257, MAURITIUS",

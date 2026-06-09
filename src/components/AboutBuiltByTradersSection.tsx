@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { getAboutPage, type StrapiAboutPage, type StrapiPoint } from "@/lib/strapi";
 import AboutBuiltByTradersClient from "./AboutBuiltByTradersClient";
 
@@ -45,51 +44,13 @@ export default async function AboutBuiltByTradersSection() {
       : FALLBACK.builtPoints;
 
   return (
-    <section
-      className="page-section"
-      style={{
-        position: "relative",
-        background: "#050208",
-        width: "100%",
-        maxWidth: "1440px",
-        minHeight: "830.51px",
-        margin: "0 auto",
-        paddingBottom: "79.75px",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "32px",
-        }}
-      >
-        <Image
-          src="/about/built-orbit.png"
-          alt=""
-          width={605}
-          height={573}
-          style={{
-            width: "605px",
-            height: "573.21px",
-            objectFit: "contain",
-            pointerEvents: "none",
-            userSelect: "none",
-            flexShrink: 0,
-          }}
-        />
-
-        <AboutBuiltByTradersClient
-          badge={badge}
-          title={title}
-          description={description}
-          points={points}
-        />
-      </div>
+    <section style={{ background: "#050208" }}>
+      <AboutBuiltByTradersClient
+        badge={badge}
+        title={title}
+        description={description}
+        points={points}
+      />
     </section>
   );
 }

@@ -135,7 +135,7 @@ export default async function AboutFinancialGrowthSection() {
               <h3
                 style={{
                   margin: 0,
-                  fontFamily: "var(--font-raleway, Raleway)",
+                  fontFamily: "var(--font-sora, Sora)",
                   fontWeight: 600,
                   fontStyle: "normal",
                   fontSize: "24px",

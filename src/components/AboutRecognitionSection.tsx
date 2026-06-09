@@ -171,8 +171,8 @@ export default async function AboutRecognitionSection() {
             style={{
               position: "absolute",
               top: "85px",
-              left: "56px",
-              width: "202px",
+              left: 0,
+              width: "100%",
               height: "60px",
               fontFamily: "'Ageo Trial', var(--font-sora, Sora), sans-serif",
               fontWeight: 700,

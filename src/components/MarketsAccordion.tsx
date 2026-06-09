@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { strapiImageUrl, type StrapiMarket } from "@/lib/strapi";
@@ -60,6 +60,28 @@ export default function MarketsAccordion({
       if (frame != null) window.cancelAnimationFrame(frame);
     };
   }, [total]);
+
+  const handleSelect = useCallback(
+    (index: number) => {
+      if (total <= 0) return;
+      const el = outerRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      const maxDistance = Math.max(1, rect.height - vh);
+      // Land in the middle of the segment for the given index so the floor
+      // calculation in the scroll handler reliably resolves to it.
+      const targetProgress = Math.min(
+        1,
+        Math.max(0, (index + 0.5) / total),
+      );
+      const elementAbsoluteTop = window.scrollY + rect.top;
+      const targetScrollY = elementAbsoluteTop + targetProgress * maxDistance;
+      window.scrollTo({ top: targetScrollY, behavior: "smooth" });
+      setActiveIndex(index);
+    },
+    [total],
+  );
 
   const activeMarket = markets[activeIndex] ?? markets[0];
 
@@ -161,17 +183,27 @@ export default function MarketsAccordion({
             return (
               <div key={market.slug}>
                 <div style={{ padding: "20px 0" }}>
-                  <div
+                  <button
+                    type="button"
+                    onClick={() => handleSelect(i)}
+                    aria-expanded={isActive}
+                    aria-label={`Show ${market.name}`}
                     className="market-heading"
                     style={{
                       textAlign: "left",
                       width: "100%",
                       color: isActive ? "#FFFFFF" : "rgba(255,255,255,0.55)",
                       transition: "color 0.3s ease",
+                      background: "transparent",
+                      border: "none",
+                      padding: 0,
+                      margin: 0,
+                      cursor: "pointer",
+                      font: "inherit",
                     }}
                   >
                     {market.name}
-                  </div>
+                  </button>
 
                   <div
                     style={{

@@ -93,15 +93,13 @@ export default function AboutCompetitiveEdgeSection() {
     >
       <div
         style={{
-          width: "1288px",
-          height: "461px",
-          maxWidth: "100%",
+          width: "100%",
+          maxWidth: "1288px",
           margin: "0 auto",
-          display: "flex",
-          justifyContent: "center",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
           alignItems: "stretch",
-          gap: "42px",
-          flexWrap: "wrap",
+          gap: "32px",
         }}
       >
         {CARDS.map((card) => (
@@ -109,8 +107,8 @@ export default function AboutCompetitiveEdgeSection() {
             key={card.title}
             style={{
               boxSizing: "border-box",
-              width: "623px",
-              height: "461px",
+              width: "100%",
+              minHeight: "461px",
               borderRadius: "20px",
               border: "2px solid transparent",
               background:
