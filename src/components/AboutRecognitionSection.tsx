@@ -15,7 +15,7 @@ const FALLBACK: Pick<
   recognitionTitleAccent: "Excellence",
   recognitionDescription:
     " Trusted by a growing community of traders for reliable execution, modern trading tools, and scalable partnership opportunities. ",
-  recognitionStatPrimaryValue: "53k+",
+  recognitionStatPrimaryValue: "50k+",
   recognitionStatPrimaryLabel: "Registered Users",
   recognitionStatSecondaryValue: "3M+",
   recognitionStatSecondaryLabel: "Monthly Worldwide",
