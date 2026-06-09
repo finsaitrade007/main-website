@@ -408,7 +408,7 @@ export default function ServicesPlatformsSection() {
               letterSpacing: 0,
               color: "rgba(255,255,255,0.7)",
               margin: 0,
-              maxWidth: "640px",
+              maxWidth: "900px",
             }}
           >
             From advanced algorithmic trading to social copy trading, discover
