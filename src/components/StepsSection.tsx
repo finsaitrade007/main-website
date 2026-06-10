@@ -192,7 +192,7 @@ export default async function StepsSection() {
                     position: "absolute",
                     left: `${textLeft}px`,
                     top: "144px",
-                    width: "280px",
+                    width: "300px",
                     textAlign: "center",
                   }}
                 >

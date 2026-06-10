@@ -109,7 +109,8 @@ export default async function ServicesHeroSection() {
           lineHeight: "155%",
           color: "rgba(255,255,255,0.7)",
           maxWidth: "560px",
-          top: "220px",
+          position: "relative",
+          top: "-80px",
           margin: 0,
         }}>
           {data.heroDescription}
@@ -127,6 +128,8 @@ export default async function ServicesHeroSection() {
             paddingLeft: "24px",
             paddingRight: "24px",
             gap: "16px",
+            top: "-80px",
+            position: "relative",
             background:
               "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
             textDecoration: "none",

@@ -1,16 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getBlogsPage } from "@/lib/strapi";
+import { BLOG_POSTS } from "@/lib/blogs";
 
 const BORDER_GRADIENT = "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
 const CARD_INNER_BG = "linear-gradient(157.26deg, #050208 -0.93%, #056FB4 444.35%)";
 
-const fallbackNewsCards = [
-  { category: "News & Analysis", image: "/blogs/markets.png", desc: "Markets in 2026 are moving faster than most traditional trading systems were designed to handle. ", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQCLPR-yYSYFQIHmmlZcr3CPAWKtzhHB-U95dbAO-AFRwTM?rtime=YV9y0DXG3kg" },
-  { category: "Webinar", image: "/blogs/inflation.png", desc: "Inflation cycles. Currency devaluation. Banking crises. Wars. Interest-rate shocks. Market crashes. ", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQBIWDpJAe2nTZyLRe2bACIUAUAED3Op9W9-Wd6xzaQjY0s?e=5UaJ0X&or=EXCEL-WEB.BODY.NT&ct=1780317151897" },
-  { category: "News & Analysis", image: "/blogs/layout.png", desc: "Explore the latest market outlook and uncover key trading trends shaping Q2 2026.....", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQBmuU7Usz7xWCiWRVE5f8ADAQ1irXr1MZoIBGkdG8gV-zE?e=wpszAU&or=EXCEL-WEB.BODY.NT&ct=1780582819508" },
-  { category: "Webinar", image: "/blogs/trading.png", desc: "Learn how trading psychology and discipline impact execution, risk management, and long-term performance. ", href: "https://wisoftdxb-my.sharepoint.com/:w:/g/personal/sumathi_g_wisoftsolutions_com/IQAJDU6Mk4hoX6taBaBDmDEPAXlZ3ZpmVaa8ffChIfPuovE?e=4d8Sy3&or=EXCEL-WEB.BODY.NT&ct=1780582698069" },
-];
+const fallbackNewsCards = BLOG_POSTS.map((post) => ({
+  category: post.category,
+  image: post.image,
+  desc: post.excerpt,
+  href: `/blogs/${post.slug}`,
+}));
 
 const fallbackLatestNews = [
   "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.",
@@ -123,7 +124,7 @@ function SearchBar() {
 
 export default async function BlogsNewsSection() {
   const data = await getBlogsPage();
-  const badge       = data?.newsBadge       ?? "Market News & Analysis ";
+  const badge       = data?.newsBadge       ?? "Market News & Analysis ";
   const title       = data?.newsTitle       ?? "Stay Ahead of Every Market Move";
   const description = data?.newsDescription ?? "Track market-moving events, technical setups, and macro trends shaping forex, crypto, commodities, and indices.";
 

@@ -37,31 +37,30 @@ export default async function AboutHeroSection() {
         overflow: "hidden",
       }}
     >
+      <Image
+        src="/about/hero-bg.png"
+        alt=""
+        fill
+        priority
+        sizes="1440px"
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+          pointerEvents: "none",
+          userSelect: "none",
+          zIndex: 0,
+        }}
+      />
+
       <div
+        aria-hidden
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(ellipse at 75% 40%, rgba(5,111,180,0.22) 0%, rgba(0,0,0,0) 60%)",
+            "linear-gradient(90deg, rgba(5,2,8,0.85) 0%, rgba(5,2,8,0.55) 35%, rgba(5,2,8,0) 60%)",
           pointerEvents: "none",
-        }}
-      />
-
-      <Image
-        src="/about/hero-map.png"
-        alt=""
-        width={917}
-        height={516}
-        priority
-        style={{
-          position: "absolute",
-          top: "178px",
-          left: "584px",
-          width: "917px",
-          height: "516px",
-          objectFit: "contain",
-          pointerEvents: "none",
-          userSelect: "none",
+          zIndex: 1,
         }}
       />
 
