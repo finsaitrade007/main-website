@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-type IconKey = "chat" | "email" | "phone" | "book";
+type IconKey = "chat" | "email" | "phone";
 
 type Channel = {
   icon: IconKey;
@@ -30,15 +30,8 @@ const CHANNELS: Channel[] = [
     icon: "phone",
     title: "Phone Support",
     description: "Instant help through in-platform or website chat.",
-    ctaLabel: "+23 04634500",
+    ctaLabel: "+971 50 845 5403",
     ctaHref: "tel:+2304634500",
-  },
-  {
-    icon: "book",
-    title: "Knowledge Base",
-    description: "Instant help through in-platform or website chat.",
-    ctaLabel: "Visit Knowledge Base",
-    ctaHref: "#knowledge-base",
   },
 ];
 
@@ -91,14 +84,6 @@ function ChannelIcon({ icon }: { icon: IconKey }): ReactNode {
           {gradient}
         </svg>
       );
-    case "book":
-      return (
-        <svg {...common}>
-          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z" />
-          <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5H6.5A2.5 2.5 0 0 0 4 19.5z" />
-          {gradient}
-        </svg>
-      );
   }
 }
 
@@ -122,7 +107,7 @@ export default function ContactSupportChannelsSection() {
           display: "flex",
           justifyContent: "center",
           alignItems: "stretch",
-          gap: "18px",
+          gap: "88px",
           flexWrap: "wrap",
         }}
       >

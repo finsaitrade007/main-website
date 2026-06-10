@@ -33,6 +33,7 @@ const NAV_ITEMS: NavItem[] = [
     items: [
       { label: "About Us", href: "/about" },
       { label: "Career", href: "/careers" },
+      { label: "Partnerships", href: "/partnerships" },
     ],
   },
   {

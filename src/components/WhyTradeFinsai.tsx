@@ -12,7 +12,7 @@ const topRow: Reason[] = [
   { iconKey: "chart", title: "Tight spreads across\naccount types" },
   { iconKey: "bolt", title: "Fast and reliable trade\n execution" },
   { iconKey: "scale", title: "Flexible leverage\n options" },
-  { iconKey: "moon", title: "Swap-free Islamic\n accounts available" },
+  { iconKey: "moon", title: "Swap-free accounts available" },
 ];
 
 const bottomRow: Reason[] = [
@@ -37,7 +37,14 @@ function ReasonIcon({ iconKey }: { iconKey: IconKey }) {
   };
   const grad = (
     <defs>
-      <linearGradient id={gradId} x1="0" y1="0" x2="24" y2="24">
+      <linearGradient
+        id={gradId}
+        x1="0"
+        y1="0"
+        x2="24"
+        y2="24"
+        gradientUnits="userSpaceOnUse"
+      >
         <stop stopColor="#7DB9D6" />
         <stop offset="1" stopColor="#2EA8FF" />
       </linearGradient>
@@ -193,10 +200,10 @@ import { getAccountsPage } from "@/lib/strapi";
 
 export default async function WhyTradeFinsai() {
   const data = await getAccountsPage();
-  const title = data?.whyTitle ?? "Why trade with Finsai";
+  const title = data?.whyTitle ?? "Everything You Need to Trade with Confidence";
   const description =
     data?.whyDescription ??
-    "Trade with speed, stability, and total control from your desk or on the move. Finsai Trade delivers professional-grade platforms to match your trading needs";
+    "Choose an account designed for your trading style with competitive pricing, fast execution, and flexible trading conditions.";
   return (
     <section
       className="page-section"
@@ -236,7 +243,7 @@ export default async function WhyTradeFinsai() {
           className="section-desc"
           style={{
             textAlign: "center",
-            maxWidth: "720px",
+            maxWidth: "950px",
             margin: 0,
             color: "rgba(255,255,255,0.6)",
           }}

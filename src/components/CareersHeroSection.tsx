@@ -12,7 +12,7 @@ const FALLBACK: Pick<
   | "heroSecondaryCtaLabel"
   | "heroSecondaryCtaHref"
 > = {
-  heroBadge: "Careers at Finsai Trade",
+  heroBadge: "support at Finsai Trade",
   heroTitle: "Build the Future of\nMulti-Asset Trading",
   heroDescription:
     "Join a vibrant global team focused on fintech, trading technology, global markets, and customer growth.",

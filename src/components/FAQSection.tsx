@@ -1,6 +1,27 @@
 import FAQAccordion from "./FAQAccordion";
 import { getFaqs, type StrapiFaq } from "@/lib/strapi";
 
+export type FAQItem = { question: string; answer: string };
+
+type FAQSectionProps = {
+  /**
+   * Page-specific FAQs. When supplied, the section renders these instead of
+   * fetching the global FAQ list from Strapi. The homepage omits this prop
+   * to preserve the existing CMS-driven behaviour.
+   */
+  faqs?: FAQItem[];
+};
+
+function toStrapiShape(items: FAQItem[]): StrapiFaq[] {
+  return items.map((f, i) => ({
+    id: -(i + 1),
+    documentId: `local-${i + 1}`,
+    question: f.question,
+    answer: f.answer,
+    order: i + 1,
+  }));
+}
+
 const FALLBACK_FAQS: StrapiFaq[] = [
   {
     id: -1,
@@ -44,9 +65,14 @@ const FALLBACK_FAQS: StrapiFaq[] = [
   },
 ];
 
-export default async function FAQSection() {
-  const fetched = await getFaqs();
-  const faqs = fetched && fetched.length > 0 ? fetched : FALLBACK_FAQS;
+export default async function FAQSection({ faqs }: FAQSectionProps = {}) {
+  let resolved: StrapiFaq[];
+  if (faqs && faqs.length > 0) {
+    resolved = toStrapiShape(faqs);
+  } else {
+    const fetched = await getFaqs();
+    resolved = fetched && fetched.length > 0 ? fetched : FALLBACK_FAQS;
+  }
 
   return (
     <section
@@ -75,7 +101,7 @@ export default async function FAQSection() {
           Frequently Asked Question
         </h2>
 
-        <FAQAccordion faqs={faqs} />
+        <FAQAccordion faqs={resolved} />
 
         <div className="text-center mt-10">
           <a

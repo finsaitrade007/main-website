@@ -14,31 +14,31 @@ const FALLBACK_TESTIMONIALS: StrapiTestimonial[] = [
   {
     id: 1,
     documentId: "fb-1",
-    name: "Jamson Holo",
+    name: "David k",
     role: "Client",
-    initials: "JH",
+    initials: "DK",
     quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porta, ex at luctus commodo, metus erat dictum sapien, eget dictum turpis felis vitae ligula. Sed porta, ex at luctus commodo,",
+      "Customer support actually listens and resolves issues quickly. It feels like a platform that really cares about its traders.",
     order: 1,
   },
   {
     id: 2,
     documentId: "fb-2",
-    name: "Deepak Rana",
+    name: "Rohan M",
     role: "Client",
-    initials: "DR",
+    initials: "RM",
     quote:
-      "Good customer care. I got rapidly answered and have my problems solved. I am very thankful to finsai trading support team.",
+      "I’ve tried multiple trading platforms, but Finsai Trade feels different. The interface is clean and intuitive, making it so easy to track trades.",
     order: 2,
   },
   {
     id: 3,
     documentId: "fb-3",
-    name: "Satish Kumar",
+    name: "Sarah L",
     role: "Client",
-    initials: "SK",
+    initials: "SL",
     quote:
-      "The withdrawal and trading experience was very good. The support was available all the time. I was fearing at first to use the platform as they are new, but their withdrawal process was very easy, hence I am giving 4 stars.",
+      "The webinars are incredibly valuable. I learned strategies in one session that I applied the very next day with great results.",
     order: 3,
   },
 ];
