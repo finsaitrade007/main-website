@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/SmartLink";
 import {
   getHomepage,
   getPlatforms,
@@ -10,7 +10,7 @@ import {
 function platformHref(title: string): string {
   const t = title.toLowerCase();
   if (/mt\s?5/.test(t)) return "/services#mt5";
-  if (t.includes("social")) return "/services#social";
+  if (t.includes("social")) return "https://finsaitrade.com/services/social-trading/";
   return "/services#app";
 }
 

@@ -95,7 +95,7 @@ export default async function ServicesHeroSection() {
           letterSpacing: "-0.01em",
           color: "#FFFFFF",
           margin: 0,
-          width: "678px",
+          width: "758px",
           height: "186px",
           overflow: "hidden",
         }}>
@@ -109,6 +109,7 @@ export default async function ServicesHeroSection() {
           lineHeight: "155%",
           color: "rgba(255,255,255,0.7)",
           maxWidth: "560px",
+          top: "220px",
           margin: 0,
         }}>
           {data.heroDescription}

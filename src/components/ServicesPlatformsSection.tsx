@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/SmartLink";
 import Image from "next/image";
 
 const BTN_GRADIENT =
@@ -58,7 +58,7 @@ const platforms: Platform[] = [
     imageAlt: "Social trading network",
     cta: {
       label: "Learn More About Social Trading",
-      href: "https://fx.finsaitrade.com/auth/register",
+      href: "https://finsaitrade.com/services/social-trading/",
     },
     reverse: true,
   },
