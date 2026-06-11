@@ -164,7 +164,8 @@ export default function Footer() {
       {/* Bottom bar */}
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
         <div className="footer-inner" style={{
-          padding: "20px 0",
+          paddingTop: "20px",
+          paddingBottom: "20px",
           display: "flex", alignItems: "center", justifyContent: "space-between",
           flexWrap: "wrap", gap: "12px",
         }}>
@@ -201,7 +202,7 @@ export default function Footer() {
 
       {/* Legal disclaimer */}
       <div>
-        <div className="footer-inner" style={{ padding: "32px 0" }}>
+        <div className="footer-inner" style={{ paddingTop: "32px", paddingBottom: "32px" }}>
           {[
             "Finsai Trade (Mauritius) Ltd is a company regulated by the Financial Services Commission Mauritius with License no: GB25204899, Registered in Mauritius under company number C228371. Registered address: 3 Emerald Park, Trianon, Quatre Bornes 72257, MAURITIUS",
             "Physical Address Mauritius: 3rd Floor, Manor House, 30 St Georges Street, Port Louis, Mauritius",
