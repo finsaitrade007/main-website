@@ -130,6 +130,145 @@ const CARDS: CardData[] = [
   },
 ];
 
+function MobilePaymentCard({ card }: { card: CardData }) {
+  return (
+    <div
+      style={{
+        width: "100%",
+        borderRadius: "16px",
+        background: BORDER_GRADIENT,
+        padding: "1px",
+        boxSizing: "border-box",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          borderRadius: "15px",
+          background: CARD_INNER_BG,
+          boxSizing: "border-box",
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: "32px 20px 24px",
+          gap: "12px",
+        }}
+      >
+        <div
+          style={{
+            width: "90px",
+            height: "90px",
+            borderRadius: "50%",
+            background: "#020303",
+            border: "2px solid #056FB499",
+            boxShadow: "0px 0px 20px 12px #056FB43D",
+            boxSizing: "border-box",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+          }}
+        >
+          <Image
+            src={card.icon}
+            alt={card.iconAlt}
+            width={44}
+            height={44}
+            style={{ objectFit: "contain" }}
+          />
+        </div>
+
+        <h3
+          style={{
+            fontFamily: "var(--font-sora, Sora)",
+            fontWeight: 600,
+            fontSize: "18px",
+            lineHeight: "1.2",
+            color: "#FFFFFF",
+            margin: 0,
+            textAlign: "center",
+          }}
+        >
+          {card.title}
+        </h3>
+
+        <p
+          style={{
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 400,
+            fontSize: "13px",
+            lineHeight: "1.6",
+            color: "rgba(255,255,255,0.6)",
+            margin: 0,
+            textAlign: "center",
+            flex: 1,
+          }}
+        >
+          {card.description}
+        </p>
+
+        <div
+          style={{
+            width: "100%",
+            height: "1px",
+            background:
+              "linear-gradient(90deg, rgba(255,255,255,0.014) -2.94%, rgba(5,111,180,0.7) 51.23%, rgba(255,255,255,0.014) 102.37%)",
+          }}
+        />
+
+        {card.footer.type === "logos" ? (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "20px",
+              height: "36px",
+            }}
+          >
+            {card.footer.logos.map((logo) => (
+              <Image
+                key={logo.alt}
+                src={logo.src}
+                alt={logo.alt}
+                width={28}
+                height={28}
+                style={{ objectFit: "contain" }}
+              />
+            ))}
+          </div>
+        ) : (
+          <button
+            type="button"
+            style={{
+              padding: "10px 20px",
+              borderRadius: "28px",
+              border: "1px solid #056FB4",
+              background: PILL_BG,
+              color: "#56A4E0",
+              fontFamily: "var(--font-sora, Sora)",
+              fontWeight: 500,
+              fontSize: "13px",
+              lineHeight: "1",
+              cursor: "pointer",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "6px",
+              whiteSpace: "nowrap",
+              boxSizing: "border-box",
+            }}
+          >
+            {card.footer.icon === "lightning" ? <LightningIcon /> : <ShieldCheckIcon />}
+            <span>{card.footer.label}</span>
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function PaymentCard({ card }: { card: CardData }) {
   return (
     <div
@@ -320,6 +459,8 @@ export default async function PaymentsMethodsSection() {
         overflow: "hidden",
       }}
     >
+    {/* Desktop / tablet layout (≥ 425px) */}
+    <div className="steps-horizontal">
     <ResponsiveScale designWidth={1440}>
     <div style={{ position: "relative", width: "1440px", minHeight: "771px" }}>
       <div
@@ -375,6 +516,32 @@ export default async function PaymentsMethodsSection() {
       ))}
     </div>
     </ResponsiveScale>
+    </div>
+
+    {/* Mobile layout (< 425px): standard heading + horizontal scroll cards */}
+    <div className="steps-vertical">
+      <div style={{ textAlign: "center", marginBottom: "32px" }}>
+        <h2 className="section-title" style={{ marginBottom: "12px" }}>
+          {sectionTitle}
+        </h2>
+        <p className="section-desc" style={{ margin: "0 auto" }}>
+          {sectionDescription}
+        </p>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          padding: "0 20px",
+        }}
+      >
+        {CARDS.map((card) => (
+          <MobilePaymentCard key={card.left} card={card} />
+        ))}
+      </div>
+    </div>
     </section>
   );
 }

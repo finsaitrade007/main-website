@@ -847,6 +847,7 @@ body {
   .hero__content {
     padding-bottom: 60px;
     padding-top: 100px;
+    top: 10;
     align-items: flex-start;
   }
 
@@ -1048,7 +1049,7 @@ body {
   }
 
   .markets-grid-image {
-    display: none;
+    display: none !important;
   }
 }
 

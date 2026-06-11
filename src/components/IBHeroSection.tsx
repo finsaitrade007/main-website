@@ -32,6 +32,7 @@ export default async function IBHeroSection() {
         alt=""
         width={1130}
         height={678}
+        className="hero-image"
         style={{
           position: "absolute",
           top: "53px",
@@ -84,9 +85,8 @@ export default async function IBHeroSection() {
           alignItems: "center",
           justifyContent: "center",
           alignSelf: "flex-start",
-          width: "195px",
-          height: "48px",
           borderRadius: "8px",
+          padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
           background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
           textDecoration: "none",
           whiteSpace: "nowrap",

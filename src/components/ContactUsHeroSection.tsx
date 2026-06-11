@@ -30,6 +30,7 @@ export default function ContactUsHeroSection() {
         width={744}
         height={744}
         priority
+        className="hero-image"
         style={{
           position: "absolute",
           top: "31px",

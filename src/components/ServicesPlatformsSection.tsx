@@ -292,7 +292,6 @@ export default function ServicesPlatformsSection() {
         background: "#050208",
         width: "100%",
         maxWidth: "1440px",
-        minHeight: "2125px",
         paddingBottom: "75px",
         position: "relative",
         overflow: "hidden",
@@ -327,29 +326,14 @@ export default function ServicesPlatformsSection() {
               alignItems: "center",
               justifyContent: "center",
               boxSizing: "border-box",
-              paddingTop: "8px",
-              paddingBottom: "8px",
-              paddingLeft: "20px",
-              paddingRight: "20px",
+              padding: "8px 22px",
               borderRadius: "60px",
               border: "1px solid #FFFFFF26",
               background: "#000000",
+              whiteSpace: "nowrap",
             }}
           >
-            <span
-              style={{
-                fontFamily: "var(--font-inter, Inter)",
-                fontWeight: 400,
-                fontSize: "19.2px",
-                lineHeight: "31.2px",
-                letterSpacing: 0,
-                background: TITLE_GRADIENT,
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                whiteSpace: "nowrap",
-              }}
-            >
+            <span className="badge-text" style={{ background: TITLE_GRADIENT, WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               Choose Your Platform
             </span>
           </div>
@@ -358,7 +342,7 @@ export default function ServicesPlatformsSection() {
             style={{
               fontFamily: "var(--font-sora, Sora)",
               fontWeight: 700,
-              fontSize: "44px",
+              fontSize: "clamp(24px, 3.1vw, 44px)",
               lineHeight: "118%",
               letterSpacing: "-0.01em",
               color: "#FFFFFF",

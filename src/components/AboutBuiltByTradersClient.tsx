@@ -13,6 +13,7 @@ type Props = {
 };
 
 const VH_PER_POINT = 40;
+const MOBILE_STEP_Y = 20;
 
 export default function AboutBuiltByTradersClient({
   badge,
@@ -22,8 +23,16 @@ export default function AboutBuiltByTradersClient({
 }: Props) {
   const outerRef = useRef<HTMLDivElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const total = points.length;
+
+  useEffect(() => {
+    const update = () => setIsMobile(window.innerWidth < 769);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   useEffect(() => {
     if (total <= 0) return;
@@ -83,160 +92,248 @@ export default function AboutBuiltByTradersClient({
   if (total <= 0) return null;
 
   return (
-    <div
-      ref={outerRef}
-      style={{
-        position: "relative",
-        height: `calc(${total * VH_PER_POINT}vh + 100vh)`,
-      }}
-    >
-      <div
-        style={{
-          position: "sticky",
-          top: 0,
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          overflow: "hidden",
-        }}
-      >
+    <>
+      {/* Desktop / tablet layout (≥ 426px): sticky scroll accordion */}
+      <div className="steps-horizontal">
         <div
-          className="markets-grid"
+          ref={outerRef}
           style={{
-            maxWidth: "1280px",
-            margin: "0 auto",
-            padding: "80px 80px 96px",
+            position: "relative",
+            height: `calc(${total * VH_PER_POINT}vh + 100vh)`,
           }}
         >
           <div
             style={{
+              position: "sticky",
+              top: 0,
+              height: "100vh",
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
+              overflow: "hidden",
             }}
           >
-            <Image
-              src="/about/built-orbit.png"
-              alt=""
-              width={605}
-              height={573}
+            <div
+              className="markets-grid"
               style={{
-                width: "100%",
-                maxWidth: "605px",
-                height: "auto",
-                objectFit: "contain",
-                pointerEvents: "none",
-                userSelect: "none",
+                maxWidth: "1280px",
+                margin: "0 auto",
+                padding: "80px 80px 96px",
+                transform: isMobile ? `translateY(${activeIndex * MOBILE_STEP_Y}px)` : undefined,
+                transition: isMobile ? "transform 0.5s ease" : undefined,
               }}
-              priority
-            />
-          </div>
-
-          <div style={{ maxWidth: "560px" }}>
-            <div style={{ marginBottom: "24px" }}>
-              <span
+            >
+              <div
+                className="markets-grid-image"
                 style={{
-                  display: "inline-flex",
+                  display: "flex",
                   alignItems: "center",
-                  padding: "8px 18px",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  borderRadius: "60px",
+                  justifyContent: "center",
                 }}
               >
-                <span className="badge-text">{badge}</span>
-              </span>
-            </div>
+                <Image
+                  src="/about/built-orbit.png"
+                  alt=""
+                  width={605}
+                  height={573}
+                  style={{
+                    width: "100%",
+                    maxWidth: "605px",
+                    height: "auto",
+                    objectFit: "contain",
+                    pointerEvents: "none",
+                    userSelect: "none",
+                  }}
+                  priority
+                />
+              </div>
 
-            <h2 className="section-title" style={{ marginBottom: "20px" }}>
-              {title}
-            </h2>
+              <div style={{ maxWidth: "560px" }}>
+                <div style={{ marginBottom: "24px" }}>
+                  <span
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      padding: "8px 18px",
+                      border: "1px solid rgba(255,255,255,0.15)",
+                      borderRadius: "60px",
+                    }}
+                  >
+                    <span className="badge-text">{badge}</span>
+                  </span>
+                </div>
 
-            <p
-              className="section-desc"
-              style={{ marginBottom: "36px", maxWidth: "560px" }}
-            >
-              {description}
-            </p>
+                <h2 className="section-title" style={{ marginBottom: "20px" }}>
+                  {title}
+                </h2>
 
-            <div>
-              {points.map((p, i) => {
-                const isActive = i === activeIndex;
-                return (
-                  <div key={p.id}>
-                    <div style={{ padding: "20px 0" }}>
-                      <button
-                        type="button"
-                        onClick={() => handleSelect(i)}
-                        aria-expanded={isActive}
-                        aria-label={`Show ${p.title}`}
-                        className="market-heading"
-                        style={{
-                          textAlign: "left",
-                          width: "100%",
-                          color: isActive ? "#FFFFFF" : "rgba(255,255,255,0.55)",
-                          transition: "color 0.3s ease",
-                          background: "transparent",
-                          border: "none",
-                          padding: 0,
-                          margin: 0,
-                          cursor: "pointer",
-                          font: "inherit",
-                        }}
-                      >
-                        {p.title}
-                      </button>
+                <p
+                  className="section-desc"
+                  style={{ marginBottom: "36px", maxWidth: "560px" }}
+                >
+                  {description}
+                </p>
 
-                      <div
-                        style={{
-                          overflow: "hidden",
-                          maxHeight: isActive ? "240px" : "0px",
-                          opacity: isActive ? 1 : 0,
-                          transition:
-                            "max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease",
-                        }}
-                      >
-                        <div style={{ marginTop: "14px" }}>
-                          <p
-                            className="market-text"
-                            style={{ marginBottom: "16px", maxWidth: "520px" }}
+                <div>
+                  {points.map((p, i) => {
+                    const isActive = i === activeIndex;
+                    return (
+                      <div key={p.id}>
+                        <div style={{ padding: "20px 0" }}>
+                          <button
+                            type="button"
+                            onClick={() => handleSelect(i)}
+                            aria-expanded={isActive}
+                            aria-label={`Show ${p.title}`}
+                            className="market-heading"
+                            style={{
+                              textAlign: "left",
+                              width: "100%",
+                              color: isActive ? "#FFFFFF" : "rgba(255,255,255,0.55)",
+                              transition: "color 0.3s ease",
+                              background: "transparent",
+                              border: "none",
+                              padding: 0,
+                              margin: 0,
+                              cursor: "pointer",
+                              font: "inherit",
+                            }}
                           >
-                            {p.description}
-                          </p>
-                          <Link href="#" className="market-link">
-                            Read More
-                            <svg
-                              width="12"
-                              height="12"
-                              viewBox="0 0 12 12"
-                              fill="none"
-                            >
-                              <path
-                                d="M2 6h8M6 2l4 4-4 4"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
+                            {p.title}
+                          </button>
 
-                    <div
-                      style={{
-                        height: "1px",
-                        background:
-                          "linear-gradient(90deg, transparent 0%, #056FB4 50%, transparent 100%)",
-                      }}
-                    />
-                  </div>
-                );
-              })}
+                          <div
+                            style={{
+                              overflow: "hidden",
+                              maxHeight: isActive ? "240px" : "0px",
+                              opacity: isActive ? 1 : 0,
+                              transition:
+                                "max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease",
+                            }}
+                          >
+                            <div style={{ marginTop: "14px" }}>
+                              <p
+                                className="market-text"
+                                style={{ marginBottom: "16px", maxWidth: "520px" }}
+                              >
+                                {p.description}
+                              </p>
+                              <Link href="#" className="market-link">
+                                Read More
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                  <path
+                                    d="M2 6h8M6 2l4 4-4 4"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div
+                          style={{
+                            height: "1px",
+                            background:
+                              "linear-gradient(90deg, transparent 0%, #056FB4 50%, transparent 100%)",
+                          }}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Mobile layout (< 425px): heading + vertical stacked cards */}
+      <div className="steps-vertical" style={{ paddingBottom: "48px" }}>
+        <div style={{ textAlign: "center", marginBottom: "32px" }}>
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              padding: "8px 18px",
+              border: "1px solid rgba(255,255,255,0.15)",
+              borderRadius: "60px",
+              marginBottom: "16px",
+            }}
+          >
+            <span className="badge-text">{badge}</span>
+          </span>
+          <h2 className="section-title" style={{ marginBottom: "12px" }}>
+            {title}
+          </h2>
+          <p className="section-desc" style={{ margin: "0 auto" }}>
+            {description}
+          </p>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
+            padding: "0 20px",
+          }}
+        >
+          {points.map((p) => (
+            <div
+              key={p.id}
+              style={{
+                width: "100%",
+                borderRadius: "16px",
+                background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+                padding: "1px",
+                boxSizing: "border-box",
+              }}
+            >
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "15px",
+                  background: "#0B1521",
+                  padding: "28px 20px",
+                  boxSizing: "border-box",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                }}
+              >
+                <h3
+                  style={{
+                    fontFamily: "var(--font-sora, Sora)",
+                    fontWeight: 600,
+                    fontSize: "18px",
+                    lineHeight: "1.3",
+                    color: "#FFFFFF",
+                    margin: 0,
+                  }}
+                >
+                  {p.title}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "var(--font-inter, Inter)",
+                    fontWeight: 400,
+                    fontSize: "13px",
+                    lineHeight: "1.6",
+                    color: "rgba(255,255,255,0.65)",
+                    margin: 0,
+                  }}
+                >
+                  {p.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 }

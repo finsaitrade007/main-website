@@ -39,6 +39,7 @@ export default async function AccountsHeroSection() {
         alt=""
         width={744}
         height={564}
+        className="hero-image"
         style={{
           position: "absolute",
           top: "128px",
@@ -69,11 +70,13 @@ export default async function AccountsHeroSection() {
         <div
           style={{
             boxSizing: "border-box",
+            height: "44px",
             display: "inline-flex",
+            alignSelf: "flex-start",
             alignItems: "center",
             justifyContent: "center",
             gap: "8.4px",
-            padding: "9.6px 16.8px",
+            padding: "9.6px 22px",
             borderRadius: "60px",
             border: "1.2px solid #FFFFFF26",
             background: "#000000",
@@ -84,9 +87,9 @@ export default async function AccountsHeroSection() {
             style={{
               fontFamily: "var(--font-inter, Inter)",
               fontWeight: 400,
-              fontSize: "19.2px",
-              lineHeight: "31.2px",
-              letterSpacing: 0,
+              fontSize: "15px",
+              lineHeight: "24px",
+              letterSpacing: "1px",
               textTransform: "uppercase",
               backgroundImage:
                 "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
@@ -161,15 +164,9 @@ export default async function AccountsHeroSection() {
               href={data.heroSecondaryCtaHref}
               className="btn-text"
               style={{
-                boxSizing: "border-box",
-                width: "233px",
-                height: "48px",
                 gap: "16px",
                 borderRadius: "8px",
-                paddingTop: "11px",
-                paddingRight: "24px",
-                paddingBottom: "11px",
-                paddingLeft: "24px",
+                padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
                 border: "1px solid transparent",
                 background:
                   "linear-gradient(#050208, #050208) padding-box, linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%) border-box",

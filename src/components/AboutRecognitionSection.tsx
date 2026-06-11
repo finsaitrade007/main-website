@@ -35,6 +35,8 @@ export default async function AboutRecognitionSection() {
         paddingBottom: "80px",
       }}
     >
+    {/* Desktop / tablet layout (≥ 426px) */}
+    <div className="steps-horizontal">
     <ResponsiveScale designWidth={1440}>
     <div
       style={{
@@ -243,6 +245,140 @@ export default async function AboutRecognitionSection() {
       </div>
     </div>
     </ResponsiveScale>
+    </div>
+
+    {/* Mobile layout (< 426px): heading + stats card + award images stacked */}
+    <div className="steps-vertical" style={{ padding: "0 20px 8px" }}>
+      {/* Heading */}
+      <div style={{ textAlign: "center", marginBottom: "32px" }}>
+        <h2 className="section-title" style={{ marginBottom: "12px" }}>
+          {data.recognitionTitlePrefix}
+          <span
+            style={{
+              backgroundImage:
+                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
+            }}
+          >
+            {data.recognitionTitleAccent}
+          </span>
+        </h2>
+        <p className="section-desc" style={{ margin: "0 auto" }}>
+          {data.recognitionDescription}
+        </p>
+      </div>
+
+      {/* Stats card */}
+      <div
+        style={{
+          width: "100%",
+          borderRadius: "20px",
+          border: "0.9px solid #056FB4",
+          background:
+            "linear-gradient(157.26deg, rgba(10,18,32,0.85) 0%, rgba(5,111,180,0.18) 100%)",
+          padding: "32px 24px",
+          boxSizing: "border-box",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "20px",
+          marginBottom: "28px",
+        }}
+      >
+        <div style={{ textAlign: "center" }}>
+          <div
+            style={{
+              fontFamily: "var(--font-inter, Inter)",
+              fontWeight: 700,
+              fontSize: "clamp(52px, 18vw, 72px)",
+              lineHeight: "1",
+              color: "#FFFFFF",
+            }}
+          >
+            {data.recognitionStatPrimaryValue}
+          </div>
+          <div
+            style={{
+              fontFamily: "var(--font-sora, Sora)",
+              fontWeight: 700,
+              fontSize: "18px",
+              lineHeight: "1.4",
+              color: "#FFFFFF",
+              marginTop: "8px",
+            }}
+          >
+            {data.recognitionStatPrimaryLabel}
+          </div>
+        </div>
+
+        <div
+          style={{
+            width: "100%",
+            height: "1px",
+            background:
+              "linear-gradient(90deg, transparent 0%, #056FB4 50%, transparent 100%)",
+          }}
+        />
+
+        <div style={{ textAlign: "center" }}>
+          <div
+            style={{
+              fontFamily: "var(--font-inter, Inter)",
+              fontWeight: 900,
+              fontSize: "clamp(36px, 12vw, 52px)",
+              lineHeight: "1",
+              color: "rgba(255,255,255,0.5)",
+            }}
+          >
+            {data.recognitionStatSecondaryValue}
+          </div>
+          <div
+            style={{
+              fontFamily: "var(--font-sora, Sora)",
+              fontWeight: 700,
+              fontSize: "16px",
+              lineHeight: "1.4",
+              backgroundImage:
+                "linear-gradient(359.01deg, rgba(255,255,255,0.25) 0.85%, rgba(255,255,255,0.5) 99.15%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              marginTop: "8px",
+            }}
+          >
+            {data.recognitionStatSecondaryLabel}
+          </div>
+        </div>
+      </div>
+
+      {/* Award images stacked */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "16px",
+        }}
+      >
+        <Image
+          src="/about/award-seal.png"
+          alt="World Forex Award"
+          width={240}
+          height={156}
+          style={{ width: "100%", maxWidth: "240px", height: "auto", objectFit: "contain" }}
+        />
+        <Image
+          src="/about/award-seal-2.png"
+          alt="Iconic Finance Expo"
+          width={240}
+          height={156}
+          style={{ width: "100%", maxWidth: "240px", height: "auto", objectFit: "contain" }}
+        />
+      </div>
+    </div>
     </section>
   );
 }

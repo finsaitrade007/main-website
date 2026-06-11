@@ -104,6 +104,54 @@ function ArticleCard({ desc, href, image, top, left }: { desc: string; href: str
   );
 }
 
+function MobileArticleCard({ desc, href, image }: { desc: string; href: string; image: string }) {
+  return (
+    <div style={{
+      width: "100%",
+      borderRadius: "16px",
+      border: "1px solid transparent",
+      background: `${CARD_INNER_BG} padding-box, ${BORDER_GRADIENT} border-box`,
+      boxSizing: "border-box",
+      overflow: "hidden",
+    }}>
+      <div style={{ width: "100%", height: "120px", position: "relative" }}>
+        <Image src={image} alt="" fill sizes="100vw" style={{ objectFit: "cover" }} />
+      </div>
+      <div style={{ padding: "16px" }}>
+        <p style={{
+          fontFamily: "var(--font-inter, Inter)",
+          fontWeight: 400,
+          fontSize: "13px",
+          lineHeight: "1.6",
+          color: "rgba(255,255,255,0.7)",
+          margin: "0 0 12px",
+          display: "-webkit-box",
+          WebkitLineClamp: 3,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+        }}>
+          {desc}
+        </p>
+        <Link href={href} style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "6px",
+          fontFamily: "var(--font-inter, Inter)",
+          fontWeight: 400,
+          fontSize: "13px",
+          color: "#056FB4",
+          textDecoration: "none",
+        }}>
+          Read More
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+            <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 function SearchBar() {
   return (
     <div style={{
@@ -153,6 +201,8 @@ export default async function BlogsNewsSection() {
         paddingRight: 0,
       }}
     >
+    {/* Desktop / tablet layout (≥ 426px) */}
+    <div className="steps-horizontal">
       <ResponsiveScale designWidth={1440}>
       <div style={{ position: "relative", width: "1440px", minHeight: "1030px" }}>
 
@@ -301,6 +351,110 @@ export default async function BlogsNewsSection() {
 
       </div>
       </ResponsiveScale>
+    </div>
+
+    {/* Mobile layout (< 426px): heading + stacked cards + news sidebar */}
+    <div className="steps-vertical" style={{ padding: "0 20px 48px" }}>
+      {/* Badge */}
+      <div style={{ textAlign: "center", marginBottom: "16px" }}>
+        <span style={{
+          display: "inline-flex",
+          alignItems: "center",
+          padding: "8px 18px",
+          border: "1px solid rgba(255,255,255,0.15)",
+          borderRadius: "60px",
+        }}>
+          <span className="badge-text">{badge}</span>
+        </span>
+      </div>
+
+      {/* Heading */}
+      <h2 className="section-title" style={{ textAlign: "center", marginBottom: "12px" }}>
+        {title}
+      </h2>
+      <p className="section-desc" style={{ textAlign: "center", marginBottom: "32px" }}>
+        {description}
+      </p>
+
+      {/* "Blogs" subheading + search */}
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: "12px",
+      }}>
+        <h2 style={{
+          fontFamily: "var(--font-sora, Sora)",
+          fontWeight: 700,
+          fontSize: "22px",
+          lineHeight: "100%",
+          color: "#FFFFFF",
+          margin: 0,
+        }}>
+          Blogs
+        </h2>
+        <SearchBar />
+      </div>
+
+      {/* Divider */}
+      <div style={{
+        width: "100%",
+        height: "1px",
+        background: "linear-gradient(90deg, transparent 0%, rgba(5,111,180,0.7) 50%, transparent 100%)",
+        marginBottom: "20px",
+      }} />
+
+      {/* Article cards */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "24px" }}>
+        {cards.map((card, i) => (
+          <MobileArticleCard key={i} desc={card.desc} href={card.href} image={card.image} />
+        ))}
+      </div>
+
+      {/* Blogs & News sidebar box */}
+      <div style={{
+        width: "100%",
+        borderRadius: "16px",
+        border: "1px solid transparent",
+        background: `${CARD_INNER_BG} padding-box, ${BORDER_GRADIENT} border-box`,
+        boxSizing: "border-box",
+        padding: "24px 20px",
+      }}>
+        <h3 style={{
+          fontFamily: "var(--font-sora, Sora)",
+          fontWeight: 700,
+          fontSize: "18px",
+          lineHeight: "100%",
+          color: "#FFFFFF",
+          margin: "0 0 16px",
+        }}>
+          Blogs &amp; News
+        </h3>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          {fallbackLatestNews.map((item, i) => (
+            <div key={i}>
+              <p style={{
+                fontFamily: "var(--font-inter, Inter)",
+                fontWeight: 400,
+                fontSize: "13px",
+                lineHeight: "1.6",
+                color: "rgba(255,255,255,0.7)",
+                margin: "12px 0",
+              }}>
+                {item}
+              </p>
+              {i < fallbackLatestNews.length - 1 && (
+                <div style={{
+                  width: "100%",
+                  height: "1px",
+                  background: "linear-gradient(90deg, transparent 0%, rgba(5,111,180,0.7) 50%, transparent 100%)",
+                }} />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
     </section>
   );
 }

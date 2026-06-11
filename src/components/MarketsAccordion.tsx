@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { strapiImageUrl, type StrapiMarket } from "@/lib/strapi";
 
+const MOBILE_STEP_Y = 20;
+
 type Props = {
   markets: StrapiMarket[];
   badge: string;
@@ -23,6 +25,14 @@ export default function MarketsAccordion({
 }: Props) {
   const outerRef = useRef<HTMLDivElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const update = () => setIsMobile(window.innerWidth < 769);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const total = markets.length;
 
@@ -111,6 +121,8 @@ export default function MarketsAccordion({
             maxWidth: "1280px",
             margin: "0 auto",
             padding: "80px 80px 96px",
+            transform: isMobile ? `translateY(${activeIndex * MOBILE_STEP_Y}px)` : undefined,
+            transition: isMobile ? "transform 0.5s ease" : undefined,
           }}
         >
       <div className="markets-grid-image" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>

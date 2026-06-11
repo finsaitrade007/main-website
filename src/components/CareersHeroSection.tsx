@@ -43,6 +43,7 @@ export default async function CareersHeroSection() {
         width={1360}
         height={736}
         priority
+        className="hero-image"
         style={{
           position: "absolute",
           top: "clamp(20px, 4.9vw, 70px)",
@@ -71,12 +72,13 @@ export default async function CareersHeroSection() {
         <div
           style={{
             boxSizing: "border-box",
+            height: "44px",
             display: "inline-flex",
             alignSelf: "flex-start",
             alignItems: "center",
             justifyContent: "center",
             gap: "8.4px",
-            padding: "9.6px 16.8px",
+            padding: "9.6px 22px",
             borderRadius: "60px",
             border: "1.2px solid #FFFFFF26",
             background: "#000000",

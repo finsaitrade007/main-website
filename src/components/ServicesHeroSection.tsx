@@ -25,16 +25,18 @@ export default async function ServicesHeroSection() {
       position: "relative",
       background: "#050208",
       width: "100%",
-      minHeight: "777px",
+      minHeight: "clamp(480px, 54vw, 777px)",
       overflow: "hidden",
     }}>
-      <div style={{
-        position: "absolute",
-        top: "-40px",
-        left: "167px",
-        width: "1283px",
-        height: "855px",
-      }}>
+      <div
+        className="hero-image"
+        style={{
+          position: "absolute",
+          top: "-40px",
+          left: "167px",
+          width: "1283px",
+          height: "855px",
+        }}>
         <Image
           src="/service-hero.png"
           alt=""
@@ -46,7 +48,7 @@ export default async function ServicesHeroSection() {
 
       <div style={{
         position: "absolute",
-        top: "200px",
+        top: "clamp(120px, 13.9vw, 200px)",
         left: "clamp(20px, 5.5vw, 80px)",
         width: "clamp(300px, 45vw, 650px)",
         display: "flex",
@@ -55,33 +57,33 @@ export default async function ServicesHeroSection() {
         zIndex: 3,
       }}>
         <div style={{
+          boxSizing: "border-box",
+          height: "44px",
           display: "inline-flex",
           alignSelf: "flex-start",
           alignItems: "center",
+          justifyContent: "center",
           gap: "8.4px",
-          padding: "9.6px 16.8px",
+          padding: "9.6px 22px",
           maxWidth: "calc(100vw - 40px)",
           borderRadius: "60px",
           border: "1.2px solid #FFFFFF26",
           background: "#000000",
-          overflow: "hidden",
+          whiteSpace: "nowrap",
         }}>
           <span style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
-            fontSize: "clamp(12px, 1.35vw, 19.2px)",
-            lineHeight: "1.6",
-            letterSpacing: "-0.01%",
+            fontSize: "15px",
+            lineHeight: "24px",
+            letterSpacing: "1px",
             textTransform: "uppercase",
             background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
           }}>
-            Sign in to your secure wallet!
+            {data.heroBadge}
           </span>
         </div>
 
@@ -94,18 +96,16 @@ export default async function ServicesHeroSection() {
           color: "#FFFFFF",
           margin: 0,
         }}>
-          Powerful Trading Platforms for Every Trader 
+          {data.heroTitle}
         </h1>
 
         <p style={{
           fontFamily: "var(--font-inter, Inter)",
           fontWeight: 400,
-          fontSize: "18px",
-          lineHeight: "155%",
-          color: "rgba(255,255,255,0.7)",
-          maxWidth: "560px",
-          position: "relative",
-          top: "-80px",
+          fontSize: "15px",
+          lineHeight: "24px",
+          color: "#94A3B8",
+          maxWidth: "540px",
           margin: 0,
         }}>
           {data.heroDescription}
@@ -118,8 +118,6 @@ export default async function ServicesHeroSection() {
             borderRadius: "8px",
             padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
             gap: "16px",
-            top: "-80px",
-            position: "relative",
             background:
               "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
             textDecoration: "none",

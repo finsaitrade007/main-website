@@ -42,6 +42,8 @@ export default async function IBHowToSection() {
         overflow: "hidden",
       }}
     >
+    {/* Horizontal layout (≥ 426px): fixed canvas scaled by ResponsiveScale */}
+    <div className="steps-horizontal">
     <ResponsiveScale designWidth={1440}>
     <div style={{ position: "relative", width: "1440px", minHeight: "707px" }}>
         <h2
@@ -75,7 +77,6 @@ export default async function IBHowToSection() {
           {description}
         </p>
 
-        {/* Steps container: 1225×278px, centered (107px margins in 1440px section) */}
         <div
           style={{
             position: "absolute",
@@ -99,7 +100,6 @@ export default async function IBHowToSection() {
             }}
           />
 
-          {/* Small accent circles with numbers */}
           {NUMBER_POSITIONS.map((left, i) => (
             <div
               key={left}
@@ -125,8 +125,6 @@ export default async function IBHowToSection() {
                   fontWeight: 400,
                   fontSize: "16px",
                   lineHeight: "100%",
-                  letterSpacing: "0%",
-                  textAlign: "center",
                   color: "#FFFFFF",
                 }}
               >
@@ -142,7 +140,6 @@ export default async function IBHowToSection() {
 
             return (
               <div key={step.number}>
-                {/* Circle */}
                 <div
                   style={{
                     position: "absolute",
@@ -172,7 +169,6 @@ export default async function IBHowToSection() {
                   />
                 </div>
 
-                {/* Text */}
                 <div
                   style={{
                     position: "absolute",
@@ -188,21 +184,18 @@ export default async function IBHowToSection() {
                       fontWeight: 400,
                       fontSize: "32px",
                       lineHeight: "43.49px",
-                      letterSpacing: "0%",
                       color: "#FFFFFF",
                       marginBottom: "12px",
                     }}
                   >
                     {step.title}
                   </h3>
-
                   <p
                     style={{
                       fontFamily: "var(--font-inter, Inter)",
                       fontWeight: 400,
                       fontSize: "16px",
                       lineHeight: "23px",
-                      letterSpacing: "0%",
                       color: "#FFFFFFB2",
                       textAlign: "center",
                       margin: 0,
@@ -216,7 +209,6 @@ export default async function IBHowToSection() {
           })}
         </div>
 
-        {/* CTA button */}
         <Link
           href={ctaHref}
           className="btn-text"
@@ -245,6 +237,134 @@ export default async function IBHowToSection() {
         </Link>
     </div>
     </ResponsiveScale>
+    </div>
+
+    {/* Vertical layout (< 426px) */}
+    <div className="steps-vertical" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <h2 className="section-title" style={{ textAlign: "center", marginBottom: "8px" }}>
+        {title}
+      </h2>
+      <p className="section-desc" style={{ textAlign: "center", marginBottom: "32px" }}>
+        {description}
+      </p>
+
+      {steps.map((step, idx) => {
+        const isLast = idx === steps.length - 1;
+        return (
+          <div key={step.number} style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
+            {/* Step row: circle left, text right */}
+            <div style={{ display: "flex", alignItems: "center", gap: "20px", width: "100%", padding: "0 4px" }}>
+              {/* Circle with number badge */}
+              <div style={{ position: "relative", flexShrink: 0, width: "80px", height: "80px" }}>
+                <div style={{
+                  width: "80px",
+                  height: "80px",
+                  borderRadius: "50%",
+                  background: "#020303",
+                  border: "2px solid #056FB499",
+                  boxShadow: "0px 0px 20px 10px #056FB43D",
+                  boxSizing: "border-box",
+                  position: "relative",
+                }}>
+                  <Image
+                    src={step.img}
+                    alt={step.title}
+                    width={40}
+                    height={40}
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+                <div style={{
+                  position: "absolute",
+                  top: "-6px",
+                  right: "-6px",
+                  width: "22px",
+                  height: "22px",
+                  borderRadius: "50%",
+                  background: "#056FB4",
+                  border: "1px solid #056FB499",
+                  boxSizing: "border-box",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}>
+                  <span style={{
+                    fontFamily: "var(--font-inter, Inter)",
+                    fontWeight: 600,
+                    fontSize: "12px",
+                    lineHeight: "100%",
+                    color: "#FFFFFF",
+                  }}>
+                    {idx + 1}
+                  </span>
+                </div>
+              </div>
+
+              {/* Text */}
+              <div style={{ flex: 1 }}>
+                <h3 style={{
+                  fontFamily: "var(--font-sora, Sora)",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  lineHeight: "1.3",
+                  color: "#FFFFFF",
+                  margin: "0 0 6px",
+                }}>
+                  {step.title}
+                </h3>
+                <p style={{
+                  fontFamily: "var(--font-inter, Inter)",
+                  fontWeight: 400,
+                  fontSize: "13px",
+                  lineHeight: "1.6",
+                  color: "#FFFFFFB2",
+                  margin: 0,
+                }}>
+                  {step.desc}
+                </p>
+              </div>
+            </div>
+
+            {/* Vertical connector between steps */}
+            {!isLast && (
+              <div style={{
+                width: "1px",
+                height: "40px",
+                marginLeft: "36px",
+                alignSelf: "flex-start",
+                background: "linear-gradient(180deg, rgba(5,111,180,0.7) 0%, rgba(5,111,180,0.15) 100%)",
+              }} />
+            )}
+          </div>
+        );
+      })}
+
+      {/* CTA button */}
+      <Link
+        href={ctaHref}
+        className="btn-text"
+        style={{
+          marginTop: "32px",
+          borderRadius: "28.83px",
+          padding: "clamp(11px, 1vw, 14px) clamp(18px, 1.8vw, 33px)",
+          gap: "8px",
+          background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+          textDecoration: "none",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {ctaLabel}
+      </Link>
+    </div>
     </section>
   );
 }

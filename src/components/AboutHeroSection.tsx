@@ -41,6 +41,7 @@ export default async function AboutHeroSection() {
         fill
         priority
         sizes="1440px"
+        className="hero-image"
         style={{
           objectFit: "cover",
           objectPosition: "center",
@@ -77,13 +78,13 @@ export default async function AboutHeroSection() {
         <div
           style={{
             boxSizing: "border-box",
-            width: "260px",
             height: "44px",
             display: "inline-flex",
+            alignSelf: "flex-start",
             alignItems: "center",
             justifyContent: "center",
             gap: "8.4px",
-            padding: "9.6px 16.8px",
+            padding: "9.6px 22px",
             borderRadius: "60px",
             border: "1.2px solid #FFFFFF26",
             background: "#000000",
@@ -94,7 +95,7 @@ export default async function AboutHeroSection() {
             style={{
               fontFamily: "var(--font-inter, Inter)",
               fontWeight: 400,
-              fontSize: "16px",
+              fontSize: "15px",
               lineHeight: "24px",
               letterSpacing: "1px",
               textTransform: "uppercase",
@@ -128,11 +129,11 @@ export default async function AboutHeroSection() {
         <p
           style={{
             margin: 0,
-            maxWidth: "560px",
+            maxWidth: "540px",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
-            fontSize: "16px",
-            lineHeight: "26px",
+            fontSize: "15px",
+            lineHeight: "24px",
             color: "#94A3B8",
           }}
         >
@@ -144,8 +145,9 @@ export default async function AboutHeroSection() {
             href={data.heroPrimaryCtaHref}
             className="btn-text"
             style={{
-              padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
+              gap: "16px",
               borderRadius: "8px",
+              padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
               background:
                 "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
               textDecoration: "none",
@@ -153,41 +155,33 @@ export default async function AboutHeroSection() {
               alignItems: "center",
               justifyContent: "center",
               fontWeight: 500,
+              color: "#FFFFFF",
+              whiteSpace: "nowrap",
             }}
           >
             {data.heroPrimaryCtaLabel}
           </Link>
-          <div
+          <Link
+            href={data.heroSecondaryCtaHref}
+            className="btn-text"
             style={{
-              boxSizing: "border-box",
-              height: "48px",
-              padding: "1px",
+              gap: "16px",
               borderRadius: "8px",
+              padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
+              border: "1px solid transparent",
               background:
-                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+                "linear-gradient(#050208, #050208) padding-box, linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%) border-box",
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 500,
+              color: "#FFFFFF",
+              whiteSpace: "nowrap",
             }}
           >
-            <Link
-              href={data.heroSecondaryCtaHref}
-              style={{
-                boxSizing: "border-box",
-                height: "100%",
-                padding: "10px 23px",
-                borderRadius: "7px",
-                background: "#050208",
-                textDecoration: "none",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontFamily: "var(--font-sora, Sora)",
-                fontWeight: 500,
-                fontSize: "14px",
-                color: "#FFFFFF",
-              }}
-            >
-              {data.heroSecondaryCtaLabel}
-            </Link>
-          </div>
+            {data.heroSecondaryCtaLabel}
+          </Link>
         </div>
       </div>
     </section>

@@ -35,6 +35,7 @@ export default async function PaymentsHeroSection() {
         alt=""
         width={634}
         height={634}
+        className="hero-image"
         style={{
           position: "absolute",
           top: "93px",
@@ -60,34 +61,33 @@ export default async function PaymentsHeroSection() {
       >
         <div
           style={{
+            boxSizing: "border-box",
+            height: "44px",
             display: "inline-flex",
             alignSelf: "flex-start",
             alignItems: "center",
             justifyContent: "center",
             gap: "8.4px",
-            paddingTop: "9.6px",
-            paddingBottom: "9.6px",
-            paddingLeft: "16.8px",
-            paddingRight: "16.8px",
+            padding: "9.6px 22px",
             borderRadius: "60px",
             border: "1.2px solid #FFFFFF26",
             background: "#000000",
-            boxSizing: "border-box",
+            whiteSpace: "nowrap",
           }}
         >
           <span
             style={{
               fontFamily: "var(--font-inter, Inter)",
               fontWeight: 400,
-              fontSize: "19.2px",
-              lineHeight: "31.2px",
-              letterSpacing: "-0.01%",
+              fontSize: "15px",
+              lineHeight: "24px",
+              letterSpacing: "1px",
+              textTransform: "uppercase",
               background:
                 "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              whiteSpace: "nowrap",
             }}
           >
             Flexible Payment Solutions
@@ -113,10 +113,10 @@ export default async function PaymentsHeroSection() {
           style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
-            fontSize: "18px",
-            lineHeight: "155%",
-            color: "rgba(255,255,255,0.7)",
-            maxWidth: "560px",
+            fontSize: "15px",
+            lineHeight: "24px",
+            color: "#94A3B8",
+            maxWidth: "540px",
             margin: 0,
           }}
         >
@@ -145,6 +145,7 @@ export default async function PaymentsHeroSection() {
       </div>
 
       <div
+        className="hero-image"
         style={{
           position: "absolute",
           bottom: 0,
