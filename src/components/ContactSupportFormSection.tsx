@@ -179,7 +179,7 @@ export default function ContactSupportFormSection() {
       }}
     >
       <div
-        className="two-col-grid"
+        className="two-col-grid contact-section-grid"
         style={{
           width: "100%",
           maxWidth: "1280px",
@@ -440,8 +440,8 @@ function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
+      className="contact-form-box"
       style={{
-        padding: "32px",
         borderRadius: "20px",
         border: "1px solid rgba(125,185,214,0.2)",
         background:
@@ -458,13 +458,7 @@ function ContactForm() {
         <input id="cu-fullName" name="fullName" required style={inputStyle} />
       </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "16px",
-        }}
-      >
+      <div className="contact-fields-row">
         <div>
           <label htmlFor="cu-email" style={labelStyle}>
             Email<span style={{ color: "#FF6B6B" }}>*</span>
@@ -630,13 +624,8 @@ function ContactForm() {
 
       <div>
         <label
-          style={{
-            ...labelStyle,
-            display: "flex",
-            alignItems: "baseline",
-            justifyContent: "space-between",
-            gap: "12px",
-          }}
+          className="contact-upload-label"
+          style={labelStyle}
         >
           <span>
             Upload CV<span style={{ color: "#FF6B6B" }}>*</span>

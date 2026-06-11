@@ -48,7 +48,8 @@ export default function IBCalculatorSection({ title, description }: Props) {
         }
       `}</style>
 
-      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
+      {/* Desktop layout (≥ 426px) */}
+      <div className="steps-horizontal" style={{ maxWidth: "1440px", margin: "0 auto" }}>
         <ResponsiveScale designWidth={1286}>
         <div style={{
           position: "relative",
@@ -272,6 +273,164 @@ export default function IBCalculatorSection({ title, description }: Props) {
 
         </div>
         </ResponsiveScale>
+      </div>
+
+      {/* Mobile layout (< 426px) */}
+      <div className="steps-vertical" style={{ padding: "0 20px 48px" }}>
+        <h2 className="section-title" style={{ marginBottom: "12px" }}>
+          {title}
+        </h2>
+        <p className="section-desc" style={{ marginBottom: "28px" }}>
+          {description}
+        </p>
+
+        <div style={{
+          width: "100%",
+          borderRadius: "16px",
+          border: "1px solid #056FB4",
+          background: "#050208",
+          padding: "24px 20px",
+          boxSizing: "border-box",
+          display: "flex",
+          flexDirection: "column",
+          gap: "24px",
+        }}>
+          {/* Slider 1 */}
+          <div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+              <span style={{
+                fontFamily: "var(--font-inter, Inter)",
+                fontWeight: 400,
+                fontSize: "14px",
+                color: "rgba(255,255,255,0.6)",
+              }}>
+                Active referral clients
+              </span>
+              <span style={{
+                fontFamily: "var(--font-inter, Inter)",
+                fontWeight: 500,
+                fontSize: "15px",
+                color: "#FFFFFF",
+                whiteSpace: "nowrap",
+              }}>
+                {clients} trades
+              </span>
+            </div>
+            <input
+              type="range"
+              className="ib-slider"
+              min={0}
+              max={500}
+              value={clients}
+              onChange={(e) => setClients(Number(e.target.value))}
+              style={{ width: "100%", height: "10px", display: "block" }}
+            />
+          </div>
+
+          {/* Slider 2 */}
+          <div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+              <span style={{
+                fontFamily: "var(--font-inter, Inter)",
+                fontWeight: 400,
+                fontSize: "14px",
+                color: "rgba(255,255,255,0.6)",
+              }}>
+                Average trade volume
+              </span>
+              <span style={{
+                fontFamily: "var(--font-inter, Inter)",
+                fontWeight: 500,
+                fontSize: "15px",
+                color: "#FFFFFF",
+                whiteSpace: "nowrap",
+              }}>
+                {volume} Lots
+              </span>
+            </div>
+            <input
+              type="range"
+              className="ib-slider"
+              min={0}
+              max={1000}
+              value={volume}
+              onChange={(e) => setVolume(Number(e.target.value))}
+              style={{ width: "100%", height: "10px", display: "block" }}
+            />
+          </div>
+
+          {/* Revenue box */}
+          <div style={{
+            borderRadius: "8px",
+            border: "1px solid #056FB4",
+            background: `
+              linear-gradient(0deg, rgba(10,10,10,0.7), rgba(10,10,10,0.7)),
+              linear-gradient(119.3deg, rgba(0,0,0,0) 23.34%, rgba(73,109,171,0.3) 96.36%)
+            `,
+            padding: "24px 16px",
+            textAlign: "center",
+          }}>
+            <p style={{
+              fontFamily: "var(--font-inter, Inter)",
+              fontSize: "13px",
+              color: "rgba(255,255,255,0.5)",
+              margin: "0 0 8px",
+            }}>
+              Estimated Monthly Revenue
+            </p>
+            <p style={{
+              fontFamily: "var(--font-sora, Sora)",
+              fontWeight: 500,
+              fontSize: "clamp(22px, 7vw, 32px)",
+              lineHeight: "1",
+              color: "#FFFFFF",
+              margin: 0,
+            }}>
+              {monthlyRevenue} USD
+            </p>
+          </div>
+
+          {/* CTA */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+            <p style={{
+              fontFamily: "var(--font-inter, Inter)",
+              fontSize: "13px",
+              color: "rgba(255,255,255,0.6)",
+              margin: 0,
+            }}>
+              Are you ready to earn?
+            </p>
+            <button style={{
+              borderRadius: "28px",
+              background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+              border: "none",
+              cursor: "pointer",
+              fontFamily: "var(--font-sora, Sora)",
+              fontSize: "15px",
+              color: "#FFFFFF",
+              fontWeight: 600,
+              padding: "12px 28px",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              whiteSpace: "nowrap",
+            }}>
+              Yes, I&apos;m Ready! →
+            </button>
+          </div>
+        </div>
+
+        {/* Note */}
+        <p style={{
+          fontFamily: "var(--font-inter, Inter)",
+          fontWeight: 400,
+          fontSize: "11px",
+          lineHeight: "1.6",
+          color: "rgba(255,255,255,0.4)",
+          margin: "16px 0 0",
+        }}>
+          *Please note that the following calculations are preliminary and based on the trading of one instrument (GOLD), serving solely as a reference and not representing final earnings.
+        </p>
       </div>
     </section>
   );

@@ -104,7 +104,11 @@ export default async function HeroSection() {
             >
               {data.heroCtaPrimaryLabel}
             </Link>
-            <Link href={data.heroCtaSecondaryHref} className="btn-secondary">
+            <Link
+              href={data.heroCtaSecondaryHref}
+              className="btn-secondary"
+              style={{ padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)" }}
+            >
               {data.heroCtaSecondaryLabel} &nbsp;→
             </Link>
           </div>

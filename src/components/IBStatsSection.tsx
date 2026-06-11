@@ -42,6 +42,8 @@ export default async function IBStatsSection() {
       className="page-section"
       style={{ background: "#050208", overflow: "hidden" }}
     >
+    {/* Desktop layout (≥ 426px) */}
+    <div className="steps-horizontal">
     <ResponsiveScale designWidth={1440}>
     <div style={{ position: "relative", width: "1440px", minHeight: "696px" }}>
 
@@ -273,6 +275,101 @@ export default async function IBStatsSection() {
       </Link>
     </div>
     </ResponsiveScale>
+    </div>
+
+    {/* Mobile layout (< 426px) */}
+    <div className="steps-vertical" style={{ padding: "0 20px 48px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+      {/* Badge */}
+      <div style={{ marginBottom: "16px" }}>
+        <span style={{
+          display: "inline-flex",
+          alignItems: "center",
+          padding: "8px 18px",
+          border: "1px solid rgba(255,255,255,0.15)",
+          borderRadius: "60px",
+        }}>
+          <span className="badge-text">Built for Ambitious IBs</span>
+        </span>
+      </div>
+
+      {/* Heading */}
+      <h2 className="section-title" style={{ textAlign: "center", marginBottom: "32px" }}>
+        {title}
+      </h2>
+
+      {/* Stats 2×2 grid */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gridAutoRows: "1fr",
+        gap: "16px",
+        width: "100%",
+        marginBottom: "32px",
+      }}>
+        {stats.map((stat, i) => (
+          <div key={i} style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+            padding: "20px 8px",
+            borderRadius: "12px",
+            border: "1px solid rgba(5,111,180,0.3)",
+            background: "linear-gradient(157.26deg, rgba(10,18,32,0.85) 0%, rgba(5,111,180,0.12) 100%)",
+          }}>
+            <p style={{
+              fontFamily: "var(--font-inter, Inter)",
+              fontWeight: 400,
+              fontSize: "11px",
+              letterSpacing: "0.03em",
+              color: "#056FB4",
+              margin: "0 0 4px",
+            }}>
+              {stat.prefix}
+            </p>
+            <p style={{
+              fontFamily: "var(--font-sora, Sora)",
+              fontWeight: 300,
+              fontSize: "clamp(20px, 6.5vw, 32px)",
+              lineHeight: "1",
+              color: "#FFFFFF",
+              margin: "0 0 6px",
+            }}>
+              {stat.value}
+            </p>
+            <p style={{
+              fontFamily: "var(--font-inter, Inter)",
+              fontWeight: 400,
+              fontSize: "11px",
+              letterSpacing: "0.03em",
+              color: "rgba(255,255,255,0.5)",
+              margin: 0,
+            }}>
+              {stat.label}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* CTA */}
+      <Link
+        href={ctaHref}
+        className="btn-text"
+        style={{
+          borderRadius: "25px",
+          padding: "clamp(11px, 1vw, 14px) clamp(20px, 2vw, 32px)",
+          background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+          textDecoration: "none",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {ctaLabel}
+      </Link>
+    </div>
     </section>
   );
 }

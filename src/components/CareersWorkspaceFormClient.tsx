@@ -54,7 +54,7 @@ export default function CareersWorkspaceFormClient({
       }}
     >
       <div
-        className="two-col-grid"
+        className="two-col-grid contact-section-grid"
         style={{
           width: "100%",
           maxWidth: "1280px",
@@ -374,8 +374,8 @@ function ApplicationForm({
   return (
     <form
       onSubmit={handleSubmit}
+      className="contact-form-box"
       style={{
-        padding: "32px",
         borderRadius: "20px",
         border: "1px solid rgba(125,185,214,0.2)",
         background:
@@ -390,13 +390,7 @@ function ApplicationForm({
         <input id="fullName" name="fullName" required style={inputStyle} />
       </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "16px",
-        }}
-      >
+      <div className="contact-fields-row">
         <div>
           <label htmlFor="email" style={labelStyle}>Email</label>
           <input
@@ -510,13 +504,7 @@ function ApplicationForm({
         </div>
       </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "16px",
-        }}
-      >
+      <div className="contact-fields-row">
         <div>
           <label htmlFor="linkedin" style={labelStyle}>LinkedIn profile URL</label>
           <input id="linkedin" name="linkedin" type="url" style={inputStyle} />
