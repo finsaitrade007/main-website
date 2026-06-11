@@ -59,7 +59,7 @@ export default function GlossaryHeroSection() {
           style={{
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 700,
-            fontSize: "64px",
+            fontSize: "clamp(36px, 4.4vw, 64px)",
             lineHeight: "110%",
             letterSpacing: "-0.01em",
             color: "#FFFFFF",

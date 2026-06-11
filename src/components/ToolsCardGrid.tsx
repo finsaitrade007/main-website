@@ -78,30 +78,20 @@ export default function ToolsCardGrid({
         paddingBottom: height ? "0" : "70px",
       }}
     >
-      {/* Heading block — 1013×120.02 anchored at top:68, left:213 with
-          centered title + description and a uniform 18.02 gap between
-          them. */}
+      {/* Heading block */}
       <div
         style={{
-          position: "absolute",
-          top: "68px",
-          left: "213px",
-          width: "1013px",
-          height: "120.02px",
-          paddingLeft: "225.28px",
-          paddingRight: "225.28px",
+          padding: "68px 24px 0",
           boxSizing: "border-box",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "flex-start",
-          gap: "18.02px",
+          gap: "18px",
         }}
       >
         <h2
           style={{
-            width: "651px",
-            height: "45px",
+            maxWidth: "651px",
             margin: 0,
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 600,
@@ -110,7 +100,6 @@ export default function ToolsCardGrid({
             letterSpacing: 0,
             textAlign: "center",
             color: "#FFFFFF",
-            whiteSpace: "nowrap",
           }}
         >
           {title}
@@ -118,13 +107,12 @@ export default function ToolsCardGrid({
         {description ? (
           <p
             style={{
-              width: "851px",
-              height: "57px",
+              maxWidth: "851px",
               margin: 0,
               fontFamily: "var(--font-inter, Inter)",
               fontWeight: 400,
               fontSize: "16px",
-              lineHeight: "100%",
+              lineHeight: "160%",
               letterSpacing: 0,
               textAlign: "center",
               color: "#FFFFFF",
@@ -137,21 +125,14 @@ export default function ToolsCardGrid({
 
       <div
         style={{
-          position: "absolute",
-          top: "230px",
-          left: 0,
-          right: 0,
-          bottom: "60px",
-          padding: "0 80px",
+          padding: "40px clamp(20px, 5.5vw, 80px) 60px",
           boxSizing: "border-box",
-          display: "flex",
-          flexDirection: "column",
         }}
       >
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: `repeat(${columns}, ${cardWidth})`,
+            gridTemplateColumns: `repeat(auto-fill, minmax(min(${cardWidth}, 100%), 1fr))`,
             gap: cardGridGap,
             justifyContent: "center",
           }}
@@ -160,7 +141,7 @@ export default function ToolsCardGrid({
             <div
               key={c.title}
               style={{
-                width: cardWidth,
+                width: "100%",
                 height: cardHeight,
                 padding: "1px",
                 borderRadius: cardRadius,
@@ -198,7 +179,7 @@ export default function ToolsCardGrid({
                           position: "absolute",
                           top: "21px",
                           left: "15.5px",
-                          width: "386px",
+                          right: "15.5px",
                           height: "155px",
                           borderRadius: "12px",
                           overflow: "hidden",
@@ -218,8 +199,7 @@ export default function ToolsCardGrid({
                             position: "absolute",
                             top: "196px",
                             left: "20px",
-                            width: "381.68px",
-                            height: "93px",
+                            right: "20px",
                             display: "flex",
                             flexDirection: "column",
                             gap: "10px",
@@ -273,8 +253,7 @@ export default function ToolsCardGrid({
                             position: "absolute",
                             top: "226px",
                             left: "20px",
-                            width: "381.68px",
-                            height: "93px",
+                            right: "20px",
                             display: "flex",
                             flexDirection: "column",
                             gap: "10px",
@@ -317,7 +296,7 @@ export default function ToolsCardGrid({
                         position: "absolute",
                         top: "21px",
                         left: "15.5px",
-                        width: "386px",
+                        right: "15.5px",
                         height: "155px",
                         borderRadius: "12px",
                         background:
@@ -338,8 +317,7 @@ export default function ToolsCardGrid({
                         position: "absolute",
                         top: "196px",
                         left: "20px",
-                        width: "381.68px",
-                        height: "93px",
+                        right: "20px",
                         display: "flex",
                         flexDirection: "column",
                         gap: "10px",

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getBlogsPage } from "@/lib/strapi";
+import ResponsiveScale from "@/components/ResponsiveScale";
 import { BLOG_POSTS } from "@/lib/blogs";
 
 const BORDER_GRADIENT = "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
@@ -147,16 +148,13 @@ export default async function BlogsNewsSection() {
       className="page-section"
       style={{
         background: "#050208",
-        width: "100%",
-        maxWidth: "1440px",
-        // The inner layout uses absolute positions designed against a full
-        // 1440px-wide container, so we drop the page-section's horizontal
-        // padding here to keep the section visually centered on the page.
+        overflow: "hidden",
         paddingLeft: 0,
         paddingRight: 0,
       }}
     >
-      <div style={{ position: "relative", width: "100%", maxWidth: "1440px", minHeight: "1030px", margin: "0 auto", overflow: "visible" }}>
+      <ResponsiveScale designWidth={1440}>
+      <div style={{ position: "relative", width: "1440px", minHeight: "1030px" }}>
 
         {/* Badge */}
         <div style={{ position: "absolute", top: "52px", left: 0, right: 0, display: "flex", justifyContent: "center" }}>
@@ -302,6 +300,7 @@ export default async function BlogsNewsSection() {
         </div>
 
       </div>
+      </ResponsiveScale>
     </section>
   );
 }

@@ -179,12 +179,13 @@ export default function ContactSupportFormSection() {
       }}
     >
       <div
+        className="two-col-grid"
         style={{
-          width: "1280px",
-          maxWidth: "100%",
+          width: "100%",
+          maxWidth: "1280px",
           margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)",
+          padding: "0 clamp(20px, 2.5vw, 40px)",
+          boxSizing: "border-box",
           gap: "64px",
           alignItems: "flex-start",
         }}
@@ -237,17 +238,16 @@ function LeftPanel() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "318.37px 318.37px",
-          columnGap: "13.63px",
-          rowGap: "14px",
+          gridTemplateColumns: "repeat(auto-fill, minmax(min(260px, 100%), 1fr))",
+          gap: "14px",
         }}
       >
         {BENEFITS.map((b) => (
           <div
             key={b.title}
             style={{
-              width: "318.37px",
-              height: "99.56px",
+              width: "100%",
+              minHeight: "99.56px",
               padding: "0.84px",
               borderRadius: "10.12px",
               background:
@@ -347,7 +347,7 @@ function LeftPanel() {
           position: "relative",
           width: "100%",
           maxWidth: "440px",
-          left: "90px",
+          margin: "0 auto",
           aspectRatio: "1 / 1",
           marginTop: "8px",
         }}

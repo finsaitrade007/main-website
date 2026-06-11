@@ -107,7 +107,7 @@ export default function ContactSupportChannelsSection() {
           display: "flex",
           justifyContent: "center",
           alignItems: "stretch",
-          gap: "88px",
+          gap: "clamp(24px, 6.1vw, 88px)",
           flexWrap: "wrap",
         }}
       >
@@ -117,7 +117,7 @@ export default function ContactSupportChannelsSection() {
             style={{
               boxSizing: "border-box",
               width: "306px",
-              height: "355px",
+              minHeight: "355px",
               borderRadius: "14.28px",
               border: "1.19px solid transparent",
               background:

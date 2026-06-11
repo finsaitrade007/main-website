@@ -18,9 +18,8 @@ export default function ContactUsHeroSection() {
       style={{
         position: "relative",
         background: "#050208",
-        width: "1440px",
-        maxWidth: "100%",
-        height: "806px",
+        width: "100%",
+        minHeight: "clamp(480px, 56vw, 806px)",
         margin: "0 auto",
         overflow: "hidden",
       }}
@@ -34,9 +33,9 @@ export default function ContactUsHeroSection() {
         style={{
           position: "absolute",
           top: "31px",
-          left: "650px",
-          width: "744px",
-          height: "744px",
+          left: "clamp(300px, 45.1vw, 650px)",
+          width: "clamp(300px, 51.7vw, 744px)",
+          height: "auto",
           objectFit: "contain",
           pointerEvents: "none",
           userSelect: "none",
@@ -47,9 +46,9 @@ export default function ContactUsHeroSection() {
       <div
         style={{
           position: "absolute",
-          top: "213px",
-          left: "80px",
-          width: "598px",
+          top: "clamp(120px, 14.8vw, 213px)",
+          left: "clamp(20px, 5.5vw, 80px)",
+          width: "clamp(280px, 41.5vw, 598px)",
           display: "flex",
           flexDirection: "column",
           gap: "24px",
@@ -97,7 +96,7 @@ export default function ContactUsHeroSection() {
             margin: 0,
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 600,
-            fontSize: "52px",
+            fontSize: "clamp(28px, 3.6vw, 52px)",
             lineHeight: "110%",
             letterSpacing: "-0.01em",
             color: "#FFFFFF",

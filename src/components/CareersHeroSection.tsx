@@ -29,9 +29,8 @@ export default async function CareersHeroSection() {
       style={{
         position: "relative",
         background: "#050208",
-        width: "1440px",
-        maxWidth: "100%",
-        height: "806px",
+        width: "100%",
+        minHeight: "clamp(480px, 56vw, 806px)",
         margin: "0 auto",
         overflow: "hidden",
       }}
@@ -46,10 +45,10 @@ export default async function CareersHeroSection() {
         priority
         style={{
           position: "absolute",
-          top: "70px",
-          left: "50px",
-          width: "1360px",
-          height: "736px",
+          top: "clamp(20px, 4.9vw, 70px)",
+          left: 0,
+          width: "100%",
+          height: "auto",
           objectFit: "contain",
           pointerEvents: "none",
           userSelect: "none",
@@ -60,10 +59,9 @@ export default async function CareersHeroSection() {
       <div
         style={{
           position: "absolute",
-          top: "213px",
-          left: "80px",
-          width: "598px",
-          height: "351.2px",
+          top: "clamp(120px, 14.8vw, 213px)",
+          left: "clamp(20px, 5.5vw, 80px)",
+          width: "clamp(280px, 41.5vw, 598px)",
           display: "flex",
           flexDirection: "column",
           gap: "24px",
@@ -73,9 +71,8 @@ export default async function CareersHeroSection() {
         <div
           style={{
             boxSizing: "border-box",
-            width: "240px",
-            height: "44px",
             display: "inline-flex",
+            alignSelf: "flex-start",
             alignItems: "center",
             justifyContent: "center",
             gap: "8.4px",
@@ -111,7 +108,7 @@ export default async function CareersHeroSection() {
             margin: 0,
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 600,
-            fontSize: "52px",
+            fontSize: "clamp(28px, 3.6vw, 52px)",
             lineHeight: "110%",
             letterSpacing: "-0.01em",
             color: "#FFFFFF",

@@ -32,9 +32,8 @@ export default async function ToolsHeroSection() {
       style={{
         position: "relative",
         background: "#050208",
-        width: "1440px",
-        maxWidth: "100%",
-        height: "777px",
+        width: "100%",
+        minHeight: "clamp(480px, 54vw, 777px)",
         margin: "0 auto",
         overflow: "hidden",
       }}
@@ -51,9 +50,9 @@ export default async function ToolsHeroSection() {
         style={{
           position: "absolute",
           top: "42px",
-          left: "295px",
-          width: "1153px",
-          height: "737px",
+          left: "clamp(100px, 20.5vw, 295px)",
+          width: "clamp(500px, 80vw, 1153px)",
+          height: "auto",
           objectFit: "contain",
           pointerEvents: "none",
           userSelect: "none",
@@ -67,10 +66,9 @@ export default async function ToolsHeroSection() {
       <div
         style={{
           position: "absolute",
-          top: "159.4px",
-          left: "80px",
-          width: "598px",
-          height: "465.2px",
+          top: "clamp(100px, 11.1vw, 159px)",
+          left: "clamp(20px, 5.5vw, 80px)",
+          width: "clamp(280px, 41.5vw, 598px)",
           display: "flex",
           flexDirection: "column",
           gap: "24px",
@@ -83,8 +81,6 @@ export default async function ToolsHeroSection() {
         <div
           style={{
             boxSizing: "border-box",
-            width: "270.6px",
-            height: "51.2px",
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",
@@ -118,11 +114,10 @@ export default async function ToolsHeroSection() {
 
         <h1
           style={{
-            width: "640px",
-            height: "186px",
+            maxWidth: "640px",
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 600,
-            fontSize: "56px",
+            fontSize: "clamp(28px, 3.9vw, 56px)",
             lineHeight: "110%",
             letterSpacing: "-0.01em",
             color: "#FFFFFF",
@@ -135,8 +130,7 @@ export default async function ToolsHeroSection() {
 
         <p
           style={{
-            width: "614px",
-            height: "56px",
+            maxWidth: "614px",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
             fontSize: "18px",
@@ -217,15 +211,14 @@ export default async function ToolsHeroSection() {
             separate icon nodes). */}
         <div
           style={{
-            width: "614px",
-            height: "28px",
+            maxWidth: "614px",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
             fontSize: "13px",
             lineHeight: "28px",
             letterSpacing: 0,
             color: "#FFFFFF",
-            whiteSpace: "nowrap",
+            whiteSpace: "normal",
           }}
         >
           {data.heroProofText}

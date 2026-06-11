@@ -36,7 +36,7 @@ export default function ConflictsOfInterestPolicyPage() {
         <P>
           <strong>&ldquo;FSP&rdquo; or &ldquo;Name of Company&rdquo;</strong>{" "}
           FINSAI TRADE LTD. is a Financial Services Provider authorized in
-          terms of the International Services Authority of Nauru.
+          terms of the International Services Authority of Mauritius.
         </P>
         <P>
           <strong>&ldquo;Responsible Person&rdquo;</strong> A key individual,

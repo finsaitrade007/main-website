@@ -169,7 +169,7 @@ export default function ClientAgreementPage() {
           shall mean (a) any rules of a relevant regulatory authority
           having powers over the Company; (b) the rules of the relevant
           market; and (c) all other applicable laws, rules and regulations
-          of the Nauru.
+          of the Mauritius.
         </Definition>
 
         <Definition term="Base Currency">
@@ -179,7 +179,7 @@ export default function ClientAgreementPage() {
 
         <Definition term="Business Day">
           shall mean any day, other than a Saturday or a Sunday, or any
-          national or international holidays in Republic of Nauru.
+          national or international holidays in Republic of Mauritius.
         </Definition>
 
         <Definition term="Buy">
@@ -2187,7 +2187,7 @@ export default function ClientAgreementPage() {
         <UL
           items={[
             "(a) The failure of the Client to perform any obligation due to the Company.",
-            "(b) If a bankruptcy application is made in respect of the Client pursuant to the laws of the Nauru (if the Client is an individual), or if a partnership, in respect of one or more of the partners, or if a company, a receiver, trustee, administrative receiver or similar officer is appointed (if the Client is a legal entity), or if the Client makes an arrangement or composition with the Client's creditors or any procedure which is similar or analogous to any of the above is commenced in respect of the Client.",
+            "(b) If a bankruptcy application is made in respect of the Client pursuant to the laws of the Mauritius (if the Client is an individual), or if a partnership, in respect of one or more of the partners, or if a company, a receiver, trustee, administrative receiver or similar officer is appointed (if the Client is a legal entity), or if the Client makes an arrangement or composition with the Client's creditors or any procedure which is similar or analogous to any of the above is commenced in respect of the Client.",
             "(c) The failure of the Client to provide any Initial Margin and/or Hedged Margin, or other amount due under the Agreement;",
             "(d) The failure of the Client to submit any identification documentation and/or any other information as required by the Company from time to time;",
             "(e) The failure of the Client to perform any obligation due to the Company emanating from the Agreement or any other documents concluded with the Company;",
@@ -2197,7 +2197,7 @@ export default function ClientAgreementPage() {
             "(i) Any other circumstance where the Company reasonably believes that it is necessary or desirable to take any action set out in paragraph 25.2 of this Client Agreement.",
             "(j) An action set out in paragraph 25.2 is required by a competent regulatory authority or body or court.",
             "(k) The Client involves the Company in any type of fraud or illegality or breach of applicable laws and regulations or is at risk of involving the Company in any type of fraud or illegality or breach of applicable laws and regulations;",
-            "(l) In cases of material violation by the Client of the requirements established by legislation of Nauru or other countries, such materiality determined in good faith by the Company.",
+            "(l) In cases of material violation by the Client of the requirements established by legislation of Mauritius or other countries, such materiality determined in good faith by the Company.",
             "(m) If the Company suspects that the Client is engaged into money laundering activities, or terrorist financing, or card fraud, or other criminal activities.",
             "(n) The Company reasonably suspects that the Client performed a prohibited action as set out in clauses 2.13.-2.15, 4.2 and 4.4 of this Client Agreement.",
             "(o) The Company reasonably suspects that the Client performed Abusive Trading.",
@@ -2402,7 +2402,7 @@ export default function ClientAgreementPage() {
         <P>
           29.5. Our liability, to the extent applicable, for
           infringement of third-party intellectual property rights
-          shall be limited to breaches of rights subsisting in Nauru.
+          shall be limited to breaches of rights subsisting in Mauritius.
         </P>
         <P>
           29.6. The Client Agreement sets out the full extent of our
@@ -2722,10 +2722,10 @@ export default function ClientAgreementPage() {
         <P>
           39.1. The interpretation, construction, effect and
           enforceability of the Client Agreements shall be governed by
-          the laws of Nauru and you, and we agree to submit to the
-          exclusive jurisdiction of Nauru courts for the determination
+          the laws of Mauritius and you, and we agree to submit to the
+          exclusive jurisdiction of Mauritius courts for the determination
           of disputes. You agree all Transactions carried out on the
-          Trading Platform are governed by the laws of Nauru regardless
+          Trading Platform are governed by the laws of Mauritius regardless
           of the location of the Registered User.
         </P>
       </LegalSection>

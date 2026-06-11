@@ -54,12 +54,13 @@ export default function CareersWorkspaceFormClient({
       }}
     >
       <div
+        className="two-col-grid"
         style={{
-          width: "1280px",
-          maxWidth: "100%",
+          width: "100%",
+          maxWidth: "1280px",
           margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "664px 1fr",
+          padding: "0 clamp(20px, 2.5vw, 40px)",
+          boxSizing: "border-box",
           gap: "64px",
           alignItems: "flex-start",
         }}
@@ -69,8 +70,6 @@ export default function CareersWorkspaceFormClient({
               between the headline and the supporting paragraph. */}
           <div
             style={{
-              width: "664px",
-              height: "139px",
               display: "flex",
               flexDirection: "column",
               gap: "24px",
@@ -91,7 +90,6 @@ export default function CareersWorkspaceFormClient({
             <p
               style={{
                 margin: 0,
-                width: "664px",
                 fontFamily: "var(--font-inter, Inter)",
                 fontWeight: 400,
                 fontSize: "14px",
@@ -109,17 +107,16 @@ export default function CareersWorkspaceFormClient({
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "318.37px 318.37px",
-              columnGap: "13.63px",
-              rowGap: "14px",
+              gridTemplateColumns: "repeat(auto-fill, minmax(min(260px, 100%), 1fr))",
+              gap: "14px",
             }}
           >
             {cards.map((b) => (
               <div
                 key={b.title}
                 style={{
-                  width: "318.37px",
-                  height: "99.56px",
+                  width: "100%",
+                  minHeight: "99.56px",
                   padding: "0.84px",
                   borderRadius: "10.12px",
                   background:
@@ -157,12 +154,11 @@ export default function CareersWorkspaceFormClient({
                       title and description, per Figma spec. */}
                   <div
                     style={{
-                      width: "231.02px",
-                      minWidth: "231.02px",
-                      height: "58.37px",
                       display: "flex",
                       flexDirection: "column",
                       gap: "3.37px",
+                      minWidth: 0,
+                      flex: 1,
                     }}
                   >
                     <div
@@ -204,10 +200,10 @@ export default function CareersWorkspaceFormClient({
             width={613}
             height={409}
             style={{
-              width: "613px",
-              height: "409px",
+              width: "100%",
+              maxWidth: "613px",
+              height: "auto",
               marginTop: "28px",
-              marginLeft: "27px",
               objectFit: "contain",
               pointerEvents: "none",
               userSelect: "none",

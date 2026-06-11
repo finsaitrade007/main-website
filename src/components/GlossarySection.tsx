@@ -572,7 +572,7 @@ export default function GlossarySection() {
                 style={{
                   display: "grid",
                   gridTemplateColumns:
-                    "repeat(auto-fill, minmax(360px, 1fr))",
+                    "repeat(auto-fill, minmax(min(360px, 100%), 1fr))",
                   gap: "16px",
                 }}
               >

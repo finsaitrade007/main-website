@@ -6,8 +6,8 @@ export default function IBHeroSection() {
     <section style={{
       position: "relative",
       background: "#050208",
-      width: "1440px",
-      height: "777px",
+      width: "100%",
+      minHeight: "clamp(480px, 54vw, 777px)",
       overflow: "hidden",
     }}>
       {/* Hero image — right side */}
@@ -30,9 +30,9 @@ export default function IBHeroSection() {
       {/* Content */}
       <div style={{
         position: "absolute",
-        top: "200px",
-        left: "80px",
-        width: "660px",
+        top: "clamp(120px, 13.9vw, 200px)",
+        left: "clamp(20px, 5.5vw, 80px)",
+        width: "clamp(280px, 45.8vw, 660px)",
         display: "flex",
         flexDirection: "column",
         gap: "24px",
@@ -52,8 +52,6 @@ export default function IBHeroSection() {
           border: "1.2px solid #FFFFFF26",
           background: "#000000",
           boxSizing: "border-box",
-          width: "287.6px",
-          height: "51.2px",
         }}>
           <span style={{
             fontFamily: "var(--font-inter, Inter)",
@@ -76,7 +74,7 @@ export default function IBHeroSection() {
         <h1 style={{
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 700,
-          fontSize: "64px",
+          fontSize: "clamp(32px, 4.4vw, 64px)",
           lineHeight: "110%",
           letterSpacing: "-0.01em",
           color: "#FFFFFF",

@@ -127,15 +127,14 @@ export default async function ToolsBuiltForSection() {
       }}
     >
       <div
+        className="two-col-grid"
         style={{
-          width: "1280px",
+          width: "100%",
           maxWidth: "1280px",
-          height: "260px",
+          margin: "0 auto",
           paddingLeft: "24px",
           paddingRight: "24px",
           boxSizing: "border-box",
-          display: "grid",
-          gridTemplateColumns: "1fr 778.66px",
           gap: "64px",
           alignItems: "center",
         }}
@@ -156,8 +155,7 @@ export default async function ToolsBuiltForSection() {
           </h2>
           <p
             style={{
-              width: "389.33px",
-              height: "96px",
+              maxWidth: "389px",
               fontFamily: "var(--font-inter, Inter)",
               fontWeight: 400,
               fontSize: "16px",
@@ -174,18 +172,16 @@ export default async function ToolsBuiltForSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 377.33px)",
-            gridTemplateRows: "repeat(2, 118px)",
-            columnGap: "24px",
-            rowGap: "24px",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: "24px",
           }}
         >
           {features.map((f, i) => (
             <div
               key={f.id ?? f.title}
               style={{
-                width: "377.33px",
-                height: "118px",
+                width: "100%",
+                minHeight: "118px",
                 padding: "1px",
                 borderRadius: "12px",
                 background:
@@ -229,12 +225,11 @@ export default async function ToolsBuiltForSection() {
                 </div>
                 <div
                   style={{
-                    width: "275.03px",
-                    minWidth: "275.03px",
-                    height: "68px",
                     display: "flex",
                     flexDirection: "column",
                     gap: "4px",
+                    minWidth: 0,
+                    flex: 1,
                   }}
                 >
                   <div

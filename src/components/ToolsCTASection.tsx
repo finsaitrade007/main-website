@@ -33,7 +33,7 @@ export default async function ToolsCTASection() {
             border: "1px solid rgba(5,111,180,0.45)",
             background:
               "linear-gradient(137.88deg, #050208 1.04%, rgba(5,111,180,0.35) 536.19%)",
-            padding: "64px 80px",
+            padding: "64px clamp(20px, 5.5vw, 80px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",

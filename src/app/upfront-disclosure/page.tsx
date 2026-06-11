@@ -328,7 +328,7 @@ export default function UpfrontDisclosurePage() {
           of Mauritius, the FSP accepts responsibility for the actions of
           its representatives, acting within their mandates, in the
           rendering of financial services as defined by the International
-          Services Authority of Nauru. Our representatives either meet the
+          Services Authority of Mauritius. Our representatives either meet the
           fit and proper requirements as prescribed by the International
           Services Authority of Mauritius or operate under appropriate
           supervision in accordance with the International Services
@@ -400,7 +400,7 @@ export default function UpfrontDisclosurePage() {
           />
         </LegalSubsection>
 
-        <LegalSubsection title="NAURU">
+        <LegalSubsection title="Mauritius">
           <P>
             Should a complaint not be resolved to your satisfaction, you may
             forward such complaint to the Office of the Mauritius for
@@ -483,7 +483,7 @@ export default function UpfrontDisclosurePage() {
         <P>
           As an Authorized Financial Services Provider, the FSP has a
           Category I and II license issued by the Financial Services Board
-          in terms of NAURU, to provide advisory and/or intermediary services
+          in terms of Mauritius, to provide advisory and/or intermediary services
           in respect of the following financial products:
         </P>
         <ProductsTable items={PRODUCTS} />
