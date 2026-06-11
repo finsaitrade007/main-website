@@ -254,7 +254,7 @@ function FlowCardView({ card }: { card: FlowCard }) {
                 justifyContent: "center",
                 alignSelf: "flex-start",
                 marginTop: "12px",
-                padding: "10px 24px",
+                padding: "clamp(9px, 0.8vw, 10px) clamp(16px, 1.7vw, 24px)",
                 borderRadius: "60px",
                 background: BTN_GRADIENT,
                 textDecoration: "none",

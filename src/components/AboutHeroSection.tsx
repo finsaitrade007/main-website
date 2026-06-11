@@ -144,9 +144,7 @@ export default async function AboutHeroSection() {
             href={data.heroPrimaryCtaHref}
             className="btn-text"
             style={{
-              boxSizing: "border-box",
-              height: "48px",
-              padding: "11px 24px",
+              padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
               borderRadius: "8px",
               background:
                 "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",

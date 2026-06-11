@@ -3,8 +3,8 @@ import Link from "@/components/SmartLink";
 const BTN_TYPOGRAPHY = {
   fontFamily: "var(--font-inter, Inter)",
   fontWeight: 600,
-  fontSize: "18.45px",
-  lineHeight: "27.68px",
+  fontSize: "clamp(14px, 1.3vw, 18.45px)",
+  lineHeight: "1.5",
   letterSpacing: 0,
   color: "#FFFFFF",
   textDecoration: "none",

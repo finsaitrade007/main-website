@@ -59,22 +59,18 @@ export default async function ServicesHeroSection() {
           alignSelf: "flex-start",
           alignItems: "center",
           gap: "8.4px",
-          paddingTop: "9.6px",
-          paddingBottom: "9.6px",
-          paddingLeft: "16.8px",
-          paddingRight: "16.8px",
-          width: "362.6px",
-          height: "51.2px",
+          padding: "9.6px 16.8px",
+          maxWidth: "calc(100vw - 40px)",
           borderRadius: "60px",
           border: "1.2px solid #FFFFFF26",
           background: "#000000",
-          boxSizing: "border-box",
+          overflow: "hidden",
         }}>
           <span style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
-            fontSize: "19.2px",
-            lineHeight: "31.2px",
+            fontSize: "clamp(12px, 1.35vw, 19.2px)",
+            lineHeight: "1.6",
             letterSpacing: "-0.01%",
             textTransform: "uppercase",
             background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
@@ -82,6 +78,8 @@ export default async function ServicesHeroSection() {
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
             whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           }}>
             Sign in to your secure wallet!
           </span>
@@ -117,13 +115,8 @@ export default async function ServicesHeroSection() {
           href={data.heroPrimaryCtaHref}
           className="btn-text"
           style={{
-            width: "236px",
-            height: "48px",
             borderRadius: "8px",
-            paddingTop: "11px",
-            paddingBottom: "11px",
-            paddingLeft: "24px",
-            paddingRight: "24px",
+            padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
             gap: "16px",
             top: "-80px",
             position: "relative",

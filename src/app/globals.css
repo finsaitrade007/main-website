@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-text {
   font-family: var(--font-sora), 'Sora', sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: clamp(13px, 1.1vw, 16px);
   line-height: 160%;
   letter-spacing: 0.005em;
   color: #ffffff;
@@ -707,6 +707,45 @@ body {
   }
 }
 
+/* ── StepsSection layout toggle ── */
+@media (min-width: 426px) {
+  .steps-vertical { display: none !important; }
+}
+@media (max-width: 425px) {
+  .steps-horizontal { display: none !important; }
+}
+
+@media (max-width: 400px) {
+  .page-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .footer-inner {
+    padding: 0 16px;
+  }
+
+  .hero__text-wrap {
+    padding: 0 16px;
+  }
+
+  .hero__title {
+    font-size: 24px;
+  }
+
+  .hero__subtitle {
+    font-size: 13px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .section-desc {
+    font-size: 13px;
+  }
+}
+
 /* ── Typography scaling ── */
 @media (max-width: 1024px) {
   .section-title {
@@ -1065,6 +1104,10 @@ body {
   .platforms-wide-card {
     height: auto !important;
     min-height: 200px;
+  }
+
+  .platforms-wide-mockup {
+    display: none;
   }
 }
 

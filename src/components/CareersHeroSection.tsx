@@ -137,15 +137,9 @@ export default async function CareersHeroSection() {
             href={data.heroSecondaryCtaHref}
             className="btn-text"
             style={{
-              boxSizing: "border-box",
-              width: "233px",
-              height: "48px",
               gap: "16px",
               borderRadius: "8px",
-              paddingTop: "11px",
-              paddingRight: "24px",
-              paddingBottom: "11px",
-              paddingLeft: "24px",
+              padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
               border: "1px solid transparent",
               background:
                 "linear-gradient(#050208, #050208) padding-box, linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%) border-box",

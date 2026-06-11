@@ -102,18 +102,12 @@ export default function IBHeroSection() {
           alignItems: "center",
           justifyContent: "center",
           alignSelf: "flex-start",
-          width: "195px",
-          height: "48px",
           borderRadius: "8px",
-          paddingTop: "11px",
-          paddingBottom: "11px",
-          paddingLeft: "24px",
-          paddingRight: "24px",
+          padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
           gap: "16px",
           background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
           textDecoration: "none",
           whiteSpace: "nowrap",
-          boxSizing: "border-box",
         }}>
           Explore Insights
         </Link>

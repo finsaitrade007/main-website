@@ -749,7 +749,7 @@ function ContactForm() {
         className="btn-text"
         style={{
           alignSelf: "flex-start",
-          padding: "12px 32px",
+          padding: "clamp(10px, 0.85vw, 12px) clamp(20px, 2.2vw, 32px)",
           borderRadius: "60px",
           border: "none",
           background:

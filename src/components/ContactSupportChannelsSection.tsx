@@ -116,7 +116,7 @@ export default function ContactSupportChannelsSection() {
             key={channel.title}
             style={{
               boxSizing: "border-box",
-              width: "306px",
+              width: "min(306px, calc(100vw - 40px))",
               minHeight: "355px",
               borderRadius: "14.28px",
               border: "1.19px solid transparent",

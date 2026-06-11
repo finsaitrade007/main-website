@@ -77,20 +77,14 @@ export default async function PaymentsCTASection() {
         </p>
 
         <Link href={data.ctaPrimaryHref} className="btn-text" style={{
-          width: "178px",
-          height: "56px",
           borderRadius: "28.83px",
-          paddingTop: "14px",
-          paddingBottom: "14px",
-          paddingLeft: "25px",
-          paddingRight: "25px",
+          padding: "clamp(11px, 1vw, 14px) clamp(18px, 1.8vw, 25px)",
           background: "linear-gradient(90deg, rgba(5,111,180,0.7) 0%, #056FB4 100%)",
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
           gap: "16px",
           textDecoration: "none",
-          boxSizing: "border-box",
         }}>
           {data.ctaPrimaryLabel}
         </Link>

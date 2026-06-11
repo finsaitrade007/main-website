@@ -90,7 +90,8 @@ export default async function StepsSection() {
           style={{ textAlign: "center", maxWidth: "520px", margin: "0 auto 80px" }}
         />
 
-        {/* Main container: 1225×278px — scales down on viewports < 1225px */}
+        {/* Horizontal layout (≥ 426px): 1225×278px fixed — scaled by ResponsiveScale */}
+        <div className="steps-horizontal">
         <ResponsiveScale designWidth={1225}>
         <div
           style={{
@@ -232,6 +233,111 @@ export default async function StepsSection() {
           })}
         </div>
         </ResponsiveScale>
+        </div>
+
+        {/* Vertical layout (< 426px) */}
+        <div className="steps-vertical" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          {steps.map((step, idx) => {
+            const img = strapiImageUrl(step.image) ?? LOCAL_STEP_IMAGES[idx];
+            const isLast = idx === steps.length - 1;
+            return (
+              <div key={step.id} style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
+                {/* Step row: circle left, text right */}
+                <div style={{ display: "flex", alignItems: "center", gap: "20px", width: "100%", padding: "0 4px" }}>
+                  {/* Circle with number badge */}
+                  <div style={{ position: "relative", flexShrink: 0, width: "80px", height: "80px" }}>
+                    <div style={{
+                      width: "80px",
+                      height: "80px",
+                      borderRadius: "50%",
+                      background: "#020303",
+                      border: "2px solid #056FB499",
+                      boxShadow: "0px 0px 20px 10px #056FB43D",
+                      boxSizing: "border-box",
+                      position: "relative",
+                    }}>
+                      {img && (
+                        <Image
+                          src={img}
+                          alt={step.title}
+                          width={40}
+                          height={40}
+                          style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            objectFit: "contain",
+                          }}
+                        />
+                      )}
+                    </div>
+                    {/* Number badge */}
+                    <div style={{
+                      position: "absolute",
+                      top: "-6px",
+                      right: "-6px",
+                      width: "22px",
+                      height: "22px",
+                      borderRadius: "50%",
+                      background: "#056FB4",
+                      border: "1px solid #056FB499",
+                      boxSizing: "border-box",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}>
+                      <span style={{
+                        fontFamily: "var(--font-inter, Inter)",
+                        fontWeight: 600,
+                        fontSize: "12px",
+                        lineHeight: "100%",
+                        color: "#FFFFFF",
+                      }}>
+                        {idx + 1}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Text */}
+                  <div style={{ flex: 1 }}>
+                    <h3 style={{
+                      fontFamily: "var(--font-sora, Sora)",
+                      fontWeight: 600,
+                      fontSize: "18px",
+                      lineHeight: "1.3",
+                      color: "#FFFFFF",
+                      margin: "0 0 6px",
+                    }}>
+                      {step.title}
+                    </h3>
+                    <p style={{
+                      fontFamily: "var(--font-inter, Inter)",
+                      fontWeight: 400,
+                      fontSize: "13px",
+                      lineHeight: "1.6",
+                      color: "#FFFFFFB2",
+                      margin: 0,
+                    }}>
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Vertical connector line (between steps) */}
+                {!isLast && (
+                  <div style={{
+                    width: "1px",
+                    height: "40px",
+                    marginLeft: "36px",
+                    alignSelf: "flex-start",
+                    background: "linear-gradient(180deg, rgba(5,111,180,0.7) 0%, rgba(5,111,180,0.15) 100%)",
+                  }} />
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

@@ -127,12 +127,7 @@ export default async function PaymentsHeroSection() {
           href={data.heroPrimaryCtaHref}
           className="btn-text"
           style={{
-            width: "195px",
-            height: "48px",
-            paddingTop: "11px",
-            paddingBottom: "11px",
-            paddingLeft: "24px",
-            paddingRight: "24px",
+            padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
             gap: "16px",
             borderRadius: "8px",
             background:

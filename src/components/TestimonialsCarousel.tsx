@@ -72,6 +72,22 @@ export default function TestimonialsCarousel({
   const [animating, setAnimating] = useState(true);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
+  // Track actual container width so the active card stays centered at any viewport.
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => setContainerWidth(el.clientWidth);
+    update();
+    const obs = new ResizeObserver(update);
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  // On narrow screens show only the active card (no side peeking).
+  const isMobile = containerWidth < 560;
+
   const activeRealIdx = n > 0 ? ((offset % n) + n) % n : 0;
 
   const startCycle = useCallback(() => {
@@ -141,13 +157,18 @@ export default function TestimonialsCarousel({
   const visibleWidth =
     2 * INACTIVE_WIDTH_PX + 2 * GAP_PX + ACTIVE_WIDTH_PX;
   const stepDistance = INACTIVE_WIDTH_PX + GAP_PX;
-  const translateX = -(offset - 1) * stepDistance;
+
+  // Responsive centering: shift track so the active card sits in the middle
+  // of the actual container, regardless of whether the container is narrower
+  // than the full 1116px design width (happens between 768–1116px viewports).
+  const responsiveTranslateX =
+    (containerWidth - ACTIVE_WIDTH_PX) / 2 - offset * stepDistance;
 
   const trackStyle: CSSProperties = {
     display: "flex",
     alignItems: "center",
     gap: `${GAP_PX}px`,
-    transform: `translate3d(${translateX}px, 0, 0)`,
+    transform: `translate3d(${responsiveTranslateX}px, 0, 0)`,
     transition: animating ? `transform ${TRANSITION_MS}ms ${EASING}` : "none",
     willChange: "transform",
   };
@@ -175,9 +196,12 @@ export default function TestimonialsCarousel({
       ].join(", ")
     : "none";
 
+  const activeTestimonial = testimonials[activeRealIdx];
+
   return (
     <>
       <div
+        ref={containerRef}
         style={{
           width: `${visibleWidth}px`,
           maxWidth: "100%",
@@ -186,6 +210,76 @@ export default function TestimonialsCarousel({
           padding: "24px 0",
         }}
       >
+        {/* Mobile: single active card only */}
+        {isMobile ? (
+          <div style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "0 4px",
+          }}>
+            <div style={{
+              width: "100%",
+              maxWidth: `${ACTIVE_WIDTH_PX}px`,
+              minHeight: `${ACTIVE_HEIGHT_PX}px`,
+              background: CARD_BG,
+              border: BORDER_ACTIVE,
+              borderRadius: "14px",
+              padding: "32px 28px",
+              boxSizing: "border-box",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "space-between",
+              textAlign: "center",
+              boxShadow: "0 24px 60px rgba(5,111,180,0.18)",
+              position: "relative",
+            }}>
+              <div style={{ position: "absolute", top: "28px", left: "22px", pointerEvents: "none" }}>
+                <QuoteIcon size={32} flipped />
+              </div>
+              <div style={{ position: "absolute", top: "128px", right: "22px", pointerEvents: "none" }}>
+                <QuoteIcon size={32} />
+              </div>
+              <p style={{
+                fontFamily: "var(--font-sora, Sora)",
+                fontWeight: 300,
+                fontSize: "15px",
+                lineHeight: "1.6",
+                color: "rgba(255,255,255,0.85)",
+                margin: 0,
+                paddingLeft: "44px",
+                paddingRight: "44px",
+              }}>
+                {activeTestimonial.quote}
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
+                <div style={{
+                  width: "52px",
+                  height: "52px",
+                  borderRadius: "50%",
+                  background: "linear-gradient(135deg, rgba(5,111,180,0.6), rgba(125,185,214,0.4))",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontFamily: "var(--font-sora, Sora)",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  color: "#fff",
+                }}>
+                  {activeTestimonial.initials}
+                </div>
+                <div>
+                  <p style={{ fontFamily: "var(--font-sora, Sora)", fontWeight: 700, fontSize: "15px", color: "#fff", margin: "0 0 2px" }}>
+                    {activeTestimonial.name}
+                  </p>
+                  <p style={{ fontFamily: "var(--font-inter, Inter)", fontSize: "12px", color: "rgba(255,255,255,0.45)", margin: 0 }}>
+                    {activeTestimonial.role}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
         <div onTransitionEnd={handleTransitionEnd} style={trackStyle}>
           {tripled.map((t, i) => {
             const isActive = i === offset;
@@ -330,6 +424,7 @@ export default function TestimonialsCarousel({
             );
           })}
         </div>
+        )}
       </div>
 
       <div

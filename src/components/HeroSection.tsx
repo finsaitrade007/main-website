@@ -94,8 +94,7 @@ export default async function HeroSection() {
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "195px",
-                height: "48px",
+                padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
                 borderRadius: "8px",
                 background:
                   "linear-gradient(90deg, #496DAB 0%, #496DAB 50%, #41ABE7 75%, #48C3F4 100%)",

@@ -91,9 +91,9 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
         background: WIDE_CARD_BACKGROUND,
         border: "1px solid transparent",
         borderRadius: RADIUS,
-        height: "249px",
-        padding: "32px 40px",
-        overflow: "visible",
+        height: H,
+        padding: "24px 28px",
+        overflow: "hidden",
         boxSizing: "border-box",
       }}
     >
@@ -103,22 +103,33 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
           position: "absolute",
           top: "20px",
           left: "21px",
-          width: "831px",
-          height: "162px",
+          right: "84px",
+          height: "108px",
           overflow: "hidden",
         }}
       >
         {p.description}
       </p>
 
+      {icon && (
+        <div style={{ position: "absolute", top: "20px", right: "20px", zIndex: 11 }}>
+          <Image
+            src={icon}
+            alt={p.title}
+            width={52}
+            height={52}
+            style={{ borderRadius: "12px" }}
+          />
+        </div>
+      )}
+
       {mockup && (
         <div
+          className="platforms-wide-mockup"
           style={{
             position: "absolute",
-            top: "-51px",
-            left: "1004px",
-            width: "233px",
-            height: "281px",
+            top: "-48px",
+            right: "-35px",
             zIndex: 10,
             pointerEvents: "none",
           }}
@@ -126,21 +137,9 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
           <Image
             src={mockup}
             alt={p.title}
-            fill
-            sizes="312px"
+            width={360}
+            height={270}
             style={{ objectFit: "contain" }}
-          />
-        </div>
-      )}
-
-      {icon && (
-        <div style={{ position: "absolute", top: "32px", right: "40px", zIndex: 11 }}>
-          <Image
-            src={icon}
-            alt={p.title}
-            width={64}
-            height={64}
-            style={{ borderRadius: "14px" }}
           />
         </div>
       )}
@@ -148,28 +147,18 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
       <h3
         style={{
           position: "absolute",
-          bottom: "32px",
-          left: "40px",
+          bottom: "24px",
+          left: "28px",
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 400,
-          fontSize: "clamp(28px, 4.3vw, 62px)",
-          lineHeight: "1.1",
+          fontSize: "clamp(20px, 2.2vw, 32px)",
+          lineHeight: "1.35",
           color: "#FFFFFF",
           margin: 0,
         }}
       >
         {p.title}
       </h3>
-
-      <div style={{ position: "absolute", top: "150px", left: "180px", zIndex: 11 }}>
-        <Image
-          src="/mt5.png"
-          alt="MT5"
-          width={60}
-          height={60}
-          style={{ objectFit: "contain" }}
-        />
-      </div>
     </Link>
   );
 }
@@ -192,7 +181,7 @@ function PlatformCard({ p }: { p: StrapiPlatform }) {
         borderRadius: RADIUS,
         height: H,
         padding: "24px 28px",
-        overflow: "visible",
+        overflow: "hidden",
       }}
     >
       <p
@@ -201,7 +190,7 @@ function PlatformCard({ p }: { p: StrapiPlatform }) {
           position: "absolute",
           top: "20px",
           left: "21px",
-          width: p.size === "large" ? "572px" : "348.91px",
+          right: "84px",
           height: "108px",
           overflow: "hidden",
         }}
@@ -302,7 +291,6 @@ export default async function PlatformsSection() {
           style={{
             textAlign: "center",
             marginBottom: "16px",
-            whiteSpace: "nowrap",
           }}
         >
           {header.platformsTitle}
@@ -320,7 +308,7 @@ export default async function PlatformsSection() {
         </p>
 
         {row1.length === 1 ? (
-          <div className="resp-h-scroll" style={{ marginBottom: ROW_GAP }}>
+          <div style={{ marginBottom: ROW_GAP }}>
             <WidePlatformCard p={row1[0]} />
           </div>
         ) : (

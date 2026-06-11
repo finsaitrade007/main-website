@@ -112,10 +112,8 @@ export default async function FAQSection({ faqs }: FAQSectionProps = {}) {
               alignItems: "center",
               justifyContent: "center",
               gap: "8px",
-              width: "166px",
-              height: "48px",
               borderRadius: "8px",
-              padding: "11px 24px",
+              padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
               background:
                 "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
               textDecoration: "none",

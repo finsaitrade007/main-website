@@ -137,13 +137,11 @@ export default function IBWhyClient({ title, description, ctaLabel, ctaHref, tab
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "8px",
-                width: "276px",
-                height: "57px",
                 borderRadius: "28.83px",
+                padding: "clamp(11px, 1vw, 14px) clamp(18px, 1.8vw, 25px)",
                 background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
                 textDecoration: "none",
                 whiteSpace: "nowrap",
-                boxSizing: "border-box",
               }}>
                 {ctaLabel}
               </Link>
@@ -157,7 +155,7 @@ export default function IBWhyClient({ title, description, ctaLabel, ctaHref, tab
               alt={current.label || "IB Why"}
               width={472}
               height={444}
-              style={{ objectFit: "contain", borderRadius: "20px" }}
+              style={{ objectFit: "contain", borderRadius: "20px", maxWidth: "100%", height: "auto" }}
             />
           </div>
         </div>

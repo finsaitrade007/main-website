@@ -643,7 +643,7 @@ function ApplicationForm({
         disabled={!accepted || status.kind === "submitting"}
         className="btn-text"
         style={{
-          height: "48px",
+          padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
           borderRadius: "8px",
           border: "none",
           background:
