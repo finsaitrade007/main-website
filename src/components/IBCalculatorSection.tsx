@@ -276,7 +276,7 @@ export default function IBCalculatorSection({ title, description }: Props) {
       </div>
 
       {/* Mobile layout (< 426px) */}
-      <div className="steps-vertical" style={{ padding: "0 20px 48px" }}>
+      <div className="steps-vertical" style={{ padding: "0 20px" }}>
         <h2 className="section-title" style={{ marginBottom: "12px" }}>
           {title}
         </h2>

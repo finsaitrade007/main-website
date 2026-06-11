@@ -1086,7 +1086,20 @@ body {
   }
 
   .account-card-mobile-active {
-    height: 420px !important;
+    height: 480px !important;
+    width: 100% !important;
+  }
+
+  .account-card-label {
+    writing-mode: horizontal-tb !important;
+    transform: none !important;
+    letter-spacing: 0.05em;
+  }
+
+  .account-features-row {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important;
     width: 100% !important;
   }
 }

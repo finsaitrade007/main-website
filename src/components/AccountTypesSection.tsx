@@ -114,6 +114,7 @@ function AccountCard({
         }}
       >
         <span
+          className="account-card-label"
           style={{
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 600,
@@ -133,7 +134,7 @@ function AccountCard({
         style={{
           position: "absolute",
           inset: 0,
-          padding: "36px 48px 0",
+          padding: "clamp(20px, 2.5vw, 36px) clamp(16px, 3.3vw, 48px) 0",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -177,6 +178,7 @@ function AccountCard({
         </p>
 
         <div
+          className="account-features-row"
           style={{
             display: "flex",
             alignItems: "center",
@@ -193,10 +195,8 @@ function AccountCard({
                 gap: "8px",
                 fontFamily: "var(--font-inter, Inter)",
                 fontWeight: 400,
-                fontSize: "15px",
-                lineHeight: "27.68px",
-                letterSpacing: "0%",
-                textAlign: "center",
+                fontSize: "clamp(13px, 1.1vw, 15px)",
+                lineHeight: "1.6",
                 textTransform: "capitalize",
                 color: "#FFFFFF",
                 whiteSpace: "nowrap",
@@ -221,16 +221,17 @@ function AccountCard({
           style={{
             display: "inline-flex",
             alignItems: "center",
-            gap: "10px",
-            padding: "14px 36px",
+            gap: "8px",
+            padding: "clamp(9px, 0.8vw, 14px) clamp(16px, 2vw, 36px)",
             background: "#056FB4",
             borderRadius: "60px",
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 600,
-            fontSize: "15px",
+            fontSize: "clamp(13px, 1.1vw, 15px)",
             color: "#FFFFFF",
             textDecoration: "none",
             zIndex: 2,
+            whiteSpace: "nowrap",
           }}
         >
           Open Account &nbsp;→
