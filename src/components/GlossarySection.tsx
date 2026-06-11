@@ -546,7 +546,7 @@ export default function GlossarySection() {
                   style={{
                     fontFamily: "var(--font-sora, Sora)",
                     fontWeight: 700,
-                    fontSize: "44px",
+                    fontSize: "clamp(26px, 3.1vw, 44px)",
                     lineHeight: "1",
                     margin: 0,
                     background:

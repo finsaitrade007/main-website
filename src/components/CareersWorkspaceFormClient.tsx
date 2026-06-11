@@ -80,8 +80,8 @@ export default function CareersWorkspaceFormClient({
                 margin: 0,
                 fontFamily: "var(--font-sora, Sora)",
                 fontWeight: 600,
-                fontSize: "32px",
-                lineHeight: "40px",
+                fontSize: "clamp(20px, 2.2vw, 32px)",
+                lineHeight: "1.3",
                 color: "#FFFFFF",
               }}
             >

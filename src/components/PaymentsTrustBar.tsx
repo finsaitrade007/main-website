@@ -97,7 +97,7 @@ export default async function PaymentsTrustBar() {
                 <span style={{
                   fontFamily: "var(--font-sora, Sora)",
                   fontWeight: 400,
-                  fontSize: "20px",
+                  fontSize: "clamp(15px, 1.4vw, 20px)",
                   lineHeight: "100%",
                   letterSpacing: "-0.02em",
                   color: "#FFFFFF",
@@ -106,7 +106,7 @@ export default async function PaymentsTrustBar() {
                 <span style={{
                   fontFamily: "var(--font-sora, Sora)",
                   fontWeight: 400,
-                  fontSize: "20px",
+                  fontSize: "clamp(15px, 1.4vw, 20px)",
                   lineHeight: "100%",
                   letterSpacing: "-0.02em",
                   color: "#FFFFFF",

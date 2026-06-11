@@ -154,8 +154,8 @@ export default function ContactSupportChannelsSection() {
                 margin: 0,
                 fontFamily: "var(--font-sora, Sora)",
                 fontWeight: 600,
-                fontSize: "20px",
-                lineHeight: "28px",
+                fontSize: "clamp(15px, 1.4vw, 20px)",
+                lineHeight: "1.4",
                 color: "#FFFFFF",
               }}
             >

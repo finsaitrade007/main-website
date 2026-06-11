@@ -65,8 +65,8 @@ export default async function AboutCTASection() {
             maxWidth: "640px",
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 600,
-            fontSize: "36px",
-            lineHeight: "50px",
+            fontSize: "clamp(22px, 2.5vw, 36px)",
+            lineHeight: "1.4",
             color: "#FFFFFF",
           }}
         >

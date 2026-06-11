@@ -96,8 +96,8 @@ export default async function AboutFinancialGrowthSection() {
             margin: 0,
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 600,
-            fontSize: "36px",
-            lineHeight: "52px",
+            fontSize: "clamp(22px, 2.5vw, 36px)",
+            lineHeight: "1.45",
             color: "#FFFFFF",
             whiteSpace: "pre-line",
           }}
@@ -128,8 +128,8 @@ export default async function AboutFinancialGrowthSection() {
                   fontFamily: "var(--font-sora, Sora)",
                   fontWeight: 600,
                   fontStyle: "normal",
-                  fontSize: "24px",
-                  lineHeight: "30px",
+                  fontSize: "clamp(16px, 1.7vw, 24px)",
+                  lineHeight: "1.3",
                   letterSpacing: 0,
                   color: "#FFFFFF",
                 }}

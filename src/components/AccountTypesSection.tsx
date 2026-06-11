@@ -150,7 +150,7 @@ function AccountCard({
           style={{
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 700,
-            fontSize: "36px",
+            fontSize: "clamp(22px, 2.5vw, 36px)",
             color: "#FFFFFF",
             marginBottom: "12px",
             whiteSpace: "nowrap",

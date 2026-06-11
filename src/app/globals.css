@@ -1009,7 +1009,7 @@ body {
   }
 
   .markets-grid-image {
-    order: -1;
+    display: none;
   }
 }
 

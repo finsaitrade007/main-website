@@ -174,7 +174,7 @@ function FlowCardView({ card }: { card: FlowCard }) {
             style={{
               fontFamily: "var(--font-sora, Sora)",
               fontWeight: 700,
-              fontSize: "26px",
+              fontSize: "clamp(18px, 1.8vw, 26px)",
               lineHeight: "120%",
               letterSpacing: "-0.01em",
               color: "#FFFFFF",
@@ -223,7 +223,7 @@ function FlowCardView({ card }: { card: FlowCard }) {
               style={{
                 fontFamily: "var(--font-sora, Sora)",
                 fontWeight: 700,
-                fontSize: "20px",
+                fontSize: "clamp(15px, 1.4vw, 20px)",
                 lineHeight: "120%",
                 color: "#FFFFFF",
                 margin: 0,
@@ -316,7 +316,7 @@ export default function PaymentsFlowSection() {
             style={{
               fontFamily: "var(--font-sora, Sora)",
               fontWeight: 700,
-              fontSize: "36px",
+              fontSize: "clamp(22px, 2.5vw, 36px)",
               lineHeight: "118%",
               letterSpacing: "-0.01em",
               color: "#FFFFFF",

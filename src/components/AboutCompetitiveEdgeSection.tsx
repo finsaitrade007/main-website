@@ -149,7 +149,7 @@ export default function AboutCompetitiveEdgeSection() {
                   fontFamily: "var(--font-sora, Sora)",
                   fontWeight: 400,
                   fontStyle: "normal",
-                  fontSize: "32px",
+                  fontSize: "clamp(20px, 2.2vw, 32px)",
                   lineHeight: "100%",
                   letterSpacing: 0,
                   verticalAlign: "middle",

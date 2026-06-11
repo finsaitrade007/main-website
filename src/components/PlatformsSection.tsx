@@ -152,8 +152,8 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
           left: "40px",
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 400,
-          fontSize: "62px",
-          lineHeight: "62px",
+          fontSize: "clamp(28px, 4.3vw, 62px)",
+          lineHeight: "1.1",
           color: "#FFFFFF",
           margin: 0,
         }}
@@ -248,8 +248,8 @@ function PlatformCard({ p }: { p: StrapiPlatform }) {
           left: "28px",
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 400,
-          fontSize: "32px",
-          lineHeight: "43.49px",
+          fontSize: "clamp(20px, 2.2vw, 32px)",
+          lineHeight: "1.35",
           color: "#FFFFFF",
           margin: 0,
         }}
@@ -311,11 +311,9 @@ export default async function PlatformsSection() {
         <p
           className="section-desc"
           style={{
-            width: "862px",
-            height: "120.02px",
+            maxWidth: "862px",
             textAlign: "center",
-            margin: "0 auto 0",
-            overflow: "hidden",
+            margin: "0 auto",
           }}
         >
           {header.platformsDescription}

@@ -12,7 +12,7 @@ const PARAGRAPH_STYLE: CSSProperties = {
 const SECTION_HEADING_STYLE: CSSProperties = {
   fontFamily: "var(--font-sora, Sora)",
   fontWeight: 700,
-  fontSize: "26px",
+  fontSize: "clamp(18px, 1.8vw, 26px)",
   lineHeight: "1.25",
   color: "#FFFFFF",
   margin: 0,
@@ -21,7 +21,7 @@ const SECTION_HEADING_STYLE: CSSProperties = {
 const SUBSECTION_HEADING_STYLE: CSSProperties = {
   fontFamily: "var(--font-sora, Sora)",
   fontWeight: 600,
-  fontSize: "20px",
+  fontSize: "clamp(15px, 1.4vw, 20px)",
   lineHeight: "1.3",
   color: "#FFFFFF",
   margin: 0,
@@ -30,7 +30,7 @@ const SUBSECTION_HEADING_STYLE: CSSProperties = {
 const PAGE_TITLE_STYLE: CSSProperties = {
   fontFamily: "var(--font-sora, Sora)",
   fontWeight: 700,
-  fontSize: "44px",
+  fontSize: "clamp(26px, 3.1vw, 44px)",
   lineHeight: "1.15",
   color: "#FFFFFF",
   margin: 0,
@@ -47,11 +47,13 @@ export function LegalLayout({
     <div style={{ background: "#050208", width: "100%" }}>
       <div
         style={{
-          minWidth: "880px",
-          margin: "120px 120px",
+          maxWidth: "880px",
+          margin: "0 auto",
+          padding: "clamp(40px, 8vw, 120px) clamp(20px, 8vw, 120px)",
           display: "flex",
           flexDirection: "column",
           gap: "56px",
+          boxSizing: "border-box",
         }}
       >
         <h1 style={PAGE_TITLE_STYLE}>{title}</h1>

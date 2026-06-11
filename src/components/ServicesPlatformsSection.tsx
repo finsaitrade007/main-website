@@ -156,7 +156,7 @@ function PlatformBlock({ platform }: { platform: Platform }) {
         style={{
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 700,
-          fontSize: "44px",
+          fontSize: "clamp(26px, 3.1vw, 44px)",
           lineHeight: "110%",
           letterSpacing: "-0.01em",
           margin: 0,
@@ -174,7 +174,7 @@ function PlatformBlock({ platform }: { platform: Platform }) {
         style={{
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 600,
-          fontSize: "20px",
+          fontSize: "clamp(15px, 1.4vw, 20px)",
           lineHeight: "130%",
           letterSpacing: 0,
           color: "#FFFFFF",
