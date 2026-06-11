@@ -22,7 +22,7 @@ const FALLBACK: Pick<
   heroCtaPrimaryLabel: "Start Trading Now",
   heroCtaPrimaryHref: "https://fx.finsaitrade.com/auth/register",
   heroCtaSecondaryLabel: "Try Demo",
-  heroCtaSecondaryHref: "/contact",
+  heroCtaSecondaryHref: "/contactus",
 };
 
 export default async function HeroSection() {
