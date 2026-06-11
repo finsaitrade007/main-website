@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ResponsiveScale from "@/components/ResponsiveScale";
 import { getAboutPage, type StrapiAboutPage } from "@/lib/strapi";
 
 const FALLBACK: Pick<
@@ -26,28 +27,35 @@ export default async function AboutRecognitionSection() {
 
   return (
     <section
-      className="page-section"
       style={{
-        position: "relative",
         background: "#050208",
         width: "100%",
-        maxWidth: "1440px",
-        minHeight: "752px",
-        margin: "0 auto",
-        paddingBottom: "80px",
         overflow: "hidden",
+        paddingTop: "80px",
+        paddingBottom: "80px",
+      }}
+    >
+    <ResponsiveScale designWidth={1440}>
+    <div
+      style={{
+        position: "relative",
+        width: "1440px",
+        minHeight: "672px",
+        paddingTop: "0",
       }}
     >
       <div
         style={{
-          width: "1280px",
-          maxWidth: "calc(100% - 80px)",
+          width: "100%",
+          maxWidth: "1280px",
           margin: "0 auto",
+          padding: "0 80px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           gap: "16px",
           textAlign: "center",
+          boxSizing: "border-box",
         }}
       >
         <h2
@@ -233,6 +241,8 @@ export default async function AboutRecognitionSection() {
           </div>
         </div>
       </div>
+    </div>
+    </ResponsiveScale>
     </section>
   );
 }

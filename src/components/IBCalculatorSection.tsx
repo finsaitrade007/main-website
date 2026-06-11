@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import ResponsiveScale from "@/components/ResponsiveScale";
 
 type Props = {
   title: string;
@@ -48,6 +49,7 @@ export default function IBCalculatorSection({ title, description }: Props) {
       `}</style>
 
       <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
+        <ResponsiveScale designWidth={1286}>
         <div style={{
           position: "relative",
           width: "1286px",
@@ -269,6 +271,7 @@ export default function IBCalculatorSection({ title, description }: Props) {
           </p>
 
         </div>
+        </ResponsiveScale>
       </div>
     </section>
   );

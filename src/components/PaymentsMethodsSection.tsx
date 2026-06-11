@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getPaymentsPage } from "@/lib/strapi";
+import ResponsiveScale from "@/components/ResponsiveScale";
 
 const CARD_INNER_BG = "linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)";
 const BORDER_GRADIENT = "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
@@ -316,12 +317,11 @@ export default async function PaymentsMethodsSection() {
       className="page-section"
       style={{
         background: "#050208",
-        width: "100%",
-        maxWidth: "1440px",
-        minHeight: "771px",
-        position: "relative",
+        overflow: "hidden",
       }}
     >
+    <ResponsiveScale designWidth={1440}>
+    <div style={{ position: "relative", width: "1440px", minHeight: "771px" }}>
       <div
         style={{
           position: "absolute",
@@ -373,6 +373,8 @@ export default async function PaymentsMethodsSection() {
       {CARDS.map((card) => (
         <PaymentCard key={card.left} card={card} />
       ))}
+    </div>
+    </ResponsiveScale>
     </section>
   );
 }

@@ -2,6 +2,7 @@ import Link from "@/components/SmartLink";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { getRewardsPage, type StrapiRewardsPage } from "@/lib/strapi";
+import ResponsiveScale from "@/components/ResponsiveScale";
 
 type FallbackData = Pick<
   StrapiRewardsPage,
@@ -137,14 +138,12 @@ export default async function RewardsIBProgramSection() {
     <section
       className="page-section"
       style={{
-        position: "relative",
-        width: "100%",
-        maxWidth: "1440px",
-        minHeight: "740px",
-        margin: "0 auto",
         background: "#050208",
+        overflow: "hidden",
       }}
     >
+    <ResponsiveScale designWidth={1440}>
+    <div style={{ position: "relative", width: "1440px", minHeight: "740px" }}>
       {/* Left: title + description */}
       <div
         style={{
@@ -249,6 +248,8 @@ export default async function RewardsIBProgramSection() {
           style={{ objectFit: "contain" }}
         />
       </div>
+    </div>
+    </ResponsiveScale>
     </section>
   );
 }

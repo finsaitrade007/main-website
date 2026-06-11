@@ -48,8 +48,10 @@ export default function IBCTASection() {
     >
       <div
         style={{
-          width: "1194px",
-          height: "437px",
+          boxSizing: "border-box",
+          width: "100%",
+          maxWidth: "1194px",
+          minHeight: "437px",
           borderRadius: "30px",
           border: "1px solid #056FB4",
           background: "#000000",
@@ -59,7 +61,7 @@ export default function IBCTASection() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          flexShrink: 0,
+          margin: "0 auto",
         }}
       >
         <div
@@ -79,7 +81,7 @@ export default function IBCTASection() {
             position: "relative",
             textAlign: "center",
             width: "100%",
-            padding: "0 80px",
+            padding: "40px clamp(20px, 5.5%, 80px)",
           }}
         >
           <div style={{ marginBottom: "16px" }}>

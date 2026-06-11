@@ -278,8 +278,6 @@ export default async function PlatformsSection() {
       style={{
         background: "#050208",
         width: "100%",
-        maxWidth: "1440px",
-        minHeight: "830px",
         paddingBottom: "96px",
       }}
     >
@@ -324,7 +322,7 @@ export default async function PlatformsSection() {
         </p>
 
         {row1.length === 1 ? (
-          <div style={{ marginBottom: ROW_GAP }}>
+          <div className="resp-h-scroll" style={{ marginBottom: ROW_GAP }}>
             <WidePlatformCard p={row1[0]} />
           </div>
         ) : (
@@ -346,13 +344,12 @@ export default async function PlatformsSection() {
         )}
 
         <div
+          className="platforms-grid-row2"
           style={{
-            display: "grid",
             gridTemplateColumns:
               row2.length === 2 && row2[0].size === "large"
                 ? `${LARGE} ${SMALL}`
                 : `${SMALL} ${LARGE}`,
-            gap: COL_GAP,
           }}
         >
           {row2.map((p) => (

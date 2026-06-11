@@ -30,13 +30,7 @@ export default async function ServicesFeaturesSection() {
         alignItems: "center",
       }}
     >
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "80px",
-        alignItems: "center",
-        width: "100%",
-      }}>
+      <div className="two-col-grid">
         {/* Left — copied from FeaturesSection */}
         <div>
           <div style={{ display: "flex", justifyContent: "flex-start", marginBottom: "16px" }}>

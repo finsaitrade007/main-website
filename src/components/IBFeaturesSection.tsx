@@ -15,12 +15,7 @@ export default function IBFeaturesSection() {
       style={{ background: "#050208", paddingBottom: "80px" }}
     >
       <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "60px",
-          alignItems: "center",
-        }}>
+        <div className="two-col-grid" style={{ gap: "60px", alignItems: "center" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             {items.map((item, i) => (
               <div key={i}>
@@ -66,7 +61,7 @@ export default function IBFeaturesSection() {
               alt="Trading"
               width={480}
               height={400}
-              style={{ objectFit: "contain" }}
+              style={{ width: "100%", maxWidth: "480px", height: "auto", objectFit: "contain" }}
             />
           </div>
         </div>

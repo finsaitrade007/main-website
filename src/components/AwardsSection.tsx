@@ -70,7 +70,7 @@ export default async function AwardsSection() {
           {header.awardsDescription}
         </p>
 
-        <div style={{ display: "flex", justifyContent: "center", gap: "62px" }}>
+        <div className="awards-row">
           {awards.map((award, idx) => {
             const img = strapiImageUrl(award.image) ?? LOCAL_AWARD_IMAGES[idx];
             return (
@@ -85,8 +85,8 @@ export default async function AwardsSection() {
               >
                 <div
                   style={{
-                    width: "260px",
-                    height: "260px",
+                    width: "clamp(160px, 18vw, 260px)",
+                    height: "clamp(160px, 18vw, 260px)",
                     borderRadius: "50%",
                     border: "1px solid rgba(5,111,180,0.45)",
                     boxShadow:

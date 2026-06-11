@@ -1,6 +1,7 @@
 import Link from "@/components/SmartLink";
 import Image from "next/image";
 import { getRewardsPage, type StrapiRewardsPage } from "@/lib/strapi";
+import ResponsiveScale from "@/components/ResponsiveScale";
 
 type FallbackData = Pick<
   StrapiRewardsPage,
@@ -62,14 +63,12 @@ export default async function RewardsPromotionsSection() {
       id="promotions"
       className="page-section"
       style={{
-        position: "relative",
-        width: "100%",
-        maxWidth: "1440px",
-        minHeight: "454px",
-        margin: "0 auto",
         background: "#050208",
+        overflow: "hidden",
       }}
     >
+    <ResponsiveScale designWidth={1440}>
+    <div style={{ position: "relative", width: "1440px", minHeight: "454px" }}>
       {/* Cards */}
       {PROMOS.map((promo) => (
         <PromoCard key={promo.title} promo={promo} />
@@ -147,6 +146,8 @@ export default async function RewardsPromotionsSection() {
         <span>{ctaLabel}</span>
         <ArrowRightIcon />
       </Link>
+    </div>
+    </ResponsiveScale>
     </section>
   );
 }

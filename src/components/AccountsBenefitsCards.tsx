@@ -118,8 +118,9 @@ export default function AccountsBenefitsCards() {
           <div
             key={c.title}
             style={{
-              width: "623px",
-              height: "465px",
+              width: "100%",
+              maxWidth: "623px",
+              minHeight: "465px",
               padding: "2px",
               borderRadius: "20px",
               background:
@@ -147,10 +148,7 @@ export default function AccountsBenefitsCards() {
                   side, absorbed with symmetric negative margins. */}
               <div
                 style={{
-                  width: "575px",
                   minHeight: "88.05px",
-                  marginLeft: "-2px",
-                  marginRight: "-2px",
                   marginBottom: "28px",
                   display: "flex",
                   flexDirection: "column",
@@ -198,10 +196,8 @@ export default function AccountsBenefitsCards() {
               <div
                 aria-hidden
                 style={{
-                  width: "575px",
+                  width: "100%",
                   height: "1px",
-                  marginLeft: "-2px",
-                  marginRight: "-2px",
                   marginBottom: "24px",
                   background:
                     "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%)",
@@ -216,11 +212,9 @@ export default function AccountsBenefitsCards() {
                   listStyle: "none",
                   padding: 0,
                   margin: 0,
-                  width: "485px",
-                  height: "192px",
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "space-between",
+                  gap: "16px",
                 }}
               >
                 {c.bullets.map((b) => (

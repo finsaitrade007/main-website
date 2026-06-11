@@ -26,12 +26,12 @@ export default async function AboutCTASection() {
       <div
         style={{
           boxSizing: "border-box",
-          width: "1194px",
-          height: "437px",
-          maxWidth: "100%",
+          width: "100%",
+          maxWidth: "1194px",
+          minHeight: "437px",
           margin: "0 auto",
           position: "relative",
-          padding: "56px 80px",
+          padding: "56px clamp(20px, 5.5%, 80px)",
           borderRadius: "30px",
           border: "1px solid #056FB4",
           background:

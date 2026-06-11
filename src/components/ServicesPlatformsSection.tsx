@@ -151,16 +151,7 @@ function FeatureBullet({ text }: { text: string }) {
 
 function PlatformBlock({ platform }: { platform: Platform }) {
   const text = (
-    <div
-      style={{
-        flexShrink: 0,
-        width: "567px",
-        boxSizing: "border-box",
-        display: "flex",
-        flexDirection: "column",
-        gap: "16px",
-      }}
-    >
+    <div className="platform-block-text">
       <h3
         style={{
           fontFamily: "var(--font-sora, Sora)",
@@ -273,17 +264,7 @@ function PlatformBlock({ platform }: { platform: Platform }) {
   );
 
   const visual = (
-    <div
-      style={{
-        flexShrink: 0,
-        width: "557px",
-        height: "557px",
-        position: "relative",
-        background: "#000000",
-        borderRadius: "20px",
-        overflow: "hidden",
-      }}
-    >
+    <div className="platform-block-visual">
       <Image
         src={platform.image}
         alt={platform.imageAlt}
@@ -297,15 +278,8 @@ function PlatformBlock({ platform }: { platform: Platform }) {
   return (
     <div
       id={platform.id}
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gap: "83px",
-        width: "100%",
-        flexDirection: platform.reverse ? "row-reverse" : "row",
-        scrollMarginTop: "120px",
-      }}
+      className={`platform-block-row${platform.reverse ? " reverse" : ""}`}
+      style={{ scrollMarginTop: "120px" }}
     >
       {text}
       {visual}

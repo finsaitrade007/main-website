@@ -22,8 +22,8 @@ export default async function IBHeroSection() {
     <section style={{
       position: "relative",
       background: "#050208",
-      width: "1440px",
-      height: "707px",
+      width: "100%",
+      minHeight: "clamp(480px, 49vw, 707px)",
       overflow: "hidden",
     }}>
       {/* Hero image — right side */}
@@ -35,9 +35,9 @@ export default async function IBHeroSection() {
         style={{
           position: "absolute",
           top: "53px",
-          left: "310px",
-          width: "1130px",
-          height: "678px",
+          left: "clamp(150px, 21.5vw, 310px)",
+          width: "clamp(600px, 78.5vw, 1130px)",
+          height: "auto",
           objectFit: "contain",
         }}
         priority
@@ -46,9 +46,9 @@ export default async function IBHeroSection() {
       {/* Content */}
       <div style={{
         position: "absolute",
-        top: "200px",
-        left: "80px",
-        width: "660px",
+        top: "clamp(120px, 13.9vw, 200px)",
+        left: "clamp(20px, 5.5vw, 80px)",
+        width: "clamp(280px, 45.8vw, 660px)",
         display: "flex",
         flexDirection: "column",
         gap: "24px",
@@ -57,14 +57,12 @@ export default async function IBHeroSection() {
         <h1 style={{
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 600,
-          fontSize: "56px",
+          fontSize: "clamp(28px, 3.9vw, 56px)",
           lineHeight: "110%",
           letterSpacing: "-0.01em",
           color: "#FFFFFF",
           margin: 0,
           whiteSpace: "pre-line",
-          width: "670px",
-          height: "124px",
         }}>
           {data.heroTitle}
         </h1>

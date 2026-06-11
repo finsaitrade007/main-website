@@ -49,8 +49,9 @@ export default function IBWhyClient({ title, description, ctaLabel, ctaHref, tab
 
         <div style={{
           display: "flex",
+          flexWrap: "wrap",
           justifyContent: "center",
-          gap: "48px",
+          gap: "24px 48px",
           marginBottom: "56px",
           borderBottom: "1px solid rgba(255,255,255,0.1)",
         }}>
@@ -92,12 +93,7 @@ export default function IBWhyClient({ title, description, ctaLabel, ctaHref, tab
           ))}
         </div>
 
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "80px",
-          alignItems: "center",
-        }}>
+        <div className="two-col-grid" style={{ gap: "80px", alignItems: "center" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             <h3 style={{
               fontFamily: "var(--font-sora, Sora)",
@@ -119,8 +115,6 @@ export default function IBWhyClient({ title, description, ctaLabel, ctaHref, tab
               lineHeight: "48px",
               letterSpacing: 0,
               color: "#FFFFFF",
-              width: "692px",
-              height: "48px",
               margin: 0,
             }}>
               {current.title}

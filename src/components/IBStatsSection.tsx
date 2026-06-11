@@ -1,6 +1,7 @@
 import Link from "@/components/SmartLink";
 import Image from "next/image";
 import { getPartnershipsPage } from "@/lib/strapi";
+import ResponsiveScale from "@/components/ResponsiveScale";
 
 const fallbackStats = [
   { value: "20,000 +", label: "Join Companies helped" },
@@ -39,8 +40,10 @@ export default async function IBStatsSection() {
   return (
     <section
       className="page-section"
-      style={{ position: "relative", background: "#050208", width: "100%", maxWidth: "1440px", minHeight: "696px" }}
+      style={{ background: "#050208", overflow: "hidden" }}
     >
+    <ResponsiveScale designWidth={1440}>
+    <div style={{ position: "relative", width: "1440px", minHeight: "696px" }}>
 
           {/* Image stack container */}
           <div style={{
@@ -268,6 +271,8 @@ export default async function IBStatsSection() {
       }}>
         {ctaLabel}
       </Link>
+    </div>
+    </ResponsiveScale>
     </section>
   );
 }

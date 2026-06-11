@@ -29,14 +29,11 @@ export default async function RewardsHeroSection() {
       style={{
         position: "relative",
         background: "#050208",
-        width: "1440px",
-        maxWidth: "100%",
-        height: "777px",
-        margin: "0 auto",
+        width: "100%",
+        minHeight: "clamp(480px, 54vw, 777px)",
         overflow: "hidden",
       }}
     >
-      {/* Subtle radial glow behind the artwork */}
       <div
         style={{
           position: "absolute",
@@ -47,7 +44,6 @@ export default async function RewardsHeroSection() {
         }}
       />
 
-      {/* Hero artwork */}
       <Image
         src="/rewards/hero.png"
         alt="Trading rewards illustration"
@@ -57,9 +53,9 @@ export default async function RewardsHeroSection() {
         style={{
           position: "absolute",
           top: "111px",
-          left: "391px",
-          width: "1029px",
-          height: "599px",
+          left: "clamp(200px, 27.2vw, 391px)",
+          width: "clamp(480px, 71.5vw, 1029px)",
+          height: "auto",
           objectFit: "contain",
           pointerEvents: "none",
           userSelect: "none",
@@ -67,14 +63,12 @@ export default async function RewardsHeroSection() {
         }}
       />
 
-      {/* Left copy block */}
       <div
         style={{
           position: "absolute",
-          top: "171.4px",
-          left: "80px",
-          width: "598px",
-          height: "441.2px",
+          top: "clamp(120px, 11.9vw, 171px)",
+          left: "clamp(20px, 5.5vw, 80px)",
+          width: "clamp(280px, 41.5vw, 598px)",
           display: "flex",
           flexDirection: "column",
           gap: "24px",
@@ -84,8 +78,6 @@ export default async function RewardsHeroSection() {
         <div
           style={{
             boxSizing: "border-box",
-            width: "270.6px",
-            height: "51.2px",
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",
@@ -122,7 +114,7 @@ export default async function RewardsHeroSection() {
             margin: 0,
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 600,
-            fontSize: "56px",
+            fontSize: "clamp(28px, 3.9vw, 56px)",
             lineHeight: "110%",
             letterSpacing: "-0.01em",
             color: "#FFFFFF",
@@ -135,7 +127,6 @@ export default async function RewardsHeroSection() {
         <p
           style={{
             margin: 0,
-            width: "560px",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
             fontSize: "16px",

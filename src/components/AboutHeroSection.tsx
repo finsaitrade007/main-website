@@ -30,10 +30,8 @@ export default async function AboutHeroSection() {
       style={{
         position: "relative",
         background: "#050208",
-        width: "1440px",
-        maxWidth: "100%",
-        height: "777px",
-        margin: "0 auto",
+        width: "100%",
+        minHeight: "clamp(480px, 54vw, 777px)",
         overflow: "hidden",
       }}
     >
@@ -67,10 +65,9 @@ export default async function AboutHeroSection() {
       <div
         style={{
           position: "absolute",
-          top: "182px",
-          left: "80px",
-          width: "598px",
-          height: "413.2px",
+          top: "clamp(100px, 12.6vw, 182px)",
+          left: "clamp(20px, 5.5vw, 80px)",
+          width: "clamp(280px, 41.5vw, 598px)",
           display: "flex",
           flexDirection: "column",
           gap: "24px",
@@ -118,7 +115,7 @@ export default async function AboutHeroSection() {
             margin: 0,
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 600,
-            fontSize: "52px",
+            fontSize: "clamp(26px, 3.6vw, 52px)",
             lineHeight: "110%",
             letterSpacing: "-0.01em",
             color: "#FFFFFF",

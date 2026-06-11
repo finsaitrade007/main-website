@@ -25,8 +25,8 @@ export default async function PaymentsHeroSection() {
       style={{
         position: "relative",
         background: "#050208",
-        width: "1440px",
-        height: "777px",
+        width: "100%",
+        minHeight: "clamp(480px, 54vw, 777px)",
         overflow: "hidden",
       }}
     >
@@ -38,7 +38,9 @@ export default async function PaymentsHeroSection() {
         style={{
           position: "absolute",
           top: "93px",
-          left: "806px",
+          left: "clamp(380px, 56vw, 806px)",
+          width: "clamp(320px, 44vw, 634px)",
+          height: "auto",
           objectFit: "contain",
         }}
         priority
@@ -47,10 +49,9 @@ export default async function PaymentsHeroSection() {
       <div
         style={{
           position: "absolute",
-          top: "168px",
-          left: "80px",
-          width: "702px",
-          height: "441.2px",
+          top: "clamp(120px, 11.7vw, 168px)",
+          left: "clamp(20px, 5.5vw, 80px)",
+          width: "clamp(280px, 48.8vw, 702px)",
           display: "flex",
           flexDirection: "column",
           gap: "24px",
@@ -64,8 +65,6 @@ export default async function PaymentsHeroSection() {
             alignItems: "center",
             justifyContent: "center",
             gap: "8.4px",
-            width: "342.6px",
-            height: "51.2px",
             paddingTop: "9.6px",
             paddingBottom: "9.6px",
             paddingLeft: "16.8px",
@@ -99,7 +98,7 @@ export default async function PaymentsHeroSection() {
           style={{
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 600,
-            fontSize: "56px",
+            fontSize: "clamp(28px, 3.9vw, 56px)",
             lineHeight: "110%",
             letterSpacing: "-0.01em",
             color: "#FFFFFF",
@@ -153,9 +152,9 @@ export default async function PaymentsHeroSection() {
       <div
         style={{
           position: "absolute",
-          top: "650px",
-          left: "782px",
-          width: "658px",
+          bottom: 0,
+          left: "clamp(380px, 54vw, 782px)",
+          width: "clamp(320px, 45.7vw, 658px)",
           height: "127px",
           background:
             "linear-gradient(180deg, rgba(5,2,8,0) 0%, rgba(5,2,8,0.85) 60%, #050208 100%)",

@@ -103,11 +103,11 @@ export default function Footer() {
     <footer style={{ background: "linear-gradient(114.32deg, #050208 1.5%, #056FB4 778.83%)", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
 
       {/* Main footer content */}
-      <div style={{ width: "1311.42px", marginLeft: "81.58px", paddingTop: "43px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "349.42px 1fr 1fr 1.6fr", gap: "48px" }}>
+      <div className="footer-inner" style={{ paddingTop: "43px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "clamp(220px,24%,349px) 1fr 1fr 1.6fr", gap: "clamp(20px,3vw,48px)" }} className="footer-grid">
 
           {/* Col 1: Logo + desc */}
-          <div style={{ width: "349.42px", height: "223.43px" }}>
+          <div>
             {/* Logo */}
             <Link href="/" style={{ display: "inline-block", textDecoration: "none", marginBottom: "20px" }}>
               <Image src="/finsai-logo.png" alt="Finsai Trade" width={140} height={48} style={{ objectFit: "contain" }} />
@@ -163,9 +163,10 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <div style={{
-          width: "1311.42px", marginLeft: "81.58px", padding: "20px 0",
+        <div className="footer-inner" style={{
+          padding: "20px 0",
           display: "flex", alignItems: "center", justifyContent: "space-between",
+          flexWrap: "wrap", gap: "12px",
         }}>
           <p style={{
             fontFamily: "var(--font-inter, Inter)",
@@ -200,7 +201,7 @@ export default function Footer() {
 
       {/* Legal disclaimer */}
       <div>
-        <div style={{ width: "1311.42px", marginLeft: "81.58px", padding: "32px 0" }}>
+        <div className="footer-inner" style={{ padding: "32px 0" }}>
           {[
             "Finsai Trade (Mauritius) Ltd is a company regulated by the Financial Services Commission Mauritius with License no: GB25204899, Registered in Mauritius under company number C228371. Registered address: 3 Emerald Park, Trianon, Quatre Bornes 72257, MAURITIUS",
             "Physical Address Mauritius: 3rd Floor, Manor House, 30 St Georges Street, Port Louis, Mauritius",

@@ -60,29 +60,19 @@ export default async function AboutFinancialGrowthSection() {
   return (
     <section
       className="page-section"
-      style={{
-        position: "relative",
-        background: "#050208",
-        width: "100%",
-        maxWidth: "1440px",
-        minHeight: "919px",
-        margin: "0 auto",
-        overflow: "hidden",
-      }}
+      style={{ background: "#050208", paddingBottom: "96px" }}
     >
-      {/* Left content column */}
-      <div
-        style={{
-          position: "absolute",
-          top: "89px",
-          left: "80px",
-          width: "540px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "24px",
-          zIndex: 2,
-        }}
-      >
+      <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+        {/* Top: two-column grid */}
+        <div className="two-col-grid" style={{ marginBottom: "64px" }}>
+          {/* Left content column */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "24px",
+            }}
+          >
         <span
           style={{
             display: "inline-flex",
@@ -196,84 +186,67 @@ export default async function AboutFinancialGrowthSection() {
         </Link>
       </div>
 
-      {/* Right illustration */}
-      <Image
-        src="/about/trading-journey.png"
-        alt=""
-        width={666}
-        height={666}
-        style={{
-          position: "absolute",
-          top: "89px",
-          left: "653px",
-          width: "666px",
-          height: "666px",
-          objectFit: "contain",
-          pointerEvents: "none",
-          userSelect: "none",
-          zIndex: 1,
-        }}
-      />
-
-      {/* Stats row */}
-      <div
-        style={{
-          position: "absolute",
-          left: "80px",
-          right: "80px",
-          bottom: "80px",
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "24px",
-          zIndex: 2,
-        }}
-      >
-        {stats.map((s) => (
-          <div
-            key={s.id ?? s.label}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "6px",
-              alignItems: "center",
-              textAlign: "center",
-            }}
-          >
-            <span
+          {/* Right illustration */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <Image
+              src="/about/trading-journey.png"
+              alt=""
+              width={560}
+              height={560}
               style={{
-                fontFamily: "var(--font-inter, Inter)",
-                fontWeight: 700,
-                fontStyle: "normal",
-                fontSize: "48px",
-                lineHeight: "100%",
-                letterSpacing: 0,
-                textAlign: "center",
-                backgroundImage:
-                  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                color: "transparent",
+                width: "100%",
+                maxWidth: "560px",
+                height: "auto",
+                objectFit: "contain",
               }}
-            >
-              {s.value}
-            </span>
-            <span
-              style={{
-                fontFamily: "var(--font-inter, Inter)",
-                fontWeight: 400,
-                fontStyle: "normal",
-                fontSize: "20px",
-                lineHeight: "100%",
-                letterSpacing: 0,
-                textAlign: "center",
-                color: "#E0E5F3",
-              }}
-            >
-              {s.label}
-            </span>
+            />
           </div>
-        ))}
+        </div>
+
+        {/* Stats row */}
+        <div className="stats-grid">
+          {stats.map((s) => (
+            <div
+              key={s.id ?? s.label}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "6px",
+                alignItems: "center",
+                textAlign: "center",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "var(--font-inter, Inter)",
+                  fontWeight: 700,
+                  fontSize: "clamp(32px, 3.3vw, 48px)",
+                  lineHeight: "100%",
+                  backgroundImage:
+                    "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  color: "transparent",
+                }}
+              >
+                {s.value}
+              </span>
+              <span
+                style={{
+                  fontFamily: "var(--font-inter, Inter)",
+                  fontWeight: 400,
+                  fontSize: "18px",
+                  lineHeight: "100%",
+                  color: "#E0E5F3",
+                  textAlign: "center",
+                }}
+              >
+                {s.label}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

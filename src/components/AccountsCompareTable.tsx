@@ -85,27 +85,17 @@ export default async function AccountsCompareTable() {
     <section
       className="page-section"
       style={{
-        position: "relative",
-        width: "100%",
-        maxWidth: "1440px",
-        minHeight: `${SECTION_HEIGHT}px`,
-        margin: "0 auto",
         background: "#050208",
-        opacity: 1,
+        paddingBottom: "80px",
       }}
     >
       <div
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: `${HEADING_BAND_H}px`,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center",
           padding: "0 60px",
+          marginBottom: "40px",
         }}
       >
         <h2
@@ -127,16 +117,15 @@ export default async function AccountsCompareTable() {
         </p>
       </div>
 
+      <div className="compare-table-scroll">
       <div
         style={{
-          position: "absolute",
-          top: `${HEADING_BAND_H}px`,
-          left: "60px",
-          width: "1320px",
+          width: `${1320 + BORDER * 2}px`,
           height: `${OUTER_HEIGHT}px`,
           padding: `${BORDER}px`,
           borderRadius: "20px",
           background: "linear-gradient(180deg, #056FB4 0%, #7DB9D6 100%)",
+          margin: "0 auto",
         }}
       >
         <div
@@ -252,6 +241,7 @@ export default async function AccountsCompareTable() {
             </Fragment>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

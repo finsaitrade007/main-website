@@ -84,6 +84,7 @@ function AccountCard({
   return (
     <div
       onClick={!isActive ? onClick : undefined}
+      className={isActive ? "account-card-mobile-active" : "account-card-mobile-collapsed"}
       style={{
         flexShrink: 0,
         width: isActive ? expandedWidth : `${COLLAPSED_PX}px`,
@@ -376,7 +377,7 @@ export default function AccountTypesSection() {
           From beginners to seasoned professionals, Finsai Trade offers account types designed to match every level of experience and trading goal.
         </p>
 
-        <div style={{ display: "flex", gap: `${GAP_PX}px`, height: "476px" }}>
+        <div className="account-types-cards">
           {accounts.map((account) => (
             <AccountCard
               key={account.id}

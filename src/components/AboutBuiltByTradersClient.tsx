@@ -101,15 +101,11 @@ export default function AboutBuiltByTradersClient({
         }}
       >
         <div
+          className="markets-grid"
           style={{
             maxWidth: "1280px",
             margin: "0 auto",
             padding: "80px 80px 96px",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "60px",
-            alignItems: "center",
-            width: "100%",
           }}
         >
           <div
@@ -125,8 +121,9 @@ export default function AboutBuiltByTradersClient({
               width={605}
               height={573}
               style={{
-                width: "605px",
-                height: "573.21px",
+                width: "100%",
+                maxWidth: "605px",
+                height: "auto",
                 objectFit: "contain",
                 pointerEvents: "none",
                 userSelect: "none",

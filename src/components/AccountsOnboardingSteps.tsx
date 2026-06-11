@@ -1,5 +1,6 @@
 import Link from "@/components/SmartLink";
 import { getAccountsPage } from "@/lib/strapi";
+import ResponsiveScale from "@/components/ResponsiveScale";
 
 type IconKey = "signup" | "verify" | "fund" | "trade";
 
@@ -76,15 +77,12 @@ export default async function AccountsOnboardingSteps() {
     <section
       className="page-section"
       style={{
-        position: "relative",
         background: "#000000",
-        width: "100%",
-        maxWidth: "1440px",
-        minHeight: "707px",
-        paddingTop: "0px",
+        overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
+    <ResponsiveScale designWidth={1440}>
+    <div style={{ position: "relative", width: "1440px", minHeight: "707px" }}>
         <h2
           className="section-title"
           style={{
@@ -249,7 +247,8 @@ export default async function AccountsOnboardingSteps() {
         >
           {ctaLabel} <span aria-hidden>→</span>
         </Link>
-      </div>
+    </div>
+    </ResponsiveScale>
     </section>
   );
 }

@@ -52,9 +52,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sora.variable} ${inter.variable} ${dmSans.variable} h-full antialiased bg-[#050208]`}
+      className={`${sora.variable} ${inter.variable} ${dmSans.variable} h-full antialiased bg-[#050208] overflow-x-hidden`}
     >
-      <body className="min-h-full flex flex-col bg-[#050208] w-full max-w-[1440px] mx-auto">
+      <body className="min-h-full flex flex-col bg-[#050208] w-full max-w-[1440px] mx-auto overflow-x-hidden">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -129,8 +129,9 @@ function FlowCardView({ card }: { card: FlowCard }) {
   return (
     <div
       style={{
-        width: "628px",
-        height: "350px",
+        width: "100%",
+        maxWidth: "628px",
+        minHeight: "350px",
         boxSizing: "border-box",
         borderRadius: "30px",
         border: "1px solid #056FB4",
@@ -343,6 +344,7 @@ export default function PaymentsFlowSection() {
         <div
           style={{
             display: "flex",
+            flexWrap: "wrap",
             justifyContent: "center",
             gap: "24px",
             width: "100%",

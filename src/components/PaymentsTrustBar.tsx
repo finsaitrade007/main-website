@@ -25,6 +25,7 @@ export default async function PaymentsTrustBar() {
         paddingBottom: "40px",
       }}
     >
+      <div className="resp-h-scroll">
       <div style={{
         width: "1280px",
         height: "197px",
@@ -115,6 +116,7 @@ export default async function PaymentsTrustBar() {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

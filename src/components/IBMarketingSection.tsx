@@ -15,8 +15,8 @@ function MarketingCard({ label, desc, href, ogImage }: { label: string; desc: st
   return (
     <div style={{
       position: "relative",
-      width: "415px",
-      height: "285px",
+      width: "100%",
+      minHeight: "285px",
       borderRadius: "21.32px",
       border: "1px solid transparent",
       background: `
@@ -31,7 +31,7 @@ function MarketingCard({ label, desc, href, ogImage }: { label: string; desc: st
         position: "absolute",
         top: "12px",
         left: "17px",
-        width: "380px",
+        right: "17px",
         height: "116px",
         borderRadius: "16px",
         overflow: "hidden",
@@ -70,8 +70,7 @@ function MarketingCard({ label, desc, href, ogImage }: { label: string; desc: st
         position: "absolute",
         top: "144px",
         left: "21px",
-        width: "378px",
-        height: "81px",
+        right: "21px",
         fontFamily: "var(--font-inter, Inter)",
         fontWeight: 400,
         fontSize: "18px",
@@ -141,11 +140,7 @@ export default async function IBMarketingSection() {
           </p>
         </div>
 
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "20px",
-        }}>
+        <div className="card-grid-3" style={{ gap: "20px" }}>
           {cards.map((card, i) => (
             <MarketingCard key={i} {...card} ogImage={ogImages[i]} />
           ))}

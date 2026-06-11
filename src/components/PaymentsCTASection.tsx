@@ -26,43 +26,44 @@ export default async function PaymentsCTASection() {
       }}
     >
       <div style={{
-        width: "1194px",
-        height: "437px",
+        boxSizing: "border-box",
+        width: "100%",
+        maxWidth: "1194px",
+        minHeight: "437px",
+        margin: "0 auto",
         borderRadius: "30px",
         border: "1px solid #056FB4",
         background: "linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)",
-        flexShrink: 0,
-        position: "relative",
-        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "20px",
+        padding: "48px clamp(20px, 5.5%, 80px)",
+        textAlign: "center",
       }}>
         <Image
           src="/accounts/wallet.png"
           alt=""
           width={157}
           height={157}
-          style={{ position: "absolute", top: "33px", left: "518px", objectFit: "contain" }}
+          style={{ objectFit: "contain" }}
         />
 
         <h2 style={{
-          position: "absolute",
-          top: "192px",
-          left: "244px",
-          width: "707px",
-          height: "50px",
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 600,
-          fontSize: "36px",
+          fontSize: "clamp(22px, 2.5vw, 36px)",
           lineHeight: "50px",
           textAlign: "center",
           color: "#FFFFFF",
           margin: 0,
-          overflow: "hidden",
+          maxWidth: "707px",
         }}>
           {data.ctaTitle}
         </h2>
 
         <p style={{
-          position: "absolute",
           fontFamily: "var(--font-inter, Inter)",
           fontWeight: 400,
           fontSize: "16px",
@@ -70,18 +71,12 @@ export default async function PaymentsCTASection() {
           textAlign: "center",
           color: "#FFFFFF",
           margin: 0,
-          top: "254px",
-          left: "211px",
-          width: "773px",
-          height: "64px",
+          maxWidth: "773px",
         }}>
           {data.ctaDescription}
         </p>
 
         <Link href={data.ctaPrimaryHref} className="btn-text" style={{
-          position: "absolute",
-          top: "330px",
-          left: "508px",
           width: "178px",
           height: "56px",
           borderRadius: "28.83px",

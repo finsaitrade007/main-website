@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ResponsiveScale from "@/components/ResponsiveScale";
 import {
   getHomepage,
   getSteps,
@@ -89,7 +90,8 @@ export default async function StepsSection() {
           style={{ textAlign: "center", maxWidth: "520px", margin: "0 auto 80px" }}
         />
 
-        {/* Main container: 1225×278px, centered (107px margins in 1440px section) */}
+        {/* Main container: 1225×278px — scales down on viewports < 1225px */}
+        <ResponsiveScale designWidth={1225}>
         <div
           style={{
             position: "relative",
@@ -229,6 +231,7 @@ export default async function StepsSection() {
             );
           })}
         </div>
+        </ResponsiveScale>
       </div>
     </section>
   );

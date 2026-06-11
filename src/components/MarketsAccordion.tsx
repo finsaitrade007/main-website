@@ -106,18 +106,14 @@ export default function MarketsAccordion({
         }}
       >
         <div
+          className="markets-grid"
           style={{
             maxWidth: "1280px",
             margin: "0 auto",
             padding: "80px 80px 96px",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "60px",
-            alignItems: "center",
-            width: "100%",
           }}
         >
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div className="markets-grid-image" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
         <div style={{ position: "relative", width: "520px", height: "520px" }}>
           {markets.map((market, i) => {
             const src = strapiImageUrl(market.image) ?? market.localImage;

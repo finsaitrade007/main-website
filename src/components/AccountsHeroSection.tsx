@@ -29,17 +29,11 @@ export default async function AccountsHeroSection() {
       style={{
         position: "relative",
         background: "#050208",
-        width: "1440px",
-        maxWidth: "100%",
-        height: "777px",
-        margin: "0 auto",
+        width: "100%",
+        minHeight: "clamp(480px, 54vw, 777px)",
         overflow: "hidden",
       }}
     >
-      {/* Hero artwork: anchored per spec.  The right edge of the image
-          (762 + 744 = 1506) extends ~66px past the 1440 frame and gets
-          clipped by the section's overflow: hidden — matching the
-          design's intentional bleed off the right edge. */}
       <Image
         src="/accounts/heroaccounts.png"
         alt=""
@@ -48,24 +42,20 @@ export default async function AccountsHeroSection() {
         style={{
           position: "absolute",
           top: "128px",
-          left: "762px",
-          width: "744px",
-          height: "564px",
-          opacity: 1,
+          left: "clamp(380px, 52.9vw, 762px)",
+          width: "clamp(380px, 51.7vw, 744px)",
+          height: "auto",
           objectFit: "contain",
         }}
         priority
       />
 
-      {/* Headline + sub + CTAs.  Fixed 702-wide block per spec, with
-          24px gaps between children. */}
       <div
         style={{
           position: "absolute",
-          top: "216.4px",
-          left: "80px",
-          width: "702px",
-          height: "351.2px",
+          top: "clamp(120px, 15vw, 216px)",
+          left: "clamp(20px, 5.5vw, 80px)",
+          width: "clamp(280px, 48.8vw, 702px)",
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
@@ -79,8 +69,6 @@ export default async function AccountsHeroSection() {
         <div
           style={{
             boxSizing: "border-box",
-            width: "362.6px",
-            height: "51.2px",
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",
@@ -116,7 +104,7 @@ export default async function AccountsHeroSection() {
           style={{
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 600,
-            fontSize: "56px",
+            fontSize: "clamp(28px, 3.9vw, 56px)",
             lineHeight: "110%",
             letterSpacing: "-0.01em",
             color: "#FFFFFF",

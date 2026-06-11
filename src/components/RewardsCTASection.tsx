@@ -28,13 +28,15 @@ export default async function RewardsCTASection() {
       <div
         style={{
           position: "relative",
-          width: "1194px",
-          height: "437px",
+          boxSizing: "border-box",
+          width: "100%",
+          maxWidth: "1194px",
+          minHeight: "437px",
+          margin: "0 auto",
           borderRadius: "30px",
           border: "1px solid #056FB4",
           background: "#050208",
           overflow: "hidden",
-          boxSizing: "border-box",
         }}
       >
         {/* Background image at 30% opacity */}
@@ -65,7 +67,7 @@ export default async function RewardsCTASection() {
             justifyContent: "center",
             textAlign: "center",
             gap: "20px",
-            padding: "72px 80px",
+            padding: "72px clamp(20px, 5.5%, 80px)",
             boxSizing: "border-box",
           }}
         >
@@ -97,36 +99,31 @@ export default async function RewardsCTASection() {
             {data.ctaDescription}
           </p>
 
-        </div>
+          <Link
+            href={data.ctaPrimaryHref}
+            className="btn-text"
+            style={{
+              width: "219px",
+              height: "56px",
+              paddingTop: "14px",
+              paddingBottom: "14px",
+              paddingLeft: "25px",
+              paddingRight: "25px",
+              borderRadius: "28.83px",
+              background:
+                "linear-gradient(90deg, rgba(5, 111, 180, 0.7) 0%, #056FB4 100%)",
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 500,
+              boxSizing: "border-box",
+            }}
+          >
+            {data.ctaPrimaryLabel}
+          </Link>
 
-        <Link
-          href={data.ctaPrimaryHref}
-          className="btn-text"
-          style={{
-            position: "absolute",
-            top: "290px",
-            left: "488px",
-            width: "219px",
-            height: "56px",
-            paddingTop: "14px",
-            paddingBottom: "14px",
-            paddingLeft: "25px",
-            paddingRight: "25px",
-            gap: "16px",
-            borderRadius: "28.83px",
-            background:
-              "linear-gradient(90deg, rgba(5, 111, 180, 0.7) 0%, #056FB4 100%)",
-            textDecoration: "none",
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontWeight: 500,
-            boxSizing: "border-box",
-            zIndex: 2,
-          }}
-        >
-          {data.ctaPrimaryLabel}
-        </Link>
+        </div>
       </div>
     </section>
   );

@@ -32,12 +32,7 @@ export default async function ServicesSuiteSection() {
       }}
     >
       <div style={{ width: "100%" }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "80px",
-          alignItems: "center",
-        }}>
+        <div className="two-col-grid">
 
           {/* Left — image */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -52,25 +47,19 @@ export default async function ServicesSuiteSection() {
 
           {/* Right — content */}
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-            <h2 style={{
+            <h2 className="suite-title" style={{
               fontFamily: "var(--font-sora, Sora)",
               fontWeight: 700,
-              fontSize: "40px",
+              fontSize: "clamp(28px, 2.8vw, 40px)",
               lineHeight: "120%",
               color: "#FFFFFF",
               margin: 0,
-              width: "644px",
-              height: "100px",
-              position: "relative",
-              top: "-0.93px",
-              left: "0.19px",
-              overflow: "hidden",
               whiteSpace: "pre-line",
             }}>
               {suiteTitle}
             </h2>
 
-            <p style={{
+            <p className="suite-desc" style={{
               fontFamily: "var(--font-inter, Inter)",
               fontWeight: 400,
               fontSize: "16px",
@@ -78,9 +67,6 @@ export default async function ServicesSuiteSection() {
               letterSpacing: 0,
               color: "#FFFFFF",
               margin: 0,
-              width: "644px",
-              height: "100px",
-              overflow: "hidden",
             }}>
               {suiteDescription}
             </p>

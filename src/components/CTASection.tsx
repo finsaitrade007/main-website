@@ -60,8 +60,9 @@ export default async function CTASection() {
     >
       <div
         style={{
-          width: "1194px",
-          height: "437px",
+          width: "100%",
+          maxWidth: "1194px",
+          minHeight: "437px",
           borderRadius: "30px",
           border: "1px solid #056FB4",
           background: "#000000",
@@ -71,7 +72,8 @@ export default async function CTASection() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          flexShrink: 0,
+          padding: "48px 0",
+          boxSizing: "border-box",
         }}
       >
         <div
@@ -91,7 +93,8 @@ export default async function CTASection() {
             position: "relative",
             textAlign: "center",
             width: "100%",
-            padding: "0 80px",
+            padding: "0 clamp(20px, 5%, 80px)",
+            boxSizing: "border-box",
           }}
         >
           <div style={{ marginBottom: "16px" }}>

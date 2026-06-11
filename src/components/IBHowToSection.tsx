@@ -1,6 +1,7 @@
 import Link from "@/components/SmartLink";
 import Image from "next/image";
 import { getPartnershipsPage } from "@/lib/strapi";
+import ResponsiveScale from "@/components/ResponsiveScale";
 
 const STEP_IMAGES = [
   "/platforms/register.png",
@@ -38,13 +39,11 @@ export default async function IBHowToSection() {
       className="page-section"
       style={{
         background: "#050208",
-        position: "relative",
-        width: "100%",
-        maxWidth: "1440px",
-        minHeight: "707px",
+        overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
+    <ResponsiveScale designWidth={1440}>
+    <div style={{ position: "relative", width: "1440px", minHeight: "707px" }}>
         <h2
           className="section-title"
           style={{
@@ -244,7 +243,8 @@ export default async function IBHowToSection() {
         >
           {ctaLabel}
         </Link>
-      </div>
+    </div>
+    </ResponsiveScale>
     </section>
   );
 }

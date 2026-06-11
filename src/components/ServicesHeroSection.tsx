@@ -24,8 +24,8 @@ export default async function ServicesHeroSection() {
     <section style={{
       position: "relative",
       background: "#050208",
-      width: "1440px",
-      height: "777px",
+      width: "100%",
+      minHeight: "777px",
       overflow: "hidden",
     }}>
       <div style={{
@@ -47,8 +47,8 @@ export default async function ServicesHeroSection() {
       <div style={{
         position: "absolute",
         top: "200px",
-        left: "80px",
-        width: "650px",
+        left: "clamp(20px, 5.5vw, 80px)",
+        width: "clamp(300px, 45vw, 650px)",
         display: "flex",
         flexDirection: "column",
         gap: "24px",
@@ -90,14 +90,11 @@ export default async function ServicesHeroSection() {
         <h1 style={{
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 600,
-          fontSize: "56px",
+          fontSize: "clamp(28px, 3.9vw, 56px)",
           lineHeight: "110%",
           letterSpacing: "-0.01em",
           color: "#FFFFFF",
           margin: 0,
-          width: "758px",
-          height: "186px",
-          overflow: "hidden",
         }}>
           Powerful Trading Platforms for Every Trader 
         </h1>

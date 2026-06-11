@@ -263,15 +263,19 @@ export default function Navbar() {
         justifyContent: "center",
         paddingTop: "15.6px",
         paddingBottom: "15.6px",
+        paddingLeft: "16px",
+        paddingRight: "16px",
         background: "#0000001C",
         backdropFilter: "blur(114px)",
         WebkitBackdropFilter: "blur(114px)",
+        boxSizing: "border-box",
       }}
     >
-      <div style={{ width: "1297.05px" }}>
+      <div style={{ width: "100%", maxWidth: "1297.05px" }}>
         <div
           style={{
-            width: "1297.05px",
+            width: "100%",
+            maxWidth: "1297.05px",
             height: "80.65px",
             borderRadius: "41.57px",
             border: "0.83px solid transparent",

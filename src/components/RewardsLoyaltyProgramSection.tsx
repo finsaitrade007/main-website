@@ -60,19 +60,17 @@ export default async function RewardsLoyaltyProgramSection() {
       style={{ background: "#050208", paddingBottom: "80px" }}
     >
       <div
+        className="loyalty-grid"
         style={{
-          width: "1280px",
-          maxWidth: "calc(100% - 80px)",
+          boxSizing: "border-box",
+          width: "100%",
+          maxWidth: "1280px",
           margin: "0 auto",
-          padding: "40px",
+          padding: "clamp(20px, 3vw, 40px)",
           borderRadius: "20px",
           border: "1px solid rgba(125,185,214,0.2)",
           background:
             "linear-gradient(157.26deg, rgba(10,18,32,0.85) 0%, rgba(5,111,180,0.18) 100%)",
-          display: "grid",
-          gridTemplateColumns: "320px 1fr",
-          gap: "40px",
-          alignItems: "flex-start",
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
@@ -126,7 +124,7 @@ export default async function RewardsLoyaltyProgramSection() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(5, 1fr)",
+              gridTemplateColumns: "repeat(auto-fill, minmax(80px, 1fr))",
               gap: "16px",
             }}
           >
@@ -180,7 +178,7 @@ export default async function RewardsLoyaltyProgramSection() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
+              gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))",
               gap: "16px",
             }}
           >

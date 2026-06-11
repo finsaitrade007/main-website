@@ -92,12 +92,11 @@ export default function AboutCompetitiveEdgeSection() {
       style={{ background: "#050208", paddingBottom: "80px" }}
     >
       <div
+        className="resp-grid-2"
         style={{
           width: "100%",
           maxWidth: "1288px",
           margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
           alignItems: "stretch",
           gap: "32px",
         }}
