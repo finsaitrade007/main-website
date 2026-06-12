@@ -28,13 +28,13 @@ const NAV_ITEMS: NavItem[] = [
       { label: "Glossary", href: "/glossary" },
     ],
   },
+  { kind: "link", label: "Partnerships", href: "/partnerships" },
   {
     kind: "dropdown",
     label: "Company",
     items: [
       { label: "About Us", href: "/about" },
       { label: "Career", href: "/careers" },
-      { label: "Partnerships", href: "/partnerships" },
     ],
   },
   {

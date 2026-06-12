@@ -1346,12 +1346,22 @@ body {
   }
 }
 
-/* ── Comparison table horizontal scroll ── */
+/* ── Comparison table: scale to fit, no scroll ── */
 .compare-table-scroll {
   width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
+
+/* table is 1326px wide — zoom it down as viewport narrows */
+@media (max-width: 1380px) { .compare-table-scroll { zoom: 0.96; } }
+@media (max-width: 1280px) { .compare-table-scroll { zoom: 0.88; } }
+@media (max-width: 1100px) { .compare-table-scroll { zoom: 0.76; } }
+@media (max-width: 900px)  { .compare-table-scroll { zoom: 0.62; } }
+@media (max-width: 720px)  { .compare-table-scroll { zoom: 0.50; } }
+@media (max-width: 560px)  { .compare-table-scroll { zoom: 0.39; } }
+@media (max-width: 440px)  { .compare-table-scroll { zoom: 0.30; } }
 
 /* ── Calculator section ── */
 @media (max-width: 1024px) {

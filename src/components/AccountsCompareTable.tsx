@@ -87,6 +87,8 @@ export default async function AccountsCompareTable() {
       style={{
         background: "#050208",
         paddingBottom: "80px",
+        paddingLeft: 0,
+        paddingRight: 0,
       }}
     >
       <div

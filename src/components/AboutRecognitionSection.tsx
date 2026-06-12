@@ -22,6 +22,94 @@ const FALLBACK: Pick<
   recognitionStatSecondaryLabel: "Monthly Worldwide",
 };
 
+/**
+ * Renders an award badge framed by laurel leaves on either side. The badge is
+ * a square image (280×280 source) and the laurels are vertical curves (83×224
+ * source) that overlap the badge by `laurelOverlapRatio` of their width so
+ * they hug it (higher ratio = laurels sit closer to / further over the badge).
+ */
+function AwardWithLaurels({
+  src,
+  alt,
+  badgeSize,
+  laurelWidth,
+  laurelHeight,
+  laurelOverlapRatio = 0.5,
+}: {
+  src: string;
+  alt: string;
+  badgeSize: number;
+  laurelWidth: number;
+  laurelHeight: number;
+  laurelOverlapRatio?: number;
+}) {
+  const overlap = Math.round(laurelWidth * laurelOverlapRatio);
+  const containerWidth = badgeSize + 2 * (laurelWidth - overlap);
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: `${containerWidth}px`,
+        height: `${Math.max(laurelHeight, badgeSize)}px`,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexShrink: 0,
+      }}
+    >
+      <Image
+        src="/about/laurel-left.png"
+        alt=""
+        width={83}
+        height={224}
+        style={{
+          position: "absolute",
+          left: 0,
+          top: "50%",
+          transform: "translateY(-50%)",
+          width: `${laurelWidth}px`,
+          height: `${laurelHeight}px`,
+          objectFit: "contain",
+          pointerEvents: "none",
+          userSelect: "none",
+        }}
+      />
+      <Image
+        src={src}
+        alt={alt}
+        width={280}
+        height={280}
+        style={{
+          position: "relative",
+          zIndex: 1,
+          width: `${badgeSize}px`,
+          height: `${badgeSize}px`,
+          objectFit: "contain",
+          pointerEvents: "none",
+          userSelect: "none",
+        }}
+      />
+      <Image
+        src="/about/laurel-right.png"
+        alt=""
+        width={83}
+        height={224}
+        style={{
+          position: "absolute",
+          right: 0,
+          top: "50%",
+          transform: "translateY(-50%)",
+          width: `${laurelWidth}px`,
+          height: `${laurelHeight}px`,
+          objectFit: "contain",
+          pointerEvents: "none",
+          userSelect: "none",
+        }}
+      />
+    </div>
+  );
+}
+
 export default async function AboutRecognitionSection() {
   const data = (await getAboutPage()) ?? FALLBACK;
 
@@ -99,39 +187,129 @@ export default async function AboutRecognitionSection() {
         </p>
       </div>
 
-      <Image
-        src="/about/award-seal.png"
-        alt="World Forex Award"
-        width={347}
-        height={225}
-        style={{
-          position: "absolute",
-          top: "361px",
-          left: "80px",
-          width: "347px",
-          height: "225px",
-          objectFit: "contain",
-          pointerEvents: "none",
-          userSelect: "none",
-        }}
-      />
+      {/*
+        Two laurel-wrapped award slots, one on each side of the central
+        stats card. Each slot vertically scrolls through its awards in a
+        single direction (upwards) on an infinite loop — the strip ends
+        with a duplicate of the first award so the wrap-around is seamless.
+      */}
+      <style>{`
+        @keyframes about-award-swap-v {
+          0%, 45%   { transform: translateY(0); }
+          50%, 95%  { transform: translateY(-260px); }
+          100%      { transform: translateY(-520px); }
+        }
+        @keyframes about-stat-swap-v {
+          0%, 27%   { transform: translateY(0); }
+          33%, 60%  { transform: translateY(-283px); }
+          67%, 94%  { transform: translateY(-566px); }
+          100%      { transform: translateY(-849px); }
+        }
+        .about-award-strip {
+          animation: about-award-swap-v 8s ease-in-out infinite;
+        }
+        .about-stat-strip {
+          animation: about-stat-swap-v 8s ease-in-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .about-award-strip,
+          .about-stat-strip { animation: none; }
+        }
+      `}</style>
 
-      <Image
-        src="/about/award-seal-2.png"
-        alt="Iconic Finance Expo"
-        width={385}
-        height={225}
+      {/* Left slot: World Forex Award ↔ Innovative Startup */}
+      <div
+        aria-label="Recognized awards (left)"
         style={{
           position: "absolute",
-          top: "361px",
-          left: "975px",
-          width: "385px",
-          height: "224.88px",
-          objectFit: "contain",
-          pointerEvents: "none",
-          userSelect: "none",
+          top: "322px",
+          left: "90px",
+          width: "354px",
+          height: "260px",
+          overflow: "hidden",
         }}
-      />
+      >
+        <div
+          className="about-award-strip"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+            height: "780px",
+            willChange: "transform",
+          }}
+        >
+          <AwardWithLaurels
+            src="/awards/world-forex-award.png"
+            alt="World Forex Award"
+            badgeSize={260}
+            laurelWidth={95}
+            laurelHeight={252}
+          />
+          <AwardWithLaurels
+            src="/awards/innovative-startup.png"
+            alt="Innovative Startup Award"
+            badgeSize={260}
+            laurelWidth={95}
+            laurelHeight={252}
+          />
+          {/* Seamless-loop tail: duplicate of the first item */}
+          <AwardWithLaurels
+            src="/awards/world-forex-award.png"
+            alt=""
+            badgeSize={260}
+            laurelWidth={95}
+            laurelHeight={252}
+          />
+        </div>
+      </div>
+
+      {/* Right slot: World Finance Award 2024 ↔ 2025 */}
+      <div
+        aria-label="Recognized awards (right)"
+        style={{
+          position: "absolute",
+          top: "322px",
+          left: "980px",
+          width: "354px",
+          height: "260px",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          className="about-award-strip"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+            height: "780px",
+            willChange: "transform",
+          }}
+        >
+          <AwardWithLaurels
+            src="/awards/wld-fi-2024.png"
+            alt="World Finance Award 2024"
+            badgeSize={260}
+            laurelWidth={95}
+            laurelHeight={252}
+          />
+          <AwardWithLaurels
+            src="/awards/wld-fi-2025.png"
+            alt="World Finance Award 2025"
+            badgeSize={260}
+            laurelWidth={95}
+            laurelHeight={252}
+          />
+          {/* Seamless-loop tail: duplicate of the first item */}
+          <AwardWithLaurels
+            src="/awards/wld-fi-2024.png"
+            alt=""
+            badgeSize={260}
+            laurelWidth={95}
+            laurelHeight={252}
+          />
+        </div>
+      </div>
 
       <div
         style={{
@@ -147,6 +325,11 @@ export default async function AboutRecognitionSection() {
           boxSizing: "border-box",
         }}
       >
+        {/*
+          Primary stat slider — each frame stacks a big "current" stat on top
+          and a smaller "next" stat below as a preview. The strip cycles
+          through 3 frames + a duplicated tail so the wrap is seamless.
+        */}
         <div
           style={{
             position: "absolute",
@@ -154,92 +337,146 @@ export default async function AboutRecognitionSection() {
             left: "71.69px",
             width: "315px",
             height: "283px",
+            overflow: "hidden",
           }}
         >
           <div
+            className="about-stat-strip"
             style={{
-              position: "absolute",
-              top: "5px",
-              left: "12px",
-              width: "300px",
-              height: "60px",
-              fontFamily: "var(--font-inter, Inter)",
-              fontWeight: 700,
-              fontSize: "88px",
-              lineHeight: "60px",
-              letterSpacing: 0,
-              textTransform: "capitalize",
-              color: "#FFFFFF",
-              textAlign: "center",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {data.recognitionStatPrimaryValue}
-          </div>
-
-          <div
-            style={{
-              position: "absolute",
-              top: "85px",
-              left: 0,
+              display: "flex",
+              flexDirection: "column",
               width: "100%",
-              height: "60px",
-              fontFamily: "'Ageo Trial', var(--font-sora, Sora), sans-serif",
-              fontWeight: 700,
-              fontSize: "30px",
-              lineHeight: "60px",
-              letterSpacing: 0,
-              textTransform: "capitalize",
-              color: "#FFFFFF",
-              textAlign: "center",
-              whiteSpace: "nowrap",
+              height: "1132px",
+              willChange: "transform",
             }}
           >
-            {data.recognitionStatPrimaryLabel}
-          </div>
+            {[
+              {
+                big: {
+                  value: data.recognitionStatPrimaryValue,
+                  label: data.recognitionStatPrimaryLabel,
+                },
+                small: { value: "3M+", label: "Monthly Worldwide" },
+              },
+              {
+                big: { value: "3M+", label: "Monthly Worldwide" },
+                small: { value: "50000+", label: "Registered Users" },
+              },
+              {
+                big: { value: "50000+", label: "Registered Users" },
+                small: {
+                  value: data.recognitionStatPrimaryValue,
+                  label: data.recognitionStatPrimaryLabel,
+                },
+              },
+              // Seamless-loop tail: duplicate of the first frame
+              {
+                big: {
+                  value: data.recognitionStatPrimaryValue,
+                  label: data.recognitionStatPrimaryLabel,
+                },
+                small: { value: "3M+", label: "Monthly Worldwide" },
+              },
+            ].map((frame, i) => (
+              <div
+                key={i}
+                style={{
+                  position: "relative",
+                  width: "315px",
+                  height: "283px",
+                  flexShrink: 0,
+                }}
+              >
+                {/* Big primary stat (current focus) */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "5px",
+                    left: "12px",
+                    width: "300px",
+                    height: "60px",
+                    fontFamily: "var(--font-inter, Inter)",
+                    fontWeight: 700,
+                    fontSize: "78px",
+                    lineHeight: "60px",
+                    letterSpacing: 0,
+                    textTransform: "capitalize",
+                    color: "#FFFFFF",
+                    textAlign: "center",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {frame.big.value}
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "85px",
+                    left: 0,
+                    width: "100%",
+                    height: "60px",
+                    fontFamily: "'Ageo Trial', var(--font-sora, Sora), sans-serif",
+                    fontWeight: 700,
+                    fontSize: "30px",
+                    lineHeight: "60px",
+                    letterSpacing: 0,
+                    textTransform: "capitalize",
+                    color: "#FFFFFF",
+                    textAlign: "center",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {frame.big.label}
+                </div>
 
-          <div
-            style={{
-              position: "absolute",
-              top: "192px",
-              left: "111px",
-              width: "92px",
-              height: "60px",
-              fontFamily: "var(--font-inter, Inter)",
-              fontWeight: 900,
-              fontSize: "40px",
-              lineHeight: "60px",
-              letterSpacing: 0,
-              textTransform: "capitalize",
-              color: "#FFFFFF80",
-              textAlign: "center",
-            }}
-          >
-            {data.recognitionStatSecondaryValue}
-          </div>
-
-          <div
-            style={{
-              position: "absolute",
-              top: "246px",
-              left: "52px",
-              width: "250px",
-              height: "30px",
-              fontFamily: "'Ageo Trial', var(--font-sora, Sora), sans-serif",
-              fontWeight: 700,
-              fontSize: "20px",
-              lineHeight: "30px",
-              letterSpacing: 0,
-              textTransform: "capitalize",
-              backgroundImage:
-                "linear-gradient(359.01deg, rgba(255, 255, 255, 0.25) 0.85%, rgba(255, 255, 255, 0.5) 99.15%)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              color: "transparent",
-            }}
-          >
-            {data.recognitionStatSecondaryLabel}
+                {/* Smaller preview of the next stat */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "192px",
+                    left: 0,
+                    width: "100%",
+                    height: "60px",
+                    fontFamily: "var(--font-inter, Inter)",
+                    fontWeight: 900,
+                    fontSize: "40px",
+                    lineHeight: "60px",
+                    letterSpacing: 0,
+                    textTransform: "capitalize",
+                    color: "#FFFFFF80",
+                    textAlign: "center",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {frame.small.value}
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "246px",
+                    left: 0,
+                    width: "100%",
+                    height: "30px",
+                    fontFamily: "'Ageo Trial', var(--font-sora, Sora), sans-serif",
+                    fontWeight: 700,
+                    fontSize: "20px",
+                    lineHeight: "30px",
+                    letterSpacing: 0,
+                    textTransform: "capitalize",
+                    backgroundImage:
+                      "linear-gradient(359.01deg, rgba(255, 255, 255, 0.25) 0.85%, rgba(255, 255, 255, 0.5) 99.15%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    color: "transparent",
+                    textAlign: "center",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {frame.small.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -288,95 +525,234 @@ export default async function AboutRecognitionSection() {
           marginBottom: "28px",
         }}
       >
-        <div style={{ textAlign: "center" }}>
-          <div
-            style={{
-              fontFamily: "var(--font-inter, Inter)",
-              fontWeight: 700,
-              fontSize: "clamp(52px, 18vw, 72px)",
-              lineHeight: "1",
-              color: "#FFFFFF",
-            }}
-          >
-            {data.recognitionStatPrimaryValue}
-          </div>
-          <div
-            style={{
-              fontFamily: "var(--font-sora, Sora)",
-              fontWeight: 700,
-              fontSize: "18px",
-              lineHeight: "1.4",
-              color: "#FFFFFF",
-              marginTop: "8px",
-            }}
-          >
-            {data.recognitionStatPrimaryLabel}
-          </div>
-        </div>
-
+        {/* Primary stat slider — big current stat on top, smaller preview of
+            the next stat below, cycling through 3 frames. */}
+        <style>{`
+          @keyframes about-stat-swap-mobile-v {
+            0%, 27%   { transform: translateY(0); }
+            33%, 60%  { transform: translateY(-220px); }
+            67%, 94%  { transform: translateY(-440px); }
+            100%      { transform: translateY(-660px); }
+          }
+          .about-stat-strip-mobile {
+            animation: about-stat-swap-mobile-v 8s ease-in-out infinite;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .about-stat-strip-mobile { animation: none; }
+          }
+        `}</style>
         <div
           style={{
             width: "100%",
-            height: "1px",
-            background:
-              "linear-gradient(90deg, transparent 0%, #056FB4 50%, transparent 100%)",
+            height: "220px",
+            overflow: "hidden",
+            textAlign: "center",
           }}
-        />
+        >
+          <div
+            className="about-stat-strip-mobile"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "100%",
+              height: "880px",
+              willChange: "transform",
+            }}
+          >
+            {[
+              {
+                big: {
+                  value: data.recognitionStatPrimaryValue,
+                  label: data.recognitionStatPrimaryLabel,
+                },
+                small: { value: "3M+", label: "Monthly Worldwide" },
+              },
+              {
+                big: { value: "3M+", label: "Monthly Worldwide" },
+                small: { value: "50000+", label: "Registered Users" },
+              },
+              {
+                big: { value: "50000+", label: "Registered Users" },
+                small: {
+                  value: data.recognitionStatPrimaryValue,
+                  label: data.recognitionStatPrimaryLabel,
+                },
+              },
+              // Seamless-loop tail: duplicate of the first frame
+              {
+                big: {
+                  value: data.recognitionStatPrimaryValue,
+                  label: data.recognitionStatPrimaryLabel,
+                },
+                small: { value: "3M+", label: "Monthly Worldwide" },
+              },
+            ].map((frame, i) => (
+              <div
+                key={i}
+                style={{
+                  width: "100%",
+                  height: "220px",
+                  flexShrink: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {/* Big current stat */}
+                <div
+                  style={{
+                    fontFamily: "var(--font-inter, Inter)",
+                    fontWeight: 700,
+                    fontSize: "clamp(52px, 18vw, 72px)",
+                    lineHeight: "1",
+                    color: "#FFFFFF",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {frame.big.value}
+                </div>
+                <div
+                  style={{
+                    fontFamily: "var(--font-sora, Sora)",
+                    fontWeight: 700,
+                    fontSize: "18px",
+                    lineHeight: "1.4",
+                    color: "#FFFFFF",
+                    marginTop: "8px",
+                  }}
+                >
+                  {frame.big.label}
+                </div>
 
-        <div style={{ textAlign: "center" }}>
-          <div
-            style={{
-              fontFamily: "var(--font-inter, Inter)",
-              fontWeight: 900,
-              fontSize: "clamp(36px, 12vw, 52px)",
-              lineHeight: "1",
-              color: "rgba(255,255,255,0.5)",
-            }}
-          >
-            {data.recognitionStatSecondaryValue}
-          </div>
-          <div
-            style={{
-              fontFamily: "var(--font-sora, Sora)",
-              fontWeight: 700,
-              fontSize: "16px",
-              lineHeight: "1.4",
-              backgroundImage:
-                "linear-gradient(359.01deg, rgba(255,255,255,0.25) 0.85%, rgba(255,255,255,0.5) 99.15%)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              marginTop: "8px",
-            }}
-          >
-            {data.recognitionStatSecondaryLabel}
+                {/* Divider */}
+                <div
+                  style={{
+                    width: "100%",
+                    height: "1px",
+                    margin: "16px 0",
+                    background:
+                      "linear-gradient(90deg, transparent 0%, #056FB4 50%, transparent 100%)",
+                  }}
+                />
+
+                {/* Smaller preview of the next stat */}
+                <div
+                  style={{
+                    fontFamily: "var(--font-inter, Inter)",
+                    fontWeight: 900,
+                    fontSize: "clamp(36px, 12vw, 52px)",
+                    lineHeight: "1",
+                    color: "rgba(255,255,255,0.5)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {frame.small.value}
+                </div>
+                <div
+                  style={{
+                    fontFamily: "var(--font-sora, Sora)",
+                    fontWeight: 700,
+                    fontSize: "16px",
+                    lineHeight: "1.4",
+                    marginTop: "8px",
+                    backgroundImage:
+                      "linear-gradient(359.01deg, rgba(255,255,255,0.25) 0.85%, rgba(255,255,255,0.5) 99.15%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    color: "transparent",
+                  }}
+                >
+                  {frame.small.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
+
       </div>
 
-      {/* Award images stacked */}
+      {/* Two laurel-wrapped award slots stacked vertically; each scrolls
+          upwards on an infinite loop with a duplicated tail for seamless
+          wrap-around. Same timing as desktop. */}
+      <style>{`
+        @keyframes about-award-swap-mobile-v {
+          0%, 45%   { transform: translateY(0); }
+          50%, 95%  { transform: translateY(-260px); }
+          100%      { transform: translateY(-520px); }
+        }
+        .about-award-strip-mobile {
+          animation: about-award-swap-mobile-v 8s ease-in-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .about-award-strip-mobile { animation: none; }
+        }
+      `}</style>
+
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "16px",
+          gap: "20px",
         }}
       >
-        <Image
-          src="/about/award-seal.png"
-          alt="World Forex Award"
-          width={240}
-          height={156}
-          style={{ width: "100%", maxWidth: "240px", height: "auto", objectFit: "contain" }}
-        />
-        <Image
-          src="/about/award-seal-2.png"
-          alt="Iconic Finance Expo"
-          width={240}
-          height={156}
-          style={{ width: "100%", maxWidth: "240px", height: "auto", objectFit: "contain" }}
-        />
+        {[
+          {
+            id: "left",
+            primary: { src: "/awards/world-forex-award.png", alt: "World Forex Award" },
+            secondary: { src: "/awards/innovative-startup.png", alt: "Innovative Startup Award" },
+          },
+          {
+            id: "right",
+            primary: { src: "/awards/wld-fi-2024.png", alt: "World Finance Award 2024" },
+            secondary: { src: "/awards/wld-fi-2025.png", alt: "World Finance Award 2025" },
+          },
+        ].map(({ id, primary, secondary }) => (
+          <div
+            key={id}
+            style={{
+              width: "342px",
+              height: "260px",
+              overflow: "hidden",
+            }}
+          >
+            <div
+              className="about-award-strip-mobile"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                height: "780px",
+                willChange: "transform",
+              }}
+            >
+              <AwardWithLaurels
+                src={primary.src}
+                alt={primary.alt}
+                badgeSize={260}
+                laurelWidth={82}
+                laurelHeight={221}
+              />
+              <AwardWithLaurels
+                src={secondary.src}
+                alt={secondary.alt}
+                badgeSize={260}
+                laurelWidth={82}
+                laurelHeight={221}
+              />
+              {/* Seamless-loop tail: duplicate of the first item */}
+              <AwardWithLaurels
+                src={primary.src}
+                alt=""
+                badgeSize={260}
+                laurelWidth={82}
+                laurelHeight={221}
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </div>
     </section>
