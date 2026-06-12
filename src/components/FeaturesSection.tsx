@@ -88,8 +88,8 @@ export default async function FeaturesSection() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div>
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="min-w-0">
             <h2 className="section-title" style={{ marginBottom: "14px" }}>
               {header.featuresTitle}
             </h2>
@@ -106,7 +106,7 @@ export default async function FeaturesSection() {
               {header.featuresDescription}
             </p>
 
-            <div className="grid grid-cols-2 gap-x-8 gap-y-8">
+            <div className="grid grid-cols-2 max-[425px]:grid-cols-1 gap-x-8 max-[425px]:gap-5 gap-y-8">
               {features.map((f) => (
                 <div key={f.id} className="flex items-center gap-4">
                   <div
@@ -131,7 +131,7 @@ export default async function FeaturesSection() {
             </div>
           </div>
 
-          <div className="flex items-center justify-center relative">
+          <div className="hidden lg:flex items-center justify-center relative">
             <FeaturesCryptoStack />
           </div>
         </div>

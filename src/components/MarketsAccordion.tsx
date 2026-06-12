@@ -3,7 +3,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { strapiImageUrl, type StrapiMarket } from "@/lib/strapi";
 
-const MOBILE_STEP_Y = 20;
 
 type Props = {
   markets: StrapiMarket[];
@@ -101,17 +100,17 @@ export default function MarketsAccordion({
       ref={outerRef}
       style={{
         position: "relative",
-        height: `calc(${total * VH_PER_MARKET}vh + 100vh)`,
+        height: isMobile ? "auto" : `calc(${total * VH_PER_MARKET}vh + 100vh)`,
       }}
     >
       <div
         style={{
-          position: "sticky",
+          position: isMobile ? "relative" : "sticky",
           top: 0,
-          height: "100vh",
+          height: isMobile ? "auto" : "100vh",
           display: "flex",
           alignItems: "center",
-          overflow: "hidden",
+          overflow: isMobile ? "visible" : "hidden",
         }}
       >
         <div
@@ -120,8 +119,6 @@ export default function MarketsAccordion({
             maxWidth: "1280px",
             margin: "0 auto",
             padding: "80px 80px 96px",
-            transform: isMobile ? `translateY(${activeIndex * MOBILE_STEP_Y}px)` : undefined,
-            transition: isMobile ? "transform 0.5s ease" : undefined,
           }}
         >
       <div className="markets-grid-image" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>

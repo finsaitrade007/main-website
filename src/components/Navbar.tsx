@@ -277,15 +277,15 @@ export default function Navbar() {
           style={{
             width: "100%",
             maxWidth: "1297.05px",
-            height: "80.65px",
-            borderRadius: "41.57px",
+            height: "clamp(58px, 5.6vw, 80.65px)",
+            borderRadius: "clamp(29px, 2.89vw, 41.57px)",
             border: "0.83px solid transparent",
             background:
               "linear-gradient(90deg, #031823 0%, #01111A 100%) padding-box, linear-gradient(181.89deg, #747474 1.6%, #000000 98.4%) border-box",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            padding: "0 28px",
+            padding: "0 clamp(14px, 1.94vw, 28px)",
           }}
         >
           {/* Logo */}
@@ -294,7 +294,7 @@ export default function Navbar() {
             <img
               src="/finsai-logo.png"
               alt="Finsai Trade"
-              style={{ height: "36px", width: "auto", display: "block" }}
+              style={{ height: "clamp(28px, 2.5vw, 36px)", width: "auto", display: "block" }}
             />
           </Link>
 

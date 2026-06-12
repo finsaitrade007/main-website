@@ -206,7 +206,7 @@ export default async function WhyTradeFinsai() {
     "Choose an account designed for your trading style with competitive pricing, fast execution, and flexible trading conditions.";
   return (
     <section
-      className="page-section"
+      className="page-section why-finsai-section"
       style={{
         position: "relative",
         width: "100%",
@@ -217,9 +217,54 @@ export default async function WhyTradeFinsai() {
         opacity: 1,
       }}
     >
+      {/*
+        Mobile (< 1024px): collapse the absolute-positioned reasons box into a
+        natural-flow vertical stack. All 6 cells become a single column,
+        dividers are hidden and the vertical column dividers are swapped for
+        horizontal cell separators.
+      */}
+      <style>{`
+        @media (max-width: 1023px) {
+          .why-finsai-section { min-height: 0 !important; }
+          .why-finsai-heading {
+            position: static !important;
+            height: auto !important;
+            padding: 0 20px !important;
+          }
+          .why-finsai-box {
+            position: static !important;
+            width: calc(100% - 32px) !important;
+            height: auto !important;
+            margin: 28px auto 32px !important;
+          }
+          .why-finsai-inner {
+            height: auto !important;
+          }
+          .why-finsai-row-top,
+          .why-finsai-row-bottom {
+            grid-template-columns: 1fr !important;
+            height: auto !important;
+          }
+          .why-finsai-row-top > div,
+          .why-finsai-row-bottom > div {
+            height: auto !important;
+            padding: 28px 16px !important;
+            border-bottom: 1px solid rgba(56, 122, 255, 0.18);
+          }
+          .why-finsai-row-bottom > div:last-child {
+            border-bottom: none;
+          }
+          .why-finsai-vdiv,
+          .why-finsai-hdiv {
+            display: none !important;
+          }
+        }
+      `}</style>
+
       {/* Heading band: occupies the 0–229px region above the box,
           vertically centered so the box can land at exactly top: 229px. */}
       <div
+        className="why-finsai-heading"
         style={{
           position: "absolute",
           top: 0,
@@ -255,6 +300,7 @@ export default async function WhyTradeFinsai() {
       {/* Reasons box: 1270 × 374, 1px gradient stroke, dark fill with
           a subtle blue glow bleeding in from the bottom-right corner. */}
       <div
+        className="why-finsai-box"
         style={{
           position: "absolute",
           top: "229px",
@@ -268,6 +314,7 @@ export default async function WhyTradeFinsai() {
         }}
       >
         <div
+          className="why-finsai-inner"
           style={{
             position: "relative",
             width: "100%",
@@ -285,6 +332,7 @@ export default async function WhyTradeFinsai() {
               box outer ⇒ inner-y 186, inner-x 1 (1px gradient border). */}
           <div
             aria-hidden
+            className="why-finsai-hdiv"
             style={{
               position: "absolute",
               top: "186px",
@@ -309,6 +357,7 @@ export default async function WhyTradeFinsai() {
             <div
               key={`vdiv-${d.top}-${d.left}`}
               aria-hidden
+              className="why-finsai-vdiv"
               style={{
                 position: "absolute",
                 top: `${d.top}px`,
@@ -327,6 +376,7 @@ export default async function WhyTradeFinsai() {
               divider positions: 317 / 384 / 321 / 246 (last absorbs the
               2px the inner content area loses to the gradient border). */}
           <div
+            className="why-finsai-row-top"
             style={{
               display: "grid",
               gridTemplateColumns: "317px 384px 321px 1fr",
@@ -340,6 +390,7 @@ export default async function WhyTradeFinsai() {
 
           {/* Bottom row — 2 cells split evenly at the spec divider x=634. */}
           <div
+            className="why-finsai-row-bottom"
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",

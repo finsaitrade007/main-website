@@ -166,7 +166,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .forex-scroller {
   width: 100%;
-  height: 49.47px;
+  height: clamp(36px, 3.43vw, 49.47px);
   overflow: hidden;
   background: #050208;
   border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -190,16 +190,16 @@ h1, h2, h3, h4, h5, h6 {
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  gap: 8px;
-  width: 198.55px;
-  height: 49.47px;
-  border-radius: 24.4px;
+  gap: clamp(5px, 0.55vw, 8px);
+  width: clamp(140px, 13.8vw, 198.55px);
+  height: clamp(36px, 3.43vw, 49.47px);
+  border-radius: clamp(18px, 1.69vw, 24.4px);
   border: 1.36px solid transparent;
   background:
     linear-gradient(#050208, #050208) padding-box,
     linear-gradient(94.37deg, #056FB4 0.18%, rgba(5,111,180,0.6) 99.82%) border-box;
-  padding: 0 14px 0 10px;
-  margin-right: 13.56px;
+  padding: 0 clamp(8px, 0.97vw, 14px) 0 clamp(6px, 0.69vw, 10px);
+  margin-right: clamp(8px, 0.94vw, 13.56px);
   flex-shrink: 0;
 }
 
@@ -221,7 +221,7 @@ h1, h2, h3, h4, h5, h6 {
 .forex-pill__pair {
   font-family: var(--font-inter), 'Inter', sans-serif;
   font-weight: 600;
-  font-size: 13.55px;
+  font-size: clamp(9px, 0.94vw, 13.55px);
   line-height: 100%;
   letter-spacing: 0;
   color: #ECF1F0;
@@ -232,7 +232,7 @@ h1, h2, h3, h4, h5, h6 {
 .forex-pill__price {
   font-family: var(--font-inter), 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 10.84px;
+  font-size: clamp(7.5px, 0.75vw, 10.84px);
   line-height: 100%;
   letter-spacing: 0;
   color: #ECF1F0;
@@ -1054,6 +1054,20 @@ body {
   }
 }
 
+@media (max-width: 375px) {
+  .markets-grid {
+    gap: 20px;
+    padding: 32px 16px 40px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .markets-grid {
+    gap: 14px;
+    padding: 24px 14px 30px !important;
+  }
+}
+
 /* ── Awards row ── */
 .awards-row {
   display: flex;
@@ -1224,6 +1238,9 @@ body {
   .contact-section-grid {
     padding-left: 12px !important;
     padding-right: 28px !important;
+  }
+  .hero__ctas {
+    margin-top: -14px;
   }
 }
 
