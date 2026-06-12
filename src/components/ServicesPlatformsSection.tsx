@@ -58,7 +58,7 @@ const platforms: Platform[] = [
     imageAlt: "Social trading network",
     cta: {
       label: "Learn More About Social Trading",
-      href: "https://finsaitrade.com/services/social-trading/",
+      href: "/social-trading",
     },
     reverse: true,
   },

@@ -190,6 +190,31 @@ export function BlogsSearchDesktop({ allCards }: { allCards: BlogCard[] }) {
           No articles found for &ldquo;{query}&rdquo;
         </div>
       )}
+
+      {/* Start Trading Today button */}
+      <Link
+        href="https://fx.finsaitrade.com/auth/register"
+        style={{
+          position: "absolute",
+          top: "1016px",
+          left: "582px",
+          width: "276px",
+          height: "57px",
+          borderRadius: "28.83px",
+          background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: "var(--font-sora, Sora)",
+          fontWeight: 600,
+          fontSize: "16px",
+          color: "#FFFFFF",
+          textDecoration: "none",
+          whiteSpace: "nowrap",
+        }}
+      >
+        Start Trading Today →
+      </Link>
     </>
   );
 }
@@ -236,6 +261,31 @@ export function BlogsSearchMobile({ allCards }: { allCards: BlogCard[] }) {
           No articles found for &ldquo;{query}&rdquo;
         </p>
       )}
+
+      {/* Start Trading Today button */}
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "32px" }}>
+        <Link
+          href="https://fx.finsaitrade.com/auth/register"
+          style={{
+            width: "100%",
+            maxWidth: "276px",
+            height: "57px",
+            borderRadius: "28.83px",
+            background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontFamily: "var(--font-sora, Sora)",
+            fontWeight: 600,
+            fontSize: "15px",
+            color: "#FFFFFF",
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+          }}
+        >
+          Start Trading Today →
+        </Link>
+      </div>
     </>
   );
 }

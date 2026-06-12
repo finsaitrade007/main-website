@@ -10,7 +10,7 @@ import {
 function platformHref(title: string): string {
   const t = title.toLowerCase();
   if (/mt\s?5/.test(t)) return "/services#mt5";
-  if (t.includes("social")) return "https://finsaitrade.com/services/social-trading/";
+  if (t.includes("social")) return "/social-trading";
   return "/services#app";
 }
 

@@ -30,7 +30,7 @@ export default async function BlogsNewsSection() {
     {/* Desktop / tablet layout (≥ 426px) */}
     <div className="steps-horizontal">
       <ResponsiveScale designWidth={1440}>
-      <div style={{ position: "relative", width: "1440px", minHeight: "1030px" }}>
+      <div style={{ position: "relative", width: "1440px", minHeight: "1100px" }}>
 
         {/* Badge */}
         <div style={{ position: "absolute", top: "52px", left: 0, right: 0, display: "flex", justifyContent: "center" }}>
