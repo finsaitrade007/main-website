@@ -14,18 +14,13 @@ const fallbackNewsCards = BLOG_POSTS.map((post) => ({
   href: `/blogs/${post.slug}`,
 }));
 
-const fallbackLatestNews = [
-  "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.",
-  "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.",
-  "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.",
-  "Join live sessions with market experts covering strategies, platform tips, and real-time market analysis.",
-];
-
 const cardPositions = [
   { top: "376px", left: "75px" },
   { top: "376px", left: "507px" },
+  { top: "376px", left: "939px" },
   { top: "685px", left: "75px" },
   { top: "685px", left: "507px" },
+  { top: "685px", left: "939px" },
 ];
 
 function ArticleCard({ desc, href, image, top, left }: { desc: string; href: string; image: string; top: string; left: string }) {
@@ -177,19 +172,7 @@ export default async function BlogsNewsSection() {
   const title       = data?.newsTitle       ?? "Stay Ahead of Every Market Move";
   const description = data?.newsDescription ?? "Track market-moving events, technical setups, and macro trends shaping forex, crypto, commodities, and indices.";
 
-  const strapiCards = data?.newsArticles?.length
-    ? data.newsArticles.map((a) => ({
-        category: a.title,
-        desc: a.description ?? "",
-        href: a.href ?? "#",
-        image: "/blogs/hero.png",
-      }))
-    : [];
-
-  const cards = [
-    ...strapiCards,
-    ...fallbackNewsCards,
-  ].slice(0, 4);
+  const cards = fallbackNewsCards.slice(0, 6);
 
   return (
     <section
@@ -276,7 +259,7 @@ export default async function BlogsNewsSection() {
           border: "2px solid #056FB44D",
         }} />
 
-        {/* 4 Article Cards */}
+        {/* 6 Article Cards — 3 columns × 2 rows */}
         {cards.map((card, i) => (
           <ArticleCard
             key={i}
@@ -285,69 +268,6 @@ export default async function BlogsNewsSection() {
             left={cardPositions[i].left}
           />
         ))}
-
-        {/* Right — Latest News box */}
-        <div style={{
-          position: "absolute",
-          top: "376px",
-          left: "964px",
-          width: "390px",
-          height: "594px",
-          borderRadius: "20px",
-          border: "1px solid transparent",
-          background: `${CARD_INNER_BG} padding-box, ${BORDER_GRADIENT} border-box`,
-          boxSizing: "border-box",
-        }}>
-          <div style={{
-            width: "100%",
-            height: "100%",
-            paddingTop: "24px",
-            paddingRight: "21px",
-            paddingBottom: "16px",
-            paddingLeft: "19px",
-            boxSizing: "border-box",
-            display: "flex",
-            flexDirection: "column",
-            gap: "25px",
-          }}>
-            <h3 style={{
-              fontFamily: "var(--font-sora, Sora)",
-              fontWeight: 700,
-              fontSize: "20px",
-              lineHeight: "100%",
-              color: "#FFFFFF",
-              margin: 0,
-            }}>
-              Blogs & News
-            </h3>
-
-            <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-              {fallbackLatestNews.map((item, i) => (
-                <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                  <p style={{
-                    fontFamily: "var(--font-inter, Inter)",
-                    fontWeight: 400,
-                    fontSize: "18px",
-                    lineHeight: "27px",
-                    color: "rgba(255,255,255,0.7)",
-                    margin: 0,
-                  }}>
-                    {item}
-                  </p>
-                  {i < fallbackLatestNews.length - 1 && (
-                    <div style={{
-                      width: "329px",
-                      height: "0px",
-                      border: "2px solid transparent",
-                      borderImage: "linear-gradient(90deg, rgba(255,255,255,0.014) -2.94%, rgba(5,111,180,0.7) 51.23%, rgba(255,255,255,0.014) 102.37%) 1",
-                      marginTop: "16px",
-                    }} />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
 
       </div>
       </ResponsiveScale>
@@ -405,54 +325,10 @@ export default async function BlogsNewsSection() {
       }} />
 
       {/* Article cards */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "24px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         {cards.map((card, i) => (
           <MobileArticleCard key={i} desc={card.desc} href={card.href} image={card.image} />
         ))}
-      </div>
-
-      {/* Blogs & News sidebar box */}
-      <div style={{
-        width: "100%",
-        borderRadius: "16px",
-        border: "1px solid transparent",
-        background: `${CARD_INNER_BG} padding-box, ${BORDER_GRADIENT} border-box`,
-        boxSizing: "border-box",
-        padding: "24px 20px",
-      }}>
-        <h3 style={{
-          fontFamily: "var(--font-sora, Sora)",
-          fontWeight: 700,
-          fontSize: "18px",
-          lineHeight: "100%",
-          color: "#FFFFFF",
-          margin: "0 0 16px",
-        }}>
-          Blogs &amp; News
-        </h3>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          {fallbackLatestNews.map((item, i) => (
-            <div key={i}>
-              <p style={{
-                fontFamily: "var(--font-inter, Inter)",
-                fontWeight: 400,
-                fontSize: "13px",
-                lineHeight: "1.6",
-                color: "rgba(255,255,255,0.7)",
-                margin: "12px 0",
-              }}>
-                {item}
-              </p>
-              {i < fallbackLatestNews.length - 1 && (
-                <div style={{
-                  width: "100%",
-                  height: "1px",
-                  background: "linear-gradient(90deg, transparent 0%, rgba(5,111,180,0.7) 50%, transparent 100%)",
-                }} />
-              )}
-            </div>
-          ))}
-        </div>
       </div>
     </div>
     </section>

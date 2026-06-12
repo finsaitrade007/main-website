@@ -30,33 +30,24 @@ export default async function HeroSection() {
 
   return (
     <section className="hero">
-      <div
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/video_001.png"
         style={{
           position: "absolute",
-          width: "1481px",
-          height: "833px",
-          left: "calc(50% - 740.5px - 0.5px)",
-          top: "-6px",
-          overflow: "hidden",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block",
           zIndex: 0,
         }}
       >
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/video_001.png"
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            display: "block",
-          }}
-        >
-          <source src="/video_001.mp4" type="video/mp4" />
-        </video>
-      </div>
+        <source src="/video_001.mp4" type="video/mp4" />
+      </video>
 
       <div
         style={{

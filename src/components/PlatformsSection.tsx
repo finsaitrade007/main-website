@@ -301,7 +301,7 @@ export default async function PlatformsSection() {
           style={{
             maxWidth: "862px",
             textAlign: "center",
-            margin: "0 auto",
+            margin: "0 auto 12px",
           }}
         >
           {header.platformsDescription}
