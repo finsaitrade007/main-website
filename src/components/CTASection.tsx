@@ -35,7 +35,7 @@ const FALLBACK: Pick<
   ctaButton1Label: "Start Trading",
   ctaButton1Href: "https://fx.finsaitrade.com/auth/register",
   ctaButton2Label: "Try Demo",
-  ctaButton2Href: "/contactus",
+  ctaButton2Href: "https://fx.finsaitrade.com/auth/register",
   ctaButton3Label: "Contact Us",
   ctaButton3Href: "/contactus",
 };

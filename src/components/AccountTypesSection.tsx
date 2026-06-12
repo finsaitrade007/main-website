@@ -217,7 +217,7 @@ function AccountCard({
         </div>
 
         <Link
-          href="/accounts"
+          href="https://fx.finsaitrade.com/auth/register"
           style={{
             display: "inline-flex",
             alignItems: "center",

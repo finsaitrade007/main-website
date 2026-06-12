@@ -17,9 +17,9 @@ const FALLBACK: Pick<
   heroDescription:
     "From first-time traders to advanced professionals, Finsai Trade offers flexible account types built for every stage of your trading journey.",
   heroPrimaryCtaLabel: "Open Live Account",
-  heroPrimaryCtaHref: "/accounts",
+  heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
   heroSecondaryCtaLabel: "Try Free Demo",
-  heroSecondaryCtaHref: "/demo",
+  heroSecondaryCtaHref: "https://fx.finsaitrade.com/auth/register",
 };
 
 export default async function AccountsHeroSection() {

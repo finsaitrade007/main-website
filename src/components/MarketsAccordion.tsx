@@ -1,7 +1,6 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { strapiImageUrl, type StrapiMarket } from "@/lib/strapi";
 
 const MOBILE_STEP_Y = 20;
@@ -229,21 +228,6 @@ export default function MarketsAccordion({
                       >
                         {market.description}
                       </p>
-                      <Link
-                        href={`/markets/${market.slug}`}
-                        className="market-link"
-                      >
-                        Read More
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                          <path
-                            d="M2 6h8M6 2l4 4-4 4"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </Link>
                     </div>
                   </div>
                 </div>

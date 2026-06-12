@@ -2,14 +2,14 @@ import Link from "next/link";
 import Image from "next/image";
 
 const HERO = {
-  badge: "CAREERS AT FINSAI TRADE",
+  badge: "SUPPORT AT FINSAI TRADE",
   title: "We Are  Here to help\nyou",
   description:
     "Join a vibrant global team focused on fintech, trading technology, global markets, and customer growth.",
   primaryCtaLabel: "View Open Roles",
   primaryCtaHref: "#open-roles",
   secondaryCtaLabel: "Join Our Team  →",
-  secondaryCtaHref: "#contact-form",
+  secondaryCtaHref: "/careers",
 };
 
 export default function ContactUsHeroSection() {
@@ -122,26 +122,6 @@ export default function ContactUsHeroSection() {
         </p>
 
         <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-          <Link
-            href={HERO.primaryCtaHref}
-            className="btn-text"
-            style={{
-              gap: "16px",
-              borderRadius: "8px",
-              padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
-              background:
-                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-              textDecoration: "none",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: 500,
-              color: "#FFFFFF",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {HERO.primaryCtaLabel}
-          </Link>
           <Link
             href={HERO.secondaryCtaHref}
             className="btn-text"

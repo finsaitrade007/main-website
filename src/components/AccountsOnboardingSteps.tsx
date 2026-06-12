@@ -71,7 +71,7 @@ function StepIcon({ iconKey, idSuffix = "" }: { iconKey: IconKey; idSuffix?: str
 export default async function AccountsOnboardingSteps() {
   const data = await getAccountsPage();
   const title = data?.onboardingTitle ?? "Open Your Trading Account";
-  const ctaHref = "/accounts";
+  const ctaHref = "https://fx.finsaitrade.com/auth/register";
   const ctaLabel = "Open Live Account";
 
   return (

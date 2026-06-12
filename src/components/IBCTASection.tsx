@@ -24,7 +24,7 @@ const FALLBACK = {
   ctaButton2Label: "Talk to Us",
   ctaButton2Href: "/contactus",
   ctaButton3Label: "Start a Demo Account",
-  ctaButton3Href: "/demo",
+  ctaButton3Href: "https://fx.finsaitrade.com/auth/register",
 };
 
 export default function IBCTASection() {
