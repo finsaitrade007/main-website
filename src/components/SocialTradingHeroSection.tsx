@@ -27,11 +27,10 @@ export default async function SocialTradingHeroSection() {
         className="hero-image"
         style={{
           position: "absolute",
-          top: "175px",
-          left: "499px",
-          width: "941px",
-          height: "530px",
-          objectFit: "contain",
+          top: "clamp(100px, 12vw, 175px)",
+          right: 0,
+          width: "clamp(280px, 65vw, 941px)",
+          height: "auto",
         }}
         priority
       />
@@ -76,11 +75,11 @@ export default async function SocialTradingHeroSection() {
           </span>
         </div>
 
-        {/* Heading — Figma spec: Sora SemiBold 56px / 112% / -1% */}
+        {/* Heading */}
         <h1 style={{
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 600,
-          fontSize: "56px",
+          fontSize: "clamp(28px, 4.4vw, 56px)",
           lineHeight: "112%",
           letterSpacing: "-0.01em",
           color: "#FFFFFF",
@@ -99,14 +98,13 @@ export default async function SocialTradingHeroSection() {
           </span>
         </h1>
 
-        {/* Description — Figma spec: Inter Regular 18px / 155% / 0% */}
+        {/* Description */}
         <p style={{
           fontFamily: "var(--font-inter, Inter)",
           fontWeight: 400,
-          fontSize: "18px",
-          lineHeight: "155%",
-          letterSpacing: "0",
-          color: "#E0E0E099",
+          fontSize: "clamp(13px, 1.04vw, 15px)",
+          lineHeight: "24px",
+          color: "#94A3B8",
           maxWidth: "540px",
           margin: 0,
         }}>
@@ -142,24 +140,24 @@ export default async function SocialTradingHeroSection() {
         </div>
 
         {/* Stats */}
-        <div style={{ display: "flex", flexWrap: "nowrap", alignItems: "center", gap: 0, marginTop: "8px", whiteSpace: "nowrap" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px 0", marginTop: "8px" }}>
           {STATS.map((stat, i) => (
-            <div key={stat.value} style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
+            <div key={stat.value} style={{ display: "flex", alignItems: "center" }}>
               {i > 0 && (
                 <span aria-hidden style={{
                   display: "inline-block",
-                  margin: "0 12px",
+                  margin: "0 10px",
                   color: "rgba(255,255,255,0.2)",
-                  fontSize: "16px",
+                  fontSize: "14px",
                   lineHeight: 1,
                   userSelect: "none",
                 }}>|</span>
               )}
-              <div style={{ display: "flex", flexDirection: "row", alignItems: "baseline", gap: "6px" }}>
+              <div style={{ display: "flex", flexDirection: "row", alignItems: "baseline", gap: "5px" }}>
                 <span style={{
                   fontFamily: "var(--font-sora, Sora)",
                   fontWeight: 400,
-                  fontSize: "20px",
+                  fontSize: "clamp(14px, 1.39vw, 20px)",
                   lineHeight: "155%",
                   color: "#E0E0E0",
                   whiteSpace: "nowrap",
@@ -169,7 +167,7 @@ export default async function SocialTradingHeroSection() {
                 <span style={{
                   fontFamily: "var(--font-inter, Inter)",
                   fontWeight: 400,
-                  fontSize: "16px",
+                  fontSize: "clamp(12px, 1.11vw, 16px)",
                   lineHeight: "155%",
                   color: "#E0E0E0",
                   whiteSpace: "nowrap",
