@@ -65,6 +65,7 @@ export default async function AccountsHeroSection() {
         }}
       >
         <div
+          className="accounts-hero-badge"
           style={{
             boxSizing: "border-box",
             height: "44px",
@@ -159,7 +160,7 @@ export default async function AccountsHeroSection() {
             </Link>
             <Link
               href={data.heroSecondaryCtaHref}
-              className="btn-text"
+              className="btn-text accounts-hero-demo-btn"
               style={{
                 gap: "16px",
                 borderRadius: "8px",

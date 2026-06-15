@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { getAccountsPage } from "@/lib/strapi";
+import AccountsCompareTableMobile from "./AccountsCompareTableMobile";
 
 const YES_GREEN = "#2EE89B";
 
@@ -119,7 +120,7 @@ export default async function AccountsCompareTable() {
         </p>
       </div>
 
-      <div className="compare-table-scroll">
+      <div className="compare-table-scroll compare-table-desktop">
       <div
         style={{
           width: `${1320 + BORDER * 2}px`,
@@ -244,6 +245,11 @@ export default async function AccountsCompareTable() {
           ))}
         </div>
       </div>
+      </div>
+
+      {/* Mobile swipeable card (≤ 425px viewports) */}
+      <div className="compare-table-mobile-wrap" style={{ padding: "0 20px" }}>
+        <AccountsCompareTableMobile tiers={TIERS} rows={ROWS} />
       </div>
     </section>
   );

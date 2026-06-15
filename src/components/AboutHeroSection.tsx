@@ -143,7 +143,7 @@ export default async function AboutHeroSection() {
           {data.heroDescription}
         </p>
 
-        <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+        <div className="about-hero-cta-row" style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}>
           <Link
             href={data.heroPrimaryCtaHref}
             className="btn-text"

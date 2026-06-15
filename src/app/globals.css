@@ -1021,6 +1021,44 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+/* ── Payments trust bar (4 cards) responsive layout ── */
+.payments-trust-section {
+  padding-left: clamp(16px, 2.5vw, 40px);
+  padding-right: clamp(16px, 2.5vw, 40px);
+}
+/* Below the design width, shrink the inner padding so cards don't get crushed
+   before the 2-col breakpoint kicks in. */
+@media (max-width: 1200px) {
+  .payments-trust-bar__inner {
+    padding: 32px clamp(20px, 4vw, 60px) !important;
+    gap: clamp(16px, 3vw, 40px) !important;
+  }
+}
+/* 2 × 2 grid on tablet and small-laptop widths. */
+@media (max-width: 900px) {
+  .payments-trust-bar__inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+    padding: 24px !important;
+  }
+  .payments-trust-card {
+    height: 90px !important;
+    padding: 0 18px !important;
+  }
+}
+/* Single column at very narrow widths. */
+@media (max-width: 380px) {
+  .payments-trust-bar__inner {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 18px !important;
+  }
+  .payments-trust-card {
+    height: 80px !important;
+    padding: 0 16px !important;
+  }
+}
+
 /* ── Responsive text utilities ── */
 @media (max-width: 768px) {
   .resp-text-center-mobile {
@@ -1233,6 +1271,60 @@ body {
   }
 }
 
+/* ── Social Trading "Choose Your Copy Trading Journey" — vertical bar on mobile ── */
+@media (max-width: 768px) {
+  .social-journey-card {
+    min-height: 0 !important;
+  }
+  .social-journey-vdivider {
+    display: none !important;
+  }
+  .social-journey-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .social-journey-grid > .social-journey-col {
+    padding: 28px 20px !important;
+    gap: 16px !important;
+    position: relative;
+  }
+  /* Horizontal gradient divider between stacked columns (skip last). */
+  .social-journey-grid > .social-journey-col:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      #0f0f10 0%,
+      #387aff 50%,
+      #0f0f10 100%
+    );
+    pointer-events: none;
+  }
+  .social-journey-col h3 {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+  }
+  .social-journey-col p {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    max-width: 100% !important;
+  }
+}
+@media (max-width: 480px) {
+  .social-journey-grid > .social-journey-col {
+    padding: 24px 16px !important;
+  }
+  .social-journey-col h3 {
+    font-size: 20px !important;
+  }
+  .social-journey-col p {
+    font-size: 13px !important;
+  }
+}
+
 /* ── Services/About two-column grids ── */
 .two-col-grid {
   display: grid;
@@ -1334,6 +1426,25 @@ body {
   }
   .hero__ctas {
     margin-top: -14px;
+  }
+  /* About hero: stack the two CTAs so the secondary button doesn't get
+     clipped at the section's right edge on 320px viewports. */
+  .about-hero-cta-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  .about-hero-cta-row > a {
+    width: auto;
+  }
+  /* Accounts hero: nudge the "Try Free Demo" button left at 320px so it
+     doesn't kiss the section's right padding. */
+  .accounts-hero-demo-btn {
+    transform: translateX(-8px);
+  }
+  /* Accounts hero: shift the top badge 5px left to match. */
+  .accounts-hero-badge {
+    transform: translateX(-25px);
   }
 }
 
@@ -1471,7 +1582,20 @@ body {
 @media (max-width: 900px)  { .compare-table-scroll { zoom: 0.62; } }
 @media (max-width: 720px)  { .compare-table-scroll { zoom: 0.50; } }
 @media (max-width: 560px)  { .compare-table-scroll { zoom: 0.39; } }
-@media (max-width: 440px)  { .compare-table-scroll { zoom: 0.30; } }
+
+/* Swap desktop table ↔ mobile swipe carousel at ≤ 425 px (covers
+   320 / 375 / 425 viewports). */
+.compare-table-mobile-wrap {
+  display: none;
+}
+@media (max-width: 425px) {
+  .compare-table-desktop {
+    display: none !important;
+  }
+  .compare-table-mobile-wrap {
+    display: block;
+  }
+}
 
 /* ── Calculator section ── */
 @media (max-width: 1024px) {

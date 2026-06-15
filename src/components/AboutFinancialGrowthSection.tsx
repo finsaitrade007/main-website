@@ -129,7 +129,7 @@ export default async function AboutFinancialGrowthSection() {
                   fontWeight: 600,
                   fontStyle: "normal",
                   fontSize: "clamp(16px, 1.7vw, 24px)",
-                  lineHeight: "1.3",
+                  lineHeight: "30px",
                   letterSpacing: 0,
                   color: "#FFFFFF",
                 }}
@@ -139,7 +139,7 @@ export default async function AboutFinancialGrowthSection() {
               <p
                 style={{
                   margin: 0,
-                  fontFamily: "var(--font-raleway, Raleway)",
+                  fontFamily: "var(--font-inter, Inter)",
                   fontWeight: 400,
                   fontStyle: "normal",
                   fontSize: "18px",

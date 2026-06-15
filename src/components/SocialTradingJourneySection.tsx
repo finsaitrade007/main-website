@@ -118,6 +118,7 @@ function JourneyColumn({
 }: ColumnProps) {
   return (
     <div
+      className="social-journey-col"
       style={{
         display: "flex",
         flexDirection: "column",
@@ -193,19 +194,21 @@ function JourneyColumn({
 export default function SocialTradingJourneySection() {
   return (
     <section
+      className="social-journey-section"
       style={{
         background: "#050208",
         padding: "clamp(60px,6vw,100px) clamp(20px,5.5vw,80px)",
       }}
     >
       <h2
+        className="social-journey-title"
         style={{
           margin: "0 auto 16px",
           textAlign: "center",
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 600,
-          fontSize: "36px",
-          lineHeight: "100%",
+          fontSize: "clamp(22px, 3vw, 36px)",
+          lineHeight: 1.15,
           color: "#FFFFFF",
         }}
       >
@@ -213,13 +216,14 @@ export default function SocialTradingJourneySection() {
       </h2>
 
       <p
+        className="social-journey-desc"
         style={{
           margin: "0 auto 40px",
           textAlign: "center",
           fontFamily: "var(--font-inter, Inter)",
           fontWeight: 400,
-          fontSize: "16px",
-          lineHeight: "100%",
+          fontSize: "clamp(13px, 1.2vw, 16px)",
+          lineHeight: 1.5,
           color: "#FFFFFF",
           maxWidth: 740,
         }}
@@ -231,6 +235,7 @@ export default function SocialTradingJourneySection() {
           background, gradient stroke border. Implemented via the
           padding-box / border-box trick so the border can be a gradient. */}
       <div
+        className="social-journey-card"
         style={{
           position: "relative",
           width: "100%",
@@ -245,9 +250,11 @@ export default function SocialTradingJourneySection() {
         }}
       >
         {/* Vertical dividers — Figma spec: ~318px tall, 1px wide,
-            centred between columns with a dark→#387AFF→dark vertical fade. */}
+            centred between columns with a dark→#387AFF→dark vertical fade.
+            Hidden on mobile via .social-journey-vdivider rule. */}
         <div
           aria-hidden
+          className="social-journey-vdivider"
           style={{
             position: "absolute",
             top: 43,
@@ -261,6 +268,7 @@ export default function SocialTradingJourneySection() {
         />
         <div
           aria-hidden
+          className="social-journey-vdivider"
           style={{
             position: "absolute",
             top: 43,
@@ -274,6 +282,7 @@ export default function SocialTradingJourneySection() {
         />
 
         <div
+          className="social-journey-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",

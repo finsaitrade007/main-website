@@ -236,6 +236,7 @@ function CardHeader({
         <div style={{ flexShrink: 0, marginTop: "2px" }}>{icon}</div>
         <div style={{ display: "flex", flexDirection: "column", minWidth: 0 }}>
           <span
+            className="howit-card-label"
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "13px",
@@ -249,6 +250,7 @@ function CardHeader({
             {label}
           </span>
           <h3
+            className="howit-card-title"
             style={{
               fontFamily: "'Sora', sans-serif",
               fontSize: "26px",
@@ -281,6 +283,7 @@ function BulletList({ items }: { items: BulletItem[] }) {
           <div style={{ flexShrink: 0, marginTop: "2px" }}>{item.icon}</div>
           <div style={{ minWidth: 0 }}>
             <span
+              className="howit-item-title"
               style={{
                 fontFamily: "'Sora', sans-serif",
                 fontSize: "16px",
@@ -294,6 +297,7 @@ function BulletList({ items }: { items: BulletItem[] }) {
               {item.title}
             </span>
             <span
+              className="howit-item-desc"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "13px",
@@ -572,6 +576,23 @@ export default function SocialTradingHowItWorksSection() {
             display: none !important;
           }
         }
+        /* 320px viewports: squeeze the cards & shrink fonts by 2px. */
+        @media (max-width: 320px) {
+          .howit-card {
+            width: 100% !important;
+            max-width: 280px !important;
+            height: auto !important;
+            padding: 18px !important;
+          }
+          .howit-card-label { font-size: 11px !important; }
+          .howit-card-title { font-size: 24px !important; }
+          .howit-item-title { font-size: 14px !important; }
+          .howit-item-desc  { font-size: 11px !important; }
+          .howit-cta {
+            font-size: 12px !important;
+            padding: 10px 18px !important;
+          }
+        }
       `}</style>
 
       <h2
@@ -617,7 +638,7 @@ export default function SocialTradingHowItWorksSection() {
         }}
       >
         {/* Left card — For Investors (Figma spec: 367×545, gradient bg + gradient border) */}
-        <div style={CARD_STYLE}>
+        <div className="howit-card" style={CARD_STYLE}>
           <CardHeader
             icon={<InvestorRoleIcon />}
             label="For Investors"
@@ -627,6 +648,7 @@ export default function SocialTradingHowItWorksSection() {
           <div style={{ marginTop: "auto", paddingTop: "20px" }}>
             <SmartLink
               href="https://fx.finsaitrade.com/auth/register"
+              className="howit-cta"
               style={PRIMARY_CTA_STYLE}
             >
               Start Copying Now →
@@ -650,7 +672,7 @@ export default function SocialTradingHowItWorksSection() {
         </div>
 
         {/* Right card — For Strategy Providers */}
-        <div style={CARD_STYLE}>
+        <div className="howit-card" style={CARD_STYLE}>
           <CardHeader
             icon={<ProviderRoleIcon />}
             label="For Strategy Providers"
@@ -660,6 +682,7 @@ export default function SocialTradingHowItWorksSection() {
           <div style={{ marginTop: "auto", paddingTop: "20px" }}>
             <SmartLink
               href="https://fx.finsaitrade.com/auth/register"
+              className="howit-cta"
               style={SECONDARY_CTA_STYLE}
             >
               Become a Provider →
