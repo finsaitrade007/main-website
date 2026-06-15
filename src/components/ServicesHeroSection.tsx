@@ -38,7 +38,7 @@ export default async function ServicesHeroSection() {
           height: "855px",
         }}>
         <Image
-          src="/service-hero.png"
+          src="/service/hero.png"
           alt=""
           fill
           style={{ objectFit: "contain" }}

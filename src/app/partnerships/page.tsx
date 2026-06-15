@@ -45,9 +45,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function PartnershipsPage() {
   const data = await getPartnershipsPage();
 
-  const calculatorTitle = data?.calculatorTitle ?? "Unlock Your Earning Potential";
+  const calculatorTitle = data?.calculatorTitle ?? "Calculate Your Earning Potential";
   const calculatorDescription =
-    data?.calculatorDescription ?? "Specify the expected values of your partner network";
+    data?.calculatorDescription ?? "Adjust referrals and trade volume to estimate your monthly earnings instantly.";
 
   return (
     <>

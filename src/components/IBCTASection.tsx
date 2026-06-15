@@ -123,24 +123,7 @@ export default function IBCTASection() {
               gap: "16px",
             }}
           >
-            <Link
-              href={primary.href}
-              style={{
-                ...BTN_TYPOGRAPHY,
-                padding: "12px 32px",
-                borderRadius: "60px",
-                border: "1px solid transparent",
-                background:
-                  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-                whiteSpace: "nowrap",
-              }}
-            >
-              <span style={{ position: "relative", zIndex: 1 }}>
-                {primary.label}
-              </span>
-            </Link>
-
-            {secondaryButtons.map((b) => (
+            {[primary, ...secondaryButtons].map((b) => (
               <Link
                 key={b.label}
                 href={b.href}
@@ -150,6 +133,7 @@ export default function IBCTASection() {
                   padding: "12px 32px",
                   border: "1px solid #056FB4",
                   borderRadius: "60px",
+                  whiteSpace: "nowrap",
                 }}
               >
                 <span style={{ position: "relative", zIndex: 1 }}>

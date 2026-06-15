@@ -28,7 +28,7 @@ export default async function IBHeroSection() {
     }}>
       {/* Hero image — right side */}
       <Image
-        src="/partners-hero.png"
+        src="/partners/ib-hero.jpg"
         alt=""
         width={1130}
         height={678}

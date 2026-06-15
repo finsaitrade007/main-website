@@ -4,15 +4,15 @@ import { getPartnershipsPage } from "@/lib/strapi";
 import ResponsiveScale from "@/components/ResponsiveScale";
 
 const fallbackStats = [
-  { value: "20,000 +", label: "Join Companies helped" },
-  { value: "$10,000 +", label: "Over Revenue generated" },
-  { value: "330 +", label: "Over Companies helped" },
-  { value: "230 +", label: "More than Revenue generated" },
+  { value: "20,000 +", label: "Trusted By Active Partners" },
+  { value: "$10,000 +", label: "Generated in Partner Revenue" },
+  { value: "330 +", label: "Explore Global Markets" },
+  { value: "230 +", label: "Reached  Partner Milestones" },
 ];
 
 function splitStatLabel(label: string): { prefix: string; label: string } {
   const trimmed = label.trim();
-  const knownPrefixes = ["Join ", "Over ", "More than ", "Up to ", "Above ", "Around "];
+  const knownPrefixes = ["Trusted By",];
   for (const prefix of knownPrefixes) {
     if (trimmed.startsWith(prefix)) {
       return { prefix: prefix.trim(), label: trimmed.slice(prefix.length) };
@@ -47,7 +47,10 @@ export default async function IBStatsSection() {
     <ResponsiveScale designWidth={1440}>
     <div style={{ position: "relative", width: "1440px", minHeight: "696px" }}>
 
-          {/* Image stack container */}
+          {/* Image stack container — three offset cards layered front-to-back.
+              Each back card carries a blurred copy of the same hero image with
+              its original color tint overlaid on top, creating a soft depth /
+              echo effect behind the sharp foreground image. */}
           <div style={{
             position: "absolute",
             top: "80px",
@@ -55,6 +58,7 @@ export default async function IBStatsSection() {
             width: "577.84px",
             height: "546px",
           }}>
+            {/* Back card */}
             <div style={{
               position: "absolute",
               top: "0px",
@@ -62,9 +66,24 @@ export default async function IBStatsSection() {
               width: "497.07px",
               height: "497.07px",
               borderRadius: "15.53px",
-              background: "#056FB433",
-            }} />
+              overflow: "hidden",
+            }}>
+              <Image
+                src="/ib-stats.png"
+                alt=""
+                aria-hidden
+                fill
+                style={{ objectFit: "cover" }}
+              />
+              <div style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(157.26deg, rgba(5,2,8,0.85) 0%, rgba(5,111,180,0.3) 100%)",
+              }} />
+            </div>
 
+            {/* Middle card */}
             <div style={{
               position: "absolute",
               top: "24.85px",
@@ -72,9 +91,24 @@ export default async function IBStatsSection() {
               width: "497.07px",
               height: "497.07px",
               borderRadius: "15.53px",
-              background: "#529EC933",
-            }} />
+              overflow: "hidden",
+            }}>
+              <Image
+                src="/ib-stats.png"
+                alt=""
+                aria-hidden
+                fill
+                style={{ objectFit: "cover" }}
+              />
+              <div style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(157.26deg, rgba(5,2,8,0.65) 0%, rgba(82,158,201,0.25) 100%)",
+              }} />
+            </div>
 
+            {/* Front card */}
             <div style={{
               position: "absolute",
               top: "48.93px",

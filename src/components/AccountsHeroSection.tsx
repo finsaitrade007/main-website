@@ -64,9 +64,6 @@ export default async function AccountsHeroSection() {
           zIndex: 3,
         }}
       >
-        {/* Wallet pill: 362.6 × 51.2 black badge with a gradient-filled
-            label.  Uses inline-flex + 8.4px gap so a leading icon can be
-            slotted later without re-jiggling the layout. */}
         <div
           style={{
             boxSizing: "border-box",
@@ -125,7 +122,7 @@ export default async function AccountsHeroSection() {
             fontSize: "16px",
             lineHeight: "26px",
             color: "rgba(255,255,255,0.65)",
-            maxWidth: "520px",
+            maxWidth: "620px",
             margin: 0,
           }}
         >
