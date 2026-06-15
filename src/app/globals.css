@@ -77,13 +77,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-secondary {
-  border: 1.5px solid rgba(255,255,255,0.3);
+  position: relative;
   border-radius: 8px;
   padding: 11px 24px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: border-color 0.2s;
+  background: transparent;
+}
+
+.btn-secondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background:
+    linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
 }
 
 .btn-secondary:hover {
@@ -107,7 +123,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 160px;
+  padding-bottom: 110px;
   z-index: 3;
 }
 
@@ -317,16 +333,13 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
 }
 
-/* font-family: 'Sora'; font-size: 20px; line-height: 25px; letter-spacing: -0.02em; color: #FFFFFF */
 .feature-item__label {
-  font-family: var(--font-sora), 'Sora', sans-serif;
+  font-family: var(--font-sora), 'Sora';
   font-weight: 400;
-  font-size: 20px;
-  line-height: 100%;
+  font-size: 19px;
+  line-height: 23px;
   letter-spacing: -0.02em;
   color: #FFFFFF;
-  white-space: pre-line;
-  margin: 0;
 }
 
 /* ─── Crypto card (Figma spec) ────────────────────────────── */
@@ -464,7 +477,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sora), 'Sora', sans-serif;
   font-weight: 600;
   font-size: 36px;
-  line-height: 100%;
+  line-height: 50px;
   letter-spacing: 0%;
   color: #FFFFFF;
   margin: 0;
@@ -486,7 +499,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   font-size: 24px;
   line-height: 100%;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   margin: 0;
 }
 
@@ -1125,18 +1138,60 @@ body {
   gap: 20px;
 }
 
+/* Wide MT5 card description text — sizes around the mockup on desktop,
+   expands to the full card width on small screens once the mockup hides. */
+.platforms-wide-text {
+  width: calc(100% - 21px - 300px);
+  max-height: 81px;
+}
+
+.platforms-wide-title {
+  width: 133px;
+}
+
+@media (max-width: 1024px) {
+  .platforms-wide-text {
+    max-height: 120px;
+  }
+}
+
 @media (max-width: 768px) {
   .platforms-grid-row2 {
     grid-template-columns: 1fr !important;
   }
 
-  .platforms-wide-card {
-    height: auto !important;
-    min-height: 200px;
-  }
-
   .platforms-wide-mockup {
     display: none;
+  }
+
+  .platforms-wide-text {
+    width: calc(100% - 21px - 20px);
+    max-height: none;
+  }
+
+  /* Match the description's full-width layout so MT5 heading uses the
+     same available width as the rest of the card content. */
+  .platforms-wide-title {
+    width: calc(100% - 21.32px - 20px);
+  }
+}
+
+/* Mobile (<= 640px): give the wide card more vertical room and push the
+   MT5 brand mark + heading further down so they sit under the longer
+   description block. */
+@media (max-width: 640px) {
+  .platforms-wide-card {
+    height: auto !important;
+    min-height: 380px;
+    padding: 28px 24px !important;
+  }
+
+  .platforms-wide-mt5-logo {
+    top: 220px !important;
+  }
+
+  .platforms-wide-title {
+    top: 228px !important;
   }
 }
 
@@ -1209,6 +1264,44 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+}
+
+/* ── Careers form: react-international-phone polish ──
+   The library scopes its styles via CSS variables on .careers-phone-input
+   (set inline). These rules only handle things variables don't expose:
+   focus rings, search input theming, and dropdown sizing. */
+.careers-phone-input .react-international-phone-input-container {
+  width: 100%;
+}
+.careers-phone-input .react-international-phone-input {
+  width: 100%;
+  flex: 1;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.careers-phone-input .react-international-phone-country-selector-button {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.careers-phone-input .react-international-phone-input:focus,
+.careers-phone-input
+  .react-international-phone-country-selector-button:focus-visible {
+  border-color: rgba(125, 185, 214, 0.55);
+  box-shadow: 0 0 0 2px rgba(125, 185, 214, 0.18);
+}
+.careers-phone-input .react-international-phone-country-selector-dropdown {
+  max-height: 280px;
+  border: 1px solid rgba(125, 185, 214, 0.18);
+  border-radius: 10px;
+  padding: 6px;
+  z-index: 50;
+}
+.careers-phone-input
+  .react-international-phone-country-selector-dropdown__list-item-country-name,
+.careers-phone-input
+  .react-international-phone-country-selector-dropdown__list-item-dial-code {
+  font-family: var(--font-inter, Inter);
+  font-size: 13px;
 }
 
 .contact-upload-label {

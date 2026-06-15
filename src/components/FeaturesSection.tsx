@@ -9,7 +9,7 @@ const FALLBACK_FEATURES: StrapiFeatureItem[] = [
   { id: 1, iconKey: "transparency", title: "No Hidden Fees,\nTransparent Trades" },
   { id: 2, iconKey: "assets", title: "1000+\nAssets" },
   { id: 3, iconKey: "leverage", title: "Up to 500x\nLeverage" },
-  { id: 4, iconKey: "deposits", title: "Easy Deposits &\nWithdrawals" },
+  { id: 4, iconKey: "deposits", title: "Instant Withdrawal \nand Deposits" },
   { id: 5, iconKey: "learning", title: "Live\nLearning" },
   { id: 6, iconKey: "social", title: "Social\ntrading" },
 ];
@@ -72,7 +72,7 @@ export default async function FeaturesSection() {
       className="page-section bg-[#050208]"
       style={{ paddingBottom: "96px" }}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto lg:translate-x-12">
         <div className="flex justify-start mb-4">
           <div
             style={{
@@ -106,7 +106,7 @@ export default async function FeaturesSection() {
               {header.featuresDescription}
             </p>
 
-            <div className="grid grid-cols-2 max-[425px]:grid-cols-1 gap-x-8 max-[425px]:gap-5 gap-y-8">
+            <div className="grid grid-cols-2 max-[425px]:grid-cols-1 gap-x-15 max-[425px]:gap-5 gap-y-13 lg:-translate-x-4">
               {features.map((f) => (
                 <div key={f.id} className="flex items-center gap-4">
                   <div

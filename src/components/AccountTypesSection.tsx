@@ -8,10 +8,10 @@ const accounts = [
     label: "Smart Choice",
     watermark: {
       text: "CHOICE",
-      fontSize: "209.11px",
-      lineHeight: "209.11px",
+      fontSize: "180px",
+      lineHeight: "180px",
       width: "873px",
-      height: "210px",
+      height: "180px",
       left: "-137.08px",
       stroke: "1.16px",
     },
@@ -30,7 +30,7 @@ const accounts = [
       left: "50%",
       stroke: "1px",
     },
-    desc: "An Intermediate Account Designed For Growing Traders Who Want Better Conditions And More Control.",
+    desc: "Built for experienced traders seeking , and professional-grade trading conditions.",
     features: ["Lower Spreads", "Higher Leverage", "Priority Support"],
   },
   {
@@ -117,10 +117,13 @@ function AccountCard({
           className="account-card-label"
           style={{
             fontFamily: "var(--font-sora, Sora)",
-            fontWeight: 600,
-            fontSize: "13px",
-            letterSpacing: "0.08em",
-            color: "rgba(125,185,214,0.7)",
+            fontWeight: 700,
+            fontSize: "27.88px",
+            lineHeight: "92.94px",
+            letterSpacing: 0,
+            textAlign: "center",
+            textTransform: "capitalize",
+            color: "#496DAB",
             writingMode: "vertical-rl",
             transform: "rotate(180deg)",
             whiteSpace: "nowrap",
@@ -164,9 +167,9 @@ function AccountCard({
           style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
-            fontSize: "15px",
-            lineHeight: "27.68px",
-            letterSpacing: "0%",
+            fontSize: "17.43px",
+            lineHeight: "32.15px",
+            letterSpacing: 0,
             textAlign: "center",
             textTransform: "capitalize",
             color: "#FFFFFF",
@@ -195,8 +198,10 @@ function AccountCard({
                 gap: "8px",
                 fontFamily: "var(--font-inter, Inter)",
                 fontWeight: 400,
-                fontSize: "clamp(13px, 1.1vw, 15px)",
-                lineHeight: "1.6",
+                fontSize: "17.43px",
+                lineHeight: "32.15px",
+                letterSpacing: 0,
+                textAlign: "center",
                 textTransform: "capitalize",
                 color: "#FFFFFF",
                 whiteSpace: "nowrap",
@@ -223,7 +228,8 @@ function AccountCard({
             alignItems: "center",
             gap: "8px",
             padding: "clamp(9px, 0.8vw, 14px) clamp(16px, 2vw, 36px)",
-            background: "#056FB4",
+            background:
+              "linear-gradient(90deg, rgba(5, 111, 180, 0.7) 0%, #056FB4 100%)",
             borderRadius: "60px",
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 600,
@@ -274,7 +280,7 @@ function AccountCard({
                     fontWeight: 400,
                     fontSize: account.watermark.fontSize,
                     lineHeight: account.watermark.lineHeight,
-                    letterSpacing: "0%",
+                    letterSpacing: 0,
                     textAlign: "center",
                     textTransform: "uppercase",
                     color: "transparent",
@@ -295,7 +301,7 @@ function AccountCard({
                 fontWeight: 400,
                 fontSize: account.watermark.fontSize,
                 lineHeight: account.watermark.lineHeight,
-                letterSpacing: "0%",
+                letterSpacing: 0,
                 textAlign: "center",
                 textTransform: "uppercase",
                 color: "transparent",
@@ -360,7 +366,7 @@ export default function AccountTypesSection() {
               borderRadius: "60px",
             }}
           >
-            <span className="badge-text">Finsai Trade Account Type</span>
+            <span className="badge-text">Find Your Fit</span>
           </span>
         </div>
 
@@ -368,14 +374,14 @@ export default function AccountTypesSection() {
           className="section-title"
           style={{ textAlign: "center", marginBottom: "16px" }}
         >
-          Choose Your Account. Trade Your Way.
+          Choose The Right Account For You.
         </h2>
 
         <p
           className="section-desc"
-          style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto 56px" }}
+          style={{ textAlign: "center", maxWidth: "900px", margin: "0 auto 56px" }}
         >
-          From beginners to seasoned professionals, Finsai Trade offers account types designed to match every level of experience and trading goal.
+          Whether you’re just starting or trading at a higher level, find an account built to match your goals, experience, and trading style.
         </p>
 
         <div className="account-types-cards">

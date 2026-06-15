@@ -8,7 +8,6 @@ type Props = {
   markets: StrapiMarket[];
   badge: string;
   titlePrefix: string;
-  titleAccent: string;
   description: string;
 };
 
@@ -18,7 +17,6 @@ export default function MarketsAccordion({
   markets,
   badge,
   titlePrefix,
-  titleAccent,
   description,
 }: Props) {
   const outerRef = useRef<HTMLDivElement | null>(null);
@@ -118,11 +116,11 @@ export default function MarketsAccordion({
           style={{
             maxWidth: "1280px",
             margin: "0 auto",
-            padding: "80px 80px 96px",
+            padding: "80px 30px 96px",
           }}
         >
       <div className="markets-grid-image" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <div style={{ position: "relative", width: "clamp(240px, 45vw, 520px)", height: "clamp(240px, 45vw, 520px)" }}>
+        <div style={{ position: "relative", width: "clamp(240px, 45vw, 576px)", height: "clamp(240px, 45vw, 576px)", left: "-10px" }}>
           {markets.map((market, i) => {
             const src = strapiImageUrl(market.image) ?? market.localImage;
             if (!src) return null;
@@ -161,17 +159,6 @@ export default function MarketsAccordion({
 
         <h2 className="section-title" style={{ marginBottom: "20px" }}>
           {titlePrefix}
-          <span
-            style={{
-              background:
-                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            {titleAccent}
-          </span>
         </h2>
 
         <p
@@ -196,14 +183,13 @@ export default function MarketsAccordion({
                     style={{
                       textAlign: "left",
                       width: "100%",
-                      color: isActive ? "#FFFFFF" : "rgba(255,255,255,0.55)",
+                      color: "#FFFFFF",
                       transition: "color 0.3s ease",
                       background: "transparent",
                       border: "none",
                       padding: 0,
                       margin: 0,
                       cursor: "pointer",
-                      font: "inherit",
                     }}
                   >
                     {market.name}
@@ -221,7 +207,7 @@ export default function MarketsAccordion({
                     <div style={{ marginTop: "14px" }}>
                       <p
                         className="market-text"
-                        style={{ marginBottom: "16px", maxWidth: "520px" }}
+                        style={{ marginBottom: "16px", maxWidth: "570px" }}
                       >
                         {market.description}
                       </p>
@@ -231,7 +217,7 @@ export default function MarketsAccordion({
 
                 <div
                   style={{
-                    height: "1px",
+                    height: "2.5px",
                     background:
                       "linear-gradient(90deg, transparent 0%, #056FB4 50%, transparent 100%)",
                   }}

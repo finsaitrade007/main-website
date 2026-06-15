@@ -23,7 +23,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     slug: "crypto",
     name: "Crypto",
     description:
-      "Access Bitcoin, Ethereum, and hundreds of altcoins. Trade crypto CFDs with leverage around the clock on a secure, regulated platform.",
+      "Access leading cryptocurrencies and trade the digital asset market 24/7 with advanced charting tools, real-time pricing, and seamless market execution.",
     image: null,
     localImage: "/markets/crypto.png",
     order: 2,
@@ -64,9 +64,8 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
 ];
 
 const FALLBACK_HEADER = {
-  marketsBadge: "Market You Can Trade",
-  marketsTitlePrefix: "Trade Every Market That ",
-  marketsTitleAccent: "Matters",
+  marketsBadge: "Trade Without Limits ",
+  marketsTitlePrefix: "Trade Every Market That Matters",
   marketsDescription:
     "Finsai Trade gives modern traders access to 5,000+ trading instruments across forex, crypto, global stocks, indices, commodities, and CFDs.",
 };
@@ -83,7 +82,6 @@ export default async function MarketsSection() {
         markets={markets}
         badge={header.marketsBadge}
         titlePrefix={header.marketsTitlePrefix}
-        titleAccent={header.marketsTitleAccent}
         description={header.marketsDescription}
       />
     </section>

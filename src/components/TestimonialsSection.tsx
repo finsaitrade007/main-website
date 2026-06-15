@@ -19,6 +19,7 @@ const FALLBACK_TESTIMONIALS: StrapiTestimonial[] = [
     initials: "DK",
     quote:
       "Customer support actually listens and resolves issues quickly. It feels like a platform that really cares about its traders.",
+    localAvatar: "/testimonials/david.jpg",
     order: 1,
   },
   {
@@ -29,6 +30,7 @@ const FALLBACK_TESTIMONIALS: StrapiTestimonial[] = [
     initials: "RM",
     quote:
       "I’ve tried multiple trading platforms, but Finsai Trade feels different. The interface is clean and intuitive, making it so easy to track trades.",
+    localAvatar: "/testimonials/rohan.jpg",
     order: 2,
   },
   {
@@ -39,6 +41,7 @@ const FALLBACK_TESTIMONIALS: StrapiTestimonial[] = [
     initials: "SL",
     quote:
       "The webinars are incredibly valuable. I learned strategies in one session that I applied the very next day with great results.",
+    localAvatar: "/testimonials/sarah.jpg",
     order: 3,
   },
 ];

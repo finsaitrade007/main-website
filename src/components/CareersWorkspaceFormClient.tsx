@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, type ChangeEvent, type DragEvent, type FormEvent } from "react";
+import { useRef, useState, type CSSProperties, type ChangeEvent, type DragEvent, type FormEvent } from "react";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 import type { StrapiPoint } from "@/lib/strapi";
 import { useRecaptcha } from "@/lib/useRecaptcha";
 
@@ -240,61 +242,38 @@ const inputStyle = {
   outline: "none",
 };
 
-// ---------------------------------------------------------------------------
-// Common dial-code list shown in the mobile-number country selector. Add
-// more entries here as the recruiting footprint grows.
-// ---------------------------------------------------------------------------
-const COUNTRY_CODES: { flag: string; code: string; name: string }[] = [
-  { flag: "🇮🇳", code: "+91", name: "India" },
-  { flag: "🇺🇸", code: "+1", name: "United States" },
-  { flag: "🇬🇧", code: "+44", name: "United Kingdom" },
-  { flag: "🇨🇦", code: "+1", name: "Canada" },
-  { flag: "🇦🇺", code: "+61", name: "Australia" },
-  { flag: "🇸🇬", code: "+65", name: "Singapore" },
-  { flag: "🇲🇾", code: "+60", name: "Malaysia" },
-  { flag: "🇮🇩", code: "+62", name: "Indonesia" },
-  { flag: "🇵🇭", code: "+63", name: "Philippines" },
-  { flag: "🇹🇭", code: "+66", name: "Thailand" },
-  { flag: "🇻🇳", code: "+84", name: "Vietnam" },
-  { flag: "🇭🇰", code: "+852", name: "Hong Kong" },
-  { flag: "🇨🇳", code: "+86", name: "China" },
-  { flag: "🇯🇵", code: "+81", name: "Japan" },
-  { flag: "🇰🇷", code: "+82", name: "South Korea" },
-  { flag: "🇹🇼", code: "+886", name: "Taiwan" },
-  { flag: "🇦🇪", code: "+971", name: "United Arab Emirates" },
-  { flag: "🇸🇦", code: "+966", name: "Saudi Arabia" },
-  { flag: "🇶🇦", code: "+974", name: "Qatar" },
-  { flag: "🇰🇼", code: "+965", name: "Kuwait" },
-  { flag: "🇧🇭", code: "+973", name: "Bahrain" },
-  { flag: "🇴🇲", code: "+968", name: "Oman" },
-  { flag: "🇵🇰", code: "+92", name: "Pakistan" },
-  { flag: "🇧🇩", code: "+880", name: "Bangladesh" },
-  { flag: "🇱🇰", code: "+94", name: "Sri Lanka" },
-  { flag: "🇳🇵", code: "+977", name: "Nepal" },
-  { flag: "🇩🇪", code: "+49", name: "Germany" },
-  { flag: "🇫🇷", code: "+33", name: "France" },
-  { flag: "🇮🇹", code: "+39", name: "Italy" },
-  { flag: "🇪🇸", code: "+34", name: "Spain" },
-  { flag: "🇳🇱", code: "+31", name: "Netherlands" },
-  { flag: "🇨🇭", code: "+41", name: "Switzerland" },
-  { flag: "🇸🇪", code: "+46", name: "Sweden" },
-  { flag: "🇳🇴", code: "+47", name: "Norway" },
-  { flag: "🇩🇰", code: "+45", name: "Denmark" },
-  { flag: "🇫🇮", code: "+358", name: "Finland" },
-  { flag: "🇵🇱", code: "+48", name: "Poland" },
-  { flag: "🇮🇪", code: "+353", name: "Ireland" },
-  { flag: "🇹🇷", code: "+90", name: "Turkey" },
-  { flag: "🇷🇺", code: "+7", name: "Russia" },
-  { flag: "🇧🇷", code: "+55", name: "Brazil" },
-  { flag: "🇲🇽", code: "+52", name: "Mexico" },
-  { flag: "🇦🇷", code: "+54", name: "Argentina" },
-  { flag: "🇨🇱", code: "+56", name: "Chile" },
-  { flag: "🇿🇦", code: "+27", name: "South Africa" },
-  { flag: "🇳🇬", code: "+234", name: "Nigeria" },
-  { flag: "🇰🇪", code: "+254", name: "Kenya" },
-  { flag: "🇪🇬", code: "+20", name: "Egypt" },
-  { flag: "🇳🇿", code: "+64", name: "New Zealand" },
-];
+// Dial-code data, flags, and country names are sourced from
+// `react-international-phone`, which ships the full ITU list and stays in
+// sync with libphonenumber metadata. Theming is handled via CSS variables on
+// the wrapper below (see PHONE_INPUT_THEME).
+const PHONE_INPUT_THEME = {
+  "--react-international-phone-background-color": "rgba(15,22,38,0.85)",
+  "--react-international-phone-text-color": "#FFFFFF",
+  "--react-international-phone-border-color": "rgba(125,185,214,0.18)",
+  "--react-international-phone-border-radius": "8px",
+  "--react-international-phone-font-size": "13px",
+  "--react-international-phone-font-family": "var(--font-inter, Inter)",
+  "--react-international-phone-height": "44px",
+  "--react-international-phone-country-selector-background-color":
+    "rgba(15,22,38,0.85)",
+  "--react-international-phone-country-selector-background-color-hover":
+    "rgba(125,185,214,0.08)",
+  "--react-international-phone-country-selector-border-color":
+    "rgba(125,185,214,0.18)",
+  "--react-international-phone-country-selector-arrow-color": "#7DB9D6",
+  "--react-international-phone-dropdown-background-color": "#0F1626",
+  "--react-international-phone-dropdown-item-background-color": "#0F1626",
+  "--react-international-phone-dropdown-item-background-color-hover":
+    "rgba(125,185,214,0.12)",
+  "--react-international-phone-dropdown-item-text-color": "#FFFFFF",
+  "--react-international-phone-dropdown-item-dial-code-color":
+    "rgba(255,255,255,0.6)",
+  "--react-international-phone-dropdown-shadow":
+    "0 12px 32px rgba(0,0,0,0.45)",
+  "--react-international-phone-selected-dropdown-item-background-color":
+    "rgba(125,185,214,0.18)",
+  width: "100%",
+} as CSSProperties;
 
 function ApplicationForm({
   termsText,
@@ -306,7 +285,8 @@ function ApplicationForm({
   const [accepted, setAccepted] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [dragOver, setDragOver] = useState(false);
-  const [dialIndex, setDialIndex] = useState("0");
+  const [phone, setPhone] = useState("");
+  const [dialCode, setDialCode] = useState("91");
   const [status, setStatus] = useState<
     | { kind: "idle" }
     | { kind: "submitting" }
@@ -320,11 +300,24 @@ function ApplicationForm({
     e.preventDefault();
     if (!accepted || status.kind === "submitting") return;
 
+    if (!file) {
+      setStatus({ kind: "error", message: "Please upload your CV before submitting." });
+      return;
+    }
+
+    const nationalNumber = phone.replace(/\D/g, "").slice(dialCode.length);
+    if (!nationalNumber) {
+      setStatus({ kind: "error", message: "Please enter your mobile number." });
+      return;
+    }
+
     const formEl = e.currentTarget;
     const fd = new FormData(formEl);
     fd.set("formType", "careers");
-    fd.set("dialCode", COUNTRY_CODES[Number(dialIndex)].code);
-    if (file) fd.set("cv", file);
+    fd.set("dialCode", `+${dialCode}`);
+    fd.set("mobile", nationalNumber);
+    fd.set("phone", phone);
+    fd.set("cv", file);
 
     setStatus({ kind: "submitting" });
     try {
@@ -349,6 +342,8 @@ function ApplicationForm({
       formEl.reset();
       setFile(null);
       setAccepted(false);
+      setPhone("");
+      setDialCode("91");
       setStatus({ kind: "success" });
     } catch (err) {
       setStatus({
@@ -386,13 +381,17 @@ function ApplicationForm({
       }}
     >
       <div>
-        <label htmlFor="fullName" style={labelStyle}>Full Name</label>
+        <label htmlFor="fullName" style={labelStyle}>
+          Full Name<span style={{ color: "#FF6B6B" }}>*</span>
+        </label>
         <input id="fullName" name="fullName" required style={inputStyle} />
       </div>
 
       <div className="contact-fields-row">
         <div>
-          <label htmlFor="email" style={labelStyle}>Email</label>
+          <label htmlFor="email" style={labelStyle}>
+            Email<span style={{ color: "#FF6B6B" }}>*</span>
+          </label>
           <input
             id="email"
             name="email"
@@ -402,102 +401,22 @@ function ApplicationForm({
           />
         </div>
         <div>
-          <label htmlFor="mobile" style={labelStyle}>Mobile number</label>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              ...inputStyle,
-              padding: "0 12px",
-            }}
-          >
-            {/* Country dial-code picker — a native <select> is overlaid on
-                top of a custom display row.  In the collapsed state we only
-                show flag + code; the native dropdown panel still opens with
-                the full country names because the browser renders the
-                option list from the underlying <select>. */}
-            <div
-              style={{
-                position: "relative",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                color: "#FFFFFF",
-                fontFamily: "var(--font-inter, Inter)",
-                fontSize: "13px",
-                whiteSpace: "nowrap",
+          <label htmlFor="mobile" style={labelStyle}>
+            Mobile number<span style={{ color: "#FF6B6B" }}>*</span>
+          </label>
+          <div className="careers-phone-input" style={PHONE_INPUT_THEME}>
+            <PhoneInput
+              defaultCountry="in"
+              value={phone}
+              onChange={(value, meta) => {
+                setPhone(value);
+                setDialCode(meta.country.dialCode);
               }}
-            >
-              <span style={{ pointerEvents: "none" }}>
-                {COUNTRY_CODES[Number(dialIndex)].flag}{" "}
-                {COUNTRY_CODES[Number(dialIndex)].code}
-              </span>
-              <svg
-                width="10"
-                height="6"
-                viewBox="0 0 10 6"
-                fill="none"
-                aria-hidden
-                style={{ pointerEvents: "none" }}
-              >
-                <path
-                  d="M1 1l4 4 4-4"
-                  stroke="#7DB9D6"
-                  strokeWidth="1.4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <select
-                aria-label="Country dial code"
-                value={dialIndex}
-                onChange={(e) => setDialIndex(e.target.value)}
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  opacity: 0,
-                  cursor: "pointer",
-                  border: "none",
-                  outline: "none",
-                  appearance: "none",
-                  WebkitAppearance: "none",
-                  MozAppearance: "none",
-                }}
-              >
-                {COUNTRY_CODES.map((c, i) => (
-                  <option
-                    key={`${c.name}-${c.code}-${i}`}
-                    value={String(i)}
-                    style={{ background: "#0F1626", color: "#FFFFFF" }}
-                  >
-                    {c.flag} {c.code} {c.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div
-              style={{
-                width: "1px",
-                height: "20px",
-                background: "rgba(125,185,214,0.25)",
-              }}
-              aria-hidden
-            />
-            <input
-              id="mobile"
-              name="mobile"
-              type="tel"
-              style={{
-                flex: 1,
-                border: "none",
-                outline: "none",
-                background: "transparent",
-                color: "#FFFFFF",
-                fontFamily: "var(--font-inter, Inter)",
-                fontSize: "13px",
+              inputProps={{
+                id: "mobile",
+                name: "mobile",
+                required: true,
+                "aria-label": "Mobile number",
               }}
             />
           </div>
@@ -510,8 +429,10 @@ function ApplicationForm({
           <input id="linkedin" name="linkedin" type="url" style={inputStyle} />
         </div>
         <div>
-          <label htmlFor="position" style={labelStyle}>Applying for position</label>
-          <input id="position" name="position" style={inputStyle} />
+          <label htmlFor="position" style={labelStyle}>
+            Applying for position<span style={{ color: "#FF6B6B" }}>*</span>
+          </label>
+          <input id="position" name="position" required style={inputStyle} />
         </div>
       </div>
 
@@ -533,7 +454,7 @@ function ApplicationForm({
 
       <div>
         <label style={labelStyle}>
-          Upload CV
+          Upload CV<span style={{ color: "#FF6B6B" }}>*</span>
           <span
             style={{
               color: "rgba(255,255,255,0.45)",

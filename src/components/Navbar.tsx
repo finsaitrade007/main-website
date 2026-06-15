@@ -255,10 +255,9 @@ export default function Navbar() {
       style={{
         position: "fixed",
         top: "1.2px",
-        left: "50%",
-        transform: "translateX(-50%)",
+        left: 0,
+        right: 0,
         width: "100%",
-        maxWidth: "1440px",
         zIndex: 50,
         display: "flex",
         justifyContent: "center",
@@ -294,7 +293,12 @@ export default function Navbar() {
             <img
               src="/finsai-logo.png"
               alt="Finsai Trade"
-              style={{ height: "clamp(28px, 2.5vw, 36px)", width: "auto", display: "block" }}
+              style={{
+                width: "146.84px",
+                height: "55.83px",
+                display: "block",
+                objectFit: "contain",
+              }}
             />
           </Link>
 

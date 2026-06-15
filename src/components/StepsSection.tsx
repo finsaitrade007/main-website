@@ -17,7 +17,7 @@ const CIRCLE_POSITIONS = [116, 556, 996];
 const CIRCLE_SIZE = 112;
 
 const FALLBACK_HEADER = {
-  stepsBadge: "Signup Procedure",
+  stepsBadge: "Get Started",
   stepsTitle: "Trade Global Markets in 3 Simple Steps",
 };
 

@@ -8,18 +8,21 @@ import {
   type CSSProperties,
   type TransitionEvent,
 } from "react";
+import Image from "next/image";
 import type { StrapiTestimonial } from "@/lib/strapi";
 
 const CARD_BG = "#0B1221";
-const BORDER_ACTIVE = "1.5px solid rgba(5,111,180,0.55)";
-const BORDER_INACTIVE = "1.07px solid rgba(5,111,180,0.35)";
+const BORDER_ACTIVE = "1.07px solid #056FB4";
+const BORDER_INACTIVE = "1.07px solid #056FB4";
+const ACTIVE_RADIUS = "15.6px";
+const INACTIVE_RADIUS = "7.8px";
 
-const ACTIVE_WIDTH_PX = 500;
-const ACTIVE_HEIGHT_PX = 360;
-const INACTIVE_WIDTH_PX = 280;
-const INACTIVE_HEIGHT_PX = 260;
+const ACTIVE_WIDTH_PX = 596.7;
+const ACTIVE_HEIGHT_PX = 305.19;
+const INACTIVE_WIDTH_PX = 284.7;
+const INACTIVE_HEIGHT_PX = 179.4;
 const GAP_PX = 28;
-const INACTIVE_OPACITY = 0.4;
+const INACTIVE_OPACITY = 1;
 const TRANSITION_MS = 600;
 const AUTO_CYCLE_MS = 3500;
 const EASING = "cubic-bezier(0.4, 0, 0.2, 1)";
@@ -223,7 +226,7 @@ export default function TestimonialsCarousel({
               minHeight: `${ACTIVE_HEIGHT_PX}px`,
               background: CARD_BG,
               border: BORDER_ACTIVE,
-              borderRadius: "14px",
+              borderRadius: ACTIVE_RADIUS,
               padding: "32px 28px",
               boxSizing: "border-box",
               display: "flex",
@@ -237,15 +240,17 @@ export default function TestimonialsCarousel({
               <div style={{ position: "absolute", top: "28px", left: "22px", pointerEvents: "none" }}>
                 <QuoteIcon size={32} flipped />
               </div>
-              <div style={{ position: "absolute", top: "128px", right: "22px", pointerEvents: "none" }}>
+              <div style={{ position: "absolute", top: "28px", right: "22px", pointerEvents: "none" }}>
                 <QuoteIcon size={32} />
               </div>
               <p style={{
                 fontFamily: "var(--font-sora, Sora)",
                 fontWeight: 300,
-                fontSize: "15px",
-                lineHeight: "1.6",
-                color: "rgba(255,255,255,0.85)",
+                fontSize: "17.1px",
+                lineHeight: 1,
+                letterSpacing: 0,
+                textAlign: "center",
+                color: "#FFFFFF",
                 margin: 0,
                 paddingLeft: "44px",
                 paddingRight: "44px",
@@ -253,21 +258,39 @@ export default function TestimonialsCarousel({
                 {activeTestimonial.quote}
               </p>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-                <div style={{
-                  width: "52px",
-                  height: "52px",
-                  borderRadius: "50%",
-                  background: "linear-gradient(135deg, rgba(5,111,180,0.6), rgba(125,185,214,0.4))",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontFamily: "var(--font-sora, Sora)",
-                  fontWeight: 700,
-                  fontSize: "16px",
-                  color: "#fff",
-                }}>
-                  {activeTestimonial.initials}
-                </div>
+                {activeTestimonial.localAvatar ? (
+                  <div style={{
+                    width: "52px",
+                    height: "52px",
+                    position: "relative",
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                  }}>
+                    <Image
+                      src={activeTestimonial.localAvatar}
+                      alt={activeTestimonial.name}
+                      fill
+                      sizes="52px"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                ) : (
+                  <div style={{
+                    width: "52px",
+                    height: "52px",
+                    borderRadius: "50%",
+                    background: "linear-gradient(135deg, rgba(5,111,180,0.6), rgba(125,185,214,0.4))",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontFamily: "var(--font-sora, Sora)",
+                    fontWeight: 700,
+                    fontSize: "16px",
+                    color: "#fff",
+                  }}>
+                    {activeTestimonial.initials}
+                  </div>
+                )}
                 <div>
                   <p style={{ fontFamily: "var(--font-sora, Sora)", fontWeight: 700, fontSize: "15px", color: "#fff", margin: "0 0 2px" }}>
                     {activeTestimonial.name}
@@ -307,7 +330,7 @@ export default function TestimonialsCarousel({
                   flexShrink: 0,
                   background: CARD_BG,
                   border: isActive ? BORDER_ACTIVE : BORDER_INACTIVE,
-                  borderRadius: "14px",
+                  borderRadius: isActive ? ACTIVE_RADIUS : INACTIVE_RADIUS,
                   padding: isActive ? "32px 38px" : "22px 24px",
                   boxSizing: "border-box",
                   display: "flex",
@@ -338,12 +361,11 @@ export default function TestimonialsCarousel({
                   <QuoteIcon size={isActive ? 38 : 28} flipped />
                 </div>
 
-                {/* Closing quote — fixed absolute anchor on the right side at
-                    the level where the testimonial text ends. */}
+                {/* Closing quote — mirrored to the top-right corner of the card. */}
                 <div
                   style={{
                     position: "absolute",
-                    top: isActive ? "148px" : "108px",
+                    top: isActive ? "98px" : "60px",
                     right: isActive ? "30px" : "22px",
                     pointerEvents: "none",
                   }}
@@ -355,9 +377,11 @@ export default function TestimonialsCarousel({
                   style={{
                     fontFamily: "var(--font-sora, Sora)",
                     fontWeight: 300,
-                    fontSize: isActive ? "16px" : "13px",
-                    lineHeight: "1.55",
-                    color: "rgba(255,255,255,0.85)",
+                    fontSize: isActive ? "17.1px" : "9px",
+                    lineHeight: 1,
+                    letterSpacing: 0,
+                    textAlign: "center",
+                    color: isActive ? "#FFFFFF" : "rgba(255,255,255,0.85)",
                     margin: 0,
                     paddingLeft: isActive ? "56px" : "36px",
                     paddingRight: isActive ? "56px" : "36px",
@@ -375,25 +399,46 @@ export default function TestimonialsCarousel({
                     gap: "8px",
                   }}
                 >
-                  <div
-                    style={{
-                      width: isActive ? "56px" : "42px",
-                      height: isActive ? "56px" : "42px",
-                      borderRadius: "50%",
-                      background:
-                        "linear-gradient(135deg, rgba(5,111,180,0.6), rgba(125,185,214,0.4))",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontFamily: "var(--font-sora, Sora)",
-                      fontWeight: 700,
-                      fontSize: isActive ? "17px" : "13px",
-                      color: "#fff",
-                      transition: avatarTransition,
-                    }}
-                  >
-                    {t.initials}
-                  </div>
+                  {t.localAvatar ? (
+                    <div
+                      style={{
+                        width: isActive ? "56px" : "42px",
+                        height: isActive ? "56px" : "42px",
+                        position: "relative",
+                        borderRadius: "50%",
+                        overflow: "hidden",
+                        transition: avatarTransition,
+                      }}
+                    >
+                      <Image
+                        src={t.localAvatar}
+                        alt={t.name}
+                        fill
+                        sizes={isActive ? "56px" : "42px"}
+                        style={{ objectFit: "cover" }}
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      style={{
+                        width: isActive ? "56px" : "42px",
+                        height: isActive ? "56px" : "42px",
+                        borderRadius: "50%",
+                        background:
+                          "linear-gradient(135deg, rgba(5,111,180,0.6), rgba(125,185,214,0.4))",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontFamily: "var(--font-sora, Sora)",
+                        fontWeight: 700,
+                        fontSize: isActive ? "17px" : "13px",
+                        color: "#fff",
+                        transition: avatarTransition,
+                      }}
+                    >
+                      {t.initials}
+                    </div>
+                  )}
                   <div>
                     <p
                       style={{

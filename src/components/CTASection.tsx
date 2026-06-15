@@ -27,9 +27,9 @@ const FALLBACK: Pick<
   | "ctaButton3Href"
 > = {
   ctaBadge: "Get Started",
-  ctaTitle: "Ready to Start Trading with Finsai?",
+  ctaTitle: "Ready to Explore Global Markets? ",
   ctaDescription:
-    "Open a live account or start with a demo account and explore global markets with Finsai Trade — at\nyour pace, on your terms.",
+    "Join active traders across 100+ global markets. Open a live account or try our demo of  powerful trading at your fingertips.",
   ctaFooterText:
     "Trading Forex and CFDs involves significant risk and may not be suitable for all investors. Please\nensure you fully understand the risks involved.",
   ctaButton1Label: "Start Trading",
@@ -119,7 +119,7 @@ export default async function CTASection() {
             className="section-desc"
             style={{
               textAlign: "center",
-              maxWidth: "900px",
+              maxWidth: "750px",
               margin: "0 auto 40px",
               whiteSpace: "pre-line",
             }}

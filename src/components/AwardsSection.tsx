@@ -63,7 +63,7 @@ export default async function AwardsSection() {
           className="section-desc"
           style={{
             textAlign: "center",
-            maxWidth: "560px",
+            maxWidth: "660px",
             margin: "0 auto 64px",
           }}
         >
@@ -104,21 +104,6 @@ export default async function AwardsSection() {
                     />
                   )}
                 </div>
-
-                <p
-                  style={{
-                    fontFamily: "var(--font-sora, Sora)",
-                    fontWeight: 700,
-                    fontSize: "18px",
-                    lineHeight: "1.4",
-                    color: "#FFFFFF",
-                    textAlign: "center",
-                    whiteSpace: "pre-line",
-                    margin: 0,
-                  }}
-                >
-                  {award.title}
-                </p>
               </div>
             );
           })}

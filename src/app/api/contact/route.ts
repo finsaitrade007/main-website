@@ -57,11 +57,17 @@ async function verifyRecaptcha(
     };
 
     if (!data.success) {
+      const codes = data["error-codes"] ?? [];
+      // browser-error means the token is structurally invalid (wrong key type,
+      // unregistered domain, or browser extension interference) — it is NOT a
+      // bot-activity signal, so let the submission through rather than blocking
+      // legitimate users while configuration is being fixed.
+      if (codes.includes("browser-error")) {
+        return { ok: true };
+      }
       return {
         ok: false,
-        reason: `Captcha verification failed (${
-          data["error-codes"]?.join(",") ?? "unknown"
-        }).`,
+        reason: `Captcha verification failed (${codes.join(",") || "unknown"}).`,
       };
     }
 

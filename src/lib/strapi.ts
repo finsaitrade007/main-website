@@ -227,6 +227,7 @@ export type StrapiTestimonial = {
   initials: string;
   quote: string;
   avatar?: StrapiMedia;
+  localAvatar?: string;
   order: number;
 };
 

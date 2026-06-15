@@ -21,7 +21,7 @@ const FALLBACK: Pick<
   ],
   heroCtaPrimaryLabel: "Start Trading Now",
   heroCtaPrimaryHref: "https://fx.finsaitrade.com/auth/register",
-  heroCtaSecondaryLabel: "Try Demo",
+  heroCtaSecondaryLabel: "Try Demo ->",
   heroCtaSecondaryHref: "/contactus",
 };
 
@@ -88,7 +88,7 @@ export default async function HeroSection() {
                 padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
                 borderRadius: "8px",
                 background:
-                  "linear-gradient(90deg, #496DAB 0%, #496DAB 50%, #41ABE7 75%, #48C3F4 100%)",
+                  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
                 textDecoration: "none",
                 whiteSpace: "nowrap",
               }}
@@ -100,7 +100,7 @@ export default async function HeroSection() {
               className="btn-secondary"
               style={{ padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)" }}
             >
-              {data.heroCtaSecondaryLabel} &nbsp;→
+              {data.heroCtaSecondaryLabel}
             </Link>
           </div>
         </div>

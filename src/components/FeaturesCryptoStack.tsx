@@ -161,13 +161,16 @@ export default function FeaturesCryptoStack() {
         height: "433.18377685546875px",
         padding: "41.59px 0 41.59px 10.97px",
         position: "relative",
-        border: "solid transparent",
-        borderWidth: "1.73px 5.2px 1.73px 3.47px",
+        borderStyle: "solid", 
+        borderColor: "transparent",
+        borderWidth: "2.73px 5.2px 1.73px 3.47px",
         boxSizing: "border-box",
         display: "flex",
         flexDirection: "column",
         gap: "14.44px",
         overflow: "visible",
+        marginTop: "-80px",
+        marginRight: "-10px",
       }}
     >
       <div
@@ -192,33 +195,41 @@ export default function FeaturesCryptoStack() {
         />
       </div>
       <div
+        aria-hidden
         style={{
           position: "absolute",
-          width: "184px",
-          height: "184px",
-          right: "-40px",
-          bottom: "-40px",
-          background: "#496DAB",
-          filter: "blur(71px)",
-          borderRadius: "50%",
-          opacity: 0.6,
+          inset: 0,
+          overflow: "hidden",
+          borderRadius: "inherit",
           pointerEvents: "none",
+          zIndex: 0,
         }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          width: "184px",
-          height: "184px",
-          left: "-40px",
-          top: "-60px",
-          background: "#496DAB",
-          filter: "blur(71px)",
-          borderRadius: "50%",
-          opacity: 0.6,
-          pointerEvents: "none",
-        }}
-      />
+      >
+        <div
+          style={{
+            position: "absolute",
+            width: "184px",
+            height: "184px",
+            right: "-40px",
+            bottom: "-40px",
+            background: "rgba(73, 109, 171, 1)",
+            filter: "blur(61px)",
+            borderRadius: "50%",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            width: "184px",
+            height: "184px",
+            left: "-90px",
+            top: "-90px",
+            background: "rgba(73, 109, 171, 1)",
+            filter: "blur(61px)",
+            borderRadius: "50%",
+          }}
+        />
+      </div>
 
       {buildRows(livePrices).map((row, i) => {
         const offset = getOffset(i);
