@@ -3,11 +3,14 @@
 import {
   useRef,
   useState,
+  type CSSProperties,
   type ChangeEvent,
   type DragEvent,
   type FormEvent,
 } from "react";
 import Image from "next/image";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 import { useRecaptcha } from "@/lib/useRecaptcha";
 
 type IconKey = "quick" | "transparency" | "dedicated" | "multilang";
@@ -49,34 +52,38 @@ const QUERY_OPTIONS = [
   "Other",
 ];
 
-const COUNTRY_CODES: { flag: string; code: string; name: string }[] = [
-  { flag: "🇮🇳", code: "+91", name: "India" },
-  { flag: "🇺🇸", code: "+1", name: "United States" },
-  { flag: "🇬🇧", code: "+44", name: "United Kingdom" },
-  { flag: "🇨🇦", code: "+1", name: "Canada" },
-  { flag: "🇦🇺", code: "+61", name: "Australia" },
-  { flag: "🇸🇬", code: "+65", name: "Singapore" },
-  { flag: "🇲🇾", code: "+60", name: "Malaysia" },
-  { flag: "🇮🇩", code: "+62", name: "Indonesia" },
-  { flag: "🇵🇭", code: "+63", name: "Philippines" },
-  { flag: "🇹🇭", code: "+66", name: "Thailand" },
-  { flag: "🇻🇳", code: "+84", name: "Vietnam" },
-  { flag: "🇭🇰", code: "+852", name: "Hong Kong" },
-  { flag: "🇨🇳", code: "+86", name: "China" },
-  { flag: "🇯🇵", code: "+81", name: "Japan" },
-  { flag: "🇰🇷", code: "+82", name: "South Korea" },
-  { flag: "🇦🇪", code: "+971", name: "United Arab Emirates" },
-  { flag: "🇸🇦", code: "+966", name: "Saudi Arabia" },
-  { flag: "🇵🇰", code: "+92", name: "Pakistan" },
-  { flag: "🇧🇩", code: "+880", name: "Bangladesh" },
-  { flag: "🇩🇪", code: "+49", name: "Germany" },
-  { flag: "🇫🇷", code: "+33", name: "France" },
-  { flag: "🇮🇹", code: "+39", name: "Italy" },
-  { flag: "🇪🇸", code: "+34", name: "Spain" },
-  { flag: "🇳🇱", code: "+31", name: "Netherlands" },
-  { flag: "🇧🇷", code: "+55", name: "Brazil" },
-  { flag: "🇿🇦", code: "+27", name: "South Africa" },
-];
+// Dial-code data, flags, and country names are sourced from
+// `react-international-phone`, which ships the full ITU list and stays in
+// sync with libphonenumber metadata. Theming is handled via CSS variables on
+// the wrapper below (see PHONE_INPUT_THEME) — shared with the careers form.
+const PHONE_INPUT_THEME = {
+  "--react-international-phone-background-color": "rgba(15,22,38,0.85)",
+  "--react-international-phone-text-color": "#FFFFFF",
+  "--react-international-phone-border-color": "rgba(125,185,214,0.18)",
+  "--react-international-phone-border-radius": "8px",
+  "--react-international-phone-font-size": "13px",
+  "--react-international-phone-font-family": "var(--font-inter, Inter)",
+  "--react-international-phone-height": "44px",
+  "--react-international-phone-country-selector-background-color":
+    "rgba(15,22,38,0.85)",
+  "--react-international-phone-country-selector-background-color-hover":
+    "rgba(125,185,214,0.08)",
+  "--react-international-phone-country-selector-border-color":
+    "rgba(125,185,214,0.18)",
+  "--react-international-phone-country-selector-arrow-color": "#7DB9D6",
+  "--react-international-phone-dropdown-background-color": "#0F1626",
+  "--react-international-phone-dropdown-item-background-color": "#0F1626",
+  "--react-international-phone-dropdown-item-background-color-hover":
+    "rgba(125,185,214,0.12)",
+  "--react-international-phone-dropdown-item-text-color": "#FFFFFF",
+  "--react-international-phone-dropdown-item-dial-code-color":
+    "rgba(255,255,255,0.6)",
+  "--react-international-phone-dropdown-shadow":
+    "0 12px 32px rgba(0,0,0,0.45)",
+  "--react-international-phone-selected-dropdown-item-background-color":
+    "rgba(125,185,214,0.18)",
+  width: "100%",
+} as CSSProperties;
 
 function BenefitIcon({ icon }: { icon: IconKey }) {
   const common = {
@@ -372,7 +379,8 @@ function ContactForm() {
   const [accepted, setAccepted] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [dragOver, setDragOver] = useState(false);
-  const [dialIndex, setDialIndex] = useState("0");
+  const [phone, setPhone] = useState("");
+  const [dialCode, setDialCode] = useState("91");
   const [status, setStatus] = useState<
     | { kind: "idle" }
     | { kind: "submitting" }
@@ -389,19 +397,32 @@ function ContactForm() {
     const formEl = e.currentTarget;
     const fd = new FormData(formEl);
     fd.set("formType", "contact");
-    fd.set("dialCode", COUNTRY_CODES[Number(dialIndex)].code);
+
+    const nationalNumber = phone.replace(/\D/g, "").slice(dialCode.length);
+    if (nationalNumber) {
+      fd.set("dialCode", `+${dialCode}`);
+      fd.set("mobile", nationalNumber);
+      fd.set("phone", phone);
+    } else {
+      fd.delete("dialCode");
+      fd.delete("mobile");
+      fd.delete("phone");
+    }
+
     if (file) fd.set("cv", file);
 
     setStatus({ kind: "submitting" });
     try {
       if (recaptcha.enabled) {
-        const token = await recaptcha.execute("contact_submit");
-        if (!token) {
-          throw new Error(
-            "Couldn't verify you're human — please refresh and try again.",
-          );
+        try {
+          const token = await recaptcha.execute("contact_submit");
+          if (token) {
+            fd.set("recaptchaToken", token);
+          }
+        } catch {
+          // Captcha unavailable — proceed without token; the server treats
+          // captcha as advisory and will still deliver the email.
         }
-        fd.set("recaptchaToken", token);
       }
 
       const res = await fetch("/api/contact", { method: "POST", body: fd });
@@ -415,6 +436,8 @@ function ContactForm() {
       formEl.reset();
       setFile(null);
       setAccepted(false);
+      setPhone("");
+      setDialCode("91");
       setStatus({ kind: "success" });
     } catch (err) {
       setStatus({
@@ -475,96 +498,18 @@ function ContactForm() {
           <label htmlFor="cu-mobile" style={labelStyle}>
             Mobile number
           </label>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              ...inputStyle,
-              padding: "0 12px",
-            }}
-          >
-            <div
-              style={{
-                position: "relative",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                color: "#FFFFFF",
-                fontFamily: "var(--font-inter, Inter)",
-                fontSize: "13px",
-                whiteSpace: "nowrap",
+          <div className="careers-phone-input" style={PHONE_INPUT_THEME}>
+            <PhoneInput
+              defaultCountry="in"
+              value={phone}
+              onChange={(value, meta) => {
+                setPhone(value);
+                setDialCode(meta.country.dialCode);
               }}
-            >
-              <span style={{ pointerEvents: "none" }}>
-                {COUNTRY_CODES[Number(dialIndex)].flag}{" "}
-                {COUNTRY_CODES[Number(dialIndex)].code}
-              </span>
-              <svg
-                width="10"
-                height="6"
-                viewBox="0 0 10 6"
-                fill="none"
-                aria-hidden
-                style={{ pointerEvents: "none" }}
-              >
-                <path
-                  d="M1 1l4 4 4-4"
-                  stroke="#7DB9D6"
-                  strokeWidth="1.4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <select
-                aria-label="Country dial code"
-                value={dialIndex}
-                onChange={(e) => setDialIndex(e.target.value)}
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  opacity: 0,
-                  cursor: "pointer",
-                  border: "none",
-                  outline: "none",
-                  appearance: "none",
-                  WebkitAppearance: "none",
-                  MozAppearance: "none",
-                }}
-              >
-                {COUNTRY_CODES.map((c, i) => (
-                  <option
-                    key={`${c.name}-${c.code}-${i}`}
-                    value={String(i)}
-                    style={{ background: "#0F1626", color: "#FFFFFF" }}
-                  >
-                    {c.flag} {c.code} {c.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div
-              style={{
-                width: "1px",
-                height: "20px",
-                background: "rgba(125,185,214,0.25)",
-              }}
-              aria-hidden
-            />
-            <input
-              id="cu-mobile"
-              name="mobile"
-              type="tel"
-              style={{
-                flex: 1,
-                border: "none",
-                outline: "none",
-                background: "transparent",
-                color: "#FFFFFF",
-                fontFamily: "var(--font-inter, Inter)",
-                fontSize: "13px",
+              inputProps={{
+                id: "cu-mobile",
+                name: "mobile",
+                "aria-label": "Mobile number",
               }}
             />
           </div>

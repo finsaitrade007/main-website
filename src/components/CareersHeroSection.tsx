@@ -40,20 +40,21 @@ export default async function CareersHeroSection() {
       <Image
         src="/careers/hero.png"
         alt=""
-        width={1360}
-        height={736}
+        width={1178}
+        height={671}
         priority
         className="hero-image"
         style={{
           position: "absolute",
-          top: "clamp(20px, 4.9vw, 70px)",
-          left: 0,
-          width: "100%",
+          top: "103px",
+          left: "224px",
+          width: "1178px",
           height: "auto",
+          maxHeight: "90%",
           objectFit: "contain",
+          objectPosition: "right center",
           pointerEvents: "none",
           userSelect: "none",
-          opacity: 1,
         }}
       />
 

@@ -322,13 +322,15 @@ function ApplicationForm({
     setStatus({ kind: "submitting" });
     try {
       if (recaptcha.enabled) {
-        const token = await recaptcha.execute("careers_submit");
-        if (!token) {
-          throw new Error(
-            "Couldn't verify you're human — please refresh and try again.",
-          );
+        try {
+          const token = await recaptcha.execute("careers_submit");
+          if (token) {
+            fd.set("recaptchaToken", token);
+          }
+        } catch {
+          // Captcha unavailable — proceed without token; the server treats
+          // captcha as advisory and will still deliver the application.
         }
-        fd.set("recaptchaToken", token);
       }
 
       const res = await fetch("/api/contact", { method: "POST", body: fd });

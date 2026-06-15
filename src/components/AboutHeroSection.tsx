@@ -12,7 +12,7 @@ const FALLBACK: Pick<
   | "heroSecondaryCtaLabel"
   | "heroSecondaryCtaHref"
 > = {
-  heroBadge: "About Finsai Trade Ltd",
+  heroBadge: "Who We Are",
   heroTitle: "Our Mission, Our Markets, Our Edge",
   heroDescription:
     "Helping traders access multiple asset classes while benefiting from educational resources, loyalty rewards, and partnership opportunities. ",
@@ -38,13 +38,16 @@ export default async function AboutHeroSection() {
       <Image
         src="/about/hero-bg.png"
         alt=""
-        fill
+        width={917}
+        height={516}
         priority
-        sizes="1440px"
         className="hero-image"
         style={{
-          objectFit: "cover",
-          objectPosition: "center",
+          position: "absolute",
+          top: "178px",
+          left: "574px",
+          width: "917px",
+          height: "auto",
           pointerEvents: "none",
           userSelect: "none",
           zIndex: 0,

@@ -20,12 +20,17 @@ function pickString(form: FormData, key: string): string | undefined {
 }
 
 /**
- * Verify the reCAPTCHA v3 token with Google. Returns `true` if verification
- * passes (score above threshold) OR if reCAPTCHA isn't configured server-side
- * (so local dev works without keys). Configure via:
- *   - RECAPTCHA_SECRET_KEY     – server secret (enables verification)
- *   - RECAPTCHA_MIN_SCORE      – threshold, default 0.5
- *   - RECAPTCHA_EXPECTED_ACTION – optional; reject if mismatched
+ * Verify the reCAPTCHA v3 token with Google. Captcha is treated as ADVISORY:
+ * the function logs verification outcomes but never blocks delivery, so
+ * legitimate users still get through even when the reCAPTCHA script is
+ * blocked, misconfigured, or returns a low score. Set
+ * RECAPTCHA_ENFORCE=true to flip back to strict blocking behaviour.
+ *
+ * Configure via:
+ *   - RECAPTCHA_SECRET_KEY       – server secret (enables verification)
+ *   - RECAPTCHA_MIN_SCORE        – threshold, default 0.5
+ *   - RECAPTCHA_EXPECTED_ACTION  – optional; flag if mismatched
+ *   - RECAPTCHA_ENFORCE          – "true" to block on failure (default: false)
  */
 async function verifyRecaptcha(
   token: string | undefined,
@@ -58,13 +63,6 @@ async function verifyRecaptcha(
 
     if (!data.success) {
       const codes = data["error-codes"] ?? [];
-      // browser-error means the token is structurally invalid (wrong key type,
-      // unregistered domain, or browser extension interference) — it is NOT a
-      // bot-activity signal, so let the submission through rather than blocking
-      // legitimate users while configuration is being fixed.
-      if (codes.includes("browser-error")) {
-        return { ok: true };
-      }
       return {
         ok: false,
         reason: `Captcha verification failed (${codes.join(",") || "unknown"}).`,
@@ -75,7 +73,7 @@ async function verifyRecaptcha(
     if (typeof data.score === "number" && data.score < minScore) {
       return {
         ok: false,
-        reason: "Captcha score too low — please try again.",
+        reason: `Captcha score too low (${data.score}).`,
       };
     }
 
@@ -118,10 +116,15 @@ export async function POST(req: NextRequest) {
     formType === "careers" ? "careers_submit" : "contact_submit",
   );
   if (!captcha.ok) {
-    return NextResponse.json(
-      { ok: false, error: captcha.reason },
-      { status: 400 },
-    );
+    // Captcha is advisory by default — log the failure for monitoring but
+    // still deliver the email. Set RECAPTCHA_ENFORCE=true to block instead.
+    console.warn("[/api/contact] captcha advisory failure:", captcha.reason);
+    if (process.env.RECAPTCHA_ENFORCE === "true") {
+      return NextResponse.json(
+        { ok: false, error: captcha.reason },
+        { status: 400 },
+      );
+    }
   }
 
   const mobile = pickString(form, "mobile");

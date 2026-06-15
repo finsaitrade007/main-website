@@ -33,10 +33,10 @@ export default function ContactUsHeroSection() {
         className="hero-image"
         style={{
           position: "absolute",
-          top: "31px",
-          left: "clamp(300px, 45.1vw, 650px)",
-          width: "clamp(300px, 51.7vw, 744px)",
-          height: "auto",
+          top: "122px",
+          left: "664px",
+          width: "746px",
+          height: "611px",
           objectFit: "contain",
           pointerEvents: "none",
           userSelect: "none",
