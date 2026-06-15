@@ -20,7 +20,7 @@ const FALLBACK = {
   ctaFooterText:
     "Trading Forex and CFDs involves significant risk and may not be suitable for all investors. Please\nensure you fully understand the risks involved.",
   ctaButton1Label: "Become an IB Partner",
-  ctaButton1Href: "https://fx.finsaitrade.com/auth/register",
+  ctaButton1Href: "https://portal.finsaitrade.com/partner/register",
   ctaButton2Label: "Talk to Us",
   ctaButton2Href: "/contactus",
   ctaButton3Label: "Start a Demo Account",

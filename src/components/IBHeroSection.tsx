@@ -13,7 +13,7 @@ const FALLBACK: Pick<
   heroDescription:
     "Earn attractive commissions from every client trade with higher conversions and stronger client retention.",
   heroPrimaryCtaLabel: "Become an IB",
-  heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
+  heroPrimaryCtaHref: "https://portal.finsaitrade.com/partner/register",
 };
 
 export default async function IBHeroSection() {

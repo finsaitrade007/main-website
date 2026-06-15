@@ -23,7 +23,7 @@ export default async function IBHowToSection() {
   const title = data?.howToTitle ?? " How to Become a Successful Introducing Broker";
   const description = data?.howToDescription ?? "Start earning with an easy partner program built for long-term growth. ";
   const ctaLabel = data?.heroPrimaryCtaLabel ?? "Become an IB";
-  const ctaHref = data?.heroPrimaryCtaHref ?? "https://fx.finsaitrade.com/auth/register";
+  const ctaHref = data?.heroPrimaryCtaHref ?? "https://portal.finsaitrade.com/partner/register";
 
   const rawSteps = data?.howToSteps?.length ? data.howToSteps : fallbackSteps;
   const steps = rawSteps.slice(0, 3).map((step, i) => ({
