@@ -52,7 +52,7 @@ export default async function PaymentsHeroSection() {
           position: "absolute",
           top: "clamp(120px, 11.7vw, 168px)",
           left: "clamp(20px, 5.5vw, 80px)",
-          width: "clamp(280px, 48.8vw, 702px)",
+          width: "clamp(280px, 58.8vw, 852px)",
           display: "flex",
           flexDirection: "column",
           gap: "24px",

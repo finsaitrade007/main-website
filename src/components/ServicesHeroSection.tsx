@@ -50,7 +50,7 @@ export default async function ServicesHeroSection() {
         position: "absolute",
         top: "clamp(120px, 13.9vw, 200px)",
         left: "clamp(20px, 5.5vw, 80px)",
-        width: "clamp(300px, 45vw, 650px)",
+        width: "clamp(300px, 75vw, 750px)",
         display: "flex",
         flexDirection: "column",
         gap: "24px",
