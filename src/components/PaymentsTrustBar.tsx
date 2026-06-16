@@ -137,9 +137,9 @@ export default function PaymentsTrustBar() {
                 <span
                   style={{
                     fontFamily: "var(--font-sora, Sora)",
-                    fontWeight: 500,
-                    fontSize: "clamp(14px, 1.25vw, 18px)",
-                    lineHeight: 1.15,
+                    fontWeight: 400,
+                    fontSize: "clamp(14px, 1.88vw, 27.1px)",
+                    lineHeight: "100%",
                     letterSpacing: "-0.01em",
                     color: "#FFFFFF",
                     whiteSpace: "nowrap",
@@ -149,12 +149,12 @@ export default function PaymentsTrustBar() {
                 </span>
                 <span
                   style={{
-                    fontFamily: "var(--font-sora, Sora)",
+                    fontFamily: "var(--font-inter, Inter)",
                     fontWeight: 400,
-                    fontSize: "clamp(13px, 1.05vw, 15px)",
-                    lineHeight: 1.15,
+                    fontSize: "clamp(13px, 1.4vw, 24.5px)",
+                    lineHeight: "100%",
                     letterSpacing: "-0.01em",
-                    color: "rgba(255,255,255,0.78)",
+                    color: "#E0E0E0",
                     whiteSpace: "nowrap",
                   }}
                 >
