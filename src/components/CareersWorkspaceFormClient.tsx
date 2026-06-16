@@ -614,23 +614,19 @@ function RecaptchaNotice() {
         color: "rgba(255,255,255,0.45)",
       }}
     >
-      This site is protected by reCAPTCHA and the Google{" "}
+      This site is protected by reCAPTCHA. Our{" "}
       <a
-        href="https://policies.google.com/privacy"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/privacy-policy"
         style={{ color: "#7DB9D6", textDecoration: "none" }}
       >
         Privacy Policy
       </a>{" "}
       and{" "}
       <a
-        href="https://policies.google.com/terms"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/terms-conditions"
         style={{ color: "#7DB9D6", textDecoration: "none" }}
       >
-        Terms of Service
+        Terms &amp; Conditions
       </a>{" "}
       apply.
     </p>

@@ -11,7 +11,9 @@ export default function IBCalculatorSection({ title, description }: Props) {
   const [clients, setClients] = useState(0);
   const [volume, setVolume] = useState(0);
 
-  const monthlyRevenue = (clients * volume * 0.05).toFixed(2);
+  // $3 per lot, summed across all referred clients
+  // (e.g. 2 clients × 2 lots = 2 × 2 × $3 = $12).
+  const monthlyRevenue = (clients * volume * 3).toFixed(2);
 
   return (
     <section
@@ -107,7 +109,7 @@ export default function IBCalculatorSection({ title, description }: Props) {
             position: "absolute",
             top: "200px",
             left: "316px",
-            width: "88px",
+            width: "150px",
             height: "27px",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 500,
@@ -116,7 +118,7 @@ export default function IBCalculatorSection({ title, description }: Props) {
             letterSpacing: 0,
             color: "#FFFFFF",
           }}>
-            {clients} trades
+            {clients} Clients
           </span>
 
           {/* Slider 1 */}
@@ -145,7 +147,7 @@ export default function IBCalculatorSection({ title, description }: Props) {
             position: "absolute",
             top: "323px",
             left: "324px",
-            width: "66px",
+            width: "150px",
             height: "27px",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 500,

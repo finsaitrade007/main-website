@@ -11,7 +11,8 @@ type Props = {
   description: string;
 };
 
-const VH_PER_MARKET = 40;
+const VH_PER_MARKET_DESKTOP = 40;
+const VH_PER_MARKET_MOBILE = 70;
 
 export default function MarketsAccordion({
   markets,
@@ -29,6 +30,8 @@ export default function MarketsAccordion({
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
   }, []);
+
+  const vhPerMarket = isMobile ? VH_PER_MARKET_MOBILE : VH_PER_MARKET_DESKTOP;
 
   const total = markets.length;
 
@@ -98,17 +101,17 @@ export default function MarketsAccordion({
       ref={outerRef}
       style={{
         position: "relative",
-        height: isMobile ? "auto" : `calc(${total * VH_PER_MARKET}vh + 100vh)`,
+        height: `calc(${total * vhPerMarket}vh + 100vh)`,
       }}
     >
       <div
         style={{
-          position: isMobile ? "relative" : "sticky",
+          position: "sticky",
           top: 0,
-          height: isMobile ? "auto" : "100vh",
+          height: "100vh",
           display: "flex",
           alignItems: "center",
-          overflow: isMobile ? "visible" : "hidden",
+          overflow: "hidden",
         }}
       >
         <div

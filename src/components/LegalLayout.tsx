@@ -49,7 +49,7 @@ export function LegalLayout({
         style={{
           maxWidth: "880px",
           margin: "0 auto",
-          padding: "clamp(40px, 8vw, 120px) clamp(20px, 8vw, 120px)",
+          padding: "clamp(100px, 8vw, 120px) clamp(20px, 8vw, 20px)",
           display: "flex",
           flexDirection: "column",
           gap: "56px",

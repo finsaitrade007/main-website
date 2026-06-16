@@ -15,16 +15,16 @@ const FALLBACK_HEADER = {
 
 const FALLBACK_AWARDS: StrapiAward[] = [
   { id: 1, documentId: "fb-1", title: "The Fastest Growing\nBroker 2024", image: null, order: 1 },
-  { id: 2, documentId: "fb-2", title: "The Best IB\nProgram 2025", image: null, order: 2 },
+  { id: 2, documentId: "fb-2", title: "The Fastest Growing\nBroker 2025", image: null, order: 2 },
   { id: 3, documentId: "fb-3", title: "The Fastest Growing\nBroker 2025", image: null, order: 3 },
   { id: 4, documentId: "fb-4", title: "Innovative Startup in\nFinance Award 2023", image: null, order: 4 },
 ];
 
 const LOCAL_AWARD_IMAGES = [
-  "/awards/wld-fi-2024.png",
-  "/awards/wld-fi-2025.png",
-  "/awards/world-forex-award.png",
-  "/awards/innovative-startup.png",
+  "/awards/wld-fi.png",
+  "/awards/world-forex.png",
+  "/awards/wld-fi.png",
+  "/awards/innovative.png",
 ];
 
 export default async function AwardsSection() {
@@ -76,39 +76,79 @@ export default async function AwardsSection() {
             return (
               <div
                 key={award.id}
+                className="awards-item"
                 style={{
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  gap: "24px",
+                  gap: "16px",
+                  width: "clamp(60px, 20vw, 280px)",
+                  flexShrink: 1,
                 }}
               >
                 <div
+                  className="awards-disc"
                   style={{
-                    width: "clamp(160px, 18vw, 260px)",
-                    height: "clamp(160px, 18vw, 260px)",
+                    width: "clamp(60px, 20vw, 280px)",
+                    height: "clamp(60px, 20vw, 280px)",
                     borderRadius: "50%",
-                    border: "1px solid rgba(5,111,180,0.45)",
-                    boxShadow:
-                      "0 0 30px 8px rgba(5,111,180,0.12), inset 0 0 40px rgba(5,111,180,0.06)",
+                    background:"linear-gradient(119.3deg, rgba(0,0,0,0) 23.34%, rgba(73,109,171,0.3) 96.36%)",
+                    border: "1px solid #056FB499",
                     position: "relative",
                     overflow: "hidden",
                   }}
                 >
                   {img && (
-                    <Image
-                      src={img}
-                      alt={award.title}
-                      fill
-                      style={{ objectFit: "contain" }}
-                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "10%",
+                        left: "23.5%",
+                        width: "53%",
+                        height: "55%",
+                      }}
+                    >
+                      <Image
+                        src={img}
+                        alt={award.title}
+                        fill
+                        sizes="(max-width: 768px) 174px, 174px"
+                        style={{
+                          objectFit: "contain",
+                          objectPosition: "center",
+                          filter: idx < 3 ? "brightness(0) invert(1)" : undefined,
+                        }}
+                      />
+                    </div>
                   )}
+                  <p
+                    style={{
+                      position: "absolute",
+                      top: "66.714%",
+                      left: "10.714%",
+                      width: "78.571%",
+                      height: "18.929%",
+                      margin: 0,
+                      textAlign: "center",
+                      color: "#FFFFFF",
+                      fontFamily: "var(--font-sora, Sora)",
+                      fontWeight: 600,
+                      fontSize: "clamp(15px, 1.3vw, 18px)",
+                      lineHeight: 1.35,
+                      whiteSpace: "pre-line",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {award.title}
+                  </p>
                 </div>
               </div>
-            );
+        );
           })}
-        </div>
       </div>
-    </section>
+    </div>
+    </section >
   );
 }

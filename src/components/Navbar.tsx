@@ -16,7 +16,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "Platform", href: "/services" },
       { label: "Social Trading", href: "/social-trading" },
       { label: "Account", href: "/accounts" },
-      { label: "Payment Option", href: "/payments" },
+      { label: "Payments", href: "/payments" },
     ],
   },
   {
@@ -265,9 +265,7 @@ export default function Navbar() {
         paddingBottom: "15.6px",
         paddingLeft: "16px",
         paddingRight: "16px",
-        background: "#0000001C",
-        backdropFilter: "blur(114px)",
-        WebkitBackdropFilter: "blur(114px)",
+        background: "transparent",
         boxSizing: "border-box",
       }}
     >

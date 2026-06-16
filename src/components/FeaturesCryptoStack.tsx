@@ -24,11 +24,11 @@ const STATIC_ROWS: Omit<CryptoRow, "price" | "change">[] = [
 ];
 
 const FALLBACK_PRICES: Record<string, string> = {
-  "BINANCE:BTCUSDT":  "$1,236.21",
-  "BINANCE:ETHUSDT":  "$2,236.21",
-  "BINANCE:OGNUSDT":  null as unknown as string,
-  "BINANCE:ACTUSDT":  "$165.8",
-  "BINANCE:USDTUSDC": "$165.8",
+  "BINANCE:BTCUSDT":  "$65000.21",
+  "BINANCE:ETHUSDT":  "$1800.21",
+  "BINANCE:OGNUSDT":  "$0.001",
+  "BINANCE:ACTUSDT":  "$0.001",
+  "BINANCE:USDTUSDC": "$0.98",
 };
 
 function buildRows(live: PriceMap): CryptoRow[] {

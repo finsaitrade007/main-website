@@ -1,11 +1,8 @@
 "use client";
 
 import {
-  useRef,
   useState,
   type CSSProperties,
-  type ChangeEvent,
-  type DragEvent,
   type FormEvent,
 } from "react";
 import Image from "next/image";
@@ -377,8 +374,6 @@ function LeftPanel() {
 
 function ContactForm() {
   const [accepted, setAccepted] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
-  const [dragOver, setDragOver] = useState(false);
   const [phone, setPhone] = useState("");
   const [dialCode, setDialCode] = useState("91");
   const [status, setStatus] = useState<
@@ -387,7 +382,6 @@ function ContactForm() {
     | { kind: "success" }
     | { kind: "error"; message: string }
   >({ kind: "idle" });
-  const inputRef = useRef<HTMLInputElement>(null);
   const recaptcha = useRecaptcha();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -408,8 +402,6 @@ function ContactForm() {
       fd.delete("mobile");
       fd.delete("phone");
     }
-
-    if (file) fd.set("cv", file);
 
     setStatus({ kind: "submitting" });
     try {
@@ -434,7 +426,6 @@ function ContactForm() {
         throw new Error(data.error ?? "Could not send your message.");
       }
       formEl.reset();
-      setFile(null);
       setAccepted(false);
       setPhone("");
       setDialCode("91");
@@ -446,18 +437,6 @@ function ContactForm() {
           err instanceof Error ? err.message : "Something went wrong.",
       });
     }
-  };
-
-  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setDragOver(false);
-    const f = e.dataTransfer.files?.[0];
-    if (f) setFile(f);
-  };
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const f = e.target.files?.[0];
-    if (f) setFile(f);
   };
 
   return (
@@ -567,80 +546,6 @@ function ContactForm() {
         />
       </div>
 
-      <div>
-        <label
-          className="contact-upload-label"
-          style={labelStyle}
-        >
-          <span>
-            Upload CV<span style={{ color: "#FF6B6B" }}>*</span>
-          </span>
-          <span
-            style={{
-              color: "rgba(255,255,255,0.45)",
-              fontWeight: 400,
-              fontSize: "11px",
-            }}
-          >
-            PDF files only (Max. 4Mb)
-          </span>
-        </label>
-        <div
-          onDragOver={(e) => {
-            e.preventDefault();
-            setDragOver(true);
-          }}
-          onDragLeave={() => setDragOver(false)}
-          onDrop={handleDrop}
-          onClick={() => inputRef.current?.click()}
-          role="button"
-          tabIndex={0}
-          style={{
-            cursor: "pointer",
-            padding: "32px",
-            borderRadius: "12px",
-            border: `1px dashed ${
-              dragOver ? "rgba(125,185,214,0.6)" : "rgba(125,185,214,0.25)"
-            }`,
-            background: dragOver
-              ? "rgba(5,111,180,0.18)"
-              : "rgba(15,22,38,0.65)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "8px",
-            color: "rgba(255,255,255,0.6)",
-            fontFamily: "var(--font-inter, Inter)",
-            fontSize: "13px",
-          }}
-        >
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 22 22"
-            fill="none"
-            stroke="rgba(125,185,214,0.7)"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden
-          >
-            <path d="M11 3v12" />
-            <path d="M6 8l5-5 5 5" />
-            <path d="M3 19h16" />
-          </svg>
-          <span>{file ? file.name : "Upload Or Drag File"}</span>
-          <input
-            ref={inputRef}
-            type="file"
-            accept="application/pdf"
-            hidden
-            onChange={handleFileChange}
-          />
-        </div>
-      </div>
-
       <label
         style={{
           display: "flex",
@@ -664,9 +569,16 @@ function ContactForm() {
           }}
         />
         <span>
-          I have read and accepted the terms and conditions specified in the{" "}
+          I have read and accepted the{" "}
           <a
-            href="/privacy"
+            href="/terms-conditions"
+            style={{ color: "#7DB9D6", textDecoration: "none" }}
+          >
+            Terms &amp; Conditions
+          </a>{" "}
+          specified in the{" "}
+          <a
+            href="/privacy-policy"
             style={{ color: "#7DB9D6", textDecoration: "none" }}
           >
             Privacy Policy
@@ -738,23 +650,19 @@ function ContactForm() {
             color: "rgba(255,255,255,0.45)",
           }}
         >
-          This site is protected by reCAPTCHA and the Google{" "}
+          This site is protected by reCAPTCHA. Our{" "}
           <a
-            href="https://policies.google.com/privacy"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/privacy-policy"
             style={{ color: "#7DB9D6", textDecoration: "none" }}
           >
             Privacy Policy
           </a>{" "}
           and{" "}
           <a
-            href="https://policies.google.com/terms"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/terms-conditions"
             style={{ color: "#7DB9D6", textDecoration: "none" }}
           >
-            Terms of Service
+            Terms &amp; Conditions
           </a>{" "}
           apply.
         </p>

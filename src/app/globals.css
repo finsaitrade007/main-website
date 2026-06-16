@@ -1123,8 +1123,29 @@ body {
 .awards-row {
   display: flex;
   justify-content: center;
-  gap: clamp(20px, 4vw, 62px);
-  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: clamp(8px, 2.5vw, 40px);
+  flex-wrap: nowrap;
+}
+.awards-row > * {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+@media (max-width: 1023px) {
+  .awards-row {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 28px !important;
+    flex-wrap: nowrap !important;
+  }
+  .awards-item {
+    width: min(280px, calc(100vw - 48px)) !important;
+    flex-shrink: 0 !important;
+  }
+  .awards-disc {
+    width: min(280px, calc(100vw - 48px)) !important;
+    height: min(280px, calc(100vw - 48px)) !important;
+  }
 }
 
 /* ── Account types cards ── */

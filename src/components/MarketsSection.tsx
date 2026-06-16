@@ -23,7 +23,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     slug: "crypto",
     name: "Crypto",
     description:
-      "Access leading cryptocurrencies and trade the digital asset market 24/7 with advanced charting tools, real-time pricing, and seamless market execution.",
+      "Access leading cryptocurrencies and trade the digital asset market 24/7 with advanced charting tools, real-time pricing, and seamless execution.",
     image: null,
     localImage: "/markets/crypto.png",
     order: 2,

@@ -159,14 +159,25 @@ export default function IBWhyClient({ title, description, ctaLabel, ctaHref, tab
           </div>
 
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Image
-              key={currentImage}
-              src={currentImage}
-              alt={current.label || "IB Why"}
-              width={503}
-              height={444}
-              style={{ objectFit: "contain", borderRadius: "20px", maxWidth: "100%", height: "auto" }}
-            />
+            <div
+              style={{
+                position: "relative",
+                width: "100%",
+                maxWidth: "503px",
+                aspectRatio: "503 / 410",
+                borderRadius: "20px",
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                key={currentImage}
+                src={currentImage}
+                alt={current.label || "IB Why"}
+                fill
+                sizes="(max-width: 1024px) 100vw, 503px"
+                style={{ objectFit: "cover", objectPosition: "center" }}
+              />
+            </div>
           </div>
         </div>
 
