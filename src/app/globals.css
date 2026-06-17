@@ -1674,3 +1674,34 @@ body {
   }
 }
 
+/* ── Non-home hero badge typography (large screens) ── */
+@media (min-width: 1024px) {
+  div:has(> .hero-badge-text) {
+    height: auto !important;
+    min-height: 44px !important;
+  }
+
+  .hero-badge-text {
+    font-family: var(--font-inter, Inter), Inter, sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 19.2px !important;
+    line-height: 31.2px !important;
+    letter-spacing: -0.01em !important;
+    vertical-align: middle !important;
+    text-transform: uppercase !important;
+    background: linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+  }
+
+  .hero-desc-text {
+    font-family: var(--font-inter, Inter), Inter, sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    line-height: 155% !important;
+    letter-spacing: 0 !important;
+    color: #FFFFFFBF !important;
+  }
+}

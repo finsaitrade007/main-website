@@ -82,6 +82,7 @@ export default function GlossaryHeroSection() {
         </h1>
 
         <p
+          className="hero-desc-text"
           style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,

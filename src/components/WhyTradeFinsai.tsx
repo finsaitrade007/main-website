@@ -122,12 +122,12 @@ function IconCircle({ iconKey }: { iconKey: IconKey }) {
     <div
       style={{
         position: "relative",
-        width: "64px",
-        height: "64px",
+        width: "69px",
+        height: "74px",
         borderRadius: "50%",
-        background:
-          "radial-gradient(circle at 30% 30%, rgba(70,140,210,0.25) 0%, rgba(5,111,180,0.08) 60%, rgba(0,0,0,0.6) 100%)",
-        border: "1px solid rgba(125,185,214,0.18)",
+        background:"#020303",
+        border: "2px solid #056FB499",
+        boxShadow: "0px 0px 24px 16px #056FB43D",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -135,32 +135,6 @@ function IconCircle({ iconKey }: { iconKey: IconKey }) {
       }}
     >
       <ReasonIcon iconKey={iconKey} />
-      {/* Notification dot: small badge in the upper-right corner of the
-          icon disc, matching the screenshot.  Sits on a 1px ring of the
-          panel background colour so it visually detaches from the disc. */}
-      <span
-        aria-hidden
-        style={{
-          position: "absolute",
-          top: "-2px",
-          right: "-2px",
-          width: "16px",
-          height: "16px",
-          borderRadius: "50%",
-          background: "#2EA8FF",
-          border: "2px solid #050208",
-          fontFamily: "var(--font-sora, Sora)",
-          fontSize: "9px",
-          fontWeight: 600,
-          color: "#FFFFFF",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          lineHeight: 1,
-        }}
-      >
-        1
-      </span>
     </div>
   );
 }
@@ -184,9 +158,9 @@ function ReasonCell({ reason }: { reason: Reason }) {
         style={{
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 400,
-          fontSize: "15px",
-          lineHeight: "22px",
-          color: "rgba(255,255,255,0.88)",
+          fontSize: "17px",
+          lineHeight: "100%",
+          color: "#94A3B8",
           whiteSpace: "pre-line",
         }}
       >
@@ -211,7 +185,7 @@ export default async function WhyTradeFinsai() {
         position: "relative",
         width: "100%",
         maxWidth: "1440px",
-        minHeight: "772px",
+        minHeight: "672px",
         margin: "0 auto",
         background: "#050208",
         opacity: 1,
@@ -288,9 +262,9 @@ export default async function WhyTradeFinsai() {
           className="section-desc"
           style={{
             textAlign: "center",
-            maxWidth: "950px",
+            maxWidth: "900px",
             margin: 0,
-            color: "rgba(255,255,255,0.6)",
+            color: "#FFFFFF",
           }}
         >
           {description}
@@ -311,6 +285,7 @@ export default async function WhyTradeFinsai() {
           borderRadius: "20px",
           background:
             "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+          boxSizing: "border-box",
         }}
       >
         <div
@@ -321,7 +296,7 @@ export default async function WhyTradeFinsai() {
             height: "100%",
             borderRadius: "19px",
             background:
-              "linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)",
+              "linear-gradient(119.3deg, rgba(0, 0, 0, 0) 65.34%, rgba(73, 109, 171, 0.3) 99.36%), #050208",
             display: "flex",
             flexDirection: "column",
             boxSizing: "border-box",

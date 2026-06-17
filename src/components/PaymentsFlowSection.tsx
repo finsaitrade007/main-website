@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 const CARD_BACKGROUND =
-  "linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)";
+  "rgba(5, 2, 8, 1)";
 const BTN_GRADIENT =
   "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
 
@@ -466,18 +466,19 @@ export default function PaymentsFlowSection() {
               flexDirection: "column",
               alignItems: "center",
               gap: "16px",
-              maxWidth: "780px",
+              maxWidth: "1013px",
             }}
           >
             <h2
               style={{
                 fontFamily: "var(--font-sora, Sora)",
-                fontWeight: 700,
+                fontWeight: 600,
                 fontSize: "clamp(22px, 2.5vw, 36px)",
-                lineHeight: "118%",
+                lineHeight: "100%",
                 letterSpacing: "-0.01em",
                 color: "#FFFFFF",
                 margin: 0,
+                maxWidth: "913px"
               }}
             >
               One Platform. One Seamless Payment Experience
@@ -487,10 +488,10 @@ export default function PaymentsFlowSection() {
                 fontFamily: "var(--font-inter, Inter)",
                 fontWeight: 400,
                 fontSize: "16px",
-                lineHeight: "26px",
-                color: "rgba(255,255,255,0.7)",
+                lineHeight: "100%",
+                color: "#FFFFFF",
                 margin: 0,
-                maxWidth: "640px",
+                maxWidth: "840px",
               }}
             >
               Finsai Trade supports secure crypto payments, giving you fast,
@@ -521,23 +522,18 @@ export default function PaymentsFlowSection() {
               fontFamily: "var(--font-inter, Inter)",
               fontWeight: 400,
               fontSize: "13px",
-              lineHeight: "22px",
-              color: "rgba(255,255,255,0.55)",
+              lineHeight: "24px",
+              color: "#FFFFFFBF",
               margin: 0,
-              maxWidth: "1180px",
+              maxWidth: "1336px",
               textAlign: "left",
+              letterSpacing: "0",
             }}
           >
-            <span style={{ fontWeight: 600, color: "rgba(255,255,255,0.85)" }}>
+            <span style={{ fontWeight: 400, color: "#FFFFFF" }}>
               Please note:
             </span>{" "}
-            Some payment options may be subject to regional availability. All
-            withdrawals are processed in the base currency of your Wallet. For
-            example, if your Wallet is denominated in USD, your withdrawal will be
-            processed in USD. By using this service, users acknowledge the
-            inherent risks associated with online payment systems, including
-            potential delays, disruptions, or failures beyond Finsai Trade&apos;s
-            control.
+            Some payment options may be subject to regional availability. All withdrawals are processed in the base currency of your Wallet. For example, if your Wallet is denominated in USD, your withdrawal will be processed in USD. By using this service, users acknowledge the inherent risks associated with online payment systems, including potential delays, disruptions, or failures beyond Finsai Trade's control.
           </p>
         </div>
       </section>

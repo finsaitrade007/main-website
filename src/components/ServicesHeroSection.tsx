@@ -10,7 +10,7 @@ const FALLBACK: Pick<
   | "heroPrimaryCtaLabel"
   | "heroPrimaryCtaHref"
 > = {
-  heroBadge: "SIGN IN TO YOUR SECURE WALLET",
+  heroBadge: "Professional Trading, Simplified ",
   heroTitle: "Powerful Trading Platforms for Every Trader ",
   heroDescription:
     "Discover three powerful trading environments built for ambitious beginners, active traders, and professional market participants.",
@@ -33,7 +33,7 @@ export default async function ServicesHeroSection() {
         style={{
           position: "absolute",
           top: "-40px",
-          left: "167px",
+          left: "207px",
           width: "1283px",
           height: "855px",
         }}>
@@ -71,7 +71,7 @@ export default async function ServicesHeroSection() {
           background: "#000000",
           whiteSpace: "nowrap",
         }}>
-          <span style={{
+          <span className="hero-badge-text" style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
             fontSize: "15px",
@@ -99,7 +99,7 @@ export default async function ServicesHeroSection() {
           {data.heroTitle}
         </h1>
 
-        <p style={{
+        <p className="hero-desc-text" style={{
           fontFamily: "var(--font-inter, Inter)",
           fontWeight: 400,
           fontSize: "15px",

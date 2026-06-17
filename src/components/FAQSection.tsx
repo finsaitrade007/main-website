@@ -91,14 +91,14 @@ export default async function FAQSection({ faqs }: FAQSectionProps = {}) {
               borderRadius: "60px",
             }}
           >
-            <span className="badge-text">FAQ</span>
+            <span className="badge-text">FAQs</span>
           </span>
         </div>
         <h2
           className="section-title"
           style={{ textAlign: "center", marginBottom: "48px" }}
         >
-          Frequently Asked Question
+          Frequently Asked Questions
         </h2>
 
         <FAQAccordion faqs={resolved} />

@@ -187,15 +187,25 @@ export default function SocialTradingFeaturesSection() {
               width: "302px",
               height: "280px",
               borderRadius: "32px",
-              border: "1px solid transparent",
+              padding: "1px",
               background:
-                "linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%) padding-box, linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%) border-box",
-              padding: "28px 24px",
-              display: "flex",
-              flexDirection: "column",
+                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
               boxSizing: "border-box",
             }}
           >
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "31px",
+                background:
+                  "linear-gradient(119.3deg, rgba(0,0,0,0) 23.34%, rgba(73,109,171,0.3) 96.36%), #050208",
+                padding: "28px 24px",
+                display: "flex",
+                flexDirection: "column",
+                boxSizing: "border-box",
+              }}
+            >
             <div style={{ marginBottom: "20px" }}>{card.icon}</div>
 
             <h3
@@ -223,6 +233,7 @@ export default function SocialTradingFeaturesSection() {
             >
               {card.description}
             </p>
+            </div>
           </div>
         ))}
       </div>

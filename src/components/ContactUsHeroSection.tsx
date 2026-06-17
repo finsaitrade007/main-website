@@ -73,6 +73,7 @@ export default function ContactUsHeroSection() {
           }}
         >
           <span
+            className="hero-badge-text"
             style={{
               fontFamily: "var(--font-inter, Inter)",
               fontWeight: 400,
@@ -108,6 +109,7 @@ export default function ContactUsHeroSection() {
         </h1>
 
         <p
+          className="hero-desc-text"
           style={{
             margin: 0,
             maxWidth: "540px",

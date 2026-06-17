@@ -76,6 +76,7 @@ export default async function PaymentsHeroSection() {
           }}
         >
           <span
+            className="hero-badge-text"
             style={{
               fontFamily: "var(--font-inter, Inter)",
               fontWeight: 400,
@@ -90,7 +91,7 @@ export default async function PaymentsHeroSection() {
               backgroundClip: "text",
             }}
           >
-            Flexible Payment Solutions
+            Payment Solutions
           </span>
         </div>
 
@@ -110,6 +111,7 @@ export default async function PaymentsHeroSection() {
         </h1>
 
         <p
+          className="hero-desc-text"
           style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,

@@ -35,7 +35,7 @@ export default async function AccountsHeroSection() {
       }}
     >
       <Image
-        src="/accounts/heroaccounts.png"
+        src="/accounts/account-hero.svg"
         alt=""
         width={744}
         height={564}
@@ -43,9 +43,9 @@ export default async function AccountsHeroSection() {
         style={{
           position: "absolute",
           top: "128px",
-          left: "clamp(380px, 52.9vw, 762px)",
+          left: "clamp(380px, 52.9vw, 738px)",
           width: "clamp(380px, 51.7vw, 744px)",
-          height: "auto",
+          height: "clamp(380px, 45vw, 564px)",
           objectFit: "contain",
         }}
         priority
@@ -82,6 +82,7 @@ export default async function AccountsHeroSection() {
           }}
         >
           <span
+            className="hero-badge-text"
             style={{
               fontFamily: "var(--font-inter, Inter)",
               fontWeight: 400,
@@ -117,6 +118,7 @@ export default async function AccountsHeroSection() {
         </h1>
 
         <p
+          className="hero-desc-text"
           style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,

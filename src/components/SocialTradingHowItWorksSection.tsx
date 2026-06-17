@@ -647,7 +647,7 @@ export default function SocialTradingHowItWorksSection() {
           <BulletList items={investorBullets} />
           <div style={{ marginTop: "auto", paddingTop: "20px" }}>
             <SmartLink
-              href="https://fx.finsaitrade.com/auth/register"
+              href="https://social.finsaitrade.com"
               className="howit-cta"
               style={PRIMARY_CTA_STYLE}
             >

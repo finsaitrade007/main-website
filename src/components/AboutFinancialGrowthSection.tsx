@@ -97,7 +97,7 @@ export default async function AboutFinancialGrowthSection() {
             fontFamily: "var(--font-sora, Sora)",
             fontWeight: 600,
             fontSize: "clamp(22px, 2.5vw, 36px)",
-            lineHeight: "1.45",
+            lineHeight: "50px",
             color: "#FFFFFF",
             whiteSpace: "pre-line",
           }}

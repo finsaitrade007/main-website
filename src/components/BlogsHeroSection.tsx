@@ -12,18 +12,14 @@ export default function IBHeroSection() {
     }}>
       {/* Hero image — right side */}
       <Image
-        src="/blogs/hero.png"
+        src="/blogs/hero.svg"
         alt=""
-        width={990}
-        height={777}
+        width={1442}
+        height={865}
         className="hero-image"
         style={{
           position: "absolute",
-          top: "30px",
-          right: 0,
-          height: "90%",
-          width: "auto",
-          objectFit: "cover",
+          top: "58px",
         }}
         priority
       />
@@ -54,7 +50,7 @@ export default function IBHeroSection() {
           background: "#000000",
           whiteSpace: "nowrap",
         }}>
-          <span style={{
+          <span className="hero-badge-text" style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
             fontSize: "15px",
@@ -73,8 +69,8 @@ export default function IBHeroSection() {
         {/* Heading */}
         <h1 style={{
           fontFamily: "var(--font-sora, Sora)",
-          fontWeight: 700,
-          fontSize: "clamp(32px, 4.4vw, 64px)",
+          fontWeight: 600,
+          fontSize: "clamp(32px, 4.4vw, 56px)",
           lineHeight: "110%",
           letterSpacing: "-0.01em",
           color: "#FFFFFF",
@@ -84,7 +80,7 @@ export default function IBHeroSection() {
         </h1>
 
         {/* Description */}
-        <p style={{
+        <p className="hero-desc-text" style={{
           fontFamily: "var(--font-inter, Inter)",
           fontWeight: 400,
           fontSize: "15px",

@@ -2,6 +2,7 @@ import SmartLink from "@/components/SmartLink";
 import Image from "next/image";
 
 const REGISTER_HREF = "https://fx.finsaitrade.com/auth/register";
+const SOCIAL_TRADING_HREF = "https://social.finsaitrade.com";
 
 const STATS = [
   { value: "10,000+", label: "Active Investors" },
@@ -59,7 +60,7 @@ export default async function SocialTradingHeroSection() {
           background: "#000000",
           whiteSpace: "nowrap",
         }}>
-          <span style={{
+          <span className="hero-badge-text" style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
             fontSize: "15px",
@@ -99,7 +100,7 @@ export default async function SocialTradingHeroSection() {
         </h1>
 
         {/* Description */}
-        <p style={{
+        <p className="hero-desc-text" style={{
           fontFamily: "var(--font-inter, Inter)",
           fontWeight: 400,
           fontSize: "clamp(13px, 1.04vw, 15px)",
@@ -115,7 +116,7 @@ export default async function SocialTradingHeroSection() {
         {/* CTAs */}
         <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center" }}>
           <SmartLink
-            href={REGISTER_HREF}
+            href={SOCIAL_TRADING_HREF}
             className="btn-text"
             style={{
               display: "inline-flex",

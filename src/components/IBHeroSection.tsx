@@ -28,17 +28,17 @@ export default async function IBHeroSection() {
     }}>
       {/* Hero image — right side */}
       <Image
-        src="/partners/ib-hero.png"
+        src="/partners/ib-hero.svg"
         alt=""
         width={1130}
         height={678}
         className="hero-image"
         style={{
           position: "absolute",
-          top: "53px",
-          left: "clamp(150px, 21.5vw, 260px)",
-          width: "clamp(600px, 78.5vw, 1130px)",
-          height: "auto",
+          top: "23px",
+          left: "clamp(150px, 21.5vw, 310px)",
+          width: "clamp(600px, 78.5vw, 1050px)",
+          height: "clamp(400px, 45vw, 678px)",
           scale: "1.1",
           // objectFit: "contain",
         }}
@@ -69,7 +69,7 @@ export default async function IBHeroSection() {
           {data.heroTitle}
         </h1>
 
-        <p style={{
+        <p className="hero-desc-text" style={{
           fontFamily: "var(--font-inter, Inter)",
           fontWeight: 400,
           fontSize: "18px",

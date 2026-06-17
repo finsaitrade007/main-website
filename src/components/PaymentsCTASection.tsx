@@ -6,10 +6,10 @@ const FALLBACK: Pick<
   StrapiPaymentsPage,
   "ctaTitle" | "ctaDescription" | "ctaPrimaryLabel" | "ctaPrimaryHref"
 > = {
-  ctaTitle: "Ready to Fund Your Account?",
+  ctaTitle: " Move Funds Faster. Trade Without Delays.",
   ctaDescription:
-    "Deposit instantly with the method you prefer — your funds are protected end-to-end and available the moment they arrive.",
-  ctaPrimaryLabel: "Deposit Funds",
+    "Add funds through trusted payment methods and stay focused on opportunities across forex, crypto, indices, and more.",
+  ctaPrimaryLabel: "Start Funding Now",
   ctaPrimaryHref: "https://fx.finsaitrade.com/auth/register",
 };
 
@@ -58,7 +58,7 @@ export default async function PaymentsCTASection() {
           textAlign: "center",
           color: "#FFFFFF",
           margin: 0,
-          maxWidth: "707px",
+          maxWidth: "787px",
         }}>
           {data.ctaTitle}
         </h2>
@@ -79,7 +79,7 @@ export default async function PaymentsCTASection() {
         <Link href={data.ctaPrimaryHref} className="btn-text" style={{
           borderRadius: "28.83px",
           padding: "clamp(11px, 1vw, 14px) clamp(18px, 1.8vw, 25px)",
-          background: "linear-gradient(90deg, rgba(5,111,180,0.7) 0%, #056FB4 100%)",
+          background: "linear-gradient(90deg, rgba(5, 111, 180, 0.7) 0%, #056FB4 100%)",
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",

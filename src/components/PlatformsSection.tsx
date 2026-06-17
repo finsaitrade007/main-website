@@ -14,18 +14,18 @@ function platformHref(title: string): string {
   return "/services#app";
 }
 
-const CARD_BG = "#0D1927";
+const CARD_BORDER_GRADIENT =
+  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
+const CARD_FILL_BG =
+  "linear-gradient(119.3deg, rgba(0, 0, 0, 0) 23.34%, rgba(73, 109, 171, 0.3) 96.36%), #050208";
 const RADIUS = "21.32px";
+const INNER_RADIUS = "20.32px";
 const WIDE_H = "249px";
 const H = "212.10px";
 const ROW_GAP = "28.42px";
 const COL_GAP = "20.32px";
 const SMALL = "1fr";
 const LARGE = "1.52fr";
-
-const WIDE_CARD_BORDER_GRADIENT =
-  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
-const WIDE_CARD_BACKGROUND = `linear-gradient(${CARD_BG}, ${CARD_BG}) padding-box, ${WIDE_CARD_BORDER_GRADIENT} border-box`;
 
 const FALLBACK_HEADER = {
   platformsBadge: "Seamless Trading Experience",
@@ -90,15 +90,26 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
         display: "block",
         textDecoration: "none",
         color: "inherit",
-        background: WIDE_CARD_BACKGROUND,
-        border: "1px solid transparent",
-        borderRadius: RADIUS,
         height: WIDE_H,
-        padding: "24px 28px",
+        padding: "1px",
+        borderRadius: RADIUS,
+        background: CARD_BORDER_GRADIENT,
         overflow: "visible",
         boxSizing: "border-box",
       }}
     >
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          borderRadius: INNER_RADIUS,
+          background: CARD_FILL_BG,
+          padding: "24px 28px",
+          boxSizing: "border-box",
+          overflow: "visible",
+        }}
+      >
       <p
         className="platform-card-text platforms-wide-text"
         style={{
@@ -181,6 +192,7 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
       >
         {p.title}
       </h3>
+      </div>
     </Link>
   );
 }
@@ -198,14 +210,26 @@ function PlatformCard({ p }: { p: StrapiPlatform }) {
         display: "block",
         textDecoration: "none",
         color: "inherit",
-        background: `linear-gradient(${CARD_BG}, ${CARD_BG}) padding-box, ${WIDE_CARD_BORDER_GRADIENT} border-box`,
-        border: p.size === "large" ? "2px solid transparent" : "1px solid transparent",
-        borderRadius: RADIUS,
         height: H,
-        padding: "24px 28px",
+        padding: "1px",
+        borderRadius: RADIUS,
+        background: CARD_BORDER_GRADIENT,
+        boxSizing: "border-box",
         overflow: "hidden",
       }}
     >
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          borderRadius: INNER_RADIUS,
+          background: CARD_FILL_BG,
+          padding: "24px 28px",
+          boxSizing: "border-box",
+          overflow: "hidden",
+        }}
+      >
       <p
         className="platform-card-text"
         style={{
@@ -263,6 +287,7 @@ function PlatformCard({ p }: { p: StrapiPlatform }) {
       >
         {p.title}
       </h3>
+      </div>
     </Link>
   );
 }

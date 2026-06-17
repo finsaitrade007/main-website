@@ -2,6 +2,7 @@ import Image from "next/image";
 import SmartLink from "@/components/SmartLink";
 
 const REGISTER_HREF = "https://fx.finsaitrade.com/auth/register";
+const SOCIAL_TRADING_HREF = "https://social.finsaitrade.com";
 
 /** ── Icons ────────────────────────────────────────────────── */
 
@@ -71,9 +72,6 @@ function IconBubble({
       >
         {icon}
       </div>
-      {/* Number badge — Figma spec: 24×24, solid #056FB4 fill, 1px
-          #056FB499 border. Sits at the upper-right edge of the 112px
-          bubble (top offset 11px, overhanging the right by 8px). */}
       <div
         aria-hidden
         style={{
@@ -107,6 +105,7 @@ type ColumnProps = {
   title: string;
   description: string;
   ctaText: string;
+  ctaHref?: string;
 };
 
 function JourneyColumn({
@@ -115,6 +114,7 @@ function JourneyColumn({
   title,
   description,
   ctaText,
+  ctaHref = REGISTER_HREF,
 }: ColumnProps) {
   return (
     <div
@@ -161,7 +161,7 @@ function JourneyColumn({
       {/* Figma spec: 195×48, 8px radius, 11×24 padding, 16px gap, brand
           gradient `269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%`. */}
       <SmartLink
-        href={REGISTER_HREF}
+        href={ctaHref}
         style={{
           display: "inline-flex",
           alignItems: "center",
@@ -302,6 +302,7 @@ export default function SocialTradingJourneySection() {
             title="Finsai Account"
             description="Log in and access social trading tools instantly."
             ctaText="Start Social Trading"
+            ctaHref={SOCIAL_TRADING_HREF}
           />
           <JourneyColumn
             number={3}

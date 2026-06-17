@@ -7,15 +7,20 @@ import {
   useMemo,
   type CSSProperties,
   type TransitionEvent,
+  type ReactNode,
+  type KeyboardEvent,
 } from "react";
 import Image from "next/image";
 import type { StrapiTestimonial } from "@/lib/strapi";
 
-const CARD_BG = "#0B1221";
-const BORDER_ACTIVE = "1.07px solid #056FB4";
-const BORDER_INACTIVE = "1.07px solid #056FB4";
+const CARD_BORDER_GRADIENT =
+  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
+const CARD_FILL_BG =
+  "linear-gradient(119.3deg, rgba(0, 0, 0, 0) 23.34%, rgba(73, 109, 171, 0.3) 96.36%), #050208";
 const ACTIVE_RADIUS = "15.6px";
 const INACTIVE_RADIUS = "7.8px";
+const ACTIVE_INNER_RADIUS = "14.6px";
+const INACTIVE_INNER_RADIUS = "6.8px";
 
 const ACTIVE_WIDTH_PX = 596.7;
 const ACTIVE_HEIGHT_PX = 305.19;
@@ -53,6 +58,85 @@ function QuoteIcon({
       <path d="M6.2 2.4c2.5 0 4.4 1.9 4.4 4.5 0 3.6-2 7.4-6.2 10.7L2.6 15.7c2.3-1.8 3.6-3.7 3.9-5.3-1.7 0-3.3-1.4-3.3-3.7 0-2.6 1.8-4.3 3-4.3z" />
       <path d="M20 2.4c2.5 0 4.4 1.9 4.4 4.5 0 3.6-2 7.4-6.2 10.7l-1.8-1.9c2.3-1.8 3.6-3.7 3.9-5.3-1.7 0-3.3-1.4-3.3-3.7 0-2.6 1.8-4.3 3-4.3z" />
     </svg>
+  );
+}
+
+type TestimonialCardShellProps = {
+  width: number | string;
+  height?: number | string;
+  minHeight?: number | string;
+  maxWidth?: number | string;
+  borderRadius: string;
+  innerBorderRadius: string;
+  padding: string;
+  isActive: boolean;
+  cardTransition: string;
+  onClick?: () => void;
+  onKeyDown?: (e: KeyboardEvent<HTMLDivElement>) => void;
+  role?: string;
+  tabIndex?: number;
+  children: ReactNode;
+};
+
+function TestimonialCardShell({
+  width,
+  height,
+  minHeight,
+  maxWidth,
+  borderRadius,
+  innerBorderRadius,
+  padding,
+  isActive,
+  cardTransition,
+  onClick,
+  onKeyDown,
+  role,
+  tabIndex,
+  children,
+}: TestimonialCardShellProps) {
+  return (
+    <div
+      role={role}
+      tabIndex={tabIndex}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+      style={{
+        width,
+        maxWidth,
+        height,
+        minHeight,
+        flexShrink: 0,
+        padding: "1px",
+        borderRadius,
+        background: CARD_BORDER_GRADIENT,
+        boxSizing: "border-box",
+        opacity: isActive ? 1 : INACTIVE_OPACITY,
+        cursor: isActive ? "default" : "pointer",
+        outline: "none",
+        boxShadow: isActive ? "0 24px 60px rgba(5,111,180,0.18)" : "none",
+        transition: cardTransition,
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          borderRadius: innerBorderRadius,
+          background: CARD_FILL_BG,
+          padding,
+          boxSizing: "border-box",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-between",
+          textAlign: "center",
+          position: "relative",
+          transition: cardTransition,
+        }}
+      >
+        {children}
+      </div>
+    </div>
   );
 }
 
@@ -186,7 +270,6 @@ export default function TestimonialsCarousel({
         `height ${TRANSITION_MS}ms ${EASING}`,
         `padding ${TRANSITION_MS}ms ${EASING}`,
         `opacity ${TRANSITION_MS}ms ${EASING}`,
-        `border-color ${TRANSITION_MS}ms`,
         `box-shadow ${TRANSITION_MS}ms`,
       ].join(", ")
     : "none";
@@ -220,23 +303,16 @@ export default function TestimonialsCarousel({
             justifyContent: "center",
             padding: "0 4px",
           }}>
-            <div style={{
-              width: "100%",
-              maxWidth: `${ACTIVE_WIDTH_PX}px`,
-              minHeight: `${ACTIVE_HEIGHT_PX}px`,
-              background: CARD_BG,
-              border: BORDER_ACTIVE,
-              borderRadius: ACTIVE_RADIUS,
-              padding: "32px 28px",
-              boxSizing: "border-box",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "space-between",
-              textAlign: "center",
-              boxShadow: "0 24px 60px rgba(5,111,180,0.18)",
-              position: "relative",
-            }}>
+            <TestimonialCardShell
+              width="100%"
+              maxWidth={`${ACTIVE_WIDTH_PX}px`}
+              minHeight={`${ACTIVE_HEIGHT_PX}px`}
+              borderRadius={ACTIVE_RADIUS}
+              innerBorderRadius={ACTIVE_INNER_RADIUS}
+              padding="32px 28px"
+              isActive
+              cardTransition="none"
+            >
               <div style={{ position: "absolute", top: "28px", left: "22px", pointerEvents: "none" }}>
                 <QuoteIcon size={32} flipped />
               </div>
@@ -300,7 +376,7 @@ export default function TestimonialsCarousel({
                   </p>
                 </div>
               </div>
-            </div>
+            </TestimonialCardShell>
           </div>
         ) : (
         <div onTransitionEnd={handleTransitionEnd} style={trackStyle}>
@@ -310,7 +386,7 @@ export default function TestimonialsCarousel({
             const height = isActive ? ACTIVE_HEIGHT_PX : INACTIVE_HEIGHT_PX;
 
             return (
-              <div
+              <TestimonialCardShell
                 key={i}
                 role={isActive ? undefined : "button"}
                 tabIndex={isActive ? -1 : 0}
@@ -324,29 +400,13 @@ export default function TestimonialsCarousel({
                     jumpToIndex(i);
                   }
                 }}
-                style={{
-                  width: `${width}px`,
-                  height: `${height}px`,
-                  flexShrink: 0,
-                  background: CARD_BG,
-                  border: isActive ? BORDER_ACTIVE : BORDER_INACTIVE,
-                  borderRadius: isActive ? ACTIVE_RADIUS : INACTIVE_RADIUS,
-                  padding: isActive ? "32px 38px" : "22px 24px",
-                  boxSizing: "border-box",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  textAlign: "center",
-                  opacity: isActive ? 1 : INACTIVE_OPACITY,
-                  cursor: isActive ? "default" : "pointer",
-                  outline: "none",
-                  boxShadow: isActive
-                    ? "0 24px 60px rgba(5,111,180,0.18)"
-                    : "none",
-                  transition: cardTransition,
-                  position: "relative",
-                }}
+                width={`${width}px`}
+                height={`${height}px`}
+                borderRadius={isActive ? ACTIVE_RADIUS : INACTIVE_RADIUS}
+                innerBorderRadius={isActive ? ACTIVE_INNER_RADIUS : INACTIVE_INNER_RADIUS}
+                padding={isActive ? "32px 38px" : "22px 24px"}
+                isActive={isActive}
+                cardTransition={cardTransition}
               >
                 {/* Opening quote — fixed absolute anchor at the top-left of
                     every card so it never moves with the text length. */}
@@ -378,7 +438,7 @@ export default function TestimonialsCarousel({
                     fontFamily: "var(--font-sora, Sora)",
                     fontWeight: 300,
                     fontSize: isActive ? "17.1px" : "9px",
-                    lineHeight: 1,
+                    lineHeight: "140%",
                     letterSpacing: 0,
                     textAlign: "center",
                     color: isActive ? "#FFFFFF" : "rgba(255,255,255,0.85)",
@@ -465,7 +525,7 @@ export default function TestimonialsCarousel({
                     </p>
                   </div>
                 </div>
-              </div>
+              </TestimonialCardShell>
             );
           })}
         </div>

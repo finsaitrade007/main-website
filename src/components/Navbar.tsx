@@ -289,13 +289,11 @@ export default function Navbar() {
           <Link href="/" className="flex items-center shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/finsai-logo.png"
+              src="/finsai-logo.svg"
               alt="Finsai Trade"
               style={{
-                width: "146.84px",
+                width: "144.84px",
                 height: "55.83px",
-                display: "block",
-                objectFit: "contain",
               }}
             />
           </Link>
