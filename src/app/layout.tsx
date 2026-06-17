@@ -62,6 +62,7 @@ export default function RootLayout({
           src="https://portal.finsaitrade.com/chat/widget.js"
           strategy="afterInteractive"
         />
+        <Script src="/chat/widget-bridge.js" strategy="afterInteractive" />
       </body>
     </html>
   );

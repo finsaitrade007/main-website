@@ -191,11 +191,12 @@ export default async function AboutFinancialGrowthSection() {
             <Image
               src="/about/our_principles.jpg"
               alt=""
-              width={560}
-              height={560}
+              width={666}
+              height={666}
               style={{
-                width: "100%",
-                maxWidth: "560px",
+                maxWidth: "666px",
+                top: "89px",
+                left: "635px",
                 height: "auto",
                 objectFit: "contain",
               }}

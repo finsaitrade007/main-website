@@ -75,7 +75,7 @@ const platforms: Platform[] = [
       "Copy Trading & Expert Signals",
       "Multi-Currency, All-in-One",
     ],
-    image: "/service/app-coming-soon.png",
+    image: "/service/app-soon.png",
     imageAlt: "Finsai Trade mobile app",
     showAppStores: true,
     reverse: false,

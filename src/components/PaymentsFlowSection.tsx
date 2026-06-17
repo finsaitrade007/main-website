@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -91,6 +91,9 @@ const cards: FlowCard[] = [
 const MAX_STEPS = Math.max(...cards.map((c) => c.steps.length));
 const VH_PER_STEP_DESKTOP = 70;
 const VH_PER_STEP_MOBILE = 60;
+const ILLUSTRATION_SIZE = 268;
+const ILLUSTRATION_TOP = 100;
+const ILLUSTRATION_LEFT = 340;
 
 function StepIcon({
   active,
@@ -105,17 +108,16 @@ function StepIcon({
         width: "32px",
         height: "32px",
         borderRadius: "50%",
-        background: active ? BTN_GRADIENT : "#0B1220",
-        border: active
-          ? "1px solid #7DB9D6"
-          : "1px solid rgba(125,185,214,0.25)",
+        background: "#0B1220",
+        border: active ? "1px solid #7DB9D6" : "1px solid #FFFFFF",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         flexShrink: 0,
-        boxShadow: active ? "0 0 12px rgba(86,164,224,0.45)" : "none",
-        transition:
-          "background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease",
+        position: "relative",
+        zIndex: 1,
+        color: "#FFFFFF",
+        transition: "border-color 0.4s ease",
       }}
     >
       {children}
@@ -123,46 +125,121 @@ function StepIcon({
   );
 }
 
+const ICON_STROKE = "#FFFFFF";
+
 function LoginIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" stroke="#7DB9D6" strokeWidth="1.7" strokeLinecap="round" />
-      <path d="M10 17l5-5-5-5M15 12H3" stroke="#7DB9D6" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"
+        stroke={ICON_STROKE}
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+      <path
+        d="M10 17l5-5-5-5M15 12H3"
+        stroke={ICON_STROKE}
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
 
-function DollarIcon() {
+function WalletIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 2v20M16.5 7.5C16.5 5.6 14.5 4 12 4S7.5 5.6 7.5 7.5 9.5 11 12 11s4.5 1.4 4.5 3.5S14.5 18 12 18s-4.5-1.4-4.5-3.5" stroke="#7DB9D6" strokeWidth="1.7" strokeLinecap="round" />
+      <path
+        d="M3 7h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"
+        stroke={ICON_STROKE}
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M3 7l2-3h12l2 3"
+        stroke={ICON_STROKE}
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M16 13h2" stroke={ICON_STROKE} strokeWidth="1.7" strokeLinecap="round" />
     </svg>
   );
 }
 
-function ArrowIcon() {
+function ShareArrowIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M5 12h14M13 6l6 6-6 6" stroke="#7DB9D6" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M7 17 17 7"
+        stroke={ICON_STROKE}
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+      <path
+        d="M9 7h8v8"
+        stroke={ICON_STROKE}
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
 
-function CheckIcon() {
+function HandSelectIcon() {
+  return (
+    <Image
+      src="/payments/flow/icon-hand-withdraw.png"
+      alt=""
+      width={16}
+      height={16}
+      aria-hidden
+      style={{
+        objectFit: "contain",
+        filter: "brightness(0) invert(1)",
+      }}
+    />
+  );
+}
+
+function DollarCircleIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M5 12.5l4.5 4.5L19 7.5" stroke="#7DB9D6" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="12" cy="12" r="8.5" stroke={ICON_STROKE} strokeWidth="1.7" />
+      <path
+        d="M12 7.5v9M14.5 10.5C14.5 9.2 13.3 8.2 12 8.2S9.5 9.2 9.5 10.5 10.7 12.8 12 12.8s2.5 1.3 2.5 2.7S13.3 18.2 12 18.2"
+        stroke={ICON_STROKE}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
 
-const STEP_ICONS = [LoginIcon, DollarIcon, ArrowIcon, CheckIcon];
+const DEPOSIT_STEP_ICONS = [LoginIcon, WalletIcon, ShareArrowIcon, ShareArrowIcon];
+const WITHDRAW_STEP_ICONS = [
+  HandSelectIcon,
+  WalletIcon,
+  WalletIcon,
+  DollarCircleIcon,
+];
 
-function StepRail({ activeIndex }: { activeIndex: number }) {
+function StepRail({
+  activeIndex,
+  icons,
+  stepTitles,
+  onSelect,
+}: {
+  activeIndex: number;
+  icons: React.ComponentType[];
+  stepTitles: string[];
+  onSelect: (index: number) => void;
+}) {
   return (
     <div
       style={{
-        position: "relative",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -170,22 +247,25 @@ function StepRail({ activeIndex }: { activeIndex: number }) {
         flexShrink: 0,
       }}
     >
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          top: "16px",
-          bottom: "16px",
-          left: "50%",
-          width: "1px",
-          background: "rgba(125,185,214,0.25)",
-          transform: "translateX(-50%)",
-        }}
-      />
-      {STEP_ICONS.map((Icon, i) => (
-        <StepIcon key={i} active={i === activeIndex}>
-          <Icon />
-        </StepIcon>
+      {icons.map((Icon, i) => (
+        <button
+          key={i}
+          type="button"
+          onClick={() => onSelect(i)}
+          aria-label={`Go to step ${i + 1}: ${stepTitles[i]}`}
+          aria-current={i === activeIndex ? "step" : undefined}
+          style={{
+            padding: 0,
+            margin: 0,
+            border: "none",
+            background: "transparent",
+            cursor: "pointer",
+          }}
+        >
+          <StepIcon active={i === activeIndex}>
+            <Icon />
+          </StepIcon>
+        </button>
       ))}
     </div>
   );
@@ -194,12 +274,16 @@ function StepRail({ activeIndex }: { activeIndex: number }) {
 function FlowCardView({
   card,
   activeIndex,
+  onSelectStep,
 }: {
   card: FlowCard;
   activeIndex: number;
+  onSelectStep: (index: number) => void;
 }) {
   const safeIndex = Math.min(activeIndex, card.steps.length - 1);
   const step = card.steps[safeIndex];
+  const stepIcons =
+    card.id === "withdraw" ? WITHDRAW_STEP_ICONS : DEPOSIT_STEP_ICONS;
   return (
     <div
       style={{
@@ -221,15 +305,15 @@ function FlowCardView({
           key={s.illustration}
           src={s.illustration}
           alt={s.title}
-          width={220}
-          height={220}
-          sizes="291px"
+          width={ILLUSTRATION_SIZE}
+          height={ILLUSTRATION_SIZE}
+          sizes={`${ILLUSTRATION_SIZE}px`}
           style={{
             position: "absolute",
-            top: "123px",
-            left: "392px",
-            width: "220px",
-            height: "220px",
+            top: `${ILLUSTRATION_TOP}px`,
+            left: `${ILLUSTRATION_LEFT}px`,
+            width: `${ILLUSTRATION_SIZE}px`,
+            height: `${ILLUSTRATION_SIZE}px`,
             objectFit: "contain",
             pointerEvents: "none",
             opacity: i === safeIndex ? 1 : 0,
@@ -290,7 +374,12 @@ function FlowCardView({
             minHeight: 0,
           }}
         >
-          <StepRail activeIndex={safeIndex} />
+          <StepRail
+            activeIndex={safeIndex}
+            icons={stepIcons}
+            stepTitles={card.steps.map((s) => s.title)}
+            onSelect={onSelectStep}
+          />
 
           <div
             style={{
@@ -383,6 +472,22 @@ export default function PaymentsFlowSection() {
   }, []);
 
   const vhPerStep = isMobile ? VH_PER_STEP_MOBILE : VH_PER_STEP_DESKTOP;
+
+  const handleSelectStep = useCallback((index: number) => {
+    const el = outerRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const vh = window.innerHeight || 1;
+    const maxDistance = Math.max(1, rect.height - vh);
+    const targetProgress = Math.min(
+      1,
+      Math.max(0, (index + 0.5) / MAX_STEPS),
+    );
+    const elementAbsoluteTop = window.scrollY + rect.top;
+    const targetScrollY = elementAbsoluteTop + targetProgress * maxDistance;
+    window.scrollTo({ top: targetScrollY, behavior: "smooth" });
+    setActiveIndex(index);
+  }, []);
 
   useEffect(() => {
     let frame: number | null = null;
@@ -513,6 +618,7 @@ export default function PaymentsFlowSection() {
                 key={card.id}
                 card={card}
                 activeIndex={activeIndex}
+                onSelectStep={handleSelectStep}
               />
             ))}
           </div>

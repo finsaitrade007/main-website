@@ -313,7 +313,7 @@ export default function UpfrontDisclosurePage() {
                 </a>
               ),
             },
-            { label: "Telephone Number", value: "+971 508235541" },
+            { label: "Telephone Number", value: "+230" },
             { label: "Fax Number", value: "043510078" },
           ]}
         />
@@ -384,7 +384,7 @@ export default function UpfrontDisclosurePage() {
                 value:
                   "3rd Floor, Manor House, 30 St Georges Street, Port Louis, Mauritius.",
               },
-              { label: "Telephone Number", value: "+971 508235541" },
+              { label: "Telephone Number", value: "+230" },
               {
                 label: "Email Address",
                 value: (

@@ -36,14 +36,16 @@ export default function ComplaintsManagementPage() {
 
       <LegalSection title="2. Definitions">
         <P>
-          <strong>Client query</strong> means a request to the provider or
+          <strong>Client query</strong>{" "}
+          means a request to the provider or{" "}
           the provider&apos;s service supplier by or on behalf of a client,
           for information regarding the provider&apos;s financial products,
           financial services or related processes, or to carry out a
           transaction or action in relation to any such product or service.
         </P>
         <P>
-          <strong>Complainant</strong> means a person who submits a
+          <strong>Complainant</strong>{" "}
+          means a person who submits a{" "}
           complaint and includes a client, a person nominated as the person
           in respect of whom a product supplier should meet financial
           product benefits or that person&apos;s successor in title, a
@@ -56,7 +58,7 @@ export default function ComplaintsManagementPage() {
           the provider.
         </P>
         <P>
-          <strong>Complaint</strong> means an expression of dissatisfaction
+          <strong>Complaint</strong> {" "} means an expression of dissatisfaction
           by a person to a provider or, to the knowledge of the provider, to
           the provider&apos;s service supplier relating to a financial
           product or financial service provided or offered by that provider
@@ -69,7 +71,7 @@ export default function ComplaintsManagementPage() {
           its service supplier has treated the person unfairly.
         </P>
         <P>
-          <strong>Compensation payment</strong> means a payment, whether in
+          <strong>Compensation payment</strong> {" "} means a payment, whether in
           monetary form or in the form of a benefit or service, by or on
           behalf of a provider to a complainant to compensate the
           complainant for a proven or estimated financial loss incurred as a
@@ -78,7 +80,7 @@ export default function ComplaintsManagementPage() {
           the complaint.
         </P>
         <P>
-          <strong>Goodwill Payment</strong> means a payment, whether in
+          <strong>Goodwill Payment</strong> {" "} means a payment, whether in
           monetary form or in the form of a benefit or service, by or on
           behalf of a provider to a complainant as an expression of goodwill
           aimed at resolving a complaint, where the provider does not accept
@@ -86,13 +88,13 @@ export default function ComplaintsManagementPage() {
           the matter complained about.
         </P>
         <P>
-          <strong>Rejected</strong> in relation to a complaint means that a
+          <strong>Rejected</strong> {" "}in relation to a complaint means that a
           complaint has not been upheld and the provider regards the
           complaint as finalised after advising the complainant that it does
           not intend to take any further action to resolve the complaint.
         </P>
         <P>
-          <strong>Reportable Complaint</strong> means any complaint other
+          <strong>Reportable Complaint</strong> {" "} means any complaint other
           than one that has been upheld immediately by the person who
           initially received the complaint; upheld within the provider&apos;s
           ordinary processes for handling client queries within five
@@ -100,7 +102,7 @@ export default function ComplaintsManagementPage() {
           does not have a reasonable opportunity to record details.
         </P>
         <P>
-          <strong>Upheld</strong> means that a complaint has been finalised
+          <strong>Upheld</strong> {" "} means that a complaint has been finalised
           wholly or partially in favour of the complainant.
         </P>
       </LegalSection>

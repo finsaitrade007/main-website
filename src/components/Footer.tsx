@@ -230,7 +230,7 @@ export default function Footer() {
               {text.includes("__VISIT_HERE__") ? (
                 <>
                   For Risk Disclosure and information{" "}
-                  <a href="#" style={{
+                  <a href="/risk-disclosure" style={{
                     fontFamily: "var(--font-inter, Inter)",
                     fontWeight: 400,
                     fontSize: "14.6px",
