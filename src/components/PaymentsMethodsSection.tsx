@@ -2,8 +2,10 @@ import Image from "next/image";
 import { getPaymentsPage } from "@/lib/strapi";
 import ResponsiveScale from "@/components/ResponsiveScale";
 
-const CARD_INNER_BG = "linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)";
-const BORDER_GRADIENT = "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
+const CARD_FILL_BG =
+  "linear-gradient(119.3deg, rgba(0, 0, 0, 0) 23.34%, rgba(73, 109, 171, 0.3) 96.36%), #050208";
+const BORDER_GRADIENT =
+  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
 const PILL_BG = "linear-gradient(90deg, rgba(5, 111, 180, 0.14) 0%, rgba(5, 111, 180, 0.2) 100%)";
 
 function LightningIcon() {
@@ -145,7 +147,7 @@ function MobilePaymentCard({ card }: { card: CardData }) {
         style={{
           width: "100%",
           borderRadius: "15px",
-          background: CARD_INNER_BG,
+          background: CARD_FILL_BG,
           boxSizing: "border-box",
           overflow: "hidden",
           display: "flex",
@@ -290,7 +292,7 @@ function PaymentCard({ card }: { card: CardData }) {
           width: "100%",
           height: "100%",
           borderRadius: "20.32px",
-          background: CARD_INNER_BG,
+          background: CARD_FILL_BG,
           boxSizing: "border-box",
           overflow: "hidden",
         }}
@@ -352,14 +354,14 @@ function PaymentCard({ card }: { card: CardData }) {
             left: 0,
             width: "100%",
             margin: 0,
-            padding: "0 48px",
+            padding: "0 44px",
             textAlign: "center",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
-            fontSize: "15px",
+            fontSize: "16px",
             lineHeight: "24px",
             letterSpacing: 0,
-            color: "rgba(255,255,255,0.6)",
+            color: "#FFFFFFBF",
             boxSizing: "border-box",
           }}
         >
@@ -497,7 +499,7 @@ export default async function PaymentsMethodsSection() {
             fontWeight: 400,
             fontStyle: "normal",
             fontSize: "16px",
-            lineHeight: "100%",
+            lineHeight: "120%",
             letterSpacing: "0%",
             textAlign: "center",
             verticalAlign: "middle",

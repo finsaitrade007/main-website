@@ -12,7 +12,7 @@ export default function IBHeroSection() {
     }}>
       {/* Hero image — right side */}
       <Image
-        src="/blogs/hero.svg"
+        src="/blogs/hero.png"
         alt=""
         width={1442}
         height={865}

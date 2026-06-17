@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { StrapiPoint } from "@/lib/strapi";
 
@@ -131,7 +130,7 @@ export default function AboutBuiltByTradersClient({
                 }}
               >
                 <Image
-                  src="/about/built-orbit.png"
+                  src="/about/built-orbit.jpg"
                   alt=""
                   width={605}
                   height={573}
@@ -213,22 +212,10 @@ export default function AboutBuiltByTradersClient({
                             <div style={{ marginTop: "14px" }}>
                               <p
                                 className="market-text"
-                                style={{ marginBottom: "16px", maxWidth: "520px" }}
+                                style={{ maxWidth: "520px" }}
                               >
                                 {p.description}
                               </p>
-                              <Link href="#" className="market-link">
-                                Read More
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                  <path
-                                    d="M2 6h8M6 2l4 4-4 4"
-                                    stroke="currentColor"
-                                    strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                </svg>
-                              </Link>
                             </div>
                           </div>
                         </div>

@@ -1,5 +1,7 @@
-const INNER_BG = "linear-gradient(137.88deg, #050208 1.04%, #056FB4 536.19%)";
-const BORDER_GRADIENT = "linear-gradient(180deg, #056FB4 0%, #7DB9D6 100%)";
+const INNER_BG =
+  "linear-gradient(119.3deg, rgba(0, 0, 0, 0) 23.34%, rgba(73, 109, 171, 0.3) 96.36%), #050208";
+const BORDER_GRADIENT =
+  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
 const CARD_BG = "#D9D9D90D";
 
 type IconKind = "segregated" | "shield" | "lock" | "verified";

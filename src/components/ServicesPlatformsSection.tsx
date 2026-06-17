@@ -34,7 +34,7 @@ const platforms: Platform[] = [
       "Build and automate strategies with Expert Advisors (EAs)",
       "Advanced  Back-testing tools",
     ],
-    image: "/service/mt5-platform.png",
+    image: "/service/mt5-platform.jpg",
     imageAlt: "MetaTrader 5 platform",
     cta: {
       label: "Learn More About MT5",
@@ -54,7 +54,7 @@ const platforms: Platform[] = [
       "Integrated Risk Controls",
       "Verified Performance Metrics",
     ],
-    image: "/service/social-trading.png",
+    image: "/service/social-trading.jpg",
     imageAlt: "Social trading network",
     cta: {
       label: "Learn More About Social Trading",

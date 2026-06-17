@@ -197,7 +197,7 @@ export default function CareersWorkspaceFormClient({
               of the parent 28px flex gap → benefits end at 519 + 28 + 28 =
               575). */}
           <Image
-            src="/careers/desk.png"
+            src="/careers/desk.jpg"
             alt=""
             width={613}
             height={409}

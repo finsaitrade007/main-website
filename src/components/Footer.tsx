@@ -110,7 +110,7 @@ export default function Footer() {
           <div>
             {/* Logo */}
             <Link href="/" style={{ display: "inline-block", textDecoration: "none", marginBottom: "20px" }}>
-              <Image src="/finsai-logo.png" alt="Finsai Trade" width={140} height={48} style={{ objectFit: "contain" }} />
+              <Image src="/finsai-logo.svg" alt="Finsai Trade" width={140} height={48} style={{ objectFit: "contain" }} />
             </Link>
 
             <p style={{

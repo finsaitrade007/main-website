@@ -8,15 +8,15 @@ type Fallback = Pick<
 
 const FALLBACK: Fallback = {
   builtBadge: "Our Story",
-  builtTitle: "Built by Traders. Driven by Purpose",
+  builtTitle: "Built to Make Global Trading Simpler and More Accessible",
   builtDescription:
-    "Finsai Trade platforms are engineered to deliver seamless execution, institutional-level tools, and reliable uptime — so you stay in control, wherever you trade. Whether you're a beginner or a pro, our platforms help you trade smarter and faster.",
+    "Founded by experienced traders and investors, Finsai Trade combines powerful market access, intuitive technology, and trader education into one seamless ecosystem.",
   builtPoints: [
     {
       id: 1,
-      title: "The Problem",
+      title: "Built By Traders",
       description:
-        "Trade major, minor, and exotic forex pairs with deep liquidity, competitive spreads, and ultra-fast execution on the global foreign exchange market.",
+        "Created by a team with deep experience across global markets, Finsai Trade was designed to solve the complexity traders face every day.",
     },
     {
       id: 2,

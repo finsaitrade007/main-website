@@ -18,10 +18,10 @@ type Props = {
 };
 
 const TAB_IMAGES = [
-  "/partners/rebates.png",
-  "/partners/detailed-reports.png",
-  "/partners/multi-tier.png",
-  "/partners/broker.png",
+  "/partners/rebates.jpg",
+  "/partners/detailed-reports.jpg",
+  "/partners/multi-tier.jpg",
+  "/partners/broker.jpg",
 ];
 
 export default function IBWhyClient({ title, description, ctaLabel, ctaHref, tabs }: Props) {

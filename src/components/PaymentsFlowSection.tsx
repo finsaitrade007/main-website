@@ -33,25 +33,25 @@ const cards: FlowCard[] = [
       {
         title: "Log in \u2192 Deposit",
         description: "Log in and open the Deposit section.",
-        illustration: "/payments/flow/deposit-step-1.png",
+        illustration: "/payments/flow/deposit-step-1.jpg",
       },
       {
         title: "Select Wallet",
         description:
           "Select the wallet you want to fund.",
-        illustration: "/payments/flow/deposit-step-2.png",
+        illustration: "/payments/flow/deposit-step-2.jpg",
       },
       {
         title: "Choose Crypto ",
         description:
           "Choose crypto as your payment method and enter amount.",
-        illustration: "/payments/flow/deposit-step-3.png",
+        illustration: "/payments/flow/deposit-step-3.jpg",
       },
       {
         title: "Confirm & Track",
         description:
           "Confirm and track your deposit status in Transaction History.",
-        illustration: "/payments/flow/deposit-step-4.png",
+        illustration: "/payments/flow/deposit-step-4.jpg",
       },
     ],
   },
@@ -66,23 +66,23 @@ const cards: FlowCard[] = [
         title: "Select Withdraw",
         description:
           "From the Wallet panel or Withdrawal tab in navigation.",
-        illustration: "/payments/flow/withdraw-step-1.png",
+        illustration: "/payments/flow/withdraw-step-1.jpg",
       },
       {
         title: "Choose Your Wallet",
         description: "Auto-selected if accessed from the Wallets screen.",
-        illustration: "/payments/flow/withdraw-step-2.png",
+        illustration: "/payments/flow/withdraw-step-2.jpg",
       },
       {
         title: "Confirm Wallet Address",
         description: "Verify your crypto destination address.",
-        illustration: "/payments/flow/withdraw-step-3.png",
+        illustration: "/payments/flow/withdraw-step-3.jpg",
       },
       {
         title: "Enter Amount & Submit",
         description:
           " Double-check details before confirming.",
-        illustration: "/payments/flow/withdraw-step-4.png",
+        illustration: "/payments/flow/withdraw-step-4.jpg",
       },
     ],
   },

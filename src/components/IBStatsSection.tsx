@@ -69,7 +69,7 @@ export default async function IBStatsSection() {
               overflow: "hidden",
             }}>
               <Image
-                src="/ib-stats.png"
+                src="/ib-stats.jpg"
                 alt=""
                 aria-hidden
                 fill
@@ -94,7 +94,7 @@ export default async function IBStatsSection() {
               overflow: "hidden",
             }}>
               <Image
-                src="/ib-stats.png"
+                src="/ib-stats.jpg"
                 alt=""
                 aria-hidden
                 fill
@@ -120,7 +120,7 @@ export default async function IBStatsSection() {
               overflow: "hidden",
             }}>
               <Image
-                src="/ib-stats.png"
+                src="/ib-stats.jpg"
                 alt="IB partner program"
                 fill
                 style={{ objectFit: "cover" }}

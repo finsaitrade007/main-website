@@ -189,7 +189,7 @@ export default async function AboutFinancialGrowthSection() {
           {/* Right illustration */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
             <Image
-              src="/about/trading-journey.png"
+              src="/about/our_principles.jpg"
               alt=""
               width={560}
               height={560}
