@@ -1,10 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 import {
-  CONTACT_FROM_EMAIL,
   CONTACT_TO_EMAIL,
-  formatHtmlBody,
-  formatPlainTextBody,
-  getTransporter,
+  isMailerConfigured,
+  sendContactMail,
 } from "@/lib/mailer";
 
 export const runtime = "nodejs";
@@ -189,21 +187,35 @@ export async function POST(req: NextRequest) {
     };
   }
 
+  if (!isMailerConfigured()) {
+    console.error(
+      "[/api/contact] mailer not configured — set RESEND_API_KEY or SMTP_HOST/SMTP_USER/SMTP_PASS in production env",
+    );
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          "We couldn't send your message right now. Please try again or email " +
+          CONTACT_TO_EMAIL +
+          " directly.",
+      },
+      { status: 503 },
+    );
+  }
+
   try {
-    const transporter = getTransporter();
-    await transporter.sendMail({
-      from: CONTACT_FROM_EMAIL,
-      to: CONTACT_TO_EMAIL,
+    await sendContactMail({
       replyTo: email,
       subject,
-      text: formatPlainTextBody(rows),
-      html: formatHtmlBody(title, rows),
-      attachments: attachment ? [attachment] : undefined,
+      title,
+      rows,
+      attachment,
     });
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("[/api/contact] sendMail failed:", err);
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[/api/contact] send failed:", message, err);
     return NextResponse.json(
       {
         ok: false,

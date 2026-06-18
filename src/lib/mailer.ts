@@ -2,45 +2,105 @@ import "server-only";
 import nodemailer, { type Transporter } from "nodemailer";
 
 /**
- * SMTP / mail configuration is sourced entirely from environment variables so
- * recipient addresses, credentials and host can be swapped per environment
- * without touching code.
+ * Contact-form email delivery.
  *
- * Required:
- *   SMTP_HOST        – e.g. smtp.gmail.com / smtp.office365.com / smtp.zoho.com
- *   SMTP_USER        – mailbox username
- *   SMTP_PASS        – mailbox password / app password
+ * Preferred (works on Railway / serverless — no outbound SMTP ports):
+ *   RESEND_API_KEY     – https://resend.com API key
+ *   CONTACT_FROM_EMAIL – verified sender on your Resend domain
  *
- * Optional:
- *   SMTP_PORT        – default 587
- *   SMTP_SECURE      – "true" to force TLS (port 465). default: derived from port
- *   CONTACT_TO_EMAIL – recipient inbox. default: support@finsaitrade.com
- *   CONTACT_FROM_EMAIL – envelope From. default: SMTP_USER (or fallback)
+ * Alternative (Zoho / Gmail / etc. via SMTP):
+ *   SMTP_HOST, SMTP_USER, SMTP_PASS
+ *   SMTP_PORT          – default 587
+ *   SMTP_SECURE        – "true" for port 465
+ *
+ * Shared:
+ *   CONTACT_TO_EMAIL   – recipient inbox (default support@finsaitrade.com)
  */
 
 export const CONTACT_TO_EMAIL =
   process.env.CONTACT_TO_EMAIL?.trim() || "support@finsaitrade.com";
 
-export const CONTACT_FROM_EMAIL =
-  process.env.CONTACT_FROM_EMAIL?.trim() ||
-  process.env.SMTP_USER?.trim() ||
-  "no-reply@finsaitrade.com";
+const DEFAULT_FROM = "no-reply@finsaitrade.com";
+
+export type ContactMailAttachment = {
+  filename: string;
+  content: Buffer;
+  contentType: string;
+};
+
+export type ContactMailPayload = {
+  replyTo: string;
+  subject: string;
+  title: string;
+  rows: Record<string, string | undefined>;
+  attachment?: ContactMailAttachment;
+};
 
 let cached: Transporter | null = null;
+
+function getResendApiKey(): string | undefined {
+  const direct = process.env.RESEND_API_KEY?.trim();
+  if (direct) return direct;
+
+  const host = process.env.SMTP_HOST?.trim().toLowerCase() ?? "";
+  const pass = process.env.SMTP_PASS?.trim() ?? "";
+  if (host.includes("resend.com") && pass.startsWith("re_")) {
+    return pass;
+  }
+
+  return undefined;
+}
+
+function smtpConfigured(): boolean {
+  if (getResendApiKey()) return false;
+
+  return !!(
+    process.env.SMTP_HOST?.trim() &&
+    process.env.SMTP_USER?.trim() &&
+    process.env.SMTP_PASS
+  );
+}
+
+function resendConfigured(): boolean {
+  return !!getResendApiKey();
+}
+
+export function isMailerConfigured(): boolean {
+  return resendConfigured() || smtpConfigured();
+}
+
+/** Envelope From — Zoho rejects sends when From ≠ authenticated mailbox. */
+export function getEnvelopeFrom(): string {
+  const smtpUser = process.env.SMTP_USER?.trim();
+  const configured =
+    process.env.CONTACT_FROM_EMAIL?.trim() ||
+    process.env.RESEND_FROM_EMAIL?.trim() ||
+    smtpUser ||
+    DEFAULT_FROM;
+
+  if (smtpUser && !resendConfigured()) {
+    const sameMailbox =
+      configured.toLowerCase() === smtpUser.toLowerCase();
+    if (!sameMailbox) return smtpUser;
+  }
+
+  return configured;
+}
+
+export const CONTACT_FROM_EMAIL = getEnvelopeFrom();
 
 export function getTransporter(): Transporter {
   if (cached) return cached;
 
-  const host = process.env.SMTP_HOST;
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
-
-  if (!host || !user || !pass) {
+  if (!smtpConfigured()) {
     throw new Error(
-      "Mailer is not configured — set SMTP_HOST / SMTP_USER / SMTP_PASS in .env.local",
+      "SMTP is not configured — set SMTP_HOST / SMTP_USER / SMTP_PASS (or use RESEND_API_KEY)",
     );
   }
 
+  const host = process.env.SMTP_HOST!.trim();
+  const user = process.env.SMTP_USER!.trim();
+  const pass = process.env.SMTP_PASS!;
   const port = Number(process.env.SMTP_PORT ?? 587);
   const secure =
     typeof process.env.SMTP_SECURE === "string"
@@ -52,9 +112,96 @@ export function getTransporter(): Transporter {
     port,
     secure,
     auth: { user, pass },
+    requireTLS: !secure && port === 587,
+    connectionTimeout: 15_000,
+    greetingTimeout: 15_000,
+    socketTimeout: 20_000,
   });
 
   return cached;
+}
+
+async function sendViaResend(payload: ContactMailPayload): Promise<void> {
+  const apiKey = getResendApiKey();
+  if (!apiKey) {
+    throw new Error("Resend API key is not configured");
+  }
+  const text = formatPlainTextBody(payload.rows);
+  const html = formatHtmlBody(payload.title, payload.rows);
+
+  const body: Record<string, unknown> = {
+    from: getEnvelopeFrom(),
+    to: [CONTACT_TO_EMAIL],
+    reply_to: payload.replyTo,
+    subject: payload.subject,
+    text,
+    html,
+  };
+
+  if (payload.attachment) {
+    body.attachments = [
+      {
+        filename: payload.attachment.filename,
+        content: payload.attachment.content.toString("base64"),
+      },
+    ];
+  }
+
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    const detail = await res.text().catch(() => "");
+    throw new Error(
+      `Resend API error (${res.status})${detail ? `: ${detail}` : ""}`,
+    );
+  }
+}
+
+async function sendViaSmtp(payload: ContactMailPayload): Promise<void> {
+  const transporter = getTransporter();
+  const text = formatPlainTextBody(payload.rows);
+  const html = formatHtmlBody(payload.title, payload.rows);
+
+  await transporter.sendMail({
+    from: getEnvelopeFrom(),
+    to: CONTACT_TO_EMAIL,
+    replyTo: payload.replyTo,
+    subject: payload.subject,
+    text,
+    html,
+    attachments: payload.attachment
+      ? [
+          {
+            filename: payload.attachment.filename,
+            content: payload.attachment.content,
+            contentType: payload.attachment.contentType,
+          },
+        ]
+      : undefined,
+  });
+}
+
+export async function sendContactMail(payload: ContactMailPayload): Promise<void> {
+  if (!isMailerConfigured()) {
+    throw new Error(
+      "Mailer is not configured — set RESEND_API_KEY or SMTP_HOST / SMTP_USER / SMTP_PASS on the server",
+    );
+  }
+
+  if (resendConfigured()) {
+    await sendViaResend(payload);
+    return;
+  }
+
+  await sendViaSmtp(payload);
 }
 
 /** Format a `key: value` block for plain-text email bodies. */
