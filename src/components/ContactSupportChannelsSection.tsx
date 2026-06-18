@@ -30,8 +30,8 @@ const CHANNELS: Channel[] = [
     icon: "phone",
     title: "Phone Support",
     description: "Instant help through in-platform or website chat.",
-    ctaLabel: "+971 50 845 5403",
-    ctaHref: "tel:+2304634500",
+    ctaLabel: "",
+    ctaHref: "",
   },
 ];
 

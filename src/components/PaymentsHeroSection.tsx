@@ -31,7 +31,7 @@ export default async function PaymentsHeroSection() {
       }}
     >
       <Image
-        src="/payments/hero.png"
+        src="/payments/payment-hero.png"
         alt=""
         width={634}
         height={634}
