@@ -114,7 +114,7 @@ export default async function SocialTradingHeroSection() {
         </p>
 
         {/* CTAs */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center" }}>
+        <div className="social-trading-hero-ctas" style={{ display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center" }}>
           <SmartLink
             href={SOCIAL_TRADING_HREF}
             className="btn-text"
@@ -133,8 +133,7 @@ export default async function SocialTradingHeroSection() {
           </SmartLink>
           <SmartLink
             href="https://social.finsaitrade.com/portal/registration/provider?redirectUrl=%2F"
-            className="btn-secondary"
-            style={{ padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 28px)" }}
+            className="btn-secondary btn-text social-trading-hero-provider-btn"
           >
             Become a Provider
           </SmartLink>

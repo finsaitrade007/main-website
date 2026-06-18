@@ -178,6 +178,36 @@ h1, h2, h3, h4, h5, h6 {
   gap: 24px;
 }
 
+/* Home hero — Try Demo (laptop / desktop) */
+@media (min-width: 1024px) {
+  .hero-try-demo-btn {
+    box-sizing: border-box;
+    width: 152px;
+    height: 48px;
+    padding: 11px 24px;
+    gap: 8px;
+    border-radius: 8px;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  /* Social trading hero — 2nd CTA (Become a Provider) */
+  .social-trading-hero-ctas {
+    gap: 16px;
+  }
+
+  .social-trading-hero-provider-btn {
+    box-sizing: border-box;
+    width: 201px;
+    height: 48px;
+    padding: 11px 24px;
+    gap: 8px;
+    border-radius: 8px;
+    justify-content: center;
+    white-space: nowrap;
+  }
+}
+
 /* ─── Forex Scroller (Figma spec) ─────────────────────────── */
 
 .forex-scroller {
