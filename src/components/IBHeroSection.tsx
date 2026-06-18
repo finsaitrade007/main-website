@@ -28,7 +28,7 @@ export default async function IBHeroSection() {
     }}>
       {/* Hero image — right side */}
       <Image
-        src="/partners/ib-hero.png"
+        src="/partners/ib-hero.svg"
         alt=""
         width={1130}
         height={678}
@@ -37,10 +37,9 @@ export default async function IBHeroSection() {
           position: "absolute",
           top: "23px",
           left: "clamp(150px, 21.5vw, 310px)",
-          width: "clamp(600px, 78.5vw, 1050px)",
+          width: "clamp(600px, 78.5vw, 1130px)",
           height: "clamp(400px, 45vw, 678px)",
-          scale: "1.1",
-          // objectFit: "contain",
+          objectFit: "contain",
         }}
         priority
       />
