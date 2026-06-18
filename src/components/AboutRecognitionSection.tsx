@@ -200,10 +200,11 @@ export default async function AboutRecognitionSection() {
           100%      { transform: translateY(-520px); }
         }
         @keyframes about-stat-swap-v {
-          0%, 27%   { transform: translateY(0); }
-          33%, 60%  { transform: translateY(-283px); }
-          67%, 94%  { transform: translateY(-566px); }
-          100%      { transform: translateY(-849px); }
+          0%, 20%   { transform: translateY(0); }
+          25%, 45%  { transform: translateY(-283px); }
+          50%, 70%  { transform: translateY(-566px); }
+          75%, 95%  { transform: translateY(-849px); }
+          100%      { transform: translateY(-1132px); }
         }
         .about-award-strip {
           animation: about-award-swap-v 8s ease-in-out infinite;
@@ -328,7 +329,7 @@ export default async function AboutRecognitionSection() {
         {/*
           Primary stat slider — each frame stacks a big "current" stat on top
           and a smaller "next" stat below as a preview. The strip cycles
-          through 3 frames + a duplicated tail so the wrap is seamless.
+          through 4 frames + a duplicated tail so the wrap is seamless.
         */}
         <div
           style={{
@@ -346,7 +347,7 @@ export default async function AboutRecognitionSection() {
               display: "flex",
               flexDirection: "column",
               width: "100%",
-              height: "1132px",
+              height: "1415px",
               willChange: "transform",
             }}
           >
@@ -360,10 +361,14 @@ export default async function AboutRecognitionSection() {
               },
               {
                 big: { value: "3M+", label: "Monthly Worldwide" },
-                small: { value: "50000+", label: "Registered Users" },
+                small: { value: "30k", label: "active traders" },
               },
               {
-                big: { value: "50000+", label: "Registered Users" },
+                big: { value: "30k", label: "active traders" },
+                small: { value: "10k+", label: "IB" },
+              },
+              {
+                big: { value: "10k+", label: "IB" },
                 small: {
                   value: data.recognitionStatPrimaryValue,
                   label: data.recognitionStatPrimaryLabel,
@@ -526,13 +531,14 @@ export default async function AboutRecognitionSection() {
         }}
       >
         {/* Primary stat slider — big current stat on top, smaller preview of
-            the next stat below, cycling through 3 frames. */}
+            the next stat below, cycling through 4 frames. */}
         <style>{`
           @keyframes about-stat-swap-mobile-v {
-            0%, 27%   { transform: translateY(0); }
-            33%, 60%  { transform: translateY(-220px); }
-            67%, 94%  { transform: translateY(-440px); }
-            100%      { transform: translateY(-660px); }
+            0%, 20%   { transform: translateY(0); }
+            25%, 45%  { transform: translateY(-220px); }
+            50%, 70%  { transform: translateY(-440px); }
+            75%, 95%  { transform: translateY(-660px); }
+            100%      { transform: translateY(-880px); }
           }
           .about-stat-strip-mobile {
             animation: about-stat-swap-mobile-v 8s ease-in-out infinite;
@@ -555,7 +561,7 @@ export default async function AboutRecognitionSection() {
               display: "flex",
               flexDirection: "column",
               width: "100%",
-              height: "880px",
+              height: "1100px",
               willChange: "transform",
             }}
           >
@@ -573,6 +579,10 @@ export default async function AboutRecognitionSection() {
               },
               {
                 big: { value: "50000+", label: "Registered Users" },
+                small: { value: "10k+", label: "IB" },
+              },
+              {
+                big: { value: "10k+", label: "IB" },
                 small: {
                   value: data.recognitionStatPrimaryValue,
                   label: data.recognitionStatPrimaryLabel,
