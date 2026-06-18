@@ -69,7 +69,7 @@ export default function SocialTradingCTASection() {
 
           {/* CTA button */}
           <SmartLink
-            href={REGISTER_HREF}
+            href="https://social.finsaitrade.com/portal/login?redirectUrl=%2F"
             style={{
               display: "inline-flex",
               alignItems: "center",

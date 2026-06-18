@@ -647,7 +647,7 @@ export default function SocialTradingHowItWorksSection() {
           <BulletList items={investorBullets} />
           <div style={{ marginTop: "auto", paddingTop: "20px" }}>
             <SmartLink
-              href="https://social.finsaitrade.com"
+              href="https://social.finsaitrade.com/portal/registration/subscription?redirectUrl=%2F"
               className="howit-cta"
               style={PRIMARY_CTA_STYLE}
             >
@@ -681,7 +681,7 @@ export default function SocialTradingHowItWorksSection() {
           <BulletList items={providerBullets} />
           <div style={{ marginTop: "auto", paddingTop: "20px" }}>
             <SmartLink
-              href="https://fx.finsaitrade.com/auth/register"
+              href="https://social.finsaitrade.com/portal/registration/provider?redirectUrl=%2F"
               className="howit-cta"
               style={SECONDARY_CTA_STYLE}
             >

@@ -295,6 +295,7 @@ export default function SocialTradingJourneySection() {
             title="MT5 Account"
             description="Connect your MT5 account and start social trading. "
             ctaText="Connect MT5"
+            ctaHref="https://social.finsaitrade.com/portal/login?redirectUrl=%2F"
           />
           <JourneyColumn
             number={2}
@@ -302,7 +303,7 @@ export default function SocialTradingJourneySection() {
             title="Finsai Account"
             description="Log in and access social trading tools instantly."
             ctaText="Start Social Trading"
-            ctaHref={SOCIAL_TRADING_HREF}
+            ctaHref="https://social.finsaitrade.com/portal/registration/subscription?redirectUrl=%2F"
           />
           <JourneyColumn
             number={3}
@@ -310,6 +311,7 @@ export default function SocialTradingJourneySection() {
             title="New Account"
             description="Create an account and start your trading journey"
             ctaText="Create Account"
+            ctaHref="https://social.finsaitrade.com/portal/registration/provider?redirectUrl=%2F"
           />
         </div>
       </div>
