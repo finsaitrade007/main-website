@@ -132,10 +132,10 @@ export default async function SocialTradingHeroSection() {
             Become a Social Trader
           </SmartLink>
           <SmartLink
-            href="https://social.finsaitrade.com/portal/registration/provider?redirectUrl=%2F"
+            href="https://social.finsaitrade.com/portal/registration/subscription?redirectUrl=%2F"
             className="btn-secondary btn-text social-trading-hero-provider-btn"
           >
-            Become a Provider
+            Become a Follower
           </SmartLink>
         </div>
 

@@ -46,7 +46,7 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     order: 1,
     mockupImage: null,
     iconImage: null,
-    localMockupImage: "/platforms/mt-mockup.png",
+    localMockupImage: "/platforms/mt5-mockup.png",
   },
   {
     id: 3,
