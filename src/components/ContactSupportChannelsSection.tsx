@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -26,14 +28,90 @@ const CHANNELS: Channel[] = [
     ctaLabel: "support@finsaitrade.com",
     ctaHref: "mailto:support@finsaitrade.com",
   },
-  {
-    icon: "phone",
-    title: "Phone Support",
-    description: "Instant help through in-platform or website chat.",
-    ctaLabel: "",
-    ctaHref: "",
-  },
 ];
+
+const CTA_STYLE: React.CSSProperties = {
+  boxSizing: "border-box",
+  width: "224px",
+  height: "46px",
+  padding: "12px 16px",
+  borderRadius: "12px",
+  border: "1px solid transparent",
+  background:
+    "linear-gradient(159.73deg, #050208 63.16%, #056FB4 447.31%) padding-box, linear-gradient(180deg, #056FB4 0%, #7DB9D6 100%) border-box",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontFamily: "var(--font-inter, Inter)",
+  fontWeight: 500,
+  fontSize: "14px",
+  color: "#FFFFFF",
+  whiteSpace: "nowrap",
+  cursor: "pointer",
+};
+
+function openChat() {
+  if (!document.getElementById("fcrm-bridge-styles")) {
+    const s = document.createElement("style");
+    s.id = "fcrm-bridge-styles";
+    s.textContent = `
+      @keyframes fcrm-ring {
+        0%,100% { box-shadow: 0 0 0 0 rgba(5,111,180,.75); }
+        60%      { box-shadow: 0 0 0 16px rgba(5,111,180,0); }
+      }
+      @keyframes fcrm-tip-in {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      #fcrm-chat-frame.fcrm-active {
+        animation: fcrm-ring .85s ease-out 4;
+        outline: 2px solid rgba(5,111,180,.85);
+        outline-offset: 4px;
+        border-radius: 50% !important;
+      }
+      #fcrm-bridge-tip {
+        position: fixed;
+        bottom: 112px;
+        right: 20px;
+        background: #056FB4;
+        color: #fff;
+        font: 500 13px/1.4 Inter,sans-serif;
+        padding: 8px 14px;
+        border-radius: 8px;
+        z-index: 2147483001;
+        pointer-events: none;
+        box-shadow: 0 4px 18px rgba(0,0,0,.35);
+        white-space: nowrap;
+        animation: fcrm-tip-in .18s ease-out;
+      }
+      #fcrm-bridge-tip::after {
+        content: "";
+        position: absolute;
+        bottom: -7px;
+        right: 32px;
+        border: 7px solid transparent;
+        border-bottom: 0;
+        border-top-color: #056FB4;
+      }
+    `;
+    document.head.appendChild(s);
+  }
+
+  const iframe = document.getElementById("fcrm-chat-frame");
+  if (iframe) {
+    iframe.classList.remove("fcrm-active");
+    void iframe.offsetWidth;
+    iframe.classList.add("fcrm-active");
+    setTimeout(() => iframe.classList.remove("fcrm-active"), 4000);
+  }
+
+  document.getElementById("fcrm-bridge-tip")?.remove();
+  const tip = document.createElement("div");
+  tip.id = "fcrm-bridge-tip";
+  tip.textContent = "Click to open chat";
+  document.body.appendChild(tip);
+  setTimeout(() => tip.parentNode?.removeChild(tip), 4000);
+}
 
 function ChannelIcon({ icon }: { icon: IconKey }): ReactNode {
   const common = {
@@ -176,32 +254,27 @@ export default function ContactSupportChannelsSection() {
               {channel.description}
             </p>
 
-            <Link
-              href={channel.ctaHref}
-              style={{
-                boxSizing: "border-box",
-                width: "224px",
-                height: "46px",
-                padding: "12px 16px",
-                borderRadius: "12px",
-                border: "1px solid transparent",
-                background:
-                  "linear-gradient(159.73deg, #050208 63.16%, #056FB4 447.31%) padding-box, linear-gradient(180deg, #056FB4 0%, #7DB9D6 100%) border-box",
-                textDecoration: "none",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontFamily: "var(--font-inter, Inter)",
-                fontWeight: 500,
-                fontSize: "14px",
-                color: "#FFFFFF",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
-              {channel.ctaLabel}
-            </Link>
+            {channel.icon === "chat" ? (
+              <button
+                type="button"
+                onClick={openChat}
+                style={{ ...CTA_STYLE, textDecoration: "none" }}
+              >
+                {channel.ctaLabel}
+              </button>
+            ) : (
+              <Link
+                href={channel.ctaHref}
+                style={{
+                  ...CTA_STYLE,
+                  textDecoration: "none",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {channel.ctaLabel}
+              </Link>
+            )}
           </article>
         ))}
       </div>

@@ -28,10 +28,10 @@ export default function RegulationsPage() {
         <P>
           <strong>Contact number:</strong>{" "}
           <a
-            href="tel:+230"
+            href="tel: "
             style={{ color: "#7DB9D6", textDecoration: "underline" }}
           >
-            +230            
+                         
           </a>
         </P>
         <P>
