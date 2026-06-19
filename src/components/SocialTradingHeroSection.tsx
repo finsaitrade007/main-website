@@ -1,9 +1,6 @@
 import SmartLink from "@/components/SmartLink";
 import Image from "next/image";
 
-const REGISTER_HREF = "https://fx.finsaitrade.com/auth/register";
-const SOCIAL_TRADING_HREF = "https://social.finsaitrade.com";
-
 const STATS = [
   { value: "10,000+", label: "Active Investors" },
   { value: "150+",    label: "Strategy Providers" },
@@ -116,7 +113,7 @@ export default async function SocialTradingHeroSection() {
         {/* CTAs */}
         <div className="social-trading-hero-ctas" style={{ display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center" }}>
           <SmartLink
-            href={SOCIAL_TRADING_HREF}
+            href="https://social.finsaitrade.com/portal/registration/subscription?redirectUrl=%2F"
             className="btn-text"
             style={{
               display: "inline-flex",
@@ -129,13 +126,13 @@ export default async function SocialTradingHeroSection() {
               whiteSpace: "nowrap",
             }}
           >
-            Become a Social Trader
+            Become a Follower
           </SmartLink>
           <SmartLink
-            href="https://social.finsaitrade.com/portal/registration/subscription?redirectUrl=%2F"
+            href="https://social.finsaitrade.com/portal/registration/provider?redirectUrl=%2F"
             className="btn-secondary btn-text social-trading-hero-provider-btn"
           >
-            Become a Follower
+            Become a Provider
           </SmartLink>
         </div>
 

@@ -22,35 +22,134 @@ const FALLBACK: Pick<
   recognitionStatSecondaryLabel: "Monthly Worldwide",
 };
 
-/**
- * Renders an award badge framed by laurel leaves on either side. The badge is
- * a square image (280×280 source) and the laurels are vertical curves (83×224
- * source) that overlap the badge by `laurelOverlapRatio` of their width so
- * they hug it (higher ratio = laurels sit closer to / further over the badge).
- */
-function AwardWithLaurels({
+type RecognitionAward = {
+  src: string;
+  title: string;
+  invert: boolean;
+};
+
+/** Same awards as AwardsSection — image + label inside a circular disc. */
+const RECOGNITION_AWARDS: { left: RecognitionAward[]; right: RecognitionAward[] } = {
+  left: [
+    {
+      src: "/awards/world-forex.png",
+      title: "The Fastest Growing\nBroker 2025",
+      invert: true,
+    },
+    {
+      src: "/awards/innovative.png",
+      title: "Innovative Startup in\nFinance Award 2023",
+      invert: false,
+    },
+  ],
+  right: [
+    {
+      src: "/awards/wld-fi.png",
+      title: "The Fastest Growing\nBroker 2024",
+      invert: true,
+    },
+    {
+      src: "/awards/wld-fi.png",
+      title: "The Fastest Growing\nBroker 2025",
+      invert: true,
+    },
+  ],
+};
+
+function AwardDisc({
   src,
-  alt,
-  badgeSize,
-  laurelWidth,
-  laurelHeight,
-  laurelOverlapRatio = 0.5,
+  title,
+  invert = false,
+  size = 260,
 }: {
   src: string;
-  alt: string;
-  badgeSize: number;
-  laurelWidth: number;
-  laurelHeight: number;
+  title: string;
+  invert?: boolean;
+  size?: number;
+}) {
+  return (
+    <div
+      style={{
+        width: `${size}px`,
+        height: `${size}px`,
+        borderRadius: "50%",
+        background:
+          "#050208",
+        position: "relative",
+        overflow: "hidden",
+        flexShrink: 0,
+        zIndex: 1,
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          top: "10%",
+          left: "23.5%",
+          width: "53%",
+          height: "55%",
+        }}
+      >
+        <Image
+          src={src}
+          alt={title.replace(/\n/g, " ")}
+          fill
+          sizes={`${size}px`}
+          style={{
+            objectFit: "contain",
+            objectPosition: "center",
+            filter: invert ? "brightness(0) invert(1)" : undefined,
+          }}
+        />
+      </div>
+      <p
+        style={{
+          position: "absolute",
+          top: "66.714%",
+          left: "10.714%",
+          width: "78.571%",
+          height: "18.929%",
+          margin: 0,
+          textAlign: "center",
+          color: "#FFFFFF",
+          fontFamily: "var(--font-sora, Sora)",
+          fontWeight: 600,
+          fontSize: `${Math.round(size * 0.064)}px`,
+          lineHeight: 1.35,
+          whiteSpace: "pre-line",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {title}
+      </p>
+    </div>
+  );
+}
+
+function AwardDiscWithLaurels({
+  award,
+  discSize = 260,
+  laurelWidth = 95,
+  laurelHeight = 252,
+  laurelOverlapRatio = 0.5,
+}: {
+  award: RecognitionAward;
+  discSize?: number;
+  laurelWidth?: number;
+  laurelHeight?: number;
   laurelOverlapRatio?: number;
 }) {
   const overlap = Math.round(laurelWidth * laurelOverlapRatio);
-  const containerWidth = badgeSize + 2 * (laurelWidth - overlap);
+  const containerWidth = discSize + 2 * (laurelWidth - overlap);
+
   return (
     <div
       style={{
         position: "relative",
         width: `${containerWidth}px`,
-        height: `${Math.max(laurelHeight, badgeSize)}px`,
+        height: `${Math.max(laurelHeight, discSize)}px`,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -74,20 +173,11 @@ function AwardWithLaurels({
           userSelect: "none",
         }}
       />
-      <Image
-        src={src}
-        alt={alt}
-        width={280}
-        height={280}
-        style={{
-          position: "relative",
-          zIndex: 1,
-          width: `${badgeSize}px`,
-          height: `${badgeSize}px`,
-          objectFit: "contain",
-          pointerEvents: "none",
-          userSelect: "none",
-        }}
+      <AwardDisc
+        src={award.src}
+        title={award.title}
+        invert={award.invert}
+        size={discSize}
       />
       <Image
         src="/about/laurel-right.png"
@@ -105,6 +195,40 @@ function AwardWithLaurels({
           pointerEvents: "none",
           userSelect: "none",
         }}
+      />
+    </div>
+  );
+}
+
+function AwardDiscFrame({
+  award,
+  size = 260,
+  laurelWidth = 95,
+  laurelHeight = 252,
+}: {
+  award: RecognitionAward;
+  size?: number;
+  laurelWidth?: number;
+  laurelHeight?: number;
+}) {
+  const frameHeight = Math.max(laurelHeight, size);
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: `${frameHeight}px`,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexShrink: 0,
+      }}
+    >
+      <AwardDiscWithLaurels
+        award={award}
+        discSize={size}
+        laurelWidth={laurelWidth}
+        laurelHeight={laurelHeight}
       />
     </div>
   );
@@ -187,12 +311,6 @@ export default async function AboutRecognitionSection() {
         </p>
       </div>
 
-      {/*
-        Two laurel-wrapped award slots, one on each side of the central
-        stats card. Each slot vertically scrolls through its awards in a
-        single direction (upwards) on an infinite loop — the strip ends
-        with a duplicate of the first award so the wrap-around is seamless.
-      */}
       <style>{`
         @keyframes about-award-swap-v {
           0%, 45%   { transform: translateY(0); }
@@ -240,28 +358,9 @@ export default async function AboutRecognitionSection() {
             willChange: "transform",
           }}
         >
-          <AwardWithLaurels
-            src="/awards/world-forex-award.png"
-            alt="World Forex Award"
-            badgeSize={260}
-            laurelWidth={95}
-            laurelHeight={252}
-          />
-          <AwardWithLaurels
-            src="/awards/innovative-startup.png"
-            alt="Innovative Startup Award"
-            badgeSize={260}
-            laurelWidth={95}
-            laurelHeight={252}
-          />
-          {/* Seamless-loop tail: duplicate of the first item */}
-          <AwardWithLaurels
-            src="/awards/world-forex-award.png"
-            alt=""
-            badgeSize={260}
-            laurelWidth={95}
-            laurelHeight={252}
-          />
+          <AwardDiscFrame award={RECOGNITION_AWARDS.left[0]} />
+          <AwardDiscFrame award={RECOGNITION_AWARDS.left[1]} />
+          <AwardDiscFrame award={RECOGNITION_AWARDS.left[0]} />
         </div>
       </div>
 
@@ -287,28 +386,9 @@ export default async function AboutRecognitionSection() {
             willChange: "transform",
           }}
         >
-          <AwardWithLaurels
-            src="/awards/wld-fi-2024.png"
-            alt="World Finance Award 2024"
-            badgeSize={260}
-            laurelWidth={95}
-            laurelHeight={252}
-          />
-          <AwardWithLaurels
-            src="/awards/wld-fi-2025.png"
-            alt="World Finance Award 2025"
-            badgeSize={260}
-            laurelWidth={95}
-            laurelHeight={252}
-          />
-          {/* Seamless-loop tail: duplicate of the first item */}
-          <AwardWithLaurels
-            src="/awards/wld-fi-2024.png"
-            alt=""
-            badgeSize={260}
-            laurelWidth={95}
-            laurelHeight={252}
-          />
+          <AwardDiscFrame award={RECOGNITION_AWARDS.right[0]} />
+          <AwardDiscFrame award={RECOGNITION_AWARDS.right[1]} />
+          <AwardDiscFrame award={RECOGNITION_AWARDS.right[0]} />
         </div>
       </div>
 
@@ -322,7 +402,7 @@ export default async function AboutRecognitionSection() {
           borderRadius: "26.99px",
           border: "0.9px solid #056FB4",
           background:
-            "linear-gradient(157.26deg, rgba(10,18,32,0.85) 0%, rgba(5,111,180,0.18) 100%)",
+            "linear-gradient(119.3deg, rgba(0,0,0,0) 23.34%, rgba(73,109,171,0.3) 96.36%)",
           boxSizing: "border-box",
         }}
       >
@@ -683,9 +763,7 @@ export default async function AboutRecognitionSection() {
 
       </div>
 
-      {/* Two laurel-wrapped award slots stacked vertically; each scrolls
-          upwards on an infinite loop with a duplicated tail for seamless
-          wrap-around. Same timing as desktop. */}
+      {/* Award discs — same style as home AwardsSection */}
       <style>{`
         @keyframes about-award-swap-mobile-v {
           0%, 45%   { transform: translateY(0); }
@@ -699,7 +777,6 @@ export default async function AboutRecognitionSection() {
           .about-award-strip-mobile { animation: none; }
         }
       `}</style>
-
       <div
         style={{
           display: "flex",
@@ -708,20 +785,9 @@ export default async function AboutRecognitionSection() {
           gap: "20px",
         }}
       >
-        {[
-          {
-            id: "left",
-            primary: { src: "/awards/world-forex-award.png", alt: "World Forex Award" },
-            secondary: { src: "/awards/innovative-startup.png", alt: "Innovative Startup Award" },
-          },
-          {
-            id: "right",
-            primary: { src: "/awards/wld-fi-2024.png", alt: "World Finance Award 2024" },
-            secondary: { src: "/awards/wld-fi-2025.png", alt: "World Finance Award 2025" },
-          },
-        ].map(({ id, primary, secondary }) => (
+        {(["left", "right"] as const).map((side) => (
           <div
-            key={id}
+            key={side}
             style={{
               width: "342px",
               height: "260px",
@@ -738,25 +804,18 @@ export default async function AboutRecognitionSection() {
                 willChange: "transform",
               }}
             >
-              <AwardWithLaurels
-                src={primary.src}
-                alt={primary.alt}
-                badgeSize={260}
+              <AwardDiscFrame
+                award={RECOGNITION_AWARDS[side][0]}
                 laurelWidth={82}
                 laurelHeight={221}
               />
-              <AwardWithLaurels
-                src={secondary.src}
-                alt={secondary.alt}
-                badgeSize={260}
+              <AwardDiscFrame
+                award={RECOGNITION_AWARDS[side][1]}
                 laurelWidth={82}
                 laurelHeight={221}
               />
-              {/* Seamless-loop tail: duplicate of the first item */}
-              <AwardWithLaurels
-                src={primary.src}
-                alt=""
-                badgeSize={260}
+              <AwardDiscFrame
+                award={RECOGNITION_AWARDS[side][0]}
                 laurelWidth={82}
                 laurelHeight={221}
               />

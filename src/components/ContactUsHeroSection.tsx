@@ -8,8 +8,8 @@ const HERO = {
     "Join a vibrant global team focused on fintech, trading technology, global markets, and customer growth.",
   primaryCtaLabel: "View Open Roles",
   primaryCtaHref: "#open-roles",
-  secondaryCtaLabel: "Join Our Team  →",
-  secondaryCtaHref: "/careers",
+  secondaryCtaLabel: "Reach Out to our Team",
+  secondaryCtaHref: "#contact-form",
 };
 
 export default function ContactUsHeroSection() {
