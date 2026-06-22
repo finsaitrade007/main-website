@@ -18,7 +18,9 @@ type Benefit = {
   description?: string;
 };
 
-const BENEFITS: Benefit[] = [
+const BENEFIT_ICONS: IconKey[] = ["quick", "transparency", "dedicated", "multilang"];
+
+const DEFAULT_BENEFITS: Benefit[] = [
   {
     icon: "quick",
     title: "Quick Response",
@@ -167,7 +169,17 @@ const inputStyle = {
   outline: "none",
 };
 
-export default function ContactSupportFormSection() {
+export default function ContactSupportFormSection({
+  supportTitle = "Global Support Availability",
+  supportDescription = "Join a workplace focused on growth, flexibility, ownership, and meaningful impact across global fintech and trading markets.",
+  benefits = DEFAULT_BENEFITS,
+  submitLabel = "MESSAGE US",
+}: {
+  supportTitle?: string;
+  supportDescription?: string;
+  benefits?: Benefit[];
+  submitLabel?: string;
+}) {
   return (
     <section
       id="contact-form"
@@ -194,14 +206,26 @@ export default function ContactSupportFormSection() {
           alignItems: "flex-start",
         }}
       >
-        <LeftPanel />
-        <ContactForm />
+        <LeftPanel
+          supportTitle={supportTitle}
+          supportDescription={supportDescription}
+          benefits={benefits}
+        />
+        <ContactForm submitLabel={submitLabel} />
       </div>
     </section>
   );
 }
 
-function LeftPanel() {
+function LeftPanel({
+  supportTitle,
+  supportDescription,
+  benefits,
+}: {
+  supportTitle: string;
+  supportDescription: string;
+  benefits: Benefit[];
+}) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
       <div
@@ -221,7 +245,7 @@ function LeftPanel() {
             color: "#FFFFFF",
           }}
         >
-          Global Support Availability
+          {supportTitle}
         </h2>
         <p
           style={{
@@ -234,8 +258,7 @@ function LeftPanel() {
             color: "rgba(255,255,255,0.65)",
           }}
         >
-          Join a workplace focused on growth, flexibility, ownership, and
-          meaningful impact across global fintech and trading markets.
+          {supportDescription}
         </p>
       </div>
 
@@ -246,7 +269,7 @@ function LeftPanel() {
           gap: "14px",
         }}
       >
-        {BENEFITS.map((b) => (
+        {benefits.map((b) => (
           <div
             key={b.title}
             style={{
@@ -372,7 +395,7 @@ function LeftPanel() {
   );
 }
 
-function ContactForm() {
+function ContactForm({ submitLabel }: { submitLabel: string }) {
   const [accepted, setAccepted] = useState(false);
   const [phone, setPhone] = useState("");
   const [dialCode, setDialCode] = useState("91");
@@ -611,7 +634,7 @@ function ContactForm() {
           color: "#FFFFFF",
         }}
       >
-        {status.kind === "submitting" ? "Sending..." : "MESSAGE US"}
+        {status.kind === "submitting" ? "Sending..." : submitLabel}
       </button>
 
       {status.kind === "success" ? (

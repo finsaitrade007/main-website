@@ -35,8 +35,8 @@ export default async function IBWhySection() {
   const description =
     data?.whyDescription ??
     "Built for partners who want faster growth, stronger earnings, and long-term success";
-  const ctaLabel = data?.heroPrimaryCtaLabel ?? "Start Earning Today →";
-  const ctaHref = data?.heroPrimaryCtaHref ?? "https://fx.finsaitrade.com/auth/register";
+  const ctaLabel = data?.whyCtaLabel ?? "Start Earning Today →";
+  const ctaHref = data?.whyCtaHref ?? "https://fx.finsaitrade.com/auth/register";
 
   const tabs =
     data?.whyFeatures?.length

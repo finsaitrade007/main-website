@@ -50,7 +50,9 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const home = await getHomepage();
+
   return (
     <>
       <HeroSection />
@@ -58,7 +60,11 @@ export default function HomePage() {
       <FeaturesSection />
       <MarketsSection />
       <PlatformsSection />
-      <AccountTypesSection />
+      <AccountTypesSection
+        badge={home?.accountsBadge}
+        title={home?.accountsTitle}
+        description={home?.accountsDescription}
+      />
       <StepsSection />
       <AwardsSection />
       <TestimonialsSection />

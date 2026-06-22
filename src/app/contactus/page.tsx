@@ -13,12 +13,30 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default function ContactUsPage() {
+export default async function ContactUsPage() {
+  const data = await getContactusPage();
+  const benefitIcons: Array<"quick" | "transparency" | "dedicated" | "multilang"> = [
+    "quick",
+    "transparency",
+    "dedicated",
+    "multilang",
+  ];
+  const benefits = data?.supportBenefits?.map((b, i) => ({
+    icon: benefitIcons[i] ?? "quick",
+    title: b.title,
+    description: b.description ?? undefined,
+  }));
+
   return (
     <>
       <ContactUsHeroSection />
       <ContactSupportChannelsSection />
-      <ContactSupportFormSection />
+      <ContactSupportFormSection
+        supportTitle={data?.supportTitle}
+        supportDescription={data?.supportDescription}
+        benefits={benefits}
+        submitLabel={data?.formSubmitLabel}
+      />
     </>
   );
 }

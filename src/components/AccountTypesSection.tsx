@@ -321,7 +321,15 @@ function AccountCard({
   );
 }
 
-export default function AccountTypesSection() {
+export default function AccountTypesSection({
+  badge = "Find Your Fit",
+  title = "Choose The Right Account For You.",
+  description = "Whether you’re just starting or trading at a higher level, find an account built to match your goals, experience, and trading style.",
+}: {
+  badge?: string;
+  title?: string;
+  description?: string;
+}) {
   const [activeId, setActiveId] = useState("choice");
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -366,7 +374,7 @@ export default function AccountTypesSection() {
               borderRadius: "60px",
             }}
           >
-            <span className="badge-text">Find Your Fit</span>
+            <span className="badge-text">{badge}</span>
           </span>
         </div>
 
@@ -374,14 +382,14 @@ export default function AccountTypesSection() {
           className="section-title"
           style={{ textAlign: "center", marginBottom: "16px" }}
         >
-          Choose The Right Account For You.
+          {title}
         </h2>
 
         <p
           className="section-desc"
           style={{ textAlign: "center", maxWidth: "900px", margin: "0 auto 56px" }}
         >
-          Whether you’re just starting or trading at a higher level, find an account built to match your goals, experience, and trading style.
+          {description}
         </p>
 
         <div className="account-types-cards">

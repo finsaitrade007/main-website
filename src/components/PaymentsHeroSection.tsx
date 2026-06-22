@@ -10,7 +10,7 @@ const FALLBACK: Pick<
   | "heroPrimaryCtaLabel"
   | "heroPrimaryCtaHref"
 > = {
-  heroBadge: "SECURE DEPOSITS & WITHDRAWALS",
+  heroBadge: "Payment Solutions",
   heroTitle: "Fund Your Trading Account with Secure Payments",
   heroDescription:
     "Deposit and withdraw funds seamlessly using trusted, fast and secure options.",
@@ -91,7 +91,7 @@ export default async function PaymentsHeroSection() {
               backgroundClip: "text",
             }}
           >
-            Payment Solutions
+            {data.heroBadge}
           </span>
         </div>
 

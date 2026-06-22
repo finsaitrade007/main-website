@@ -542,6 +542,8 @@ export type StrapiPartnershipsPage = {
   whyBadge: string;
   whyTitle: string;
   whyDescription: string;
+  whyCtaLabel: string;
+  whyCtaHref: string;
   whyFeatures: StrapiIconFeature[];
 
   calculatorBadge: string;
@@ -551,6 +553,8 @@ export type StrapiPartnershipsPage = {
   statsBadge: string;
   statsTitle: string;
   statsDescription: string;
+  statsCtaLabel: string;
+  statsCtaHref: string;
   stats: StrapiStat[];
 
   howToBadge: string;

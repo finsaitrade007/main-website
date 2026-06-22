@@ -1,3 +1,5 @@
+import { getAccountsPage, type StrapiIconFeature } from "@/lib/strapi";
+
 type IconKey =
   | "chart"
   | "bolt"
@@ -8,17 +10,32 @@ type IconKey =
 
 type Reason = { iconKey: IconKey; title: string };
 
-const topRow: Reason[] = [
+const DEFAULT_TOP: Reason[] = [
   { iconKey: "chart", title: "Tight spreads across\naccount types" },
   { iconKey: "bolt", title: "Fast and reliable trade\n execution" },
   { iconKey: "scale", title: "Flexible leverage\n options" },
   { iconKey: "moon", title: "Swap-free accounts available" },
 ];
 
-const bottomRow: Reason[] = [
+const DEFAULT_BOTTOM: Reason[] = [
   { iconKey: "devices", title: "MT5 access on desktop,\n web, and mobile" },
   { iconKey: "globe", title: "Dedicated multilingual\n support" },
 ];
+
+const ICON_KEYS: IconKey[] = ["chart", "bolt", "scale", "moon", "devices", "globe"];
+
+function reasonsFromCms(features: StrapiIconFeature[]): {
+  topRow: Reason[];
+  bottomRow: Reason[];
+} {
+  const rows = features.map((f, i) => ({
+    iconKey: (ICON_KEYS.includes(f.iconKey as IconKey)
+      ? f.iconKey
+      : ICON_KEYS[i]) as IconKey,
+    title: f.title,
+  }));
+  return { topRow: rows.slice(0, 4), bottomRow: rows.slice(4, 6) };
+}
 
 function ReasonIcon({ iconKey }: { iconKey: IconKey }) {
   // Stroke gradient ID is keyed per icon so multiple icons on the page
@@ -170,14 +187,18 @@ function ReasonCell({ reason }: { reason: Reason }) {
   );
 }
 
-import { getAccountsPage } from "@/lib/strapi";
-
 export default async function WhyTradeFinsai() {
   const data = await getAccountsPage();
   const title = data?.whyTitle ?? "Everything You Need to Trade with Confidence";
   const description =
     data?.whyDescription ??
     "Choose an account designed for your trading style with competitive pricing, fast execution, and flexible trading conditions.";
+  const cmsRows =
+    data?.whyFeatures && data.whyFeatures.length >= 6
+      ? reasonsFromCms(data.whyFeatures)
+      : null;
+  const topRow = cmsRows?.topRow ?? DEFAULT_TOP;
+  const bottomRow = cmsRows?.bottomRow ?? DEFAULT_BOTTOM;
   return (
     <section
       className="page-section why-finsai-section"
