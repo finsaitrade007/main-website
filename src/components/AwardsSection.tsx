@@ -2,7 +2,6 @@ import Image from "next/image";
 import {
   getHomepage,
   getAwards,
-  strapiImageUrl,
   type StrapiAward,
 } from "@/lib/strapi";
 
@@ -14,10 +13,10 @@ const FALLBACK_HEADER = {
 };
 
 const FALLBACK_AWARDS: StrapiAward[] = [
-  { id: 1, documentId: "fb-1", title: "The Fastest Growing\nBroker 2024", image: null, order: 1 },
-  { id: 2, documentId: "fb-2", title: "The Fastest Growing\nBroker 2025", image: null, order: 2 },
-  { id: 3, documentId: "fb-3", title: "The Fastest Growing\nBroker 2025", image: null, order: 3 },
-  { id: 4, documentId: "fb-4", title: "Innovative Startup in\nFinance Award 2023", image: null, order: 4 },
+  { id: 1, documentId: "fb-1", title: "The Fastest Growing\nBroker 2024", order: 1 },
+  { id: 2, documentId: "fb-2", title: "The Fastest Growing\nBroker 2025", order: 2 },
+  { id: 3, documentId: "fb-3", title: "The Fastest Growing\nBroker 2025", order: 3 },
+  { id: 4, documentId: "fb-4", title: "Innovative Startup in\nFinance Award 2023", order: 4 },
 ];
 
 const LOCAL_AWARD_IMAGES = [
@@ -72,7 +71,7 @@ export default async function AwardsSection() {
 
         <div className="awards-row">
           {awards.map((award, idx) => {
-            const img = strapiImageUrl(award.image) ?? LOCAL_AWARD_IMAGES[idx];
+            const img = LOCAL_AWARD_IMAGES[idx];
             return (
               <div
                 key={award.id}

@@ -3,7 +3,6 @@ import Link from "@/components/SmartLink";
 import {
   getHomepage,
   getPlatforms,
-  strapiImageUrl,
   type StrapiPlatform,
 } from "@/lib/strapi";
 
@@ -12,6 +11,19 @@ function platformHref(title: string): string {
   if (/mt\s?5/.test(t)) return "/services#mt5";
   if (t.includes("social")) return "/social-trading";
   return "/services#app";
+}
+
+function platformMockupImage(p: StrapiPlatform): string | undefined {
+  if (p.localMockupImage) return p.localMockupImage;
+  if (/mt\s?5/i.test(p.title)) return "/platforms/mt5-mockup.png";
+  return undefined;
+}
+
+function platformIconImage(p: StrapiPlatform): string | undefined {
+  if (p.localIconImage) return p.localIconImage;
+  if (p.title.toLowerCase().includes("social")) return "/platforms/change.png";
+  if (p.title.toLowerCase().includes("app")) return "/platforms/mobile-application.png";
+  return undefined;
 }
 
 const CARD_BORDER_GRADIENT =
@@ -44,8 +56,6 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     size: "large",
     row: 1,
     order: 1,
-    mockupImage: null,
-    iconImage: null,
     localMockupImage: "/platforms/mt5-mockup.png",
   },
   {
@@ -57,8 +67,6 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     size: "large",
     row: 2,
     order: 3,
-    mockupImage: null,
-    iconImage: null,
     localIconImage: "/platforms/change.png",
   },
   {
@@ -70,15 +78,13 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     size: "small",
     row: 2,
     order: 4,
-    mockupImage: null,
-    iconImage: null,
     localIconImage: "/platforms/mobile-application.png",
   },
 ];
 
 function WidePlatformCard({ p }: { p: StrapiPlatform }) {
-  const mockup = strapiImageUrl(p.mockupImage) ?? p.localMockupImage;
-  const icon = strapiImageUrl(p.iconImage) ?? p.localIconImage;
+  const mockup = platformMockupImage(p);
+  const icon = platformIconImage(p);
 
   return (
     <Link
@@ -198,7 +204,7 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
 }
 
 function PlatformCard({ p }: { p: StrapiPlatform }) {
-  const icon = strapiImageUrl(p.iconImage) ?? p.localIconImage;
+  const icon = platformIconImage(p);
   const isSmall = p.size !== "large";
 
   return (

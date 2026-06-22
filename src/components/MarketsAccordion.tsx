@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { strapiImageUrl, type StrapiMarket } from "@/lib/strapi";
+import { type StrapiMarket } from "@/lib/strapi";
 
 
 type Props = {
@@ -9,6 +9,14 @@ type Props = {
   badge: string;
   titlePrefix: string;
   description: string;
+};
+
+const MARKET_IMAGES: Record<string, string> = {
+  forex: "/markets/forex.png",
+  crypto: "/markets/crypto.png",
+  indices: "/markets/indices.png",
+  metals: "/markets/metals.png",
+  stocks: "/markets/stocks.png",
 };
 
 const VH_PER_MARKET_DESKTOP = 40;
@@ -125,7 +133,7 @@ export default function MarketsAccordion({
       <div className="markets-grid-image" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
         <div style={{ position: "relative", width: "clamp(240px, 45vw, 576px)", height: "clamp(240px, 45vw, 576px)", left: "-10px" }}>
           {markets.map((market, i) => {
-            const src = strapiImageUrl(market.image) ?? market.localImage;
+            const src = market.localImage ?? MARKET_IMAGES[market.slug];
             if (!src) return null;
             return (
               <Image

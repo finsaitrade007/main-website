@@ -1,7 +1,26 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getBlogsPage, type StrapiBlogsPage } from "@/lib/strapi";
 
-export default function IBHeroSection() {
+const FALLBACK: Pick<
+  StrapiBlogsPage,
+  | "heroBadge"
+  | "heroTitle"
+  | "heroDescription"
+  | "heroPrimaryCtaLabel"
+  | "heroPrimaryCtaHref"
+> = {
+  heroBadge: "Trader Knowledge Hub",
+  heroTitle: "Market Insights & Education",
+  heroDescription:
+    "Sharp market insights, real trading education, and analysis you can actually act on.",
+  heroPrimaryCtaLabel: "Explore Insights",
+  heroPrimaryCtaHref: "/blogs",
+};
+
+export default async function BlogsHeroSection() {
+  const data = (await getBlogsPage()) ?? FALLBACK;
+
   return (
     <section style={{
       position: "relative",
@@ -10,7 +29,6 @@ export default function IBHeroSection() {
       minHeight: "clamp(480px, 54vw, 777px)",
       overflow: "hidden",
     }}>
-      {/* Hero image — right side */}
       <Image
         src="/blogs/hero.png"
         alt=""
@@ -24,7 +42,6 @@ export default function IBHeroSection() {
         priority
       />
 
-      {/* Content */}
       <div style={{
         position: "absolute",
         top: "clamp(120px, 13.9vw, 200px)",
@@ -35,7 +52,6 @@ export default function IBHeroSection() {
         gap: "24px",
         zIndex: 3,
       }}>
-        {/* Badge */}
         <div style={{
           boxSizing: "border-box",
           height: "44px",
@@ -62,11 +78,10 @@ export default function IBHeroSection() {
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
           }}>
-            Trader Knowledge Hub
+            {data.heroBadge}
           </span>
         </div>
 
-        {/* Heading */}
         <h1 style={{
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 600,
@@ -76,10 +91,9 @@ export default function IBHeroSection() {
           color: "#FFFFFF",
           margin: 0,
         }}>
-          Market Insights & Education
+          {data.heroTitle}
         </h1>
 
-        {/* Description */}
         <p className="hero-desc-text" style={{
           fontFamily: "var(--font-inter, Inter)",
           fontWeight: 400,
@@ -89,11 +103,10 @@ export default function IBHeroSection() {
           maxWidth: "540px",
           margin: 0,
         }}>
-          Sharp market insights, real trading education, and analysis you can actually act on.
+          {data.heroDescription}
         </p>
 
-        {/* CTA */}
-        <Link href="/blogs" className="btn-text" style={{
+        <Link href={data.heroPrimaryCtaHref} className="btn-text" style={{
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
@@ -105,7 +118,7 @@ export default function IBHeroSection() {
           textDecoration: "none",
           whiteSpace: "nowrap",
         }}>
-          Explore Insights
+          {data.heroPrimaryCtaLabel}
         </Link>
       </div>
     </section>

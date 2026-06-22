@@ -1,18 +1,29 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getContactusPage, type StrapiContactusPage } from "@/lib/strapi";
 
-const HERO = {
-  badge: "SUPPORT AT FINSAI TRADE",
-  title: "We Are  Here to help\nyou",
-  description:
+const FALLBACK: Pick<
+  StrapiContactusPage,
+  | "heroBadge"
+  | "heroTitle"
+  | "heroDescription"
+  | "heroPrimaryCtaLabel"
+  | "heroPrimaryCtaHref"
+  | "heroSecondaryCtaLabel"
+  | "heroSecondaryCtaHref"
+> = {
+  heroBadge: "SUPPORT AT FINSAI TRADE",
+  heroTitle: "We Are  Here to help\nyou",
+  heroDescription:
     "Join a vibrant global team focused on fintech, trading technology, global markets, and customer growth.",
-  primaryCtaLabel: "View Open Roles",
-  primaryCtaHref: "#open-roles",
-  secondaryCtaLabel: "Reach Out to our Team",
-  secondaryCtaHref: "#contact-form",
+  heroPrimaryCtaLabel: "View Open Roles",
+  heroPrimaryCtaHref: "#open-roles",
+  heroSecondaryCtaLabel: "Reach Out to our Team",
+  heroSecondaryCtaHref: "#contact-form",
 };
 
-export default function ContactUsHeroSection() {
+export default async function ContactUsHeroSection() {
+  const data = (await getContactusPage()) ?? FALLBACK;
   return (
     <section
       style={{
@@ -89,7 +100,7 @@ export default function ContactUsHeroSection() {
               color: "transparent",
             }}
           >
-            {HERO.badge}
+            {data.heroBadge}
           </span>
         </div>
 
@@ -105,7 +116,7 @@ export default function ContactUsHeroSection() {
             whiteSpace: "pre-line",
           }}
         >
-          {HERO.title}
+          {data.heroTitle}
         </h1>
 
         <p
@@ -120,12 +131,12 @@ export default function ContactUsHeroSection() {
             color: "#94A3B8",
           }}
         >
-          {HERO.description}
+          {data.heroDescription}
         </p>
 
         <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
           <Link
-            href={HERO.secondaryCtaHref}
+            href={data.heroSecondaryCtaHref}
             className="btn-text"
             style={{
               gap: "16px",
@@ -143,7 +154,7 @@ export default function ContactUsHeroSection() {
               whiteSpace: "nowrap",
             }}
           >
-            {HERO.secondaryCtaLabel}
+            {data.heroSecondaryCtaLabel}
           </Link>
         </div>
       </div>

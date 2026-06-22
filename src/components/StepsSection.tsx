@@ -3,7 +3,6 @@ import ResponsiveScale from "@/components/ResponsiveScale";
 import {
   getHomepage,
   getSteps,
-  strapiImageUrl,
   type StrapiStep,
 } from "@/lib/strapi";
 
@@ -29,7 +28,6 @@ const FALLBACK_STEPS: StrapiStep[] = [
     title: "Register",
     description:
       "Create your Finsai Trade account and access global multi-asset markets..",
-    image: null,
     order: 1,
   },
   {
@@ -38,7 +36,6 @@ const FALLBACK_STEPS: StrapiStep[] = [
     number: 2,
     title: "Verify",
     description: "Verify your identity securely to activate your trading account.",
-    image: null,
     order: 2,
   },
   {
@@ -47,7 +44,6 @@ const FALLBACK_STEPS: StrapiStep[] = [
     number: 3,
     title: "Start Trading",
     description: "Trade crypto, forex, commodities, indices, and more.",
-    image: null,
     order: 3,
   },
 ];
@@ -153,7 +149,7 @@ export default async function StepsSection() {
             const circleLeft = CIRCLE_POSITIONS[idx];
             const circleCenter = circleLeft + CIRCLE_SIZE / 2;
             const textLeft = circleCenter - 140;
-            const img = strapiImageUrl(step.image) ?? LOCAL_STEP_IMAGES[idx];
+            const img = LOCAL_STEP_IMAGES[idx];
 
             return (
               <div key={step.id}>
@@ -238,7 +234,7 @@ export default async function StepsSection() {
         {/* Vertical layout (< 426px) */}
         <div className="steps-vertical" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           {steps.map((step, idx) => {
-            const img = strapiImageUrl(step.image) ?? LOCAL_STEP_IMAGES[idx];
+            const img = LOCAL_STEP_IMAGES[idx];
             const isLast = idx === steps.length - 1;
             return (
               <div key={step.id} style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>

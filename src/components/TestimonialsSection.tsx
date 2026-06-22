@@ -46,14 +46,24 @@ const FALLBACK_TESTIMONIALS: StrapiTestimonial[] = [
   },
 ];
 
+const LOCAL_AVATARS = [
+  "/testimonials/david.jpg",
+  "/testimonials/rohan.jpg",
+  "/testimonials/sarah.jpg",
+];
+
 export default async function TestimonialsSection() {
   const [home, fetched] = await Promise.all([
     getHomepage(),
     getTestimonials(),
   ]);
   const header = home ?? FALLBACK_HEADER;
-  const testimonials =
+  const raw =
     fetched && fetched.length > 0 ? fetched : FALLBACK_TESTIMONIALS;
+  const testimonials = raw.map((t, i) => ({
+    ...t,
+    localAvatar: t.localAvatar ?? LOCAL_AVATARS[i],
+  }));
 
   return (
     <section

@@ -19,10 +19,10 @@ type FetchOptions = {
 };
 
 export async function strapiFetch<T>(
-  _path: string,
-  _opts: FetchOptions = {},
+  path: string,
+  opts: FetchOptions = {},
 ): Promise<T | null> {
-  return null;
+  return _strapiFetchReal<T>(path, opts);
 }
 
 export async function _strapiFetchReal<T>(
@@ -30,6 +30,8 @@ export async function _strapiFetchReal<T>(
   { revalidate = 60, tags }: FetchOptions = {},
 ): Promise<T | null> {
   const url = `${STRAPI_URL}/api/${path.replace(/^\//, "")}`;
+  const cacheSeconds =
+    process.env.NODE_ENV === "development" ? 0 : revalidate;
   try {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 5000);
@@ -40,7 +42,7 @@ export async function _strapiFetchReal<T>(
         ...(STRAPI_TOKEN ? { Authorization: `Bearer ${STRAPI_TOKEN}` } : {}),
       },
       next: {
-        revalidate: revalidate === 0 ? 0 : revalidate,
+        revalidate: cacheSeconds === 0 ? 0 : cacheSeconds,
         ...(tags ? { tags } : {}),
       },
     });
@@ -57,21 +59,6 @@ export async function _strapiFetchReal<T>(
   }
 }
 
-// ─── Media helpers ───────────────────────────────────────────────────
-
-export type StrapiMedia = {
-  id: number;
-  url: string;
-  width?: number;
-  height?: number;
-  alternativeText?: string | null;
-  name?: string;
-} | null;
-
-/** Resolve a Strapi media `url` to an absolute URL (Strapi may return relative paths in local dev). */
-export function strapiImageUrl(_media: StrapiMedia | undefined | null): string | null {
-  return null;
-}
 
 // ─── Existing domain types ───────────────────────────────────────────
 
@@ -182,7 +169,6 @@ export type StrapiMarket = {
   slug: string;
   name: string;
   description: string;
-  image: StrapiMedia;
   localImage?: string;
   order: number;
 };
@@ -195,8 +181,6 @@ export type StrapiPlatform = {
   size: "small" | "large";
   row: number;
   order: number;
-  mockupImage: StrapiMedia;
-  iconImage: StrapiMedia;
   localMockupImage?: string;
   localIconImage?: string;
 };
@@ -207,7 +191,6 @@ export type StrapiStep = {
   number: number;
   title: string;
   description: string;
-  image: StrapiMedia;
   order: number;
 };
 
@@ -215,7 +198,6 @@ export type StrapiAward = {
   id: number;
   documentId: string;
   title: string;
-  image: StrapiMedia;
   order: number;
 };
 
@@ -226,7 +208,6 @@ export type StrapiTestimonial = {
   role: string;
   initials: string;
   quote: string;
-  avatar?: StrapiMedia;
   localAvatar?: string;
   order: number;
 };
@@ -258,7 +239,6 @@ export type StrapiMetaSocial = {
   socialNetwork: "Facebook" | "Twitter" | "LinkedIn";
   title: string;
   description: string;
-  image?: StrapiMedia;
 };
 
 export type StrapiSeo = {
@@ -270,7 +250,6 @@ export type StrapiSeo = {
   canonicalURL?: string | null;
   metaViewport?: string | null;
   structuredData?: Record<string, unknown> | null;
-  metaImage?: StrapiMedia;
   metaSocial?: StrapiMetaSocial[];
 };
 
@@ -298,7 +277,6 @@ export type StrapiImageCard = {
   title: string;
   description?: string | null;
   href?: string | null;
-  image?: StrapiMedia;
 };
 export type StrapiPaymentMethod = {
   id: number;
@@ -306,7 +284,6 @@ export type StrapiPaymentMethod = {
   description?: string | null;
   fee?: string | null;
   processingTime?: string | null;
-  icon?: StrapiMedia;
 };
 
 // ─── New page single-type domain types ───────────────────────────────
@@ -652,38 +629,33 @@ export function getHomepage() {
 }
 
 export function getMarkets() {
-  return strapiFetch<StrapiMarket[]>(
-    "markets?populate=image&sort=order:asc",
-    { tags: ["markets"] },
-  );
+  return strapiFetch<StrapiMarket[]>("markets?sort=order:asc", {
+    tags: ["markets"],
+  });
 }
 
 export function getPlatforms() {
-  return strapiFetch<StrapiPlatform[]>(
-    "platforms?populate=mockupImage&populate=iconImage&sort=order:asc",
-    { tags: ["platforms"] },
-  );
+  return strapiFetch<StrapiPlatform[]>("platforms?sort=order:asc", {
+    tags: ["platforms"],
+  });
 }
 
 export function getSteps() {
-  return strapiFetch<StrapiStep[]>(
-    "steps?populate=image&sort=order:asc",
-    { tags: ["steps"] },
-  );
+  return strapiFetch<StrapiStep[]>("steps?sort=order:asc", {
+    tags: ["steps"],
+  });
 }
 
 export function getAwards() {
-  return strapiFetch<StrapiAward[]>(
-    "awards?populate=image&sort=order:asc",
-    { tags: ["awards"] },
-  );
+  return strapiFetch<StrapiAward[]>("awards?sort=order:asc", {
+    tags: ["awards"],
+  });
 }
 
 export function getTestimonials() {
-  return strapiFetch<StrapiTestimonial[]>(
-    "testimonials?populate=avatar&sort=order:asc",
-    { tags: ["testimonials"] },
-  );
+  return strapiFetch<StrapiTestimonial[]>("testimonials?sort=order:asc", {
+    tags: ["testimonials"],
+  });
 }
 
 export function getJourneyCards() {
@@ -718,7 +690,7 @@ export function getRewardsPage() {
 
 export function getToolsPage() {
   return strapiFetch<StrapiToolsPage>(
-    "tools-page?populate[builtForFeatures]=*&populate[chartingCards][populate]=image&populate[riskCards][populate]=image&populate[strategyCards][populate]=image&populate[communityCards][populate]=image",
+    "tools-page?populate[builtForFeatures]=*&populate[chartingCards]=*&populate[riskCards]=*&populate[strategyCards]=*&populate[communityCards]=*",
     { tags: ["tools-page"] },
   );
 }
@@ -757,7 +729,7 @@ export function getNavItems() {
 
 export function getBlogsPage() {
   return strapiFetch<StrapiBlogsPage>(
-    "blogs-page?populate[newsArticles][populate]=image&populate[seo][populate]=*",
+    "blogs-page?populate[newsArticles]=*&populate[seo][populate]=*",
     { tags: ["blogs-page"] },
   );
 }
@@ -798,8 +770,6 @@ export function seoToMetadata(
           .filter(Boolean)
       : undefined;
 
-  const imageUrl = strapiImageUrl(seo?.metaImage);
-
   const facebook = seo?.metaSocial?.find(
     (s) => s.socialNetwork === "Facebook",
   );
@@ -817,15 +787,11 @@ export function seoToMetadata(
       url,
       siteName: "Finsai Trade",
       type: "website",
-      images: imageUrl
-        ? [{ url: imageUrl, alt: seo?.metaImage?.alternativeText ?? title }]
-        : undefined,
     },
     twitter: {
       card: "summary_large_image",
       title: twitter?.title ?? title,
       description: twitter?.description ?? description,
-      images: imageUrl ? [imageUrl] : undefined,
     },
     other: seo?.structuredData
       ? {
