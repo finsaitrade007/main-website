@@ -7,5 +7,22 @@ startCommand = "npm run start"
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
 
+# Required Variables (Railway dashboard → frontend service → Variables):
+#
+#   STRAPI_URL=https://<your-strapi>.up.railway.app
+#     Public URL of the finsai-cms service. Server-only — works at runtime
+#     without redeploying when you change it.
+#
+#   REVALIDATE_SECRET=<random string>
+#     Shared secret for POST /api/revalidate?secret=...
+#     Configure a Strapi webhook (Settings → Webhooks) on publish/update:
+#       URL: https://<your-frontend>/api/revalidate?secret=<REVALIDATE_SECRET>
+#       Events: entry.publish, entry.update, entry.unpublish, entry.delete
+#
+# Optional:
+#   STRAPI_REVALIDATE_SECONDS=60   (ISR cache; use 0 for always-fresh)
+#   STRAPI_API_TOKEN=              (only if API permissions require auth)
+#   NEXT_PUBLIC_STRAPI_URL=        (dev only; prefer STRAPI_URL in production)
+
 [[services]]
 port = 3000

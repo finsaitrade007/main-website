@@ -5,9 +5,16 @@
  * Server-side only — do not import from client components.
  */
 
-export const STRAPI_URL =
-  process.env.NEXT_PUBLIC_STRAPI_URL?.replace(/\/$/, "") ??
-  "http://localhost:1337";
+function getStrapiBaseUrl(): string {
+  // STRAPI_URL is read at request time (server-only) so Railway can set it
+  // without rebuilding. NEXT_PUBLIC_* is inlined at build time — avoid relying
+  // on it alone in production.
+  return (
+    process.env.STRAPI_URL?.replace(/\/$/, "") ??
+    process.env.NEXT_PUBLIC_STRAPI_URL?.replace(/\/$/, "") ??
+    "http://localhost:1337"
+  );
+}
 
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
 
@@ -29,9 +36,11 @@ export async function _strapiFetchReal<T>(
   path: string,
   { revalidate = 60, tags }: FetchOptions = {},
 ): Promise<T | null> {
-  const url = `${STRAPI_URL}/api/${path.replace(/^\//, "")}`;
+  const url = `${getStrapiBaseUrl()}/api/${path.replace(/^\//, "")}`;
+  const configured = Number(process.env.STRAPI_REVALIDATE_SECONDS);
+  const prodRevalidate = Number.isFinite(configured) ? configured : revalidate;
   const cacheSeconds =
-    process.env.NODE_ENV === "development" ? 0 : revalidate;
+    process.env.NODE_ENV === "development" ? 0 : prodRevalidate;
   try {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 5000);
