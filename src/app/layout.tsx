@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/NavbarWrapper";
 import Footer from "@/components/Footer";
+import { SITE_URL } from "@/lib/site";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -26,9 +27,7 @@ const inter = Inter({
 // Site-wide metadata defaults. Per-page `generateMetadata()` (driven by the
 // Strapi `shared.seo` component on every page single-type) overrides these.
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.finsaitrade.com",
-  ),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Finsai Trade — Trade Global Markets Without Limits",
     template: "%s | Finsai Trade",
@@ -36,7 +35,7 @@ export const metadata: Metadata = {
   description:
     "The powerful multi-asset trading platform for modern traders. Trade Forex, Crypto, Stocks, Indices, and Metals with tight spreads, up to 500x leverage, and 24/7 support.",
   applicationName: "Finsai Trade",
-  authors: [{ name: "Finsai Trade", url: "https://www.finsaitrade.com" }],
+  authors: [{ name: "Finsai Trade", url: SITE_URL }],
   generator: "Next.js",
   referrer: "origin-when-cross-origin",
   formatDetection: { email: false, address: false, telephone: false },

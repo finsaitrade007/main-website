@@ -806,10 +806,5 @@ export function seoToMetadata(
       title: twitter?.title ?? title,
       description: twitter?.description ?? description,
     },
-    other: seo?.structuredData
-      ? {
-          "structured-data": JSON.stringify(seo.structuredData),
-        }
-      : undefined,
   };
 }
