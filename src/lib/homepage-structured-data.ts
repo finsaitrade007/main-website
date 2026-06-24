@@ -1,11 +1,11 @@
-import { HOMEPAGE_FAQS } from "@/lib/homepage-faqs";
+import type { FaqItem } from "@/lib/faq-fallbacks";
 import { SITE_LOGO_URL, SITE_URL } from "@/lib/site";
 
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 const WEBPAGE_ID = `${SITE_URL}/#webpage`;
 
-export function buildHomepageStructuredData() {
+export function buildHomepageStructuredData(faqs: FaqItem[]) {
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -65,7 +65,7 @@ export function buildHomepageStructuredData() {
       },
       {
         "@type": "FAQPage",
-        mainEntity: HOMEPAGE_FAQS.map((faq) => ({
+        mainEntity: faqs.map((faq) => ({
           "@type": "Question",
           name: faq.question,
           acceptedAnswer: {

@@ -11,10 +11,10 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
 import JsonLd from "@/components/JsonLd";
-import { HOMEPAGE_FAQS } from "@/lib/homepage-faqs";
+import { FAQ_FALLBACKS } from "@/lib/faq-fallbacks";
 import { buildHomepageStructuredData } from "@/lib/homepage-structured-data";
 import { SITE_URL } from "@/lib/site";
-import { getHomepage, seoToMetadata } from "@/lib/strapi";
+import { getFaqsBySection, getHomepage, seoToMetadata } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getHomepage();
@@ -27,11 +27,18 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const home = await getHomepage();
+  const [home, homepageFaqs] = await Promise.all([
+    getHomepage(),
+    getFaqsBySection("homepage"),
+  ]);
+  const faqs =
+    homepageFaqs && homepageFaqs.length > 0
+      ? homepageFaqs.map((f) => ({ question: f.question, answer: f.answer }))
+      : FAQ_FALLBACKS.homepage;
 
   return (
     <>
-      <JsonLd data={buildHomepageStructuredData()} />
+      <JsonLd data={buildHomepageStructuredData(faqs)} />
       <HeroSection />
       <TickerBar />
       <FeaturesSection />
@@ -45,7 +52,7 @@ export default async function HomePage() {
       <StepsSection />
       <AwardsSection />
       <TestimonialsSection />
-      <FAQSection faqs={HOMEPAGE_FAQS} />
+      <FAQSection section="homepage" />
       <CTASection />
     </>
   );

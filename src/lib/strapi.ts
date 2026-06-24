@@ -5,6 +5,10 @@
  * Server-side only — do not import from client components.
  */
 
+import type { FaqSection } from "@/lib/faq-fallbacks";
+
+export type { FaqSection };
+
 function getStrapiBaseUrl(): string {
   // STRAPI_URL is read at request time (server-only) so Railway can set it
   // without rebuilding. NEXT_PUBLIC_* is inlined at build time — avoid relying
@@ -95,7 +99,7 @@ export type StrapiFaq = {
   documentId: string;
   question: string;
   answer: string;
-  category?: string;
+  section: FaqSection;
   order: number;
 };
 
@@ -632,6 +636,13 @@ export function getAccountTiers() {
 
 export function getFaqs() {
   return strapiFetch<StrapiFaq[]>("faqs?sort=order:asc", { tags: ["faqs"] });
+}
+
+export function getFaqsBySection(section: FaqSection) {
+  return strapiFetch<StrapiFaq[]>(
+    `faqs?filters[section][$eq]=${section}&sort=order:asc`,
+    { tags: ["faqs", `faqs-${section}`] },
+  );
 }
 
 export function getHomepage() {

@@ -1,78 +1,38 @@
 import FAQAccordion from "./FAQAccordion";
-import { getFaqs, type StrapiFaq } from "@/lib/strapi";
+import {
+  getFaqsBySection,
+  type FaqSection,
+  type StrapiFaq,
+} from "@/lib/strapi";
+import { FAQ_FALLBACKS } from "@/lib/faq-fallbacks";
 
 export type FAQItem = { question: string; answer: string };
 
 type FAQSectionProps = {
-  /**
-   * Page-specific FAQs. When supplied, the section renders these instead of
-   * fetching the global FAQ list from Strapi. The homepage omits this prop
-   * to preserve the existing CMS-driven behaviour.
-   */
-  faqs?: FAQItem[];
+  /** Which page section's FAQs to load from Strapi. */
+  section: FaqSection;
 };
 
-function toStrapiShape(items: FAQItem[]): StrapiFaq[] {
+function toStrapiShape(
+  section: FaqSection,
+  items: FAQItem[],
+): StrapiFaq[] {
   return items.map((f, i) => ({
     id: -(i + 1),
-    documentId: `local-${i + 1}`,
+    documentId: `local-${section}-${i + 1}`,
     question: f.question,
     answer: f.answer,
+    section,
     order: i + 1,
   }));
 }
 
-const FALLBACK_FAQS: StrapiFaq[] = [
-  {
-    id: -1,
-    documentId: "fallback-1",
-    question: "What is Finsai Trade?",
-    answer:
-      "Finsai Trade is a multi-asset trading platform that provides access to forex, cryptocurrencies, global stocks, indices, commodities, and CFDs through one secure and professional trading ecosystem.",
-    order: 1,
-  },
-  {
-    id: -2,
-    documentId: "fallback-2",
-    question: "What markets can I trade on Finsai Trade?",
-    answer:
-      "You can trade Forex, Cryptocurrencies, Indices, Metals, Stocks, and CFDs. We provide access to over 1,000+ trading instruments across all major global markets.",
-    order: 2,
-  },
-  {
-    id: -3,
-    documentId: "fallback-3",
-    question: "Does Finsai Trade support MetaTrader 5 (MT5)?",
-    answer:
-      "Yes, Finsai Trade fully supports MetaTrader 5 (MT5), the industry-leading trading platform known for advanced charting, automated trading via Expert Advisors, and deep market analysis.",
-    order: 3,
-  },
-  {
-    id: -4,
-    documentId: "fallback-4",
-    question: "How do I open an account?",
-    answer:
-      "Simply click 'Start Trading', fill in your details, verify your identity with a government-issued ID, fund your account, and you're ready to trade — the entire process takes under 10 minutes.",
-    order: 4,
-  },
-  {
-    id: -5,
-    documentId: "fallback-5",
-    question: "What is the minimum deposit?",
-    answer:
-      "The minimum deposit varies by account type. Our Smart Choice account is designed for beginners with a low entry requirement. Contact our support team for the latest deposit requirements.",
-    order: 5,
-  },
-];
-
-export default async function FAQSection({ faqs }: FAQSectionProps = {}) {
-  let resolved: StrapiFaq[];
-  if (faqs && faqs.length > 0) {
-    resolved = toStrapiShape(faqs);
-  } else {
-    const fetched = await getFaqs();
-    resolved = fetched && fetched.length > 0 ? fetched : FALLBACK_FAQS;
-  }
+export default async function FAQSection({ section }: FAQSectionProps) {
+  const fetched = await getFaqsBySection(section);
+  const resolved =
+    fetched && fetched.length > 0
+      ? fetched
+      : toStrapiShape(section, FAQ_FALLBACKS[section]);
 
   return (
     <section

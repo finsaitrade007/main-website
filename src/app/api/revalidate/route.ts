@@ -51,7 +51,7 @@ const MODEL_TO_PATHS: Record<string, string[]> = {
   "api::testimonial.testimonial": ["/"],
   "api::journey-card.journey-card": ["/"],
   "api::account-tier.account-tier": ["/accounts"],
-  "api::faq.faq": ["/"],
+  "api::faq.faq": ["/", "/accounts", "/services", "/payments", "/partnerships", "/social-trading"],
   "api::about-page.about-page": ["/about"],
   "api::careers-page.careers-page": ["/careers"],
   "api::accounts-page.accounts-page": ["/accounts"],
