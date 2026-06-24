@@ -718,7 +718,7 @@ export function getAccountsPage() {
 
 export function getPaymentsPage() {
   return strapiFetch<StrapiPaymentsPage>(
-    "payments-page?populate[methods][populate]=icon&populate[seo][populate]=*",
+    "payments-page?populate[methods]=*&populate[seo][populate]=*",
     { tags: ["payments-page"] },
   );
 }
