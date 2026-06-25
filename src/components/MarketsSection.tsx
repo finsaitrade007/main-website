@@ -12,7 +12,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     slug: "forex",
     name: "Forex",
     description:
-      "Trade major, minor, and exotic forex pairs with deep liquidity, competitive spreads, and ultra-fast execution on the global foreign exchange market.",
+      "Trade the global forex market with a trusted forex broker, offering major, minor, and exotic currency pairs, deep liquidity, competitive spreads, and ultra-fast execution.",
     localImage: "/markets/forex.png",
     order: 1,
   },
@@ -22,7 +22,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     slug: "crypto",
     name: "Crypto",
     description:
-      "Access leading cryptocurrencies and trade the digital asset market 24/7 with advanced charting tools, real-time pricing, and seamless execution.",
+      "Access leading cryptocurrency trading markets 24/7 with real-time pricing, advanced charting, and seamless execution on a professional trading platform.",
     localImage: "/markets/crypto.png",
     order: 2,
   },
@@ -32,7 +32,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     slug: "indices",
     name: "Indices",
     description:
-      "Trade top global stock indices and capture price movements across major economies, including US, European, Asian, and international markets.",
+      "Trade major stock indices from the US, Europe, Asia, and global markets to capitalize on market movements through advanced indices trading tools.",
     localImage: "/markets/indices.png",
     order: 3,
   },
@@ -42,7 +42,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     slug: "metals",
     name: "Metals",
     description:
-      "Diversify your portfolio with gold, silver, crude oil, natural gas, and other high-demand commodities traded across global markets.",
+      "Explore commodity trading opportunities with gold, silver, crude oil, natural gas, and other globally traded commodities from a single platform.",
     localImage: "/markets/metals.png",
     order: 4,
   },
@@ -52,7 +52,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     slug: "stocks",
     name: "Stocks",
     description:
-      "Invest and trade shares of leading international companies listed on major global stock exchanges through a professional online trading platform.",
+      "Experience online stock trading with access to leading international companies listed on major global stock exchanges through one professional trading platform.",
     localImage: "/markets/stocks.png",
     order: 5,
   },
