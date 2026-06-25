@@ -9,18 +9,25 @@ import type { FaqSection } from "@/lib/faq-fallbacks";
 
 export type { FaqSection };
 
-function getStrapiBaseUrl(): string {
-  // STRAPI_URL is read at request time (server-only) so Railway can set it
-  // without rebuilding. NEXT_PUBLIC_* is inlined at build time — avoid relying
-  // on it alone in production.
-  return (
-    process.env.STRAPI_URL?.replace(/\/$/, "") ??
-    process.env.NEXT_PUBLIC_STRAPI_URL?.replace(/\/$/, "") ??
-    "http://localhost:1337"
-  );
-}
+/** Public Strapi URL — used for media in the browser (NEXT_PUBLIC_*). */
+export const STRAPI_URL =
+  process.env.NEXT_PUBLIC_STRAPI_URL?.replace(/\/$/, "") ??
+  "http://localhost:1337";
+
+/**
+ * Server-side fetch URL. On EC2, set STRAPI_INTERNAL_URL=http://127.0.0.1:1337
+ * so Next.js talks to Strapi locally instead of via the instance public IP.
+ * STRAPI_URL env is read at request time so Railway can set it without rebuilding.
+ */
+const STRAPI_FETCH_URL =
+  process.env.STRAPI_INTERNAL_URL?.replace(/\/$/, "") ??
+  process.env.STRAPI_URL?.replace(/\/$/, "") ??
+  STRAPI_URL;
 
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
+const STRAPI_FETCH_TIMEOUT_MS = Number(
+  process.env.STRAPI_FETCH_TIMEOUT_MS ?? "15000",
+);
 
 type FetchOptions = {
   /** ISR window in seconds. Default 60. Set to 0 to disable caching. */
@@ -40,14 +47,17 @@ export async function _strapiFetchReal<T>(
   path: string,
   { revalidate = 60, tags }: FetchOptions = {},
 ): Promise<T | null> {
-  const url = `${getStrapiBaseUrl()}/api/${path.replace(/^\//, "")}`;
+  const url = `${STRAPI_FETCH_URL}/api/${path.replace(/^\//, "")}`;
   const configured = Number(process.env.STRAPI_REVALIDATE_SECONDS);
   const prodRevalidate = Number.isFinite(configured) ? configured : revalidate;
   const cacheSeconds =
     process.env.NODE_ENV === "development" ? 0 : prodRevalidate;
   try {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 5000);
+    const timer = setTimeout(
+      () => controller.abort(),
+      STRAPI_FETCH_TIMEOUT_MS,
+    );
     const res = await fetch(url, {
       signal: controller.signal,
       headers: {
@@ -728,7 +738,7 @@ export function getAccountsPage() {
 
 export function getPaymentsPage() {
   return strapiFetch<StrapiPaymentsPage>(
-    "payments-page?populate[methods][populate]=icon&populate[seo][populate]=*",
+    "payments-page?populate[methods]=*&populate[seo][populate]=*",
     { tags: ["payments-page"] },
   );
 }
