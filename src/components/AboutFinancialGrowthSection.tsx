@@ -59,194 +59,235 @@ export default async function AboutFinancialGrowthSection() {
 
   return (
     <section
-      className="page-section"
+      className="page-section about-growth-section"
       style={{ background: "#050208", paddingBottom: "96px" }}
     >
       <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-        {/* Top: two-column grid */}
-        <div className="two-col-grid" style={{ marginBottom: "64px" }}>
-          {/* Left content column */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "24px",
-            }}
-          >
-        <span
-          style={{
-            display: "inline-flex",
-            alignSelf: "flex-start",
-            alignItems: "center",
-            padding: "8px 18px",
-            border: "1px solid rgba(255,255,255,0.15)",
-            borderRadius: "60px",
-            fontFamily: "var(--font-inter, Inter)",
-            fontWeight: 500,
-            fontSize: "14px",
-            lineHeight: "20px",
-            color: "#57A1CB",
-          }}
-        >
-          {badge}
-        </span>
-
-        <h2
-          style={{
-            margin: 0,
-            fontFamily: "var(--font-sora, Sora)",
-            fontWeight: 600,
-            fontSize: "clamp(22px, 2.5vw, 36px)",
-            lineHeight: "50px",
-            color: "#FFFFFF",
-            whiteSpace: "pre-line",
-          }}
-        >
-          {title}
-        </h2>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-            marginTop: "8px",
-          }}
-        >
-          {FEATURES.map((f) => (
+        {/* Desktop / tablet (≥ 426px) */}
+        <div className="about-growth-desktop">
+          <div className="two-col-grid" style={{ marginBottom: "64px" }}>
             <div
-              key={f.title}
               style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "6px",
+                gap: "24px",
               }}
             >
-              <h3
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignSelf: "flex-start",
+                  alignItems: "center",
+                  padding: "8px 18px",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  borderRadius: "60px",
+                  fontFamily: "var(--font-inter, Inter)",
+                  fontWeight: 500,
+                  fontSize: "14px",
+                  lineHeight: "20px",
+                  color: "#57A1CB",
+                }}
+              >
+                {badge}
+              </span>
+
+              <h2
                 style={{
                   margin: 0,
                   fontFamily: "var(--font-sora, Sora)",
                   fontWeight: 600,
-                  fontStyle: "normal",
-                  fontSize: "clamp(16px, 1.7vw, 24px)",
-                  lineHeight: "30px",
-                  letterSpacing: 0,
+                  fontSize: "clamp(22px, 2.5vw, 36px)",
+                  lineHeight: "50px",
+                  color: "#FFFFFF",
+                  whiteSpace: "pre-line",
+                }}
+              >
+                {title}
+              </h2>
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "20px",
+                  marginTop: "8px",
+                }}
+              >
+                {FEATURES.map((f) => (
+                  <div
+                    key={f.title}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "6px",
+                    }}
+                  >
+                    <h3
+                      style={{
+                        margin: 0,
+                        fontFamily: "var(--font-sora, Sora)",
+                        fontWeight: 600,
+                        fontSize: "clamp(16px, 1.7vw, 24px)",
+                        lineHeight: "30px",
+                        color: "#FFFFFF",
+                      }}
+                    >
+                      {f.title}
+                    </h3>
+                    <p
+                      style={{
+                        margin: 0,
+                        fontFamily: "var(--font-inter, Inter)",
+                        fontWeight: 400,
+                        fontSize: "18px",
+                        lineHeight: "30px",
+                        color: "#E0E5F3",
+                      }}
+                    >
+                      {f.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <Link
+                href={ctaHref}
+                className="btn-text"
+                style={{
+                  alignSelf: "flex-start",
+                  marginTop: "12px",
+                  padding: "11px 22px",
+                  borderRadius: "60px",
+                  background:
+                    "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  fontWeight: 500,
+                  fontSize: "14px",
                   color: "#FFFFFF",
                 }}
               >
-                {f.title}
-              </h3>
-              <p
+                {ctaLabel}
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+                  <path
+                    d="M2.5 7h9M7.5 2.5l4.5 4.5-4.5 4.5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </Link>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                src="/about/our_principles.jpg"
+                alt=""
+                width={666}
+                height={666}
                 style={{
-                  margin: 0,
-                  fontFamily: "var(--font-inter, Inter)",
-                  fontWeight: 400,
-                  fontStyle: "normal",
-                  fontSize: "18px",
-                  lineHeight: "30px",
-                  letterSpacing: 0,
-                  color: "#E0E5F3",
+                  maxWidth: "666px",
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "contain",
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="stats-grid">
+            {stats.map((s) => (
+              <div
+                key={s.id ?? s.label}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "6px",
+                  alignItems: "center",
+                  textAlign: "center",
                 }}
               >
-                {f.description}
-              </p>
-            </div>
-          ))}
+                <span className="about-growth-stat-value">{s.value}</span>
+                <span className="about-growth-stat-label">{s.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <Link
-          href={ctaHref}
-          className="btn-text"
-          style={{
-            alignSelf: "flex-start",
-            marginTop: "12px",
-            padding: "11px 22px",
-            borderRadius: "60px",
-            background:
-              "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-            textDecoration: "none",
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "10px",
-            fontWeight: 500,
-            fontSize: "14px",
-            color: "#FFFFFF",
-          }}
-        >
-          {ctaLabel}
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
-            <path
-              d="M2.5 7h9M7.5 2.5l4.5 4.5-4.5 4.5"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </Link>
-      </div>
+        {/* Mobile (≤ 425px): vertical text, stats in one row */}
+        <div className="about-growth-mobile">
+          <div className="about-growth-mobile-header">
+            <span className="about-growth-mobile-badge">{badge}</span>
+            <h2 className="about-growth-mobile-title">{title}</h2>
+          </div>
 
-          {/* Right illustration */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div className="about-growth-mobile-image">
             <Image
               src="/about/our_principles.jpg"
               alt=""
               width={666}
               height={666}
-              style={{
-                maxWidth: "666px",
-                top: "89px",
-                left: "635px",
-                height: "auto",
-                objectFit: "contain",
-              }}
+              style={{ width: "100%", height: "auto", objectFit: "contain" }}
             />
           </div>
-        </div>
 
-        {/* Stats row */}
-        <div className="stats-grid">
-          {stats.map((s) => (
-            <div
-              key={s.id ?? s.label}
+          <div className="about-growth-features-mobile">
+            {FEATURES.map((f) => (
+              <div key={f.title} className="about-growth-feature-item">
+                <h3 className="about-growth-feature-title">{f.title}</h3>
+                <p className="about-growth-feature-desc">{f.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="about-growth-mobile-cta">
+            <Link
+              href={ctaHref}
+              className="btn-text"
               style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "6px",
+                padding: "11px 22px",
+                borderRadius: "60px",
+                background:
+                  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+                textDecoration: "none",
+                display: "inline-flex",
                 alignItems: "center",
-                textAlign: "center",
+                gap: "10px",
+                fontWeight: 500,
+                fontSize: "14px",
+                color: "#FFFFFF",
               }}
             >
-              <span
-                style={{
-                  fontFamily: "var(--font-inter, Inter)",
-                  fontWeight: 700,
-                  fontSize: "clamp(32px, 3.3vw, 48px)",
-                  lineHeight: "100%",
-                  backgroundImage:
-                    "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  color: "transparent",
-                }}
-              >
-                {s.value}
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--font-inter, Inter)",
-                  fontWeight: 400,
-                  fontSize: "18px",
-                  lineHeight: "100%",
-                  color: "#E0E5F3",
-                  textAlign: "center",
-                }}
-              >
-                {s.label}
-              </span>
-            </div>
-          ))}
+              {ctaLabel}
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+                <path
+                  d="M2.5 7h9M7.5 2.5l4.5 4.5-4.5 4.5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
+          </div>
+
+          <div className="about-growth-stats-row">
+            {stats.map((s) => (
+              <div key={s.id ?? s.label} className="about-growth-stat-item">
+                <span className="about-growth-stat-value">{s.value}</span>
+                <span className="about-growth-stat-label">{s.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -194,7 +194,6 @@ export default function AboutBuiltByTradersClient({
                               padding: 0,
                               margin: 0,
                               cursor: "pointer",
-                              font: "inherit",
                             }}
                           >
                             {p.title}
@@ -222,7 +221,7 @@ export default function AboutBuiltByTradersClient({
 
                         <div
                           style={{
-                            height: "1px",
+                            height: "2px",
                             background:
                               "linear-gradient(90deg, transparent 0%, #056FB4 50%, transparent 100%)",
                           }}
