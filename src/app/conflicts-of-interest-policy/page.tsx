@@ -8,19 +8,30 @@ import {
   UL,
 } from "@/components/LegalLayout";
 import PageJsonLd from "@/components/PageJsonLd";
-import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
+import { cmsPageMetadata, PAGE_SEO, resolveLegalPageContext } from "@/lib/page-seo";
+import { getConflictsOfInterestPolicyPage } from "@/lib/strapi";
 
-export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.conflictsOfInterest);
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getConflictsOfInterestPolicyPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.conflictsOfInterest);
+}
 
-export default function ConflictsOfInterestPolicyPage() {
+export default async function ConflictsOfInterestPolicyPage() {
+  const data = await getConflictsOfInterestPolicyPage();
+  const { seo, pageTitle } = resolveLegalPageContext(
+    data,
+    PAGE_SEO.conflictsOfInterest,
+    "Conflicts of Interest Policy",
+  );
+
   return (
     <>
       <PageJsonLd
         path={PAGE_SEO.conflictsOfInterest.path}
-        title={PAGE_SEO.conflictsOfInterest.title}
-        description={PAGE_SEO.conflictsOfInterest.description}
+        title={seo.title}
+        description={seo.description}
       />
-    <LegalLayout title="Conflicts of Interest Policy">
+    <LegalLayout title={pageTitle}>
       <LegalSection title="1) Purpose and Scope">
         <P>
           The purpose of this Conflicts of Interest Policy is to outline a

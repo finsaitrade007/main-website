@@ -13,7 +13,7 @@ const FALLBACK: Pick<
 > = {
   heroTitle: "Trade Global Markets on a Powerful Multi-Asset Trading Platform",
   heroSubtitle:
-    "Finsai Trade is a secure trading platform that gives modern traders access to forex, stocks, commodities, and indices through one advanced trading ecosystem.",
+    "Finsai Trade is a secure online trading platform that gives modern traders access to forex, stocks, commodities, and indices through one advanced trading ecosystem.",
   heroTaglines: [
     { id: 1, label: "Fast Execution" },
     { id: 2, label: "Advanced Trading Tools" },

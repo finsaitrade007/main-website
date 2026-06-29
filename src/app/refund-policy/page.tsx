@@ -7,19 +7,30 @@ import {
   P,
 } from "@/components/LegalLayout";
 import PageJsonLd from "@/components/PageJsonLd";
-import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
+import { cmsPageMetadata, PAGE_SEO, resolveLegalPageContext } from "@/lib/page-seo";
+import { getRefundPolicyPage } from "@/lib/strapi";
 
-export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.refundPolicy);
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getRefundPolicyPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.refundPolicy);
+}
 
-export default function RefundPolicyPage() {
+export default async function RefundPolicyPage() {
+  const data = await getRefundPolicyPage();
+  const { seo, pageTitle } = resolveLegalPageContext(
+    data,
+    PAGE_SEO.refundPolicy,
+    "Refund Policy",
+  );
+
   return (
     <>
       <PageJsonLd
         path={PAGE_SEO.refundPolicy.path}
-        title={PAGE_SEO.refundPolicy.title}
-        description={PAGE_SEO.refundPolicy.description}
+        title={seo.title}
+        description={seo.description}
       />
-    <LegalLayout title="Refund Policy">
+    <LegalLayout title={pageTitle}>
       <LegalSection title="Introduction">
         <P>
           Finsai Trade (Mauritius) Ltd (trading as FINSAI TRADE LTD),

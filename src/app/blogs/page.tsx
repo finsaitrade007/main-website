@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import BlogsHeroSection from "@/components/BlogsHeroSection";
-import BlogsNewsSection from "@/components/BlogsNewsSection";
+import BlogsGridSection from "@/components/BlogsGridSection";
 import PageJsonLd from "@/components/PageJsonLd";
 import {
   cmsPageMetadata,
@@ -26,7 +26,7 @@ export default async function BlogsPage() {
         description={seo.description}
       />
       <BlogsHeroSection />
-      <BlogsNewsSection />
+      <BlogsGridSection />
     </>
   );
 }

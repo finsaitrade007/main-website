@@ -3,12 +3,13 @@ import FAQAccordion from "@/components/FAQAccordion";
 import PageJsonLd from "@/components/PageJsonLd";
 import { LegalLayout, LegalSection, P, UL } from "@/components/LegalLayout";
 import { REGULATIONS_FAQS } from "@/lib/regulations-faqs";
-import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
+import { cmsPageMetadata, PAGE_SEO, resolveLegalPageContext } from "@/lib/page-seo";
 import {
   FINSAI_COMPANY_REG_NO,
   FINSAI_LICENSE_NO,
 } from "@/lib/site";
 import type { StrapiFaq } from "@/lib/strapi";
+import { getRegulationsPage } from "@/lib/strapi";
 
 const FSC_REGISTER_URL =
   "https://opr.fscmauritius.org/ords/opr/r/fsc-opr/fsc-online-public-register-opr?session=14338789762172";
@@ -22,18 +23,28 @@ const FAQ_ACCORDION_ITEMS: StrapiFaq[] = REGULATIONS_FAQS.map((faq, i) => ({
   order: i + 1,
 }));
 
-export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.regulations);
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getRegulationsPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.regulations);
+}
 
-export default function RegulationsPage() {
+export default async function RegulationsPage() {
+  const data = await getRegulationsPage();
+  const { seo, pageTitle } = resolveLegalPageContext(
+    data,
+    PAGE_SEO.regulations,
+    "Regulations & Compliance — FINSAI TRADE LTD",
+  );
+
   return (
     <>
       <PageJsonLd
         variant="regulations"
-        title={PAGE_SEO.regulations.title}
-        description={PAGE_SEO.regulations.description}
+        title={seo.title}
+        description={seo.description}
         faqs={REGULATIONS_FAQS}
       />
-      <LegalLayout title="Regulations & Compliance — FINSAI TRADE LTD">
+      <LegalLayout title={pageTitle}>
         <LegalSection>
           <P>
             At FINSAI TRADE LTD, we are committed to transparency, client

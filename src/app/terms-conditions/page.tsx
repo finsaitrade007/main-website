@@ -7,19 +7,30 @@ import {
   UL,
 } from "@/components/LegalLayout";
 import PageJsonLd from "@/components/PageJsonLd";
-import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
+import { cmsPageMetadata, PAGE_SEO, resolveLegalPageContext } from "@/lib/page-seo";
+import { getTermsConditionsPage } from "@/lib/strapi";
 
-export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.termsConditions);
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getTermsConditionsPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.termsConditions);
+}
 
-export default function TermsConditionsPage() {
+export default async function TermsConditionsPage() {
+  const data = await getTermsConditionsPage();
+  const { seo, pageTitle } = resolveLegalPageContext(
+    data,
+    PAGE_SEO.termsConditions,
+    "Terms & Conditions",
+  );
+
   return (
     <>
       <PageJsonLd
         path={PAGE_SEO.termsConditions.path}
-        title={PAGE_SEO.termsConditions.title}
-        description={PAGE_SEO.termsConditions.description}
+        title={seo.title}
+        description={seo.description}
       />
-    <LegalLayout title="Terms & Conditions">
+    <LegalLayout title={pageTitle}>
       <LegalSection title="Section 1: Welcome Bonus Terms and Conditions">
         <LegalSubsection title="Eligibility">
           <P>

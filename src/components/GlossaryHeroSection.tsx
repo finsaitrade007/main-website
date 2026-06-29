@@ -1,4 +1,18 @@
-export default function GlossaryHeroSection() {
+import { getGlossaryPage, type StrapiGlossaryPage } from "@/lib/strapi";
+
+const FALLBACK: Pick<
+  StrapiGlossaryPage,
+  "heroBadge" | "heroTitle" | "heroDescription"
+> = {
+  heroBadge: "Trading Dictionary",
+  heroTitle: "Trading Terms,\nExplained Clearly",
+  heroDescription:
+    "Your A-Z guide to every term in trading, forex, CFDs, indices, commodities, and crypto - written for traders who want clarity, not jargon.",
+};
+
+export default async function GlossaryHeroSection() {
+  const data = { ...FALLBACK, ...(await getGlossaryPage()) };
+
   return (
     <section
       className="page-section"
@@ -14,7 +28,6 @@ export default function GlossaryHeroSection() {
         overflow: "hidden",
       }}
     >
-      {/* Subtle background glow */}
       <div
         aria-hidden
         style={{
@@ -52,7 +65,7 @@ export default function GlossaryHeroSection() {
             borderRadius: "60px",
           }}
         >
-          <span className="badge-text">Trading Dictionary</span>
+          <span className="badge-text">{data.heroBadge}</span>
         </div>
 
         <h1
@@ -65,20 +78,10 @@ export default function GlossaryHeroSection() {
             color: "#FFFFFF",
             margin: 0,
             maxWidth: "900px",
+            whiteSpace: "pre-line",
           }}
         >
-          Trading Terms, <br />
-          <span
-            style={{
-              background:
-                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Explained Clearly
-          </span>
+          {data.heroTitle}
         </h1>
 
         <p
@@ -93,9 +96,7 @@ export default function GlossaryHeroSection() {
             maxWidth: "720px",
           }}
         >
-          Your A-Z guide to every term in trading, forex, CFDs, indices,
-          commodities, and crypto - written for traders who want clarity, not
-          jargon.
+          {data.heroDescription}
         </p>
       </div>
     </section>

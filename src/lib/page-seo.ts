@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { FaqItem, FaqSection } from "@/lib/faq-fallbacks";
 import { FAQ_FALLBACKS } from "@/lib/faq-fallbacks";
-import { getFaqsBySection, seoToMetadata, type StrapiSeo } from "@/lib/strapi";
+import { getFaqsBySection, seoToMetadata, type StrapiLegalPage, type StrapiSeo } from "@/lib/strapi";
 import { FINSAI_LICENSE_NO, SITE_URL } from "@/lib/site";
 
 export type PageSeoFallback = {
@@ -159,6 +159,17 @@ export function resolveSeoText(
   return {
     title: cms?.metaTitle?.trim() || fallback.title,
     description: cms?.metaDescription?.trim() || fallback.description,
+  };
+}
+
+export function resolveLegalPageContext(
+  cms: StrapiLegalPage | null | undefined,
+  fallback: PageSeoFallback,
+  defaultTitle: string,
+) {
+  return {
+    seo: resolveSeoText(cms?.seo, fallback),
+    pageTitle: cms?.pageTitle?.trim() || defaultTitle,
   };
 }
 

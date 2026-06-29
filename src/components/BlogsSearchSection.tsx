@@ -7,12 +7,12 @@ const BORDER_GRADIENT = "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.
 const CARD_INNER_BG   = "linear-gradient(157.26deg, #050208 -0.93%, #056FB4 444.35%)";
 
 const cardPositions = [
-  { top: "376px", left: "75px"  },
-  { top: "376px", left: "507px" },
-  { top: "376px", left: "939px" },
-  { top: "685px", left: "75px"  },
-  { top: "685px", left: "507px" },
-  { top: "685px", left: "939px" },
+  { top: "156px", left: "75px" },
+  { top: "156px", left: "507px" },
+  { top: "156px", left: "939px" },
+  { top: "465px", left: "75px" },
+  { top: "465px", left: "507px" },
+  { top: "465px", left: "939px" },
 ];
 
 export type BlogCard = {
@@ -150,7 +150,7 @@ export function BlogsSearchDesktop({ allCards }: { allCards: BlogCard[] }) {
     <>
       {/* "Blogs" heading + search input */}
       <div style={{
-        position: "absolute", top: "300px", left: "75px", right: "75px",
+        position: "absolute", top: "80px", left: "75px", right: "75px",
         display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
         <h2 style={{
@@ -164,7 +164,7 @@ export function BlogsSearchDesktop({ allCards }: { allCards: BlogCard[] }) {
 
       {/* Divider */}
       <div style={{
-        position: "absolute", top: "347px", left: "75px",
+        position: "absolute", top: "127px", left: "75px",
         width: "1279px", height: "0px", border: "2px solid #056FB44D",
       }} />
 
@@ -182,7 +182,7 @@ export function BlogsSearchDesktop({ allCards }: { allCards: BlogCard[] }) {
         ))
       ) : (
         <div style={{
-          position: "absolute", top: "440px", left: 0, right: 0,
+          position: "absolute", top: "220px", left: 0, right: 0,
           textAlign: "center",
           fontFamily: "var(--font-inter, Inter)", fontSize: "18px",
           color: "rgba(255,255,255,0.35)",
@@ -196,7 +196,7 @@ export function BlogsSearchDesktop({ allCards }: { allCards: BlogCard[] }) {
         href="https://fx.finsaitrade.com/auth/register"
         style={{
           position: "absolute",
-          top: "1016px",
+          top: "796px",
           left: "582px",
           width: "276px",
           height: "57px",

@@ -165,10 +165,6 @@ export type StrapiHomepage = {
   awardsTitle: string;
   awardsDescription: string;
 
-  journeyBadge: string;
-  journeyTitle: string;
-  journeyDescription: string;
-
   testimonialsBadge: string;
   testimonialsTitle: string;
 
@@ -232,18 +228,6 @@ export type StrapiTestimonial = {
   initials: string;
   quote: string;
   localAvatar?: string;
-  order: number;
-};
-
-export type StrapiJourneyCard = {
-  id: number;
-  documentId: string;
-  label: string;
-  description: string;
-  linkLabel: string;
-  linkHref: string;
-  row: "row1" | "row2";
-  size: "small" | "large" | "equal";
   order: number;
 };
 
@@ -599,11 +583,6 @@ export type StrapiBlogsPage = {
   heroSecondaryCtaLabel: string;
   heroSecondaryCtaHref: string;
 
-  newsBadge: string;
-  newsTitle: string;
-  newsDescription: string;
-  newsArticles: StrapiImageCard[];
-
   seo?: StrapiSeo;
 };
 
@@ -626,6 +605,42 @@ export type StrapiContactusPage = {
 
   seo?: StrapiSeo;
 };
+
+export type StrapiSocialTradingPage = {
+  id: number;
+  documentId: string;
+
+  heroBadge: string;
+  heroTitle: string;
+  heroDescription: string;
+  heroPrimaryCtaLabel: string;
+  heroPrimaryCtaHref: string;
+  heroSecondaryCtaLabel: string;
+  heroSecondaryCtaHref: string;
+  heroStats: StrapiStat[];
+
+  seo?: StrapiSeo;
+};
+
+export type StrapiGlossaryPage = {
+  id: number;
+  documentId: string;
+
+  heroBadge: string;
+  heroTitle: string;
+  heroDescription: string;
+
+  seo?: StrapiSeo;
+};
+
+export type StrapiLegalPage = {
+  id: number;
+  documentId: string;
+  pageTitle: string;
+  seo?: StrapiSeo;
+};
+
+export type StrapiRegulationsPage = StrapiLegalPage;
 
 // ─── Domain queries ──────────────────────────────────────────────────
 
@@ -682,13 +697,6 @@ export function getTestimonials() {
   return strapiFetch<StrapiTestimonial[]>("testimonials?sort=order:asc", {
     tags: ["testimonials"],
   });
-}
-
-export function getJourneyCards() {
-  return strapiFetch<StrapiJourneyCard[]>(
-    "journey-cards?sort=order:asc",
-    { tags: ["journey-cards"] },
-  );
 }
 
 // ─── Page single-type queries ────────────────────────────────────────
@@ -755,7 +763,7 @@ export function getNavItems() {
 
 export function getBlogsPage() {
   return strapiFetch<StrapiBlogsPage>(
-    "blogs-page?populate[newsArticles]=*&populate[seo][populate]=*",
+    "blogs-page?populate[seo][populate]=*",
     { tags: ["blogs-page"] },
   );
 }
@@ -765,6 +773,66 @@ export function getContactusPage() {
     "contactus-page?populate[supportBenefits]=*&populate[seo][populate]=*",
     { tags: ["contactus-page"] },
   );
+}
+
+function getLegalPage<T extends StrapiLegalPage>(slug: string) {
+  return strapiFetch<T>(`${slug}?populate[seo][populate]=*`, {
+    tags: [slug],
+  });
+}
+
+export function getSocialTradingPage() {
+  return strapiFetch<StrapiSocialTradingPage>(
+    "social-trading-page?populate[heroStats]=*&populate[seo][populate]=*",
+    { tags: ["social-trading-page"] },
+  );
+}
+
+export function getGlossaryPage() {
+  return strapiFetch<StrapiGlossaryPage>(
+    "glossary-page?populate[seo][populate]=*",
+    { tags: ["glossary-page"] },
+  );
+}
+
+export function getRegulationsPage() {
+  return getLegalPage<StrapiRegulationsPage>("regulations-page");
+}
+
+export function getPrivacyPolicyPage() {
+  return getLegalPage<StrapiLegalPage>("privacy-policy-page");
+}
+
+export function getTermsConditionsPage() {
+  return getLegalPage<StrapiLegalPage>("terms-conditions-page");
+}
+
+export function getRiskDisclosurePage() {
+  return getLegalPage<StrapiLegalPage>("risk-disclosure-page");
+}
+
+export function getAmlPolicyPage() {
+  return getLegalPage<StrapiLegalPage>("aml-policy-page");
+}
+
+export function getRefundPolicyPage() {
+  return getLegalPage<StrapiLegalPage>("refund-policy-page");
+}
+
+export function getClientAgreementPage() {
+  return getLegalPage<StrapiLegalPage>("client-agreement-page");
+}
+
+export function getUpfrontDisclosurePage() {
+  return getLegalPage<StrapiLegalPage>("upfront-disclosure-page");
+}
+
+export function getComplaintsManagementPage() {
+  return getLegalPage<StrapiLegalPage>("complaints-management-page");
+}
+
+export function getConflictsOfInterestPolicyPage() {
+  return getLegalPage<StrapiLegalPage>("conflicts-of-interest-policy-page");
 }
 
 export async function fetchOgImage(_url: string): Promise<string | null> {

@@ -8,10 +8,14 @@ import {
   UL,
 } from "@/components/LegalLayout";
 import PageJsonLd from "@/components/PageJsonLd";
-import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
+import { cmsPageMetadata, PAGE_SEO, resolveLegalPageContext } from "@/lib/page-seo";
 import { FINSAI_COMPANY_REG_NO, FINSAI_LICENSE_NO } from "@/lib/site";
+import { getClientAgreementPage } from "@/lib/strapi";
 
-export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.clientAgreement);
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getClientAgreementPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.clientAgreement);
+}
 
 function Definition({ term, children }: { term: string; children: ReactNode }) {
   return (
@@ -21,15 +25,22 @@ function Definition({ term, children }: { term: string; children: ReactNode }) {
   );
 }
 
-export default function ClientAgreementPage() {
+export default async function ClientAgreementPage() {
+  const data = await getClientAgreementPage();
+  const { seo, pageTitle } = resolveLegalPageContext(
+    data,
+    PAGE_SEO.clientAgreement,
+    "Client Agreement",
+  );
+
   return (
     <>
       <PageJsonLd
         path={PAGE_SEO.clientAgreement.path}
-        title={PAGE_SEO.clientAgreement.title}
-        description={PAGE_SEO.clientAgreement.description}
+        title={seo.title}
+        description={seo.description}
       />
-    <LegalLayout title="Client Agreement">
+    <LegalLayout title={pageTitle}>
       <LegalSection>
         <P>
           This Client Agreement is entered by and between FINSAI TRADE LTD,

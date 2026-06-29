@@ -6,19 +6,30 @@ import {
   UL,
 } from "@/components/LegalLayout";
 import PageJsonLd from "@/components/PageJsonLd";
-import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
+import { cmsPageMetadata, PAGE_SEO, resolveLegalPageContext } from "@/lib/page-seo";
+import { getPrivacyPolicyPage } from "@/lib/strapi";
 
-export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.privacyPolicy);
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getPrivacyPolicyPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.privacyPolicy);
+}
 
-export default function PrivacyPolicyPage() {
+export default async function PrivacyPolicyPage() {
+  const data = await getPrivacyPolicyPage();
+  const { seo, pageTitle } = resolveLegalPageContext(
+    data,
+    PAGE_SEO.privacyPolicy,
+    "Privacy Policy",
+  );
+
   return (
     <>
       <PageJsonLd
         path={PAGE_SEO.privacyPolicy.path}
-        title={PAGE_SEO.privacyPolicy.title}
-        description={PAGE_SEO.privacyPolicy.description}
+        title={seo.title}
+        description={seo.description}
       />
-    <LegalLayout title="Privacy Policy">
+    <LegalLayout title={pageTitle}>
       <LegalSection title="1. Introduction">
         <P>
           FINSAI TRADE LTD. (hereafter &ldquo;the Company&rdquo;,

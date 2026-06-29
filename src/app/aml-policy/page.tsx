@@ -7,10 +7,14 @@ import {
   UL,
 } from "@/components/LegalLayout";
 import PageJsonLd from "@/components/PageJsonLd";
-import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
+import { cmsPageMetadata, PAGE_SEO, resolveLegalPageContext } from "@/lib/page-seo";
 import { FINSAI_COMPANY_REG_NO, FINSAI_LICENSE_NO } from "@/lib/site";
+import { getAmlPolicyPage } from "@/lib/strapi";
 
-export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.amlPolicy);
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getAmlPolicyPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.amlPolicy);
+}
 
 function ClientAcceptanceBody() {
   return (
@@ -183,15 +187,22 @@ function AmlComplianceOfficerBody() {
   );
 }
 
-export default function AmlPolicyPage() {
+export default async function AmlPolicyPage() {
+  const data = await getAmlPolicyPage();
+  const { seo, pageTitle } = resolveLegalPageContext(
+    data,
+    PAGE_SEO.amlPolicy,
+    "Anti-Money Laundering Policy",
+  );
+
   return (
     <>
       <PageJsonLd
         path={PAGE_SEO.amlPolicy.path}
-        title={PAGE_SEO.amlPolicy.title}
-        description={PAGE_SEO.amlPolicy.description}
+        title={seo.title}
+        description={seo.description}
       />
-    <LegalLayout title="Anti-Money Laundering Policy">
+    <LegalLayout title={pageTitle}>
       <LegalSection title="Introduction">
         <P>
           Finsai Trade (Mauritius) Ltd is a company regulated by the Financial

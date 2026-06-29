@@ -8,7 +8,6 @@ const CMS_TAGS = [
   "steps",
   "awards",
   "testimonials",
-  "journey-cards",
   "account-tiers",
   "faqs",
   "about-page",
@@ -19,6 +18,18 @@ const CMS_TAGS = [
   "partnerships-page",
   "blogs-page",
   "contactus-page",
+  "social-trading-page",
+  "glossary-page",
+  "regulations-page",
+  "privacy-policy-page",
+  "terms-conditions-page",
+  "risk-disclosure-page",
+  "aml-policy-page",
+  "refund-policy-page",
+  "client-agreement-page",
+  "upfront-disclosure-page",
+  "complaints-management-page",
+  "conflicts-of-interest-policy-page",
   "nav-items",
 ] as const;
 
@@ -29,7 +40,6 @@ const MODEL_TO_TAG: Record<string, (typeof CMS_TAGS)[number]> = {
   "api::step.step": "steps",
   "api::award.award": "awards",
   "api::testimonial.testimonial": "testimonials",
-  "api::journey-card.journey-card": "journey-cards",
   "api::account-tier.account-tier": "account-tiers",
   "api::faq.faq": "faqs",
   "api::about-page.about-page": "about-page",
@@ -40,6 +50,19 @@ const MODEL_TO_TAG: Record<string, (typeof CMS_TAGS)[number]> = {
   "api::partnerships-page.partnerships-page": "partnerships-page",
   "api::blogs-page.blogs-page": "blogs-page",
   "api::contactus-page.contactus-page": "contactus-page",
+  "api::social-trading-page.social-trading-page": "social-trading-page",
+  "api::glossary-page.glossary-page": "glossary-page",
+  "api::regulations-page.regulations-page": "regulations-page",
+  "api::privacy-policy-page.privacy-policy-page": "privacy-policy-page",
+  "api::terms-conditions-page.terms-conditions-page": "terms-conditions-page",
+  "api::risk-disclosure-page.risk-disclosure-page": "risk-disclosure-page",
+  "api::aml-policy-page.aml-policy-page": "aml-policy-page",
+  "api::refund-policy-page.refund-policy-page": "refund-policy-page",
+  "api::client-agreement-page.client-agreement-page": "client-agreement-page",
+  "api::upfront-disclosure-page.upfront-disclosure-page": "upfront-disclosure-page",
+  "api::complaints-management-page.complaints-management-page": "complaints-management-page",
+  "api::conflicts-of-interest-policy-page.conflicts-of-interest-policy-page":
+    "conflicts-of-interest-policy-page",
 };
 
 const MODEL_TO_PATHS: Record<string, string[]> = {
@@ -49,7 +72,6 @@ const MODEL_TO_PATHS: Record<string, string[]> = {
   "api::step.step": ["/", "/services"],
   "api::award.award": ["/"],
   "api::testimonial.testimonial": ["/"],
-  "api::journey-card.journey-card": ["/"],
   "api::account-tier.account-tier": ["/accounts"],
   "api::faq.faq": ["/", "/accounts", "/services", "/payments", "/partnerships", "/social-trading"],
   "api::about-page.about-page": ["/about"],
@@ -60,6 +82,22 @@ const MODEL_TO_PATHS: Record<string, string[]> = {
   "api::partnerships-page.partnerships-page": ["/partnerships"],
   "api::blogs-page.blogs-page": ["/blogs"],
   "api::contactus-page.contactus-page": ["/contactus"],
+  "api::social-trading-page.social-trading-page": ["/social-trading"],
+  "api::glossary-page.glossary-page": ["/glossary"],
+  "api::regulations-page.regulations-page": ["/regulations"],
+  "api::privacy-policy-page.privacy-policy-page": ["/privacy-policy"],
+  "api::terms-conditions-page.terms-conditions-page": ["/terms-conditions"],
+  "api::risk-disclosure-page.risk-disclosure-page": ["/risk-disclosure"],
+  "api::aml-policy-page.aml-policy-page": ["/aml-policy"],
+  "api::refund-policy-page.refund-policy-page": ["/refund-policy"],
+  "api::client-agreement-page.client-agreement-page": ["/client-agreement"],
+  "api::upfront-disclosure-page.upfront-disclosure-page": ["/upfront-disclosure"],
+  "api::complaints-management-page.complaints-management-page": [
+    "/complaints-management",
+  ],
+  "api::conflicts-of-interest-policy-page.conflicts-of-interest-policy-page": [
+    "/conflicts-of-interest-policy",
+  ],
 };
 
 function isAuthorized(request: NextRequest): boolean {

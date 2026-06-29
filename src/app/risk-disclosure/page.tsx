@@ -7,19 +7,30 @@ import {
   UL,
 } from "@/components/LegalLayout";
 import PageJsonLd from "@/components/PageJsonLd";
-import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
+import { cmsPageMetadata, PAGE_SEO, resolveLegalPageContext } from "@/lib/page-seo";
+import { getRiskDisclosurePage } from "@/lib/strapi";
 
-export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.riskDisclosure);
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getRiskDisclosurePage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.riskDisclosure);
+}
 
-export default function RiskDisclosurePage() {
+export default async function RiskDisclosurePage() {
+  const data = await getRiskDisclosurePage();
+  const { seo, pageTitle } = resolveLegalPageContext(
+    data,
+    PAGE_SEO.riskDisclosure,
+    "Risk Disclosure and Warnings Notice",
+  );
+
   return (
     <>
       <PageJsonLd
         path={PAGE_SEO.riskDisclosure.path}
-        title={PAGE_SEO.riskDisclosure.title}
-        description={PAGE_SEO.riskDisclosure.description}
+        title={seo.title}
+        description={seo.description}
       />
-    <LegalLayout title="Risk Disclosure and Warnings Notice">
+    <LegalLayout title={pageTitle}>
       <LegalSection title="Part A — Risks Associated With All Financial Instruments">
         <P>&nbsp;</P>
       </LegalSection>

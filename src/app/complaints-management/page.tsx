@@ -8,19 +8,30 @@ import {
   UL,
 } from "@/components/LegalLayout";
 import PageJsonLd from "@/components/PageJsonLd";
-import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
+import { cmsPageMetadata, PAGE_SEO, resolveLegalPageContext } from "@/lib/page-seo";
+import { getComplaintsManagementPage } from "@/lib/strapi";
 
-export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.complaintsManagement);
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getComplaintsManagementPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.complaintsManagement);
+}
 
-export default function ComplaintsManagementPage() {
+export default async function ComplaintsManagementPage() {
+  const data = await getComplaintsManagementPage();
+  const { seo, pageTitle } = resolveLegalPageContext(
+    data,
+    PAGE_SEO.complaintsManagement,
+    "Complaints Management",
+  );
+
   return (
     <>
       <PageJsonLd
         path={PAGE_SEO.complaintsManagement.path}
-        title={PAGE_SEO.complaintsManagement.title}
-        description={PAGE_SEO.complaintsManagement.description}
+        title={seo.title}
+        description={seo.description}
       />
-    <LegalLayout title="Complaints Management">
+    <LegalLayout title={pageTitle}>
       <LegalSection title="1. Introduction">
         <P>
           Finsai Trade (Mauritius) Ltd (trading as FINSAI TRADE LTD) — a

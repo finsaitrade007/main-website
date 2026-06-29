@@ -1,13 +1,41 @@
 import SmartLink from "@/components/SmartLink";
 import Image from "next/image";
+import { getSocialTradingPage, type StrapiSocialTradingPage } from "@/lib/strapi";
 
-const STATS = [
-  { value: "10,000+", label: "Active Investors" },
-  { value: "150+",    label: "Strategy Providers" },
-  { value: "$2.4M+",  label: "Volume Copied" },
-];
+const FALLBACK: Pick<
+  StrapiSocialTradingPage,
+  | "heroBadge"
+  | "heroTitle"
+  | "heroDescription"
+  | "heroPrimaryCtaLabel"
+  | "heroPrimaryCtaHref"
+  | "heroSecondaryCtaLabel"
+  | "heroSecondaryCtaHref"
+  | "heroStats"
+> = {
+  heroBadge: "Social Trading · Now Live",
+  heroTitle: "Copy, Trade, or Earn\nwith Social Trading",
+  heroDescription:
+    "Follow experienced traders or become a strategy provider. Copy traders live, share your strategy, and earn rewards.",
+  heroPrimaryCtaLabel: "Become a Follower",
+  heroPrimaryCtaHref:
+    "https://social.finsaitrade.com/portal/registration/subscription?redirectUrl=%2F",
+  heroSecondaryCtaLabel: "Become a Provider",
+  heroSecondaryCtaHref:
+    "https://social.finsaitrade.com/portal/registration/provider?redirectUrl=%2F",
+  heroStats: [
+    { id: 1, value: "10,000+", label: "Active Investors" },
+    { id: 2, value: "150+", label: "Strategy Providers" },
+    { id: 3, value: "$2.4M+", label: "Volume Copied" },
+  ],
+};
 
 export default async function SocialTradingHeroSection() {
+  const cms = await getSocialTradingPage();
+  const data = { ...FALLBACK, ...cms };
+  const stats =
+    cms?.heroStats && cms.heroStats.length > 0 ? cms.heroStats : FALLBACK.heroStats;
+
   return (
     <section style={{
       position: "relative",
@@ -16,7 +44,6 @@ export default async function SocialTradingHeroSection() {
       minHeight: "clamp(480px, 54vw, 800px)",
       overflow: "hidden",
     }}>
-      {/* Hero image */}
       <Image
         src="/social-trading/hero.png"
         alt=""
@@ -33,7 +60,6 @@ export default async function SocialTradingHeroSection() {
         priority
       />
 
-      {/* Content */}
       <div style={{
         position: "absolute",
         top: "clamp(120px, 13.9vw, 200px)",
@@ -44,7 +70,6 @@ export default async function SocialTradingHeroSection() {
         gap: "24px",
         zIndex: 3,
       }}>
-        {/* Badge */}
         <div style={{
           boxSizing: "border-box",
           display: "inline-flex",
@@ -69,11 +94,10 @@ export default async function SocialTradingHeroSection() {
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
           }}>
-            Social Trading · Now Live
+            {data.heroBadge}
           </span>
         </div>
 
-        {/* Heading */}
         <h1 style={{
           fontFamily: "var(--font-sora, Sora)",
           fontWeight: 600,
@@ -82,21 +106,11 @@ export default async function SocialTradingHeroSection() {
           letterSpacing: "-0.01em",
           color: "#FFFFFF",
           margin: 0,
+          whiteSpace: "pre-line",
         }}>
-          Copy, Trade, or Earn{" "}
-          <br />
-          with{" "}
-          <span style={{
-            background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}>
-            Social Trading
-          </span>
+          {data.heroTitle}
         </h1>
 
-        {/* Description */}
         <p className="hero-desc-text" style={{
           fontFamily: "var(--font-inter, Inter)",
           fontWeight: 400,
@@ -106,14 +120,12 @@ export default async function SocialTradingHeroSection() {
           maxWidth: "540px",
           margin: 0,
         }}>
-          Follow experienced traders or become a strategy provider. Copy traders
-          live, share your strategy, and earn rewards.
+          {data.heroDescription}
         </p>
 
-        {/* CTAs */}
         <div className="social-trading-hero-ctas" style={{ display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center" }}>
           <SmartLink
-            href="https://social.finsaitrade.com/portal/registration/subscription?redirectUrl=%2F"
+            href={data.heroPrimaryCtaHref}
             className="btn-text"
             style={{
               display: "inline-flex",
@@ -126,20 +138,19 @@ export default async function SocialTradingHeroSection() {
               whiteSpace: "nowrap",
             }}
           >
-            Become a Follower
+            {data.heroPrimaryCtaLabel}
           </SmartLink>
           <SmartLink
-            href="https://social.finsaitrade.com/portal/registration/provider?redirectUrl=%2F"
+            href={data.heroSecondaryCtaHref}
             className="btn-secondary btn-text social-trading-hero-provider-btn"
           >
-            Become a Provider
+            {data.heroSecondaryCtaLabel}
           </SmartLink>
         </div>
 
-        {/* Stats */}
         <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px 0", marginTop: "8px" }}>
-          {STATS.map((stat, i) => (
-            <div key={stat.value} style={{ display: "flex", alignItems: "center" }}>
+          {stats.map((stat, i) => (
+            <div key={`${stat.value}-${stat.label}`} style={{ display: "flex", alignItems: "center" }}>
               {i > 0 && (
                 <span aria-hidden style={{
                   display: "inline-block",
