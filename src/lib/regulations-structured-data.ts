@@ -1,5 +1,9 @@
 import type { FaqItem } from "@/lib/faq-fallbacks";
-import { SITE_URL } from "@/lib/site";
+import {
+  FINSAI_COMPANY_REG_NO,
+  FINSAI_LICENSE_NO,
+  SITE_URL,
+} from "@/lib/site";
 
 const FSC_REGISTER_URL =
   "https://opr.fscmauritius.org/ords/opr/r/fsc-opr/fsc-online-public-register-opr?session=14338789762172";
@@ -36,7 +40,7 @@ export function buildRegulationsStructuredData(faqs: FaqItem[]) {
           "Securities Trading",
         ],
         description:
-          "Finsai Trade (Mauritius) Ltd is an investment dealer fully regulated by the Financial Services Commission (FSC) of Mauritius, committed to transparency, client protection, and financial regulatory compliance.",
+          `Finsai Trade (Mauritius) Ltd is an investment dealer fully regulated by the Financial Services Commission (FSC) of Mauritius (license ${FINSAI_LICENSE_NO}, company registration ${FINSAI_COMPANY_REG_NO}), committed to transparency, client protection, and financial regulatory compliance.`,
         actionableFeedbackPolicy: FSC_REGISTER_URL,
       },
       {

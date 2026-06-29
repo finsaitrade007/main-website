@@ -18,10 +18,11 @@ export default function RefundPolicyPage() {
     <LegalLayout title="Refund Policy">
       <LegalSection title="Introduction">
         <P>
-          FINSAI TRADE LTD. Island Ring Road, TB Office, NRU 68, Yeren,
-          Mauritius, Republic of Mauritius, with company registration number
-          003112024 and license number 052943-033 (hereinafter &ldquo;The
-          Company&rdquo;) operating under the trading name Finsai Trade.
+          Finsai Trade (Mauritius) Ltd (trading as FINSAI TRADE LTD),
+          registered in Mauritius under company number C228371 and licensed by
+          the Financial Services Commission Mauritius with license number
+          GB25204899 (hereinafter &ldquo;The Company&rdquo;) operating under
+          the trading name Finsai Trade.
         </P>
       </LegalSection>
 

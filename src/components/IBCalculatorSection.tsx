@@ -1,6 +1,9 @@
 "use client";
 import { useState } from "react";
+import Link from "@/components/SmartLink";
 import ResponsiveScale from "@/components/ResponsiveScale";
+
+const PARTNER_LOGIN_URL = "https://portal.finsaitrade.com/partner/register";
 
 type Props = {
   title: string;
@@ -232,27 +235,32 @@ export default function IBCalculatorSection({ title, description }: Props) {
           </span>
 
           {/* Button */}
-          <button style={{
-            position: "absolute",
-            top: "309px",
-            left: "909px",
-            width: "226.02px",
-            height: "56.5px",
-            borderRadius: "28.83px",
-            background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-            border: "none",
-            cursor: "pointer",
-            fontFamily: "var(--font-sora, Sora)",
-            fontSize: "18.45px",
-            color: "#FFFFFF",
-            fontWeight: 600,
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "8px",
-          }}>
+          <Link
+            href={PARTNER_LOGIN_URL}
+            style={{
+              position: "absolute",
+              top: "309px",
+              left: "909px",
+              width: "226.02px",
+              height: "56.5px",
+              borderRadius: "28.83px",
+              background:
+                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+              border: "none",
+              cursor: "pointer",
+              fontFamily: "var(--font-sora, Sora)",
+              fontSize: "18.45px",
+              color: "#FFFFFF",
+              fontWeight: 600,
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+              textDecoration: "none",
+            }}
+          >
             Yes, I&apos;m Ready! →
-          </button>
+          </Link>
 
           {/* Note */}
           <p style={{
@@ -402,23 +410,28 @@ export default function IBCalculatorSection({ title, description }: Props) {
             }}>
               Are you ready to earn?
             </p>
-            <button style={{
-              borderRadius: "28px",
-              background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-              border: "none",
-              cursor: "pointer",
-              fontFamily: "var(--font-sora, Sora)",
-              fontSize: "15px",
-              color: "#FFFFFF",
-              fontWeight: 600,
-              padding: "12px 28px",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              whiteSpace: "nowrap",
-            }}>
+            <Link
+              href={PARTNER_LOGIN_URL}
+              style={{
+                borderRadius: "28px",
+                background:
+                  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+                border: "none",
+                cursor: "pointer",
+                fontFamily: "var(--font-sora, Sora)",
+                fontSize: "15px",
+                color: "#FFFFFF",
+                fontWeight: 600,
+                padding: "12px 28px",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                whiteSpace: "nowrap",
+                textDecoration: "none",
+              }}
+            >
               Yes, I&apos;m Ready! →
-            </button>
+            </Link>
           </div>
         </div>
 

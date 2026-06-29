@@ -1,6 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import FAQLink from "./FAQLink";
+import {
+  FINSAI_COMPANY_REG_NO,
+  FINSAI_LICENSE_NO,
+} from "@/lib/site";
 
 const quickLinks = [
   { label: "Home",         href: "/" },
@@ -204,10 +208,10 @@ export default function Footer() {
       <div>
         <div className="footer-inner" style={{ paddingTop: "32px", paddingBottom: "32px" }}>
           {[
-            "Finsai Trade (Mauritius) Ltd is a company regulated by the Financial Services Commission Mauritius with License no: GB25204899, Registered in Mauritius under company number C228371. Registered address: 3 Emerald Park, Trianon, Quatre Bornes 72257, MAURITIUS",
+            `Finsai Trade (Mauritius) Ltd is a company regulated by the Financial Services Commission Mauritius with License no: ${FINSAI_LICENSE_NO}, Registered in Mauritius under company number ${FINSAI_COMPANY_REG_NO}. Registered address: 3 Emerald Park, Trianon, Quatre Bornes 72257, MAURITIUS`,
             "Physical Address Mauritius: 3rd Floor, Manor House, 30 St Georges Street, Port Louis, Mauritius",
             "Finsai Trade (Mauritius) Ltd",
-            "Incorporated on – 19th November 2025, main License no : GB25204899, Regulated by Financial Services Commission Mauritius",
+            `Incorporated on – 19th November 2025, main License no : ${FINSAI_LICENSE_NO}, Regulated by Financial Services Commission Mauritius`,
             "For Risk Disclosure and information __VISIT_HERE__",
             "Trading and investing in derivatives involves substantial risk and may result in losses that exceed your initial investment. Anyone considering trading or investing in products offered through www.finsaitrade.com should obtain independent financial, legal, or professional advice before making any investment decisions.",
             "Trading forex CFDs, stocks, commodities, options, futures, cryptocurrency CFDs, and other securities may not be suitable for all investors. These products are subject to market volatility and carry significant financial risk. Before engaging in any transaction, you should carefully assess your financial circumstances, investment objectives, trading experience, and risk tolerance.",

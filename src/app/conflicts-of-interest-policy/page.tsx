@@ -22,8 +22,9 @@ export default function ConflictsOfInterestPolicyPage() {
           The purpose of this Conflicts of Interest Policy is to outline a
           suitable approach and response to the identification and
           management of conflicts of interest. Finsai Trade is an authorized
-          Financial Services Provider and thus governed by the International
-          Services Authority of Mauritius.
+          Financial Services Provider regulated by the Financial Services
+          Commission Mauritius under license number GB25204899 and company
+          registration number C228371.
         </P>
       </LegalSection>
 
@@ -35,8 +36,10 @@ export default function ConflictsOfInterestPolicyPage() {
         </P>
         <P>
           <strong>&ldquo;FSP&rdquo; or &ldquo;Name of Company&rdquo;</strong>{" "}
-          FINSAI TRADE LTD. is a Financial Services Provider authorized in
-          terms of the International Services Authority of Mauritius.
+          Finsai Trade (Mauritius) Ltd (trading as FINSAI TRADE LTD) is a
+          Financial Services Provider authorized by the Financial Services
+          Commission Mauritius under license number GB25204899 and company
+          registration number C228371.
         </P>
         <P>
           <strong>&ldquo;Responsible Person&rdquo;</strong> A key individual,

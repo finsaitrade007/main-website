@@ -19,8 +19,10 @@ export default function ComplaintsManagementPage() {
     <LegalLayout title="Complaints Management">
       <LegalSection title="1. Introduction">
         <P>
-          FINSAI TRADE LTD. — a Financial Services Company authorized and
-          regulated by the International Services Authority of Mauritius —
+          Finsai Trade (Mauritius) Ltd (trading as FINSAI TRADE LTD) — a
+          Financial Services Company authorized and regulated by the Financial
+          Services Commission Mauritius with license number GB25204899 and
+          company registration number C228371 —
           has implemented this Complaints Management Framework to devise
           and implement a complaint handling process.
         </P>

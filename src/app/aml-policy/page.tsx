@@ -6,6 +6,7 @@ import {
   P,
   UL,
 } from "@/components/LegalLayout";
+import { FINSAI_COMPANY_REG_NO, FINSAI_LICENSE_NO } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Anti-Money Laundering Policy",
@@ -190,8 +191,8 @@ export default function AmlPolicyPage() {
       <LegalSection title="Introduction">
         <P>
           Finsai Trade (Mauritius) Ltd is a company regulated by the Financial
-          Services Commission Mauritius with License no: GB25204899,
-          Registered in Mauritius under company number C228371.
+          Services Commission Mauritius with License no: {FINSAI_LICENSE_NO},
+          Registered in Mauritius under company number {FINSAI_COMPANY_REG_NO}.
         </P>
         <P>
           The Company has implemented policies, controls and procedures in

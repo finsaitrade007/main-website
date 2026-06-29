@@ -7,8 +7,6 @@ const FALLBACK: Pick<
   | "heroBadge"
   | "heroTitle"
   | "heroDescription"
-  | "heroPrimaryCtaLabel"
-  | "heroPrimaryCtaHref"
   | "heroSecondaryCtaLabel"
   | "heroSecondaryCtaHref"
 > = {
@@ -16,8 +14,6 @@ const FALLBACK: Pick<
   heroTitle: "We Are  Here to help\nyou",
   heroDescription:
     "Join a vibrant global team focused on fintech, trading technology, global markets, and customer growth.",
-  heroPrimaryCtaLabel: "View Open Roles",
-  heroPrimaryCtaHref: "#open-roles",
   heroSecondaryCtaLabel: "Reach Out to our Team",
   heroSecondaryCtaHref: "#contact-form",
 };

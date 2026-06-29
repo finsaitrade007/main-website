@@ -4,6 +4,10 @@ import JsonLd from "@/components/JsonLd";
 import { LegalLayout, LegalSection, P, UL } from "@/components/LegalLayout";
 import { REGULATIONS_FAQS } from "@/lib/regulations-faqs";
 import { buildRegulationsStructuredData } from "@/lib/regulations-structured-data";
+import {
+  FINSAI_COMPANY_REG_NO,
+  FINSAI_LICENSE_NO,
+} from "@/lib/site";
 import type { StrapiFaq } from "@/lib/strapi";
 
 const FSC_REGISTER_URL =
@@ -24,7 +28,7 @@ export const metadata: Metadata = {
       "Finsai Trade Regulation & Compliance | Mauritius FSC Licensed",
   },
   description:
-    "Finsai Trade is regulated by the Financial Services Commission Mauritius (License GB25204899). Learn more about our legal framework and fund protection.",
+    `Finsai Trade is regulated by the Financial Services Commission Mauritius (License ${FINSAI_LICENSE_NO}). Learn more about our legal framework and fund protection.`,
 };
 
 export default function RegulationsPage() {
@@ -62,10 +66,10 @@ export default function RegulationsPage() {
                 <strong>Entity:</strong> Finsai Trade (Mauritius) Ltd
               </>,
               <>
-                <strong>Company Registration:</strong> C228371
+                <strong>Company Registration:</strong> {FINSAI_COMPANY_REG_NO}
               </>,
               <>
-                <strong>License No:</strong> GB25204899
+                <strong>License No:</strong> {FINSAI_LICENSE_NO}
               </>,
               <>
                 <strong>Incorporation Date:</strong> 19th November 2025

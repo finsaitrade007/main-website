@@ -7,6 +7,7 @@ import {
   OL,
   P,
 } from "@/components/LegalLayout";
+import { FINSAI_COMPANY_REG_NO, FINSAI_LICENSE_NO } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Upfront Disclosure",
@@ -323,17 +324,17 @@ export default function UpfrontDisclosurePage() {
         <P>
           Finsai Trade (the &ldquo;FSP&rdquo; hereafter) is a Private Company
           regulated by the Financial Services Commission Mauritius with
-          License no: GB25204899, Registered in Mauritius under company
-          number C228371. As a licensed Financial Services Provider in terms
+          License no: {FINSAI_LICENSE_NO}, Registered in Mauritius under company
+          number {FINSAI_COMPANY_REG_NO}. As a licensed Financial Services Provider in terms
           of Mauritius, the FSP accepts responsibility for the actions of
           its representatives, acting within their mandates, in the
-          rendering of financial services as defined by the International
-          Services Authority of Mauritius. Our representatives either meet the
-          fit and proper requirements as prescribed by the International
-          Services Authority of Mauritius or operate under appropriate
-          supervision in accordance with the International Services
-          Authority of Mauritius, and are qualified to assist you in a
-          professional manner with your financial requirements.
+          rendering of financial services as defined by the Financial Services
+          Commission Mauritius. Our representatives either meet the fit and
+          proper requirements as prescribed by the Financial Services
+          Commission Mauritius or operate under appropriate supervision in
+          accordance with the Financial Services Commission Mauritius, and are
+          qualified to assist you in a professional manner with your financial
+          requirements.
         </P>
         <P>
           The FSP avails a copy of the Bank of Mauritius licence for

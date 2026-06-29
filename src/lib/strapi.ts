@@ -362,8 +362,6 @@ export type StrapiCareersPage = {
   heroBadge: string;
   heroTitle: string;
   heroDescription: string;
-  heroPrimaryCtaLabel: string;
-  heroPrimaryCtaHref: string;
   heroSecondaryCtaLabel: string;
   heroSecondaryCtaHref: string;
 
@@ -502,8 +500,6 @@ export type StrapiPaymentsPage = {
   heroDescription: string;
   heroPrimaryCtaLabel: string;
   heroPrimaryCtaHref: string;
-  heroSecondaryCtaLabel: string;
-  heroSecondaryCtaHref: string;
 
   trustText: string;
 
@@ -559,8 +555,6 @@ export type StrapiPartnershipsPage = {
   heroDescription: string;
   heroPrimaryCtaLabel: string;
   heroPrimaryCtaHref: string;
-  heroSecondaryCtaLabel: string;
-  heroSecondaryCtaHref: string;
 
   whyBadge: string;
   whyTitle: string;
@@ -620,8 +614,6 @@ export type StrapiContactusPage = {
   heroBadge: string;
   heroTitle: string;
   heroDescription: string;
-  heroPrimaryCtaLabel: string;
-  heroPrimaryCtaHref: string;
   heroSecondaryCtaLabel: string;
   heroSecondaryCtaHref: string;
 

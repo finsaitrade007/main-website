@@ -1,10 +1,14 @@
 import type { FaqItem } from "@/lib/faq-fallbacks";
+import {
+  FINSAI_COMPANY_REG_NO,
+  FINSAI_LICENSE_NO,
+} from "@/lib/site";
 
 export const REGULATIONS_FAQS: FaqItem[] = [
   {
     question: "Is Finsai Trade regulated by a financial authority?",
     answer:
-      "Yes, Finsai Trade is regulated by the Financial Services Commission (FSC) of Mauritius.",
+      `Yes, Finsai Trade is regulated by the Financial Services Commission (FSC) of Mauritius under license number ${FINSAI_LICENSE_NO}.`,
   },
   {
     question: "Which jurisdictions does Finsai Trade operate in?",
@@ -19,7 +23,7 @@ export const REGULATIONS_FAQS: FaqItem[] = [
   {
     question: "What is the regulatory status of Finsai Trade in Mauritius?",
     answer:
-      "Finsai Trade holds an Investment Dealer License and a Global Business License issued by the Financial Services Commission (FSC) of Mauritius. These licenses authorize Finsai Trade to provide investment dealing and related financial services in compliance with Mauritian financial regulations.",
+      `Finsai Trade (Mauritius) Ltd holds an Investment Dealer License (license number ${FINSAI_LICENSE_NO}, company registration ${FINSAI_COMPANY_REG_NO}) issued by the Financial Services Commission (FSC) of Mauritius. This license authorizes Finsai Trade to provide investment dealing and related financial services in compliance with Mauritian financial regulations.`,
   },
   {
     question: "Does regulation vary between Finsai Trade's legal entities?",

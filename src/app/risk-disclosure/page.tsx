@@ -24,10 +24,12 @@ export default function RiskDisclosurePage() {
         <P>
           1.1 This Risk Disclosure and Warning Notice
           (&ldquo;Notice&rdquo;) is provided to you (our Client and
-          prospective Client) by FINSAI TRADE LTD, a private Company
-          limited by share incorporated and validly existing under the laws
-          by the International Services Authority of Mauritius with license
-          number 052943-033 (&ldquo;the Company&rdquo;, &ldquo;we&rdquo;).
+          prospective Client) by Finsai Trade (Mauritius) Ltd (trading as
+          FINSAI TRADE LTD), a private company limited by shares incorporated
+          and validly existing under the laws of Mauritius, regulated by the
+          Financial Services Commission Mauritius with license number GB25204899
+          and registered under company number C228371 (&ldquo;the
+          Company&rdquo;, &ldquo;we&rdquo;).
         </P>
         <P>
           1.2 All Clients and prospective Clients should read carefully the

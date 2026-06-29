@@ -7,6 +7,7 @@ import {
   P,
   UL,
 } from "@/components/LegalLayout";
+import { FINSAI_COMPANY_REG_NO, FINSAI_LICENSE_NO } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Client Agreement",
@@ -29,8 +30,8 @@ export default function ClientAgreementPage() {
         <P>
           This Client Agreement is entered by and between FINSAI TRADE LTD,
           a private limited company incorporated and validly existing under
-          the laws of Mauritius License No. GB25204899, registered under
-          Company Number C228371 (&ldquo;Company&rdquo; or &ldquo;we&rdquo;
+          the laws of Mauritius License No. {FINSAI_LICENSE_NO}, registered under
+          Company Number {FINSAI_COMPANY_REG_NO} (&ldquo;Company&rdquo; or &ldquo;we&rdquo;
           or &ldquo;us&rdquo;), on the one part, and the Client (which may
           be a legal entity or a natural person), who has completed the
           online account opening application form and has been accepted by
