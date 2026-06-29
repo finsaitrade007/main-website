@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import FAQAccordion from "@/components/FAQAccordion";
-import JsonLd from "@/components/JsonLd";
+import PageJsonLd from "@/components/PageJsonLd";
 import { LegalLayout, LegalSection, P, UL } from "@/components/LegalLayout";
 import { REGULATIONS_FAQS } from "@/lib/regulations-faqs";
-import { buildRegulationsStructuredData } from "@/lib/regulations-structured-data";
+import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
 import {
   FINSAI_COMPANY_REG_NO,
   FINSAI_LICENSE_NO,
@@ -22,19 +22,17 @@ const FAQ_ACCORDION_ITEMS: StrapiFaq[] = REGULATIONS_FAQS.map((faq, i) => ({
   order: i + 1,
 }));
 
-export const metadata: Metadata = {
-  title: {
-    absolute:
-      "Finsai Trade Regulation & Compliance | Mauritius FSC Licensed",
-  },
-  description:
-    `Finsai Trade is regulated by the Financial Services Commission Mauritius (License ${FINSAI_LICENSE_NO}). Learn more about our legal framework and fund protection.`,
-};
+export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.regulations);
 
 export default function RegulationsPage() {
   return (
     <>
-      <JsonLd data={buildRegulationsStructuredData(REGULATIONS_FAQS)} />
+      <PageJsonLd
+        variant="regulations"
+        title={PAGE_SEO.regulations.title}
+        description={PAGE_SEO.regulations.description}
+        faqs={REGULATIONS_FAQS}
+      />
       <LegalLayout title="Regulations & Compliance — FINSAI TRADE LTD">
         <LegalSection>
           <P>

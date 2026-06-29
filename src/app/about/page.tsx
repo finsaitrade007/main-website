@@ -5,20 +5,30 @@ import AboutBuiltByTradersSection from "@/components/AboutBuiltByTradersSection"
 import AboutFinancialGrowthSection from "@/components/AboutFinancialGrowthSection";
 import AboutCompetitiveEdgeSection from "@/components/AboutCompetitiveEdgeSection";
 import AboutCTASection from "@/components/AboutCTASection";
-import { getAboutPage, seoToMetadata } from "@/lib/strapi";
+import PageJsonLd from "@/components/PageJsonLd";
+import {
+  cmsPageMetadata,
+  PAGE_SEO,
+  resolveSeoText,
+} from "@/lib/page-seo";
+import { getAboutPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getAboutPage();
-  return seoToMetadata(data?.seo, {
-    title: "About Finsai Trade — Multi-Asset Broker & Trading Ecosystem",
-    description:
-      "Finsai Trade is a multi-asset broker built by traders. Discover our mission, vision, awards and the team driving financial growth in the digital era.",
-  });
+  return cmsPageMetadata(data?.seo, PAGE_SEO.about);
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const data = await getAboutPage();
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.about);
+
   return (
     <>
+      <PageJsonLd
+        path={PAGE_SEO.about.path}
+        title={seo.title}
+        description={seo.description}
+      />
       <AboutHeroSection />
       <AboutRecognitionSection />
       <AboutBuiltByTradersSection />

@@ -6,15 +6,19 @@ import {
   OL,
   P,
 } from "@/components/LegalLayout";
+import PageJsonLd from "@/components/PageJsonLd";
+import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
 
-export const metadata: Metadata = {
-  title: "Refund Policy",
-  description:
-    "Finsai Trade Refund Policy describing deposit, withdrawal, chargeback and cancellation procedures and the safeguarding of client funds.",
-};
+export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.refundPolicy);
 
 export default function RefundPolicyPage() {
   return (
+    <>
+      <PageJsonLd
+        path={PAGE_SEO.refundPolicy.path}
+        title={PAGE_SEO.refundPolicy.title}
+        description={PAGE_SEO.refundPolicy.description}
+      />
     <LegalLayout title="Refund Policy">
       <LegalSection title="Introduction">
         <P>
@@ -171,5 +175,6 @@ export default function RefundPolicyPage() {
         </P>
       </LegalSection>
     </LegalLayout>
+    </>
   );
 }

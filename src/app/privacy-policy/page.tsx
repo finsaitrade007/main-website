@@ -5,15 +5,19 @@ import {
   P,
   UL,
 } from "@/components/LegalLayout";
+import PageJsonLd from "@/components/PageJsonLd";
+import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description:
-    "Finsai Trade Privacy Policy describing how we collect, use, store and share your personal information.",
-};
+export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.privacyPolicy);
 
 export default function PrivacyPolicyPage() {
   return (
+    <>
+      <PageJsonLd
+        path={PAGE_SEO.privacyPolicy.path}
+        title={PAGE_SEO.privacyPolicy.title}
+        description={PAGE_SEO.privacyPolicy.description}
+      />
     <LegalLayout title="Privacy Policy">
       <LegalSection title="1. Introduction">
         <P>
@@ -313,5 +317,6 @@ export default function PrivacyPolicyPage() {
         </P>
       </LegalSection>
     </LegalLayout>
+    </>
   );
 }

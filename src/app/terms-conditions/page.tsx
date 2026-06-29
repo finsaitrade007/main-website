@@ -6,15 +6,19 @@ import {
   P,
   UL,
 } from "@/components/LegalLayout";
+import PageJsonLd from "@/components/PageJsonLd";
+import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
 
-export const metadata: Metadata = {
-  title: "Terms & Conditions",
-  description:
-    "Finsai Trade Terms & Conditions covering Welcome Bonus eligibility, usage, expiry and Trading Competition rules.",
-};
+export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.termsConditions);
 
 export default function TermsConditionsPage() {
   return (
+    <>
+      <PageJsonLd
+        path={PAGE_SEO.termsConditions.path}
+        title={PAGE_SEO.termsConditions.title}
+        description={PAGE_SEO.termsConditions.description}
+      />
     <LegalLayout title="Terms & Conditions">
       <LegalSection title="Section 1: Welcome Bonus Terms and Conditions">
         <LegalSubsection title="Eligibility">
@@ -197,5 +201,6 @@ export default function TermsConditionsPage() {
         </LegalSubsection>
       </LegalSection>
     </LegalLayout>
+    </>
   );
 }

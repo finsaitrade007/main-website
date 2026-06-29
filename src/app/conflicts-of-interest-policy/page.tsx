@@ -7,15 +7,19 @@ import {
   P,
   UL,
 } from "@/components/LegalLayout";
+import PageJsonLd from "@/components/PageJsonLd";
+import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
 
-export const metadata: Metadata = {
-  title: "Conflicts of Interest Policy",
-  description:
-    "Finsai Trade Conflicts of Interest Policy outlining identification, management and mitigation of conflicts of interest.",
-};
+export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.conflictsOfInterest);
 
 export default function ConflictsOfInterestPolicyPage() {
   return (
+    <>
+      <PageJsonLd
+        path={PAGE_SEO.conflictsOfInterest.path}
+        title={PAGE_SEO.conflictsOfInterest.title}
+        description={PAGE_SEO.conflictsOfInterest.description}
+      />
     <LegalLayout title="Conflicts of Interest Policy">
       <LegalSection title="1) Purpose and Scope">
         <P>
@@ -239,5 +243,6 @@ export default function ConflictsOfInterestPolicyPage() {
         />
       </LegalSection>
     </LegalLayout>
+    </>
   );
 }

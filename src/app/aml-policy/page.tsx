@@ -6,13 +6,11 @@ import {
   P,
   UL,
 } from "@/components/LegalLayout";
+import PageJsonLd from "@/components/PageJsonLd";
+import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
 import { FINSAI_COMPANY_REG_NO, FINSAI_LICENSE_NO } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Anti-Money Laundering Policy",
-  description:
-    "Finsai Trade Anti-Money Laundering Policy describing our client due diligence, AML compliance program, training and reporting obligations.",
-};
+export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.amlPolicy);
 
 function ClientAcceptanceBody() {
   return (
@@ -187,6 +185,12 @@ function AmlComplianceOfficerBody() {
 
 export default function AmlPolicyPage() {
   return (
+    <>
+      <PageJsonLd
+        path={PAGE_SEO.amlPolicy.path}
+        title={PAGE_SEO.amlPolicy.title}
+        description={PAGE_SEO.amlPolicy.description}
+      />
     <LegalLayout title="Anti-Money Laundering Policy">
       <LegalSection title="Introduction">
         <P>
@@ -314,5 +318,6 @@ export default function AmlPolicyPage() {
         </LegalSubsection>
       </LegalSection>
     </LegalLayout>
+    </>
   );
 }

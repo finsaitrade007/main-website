@@ -4,20 +4,31 @@ import AccountsCompareTable from "@/components/AccountsCompareTable";
 import WhyTradeFinsai from "@/components/WhyTradeFinsai";
 import AccountsOnboardingSteps from "@/components/AccountsOnboardingSteps";
 import FAQSection from "@/components/FAQSection";
-import { getAccountsPage, seoToMetadata } from "@/lib/strapi";
+import PageJsonLd from "@/components/PageJsonLd";
+import {
+  cmsPageMetadata,
+  PAGE_SEO,
+  resolveSeoText,
+} from "@/lib/page-seo";
+import { getAccountsPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getAccountsPage();
-  return seoToMetadata(data?.seo, {
-    title: "Trading Accounts | Finsai Trade — Smart Choice, Pro & ECN",
-    description:
-      "Compare Finsai Trade account types and pick the one that fits your style — Smart Choice, Smart Pro, and Smart ECN.",
-  });
+  return cmsPageMetadata(data?.seo, PAGE_SEO.accounts);
 }
 
-export default function AccountsPage() {
+export default async function AccountsPage() {
+  const data = await getAccountsPage();
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.accounts);
+
   return (
     <>
+      <PageJsonLd
+        path={PAGE_SEO.accounts.path}
+        title={seo.title}
+        description={seo.description}
+        faqSection="accounts"
+      />
       <AccountsHeroSection />
       <AccountsCompareTable />
       <WhyTradeFinsai />

@@ -3,20 +3,31 @@ import ServicesHeroSection from "@/components/ServicesHeroSection";
 import ServicesPlatformsSection from "@/components/ServicesPlatformsSection";
 import StepsSection from "@/components/StepsSection";
 import FAQSection from "@/components/FAQSection";
-import { getServicesPage, seoToMetadata } from "@/lib/strapi";
+import PageJsonLd from "@/components/PageJsonLd";
+import {
+  cmsPageMetadata,
+  PAGE_SEO,
+  resolveSeoText,
+} from "@/lib/page-seo";
+import { getServicesPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getServicesPage();
-  return seoToMetadata(data?.seo, {
-    title: "Trading Services | Finsai Trade — MT5, Social & Mobile",
-    description:
-      "Three trading environments built for every level. Trade with MT5, copy top performers via social trading, or stay connected with our upcoming mobile app.",
-  });
+  return cmsPageMetadata(data?.seo, PAGE_SEO.services);
 }
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const data = await getServicesPage();
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.services);
+
   return (
     <>
+      <PageJsonLd
+        path={PAGE_SEO.services.path}
+        title={seo.title}
+        description={seo.description}
+        faqSection="services"
+      />
       <ServicesHeroSection />
       <ServicesPlatformsSection />
       <StepsSection />

@@ -6,15 +6,20 @@ import SocialTradingLeaderboardSection from "@/components/SocialTradingLeaderboa
 import SocialTradingJourneySection from "@/components/SocialTradingJourneySection";
 import FAQSection from "@/components/FAQSection";
 import SocialTradingCTASection from "@/components/SocialTradingCTASection";
+import PageJsonLd from "@/components/PageJsonLd";
+import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
 
-export const metadata: Metadata = {
-  title: "Social Trading — Copy Top Traders | Finsai Trade",
-  description: "Follow experienced traders or become a strategy provider. Copy trades live, share your strategy, and earn rewards with Finsai Trade Social Trading.",
-};
+export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.socialTrading);
 
-export default function SocialTradingPage() {
+export default async function SocialTradingPage() {
   return (
     <>
+      <PageJsonLd
+        path={PAGE_SEO.socialTrading.path}
+        title={PAGE_SEO.socialTrading.title}
+        description={PAGE_SEO.socialTrading.description}
+        faqSection="social-trading"
+      />
       <SocialTradingHeroSection />
       <SocialTradingFeaturesSection />
       <SocialTradingHowItWorksSection />

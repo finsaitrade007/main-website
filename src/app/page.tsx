@@ -10,35 +10,35 @@ import AwardsSection from "@/components/AwardsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
-import JsonLd from "@/components/JsonLd";
-import { FAQ_FALLBACKS } from "@/lib/faq-fallbacks";
-import { buildHomepageStructuredData } from "@/lib/homepage-structured-data";
-import { SITE_URL } from "@/lib/site";
-import { getFaqsBySection, getHomepage, seoToMetadata } from "@/lib/strapi";
+import PageJsonLd from "@/components/PageJsonLd";
+import {
+  cmsPageMetadata,
+  PAGE_SEO,
+  resolvePageFaqs,
+  resolveSeoText,
+} from "@/lib/page-seo";
+import { getHomepage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getHomepage();
-  return seoToMetadata(data?.seo, {
-    title: "Finsai Trade | Multi-Asset Online Trading Platform",
-    description:
-      "Trade forex, stocks, cryptocurrencies, commodities, indices, and CFDs through a professional multi-asset trading platform powered by MetaTrader 5 (MT5).",
-    url: `${SITE_URL}/`,
-  });
+  return cmsPageMetadata(data?.seo, PAGE_SEO.home);
 }
 
 export default async function HomePage() {
-  const [home, homepageFaqs] = await Promise.all([
+  const [home, faqs] = await Promise.all([
     getHomepage(),
-    getFaqsBySection("homepage"),
+    resolvePageFaqs("homepage"),
   ]);
-  const faqs =
-    homepageFaqs && homepageFaqs.length > 0
-      ? homepageFaqs.map((f) => ({ question: f.question, answer: f.answer }))
-      : FAQ_FALLBACKS.homepage;
+  const seo = resolveSeoText(home?.seo, PAGE_SEO.home);
 
   return (
     <>
-      <JsonLd data={buildHomepageStructuredData(faqs)} />
+      <PageJsonLd
+        path={PAGE_SEO.home.path}
+        title={seo.title}
+        description={seo.description}
+        faqs={faqs}
+      />
       <HeroSection />
       <TickerBar />
       <FeaturesSection />

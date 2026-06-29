@@ -6,15 +6,19 @@ import {
   P,
   UL,
 } from "@/components/LegalLayout";
+import PageJsonLd from "@/components/PageJsonLd";
+import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
 
-export const metadata: Metadata = {
-  title: "Risk Disclosure and Warnings Notice",
-  description:
-    "Finsai Trade Risk Disclosure and Warnings Notice describing the risks associated with trading CFDs, foreign exchange, cryptocurrencies and other financial instruments.",
-};
+export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.riskDisclosure);
 
 export default function RiskDisclosurePage() {
   return (
+    <>
+      <PageJsonLd
+        path={PAGE_SEO.riskDisclosure.path}
+        title={PAGE_SEO.riskDisclosure.title}
+        description={PAGE_SEO.riskDisclosure.description}
+      />
     <LegalLayout title="Risk Disclosure and Warnings Notice">
       <LegalSection title="Part A — Risks Associated With All Financial Instruments">
         <P>&nbsp;</P>
@@ -1020,5 +1024,6 @@ export default function RiskDisclosurePage() {
         </P>
       </LegalSection>
     </LegalLayout>
+    </>
   );
 }

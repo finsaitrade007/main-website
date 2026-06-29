@@ -7,15 +7,19 @@ import {
   P,
   UL,
 } from "@/components/LegalLayout";
+import PageJsonLd from "@/components/PageJsonLd";
+import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
 
-export const metadata: Metadata = {
-  title: "Complaints Management",
-  description:
-    "Finsai Trade Complaints Management Framework: how to submit a complaint, internal review, escalation timelines and reporting to authorities.",
-};
+export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.complaintsManagement);
 
 export default function ComplaintsManagementPage() {
   return (
+    <>
+      <PageJsonLd
+        path={PAGE_SEO.complaintsManagement.path}
+        title={PAGE_SEO.complaintsManagement.title}
+        description={PAGE_SEO.complaintsManagement.description}
+      />
     <LegalLayout title="Complaints Management">
       <LegalSection title="1. Introduction">
         <P>
@@ -442,5 +446,6 @@ export default function ComplaintsManagementPage() {
         />
       </LegalSection>
     </LegalLayout>
+    </>
   );
 }

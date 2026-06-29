@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
 import GlossaryHeroSection from "@/components/GlossaryHeroSection";
 import GlossarySection from "@/components/GlossarySection";
+import PageJsonLd from "@/components/PageJsonLd";
+import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
 
-export const metadata: Metadata = {
-  title: "Trading Glossary - A-Z Guide to Trading Terms | Finsai Trade",
-  description:
-    "Clear, jargon-free definitions for every trading term - forex, CFDs, indices, commodities, crypto, MT5, leverage, spreads, and more. Search or browse A-Z.",
-};
+export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.glossary);
 
-export default function GlossaryPage() {
+export default async function GlossaryPage() {
   return (
     <>
+      <PageJsonLd
+        path={PAGE_SEO.glossary.path}
+        title={PAGE_SEO.glossary.title}
+        description={PAGE_SEO.glossary.description}
+      />
       <GlossaryHeroSection />
       <GlossarySection />
     </>

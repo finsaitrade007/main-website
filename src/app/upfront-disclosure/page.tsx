@@ -7,13 +7,11 @@ import {
   OL,
   P,
 } from "@/components/LegalLayout";
+import PageJsonLd from "@/components/PageJsonLd";
+import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
 import { FINSAI_COMPANY_REG_NO, FINSAI_LICENSE_NO } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Upfront Disclosure",
-  description:
-    "Mauritius Upfront Disclosure Document for Finsai Trade Ltd, including legal status, key individuals, complaints handling and authorized financial products.",
-};
+export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.upfrontDisclosure);
 
 const TABLE_BORDER = "1px solid rgba(255,255,255,0.16)";
 
@@ -280,6 +278,12 @@ const PRODUCTS = [
 
 export default function UpfrontDisclosurePage() {
   return (
+    <>
+      <PageJsonLd
+        path={PAGE_SEO.upfrontDisclosure.path}
+        title={PAGE_SEO.upfrontDisclosure.title}
+        description={PAGE_SEO.upfrontDisclosure.description}
+      />
     <LegalLayout title="Mauritius Upfront Disclosure Document">
       <LegalSection>
         <InfoTable
@@ -528,5 +532,6 @@ export default function UpfrontDisclosurePage() {
         />
       </LegalSection>
     </LegalLayout>
+    </>
   );
 }

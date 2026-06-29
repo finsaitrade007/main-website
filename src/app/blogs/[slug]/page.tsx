@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import PageJsonLd from "@/components/PageJsonLd";
 import {
   BLOG_POSTS,
   formatBlogDate,
@@ -515,8 +516,20 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) notFound();
 
   const date = formatBlogDate(post.publishedAt);
+  const title = post.metaTitle ?? post.title;
+  const description = post.metaDescription ?? post.excerpt;
 
   return (
+    <>
+      <PageJsonLd
+        variant="article"
+        slug={post.slug}
+        title={title}
+        description={description}
+        image={post.image}
+        datePublished={post.publishedAt ?? "2026-01-01"}
+        author={post.author}
+      />
     <article
       style={{
         background: "#050208",
@@ -651,5 +664,6 @@ export default async function BlogPostPage({ params }: PageProps) {
         <RelatedPosts currentSlug={post.slug} />
       </div>
     </article>
+    </>
   );
 }

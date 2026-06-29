@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/NavbarWrapper";
 import Footer from "@/components/Footer";
+import { PAGE_SEO } from "@/lib/page-seo";
 import { SITE_URL } from "@/lib/site";
 
 const sora = Sora({
@@ -29,11 +30,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Finsai Trade — Trade Global Markets Without Limits",
+    default: PAGE_SEO.home.title,
     template: "%s | Finsai Trade",
   },
-  description:
-    "The powerful multi-asset trading platform for modern traders. Trade Forex, Crypto, Stocks, Indices, and Metals with tight spreads, up to 500x leverage, and 24/7 support.",
+  description: PAGE_SEO.home.description,
   applicationName: "Finsai Trade",
   authors: [{ name: "Finsai Trade", url: SITE_URL }],
   generator: "Next.js",

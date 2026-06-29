@@ -6,29 +6,43 @@ import IBStatsSection from "@/components/IBStatsSection";
 import IBHowToSection from "@/components/IBHowToSection";
 import FAQSection from "@/components/FAQSection";
 import IBCTASection from "@/components/IBCTASection";
-import { getPartnershipsPage, seoToMetadata } from "@/lib/strapi";
+import PageJsonLd from "@/components/PageJsonLd";
+import {
+  cmsPageMetadata,
+  PAGE_SEO,
+  resolveSeoText,
+} from "@/lib/page-seo";
+import { getPartnershipsPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getPartnershipsPage();
-  return seoToMetadata(data?.seo, {
-    title: "IB & Affiliate Partnerships | Finsai Trade",
-    description:
-      "Earn industry-leading commissions with the Finsai Trade IB program. Multi-tier rebates, real-time reports, and fast payouts for partners worldwide.",
-  });
+  return cmsPageMetadata(data?.seo, PAGE_SEO.partnerships);
 }
 
 export default async function PartnershipsPage() {
   const data = await getPartnershipsPage();
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.partnerships);
 
-  const calculatorTitle = data?.calculatorTitle ?? "Calculate Your Earning Potential";
+  const calculatorTitle =
+    data?.calculatorTitle ?? "Calculate Your Earning Potential";
   const calculatorDescription =
-    data?.calculatorDescription ?? "Adjust referrals and trade volume to estimate your monthly earnings instantly.";
+    data?.calculatorDescription ??
+    "Adjust referrals and trade volume to estimate your monthly earnings instantly.";
 
   return (
     <>
+      <PageJsonLd
+        path={PAGE_SEO.partnerships.path}
+        title={seo.title}
+        description={seo.description}
+        faqSection="partnerships"
+      />
       <IBHeroSection />
       <IBWhySection />
-      <IBCalculatorSection title={calculatorTitle} description={calculatorDescription} />
+      <IBCalculatorSection
+        title={calculatorTitle}
+        description={calculatorDescription}
+      />
       <IBStatsSection />
       <IBHowToSection />
       <FAQSection section="partnerships" />

@@ -1,21 +1,31 @@
 import type { Metadata } from "next";
-import IBHeroSection from "@/components/BlogsHeroSection";
+import BlogsHeroSection from "@/components/BlogsHeroSection";
 import BlogsNewsSection from "@/components/BlogsNewsSection";
-import { getBlogsPage, seoToMetadata } from "@/lib/strapi";
+import PageJsonLd from "@/components/PageJsonLd";
+import {
+  cmsPageMetadata,
+  PAGE_SEO,
+  resolveSeoText,
+} from "@/lib/page-seo";
+import { getBlogsPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getBlogsPage();
-  return seoToMetadata(data?.seo, {
-    title: "Trader Knowledge Hub — Blogs & Market News | Finsai Trade",
-    description:
-      "Sharp market insights, trading education, and analysis you can act on. Track macro events, technical setups, and platform updates from Finsai Trade.",
-  });
+  return cmsPageMetadata(data?.seo, PAGE_SEO.blogs);
 }
 
-export default function PartnershipsPage() {
+export default async function BlogsPage() {
+  const data = await getBlogsPage();
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.blogs);
+
   return (
     <>
-      <IBHeroSection />
+      <PageJsonLd
+        path={PAGE_SEO.blogs.path}
+        title={seo.title}
+        description={seo.description}
+      />
+      <BlogsHeroSection />
       <BlogsNewsSection />
     </>
   );

@@ -7,13 +7,11 @@ import {
   P,
   UL,
 } from "@/components/LegalLayout";
+import PageJsonLd from "@/components/PageJsonLd";
+import { cmsPageMetadata, PAGE_SEO } from "@/lib/page-seo";
 import { FINSAI_COMPANY_REG_NO, FINSAI_LICENSE_NO } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Client Agreement",
-  description:
-    "Finsai Trade Client Agreement: the binding terms and conditions governing the use of our trading platform, services and the relationship between the Company and the Client.",
-};
+export const metadata: Metadata = cmsPageMetadata(undefined, PAGE_SEO.clientAgreement);
 
 function Definition({ term, children }: { term: string; children: ReactNode }) {
   return (
@@ -25,6 +23,12 @@ function Definition({ term, children }: { term: string; children: ReactNode }) {
 
 export default function ClientAgreementPage() {
   return (
+    <>
+      <PageJsonLd
+        path={PAGE_SEO.clientAgreement.path}
+        title={PAGE_SEO.clientAgreement.title}
+        description={PAGE_SEO.clientAgreement.description}
+      />
     <LegalLayout title="Client Agreement">
       <LegalSection>
         <P>
@@ -3149,5 +3153,6 @@ export default function ClientAgreementPage() {
         </LegalSubsection>
       </LegalSection>
     </LegalLayout>
+    </>
   );
 }
