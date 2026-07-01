@@ -9,6 +9,7 @@ import PageJsonLd from "@/components/PageJsonLd";
 import {
   cmsPageMetadata,
   PAGE_SEO,
+  resolvePageFaqs,
   resolveSeoText,
 } from "@/lib/page-seo";
 import { getPaymentsPage } from "@/lib/strapi";
@@ -19,7 +20,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PaymentsPage() {
-  const data = await getPaymentsPage();
+  const [data, faqs] = await Promise.all([
+    getPaymentsPage(),
+    resolvePageFaqs("payments"),
+  ]);
   const seo = resolveSeoText(data?.seo, PAGE_SEO.payments);
 
   return (
@@ -28,14 +32,14 @@ export default async function PaymentsPage() {
         path={PAGE_SEO.payments.path}
         title={seo.title}
         description={seo.description}
-        faqSection="payments"
+        faqs={faqs}
       />
       <PaymentsHeroSection />
       <PaymentsTrustBar />
       <PaymentsMethodsSection />
       <PaymentsFlowSection />
       <PaymentsCTASection />
-      <FAQSection section="payments" />
+      <FAQSection section="payments" faqs={faqs} />
     </>
   );
 }

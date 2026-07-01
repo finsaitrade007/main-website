@@ -23,6 +23,7 @@ const BENEFIT_ICONS = [
 type Props = {
   title: string;
   description: string;
+  formTitle: string;
   termsText: string;
   submitLabel: string;
   benefits: StrapiPoint[];
@@ -31,6 +32,7 @@ type Props = {
 export default function CareersWorkspaceFormClient({
   title,
   description,
+  formTitle,
   termsText,
   submitLabel,
   benefits,
@@ -213,7 +215,11 @@ export default function CareersWorkspaceFormClient({
           />
         </div>
 
-        <ApplicationForm termsText={termsText} submitLabel={submitLabel} />
+        <ApplicationForm
+          formTitle={formTitle}
+          termsText={termsText}
+          submitLabel={submitLabel}
+        />
       </div>
     </section>
   );
@@ -276,9 +282,11 @@ const PHONE_INPUT_THEME = {
 } as CSSProperties;
 
 function ApplicationForm({
+  formTitle,
   termsText,
   submitLabel,
 }: {
+  formTitle: string;
   termsText: string;
   submitLabel: string;
 }) {
@@ -382,6 +390,19 @@ function ApplicationForm({
         gap: "20px",
       }}
     >
+      <h3
+        style={{
+          margin: 0,
+          fontFamily: "var(--font-sora, Sora)",
+          fontWeight: 600,
+          fontSize: "clamp(20px, 2vw, 28px)",
+          lineHeight: "1.3",
+          color: "#FFFFFF",
+        }}
+      >
+        {formTitle}
+      </h3>
+
       <div>
         <label htmlFor="fullName" style={labelStyle}>
           Full Name<span style={{ color: "#FF6B6B" }}>*</span>

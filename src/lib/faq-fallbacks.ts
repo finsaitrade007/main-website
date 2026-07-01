@@ -1,10 +1,19 @@
 export type FaqSection =
   | "homepage"
   | "accounts"
-  | "services"
+  | "platform"
   | "payments"
   | "partnerships"
   | "social-trading";
+
+export const FAQ_SECTIONS: FaqSection[] = [
+  "homepage",
+  "accounts",
+  "platform",
+  "payments",
+  "partnerships",
+  "social-trading",
+];
 
 export type FaqItem = { question: string; answer: string };
 
@@ -58,7 +67,7 @@ export const FAQ_FALLBACKS: Record<FaqSection, FaqItem[]> = {
         "Smart ECN is designed for advanced traders, offering Raw spreads, enhanced execution conditions, VPS access, and support for advanced trading tools.",
     },
   ],
-  services: [
+  platform: [
     {
       question: "Which trading platform is best for beginners?",
       answer:

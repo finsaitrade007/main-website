@@ -79,7 +79,12 @@ export function websiteNode() {
   };
 }
 
-function webPageNode(path: string, title: string, description: string) {
+function webPageNode(
+  path: string,
+  title: string,
+  description: string,
+  faqs?: FaqItem[],
+) {
   return {
     "@type": "WebPage",
     "@id": webpageId(path),
@@ -89,6 +94,7 @@ function webPageNode(path: string, title: string, description: string) {
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": ORGANIZATION_ID },
     inLanguage: "en",
+    ...(faqs?.length ? { hasPart: { "@id": faqId(path) } } : {}),
   };
 }
 
@@ -97,6 +103,7 @@ function faqPageNode(path: string, faqs: FaqItem[]) {
   return {
     "@type": "FAQPage",
     "@id": faqId(path),
+    isPartOf: { "@id": webpageId(path) },
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
@@ -148,7 +155,7 @@ export function buildPageStructuredData(args: {
   const graph = [
     organizationNode(),
     websiteNode(),
-    webPageNode(args.path, args.title, args.description),
+    webPageNode(args.path, args.title, args.description, args.faqs),
     ...(args.faqs?.length ? [faqPageNode(args.path, args.faqs)!] : []),
   ];
 
@@ -181,7 +188,7 @@ export function buildRegulationsStructuredData(
       organizationNode(),
       websiteNode(),
       financialServiceNode(),
-      webPageNode(path, seo.title, seo.description),
+      webPageNode(path, seo.title, seo.description, faqs),
       faqPageNode(path, faqs)!,
     ],
   };

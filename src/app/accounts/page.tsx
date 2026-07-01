@@ -8,6 +8,7 @@ import PageJsonLd from "@/components/PageJsonLd";
 import {
   cmsPageMetadata,
   PAGE_SEO,
+  resolvePageFaqs,
   resolveSeoText,
 } from "@/lib/page-seo";
 import { getAccountsPage } from "@/lib/strapi";
@@ -18,7 +19,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AccountsPage() {
-  const data = await getAccountsPage();
+  const [data, faqs] = await Promise.all([
+    getAccountsPage(),
+    resolvePageFaqs("accounts"),
+  ]);
   const seo = resolveSeoText(data?.seo, PAGE_SEO.accounts);
 
   return (
@@ -27,13 +31,13 @@ export default async function AccountsPage() {
         path={PAGE_SEO.accounts.path}
         title={seo.title}
         description={seo.description}
-        faqSection="accounts"
+        faqs={faqs}
       />
       <AccountsHeroSection />
       <AccountsCompareTable />
       <WhyTradeFinsai />
       <AccountsOnboardingSteps />
-      <FAQSection section="accounts" />
+      <FAQSection section="accounts" faqs={faqs} />
     </>
   );
 }

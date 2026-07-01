@@ -1,5 +1,10 @@
 import Link from "@/components/SmartLink";
 import Image from "next/image";
+import {
+  getPlatformPage,
+  type StrapiPlatformBlock,
+  type StrapiPlatformPage,
+} from "@/lib/strapi";
 
 const BTN_GRADIENT =
   "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)";
@@ -19,7 +24,17 @@ type Platform = {
   reverse?: boolean;
 };
 
-const platforms: Platform[] = [
+const FALLBACK_HEADER: Pick<
+  StrapiPlatformPage,
+  "platformsBadge" | "platformsTitle" | "platformsDescription"
+> = {
+  platformsBadge: "Choose Your Platform",
+  platformsTitle: "Three Premium Platforms.\nUnlimited Trading Potential.",
+  platformsDescription:
+    "From advanced algorithmic trading to social copy trading, discover the ultimate platform for your trading style.",
+};
+
+const FALLBACK_PLATFORMS: Platform[] = [
   {
     id: "mt5",
     title: "MT5",
@@ -81,6 +96,24 @@ const platforms: Platform[] = [
     reverse: false,
   },
 ];
+
+function mapCmsPlatform(block: StrapiPlatformBlock): Platform {
+  return {
+    id: block.slug,
+    title: block.title,
+    subtitle: block.subtitle,
+    description: block.description,
+    features: block.features?.map((f) => f.text) ?? [],
+    image: block.imagePath,
+    imageAlt: block.imageAlt,
+    cta:
+      block.ctaLabel && block.ctaHref
+        ? { label: block.ctaLabel, href: block.ctaHref }
+        : undefined,
+    showAppStores: block.showAppStores ?? false,
+    reverse: block.reverse ?? false,
+  };
+}
 
 function PlayStoreBadge() {
   return (
@@ -284,7 +317,17 @@ function PlatformBlock({ platform }: { platform: Platform }) {
   );
 }
 
-export default function ServicesPlatformsSection() {
+export default async function ServicesPlatformsSection() {
+  const data = await getPlatformPage();
+  const platforms =
+    data?.platforms?.length
+      ? data.platforms.map(mapCmsPlatform)
+      : FALLBACK_PLATFORMS;
+
+  const titleLines = (data?.platformsTitle ?? FALLBACK_HEADER.platformsTitle)
+    .split("\n")
+    .filter(Boolean);
+
   return (
     <section
       className="page-section"
@@ -334,7 +377,7 @@ export default function ServicesPlatformsSection() {
             }}
           >
             <span className="badge-text" style={{ background: TITLE_GRADIENT, WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-              Choose Your Platform
+              {data?.platformsBadge ?? FALLBACK_HEADER.platformsBadge}
             </span>
           </div>
 
@@ -349,9 +392,12 @@ export default function ServicesPlatformsSection() {
               margin: 0,
             }}
           >
-            Three Premium Platforms.
-            <br />
-            Unlimited Trading Potential.
+            {titleLines.map((line, i) => (
+              <span key={line}>
+                {i > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </h2>
 
           <p
@@ -366,8 +412,7 @@ export default function ServicesPlatformsSection() {
               maxWidth: "900px",
             }}
           >
-            From advanced algorithmic trading to social copy trading, discover
-            the ultimate platform for your trading style.
+            {data?.platformsDescription ?? FALLBACK_HEADER.platformsDescription}
           </p>
         </div>
 

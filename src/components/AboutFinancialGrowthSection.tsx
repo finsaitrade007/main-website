@@ -27,7 +27,7 @@ const FALLBACK: Fallback = {
   ],
 };
 
-const FEATURES: { title: string; description: string }[] = [
+const FALLBACK_FEATURES: { title: string; description: string }[] = [
   {
     title: "Transparent Trading",
     description: "Clear pricing and straightforward trading conditions.",
@@ -56,6 +56,13 @@ export default async function AboutFinancialGrowthSection() {
     data?.growthStats && data.growthStats.length > 0
       ? data.growthStats
       : FALLBACK.growthStats;
+  const features =
+    data?.growthFeatures && data.growthFeatures.length > 0
+      ? data.growthFeatures.map((f) => ({
+          title: f.title,
+          description: f.description ?? "",
+        }))
+      : FALLBACK_FEATURES;
 
   return (
     <section
@@ -113,7 +120,7 @@ export default async function AboutFinancialGrowthSection() {
                   marginTop: "8px",
                 }}
               >
-                {FEATURES.map((f) => (
+                {features.map((f) => (
                   <div
                     key={f.title}
                     style={{
@@ -241,7 +248,7 @@ export default async function AboutFinancialGrowthSection() {
           </div>
 
           <div className="about-growth-features-mobile">
-            {FEATURES.map((f) => (
+            {features.map((f) => (
               <div key={f.title} className="about-growth-feature-item">
                 <h3 className="about-growth-feature-title">{f.title}</h3>
                 <p className="about-growth-feature-desc">{f.description}</p>

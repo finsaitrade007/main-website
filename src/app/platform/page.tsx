@@ -7,6 +7,7 @@ import PageJsonLd from "@/components/PageJsonLd";
 import {
   cmsPageMetadata,
   PAGE_SEO,
+  resolvePageFaqs,
   resolveSeoText,
 } from "@/lib/page-seo";
 import { getPlatformPage } from "@/lib/strapi";
@@ -17,7 +18,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PlatformPage() {
-  const data = await getPlatformPage();
+  const [data, faqs] = await Promise.all([
+    getPlatformPage(),
+    resolvePageFaqs("platform"),
+  ]);
   const seo = resolveSeoText(data?.seo, PAGE_SEO.platform);
 
   return (
@@ -26,12 +30,12 @@ export default async function PlatformPage() {
         path={PAGE_SEO.platform.path}
         title={seo.title}
         description={seo.description}
-        faqSection="services"
+        faqs={faqs}
       />
       <ServicesHeroSection />
       <ServicesPlatformsSection />
       <StepsSection />
-      <FAQSection section="services" />
+      <FAQSection section="platform" faqs={faqs} />
     </>
   );
 }

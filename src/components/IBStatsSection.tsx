@@ -27,6 +27,7 @@ function splitStatLabel(label: string): { prefix: string; label: string } {
 
 export default async function IBStatsSection() {
   const data = await getPartnershipsPage();
+  const badge = data?.statsBadge ?? "Built for Ambitious IBs";
   const title = data?.statsTitle ?? "Join The Fastest Growing Partner Program Now";
   const ctaLabel = data?.statsCtaLabel ?? "Be Our Partner →";
   const ctaHref = data?.statsCtaHref ?? "https://fx.finsaitrade.com/auth/register";
@@ -166,7 +167,7 @@ export default async function IBStatsSection() {
               WebkitTextFillColor: "transparent",
               color: "transparent",
             }}>
-              Built for Ambitious IBs
+              {badge}
             </span>
           </div>
 
@@ -322,7 +323,7 @@ export default async function IBStatsSection() {
           border: "1px solid rgba(255,255,255,0.15)",
           borderRadius: "60px",
         }}>
-          <span className="badge-text">Built for Ambitious IBs</span>
+          <span className="badge-text">{badge}</span>
         </span>
       </div>
 

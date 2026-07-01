@@ -1,5 +1,6 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
+import { FAQ_SECTIONS } from "@/lib/faq-fallbacks";
 
 const CMS_TAGS = [
   "homepage",
@@ -136,6 +137,11 @@ export async function POST(request: NextRequest) {
   }
 
   if (tag) revalidateTag(tag, "max");
+  if (tag === "faqs" || model === "api::faq.faq") {
+    for (const section of FAQ_SECTIONS) {
+      revalidateTag(`faqs-${section}`, "max");
+    }
+  }
   for (const path of paths) revalidatePath(path);
 
   return NextResponse.json({

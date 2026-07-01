@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import type { FaqItem, FaqSection } from "@/lib/faq-fallbacks";
 import { FAQ_FALLBACKS } from "@/lib/faq-fallbacks";
-import { getFaqsBySection, seoToMetadata, type StrapiLegalPage, type StrapiSeo } from "@/lib/strapi";
+import {
+  seoToMetadata,
+  type StrapiLegalPage,
+  type StrapiSeo,
+} from "@/lib/strapi";
 import { FINSAI_LICENSE_NO, SITE_URL } from "@/lib/site";
 
 export type PageSeoFallback = {
@@ -52,7 +56,7 @@ export const PAGE_SEO = {
     title: "Trading Platforms | Finsai Trade — MT5, Social & Mobile",
     description:
       "Three trading environments built for every level. Trade with MT5, copy top performers via social trading, or stay connected with our upcoming mobile app.",
-    faqSection: "services" as const,
+    faqSection: "platform" as const,
   },
   partnerships: {
     path: "/partnerships",
@@ -174,6 +178,7 @@ export function resolveLegalPageContext(
 }
 
 export async function resolvePageFaqs(section: FaqSection): Promise<FaqItem[]> {
+  const { getFaqsBySection } = await import("@/lib/strapi");
   const fetched = await getFaqsBySection(section);
   if (fetched && fetched.length > 0) {
     return fetched.map((f) => ({ question: f.question, answer: f.answer }));

@@ -52,7 +52,7 @@ export default async function HomePage() {
       <StepsSection />
       <AwardsSection />
       <TestimonialsSection />
-      <FAQSection section="homepage" />
+      <FAQSection section="homepage" faqs={faqs} />
       <CTASection />
     </>
   );

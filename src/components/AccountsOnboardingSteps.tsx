@@ -7,7 +7,7 @@ type IconKey = "signup" | "verify" | "fund" | "trade";
 const STEP_X = [45, 383.5, 724.5, 1062.5] as const;
 const CIRCLE_SIZE = 112;
 
-const steps: {
+const FALLBACK_STEPS: {
   iconKey: IconKey;
   title: string;
   description: string;
@@ -33,6 +33,12 @@ const steps: {
     description: "Access markets instantly on MT5.",
   },
 ];
+
+function toIconKey(key: string | undefined, index: number): IconKey {
+  const valid: IconKey[] = ["signup", "verify", "fund", "trade"];
+  if (key && valid.includes(key as IconKey)) return key as IconKey;
+  return valid[index] ?? "signup";
+}
 
 function StepIcon({ iconKey, idSuffix = "" }: { iconKey: IconKey; idSuffix?: string }) {
   const gradId = `step-grad${idSuffix}`;
@@ -71,8 +77,17 @@ function StepIcon({ iconKey, idSuffix = "" }: { iconKey: IconKey; idSuffix?: str
 export default async function AccountsOnboardingSteps() {
   const data = await getAccountsPage();
   const title = data?.onboardingTitle ?? "Open Your Trading Account";
-  const ctaHref = "https://fx.finsaitrade.com/auth/register";
-  const ctaLabel = "Open Live Account";
+  const ctaHref =
+    data?.onboardingCtaHref ?? "https://fx.finsaitrade.com/auth/register";
+  const ctaLabel = data?.onboardingCtaLabel ?? "Open Live Account";
+  const steps =
+    data?.onboardingSteps?.length
+      ? data.onboardingSteps.map((step, i) => ({
+          iconKey: toIconKey(step.iconKey ?? undefined, i),
+          title: step.title,
+          description: step.description ?? "",
+        }))
+      : FALLBACK_STEPS;
 
   return (
     <section

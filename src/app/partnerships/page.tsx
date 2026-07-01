@@ -10,6 +10,7 @@ import PageJsonLd from "@/components/PageJsonLd";
 import {
   cmsPageMetadata,
   PAGE_SEO,
+  resolvePageFaqs,
   resolveSeoText,
 } from "@/lib/page-seo";
 import { getPartnershipsPage } from "@/lib/strapi";
@@ -20,7 +21,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PartnershipsPage() {
-  const data = await getPartnershipsPage();
+  const [data, faqs] = await Promise.all([
+    getPartnershipsPage(),
+    resolvePageFaqs("partnerships"),
+  ]);
   const seo = resolveSeoText(data?.seo, PAGE_SEO.partnerships);
 
   const calculatorTitle =
@@ -35,7 +39,7 @@ export default async function PartnershipsPage() {
         path={PAGE_SEO.partnerships.path}
         title={seo.title}
         description={seo.description}
-        faqSection="partnerships"
+        faqs={faqs}
       />
       <IBHeroSection />
       <IBWhySection />
@@ -45,7 +49,7 @@ export default async function PartnershipsPage() {
       />
       <IBStatsSection />
       <IBHowToSection />
-      <FAQSection section="partnerships" />
+      <FAQSection section="partnerships" faqs={faqs} />
       <IBCTASection />
     </>
   );

@@ -9,8 +9,6 @@ const FALLBACK: Pick<
   | "recognitionDescription"
   | "recognitionStatPrimaryValue"
   | "recognitionStatPrimaryLabel"
-  | "recognitionStatSecondaryValue"
-  | "recognitionStatSecondaryLabel"
 > = {
   recognitionTitlePrefix: "Recognized for Elite Trading ",
   recognitionTitleAccent: "Excellence",
@@ -18,8 +16,6 @@ const FALLBACK: Pick<
     " Trusted by a growing community of traders for reliable execution, modern trading tools, and scalable partnership opportunities. ",
   recognitionStatPrimaryValue: "50k+",
   recognitionStatPrimaryLabel: "Registered Users",
-  recognitionStatSecondaryValue: "3M+",
-  recognitionStatSecondaryLabel: "Monthly Worldwide",
 };
 
 type RecognitionAward = {

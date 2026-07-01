@@ -1,4 +1,5 @@
 import Link from "@/components/SmartLink";
+import { getPartnershipsPage, type StrapiPartnershipsPage } from "@/lib/strapi";
 
 const BTN_TYPOGRAPHY = {
   fontFamily: "var(--font-inter, Inter)",
@@ -12,7 +13,19 @@ const BTN_TYPOGRAPHY = {
   alignItems: "center",
 } as const;
 
-const FALLBACK = {
+const FALLBACK: Pick<
+  StrapiPartnershipsPage,
+  | "ctaBadge"
+  | "ctaTitle"
+  | "ctaDescription"
+  | "ctaFooterText"
+  | "ctaButton1Label"
+  | "ctaButton1Href"
+  | "ctaButton2Label"
+  | "ctaButton2Href"
+  | "ctaButton3Label"
+  | "ctaButton3Href"
+> = {
   ctaBadge: "Grow As An IB",
   ctaTitle: "Start Earning as an Introducing Broker",
   ctaDescription:
@@ -27,8 +40,9 @@ const FALLBACK = {
   ctaButton3Href: "https://fx.finsaitrade.com/auth/register",
 };
 
-export default function IBCTASection() {
-  const data = FALLBACK;
+export default async function IBCTASection() {
+  const cms = await getPartnershipsPage();
+  const data = { ...FALLBACK, ...cms };
 
   const primary = { label: data.ctaButton1Label, href: data.ctaButton1Href };
   const secondaryButtons = [

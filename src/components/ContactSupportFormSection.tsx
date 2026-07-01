@@ -174,11 +174,13 @@ export default function ContactSupportFormSection({
   supportDescription = "Join a workplace focused on growth, flexibility, ownership, and meaningful impact across global fintech and trading markets.",
   benefits = DEFAULT_BENEFITS,
   submitLabel = "MESSAGE US",
+  termsText = "I have read and accepted the Terms & Conditions specified in the Privacy Policy and do here by consent to the collecting, processing and/or disclosing of the personal data provided by me to fulfil the above-said purposes.",
 }: {
   supportTitle?: string;
   supportDescription?: string;
   benefits?: Benefit[];
   submitLabel?: string;
+  termsText?: string;
 }) {
   return (
     <section
@@ -211,7 +213,7 @@ export default function ContactSupportFormSection({
           supportDescription={supportDescription}
           benefits={benefits}
         />
-        <ContactForm submitLabel={submitLabel} />
+        <ContactForm submitLabel={submitLabel} termsText={termsText} />
       </div>
     </section>
   );
@@ -395,7 +397,13 @@ function LeftPanel({
   );
 }
 
-function ContactForm({ submitLabel }: { submitLabel: string }) {
+function ContactForm({
+  submitLabel,
+  termsText,
+}: {
+  submitLabel: string;
+  termsText: string;
+}) {
   const [accepted, setAccepted] = useState(false);
   const [phone, setPhone] = useState("");
   const [dialCode, setDialCode] = useState("91");
@@ -591,25 +599,7 @@ function ContactForm({ submitLabel }: { submitLabel: string }) {
             flexShrink: 0,
           }}
         />
-        <span>
-          I have read and accepted the{" "}
-          <a
-            href="/terms-conditions"
-            style={{ color: "#7DB9D6", textDecoration: "none" }}
-          >
-            Terms &amp; Conditions
-          </a>{" "}
-          specified in the{" "}
-          <a
-            href="/privacy-policy"
-            style={{ color: "#7DB9D6", textDecoration: "none" }}
-          >
-            Privacy Policy
-          </a>{" "}
-          and do here by consent to the collecting, processing and/or
-          disclosing of the personal data provided by me to fulfil the
-          above-said purposes.
-        </span>
+        <span>{termsText}</span>
       </label>
 
       <button

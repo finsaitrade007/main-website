@@ -7,7 +7,7 @@ import SocialTradingJourneySection from "@/components/SocialTradingJourneySectio
 import FAQSection from "@/components/FAQSection";
 import SocialTradingCTASection from "@/components/SocialTradingCTASection";
 import PageJsonLd from "@/components/PageJsonLd";
-import { cmsPageMetadata, PAGE_SEO, resolveSeoText } from "@/lib/page-seo";
+import { cmsPageMetadata, PAGE_SEO, resolvePageFaqs, resolveSeoText } from "@/lib/page-seo";
 import { getSocialTradingPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -16,7 +16,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function SocialTradingPage() {
-  const data = await getSocialTradingPage();
+  const [data, faqs] = await Promise.all([
+    getSocialTradingPage(),
+    resolvePageFaqs("social-trading"),
+  ]);
   const seo = resolveSeoText(data?.seo, PAGE_SEO.socialTrading);
 
   return (
@@ -25,14 +28,14 @@ export default async function SocialTradingPage() {
         path={PAGE_SEO.socialTrading.path}
         title={seo.title}
         description={seo.description}
-        faqSection="social-trading"
+        faqs={faqs}
       />
       <SocialTradingHeroSection />
       <SocialTradingFeaturesSection />
       <SocialTradingHowItWorksSection />
       <SocialTradingLeaderboardSection />
       <SocialTradingJourneySection />
-      <FAQSection section="social-trading" />
+      <FAQSection section="social-trading" faqs={faqs} />
       <SocialTradingCTASection />
     </>
   );

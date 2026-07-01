@@ -1,16 +1,18 @@
 import FAQAccordion from "./FAQAccordion";
+import type { FaqItem, FaqSection } from "@/lib/faq-fallbacks";
+import { FAQ_FALLBACKS } from "@/lib/faq-fallbacks";
 import {
   getFaqsBySection,
-  type FaqSection,
   type StrapiFaq,
 } from "@/lib/strapi";
-import { FAQ_FALLBACKS } from "@/lib/faq-fallbacks";
 
-export type FAQItem = { question: string; answer: string };
+export type FAQItem = FaqItem;
 
 type FAQSectionProps = {
   /** Which page section's FAQs to load from Strapi. */
   section: FaqSection;
+  /** Pre-resolved FAQs (e.g. shared with PageJsonLd). Skips CMS fetch when set. */
+  faqs?: FaqItem[];
 };
 
 function toStrapiShape(
@@ -27,12 +29,16 @@ function toStrapiShape(
   }));
 }
 
-export default async function FAQSection({ section }: FAQSectionProps) {
-  const fetched = await getFaqsBySection(section);
+export default async function FAQSection({ section, faqs }: FAQSectionProps) {
   const resolved =
-    fetched && fetched.length > 0
-      ? fetched
-      : toStrapiShape(section, FAQ_FALLBACKS[section]);
+    faqs && faqs.length > 0
+      ? toStrapiShape(section, faqs)
+      : await (async () => {
+          const fetched = await getFaqsBySection(section);
+          return fetched && fetched.length > 0
+            ? fetched
+            : toStrapiShape(section, FAQ_FALLBACKS[section]);
+        })();
 
   return (
     <section

@@ -44,6 +44,7 @@ export default async function ContactUsPage() {
         supportDescription={data?.supportDescription}
         benefits={benefits}
         submitLabel={data?.formSubmitLabel}
+        termsText={data?.formTermsText}
       />
     </>
   );
