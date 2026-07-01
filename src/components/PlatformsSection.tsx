@@ -21,6 +21,7 @@ function platformMockupImage(p: StrapiPlatform): string | undefined {
 
 function platformIconImage(p: StrapiPlatform): string | undefined {
   if (p.localIconImage) return p.localIconImage;
+  if (/mt\s?5/i.test(p.title)) return "/platforms/MT5.png";
   if (p.title.toLowerCase().includes("social")) return "/platforms/change.png";
   if (p.title.toLowerCase().includes("app")) return "/platforms/mobile-application.png";
   return undefined;
@@ -87,119 +88,128 @@ function WidePlatformCard({ p }: { p: StrapiPlatform }) {
   const icon = platformIconImage(p);
 
   return (
-    <Link
-      href={platformHref(p.title)}
-      aria-label={`Learn more about ${p.title}`}
-      className="platforms-wide-card"
-      style={{
-        position: "relative",
-        display: "block",
-        textDecoration: "none",
-        color: "inherit",
-        height: WIDE_H,
-        padding: "1px",
-        borderRadius: RADIUS,
-        background: CARD_BORDER_GRADIENT,
-        overflow: "visible",
-        boxSizing: "border-box",
-      }}
-    >
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "100%",
-          borderRadius: INNER_RADIUS,
-          background: CARD_FILL_BG,
-          padding: "24px 28px",
-          boxSizing: "border-box",
-          overflow: "visible",
-        }}
-      >
-      <p
-        className="platform-card-text platforms-wide-text"
-        style={{
-          position: "absolute",
-          top: "20px",
-          left: "21px",
-          overflow: "hidden",
-        }}
-      >
-        {p.description}
-      </p>
-
-      {icon && (
-        <div style={{ position: "absolute", top: "20px", right: "20px", zIndex: 11 }}>
-          <Image
-            src={icon}
-            alt={p.title}
-            width={52}
-            height={52}
-            style={{ borderRadius: "12px" }}
-          />
-        </div>
-      )}
-
-      <div
-        className="platforms-wide-mt5-logo"
-        style={{
-          position: "absolute",
-          top: "140px",
-          left: "165px",
-          zIndex: 11,
-          pointerEvents: "none",
-        }}
-      >
-        <Image
-          src="/platforms/MT5.png"
-          alt="MT5"
-          width={60}
-          height={60}
-          style={{ display: "block", objectFit: "contain" }}
-        />
-      </div>
-
-      {mockup && (
-        <div
-          className="platforms-wide-mockup"
+    <div className="platforms-wide-card-wrap">
+      <div className="platforms-wide-card-desktop">
+        <Link
+          href={platformHref(p.title)}
+          aria-label={`Learn more about ${p.title}`}
+          className="platforms-wide-card"
           style={{
-            position: "absolute",
-            bottom: 0,
-            right: "20px",
-            zIndex: 10,
-            pointerEvents: "none",
+            position: "relative",
+            display: "block",
+            textDecoration: "none",
+            color: "inherit",
+            height: WIDE_H,
+            padding: "1px",
+            borderRadius: RADIUS,
+            background: CARD_BORDER_GRADIENT,
+            overflow: "visible",
+            boxSizing: "border-box",
           }}
         >
-          <Image
-            src={mockup}
-            alt={p.title}
-            width={233}
-            height={281}
-            style={{ objectFit: "contain", display: "block" }}
-          />
-        </div>
-      )}
+          <div
+            className="platforms-wide-card-inner"
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "100%",
+              borderRadius: INNER_RADIUS,
+              background: CARD_FILL_BG,
+              padding: "24px 28px",
+              boxSizing: "border-box",
+              overflow: "visible",
+            }}
+          >
+            <p
+              className="platform-card-text platforms-wide-text"
+              style={{
+                position: "absolute",
+                top: "20px",
+                left: "21px",
+                overflow: "hidden",
+              }}
+            >
+              {p.description}
+            </p>
 
-      <h3
-        className="platforms-wide-title"
-        style={{
-          position: "absolute",
-          top: "148px",
-          left: "21.32px",
-          height: "44px",
-          fontFamily: "var(--font-sora, Sora)",
-          fontWeight: 400,
-          fontSize: "62px",
-          lineHeight: "43.49px",
-          letterSpacing: 0,
-          color: "#FFFFFF",
-          margin: 0,
-        }}
-      >
-        {p.title}
-      </h3>
+            {icon && !/mt\s?5/i.test(p.title) && (
+              <div style={{ position: "absolute", top: "20px", right: "20px", zIndex: 11 }}>
+                <Image
+                  src={icon}
+                  alt={p.title}
+                  width={52}
+                  height={52}
+                  style={{ borderRadius: "12px" }}
+                />
+              </div>
+            )}
+
+            <div
+              className="platforms-wide-mt5-logo"
+              style={{
+                position: "absolute",
+                top: "140px",
+                left: "165px",
+                zIndex: 11,
+                pointerEvents: "none",
+              }}
+            >
+              <Image
+                src="/platforms/MT5.png"
+                alt="MT5"
+                width={60}
+                height={60}
+                style={{ display: "block", objectFit: "contain" }}
+              />
+            </div>
+
+            {mockup && (
+              <div
+                className="platforms-wide-mockup"
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  right: "20px",
+                  zIndex: 10,
+                  pointerEvents: "none",
+                }}
+              >
+                <Image
+                  src={mockup}
+                  alt={p.title}
+                  width={233}
+                  height={281}
+                  style={{ objectFit: "contain", display: "block" }}
+                />
+              </div>
+            )}
+
+            <h3
+              className="platforms-wide-title"
+              style={{
+                position: "absolute",
+                top: "148px",
+                left: "21.32px",
+                height: "44px",
+                fontFamily: "var(--font-sora, Sora)",
+                fontWeight: 400,
+                fontSize: "62px",
+                lineHeight: "43.49px",
+                letterSpacing: 0,
+                color: "#FFFFFF",
+                margin: 0,
+              }}
+            >
+              {p.title}
+            </h3>
+          </div>
+        </Link>
       </div>
-    </Link>
+
+      <div className="platforms-wide-card-mobile">
+        <PlatformCard p={p} />
+      </div>
+    </div>
   );
 }
 
