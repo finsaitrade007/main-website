@@ -1,9 +1,9 @@
 import Link from "@/components/SmartLink";
 import Image from "next/image";
-import { getServicesPage, type StrapiServicesPage } from "@/lib/strapi";
+import { getPlatformPage, type StrapiPlatformPage } from "@/lib/strapi";
 
 const FALLBACK: Pick<
-  StrapiServicesPage,
+  StrapiPlatformPage,
   | "heroBadge"
   | "heroTitle"
   | "heroDescription"
@@ -19,7 +19,7 @@ const FALLBACK: Pick<
 };
 
 export default async function ServicesHeroSection() {
-  const data = (await getServicesPage()) ?? FALLBACK;
+  const data = (await getPlatformPage()) ?? FALLBACK;
   return (
     <section style={{
       position: "relative",
