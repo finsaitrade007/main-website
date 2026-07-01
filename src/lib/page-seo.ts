@@ -47,9 +47,9 @@ export const PAGE_SEO = {
       "Fund your Finsai Trade account securely with cards, UPI, e-wallets, crypto, and bank transfer. Industry-leading PCI DSS encryption.",
     faqSection: "payments" as const,
   },
-  services: {
-    path: "/services",
-    title: "Trading Services | Finsai Trade — MT5, Social & Mobile",
+  platform: {
+    path: "/platform",
+    title: "Trading Platforms | Finsai Trade — MT5, Social & Mobile",
     description:
       "Three trading environments built for every level. Trade with MT5, copy top performers via social trading, or stay connected with our upcoming mobile app.",
     faqSection: "services" as const,

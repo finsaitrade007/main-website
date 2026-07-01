@@ -501,7 +501,7 @@ export type StrapiPaymentsPage = {
   seo?: StrapiSeo;
 };
 
-export type StrapiServicesPage = {
+export type StrapiPlatformPage = {
   id: number;
   documentId: string;
 
@@ -743,10 +743,10 @@ export function getPaymentsPage() {
   );
 }
 
-export function getServicesPage() {
-  return strapiFetch<StrapiServicesPage>(
-    "services-page?populate[features]=*&populate[suiteItems]=*&populate[seo][populate]=*",
-    { tags: ["services-page"] },
+export function getPlatformPage() {
+  return strapiFetch<StrapiPlatformPage>(
+    "platform-page?populate[features]=*&populate[suiteItems]=*&populate[seo][populate]=*",
+    { tags: ["platform-page"] },
   );
 }
 

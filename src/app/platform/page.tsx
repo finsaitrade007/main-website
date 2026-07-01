@@ -9,15 +9,15 @@ import {
   PAGE_SEO,
   resolveSeoText,
 } from "@/lib/page-seo";
-import { getServicesPage } from "@/lib/strapi";
+import { getPlatformPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const data = await getServicesPage();
+  const data = await getPlatformPage();
   return cmsPageMetadata(data?.seo, PAGE_SEO.platform);
 }
 
 export default async function PlatformPage() {
-  const data = await getServicesPage();
+  const data = await getPlatformPage();
   const seo = resolveSeoText(data?.seo, PAGE_SEO.platform);
 
   return (
