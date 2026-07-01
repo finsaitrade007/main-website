@@ -19,7 +19,7 @@ const FALLBACK: Pick<
   heroPrimaryCtaLabel: "Open Live Account",
   heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
   heroSecondaryCtaLabel: "Explore Our Services",
-  heroSecondaryCtaHref: "/services",
+  heroSecondaryCtaHref: "/platform",
 };
 
 export default async function AboutHeroSection() {

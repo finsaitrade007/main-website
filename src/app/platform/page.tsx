@@ -13,17 +13,17 @@ import { getServicesPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getServicesPage();
-  return cmsPageMetadata(data?.seo, PAGE_SEO.services);
+  return cmsPageMetadata(data?.seo, PAGE_SEO.platform);
 }
 
-export default async function ServicesPage() {
+export default async function PlatformPage() {
   const data = await getServicesPage();
-  const seo = resolveSeoText(data?.seo, PAGE_SEO.services);
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.platform);
 
   return (
     <>
       <PageJsonLd
-        path={PAGE_SEO.services.path}
+        path={PAGE_SEO.platform.path}
         title={seo.title}
         description={seo.description}
         faqSection="services"

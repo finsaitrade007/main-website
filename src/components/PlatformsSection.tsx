@@ -8,9 +8,9 @@ import {
 
 function platformHref(title: string): string {
   const t = title.toLowerCase();
-  if (/mt\s?5/.test(t)) return "/services#mt5";
+  if (/mt\s?5/.test(t)) return "/platform#mt5";
   if (t.includes("social")) return "/social-trading";
-  return "/services#app";
+  return "/platform#app";
 }
 
 function platformMockupImage(p: StrapiPlatform): string | undefined {

@@ -9,7 +9,7 @@ import {
 const quickLinks = [
   { label: "Home",         href: "/" },
   { label: "About Us",     href: "/about" },
-  { label: "Services",     href: "/services" },
+  { label: "Platform",     href: "/platform" },
   { label: "Partnerships", href: "/partnerships" },
   { label: "Accounts",     href: "/accounts" },
   { label: "Payments",     href: "/payments" },

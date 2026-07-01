@@ -8,6 +8,20 @@ const nextConfig: NextConfig = {
     // upstreams as an SSRF safeguard. Only opt-in for local dev.
     dangerouslyAllowLocalIP: isDev,
   },
+  async redirects() {
+    return [
+      {
+        source: "/services",
+        destination: "/platform",
+        permanent: true,
+      },
+      {
+        source: "/services/:path*",
+        destination: "/platform/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

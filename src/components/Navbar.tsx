@@ -13,7 +13,7 @@ const NAV_ITEMS: NavItem[] = [
     kind: "dropdown",
     label: "Trading",
     items: [
-      { label: "Platform", href: "/services" },
+      { label: "Platform", href: "/platform" },
       { label: "Social Trading", href: "/social-trading" },
       { label: "Account", href: "/accounts" },
       { label: "Payments", href: "/payments" },
