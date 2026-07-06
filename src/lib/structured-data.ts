@@ -43,7 +43,7 @@ export function organizationNode() {
     description:
       "Finsai Trade is a multi-asset online trading platform providing access to forex, stocks, cryptocurrencies, commodities, indices, and CFDs through advanced trading technology and the MetaTrader 5 (MT5) platform.",
     sameAs: [
-      "https://www.facebook.com/finsaiitrade",
+      "https://www.facebook.com/people/Finsai/61551284008485/",
       "https://x.com/FinsaiTrade",
       "https://www.instagram.com/finsai.trade",
       "https://www.youtube.com/@FinsaiTrade-UI",

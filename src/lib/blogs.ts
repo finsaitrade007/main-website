@@ -41,7 +41,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: "Why Traditional Trading Strategies Are Failing in 2026",
     excerpt:
       "Markets in 2026 are moving faster than most traditional trading systems were designed to handle.",
-    image: "/blogs/crypto-2026.jpg",
+    image: "/blogs/why-traditional-strategies-are-failing.png",
     readTime: "12 min read",
     publishedAt: "2026-05-20",
     author: "Finsai Trade Research",
@@ -286,7 +286,7 @@ export const BLOG_POSTS: BlogPost[] = [
       "Gold vs. Other Assets: Why Traders Always Keep Gold in Their Portfolio",
     excerpt:
       "For decades, gold has survived every major financial reset — and experienced traders still keep it in their portfolios in 2026.",
-    image: "/blogs/oil-market-update.jpg",
+    image: "/blogs/gold-vs-other-assets.png",
     readTime: "11 min read",
     publishedAt: "2026-05-10",
     author: "Finsai Trade Research",
