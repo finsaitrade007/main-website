@@ -1,5 +1,6 @@
 import Link from "@/components/SmartLink";
 import Image from "next/image";
+import { mergeWithFallbacks } from "@/lib/cms";
 import { getPartnershipsPage, type StrapiPartnershipsPage } from "@/lib/strapi";
 
 const FALLBACK: Pick<
@@ -17,7 +18,7 @@ const FALLBACK: Pick<
 };
 
 export default async function IBHeroSection() {
-  const data = (await getPartnershipsPage()) ?? FALLBACK;
+  const data = mergeWithFallbacks(FALLBACK, await getPartnershipsPage());
   return (
     <section style={{
       position: "relative",

@@ -17,16 +17,22 @@ export default function SmartLink({
   href,
   target,
   rel,
+  children,
   ...rest
 }: SmartLinkProps) {
   const hrefString = typeof href === "string" ? href : "";
+  if (!hrefString) {
+    return <span {...rest}>{children}</span>;
+  }
   const external = isExternal(hrefString);
   return (
     <Link
-      href={href}
+      href={hrefString}
       target={target ?? (external ? "_blank" : undefined)}
       rel={rel ?? (external ? "noopener noreferrer" : undefined)}
       {...rest}
-    />
+    >
+      {children}
+    </Link>
   );
 }

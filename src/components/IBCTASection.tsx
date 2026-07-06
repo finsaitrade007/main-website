@@ -1,4 +1,5 @@
 import Link from "@/components/SmartLink";
+import { mergeWithFallbacks } from "@/lib/cms";
 import { getPartnershipsPage, type StrapiPartnershipsPage } from "@/lib/strapi";
 
 const BTN_TYPOGRAPHY = {
@@ -41,11 +42,10 @@ const FALLBACK: Pick<
 };
 
 export default async function IBCTASection() {
-  const cms = await getPartnershipsPage();
-  const data = { ...FALLBACK, ...cms };
+  const data = mergeWithFallbacks(FALLBACK, await getPartnershipsPage());
 
-  const primary = { label: data.ctaButton1Label, href: data.ctaButton1Href };
-  const secondaryButtons = [
+  const buttons = [
+    { label: data.ctaButton1Label, href: data.ctaButton1Href },
     { label: data.ctaButton2Label, href: data.ctaButton2Href },
     { label: data.ctaButton3Label, href: data.ctaButton3Href },
   ].filter((b) => b.label && b.href);
@@ -137,7 +137,7 @@ export default async function IBCTASection() {
               gap: "16px",
             }}
           >
-            {[primary, ...secondaryButtons].map((b) => (
+            {buttons.map((b) => (
               <Link
                 key={b.label}
                 href={b.href}
