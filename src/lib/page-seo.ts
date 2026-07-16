@@ -116,9 +116,10 @@ export const PAGE_SEO = {
   },
   amlPolicy: {
     path: "/aml-policy",
-    title: "Anti-Money Laundering Policy",
+    title: "Anti-Money Laundering (AML) Compliance | Finsai Trade",
     description:
-      "Finsai Trade Anti-Money Laundering Policy describing our client due diligence, AML compliance program, training and reporting obligations.",
+      "Finsai Trade's AML compliance outlines mandatory client due diligence, transaction monitoring, and sanctions screening to ensure a secure trading environment.",
+    absoluteTitle: true,
   },
   refundPolicy: {
     path: "/refund-policy",

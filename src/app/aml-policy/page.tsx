@@ -243,25 +243,6 @@ export default async function AmlPolicyPage() {
         <ClientAcceptanceBody />
       </LegalSection>
 
-      <LegalSection title="Refund Policy">
-        <ClientAcceptanceBody />
-        <P>
-          The Company&apos;s Refund Policy is an integral part of the Client
-          Agreement and can be found on the Company&apos;s website at{" "}
-          <a
-            href="https://www.finsaitrade.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "#7DB9D6", textDecoration: "underline" }}
-          >
-            www.finsaitrade.com
-          </a>
-          . The Refund Policy contains all the relevant information regarding
-          payments to and from the Company and measures taken to prevent
-          money laundering and terrorist financing.
-        </P>
-      </LegalSection>
-
       <LegalSection title="Personnel">
         <LegalSubsection title="AML Compliance Officer">
           <AmlComplianceOfficerBody />

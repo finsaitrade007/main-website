@@ -329,7 +329,6 @@ export default async function UpfrontDisclosurePage() {
                 </a>
               ),
             },
-            { label: "Telephone Number", value: " " },
             { label: "Fax Number", value: "043510078" },
           ]}
         />
@@ -400,7 +399,6 @@ export default async function UpfrontDisclosurePage() {
                 value:
                   "3rd Floor, Manor House, 30 St Georges Street, Port Louis, Mauritius.",
               },
-              { label: "Telephone Number", value: " " },
               {
                 label: "Email Address",
                 value: (
@@ -530,15 +528,6 @@ export default async function UpfrontDisclosurePage() {
             "The client understands that they have an obligation to provide the FSP with accurate information, material facts, or statements relating to the completion of any transaction and that they assume the sole responsibility for any damage incurred as a result of their failure to accurately disclose information.",
             "It shall be the sole responsibility of the client to decide whether a product or financial decision is appropriate for their needs, objectives and circumstances, should the client elect to pursue a transaction contrary to the recommendation of the FSP.",
             "I confirm I have read this document and have received a copy of this notice.",
-          ]}
-        />
-
-        <SignatureBlock
-          fields={[
-            "Company (Client) name:",
-            "Signature:",
-            "Title / Name:",
-            "Date:",
           ]}
         />
       </LegalSection>

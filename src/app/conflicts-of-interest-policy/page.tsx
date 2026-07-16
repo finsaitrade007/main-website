@@ -51,10 +51,7 @@ export default async function ConflictsOfInterestPolicyPage() {
         </P>
         <P>
           <strong>&ldquo;FSP&rdquo; or &ldquo;Name of Company&rdquo;</strong>{" "}
-          Finsai Trade (Mauritius) Ltd (trading as FINSAI TRADE LTD) is a
-          Financial Services Provider authorized by the Financial Services
-          Commission Mauritius under license number GB25204899 and company
-          registration number C228371.
+          “FSP” or “Finsai Trade (Mauritius) Ltd (trading as FINSAI TRADE LTD)” is a Financial Services Provider authorized by the Financial Services Commission Mauritius under license number GB25204899 and company registration number C228371.
         </P>
         <P>
           <strong>&ldquo;Responsible Person&rdquo;</strong> A key individual,
