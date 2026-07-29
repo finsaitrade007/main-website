@@ -2005,3 +2005,87 @@ body {
     color: #FFFFFFBF !important;
   }
 }
+
+/* ── MT5 landing page responsive layouts ── */
+@media (max-width: 900px) {
+  .mt5-hero {
+    height: auto !important;
+    min-height: 0 !important;
+    display: flex;
+    flex-direction: column;
+    padding: 100px 20px 40px !important;
+  }
+
+  .mt5-hero-image {
+    position: relative !important;
+    top: 0 !important;
+    left: auto !important;
+    order: -1;
+    width: min(100%, 420px) !important;
+    height: auto !important;
+    margin: 0 auto 24px;
+  }
+
+  .mt5-hero-title {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    font-size: clamp(28px, 3.21vw, 46.27px) !important;
+  }
+
+  .mt5-hero-copy {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+  }
+
+  .mt5-hero-left {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+  }
+
+  .mt5-overview {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 40px 20px 64px;
+    overflow: hidden !important;
+  }
+
+  .mt5-overview-image {
+    position: relative !important;
+    top: 0 !important;
+    left: auto !important;
+    width: min(100%, 790px) !important;
+    height: auto !important;
+    aspect-ratio: 790 / 648.62;
+    margin: 0 auto 32px;
+  }
+
+  .mt5-overview-image img {
+    height: auto !important;
+  }
+
+  .mt5-overview-copy {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: min(520px, 100%) !important;
+    margin: 0 auto;
+  }
+
+  .mt5-webtrader-grid,
+  .mt5-features-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .mt5-feature-pills {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+

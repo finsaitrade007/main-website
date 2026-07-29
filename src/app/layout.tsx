@@ -22,7 +22,7 @@ const dmSans = DM_Sans({
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600"],
 });
 
 // Site-wide metadata defaults. Per-page `generateMetadata()` (driven by the

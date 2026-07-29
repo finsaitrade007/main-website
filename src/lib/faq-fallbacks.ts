@@ -4,7 +4,8 @@ export type FaqSection =
   | "platform"
   | "payments"
   | "partnerships"
-  | "social-trading";
+  | "social-trading"
+  | "mt5";
 
 export const FAQ_SECTIONS: FaqSection[] = [
   "homepage",
@@ -13,6 +14,7 @@ export const FAQ_SECTIONS: FaqSection[] = [
   "payments",
   "partnerships",
   "social-trading",
+  "mt5",
 ];
 
 export type FaqItem = { question: string; answer: string };
@@ -142,6 +144,28 @@ export const FAQ_FALLBACKS: Record<FaqSection, FaqItem[]> = {
       question: "What tools and support does Finsai Trade provide for IB partners?",
       answer:
         "Finsai Trade provides IB partners with dedicated support, marketing materials, referral tracking tools, analytics dashboards, and prompt assistance to help you onboard clients and grow your business efficiently.",
+    },
+  ],
+  mt5: [
+    {
+      question: "What is MetaTrader 5 (MT5)?",
+      answer:
+        "MetaTrader 5 (MT5) is a multi-asset trading platform used to trade forex, stocks, indices, commodities, and cryptocurrencies. It offers advanced charting, technical indicators, algorithmic trading with Expert Advisors (EAs), and professional order management tools.",
+    },
+    {
+      question: "What assets can I trade with MetaTrader 5?",
+      answer:
+        "With Finsai Trade MT5, you can trade forex, shares, indices, commodities, and cryptocurrencies from a single account, depending on the instruments available for your account type.",
+    },
+    {
+      question: "Can I trade from any device, including smartphones?",
+      answer:
+        "Yes. MT5 is available on Windows, Mac, and Linux desktops, as well as mobile devices and a web browser version, so you can monitor markets and manage trades from almost anywhere.",
+    },
+    {
+      question: "Do I need to download any software to use MT5?",
+      answer:
+        "No. You can trade through the MT5 web platform in your browser with no installation required. Desktop and mobile apps are also available if you prefer a native experience.",
     },
   ],
   "social-trading": [

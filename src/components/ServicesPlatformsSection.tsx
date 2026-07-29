@@ -53,7 +53,7 @@ const FALLBACK_PLATFORMS: Platform[] = [
     imageAlt: "MetaTrader 5 platform",
     cta: {
       label: "Learn More About MT5",
-      href: "https://fx.finsaitrade.com/auth/register",
+      href: "/mt5",
     },
     reverse: false,
   },

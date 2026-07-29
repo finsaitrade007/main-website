@@ -58,6 +58,14 @@ export const PAGE_SEO = {
       "Three trading environments built for every level. Trade with MT5, copy top performers via social trading, or stay connected with our upcoming mobile app.",
     faqSection: "platform" as const,
   },
+  mt5: {
+    path: "/mt5",
+    title: "MT5 Trading Platform | Finsai Trade",
+    description:
+      "Trade forex, shares, indices, commodities and cryptocurrencies on MetaTrader 5 (MT5) with Finsai Trade. Fast execution, advanced charting, and multi-asset access.",
+    absoluteTitle: true,
+    faqSection: "mt5" as const,
+  },
   partnerships: {
     path: "/partnerships",
     title: "IB & Affiliate Partnerships | Finsai Trade",

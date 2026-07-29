@@ -10,6 +10,7 @@ const quickLinks = [
   { label: "Home",         href: "/" },
   { label: "About Us",     href: "/about" },
   { label: "Platform",     href: "/platform" },
+  { label: "MT5",          href: "/mt5" },
   { label: "Partnerships", href: "/partnerships" },
   { label: "Accounts",     href: "/accounts" },
   { label: "Payments",     href: "/payments" },
