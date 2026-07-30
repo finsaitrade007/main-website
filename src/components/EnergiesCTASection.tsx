@@ -1,10 +1,10 @@
 import Image from "next/image";
 import SmartLink from "@/components/SmartLink";
 
-export default function CommoditiesCTASection() {
+export default function EnergiesCTASection() {
   return (
     <section
-      className="commodities-cta"
+      className="energies-cta commodities-cta"
       style={{
         background: "#050208",
         width: "100%",
@@ -15,7 +15,7 @@ export default function CommoditiesCTASection() {
       }}
     >
       <div
-        className="commodities-cta-box"
+        className="energies-cta-box commodities-cta-box"
         style={{
           position: "relative",
           width: 962,
@@ -34,7 +34,7 @@ export default function CommoditiesCTASection() {
         />
 
         <div
-          className="commodities-cta-icon"
+          className="energies-cta-icon commodities-cta-icon"
           style={{
             position: "absolute",
             top: 36,
@@ -54,7 +54,7 @@ export default function CommoditiesCTASection() {
         </div>
 
         <div
-          className="commodities-cta-copy"
+          className="energies-cta-copy commodities-cta-copy"
           style={{
             position: "absolute",
             top: 36,
@@ -85,13 +85,13 @@ export default function CommoditiesCTASection() {
               color: "#788191",
             }}
           >
-            Trade global markets with competitive spreads and powerful trading tools.
+            Get the most out of every market with our advanced trading platform.
           </p>
         </div>
 
         <div
           aria-hidden
-          className="commodities-cta-partition"
+          className="energies-cta-partition commodities-cta-partition"
           style={{
             position: "absolute",
             top: 36,
@@ -105,7 +105,7 @@ export default function CommoditiesCTASection() {
         />
 
         <div
-          className="commodities-cta-action"
+          className="energies-cta-action commodities-cta-action"
           style={{
             position: "absolute",
             top: 34.5,

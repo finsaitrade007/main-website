@@ -90,6 +90,14 @@ export const PAGE_SEO = {
     absoluteTitle: true,
     faqSection: "commodities" as const,
   },
+  energies: {
+    path: "/energies",
+    title: "Energies Trading | Finsai Trade",
+    description:
+      "Trade CFDs on Brent Oil, Natural Gas, and key energy assets with Finsai Trade. Competitive spreads, fast execution, and round-the-clock market access.",
+    absoluteTitle: true,
+    faqSection: "energies" as const,
+  },
   partnerships: {
     path: "/partnerships",
     title: "IB & Affiliate Partnerships | Finsai Trade",

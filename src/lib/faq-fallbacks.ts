@@ -8,7 +8,8 @@ export type FaqSection =
   | "mt5"
   | "wordstock"
   | "metals"
-  | "commodities";
+  | "commodities"
+  | "energies";
 
 export const FAQ_SECTIONS: FaqSection[] = [
   "homepage",
@@ -21,6 +22,7 @@ export const FAQ_SECTIONS: FaqSection[] = [
   "wordstock",
   "metals",
   "commodities",
+  "energies",
 ];
 
 export type FaqItem = { question: string; answer: string };
@@ -225,24 +227,51 @@ export const FAQ_FALLBACKS: Record<FaqSection, FaqItem[]> = {
   ],
   commodities: [
     {
-      question: "What are commodities in trading?",
+      question: "What is commodities trading?",
       answer:
-        "Commodities are raw materials and natural resources such as oil, gas, metals, and agricultural products that can be traded in global financial markets.",
+        "Commodities trading lets you trade the price movements of products like gold, oil, natural gas, coffee, and sugar without owning the physical assets.",
     },
     {
-      question: "Which commodity markets can I trade with Finsai Trade?",
+      question: "Which commodities can I trade with Finsai Trade?",
       answer:
-        "You can trade a broad range of commodity markets including energies, precious metals, industrial metals, and agricultural products, depending on instrument availability.",
+        "You can trade Gold, Silver, Crude Oil, Natural Gas, Coffee, Sugar, Cotton, and other commodity CFDs.",
     },
     {
-      question: "Why do traders add commodities to a portfolio?",
+      question: "Can I trade both rising and falling commodity prices?",
       answer:
-        "Commodities can help diversify a portfolio, provide exposure to inflation-sensitive assets, and create trading opportunities driven by global supply and demand.",
+        "Yes. Commodity CFDs let you take buy (long) or sell (short) positions based on market conditions.",
     },
     {
-      question: "Are commodity markets volatile?",
+      question: "Do I own the commodity when I trade CFDs?",
       answer:
-        "Yes. Commodity prices can move quickly due to weather, geopolitical events, production changes, and shifts in global demand. Finsai Trade provides tools to help traders manage this volatility.",
+        "No. With commodity CFDs, you trade the price movement of the commodity without owning the underlying asset.",
+    },
+    {
+      question: "Why do traders invest in commodities?",
+      answer:
+        "Many traders use commodities to diversify their portfolios and take advantage of price movements in global markets.",
+    },
+  ],
+  energies: [
+    {
+      question: "What is energy trading and how does it work?",
+      answer:
+        "Energy trading lets you speculate on the price movements of energy assets such as Brent oil, WTI, and natural gas through CFDs, without owning the underlying commodity. You can go long or short based on your market view.",
+    },
+    {
+      question: "Is energy trading suitable for beginners?",
+      answer:
+        "Energy markets can be volatile and are influenced by global events, so beginners should start carefully. A demo account, education resources, and risk-management tools on Finsai Trade can help you learn before trading live.",
+    },
+    {
+      question: "How do I know if the trend is being reversed?",
+      answer:
+        "Traders often watch price action, volume, and technical indicators for signs of a reversal. No signal is certain, so combining analysis with stop-loss and position sizing is important when trading energy markets.",
+    },
+    {
+      question: "How much do I need to start trading energy?",
+      answer:
+        "The amount you need depends on your account type, leverage, and trade size. You can start with a smaller deposit and scale up, or practice risk-free with a free demo account on Finsai Trade.",
     },
   ],
   "social-trading": [
