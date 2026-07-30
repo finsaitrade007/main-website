@@ -38,9 +38,9 @@ const instruments = [
     left: 509,
   },
   {
-    title: "Forex",
-    image: "/Explore%20More%20Instruments/euro-dollor_v1%20Medium.png",
-    href: "/forex",
+    title: "Commodities",
+    image: "/Explore%20More%20Instruments/comodities_v4%20Medium.png",
+    href: "/commodities",
     top: 330.61,
     left: 959,
   },
@@ -60,10 +60,10 @@ const ARROW_SIZE = 68.61;
 const ARROW_LEFT = 340.55;
 const ARROW_TOP = 26.48;
 
-export default function CommoditiesExploreSection() {
+export default function ForexExploreSection() {
   return (
     <section
-      className="commodities-explore"
+      className="forex-explore commodities-explore"
       style={{
         background: "#050208",
         width: "100%",
@@ -73,7 +73,7 @@ export default function CommoditiesExploreSection() {
       }}
     >
       <div
-        className="commodities-explore-inner"
+        className="forex-explore-inner commodities-explore-inner"
         style={{
           position: "relative",
           width: "100%",
@@ -83,7 +83,7 @@ export default function CommoditiesExploreSection() {
         }}
       >
         <h2
-          className="commodities-explore-heading"
+          className="forex-explore-heading commodities-explore-heading"
           style={{
             position: "absolute",
             top: 48,
@@ -101,7 +101,7 @@ export default function CommoditiesExploreSection() {
           Explore More Instruments
         </h2>
         <p
-          className="commodities-explore-subtitle"
+          className="forex-explore-subtitle commodities-explore-subtitle"
           style={{
             position: "absolute",
             top: 100,
@@ -126,11 +126,11 @@ export default function CommoditiesExploreSection() {
           integrated multi-asset account.
         </p>
 
-        <div className="commodities-explore-grid">
+        <div className="forex-explore-grid commodities-explore-grid">
           {instruments.map((item) => (
             <div
               key={item.title}
-              className="commodities-explore-card-wrap"
+              className="forex-explore-card-wrap commodities-explore-card-wrap"
               style={{
                 position: "absolute",
                 top: item.top,
@@ -146,7 +146,7 @@ export default function CommoditiesExploreSection() {
             >
               <SmartLink
                 href={item.href}
-                className="commodities-explore-card"
+                className="forex-explore-card commodities-explore-card"
                 style={{
                   position: "relative",
                   display: "block",
@@ -160,7 +160,7 @@ export default function CommoditiesExploreSection() {
                 }}
               >
                 <div
-                  className="commodities-explore-card-icon"
+                  className="forex-explore-card-icon commodities-explore-card-icon"
                   style={{
                     position: "absolute",
                     top: IMAGE_TOP,
@@ -184,7 +184,7 @@ export default function CommoditiesExploreSection() {
                   />
                 </div>
                 <span
-                  className="commodities-explore-card-title"
+                  className="forex-explore-card-title commodities-explore-card-title"
                   style={{
                     position: "absolute",
                     top: TITLE_TOP,
@@ -201,7 +201,7 @@ export default function CommoditiesExploreSection() {
                 </span>
                 <span
                   aria-hidden
-                  className="commodities-explore-card-arrow"
+                  className="forex-explore-card-arrow commodities-explore-card-arrow"
                   style={{
                     position: "absolute",
                     top: ARROW_TOP,

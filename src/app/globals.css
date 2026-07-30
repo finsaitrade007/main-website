@@ -2407,6 +2407,9 @@ body {
     left: auto !important;
     transform: none !important;
     margin: 0 auto 28px !important;
+    white-space: normal !important;
+    width: auto !important;
+    max-width: 100% !important;
   }
 
   .commodities-explore-grid {

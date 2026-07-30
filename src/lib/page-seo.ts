@@ -98,6 +98,14 @@ export const PAGE_SEO = {
     absoluteTitle: true,
     faqSection: "energies" as const,
   },
+  forex: {
+    path: "/forex",
+    title: "Forex Trading | Finsai Trade",
+    description:
+      "Trade the global forex market with Finsai Trade. Access 40+ major, minor, and exotic currency pairs with ultra-low spreads and fast execution.",
+    absoluteTitle: true,
+    faqSection: "forex" as const,
+  },
   partnerships: {
     path: "/partnerships",
     title: "IB & Affiliate Partnerships | Finsai Trade",

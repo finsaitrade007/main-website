@@ -12,7 +12,7 @@ const instruments = [
   {
     title: "Forex",
     image: "/Explore%20More%20Instruments/euro-dollor_v1%20Medium.png",
-    href: "/platform",
+    href: "/forex",
     top: 182.61,
     left: 509,
   },
@@ -108,19 +108,22 @@ export default function EnergiesExploreSection() {
             left: "50%",
             transform: "translateX(-50%)",
             margin: 0,
-            width: "min(100%, 760px)",
+            width: "max-content",
+            maxWidth: "calc(100% - 48px)",
             padding: "0 24px",
             boxSizing: "border-box",
             textAlign: "center",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
             fontSize: 16,
-            lineHeight: "24.77px",
+            lineHeight: "100%",
+            letterSpacing: "0%",
             color: "#7F8D9E",
+            whiteSpace: "nowrap",
           }}
         >
-          If you&apos;d like to discover other assets, look at our range of CFDs below for a
-          fully diversified trade account.
+          Diversify your holdings effortlessly across thousands of CFDs through a single,
+          integrated multi-asset account.
         </p>
 
         <div className="energies-explore-grid commodities-explore-grid">

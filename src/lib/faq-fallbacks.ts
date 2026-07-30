@@ -9,7 +9,8 @@ export type FaqSection =
   | "wordstock"
   | "metals"
   | "commodities"
-  | "energies";
+  | "energies"
+  | "forex";
 
 export const FAQ_SECTIONS: FaqSection[] = [
   "homepage",
@@ -23,6 +24,7 @@ export const FAQ_SECTIONS: FaqSection[] = [
   "metals",
   "commodities",
   "energies",
+  "forex",
 ];
 
 export type FaqItem = { question: string; answer: string };
@@ -272,6 +274,28 @@ export const FAQ_FALLBACKS: Record<FaqSection, FaqItem[]> = {
       question: "How much do I need to start trading energy?",
       answer:
         "The amount you need depends on your account type, leverage, and trade size. You can start with a smaller deposit and scale up, or practice risk-free with a free demo account on Finsai Trade.",
+    },
+  ],
+  forex: [
+    {
+      question: "What is forex trading and how does it work?",
+      answer:
+        "Forex (foreign exchange) trading is the exchange of one currency for another at an agreed price. It's the most liquid and active financial market in the world.",
+    },
+    {
+      question: "Is forex trading suitable for beginners?",
+      answer:
+        "Forex can suit beginners who start carefully with education and risk management. A free demo account on Finsai Trade lets you practice trading major, minor, and exotic pairs before going live.",
+    },
+    {
+      question: "How do I choose the best currency pairs to trade?",
+      answer:
+        "Many traders begin with major pairs like EUR/USD for high liquidity and tighter spreads. Your choice should also reflect market hours, volatility, and how familiar you are with the related economies.",
+    },
+    {
+      question: "How much do I need to start trading forex?",
+      answer:
+        "The amount depends on your account type, leverage, and position size. You can start with a smaller deposit and scale up, or practice risk-free with a free demo account on Finsai Trade.",
     },
   ],
   "social-trading": [
