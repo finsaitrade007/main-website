@@ -22,6 +22,11 @@ const NAV_ITEMS: NavItem[] = [
   },
   {
     kind: "dropdown",
+    label: "Markets",
+    items: [{ label: "Stocks", href: "/wordstock" }],
+  },
+  {
+    kind: "dropdown",
     label: "Learn and Grow",
     items: [
       { label: "Webinar", href: "https://lms.finsaitrade.com/#webinars" },

@@ -66,6 +66,14 @@ export const PAGE_SEO = {
     absoluteTitle: true,
     faqSection: "mt5" as const,
   },
+  wordstock: {
+    path: "/wordstock",
+    title: "Stock CFDs Trading | Finsai Trade",
+    description:
+      "Trade global stock CFDs on blue-chip companies with Finsai Trade. Ultra-fast execution, low trading costs, live price streaming, and the flexibility to go long or short.",
+    absoluteTitle: true,
+    faqSection: "wordstock" as const,
+  },
   partnerships: {
     path: "/partnerships",
     title: "IB & Affiliate Partnerships | Finsai Trade",

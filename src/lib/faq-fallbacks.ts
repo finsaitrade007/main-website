@@ -5,7 +5,8 @@ export type FaqSection =
   | "payments"
   | "partnerships"
   | "social-trading"
-  | "mt5";
+  | "mt5"
+  | "wordstock";
 
 export const FAQ_SECTIONS: FaqSection[] = [
   "homepage",
@@ -15,6 +16,7 @@ export const FAQ_SECTIONS: FaqSection[] = [
   "partnerships",
   "social-trading",
   "mt5",
+  "wordstock",
 ];
 
 export type FaqItem = { question: string; answer: string };
@@ -150,22 +152,44 @@ export const FAQ_FALLBACKS: Record<FaqSection, FaqItem[]> = {
     {
       question: "What is MetaTrader 5 (MT5)?",
       answer:
-        "MetaTrader 5 (MT5) is a multi-asset trading platform used to trade forex, stocks, indices, commodities, and cryptocurrencies. It offers advanced charting, technical indicators, algorithmic trading with Expert Advisors (EAs), and professional order management tools.",
+        "MetaTrader 5 is an advanced online trading platform that allows traders to access Forex, CFDs, Stocks, Commodities, Indices, and other financial markets from a single platform.",
     },
     {
-      question: "What assets can I trade with MetaTrader 5?",
+      question: "What's the difference between MT4 and MT5?",
       answer:
-        "With Finsai Trade MT5, you can trade forex, shares, indices, commodities, and cryptocurrencies from a single account, depending on the instruments available for your account type.",
+        "MT5 offers faster 64-bit processing, more technical indicators, additional timeframes, more order types, an integrated economic calendar, and support for multiple asset classes.",
     },
     {
-      question: "Can I trade from any device, including smartphones?",
+      question: "Can I use Expert Advisors (EAs) on MT5?",
       answer:
-        "Yes. MT5 is available on Windows, Mac, and Linux desktops, as well as mobile devices and a web browser version, so you can monitor markets and manage trades from almost anywhere.",
+        "Yes. MT5 supports Expert Advisors, algorithmic trading, custom indicators, and automated trading strategies through MQL5.",
     },
     {
-      question: "Do I need to download any software to use MT5?",
+      question: "Which markets can I trade on MT5?",
       answer:
-        "No. You can trade through the MT5 web platform in your browser with no installation required. Desktop and mobile apps are also available if you prefer a native experience.",
+        "You can trade Forex, CFDs, Stocks, Indices, Commodities, and Precious Metals from a single MT5 trading account.",
+    },
+  ],
+  wordstock: [
+    {
+      question: "What is stock CFD trading?",
+      answer:
+        "Stock CFD trading lets you speculate on the price movements of company shares without owning the underlying stock. You can profit from rising or falling prices by going long or short on Contracts for Difference.",
+    },
+    {
+      question: "What stocks can I trade with Finsai Trade?",
+      answer:
+        "Finsai Trade offers CFDs on a wide range of global blue-chip stocks and major listed companies, giving you access to leading firms across international markets from a single trading account.",
+    },
+    {
+      question: "Can I trade stock CFDs with a demo account?",
+      answer:
+        "Yes. You can practice stock CFD trading with a free demo account before switching to a live account, so you can explore markets and strategies risk-free.",
+    },
+    {
+      question: "Do I own the shares when I trade stock CFDs?",
+      answer:
+        "No. When you trade stock CFDs you do not own the underlying shares. You are trading the price difference of the stock, which means you can take long or short positions without share ownership.",
     },
   ],
   "social-trading": [

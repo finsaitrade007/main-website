@@ -2008,6 +2008,12 @@ body {
 
 /* ── MT5 landing page responsive layouts ── */
 @media (max-width: 900px) {
+  .mt5-features {
+    height: auto !important;
+    padding: 48px 20px !important;
+    overflow: visible !important;
+  }
+
   .mt5-hero {
     height: auto !important;
     min-height: 0 !important;
@@ -2062,7 +2068,7 @@ body {
     left: auto !important;
     width: min(100%, 790px) !important;
     height: auto !important;
-    aspect-ratio: 790 / 648.62;
+    aspect-ratio: 790 / 648.624;
     margin: 0 auto 32px;
   }
 
@@ -2078,6 +2084,71 @@ body {
     margin: 0 auto;
   }
 
+  .mt5-features-main {
+    max-width: 100% !important;
+  }
+
+  .mt5-features-cards {
+    grid-template-columns: 1fr !important;
+    justify-content: center !important;
+  }
+
+  .mt5-feature-card {
+    width: 100% !important;
+    max-width: 310px !important;
+    height: 264px !important;
+    margin: 0 auto;
+  }
+
+  .mt5-features-hero {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: min(100%, 586px) !important;
+    height: auto !important;
+    aspect-ratio: 586 / 557;
+    margin: 32px auto 0;
+  }
+
+  .mt5-features-bottom {
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+  }
+
+  .mt5-features-bottom-item {
+    border-left: none !important;
+    border-top: 1px solid rgba(1, 100, 188, 0.35) !important;
+    padding: 20px 24px !important;
+    height: auto !important;
+  }
+
+  .mt5-features-bottom-item:first-child {
+    border-top: none !important;
+  }
+
+  .mt5-webtrader {
+    height: auto !important;
+    padding: 48px 20px !important;
+    overflow: visible !important;
+  }
+
+  .mt5-webtrader-copy {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+  }
+
+  .mt5-webtrader-image {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: min(100%, 587px) !important;
+    height: auto !important;
+    aspect-ratio: 587 / 524;
+    margin: 32px auto 0;
+  }
+
   .mt5-webtrader-grid,
   .mt5-features-grid {
     grid-template-columns: 1fr !important;
@@ -2085,6 +2156,70 @@ body {
 
   .mt5-feature-pills {
     grid-template-columns: 1fr !important;
+  }
+
+  .wordstock-hero {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 48px 20px 64px;
+  }
+
+  .wordstock-hero-left {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .wordstock-hero-image-wrap {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: min(100%, 806px) !important;
+    height: auto !important;
+    aspect-ratio: 806 / 529;
+    margin: 32px auto 0;
+  }
+
+  .wordstock-hero-image {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .wordstock-features {
+    padding: 48px 20px 64px !important;
+  }
+
+  .wordstock-features-grid {
+    padding-left: 0 !important;
+    justify-content: center !important;
+  }
+
+  .wordstock-feature-card {
+    width: 238px !important;
+    height: 447px !important;
+  }
+
+  .wordstock-regulatory {
+    padding: 24px 20px 64px !important;
+  }
+
+  .wordstock-regulatory-box {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 280px !important;
+    aspect-ratio: 1194 / 437;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+  .wordstock-features-grid {
+    gap: 12px !important;
   }
 }
 

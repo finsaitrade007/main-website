@@ -14,10 +14,10 @@ export default function Mt5OverviewSection() {
       style={{
         position: "relative",
         background: "#050208",
-        width: 1440,
-        maxWidth: "100%",
+        width: "100%",
+        maxWidth: 1440,
         height: 715,
-        margin: "0 0",
+        margin: "0 auto",
         padding: 0,
         overflow: "hidden",
         boxSizing: "border-box",
@@ -41,8 +41,9 @@ export default function Mt5OverviewSection() {
           style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 700,
-            fontSize: 36,
-            lineHeight: 1.15,
+            fontSize: "36px",
+            lineHeight: "48px",
+            letterSpacing: 0,
             color: "#FFFFFF",
             margin: 0,
           }}
@@ -60,9 +61,7 @@ export default function Mt5OverviewSection() {
             margin: 0,
           }}
         >
-          MetaTrader 5 is a powerful multi-asset trading platform designed for
-          both new and experienced traders. Access advanced charting, fast
-          execution, and professional trading tools in one place.
+          MetaTrader 5 (MT5) is a powerful multi-asset trading platform built for today's financial markets. Whether you're new to online trading or an experienced trader, MT5 provides advanced charting, fast execution, and professional trading tools to help you trade with confidence.
         </p>
 
         <p
@@ -75,9 +74,7 @@ export default function Mt5OverviewSection() {
             margin: 0,
           }}
         >
-          With MT5, you can trade global markets from a single platform and
-          manage your strategies with institutional-grade tools built for
-          performance and control.
+          With Finsai Trade, you can access global financial markets from one secure platform and trade multiple asset classes using real-time market data and institutional-grade execution.
         </p>
 
         <SmartLink
@@ -111,7 +108,7 @@ export default function Mt5OverviewSection() {
           top: 66,
           left: 597,
           width: 790,
-          height: 648.62,
+          height: 648.6240844726562,
           zIndex: 1,
         }}
       >

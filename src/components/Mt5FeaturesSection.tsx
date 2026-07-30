@@ -2,63 +2,65 @@ import Image from "next/image";
 
 const featureCards = [
   {
-    title: "120+ Cryptocurrencies",
     description:
-      "Trade a wide range of crypto CFDs alongside forex, metals, and indices on MT5.",
+      "Trade Forex, Stocks, Indices, Commodities, CFDs, and Precious Metals from one platform.",
     image: "/mt5-assets/features/cryptocurrencies.jpg",
   },
   {
-    title: "High Leverage",
     description:
-      "Amplify your market exposure with flexible leverage suited to your strategy.",
-    image: "/mt5-assets/features/high-leverage.jpg",
-  },
-  {
-    title: "Long or Short",
-    description:
-      "Go long or short with hedging support so you can trade either market direction.",
-    image: "/mt5-assets/features/long-or-short.jpg",
-  },
-  {
-    title: "Deep Liquidity",
-    description:
-      "Access deep liquidity and competitive pricing for smoother order fills.",
-    image: "/mt5-assets/features/deep-liquidity.jpg",
-  },
-];
-
-const featurePills = [
-  {
-    title: "Secure & Trusted",
-    description: "Trade on a regulated platform with transparent conditions.",
-    image: "/mt5-assets/features/secure-trusted.jpg",
-  },
-  {
-    title: "Secure Fund Storage",
-    description: "Client funds protected with industry-standard safeguards.",
+      "Analyze markets using 80+ built-in technical indicators and advanced charting tools.",
     image: "/mt5-assets/features/secure-fund-storage.jpg",
   },
   {
-    title: "24/7 Expert Support",
-    description: "Get help whenever markets move — day or night.",
+    description: "Access 21 timeframes for detailed market analysis.",
+    image: "/mt5-assets/features/high-leverage.jpg",
+  },
+  {
+    description: "Build automated trading strategies using MQL5.",
+    image: "/mt5-assets/features/long-or-short.jpg",
+  },
+];
+
+const bottomFeatures = [
+  {
+    description:
+      "Run Expert Advisors (EAs) and custom indicators for algorithmic trading.",
+    image: "/mt5-assets/features/secure-trusted.jpg",
+  },
+  {
+    description:
+      "Use VPS hosting for uninterrupted automated Forex trading.",
     image: "/mt5-assets/features/expert-support.jpg",
+  },
+  {
+    description:
+      "Manage multiple trading accounts with Multi-Account Management (MAM).",
+    image: "/mt5-assets/features/deep-liquidity.jpg",
   },
 ];
 
 export default function Mt5FeaturesSection() {
   return (
     <section
+      className="mt5-features"
       style={{
+        position: "relative",
         background: "#050208",
-        padding: "clamp(48px, 6vw, 100px) clamp(20px, 5.5vw, 80px)",
+        width: "100%",
+        maxWidth: 1440,
+        height: 944,
+        margin: "0 auto",
+        padding: "56px 64px 48px",
+        boxSizing: "border-box",
+        overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1312, margin: "0 auto", height: "100%" }}>
         <h2
           style={{
-            fontFamily: "var(--font-sora, Sora)",
-            fontWeight: 600,
-            fontSize: "clamp(28px, 3.2vw, 40px)",
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 700,
+            fontSize: "clamp(28px, 3vw, 36px)",
             color: "#FFFFFF",
             textAlign: "center",
             margin: "0 0 16px",
@@ -69,119 +71,145 @@ export default function Mt5FeaturesSection() {
         <p
           style={{
             fontFamily: "var(--font-inter, Inter)",
-            fontSize: 16,
-            color: "#94A3B8",
+            fontWeight: 400,
+            fontSize: "clamp(14px, 1.1vw, 16px)",
+            color: "#FFFFFF",
             textAlign: "center",
-            maxWidth: 720,
-            margin: "0 auto 48px",
+            maxWidth: 820,
+            margin: "0 auto clamp(40px, 5vw, 56px)",
             lineHeight: 1.6,
           }}
         >
-          Experience a professional trading environment with flexibility and
-          superior control over your trading strategy.
+          Equip your trading with institutional-grade technology, real-time
+          market depth, and an expanded suite of analytical tools built for
+          every strategy.
         </p>
 
+        {/* Main: 2×2 cards left; image absolute on right */}
         <div
+          className="mt5-features-main"
           style={{
-            display: "grid",
-            gridTemplateColumns:
-              "minmax(0, 1fr) minmax(260px, 0.85fr) minmax(0, 1fr)",
-            gap: 24,
-            alignItems: "center",
+            position: "relative",
+            width: "100%",
+            left: 30,
+            maxWidth: 636,
           }}
-          className="mt5-features-grid"
         >
-          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            {featureCards.slice(0, 2).map((card) => (
-              <FeatureCard key={card.title} {...card} />
-            ))}
-          </div>
-
           <div
+            className="mt5-features-cards"
             style={{
-              position: "relative",
-              width: "100%",
-              aspectRatio: "1 / 1",
-              maxWidth: 420,
-              margin: "0 auto",
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 310px)",
+              gap: 16,
+              justifyContent: "start",
             }}
           >
-            <Image
-              src="/mt5-assets/features-center.jpeg"
-              alt="Why choose Finsai Trade for crypto trading on MT5"
-              fill
-              sizes="(max-width: 900px) 80vw, 360px"
-              style={{ objectFit: "contain" }}
-            />
-          </div>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            {featureCards.slice(2).map((card) => (
-              <FeatureCard key={card.title} {...card} />
+            {featureCards.map((card) => (
+              <FeatureCard key={card.description} {...card} />
             ))}
           </div>
         </div>
 
+        {/* Image — Figma: 586×556.85, top 195.27, left 760.56 */}
         <div
+          className="mt5-features-hero"
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-            gap: 20,
-            marginTop: 48,
+            position: "absolute",
+            top: 195.27,
+            left: 760.56,
+            width: 586.01,
+            height: 556.85,
+            zIndex: 1,
           }}
-          className="mt5-feature-pills"
         >
-          {featurePills.map((pill) => (
-            <div
-              key={pill.title}
-              style={{
-                textAlign: "center",
-                padding: "24px 16px",
-                borderRadius: 16,
-                border: "1px solid rgba(255,255,255,0.08)",
-                background: "rgba(255,255,255,0.02)",
-              }}
-            >
+          <Image
+            src="/mt5-assets/features-center.jpeg"
+            alt="MT5 multi-asset trading on Finsai Trade"
+            width={586}
+            height={557}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              display: "block",
+            }}
+          />
+        </div>
+
+        {/* Bottom bar — Figma: 1251×109, radius 10.94, bg #000610, gradient border */}
+        <div
+          className="mt5-features-bottom-wrap"
+          style={{
+            marginTop: 24,
+            marginLeft: "auto",
+            marginRight: "auto",
+            width: "100%",
+            maxWidth: 1251.32,
+            borderRadius: 10.94,
+            padding: 0.91,
+            boxSizing: "border-box",
+            background:
+              "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+          }}
+        >
+          <div
+            className="mt5-features-bottom"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              width: "100%",
+              height: 109.36,
+              borderRadius: 10.03,
+              background: "#000610",
+              overflow: "hidden",
+              boxSizing: "border-box",
+            }}
+          >
+            {bottomFeatures.map((item, i) => (
               <div
+                key={item.description}
+                className="mt5-features-bottom-item"
                 style={{
-                  position: "relative",
-                  width: 72,
-                  height: 72,
-                  margin: "0 auto 14px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 16,
+                  padding: "0 28px",
+                  height: "100%",
+                  borderLeft:
+                    i > 0 ? "1px solid rgba(1, 100, 188, 0.35)" : undefined,
                 }}
               >
-                <Image
-                  src={pill.image}
-                  alt=""
-                  fill
-                  sizes="72px"
-                  style={{ objectFit: "contain" }}
-                />
+                <div
+                  style={{
+                    position: "relative",
+                    width: 56,
+                    height: 56,
+                    flexShrink: 0,
+                  }}
+                >
+                  <Image
+                    src={item.image}
+                    alt=""
+                    fill
+                    sizes="56px"
+                    style={{ objectFit: "contain" }}
+                  />
+                </div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-inter, Inter)",
+                    fontWeight: 400,
+                    fontSize: 14,
+                    color: "#94A3B8",
+                    margin: 0,
+                    lineHeight: 1.55,
+                  }}
+                >
+                  {item.description}
+                </p>
               </div>
-              <h3
-                style={{
-                  fontFamily: "var(--font-sora, Sora)",
-                  fontSize: 16,
-                  fontWeight: 600,
-                  color: "#FFFFFF",
-                  margin: "0 0 8px",
-                }}
-              >
-                {pill.title}
-              </h3>
-              <p
-                style={{
-                  fontFamily: "var(--font-inter, Inter)",
-                  fontSize: 14,
-                  color: "#94A3B8",
-                  margin: 0,
-                  lineHeight: 1.5,
-                }}
-              >
-                {pill.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -189,67 +217,72 @@ export default function Mt5FeaturesSection() {
 }
 
 function FeatureCard({
-  title,
   description,
   image,
 }: {
-  title: string;
   description: string;
   image: string;
 }) {
   return (
+    // Gradient border: outer pad 0.91px, inner fill #000713
     <div
+      className="mt5-feature-card"
       style={{
-        borderRadius: 24,
-        padding: 1,
+        width: 310,
+        height: 264,
+        borderRadius: 12,
+        padding: 0.91,
+        boxSizing: "border-box",
         background:
           "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
       }}
     >
       <div
         style={{
-          borderRadius: 23,
-          background:
-            "linear-gradient(119.3deg, rgba(0,0,0,0) 23.34%, rgba(73,109,171,0.28) 96.36%), #050208",
-          padding: "22px 20px",
-          minHeight: 150,
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          borderRadius: 11.09,
+          background: "#000713",
           boxSizing: "border-box",
+          overflow: "hidden",
         }}
       >
+        {/* Figma: 125.77×104.81 @ top 25.52, left 82.93 */}
         <div
+          className="mt5-feature-card-image"
           style={{
-            position: "relative",
-            width: 56,
-            height: 56,
-            marginBottom: 14,
+            position: "absolute",
+            top: 25.52,
+            left: 82.93,
+            width: 125.77,
+            height: 104.81,
           }}
         >
           <Image
             src={image}
             alt=""
             fill
-            sizes="56px"
+            sizes="126px"
             style={{ objectFit: "contain" }}
           />
         </div>
-        <h3
-          style={{
-            fontFamily: "var(--font-sora, Sora)",
-            fontSize: 20,
-            fontWeight: 600,
-            color: "#FFFFFF",
-            margin: "0 0 8px",
-          }}
-        >
-          {title}
-        </h3>
+        {/* Figma: 260.65×70 @ top 162, left 26.43 — Inter 400 / 14.58 / 23.04 / #7C828B */}
         <p
+          className="mt5-feature-card-text"
           style={{
-            fontFamily: "var(--font-inter, Inter)",
-            fontSize: 14,
-            color: "rgba(255,255,255,0.6)",
+            position: "absolute",
+            top: 162,
+            left: 26.43,
+            width: 260.65,
+            height: 70,
             margin: 0,
-            lineHeight: 1.55,
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 400,
+            fontSize: 14.58,
+            lineHeight: "23.04px",
+            letterSpacing: "0%",
+            color: "#7C828B",
           }}
         >
           {description}
