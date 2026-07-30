@@ -106,6 +106,14 @@ export const PAGE_SEO = {
     absoluteTitle: true,
     faqSection: "forex" as const,
   },
+  indices: {
+    path: "/indices",
+    title: "Indices Trading | Finsai Trade",
+    description:
+      "Trade major global indices including the S&P 500, NASDAQ, AUS 200, and DAX with Finsai Trade. Tight spreads, flexible sizes, and fast execution.",
+    absoluteTitle: true,
+    faqSection: "indices" as const,
+  },
   partnerships: {
     path: "/partnerships",
     title: "IB & Affiliate Partnerships | Finsai Trade",

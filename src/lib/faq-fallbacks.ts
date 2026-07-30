@@ -10,7 +10,8 @@ export type FaqSection =
   | "metals"
   | "commodities"
   | "energies"
-  | "forex";
+  | "forex"
+  | "indices";
 
 export const FAQ_SECTIONS: FaqSection[] = [
   "homepage",
@@ -25,6 +26,7 @@ export const FAQ_SECTIONS: FaqSection[] = [
   "commodities",
   "energies",
   "forex",
+  "indices",
 ];
 
 export type FaqItem = { question: string; answer: string };
@@ -296,6 +298,28 @@ export const FAQ_FALLBACKS: Record<FaqSection, FaqItem[]> = {
       question: "How much do I need to start trading forex?",
       answer:
         "The amount depends on your account type, leverage, and position size. You can start with a smaller deposit and scale up, or practice risk-free with a free demo account on Finsai Trade.",
+    },
+  ],
+  indices: [
+    {
+      question: "What is index trading?",
+      answer:
+        "Index trading lets you speculate on the performance of a group of stocks that represent a market or sector — such as the S&P 500 or NASDAQ — through CFDs, without buying every individual share.",
+    },
+    {
+      question: "Which indices can I trade with Finsai Trade?",
+      answer:
+        "You can trade major global indices including the S&P 500, NASDAQ, AUS 200, DAX, and more, depending on instrument availability on your account.",
+    },
+    {
+      question: "Can I trade both rising and falling index markets?",
+      answer:
+        "Yes. Index CFDs let you take long (buy) or short (sell) positions so you can trade whether markets are rising or falling.",
+    },
+    {
+      question: "How much leverage is available on indices?",
+      answer:
+        "Finsai Trade offers CFD indices leverage of up to 1:20, subject to your account type and applicable regulations. Always use risk management when trading with leverage.",
     },
   ],
   "social-trading": [

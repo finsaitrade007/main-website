@@ -126,9 +126,10 @@ export default function EnergiesHeroSection() {
             maxWidth: 480,
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
-            fontSize: 13.8,
-            lineHeight: "20.97px",
-            color: "#7D7F84",
+            fontSize: 18,
+            lineHeight: "31.11px",
+            letterSpacing: "0%",
+            color: "#FFFFFFBF",
           }}
         >
           Trade Crude Oil, Brent Oil, Natural Gas, and other energy CFDs on Finsai Trade.

@@ -2514,3 +2514,38 @@ body {
     text-align: center;
   }
 }
+
+@media (max-width: 1100px) {
+  .indices-features-layout {
+    flex-direction: column !important;
+    gap: 32px !important;
+  }
+
+  .indices-features-visual {
+    width: min(100%, 560px) !important;
+    height: auto !important;
+    aspect-ratio: 560 / 480;
+  }
+
+  .indices-features-grid {
+    grid-template-columns: repeat(2, minmax(0, 274px)) !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .indices-features {
+    padding: 48px 20px 56px !important;
+  }
+
+  .indices-features-grid {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+  }
+
+  .indices-feature-card {
+    width: 100% !important;
+    max-width: 274px !important;
+    margin: 0 auto;
+  }
+}

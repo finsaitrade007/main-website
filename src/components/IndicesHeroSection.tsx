@@ -7,54 +7,53 @@ const trustItems = [
   {
     label: (
       <>
-        Diverse Metal
+        Diversified
         <br />
-        Exposure
+        Company Basket
       </>
     ),
     icon: (
       <svg width="32" height="32" viewBox="0 0 20 20" fill="none" aria-hidden>
-        <path d="M6 6l2 3 2-3 2 3 2-3 2 9H4l2-9z" stroke="#41ABE7" strokeWidth="1.3" strokeLinejoin="round" />
-        <path d="M4 15h12" stroke="#41ABE7" strokeWidth="1.3" strokeLinecap="round" />
+        <path d="M4 14h12" stroke="#41ABE7" strokeWidth="1.3" strokeLinecap="round" />
+        <path d="M6 11V7M10 11V5M14 11V8" stroke="#41ABE7" strokeWidth="1.3" strokeLinecap="round" />
       </svg>
     ),
   },
   {
     label: (
       <>
-        Safe-Haven
+        Flexible Leverage 
         <br />
-        Positioning
-      </>
-    ),
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 20 20" fill="none" aria-hidden>
-        <path d="M10 3l6 2v4c0 4-2.5 6.5-6 8-3.5-1.5-6-4-6-8V5l6-2z" stroke="#41ABE7" strokeWidth="1.3" />
-        <path d="M7.5 10l1.7 1.7L12.8 8" stroke="#41ABE7" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    label: (
-      <>
-        Precious Metal
-        <br />
-        Pricing
+        Options
       </>
     ),
     icon: (
       <svg width="32" height="32" viewBox="0 0 20 20" fill="none" aria-hidden>
         <circle cx="10" cy="10" r="7.5" stroke="#41ABE7" strokeWidth="1.3" />
-        <path d="M10 5.5v9M7.5 7.5L10 5.5l2.5 2M7.5 12.5L10 14.5l2.5-2" stroke="#41ABE7" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M10 10L14 7" stroke="#41ABE7" strokeWidth="1.3" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    label: (
+      <>
+        Tight Spreads
+        <br />
+        Lowest Commission
+      </>
+    ),
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 20 20" fill="none" aria-hidden>
+        <path d="M10 3.5l1.2 3.6h3.8l-3 2.2 1.1 3.7L10 11.6 6.9 13l1.1-3.7-3-2.2h3.8L10 3.5z" stroke="#41ABE7" strokeWidth="1.3" strokeLinejoin="round" />
       </svg>
     ),
   },
 ];
 
-export default function MetalsHeroSection() {
+export default function IndicesHeroSection() {
   return (
     <section
-      className="metals-hero"
+      className="indices-hero commodities-hero"
       style={{
         position: "relative",
         background: "#000000",
@@ -67,7 +66,7 @@ export default function MetalsHeroSection() {
       }}
     >
       <div
-        className="metals-hero-image-wrap"
+        className="indices-hero-image-wrap commodities-hero-image-wrap"
         style={{
           position: "absolute",
           top: 147.24,
@@ -78,11 +77,11 @@ export default function MetalsHeroSection() {
         }}
       >
         <Image
-          src="/spot%20metals/hero/Trade%20Gold%2C%20Silver%20%26%20Platinum_v1.jpeg"
-          alt="Trade gold, silver and platinum with Finsai Trade"
+          src="/indices/hero/Trade%20Major%20Global%20Indices_v2.jpeg"
+          alt="Trade major global indices with Finsai Trade"
           width={806}
           height={529}
-          className="metals-hero-image"
+          className="indices-hero-image commodities-hero-image"
           priority
           style={{
             position: "absolute",
@@ -97,7 +96,7 @@ export default function MetalsHeroSection() {
       </div>
 
       <div
-        className="metals-hero-left"
+        className="indices-hero-left commodities-hero-left"
         style={{
           position: "absolute",
           top: 164,
@@ -119,7 +118,7 @@ export default function MetalsHeroSection() {
             color: "#FFFFFF",
           }}
         >
-          Trade Gold, Silver &amp; Platinum
+          Trade Major Global Indices
         </h1>
 
         <p
@@ -134,7 +133,7 @@ export default function MetalsHeroSection() {
             color: "#FFFFFFBF",
           }}
         >
-          Trade energy, agricultural, and raw material commodities through our global multi-asset broker platform.
+          Take positions on the S&P 500, NASDAQ, FTSE 100, DAX, and more from one trading account.
         </p>
 
         <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
@@ -155,7 +154,7 @@ export default function MetalsHeroSection() {
               fontWeight: 600,
             }}
           >
-            Open Live Account
+            Open an Account
             <span aria-hidden>→</span>
           </SmartLink>
           <SmartLink
@@ -179,7 +178,7 @@ export default function MetalsHeroSection() {
         </div>
 
         <div
-          className="metals-hero-trust"
+          className="indices-hero-trust commodities-hero-trust"
           style={{
             display: "flex",
             flexWrap: "nowrap",

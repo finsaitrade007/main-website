@@ -157,9 +157,10 @@ export default function WordstockHeroSection() {
             maxWidth: 480,
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
-            fontSize: 13.8,
-            lineHeight: "20.97px",
-            color: "#7D7F84",
+            fontSize: 18,
+            lineHeight: "31.11px",
+            letterSpacing: "0%",
+            color: "#FFFFFFBF",
           }}
         >
           Own a share in the world&apos;s biggest companies through flexible,
