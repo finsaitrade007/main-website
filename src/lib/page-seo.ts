@@ -82,6 +82,14 @@ export const PAGE_SEO = {
     absoluteTitle: true,
     faqSection: "metals" as const,
   },
+  commodities: {
+    path: "/commodities",
+    title: "Commodities Trading | Finsai Trade",
+    description:
+      "Trade oil, gas, and agricultural commodity markets with Finsai Trade. Access diverse assets, transparent pricing, and global market coverage from one platform.",
+    absoluteTitle: true,
+    faqSection: "commodities" as const,
+  },
   partnerships: {
     path: "/partnerships",
     title: "IB & Affiliate Partnerships | Finsai Trade",

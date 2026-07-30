@@ -26,6 +26,7 @@ const NAV_ITEMS: NavItem[] = [
     items: [
       { label: "Stocks", href: "/wordstock" },
       { label: "Metals", href: "/metals" },
+      { label: "Commodities", href: "/commodities" },
     ],
   },
   {

@@ -7,7 +7,8 @@ export type FaqSection =
   | "social-trading"
   | "mt5"
   | "wordstock"
-  | "metals";
+  | "metals"
+  | "commodities";
 
 export const FAQ_SECTIONS: FaqSection[] = [
   "homepage",
@@ -19,6 +20,7 @@ export const FAQ_SECTIONS: FaqSection[] = [
   "mt5",
   "wordstock",
   "metals",
+  "commodities",
 ];
 
 export type FaqItem = { question: string; answer: string };
@@ -219,6 +221,28 @@ export const FAQ_FALLBACKS: Record<FaqSection, FaqItem[]> = {
       question: "Can I trade with leverage?",
       answer:
         "Yes, Finsai Trade offers leverage on commodities with built-in risk management to support traders responsibly.",
+    },
+  ],
+  commodities: [
+    {
+      question: "What are commodities in trading?",
+      answer:
+        "Commodities are raw materials and natural resources such as oil, gas, metals, and agricultural products that can be traded in global financial markets.",
+    },
+    {
+      question: "Which commodity markets can I trade with Finsai Trade?",
+      answer:
+        "You can trade a broad range of commodity markets including energies, precious metals, industrial metals, and agricultural products, depending on instrument availability.",
+    },
+    {
+      question: "Why do traders add commodities to a portfolio?",
+      answer:
+        "Commodities can help diversify a portfolio, provide exposure to inflation-sensitive assets, and create trading opportunities driven by global supply and demand.",
+    },
+    {
+      question: "Are commodity markets volatile?",
+      answer:
+        "Yes. Commodity prices can move quickly due to weather, geopolitical events, production changes, and shifts in global demand. Finsai Trade provides tools to help traders manage this volatility.",
     },
   ],
   "social-trading": [
