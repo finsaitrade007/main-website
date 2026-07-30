@@ -74,6 +74,14 @@ export const PAGE_SEO = {
     absoluteTitle: true,
     faqSection: "wordstock" as const,
   },
+  metals: {
+    path: "/metals",
+    title: "Spot Metals Trading | Finsai Trade",
+    description:
+      "Trade gold, silver, and platinum with Finsai Trade. Access precious metals markets with flexible pricing, professional tools, and fast order execution.",
+    absoluteTitle: true,
+    faqSection: "metals" as const,
+  },
   partnerships: {
     path: "/partnerships",
     title: "IB & Affiliate Partnerships | Finsai Trade",

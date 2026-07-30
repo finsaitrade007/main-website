@@ -6,7 +6,8 @@ export type FaqSection =
   | "partnerships"
   | "social-trading"
   | "mt5"
-  | "wordstock";
+  | "wordstock"
+  | "metals";
 
 export const FAQ_SECTIONS: FaqSection[] = [
   "homepage",
@@ -17,6 +18,7 @@ export const FAQ_SECTIONS: FaqSection[] = [
   "social-trading",
   "mt5",
   "wordstock",
+  "metals",
 ];
 
 export type FaqItem = { question: string; answer: string };
@@ -190,6 +192,33 @@ export const FAQ_FALLBACKS: Record<FaqSection, FaqItem[]> = {
       question: "Do I own the shares when I trade stock CFDs?",
       answer:
         "No. When you trade stock CFDs you do not own the underlying shares. You are trading the price difference of the stock, which means you can take long or short positions without share ownership.",
+    },
+  ],
+  metals: [
+    {
+      question: "What are spot metals and energies?",
+      answer:
+        "These are commodities like gold, silver, crude oil, and natural gas that can be traded at current market prices.",
+    },
+    {
+      question: "Why trade metals and energies?",
+      answer:
+        "They act as hedges against inflation and provide diversification. Finsai Trade gives easy access to these assets.",
+    },
+    {
+      question: "When can I trade commodities?",
+      answer:
+        "Most metals and energy markets are open almost 24 hours on trading days. Finsai Trade provides real-time access.",
+    },
+    {
+      question: "Are commodities volatile?",
+      answer:
+        "Yes, prices can shift quickly based on supply and demand. Finsai Trade's tools help you manage this volatility.",
+    },
+    {
+      question: "Can I trade with leverage?",
+      answer:
+        "Yes, Finsai Trade offers leverage on commodities with built-in risk management to support traders responsibly.",
     },
   ],
   "social-trading": [

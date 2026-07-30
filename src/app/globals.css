@@ -2224,3 +2224,69 @@ body {
 }
 
 
+
+@media (max-width: 900px) {
+  .metals-hero {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 48px 20px 64px;
+  }
+
+  .metals-hero-left {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .metals-hero-image-wrap {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: min(100%, 806px) !important;
+    height: auto !important;
+    aspect-ratio: 806 / 529;
+    margin: 32px auto 0;
+  }
+
+  .metals-hero-image {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .metals-features {
+    padding: 48px 20px 64px !important;
+  }
+
+  .metals-features-grid {
+    padding-left: 0 !important;
+    justify-content: center !important;
+  }
+
+  .metals-feature-card {
+    width: 238px !important;
+    height: 447px !important;
+  }
+
+  .metals-regulatory {
+    padding: 24px 20px 64px !important;
+  }
+
+  .metals-regulatory-box {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 280px !important;
+    aspect-ratio: 1194 / 437;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+  .metals-features-grid {
+    gap: 12px !important;
+  }
+}
