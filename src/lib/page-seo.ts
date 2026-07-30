@@ -122,6 +122,13 @@ export const PAGE_SEO = {
     absoluteTitle: true,
     faqSection: "crypto" as const,
   },
+  rewards: {
+    path: "/rewards",
+    title: "Trading Rewards & IB Program | Finsai Trade",
+    description:
+      "Earn through trading milestones, seasonal promotions, and the Finsai Introducing Broker program with multi-tier commissions and partner tools.",
+    absoluteTitle: true,
+  },
   partnerships: {
     path: "/partnerships",
     title: "IB & Affiliate Partnerships | Finsai Trade",

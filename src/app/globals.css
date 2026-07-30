@@ -2325,6 +2325,10 @@ body {
     height: 100% !important;
   }
 
+  .rewards-hero-image-fade {
+    display: none !important;
+  }
+
   .commodities-features {
     padding: 48px 20px 64px !important;
   }
@@ -2603,6 +2607,61 @@ body {
 
 @media (max-width: 700px) {
   .crypto-features-bottom {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 1100px) {
+  .rewards-ib {
+    height: auto !important;
+    padding: 48px 20px !important;
+  }
+
+  .rewards-ib-copy,
+  .rewards-ib-cta,
+  .rewards-ib-grid,
+  .rewards-ib-visual {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+  }
+
+  .rewards-ib-copy {
+    width: 100% !important;
+    max-width: 657px !important;
+    margin: 0 auto 24px !important;
+  }
+
+  .rewards-ib-cta {
+    display: inline-flex !important;
+    margin: 0 0 24px !important;
+  }
+
+  .rewards-ib-grid {
+    width: 100% !important;
+    max-width: 657px !important;
+    height: auto !important;
+    margin: 0 auto 32px !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: auto auto !important;
+  }
+
+  .rewards-ib-card {
+    height: auto !important;
+    min-height: 99.56px;
+  }
+
+  .rewards-ib-visual {
+    width: min(100%, 560px) !important;
+    height: auto !important;
+    aspect-ratio: 560 / 520;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .rewards-ib-grid {
     grid-template-columns: 1fr !important;
   }
 }

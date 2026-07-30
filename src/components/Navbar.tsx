@@ -18,6 +18,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "Social Trading", href: "/social-trading" },
       { label: "Account", href: "/accounts" },
       { label: "Payments", href: "/payments" },
+      { label: "Rewards", href: "/rewards" },
     ],
   },
   {
