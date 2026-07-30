@@ -114,6 +114,14 @@ export const PAGE_SEO = {
     absoluteTitle: true,
     faqSection: "indices" as const,
   },
+  crypto: {
+    path: "/crypto",
+    title: "Cryptocurrency Trading | Finsai Trade",
+    description:
+      "Trade top cryptocurrencies with Finsai Trade. Access 100+ digital assets with fast execution, transparent pricing, and secure fund storage.",
+    absoluteTitle: true,
+    faqSection: "crypto" as const,
+  },
   partnerships: {
     path: "/partnerships",
     title: "IB & Affiliate Partnerships | Finsai Trade",

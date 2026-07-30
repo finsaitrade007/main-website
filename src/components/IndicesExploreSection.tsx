@@ -33,7 +33,7 @@ const instruments = [
   {
     title: "Cryptocurrencies",
     image: "/Explore%20More%20Instruments/crypto_v4%20Medium.png",
-    href: "/platform",
+    href: "/crypto",
     top: 330.61,
     left: 509,
   },

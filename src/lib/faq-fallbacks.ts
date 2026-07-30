@@ -11,7 +11,8 @@ export type FaqSection =
   | "commodities"
   | "energies"
   | "forex"
-  | "indices";
+  | "indices"
+  | "crypto";
 
 export const FAQ_SECTIONS: FaqSection[] = [
   "homepage",
@@ -27,6 +28,7 @@ export const FAQ_SECTIONS: FaqSection[] = [
   "energies",
   "forex",
   "indices",
+  "crypto",
 ];
 
 export type FaqItem = { question: string; answer: string };
@@ -320,6 +322,28 @@ export const FAQ_FALLBACKS: Record<FaqSection, FaqItem[]> = {
       question: "How much leverage is available on indices?",
       answer:
         "Finsai Trade offers CFD indices leverage of up to 1:20, subject to your account type and applicable regulations. Always use risk management when trading with leverage.",
+    },
+  ],
+  crypto: [
+    {
+      question: "Do I need a large capital to start trading cryptos at Finsai Trade?",
+      answer:
+        "No. You can start trading with a smaller deposit and choose trade sizes that fit your strategy. A free demo account is also available if you want to practice first.",
+    },
+    {
+      question: "What are the benefits of crypto trading?",
+      answer:
+        "Crypto markets trade around the clock and offer opportunities to go long or short on major digital assets. Finsai Trade provides fast execution, transparent pricing, and access to 100+ crypto markets.",
+    },
+    {
+      question: "Are there any hidden commissions on crypto trades?",
+      answer:
+        "No. Pricing is transparent, with clear spreads shown on the platform so you know the cost of each trade before you enter.",
+    },
+    {
+      question: "Can I use Finsai Trade on mobile for crypto?",
+      answer:
+        "Yes. You can trade cryptocurrencies through Finsai Trade on supported web and mobile access points, including MetaTrader 5 where available for your account.",
     },
   ],
   "social-trading": [

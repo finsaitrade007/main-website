@@ -30,6 +30,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "Energies", href: "/energies" },
       { label: "Forex", href: "/forex" },
       { label: "Indices", href: "/indices" },
+      { label: "Crypto", href: "/crypto" },
     ],
   },
   {
