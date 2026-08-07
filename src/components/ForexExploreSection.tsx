@@ -26,7 +26,7 @@ const instruments = [
   {
     title: "Stocks",
     image: "/Explore%20More%20Instruments/trade_graph_v3%20Medium.png",
-    href: "/wordstock",
+    href: "/stocks",
     top: 330.61,
     left: 59,
   },

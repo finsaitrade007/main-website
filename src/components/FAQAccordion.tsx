@@ -23,7 +23,7 @@ export default function FAQAccordion({ faqs }: { faqs: StrapiFaq[] }) {
             onClick={() => setOpen(open === i ? null : i)}
           >
             <span
-              className={`font-medium text-sm md:text-base ${
+              className={`font-semibold text-[15px] md:text-[17px] ${
                 open === i ? "text-white" : "text-gray-300"
               }`}
             >

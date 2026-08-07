@@ -20,7 +20,8 @@ type RegulationsProps = {
   variant: "regulations";
   title: string;
   description: string;
-  faqs: FaqItem[];
+  /** Omit when the page renders no visible FAQ block. */
+  faqs?: FaqItem[];
 };
 
 type ArticleProps = {

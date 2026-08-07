@@ -37,7 +37,7 @@ export default async function FAQSection({ section, faqs }: FAQSectionProps) {
           const fetched = await getFaqsBySection(section);
           return fetched && fetched.length > 0
             ? fetched
-            : toStrapiShape(section, FAQ_FALLBACKS[section]);
+            : toStrapiShape(section, (FAQ_FALLBACKS[section] ?? []));
         })();
 
   return (

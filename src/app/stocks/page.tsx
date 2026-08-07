@@ -12,24 +12,24 @@ import {
 } from "@/lib/page-seo";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return cmsPageMetadata(null, PAGE_SEO.wordstock);
+  return cmsPageMetadata(null, PAGE_SEO.stocks);
 }
 
 export default async function WordstockPage() {
-  const faqs = await resolvePageFaqs("wordstock");
-  const seo = resolveSeoText(null, PAGE_SEO.wordstock);
+  const faqs = await resolvePageFaqs("stocks");
+  const seo = resolveSeoText(null, PAGE_SEO.stocks);
 
   return (
     <>
       <PageJsonLd
-        path={PAGE_SEO.wordstock.path}
+        path={PAGE_SEO.stocks.path}
         title={seo.title}
         description={seo.description}
         faqs={faqs}
       />
       <WordstockHeroSection />
       <WordstockFeaturesSection />
-      <FAQSection section="wordstock" faqs={faqs} />
+      <FAQSection section="stocks" faqs={faqs} />
       <WordstockRegulatorySection />
     </>
   );

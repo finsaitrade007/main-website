@@ -25,7 +25,7 @@ const NAV_ITEMS: NavItem[] = [
     kind: "dropdown",
     label: "Markets",
     items: [
-      { label: "Stocks", href: "/wordstock" },
+      { label: "Stocks", href: "/stocks" },
       { label: "Metals", href: "/metals" },
       { label: "Commodities", href: "/commodities" },
       { label: "Energies", href: "/energies" },

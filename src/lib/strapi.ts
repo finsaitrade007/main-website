@@ -632,7 +632,39 @@ export type StrapiLegalPage = {
   seo?: StrapiSeo;
 };
 
-export type StrapiRegulationsPage = StrapiLegalPage;
+/**
+ * Regulations page — 2026 redesign. Superset of StrapiLegalPage: every field
+ * beyond `pageTitle`/`seo` is optional so the page still renders from local
+ * fallbacks when Strapi is unseeded or unreachable.
+ */
+export type StrapiRegulationsPage = StrapiLegalPage & {
+  heroBadge?: string | null;
+  heroTitle?: string | null;
+  heroDescription?: string | null;
+  heroPrimaryCtaLabel?: string | null;
+  heroPrimaryCtaHref?: string | null;
+  heroSecondaryCtaLabel?: string | null;
+  heroSecondaryCtaHref?: string | null;
+  heroChips?: StrapiTagline[];
+  heroImage?: string | null;
+
+  commitmentTitle?: string | null;
+  commitmentDescription?: string | null;
+  commitmentCtaLabel?: string | null;
+  commitmentCtaHref?: string | null;
+
+  safeguards?: StrapiIconFeature[];
+
+  pillarsTitle?: string | null;
+  pillarsDescription?: string | null;
+  pillars?: StrapiIconFeature[];
+
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaPrimaryLabel?: string | null;
+  ctaPrimaryHref?: string | null;
+  ctaImage?: string | null;
+};
 
 // ─── Domain queries ──────────────────────────────────────────────────
 
@@ -788,7 +820,12 @@ export function getGlossaryPage() {
 }
 
 export function getRegulationsPage() {
-  return getLegalPage<StrapiRegulationsPage>("regulations-page");
+  // Not getLegalPage(): the redesigned page carries repeatable components
+  // (heroChips / safeguards / pillars) that need explicit population.
+  return strapiFetch<StrapiRegulationsPage>(
+    "regulations-page?populate[heroChips]=*&populate[safeguards]=*&populate[pillars]=*&populate[seo][populate]=*",
+    { tags: ["regulations-page"] },
+  );
 }
 
 export function getPrivacyPolicyPage() {

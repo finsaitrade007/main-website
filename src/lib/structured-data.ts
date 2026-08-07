@@ -178,18 +178,22 @@ export function buildHomepageStructuredData(faqs: FaqItem[]) {
 
 /** Regulations page: FinancialService + full site graph + FAQPage. */
 export function buildRegulationsStructuredData(
-  faqs: FaqItem[],
+  faqs: FaqItem[] | undefined,
   seo: { title: string; description: string },
 ) {
   const path = "/regulations";
+  // Google treats FAQPage markup with no matching visible on-page FAQ as a
+  // structured-data violation. The 2026 design has no FAQ block, so the node
+  // is emitted only when FAQs actually render.
+  const items = faqs ?? [];
   return {
     "@context": "https://schema.org",
     "@graph": [
       organizationNode(),
       websiteNode(),
       financialServiceNode(),
-      webPageNode(path, seo.title, seo.description, faqs),
-      faqPageNode(path, faqs)!,
+      webPageNode(path, seo.title, seo.description, items),
+      ...(items.length ? [faqPageNode(path, items)!] : []),
     ],
   };
 }

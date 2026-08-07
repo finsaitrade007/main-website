@@ -66,13 +66,21 @@ export const PAGE_SEO = {
     absoluteTitle: true,
     faqSection: "mt5" as const,
   },
-  wordstock: {
-    path: "/wordstock",
+  tools: {
+    path: "/tools",
+    title: "Trading Tools & Calculators | Finsai Trade",
+    description:
+      "Position size, lot size, margin, risk, profit target and pip value calculators, plus real-time market news, an economic calendar and a VIX tracker.",
+    absoluteTitle: true,
+    faqSection: "tools" as const,
+  },
+  stocks: {
+    path: "/stocks",
     title: "Stock CFDs Trading | Finsai Trade",
     description:
       "Trade global stock CFDs on blue-chip companies with Finsai Trade. Ultra-fast execution, low trading costs, live price streaming, and the flexibility to go long or short.",
     absoluteTitle: true,
-    faqSection: "wordstock" as const,
+    faqSection: "stocks" as const,
   },
   metals: {
     path: "/metals",
@@ -255,7 +263,7 @@ export async function resolvePageFaqs(section: FaqSection): Promise<FaqItem[]> {
   if (fetched && fetched.length > 0) {
     return fetched.map((f) => ({ question: f.question, answer: f.answer }));
   }
-  return FAQ_FALLBACKS[section];
+  return (FAQ_FALLBACKS[section] ?? []);
 }
 
 export function cmsPageMetadata(

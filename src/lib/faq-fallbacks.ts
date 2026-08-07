@@ -6,7 +6,8 @@ export type FaqSection =
   | "partnerships"
   | "social-trading"
   | "mt5"
-  | "wordstock"
+  | "stocks"
+  | "tools"
   | "metals"
   | "commodities"
   | "energies"
@@ -22,7 +23,8 @@ export const FAQ_SECTIONS: FaqSection[] = [
   "partnerships",
   "social-trading",
   "mt5",
-  "wordstock",
+  "stocks",
+  "tools",
   "metals",
   "commodities",
   "energies",
@@ -33,7 +35,29 @@ export const FAQ_SECTIONS: FaqSection[] = [
 
 export type FaqItem = { question: string; answer: string };
 
-export const FAQ_FALLBACKS: Record<FaqSection, FaqItem[]> = {
+export const FAQ_FALLBACKS: Partial<Record<FaqSection, FaqItem[]>> = {
+  tools: [
+    {
+      question: "What is Finsai Trade?",
+      answer:
+        "Finsai Trade is a multi-asset trading platform that provides access to forex, cryptocurrencies, global stocks, indices, commodities, and CFDs through one secure and professional trading ecosystem.",
+    },
+    {
+      question: "What markets can I trade on Finsai Trade?",
+      answer:
+        "You can trade forex, metals, energies, indices, stocks, cryptocurrencies and commodities \u2014 major, minor and exotic currency pairs; Gold, Silver and Platinum CFDs; Brent Crude, WTI and Natural Gas; the S&P 500, NASDAQ, DAX and FTSE; leading company CFDs; Bitcoin, Ethereum and top altcoins; and agricultural commodities.",
+    },
+    {
+      question: "Is Finsai Trade a regulated trading platform?",
+      answer:
+        "Finsai Trade currently operates in Mauritius, under the regulatory framework established by the Financial Services Commission (FSC).",
+    },
+    {
+      question: "Does Finsai Trade support MetaTrader 5 (MT5)?",
+      answer:
+        "Yes. Finsai Trade is powered by MetaTrader 5 (MT5), one of the world's leading trading platforms. MT5 provides advanced charting, technical indicators, algorithmic trading, Expert Advisors (EAs), real-time market data, and multi-asset access from a single account.",
+    },
+  ],
   homepage: [
     {
       question: "What is Finsai Trade?",
@@ -182,7 +206,7 @@ export const FAQ_FALLBACKS: Record<FaqSection, FaqItem[]> = {
         "You can trade Forex, CFDs, Stocks, Indices, Commodities, and Precious Metals from a single MT5 trading account.",
     },
   ],
-  wordstock: [
+  stocks: [
     {
       question: "What is stock CFD trading?",
       answer:
