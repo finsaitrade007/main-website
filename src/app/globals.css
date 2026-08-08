@@ -3379,3 +3379,93 @@ body {
     margin-top: 6px !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+ * REGULATIONS PAGE — RESPONSIVE
+ *
+ * This page shipped with no .reg-* CSS at all, so it had zero responsive
+ * rules. Measured at a 320px viewport the document scrollWidth was 792px.
+ *
+ * Root cause of the page-level horizontal scroll: .reg-cta-band declares
+ * `aspect-ratio: 1194/437` and `min-height: clamp(280px,30vw,437px)` but NO
+ * width. With no width, the browser derives width FROM height:
+ *     280px x (1194/437) = 765px
+ * which is exactly what it measured (765.031px), and 765 + 27px left = 792 —
+ * the whole page overflow.
+ * ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Applies at every size: give the band a width so aspect-ratio derives the
+   height, not the other way round. */
+.reg-cta-band {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  /* ── CTA ────────────────────────────────────────────────────────────── */
+  .reg-cta-band {
+    aspect-ratio: auto !important;     /* 1194/437 is far too wide to keep */
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 28px 20px !important;
+    gap: 12px !important;
+    border-radius: 20px !important;
+  }
+  .reg-cta-desc { max-width: 100% !important; }
+  .reg-btn-pill { width: 100% !important; max-width: 300px !important; }
+
+  /* ── Hero: absolute copy + image become a stacked column ────────────── */
+  .reg-hero {
+    min-height: 0 !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 118px 20px 48px !important;   /* clears the fixed navbar */
+    gap: 28px !important;
+    box-sizing: border-box !important;
+  }
+  .reg-hero-copy {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    order: 1;
+  }
+  .reg-hero-image {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 420px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    order: 2;
+  }
+  .reg-hero-desc { max-width: 100% !important; }
+  .reg-btn-primary { width: 100% !important; max-width: 300px !important; }
+
+  /* ── Commitment ─────────────────────────────────────────────────────── */
+  .reg-commitment-text { max-width: 100% !important; }
+  .reg-btn-outline { width: 100% !important; max-width: 300px !important; }
+
+  /* ── Safeguards ─────────────────────────────────────────────────────── */
+  .reg-safeguards-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+  }
+  .reg-safeguard-card { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; }
+  .reg-safeguard-desc { max-width: 100% !important; }
+
+  /* ── Pillars marquee: the rail is absolutely positioned and wider than
+        the viewport by design; make sure every ancestor clips it. ─────── */
+  .reg-pillars,
+  .reg-pillars-track { overflow: hidden !important; }
+  .reg-pillar-badge { width: 64px !important; }
+  .reg-pillar-icon  { width: 36px !important; height: 36px !important; }
+}
+
+@media (max-width: 360px) {
+  .reg-hero { padding: 112px 14px 40px !important; }
+  .reg-cta-band { padding: 24px 14px !important; }
+}

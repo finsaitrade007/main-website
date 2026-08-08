@@ -39,7 +39,7 @@ export default async function RegulationsHeroSection() {
           position: "absolute",
           top: "clamp(70px, 9vw, 130px)",
           left: "49.7%",
-          width: "clamp(320px, 51.7vw, 744px)",
+          width: "clamp(320px, 48vw, 690px)",
           height: "auto",
           objectFit: "contain",
         }}
@@ -81,7 +81,13 @@ export default async function RegulationsHeroSection() {
               fontSize: "clamp(13px, 1.39vw, 20px)",
               lineHeight: "32px",
               textTransform: "uppercase",
-              color: "#94A3B8",
+              // brand gradient, matching the About hero badge
+              backgroundImage:
+                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              color: "transparent",
             }}
           >
             {data.heroBadge}
