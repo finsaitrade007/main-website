@@ -53,7 +53,7 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     documentId: "fb-mt5",
     title: "MT5",
     description:
-      " Trade on MetaTrader 5 (MT5), the leading forex trading platform. Leverage 44+ charting tools, 38 built-in + 2,000+ custom indicators, and 21 timeframes for deeper analysis. Create expert advisors with MQL5 and optimize algorithmic trading strategies through multi-threaded testing.",
+      "Experience an MT5 forex broker with 500x leverage on MetaTrader 5 (MT5), the leading multi-asset software. Leverage 44+ charting tools, 38 built-in + 2,000+ custom indicators, and 21 timeframes for deeper analysis. Create expert advisors with MQL5 and optimize algorithmic trading strategies through multi-threaded testing.",
     size: "large",
     row: 1,
     order: 1,
@@ -64,7 +64,7 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     documentId: "fb-social",
     title: "Social Trading",
     description:
-      "Follow top-performing traders and mirror proven strategies in real time with Finsai Trade's social trading and copy trading platform, grow your portfolio with confidence, all in one place.",
+      "Follow top-performing traders and mirror proven strategies in real time on our crypto and forex copy trading platform. Grow your portfolio with confidence, all in one place.",
     size: "large",
     row: 2,
     order: 3,
@@ -75,7 +75,7 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     documentId: "fb-app",
     title: "App & More — Coming soon",
     description:
-      "Stay connected to the markets on the go with the Finsai Trade mobile trading app fast, secure, and intuitive trading app experience.",
+      "Stay connected to global markets on the go with the Finsai Trade mobile trading app\u2014a fast, secure, and intuitive trading platform experience.",
     size: "small",
     row: 2,
     order: 4,

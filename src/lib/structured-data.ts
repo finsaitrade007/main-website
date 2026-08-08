@@ -28,9 +28,18 @@ function normalizeFaqAnswer(text: string): string {
   return text.replace(/\n\n/g, " ");
 }
 
+/**
+ * Organization node, extended with the FSC credential.
+ *
+ * NOTE ON DOMAIN: the content docs write these @ids against
+ * `https://www.finsaitrade.com`, but every canonical URL, OG url and existing
+ * @id on this site uses the apex `https://finsaitrade.com`. Mixing the two
+ * splits the entity graph, so everything here is emitted against SITE_URL.
+ * If www is meant to be canonical, change SITE_URL — do not hardcode www here.
+ */
 export function organizationNode() {
   return {
-    "@type": "Organization",
+    "@type": ["Organization", "FinancialService"],
     "@id": ORGANIZATION_ID,
     name: "Finsai Trade",
     legalName: "Finsai Trade (Mauritius) Ltd",
@@ -41,11 +50,27 @@ export function organizationNode() {
       url: SITE_LOGO_URL,
     },
     description:
-      "Finsai Trade is a multi-asset online trading platform providing access to forex, stocks, cryptocurrencies, commodities, indices, and CFDs through advanced trading technology and the MetaTrader 5 (MT5) platform.",
+      "Finsai Trade is an FSC-regulated global multi-asset broker providing access to Forex, Crypto CFDs, Stocks, Indices, Metals, and Energies on MetaTrader 5, with up to 500x leverage and raw ECN CFD trading.",
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "Financial Regulation License",
+      identifier: FINSAI_LICENSE_NO,
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Financial Services Commission (FSC)",
+      },
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "3rd Floor, Manor House, 30 St Georges Street",
+      addressLocality: "Port Louis",
+      addressCountry: "MU",
+    },
     sameAs: [
       "https://www.facebook.com/people/Finsai/61551284008485/",
       "https://x.com/FinsaiTrade",
       "https://www.instagram.com/finsai.trade",
+      "https://www.linkedin.com/company/finsai-trade",
       "https://www.youtube.com/@FinsaiTrade-UI",
     ],
     knowsAbout: [
@@ -67,6 +92,56 @@ export function organizationNode() {
     },
   };
 }
+
+/** Homepage: the MT5 multi-asset account offering. */
+function brokerageAccountNode() {
+  return {
+    "@type": "BrokerageAccount",
+    "@id": `${SITE_URL}/#mt5-account`,
+    name: "Finsai Trade MetaTrader 5 Trading Account",
+    provider: { "@id": ORGANIZATION_ID },
+    description:
+      "Multi-asset MT5 trading account offering up to 500x leverage on forex, stocks, crypto, commodities, and indices.",
+    feesAndCommissionsSpecification:
+      "Raw ECN spreads, low commission account options available.",
+  };
+}
+
+/** Accounts page: the tiered account product. */
+function accountsProductNode() {
+  return {
+    "@type": "FinancialProduct",
+    "@id": `${SITE_URL}/accounts#product`,
+    name: "Finsai Trade Forex Trading Accounts",
+    description:
+      "Multi-asset forex and CFD trading accounts including Smart Choice, Smart Pro, and Smart ECN options with up to 1:500 leverage, swap-free trading, and MT5 access.",
+    provider: { "@id": ORGANIZATION_ID },
+  };
+}
+
+/** Social Trading page: the copy-trading software entity. */
+function socialTradingSoftwareNode() {
+  return {
+    "@type": "SoftwareApplication",
+    "@id": `${SITE_URL}/social-trading#software`,
+    name: "Finsai Trade Social Trading",
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web, iOS, Android",
+    provider: { "@id": ORGANIZATION_ID },
+    description:
+      "Institutional-grade social trading platform for automatically copying verified forex and crypto strategy providers, with built-in drawdown limits and balance protection controls.",
+  };
+}
+
+/**
+ * Extra schema.org nodes contributed by specific routes, per the approved
+ * content documents. Keyed by canonical path.
+ */
+const PAGE_EXTRA_NODES: Record<string, () => Record<string, unknown>[]> = {
+  "/": () => [brokerageAccountNode()],
+  "/accounts": () => [accountsProductNode()],
+  "/social-trading": () => [socialTradingSoftwareNode()],
+};
 
 export function websiteNode() {
   return {
@@ -152,9 +227,14 @@ export function buildPageStructuredData(args: {
   description: string;
   faqs?: FaqItem[];
 }) {
+  // Route-specific entities (BrokerageAccount, FinancialProduct,
+  // SoftwareApplication) come from the approved content docs.
+  const extras = PAGE_EXTRA_NODES[args.path]?.() ?? [];
+
   const graph = [
     organizationNode(),
     websiteNode(),
+    ...extras,
     webPageNode(args.path, args.title, args.description, args.faqs),
     ...(args.faqs?.length ? [faqPageNode(args.path, args.faqs)!] : []),
   ];

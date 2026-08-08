@@ -177,22 +177,22 @@ const investorBullets: BulletItem[] = [
   {
     icon: <NoExperienceIcon />,
     title: "No Experience Required",
-    desc: "Follow proven providers and stay invested with ease.",
+    desc: "Follow proven strategy providers and grow your presence in our global investment community with ease.",
   },
   {
     icon: <BrowseProvidersIcon />,
-    title: "Browse Providers",
-    desc: "Analyze the historical performance of each trader.",
+    title: "Browse Strategy Providers",
+    desc: "Deep dive into the historical performance data, win rates, and risk scores of each trader profile.",
   },
   {
     icon: <CopyTradesIcon />,
     title: "Copy Trades Automatically",
-    desc: "Connect with other traders and share insights.",
+    desc: "Replicate trades instantly via our advanced automated copy trading engine with zero latency.",
   },
   {
     icon: <MonitorAnytimeIcon />,
     title: "Monitor Anytime",
-    desc: "Set notifications for market movements and trader updates.",
+    desc: "Track real-time trading signals, open orders, and portfolio updates directly on your dashboard or copy trading app.",
   },
 ];
 
@@ -200,22 +200,22 @@ const providerBullets: BulletItem[] = [
   {
     icon: <TradeNormallyIcon />,
     title: "Trade Normally",
-    desc: "Keep trading exactly as you always do.",
+    desc: "Keep executing your trading strategy on your account exactly as you always do.",
   },
   {
     icon: <FollowersCopyIcon />,
     title: "Followers Copy You",
-    desc: "Trades mirror live across follower accounts.",
+    desc: "Your order execution mirrors live across follower accounts through institutional-grade mirror trading technology.",
   },
   {
     icon: <GrowFollowingIcon />,
     title: "Grow Your Following",
-    desc: "Build visibility with active traders.",
+    desc: "Build visibility within our active social trading community and attract allocation capital.",
   },
   {
     icon: <EarnRewardsIcon />,
     title: "Earn Monthly Rewards",
-    desc: "Receive transparent performance-based payouts.",
+    desc: "Receive transparent performance-based fee payouts directly into your wallet based on net profits generated.",
   },
 ];
 
@@ -316,247 +316,6 @@ function BulletList({ items }: { items: BulletItem[] }) {
 }
 
 // SVG icons for the diagram circles
-function UsersIcon() {
-  return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path
-        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM17 17a7 7 0 10-14 0"
-        stroke="#ffffff"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M16 12a3 3 0 110-6M19 17a5 5 0 00-3-4.6"
-        stroke="#ffffff"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function CopyIcon() {
-  return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path
-        d="M10 3C6.134 3 3 6.134 3 10s3.134 7 7 7 7-3.134 7-7"
-        stroke="#ffffff"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M17 3l-2 2m2-2l-2-2"
-        stroke="#ffffff"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M10 17c3.866 0 7-3.134 7-7S13.866 3 10 3"
-        stroke="#ffffff"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeDasharray="0.1 3"
-      />
-      <path
-        d="M3 17l2-2m-2 2l2 2"
-        stroke="#ffffff"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function GrowthIcon() {
-  return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path
-        d="M10 16V8"
-        stroke="#ffffff"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M10 8c0-3 2.5-4 4-3"
-        stroke="#ffffff"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M10 10c0-2-2-3.5-4-3"
-        stroke="#ffffff"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M5 16h10"
-        stroke="#ffffff"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function DiagramCircle({
-  icon,
-  label,
-  style,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  style?: React.CSSProperties;
-}) {
-  return (
-    <div
-      style={{
-        position: "absolute",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "6px",
-        ...style,
-      }}
-    >
-      <div
-        style={{
-          width: "64px",
-          height: "64px",
-          borderRadius: "50%",
-          background: "linear-gradient(135deg,#056FB4,#7DB9D6)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {icon}
-      </div>
-      <span
-        style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: "12px",
-          color: "#94A3B8",
-          fontWeight: 500,
-        }}
-      >
-        {label}
-      </span>
-    </div>
-  );
-}
-
-function CenterDiagram() {
-  return (
-    <div
-      style={{
-        position: "relative",
-        width: "220px",
-        height: "220px",
-        margin: "0 auto",
-      }}
-    >
-      {/* SVG connecting lines */}
-      <svg
-        width="220"
-        height="220"
-        viewBox="0 0 220 220"
-        style={{ position: "absolute", top: 0, left: 0 }}
-        aria-hidden="true"
-      >
-        {/* Top (110,18) to Bottom-Left (28,162) */}
-        <line
-          x1="110" y1="50"
-          x2="60" y2="150"
-          stroke="rgba(5,111,180,0.45)"
-          strokeWidth="1.5"
-        />
-        {/* Top (110,18) to Bottom-Right (182,162) */}
-        <line
-          x1="110" y1="50"
-          x2="160" y2="150"
-          stroke="rgba(5,111,180,0.45)"
-          strokeWidth="1.5"
-        />
-        {/* Bottom-Left to Bottom-Right */}
-        <line
-          x1="60" y1="162"
-          x2="160" y2="162"
-          stroke="rgba(5,111,180,0.45)"
-          strokeWidth="1.5"
-        />
-      </svg>
-
-      {/* Top circle — Connect */}
-      <DiagramCircle
-        icon={<UsersIcon />}
-        label="Connect"
-        style={{ top: 0, left: "50%", transform: "translateX(-50%)" }}
-      />
-
-      {/* Bottom-left circle — Copy */}
-      <DiagramCircle
-        icon={<CopyIcon />}
-        label="Copy"
-        style={{ bottom: 0, left: 0 }}
-      />
-
-      {/* Bottom-right circle — Grow */}
-      <DiagramCircle
-        icon={<GrowthIcon />}
-        label="Grow"
-        style={{ bottom: 0, right: 0 }}
-      />
-
-      {/* Center label */}
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          textAlign: "center",
-        }}
-      >
-        <span
-          style={{
-            fontFamily: "'Sora', sans-serif",
-            fontSize: "14px",
-            fontWeight: 700,
-            color: "#ffffff",
-            lineHeight: 1.3,
-            whiteSpace: "pre-line",
-          }}
-        >
-          {"Copy\nGroup"}
-        </span>
-      </div>
-    </div>
-  );
-}
-
 export default function SocialTradingHowItWorksSection() {
   return (
     <section

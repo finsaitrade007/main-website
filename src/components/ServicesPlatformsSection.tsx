@@ -29,18 +29,18 @@ const FALLBACK_HEADER: Pick<
   "platformsBadge" | "platformsTitle" | "platformsDescription"
 > = {
   platformsBadge: "Choose Your Platform",
-  platformsTitle: "Three Premium Platforms.\nUnlimited Trading Potential.",
+  platformsTitle: "Three Core Execution Suites.\nOne Trader Platform.",
   platformsDescription:
-    "From advanced algorithmic trading to social copy trading, discover the ultimate platform for your trading style.",
+    "From algorithmic execution on our fx trading platform to automated copy trading, explore an all in one trading ecosystem built to help you trade multi-asset markets with complete confidence.",
 };
 
 const FALLBACK_PLATFORMS: Platform[] = [
   {
     id: "mt5",
     title: "MT5",
-    subtitle: "The World's Most Powerful Trading Platform",
+    subtitle: "MetaTrader 5: A High-Performance FX Trading Platform",
     description:
-      "Experience MetaTrader 5 - the globally trusted trading platform known for lightning-fast execution, elite analysis tools, and unmatched flexibility.",
+      "For market participants seeking precision, MetaTrader 5 (MT5) remains the premier forex trading platform online. Whether operating through a desktop workstation or accessing our web-based trading site, MT5 provides lightning-fast execution and institutional-grade analytics.",
     features: [
       "44+ advanced charting tools",
       "38 built-in indicators",
@@ -60,9 +60,9 @@ const FALLBACK_PLATFORMS: Platform[] = [
   {
     id: "social",
     title: "Social Trading",
-    subtitle: "Copy, Trade, or Earn with Social Trading",
+    subtitle: "Social & Copy Trading: A Smart Trading Platform Environment",
     description:
-      "Follow experienced traders or become a strategy provider. Copy expert trades live, or share your strategy and earn rewards.",
+      "Simplify your strategy with an intuitive smart trading platform. Connect directly to a global trading platform network to replicate verified strategy providers in real time or monetize your own trading expertise.",
     features: [
       "Auto-Copy Execution",
       "Strategy Monetization",
@@ -80,9 +80,9 @@ const FALLBACK_PLATFORMS: Platform[] = [
   {
     id: "app",
     title: "App (Coming Soon)",
-    subtitle: "Powerful Mobile Trading On The Go",
+    subtitle: "Multi-Asset Mobile App: Powering Your Trading Platform On the Go",
     description:
-      "The Finsai Trade App puts fast, seamless multi-asset trading directly in your hands - anytime, anywhere.",
+      "Access our complete trading website features directly from your iOS or Android device. Download a versatile trader platform app that puts over 1,000 multi-asset instruments at your fingertips.",
     features: [
       "1,000+ Instruments, One Tap",
       "Live News & Market Insights",

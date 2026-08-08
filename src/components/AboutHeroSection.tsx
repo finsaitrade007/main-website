@@ -15,7 +15,7 @@ const FALLBACK: Pick<
   heroBadge: "Who We Are",
   heroTitle: "Our Mission, Our Markets, Our Edge",
   heroDescription:
-    "Helping traders access multiple asset classes while benefiting from educational resources, loyalty rewards, and partnership opportunities. ",
+    "Finsai Trade is an international global multi asset broker engineered to empower modern investors. As a trader-centric brokerage firm, we enable active market participants to access over 10,000 financial instruments across Forex, Crypto CFDs, Stocks, Indices, Metals, and Energies — all while offering comprehensive trader education, loyalty rewards, and competitive partnership programs from a single unified account.",
   heroPrimaryCtaLabel: "Open Live Account",
   heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
   heroSecondaryCtaLabel: "Explore Our Services",

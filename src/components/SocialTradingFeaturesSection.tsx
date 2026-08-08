@@ -2,7 +2,7 @@ const cards = [
   {
     title: "Real-Time Copy Trading",
     description:
-      "Copy trades automatically as your chosen experts open positions.",
+      "Seamlessly execute copy trading automatically as your chosen market experts open and close positions.",
     icon: (
       <svg
         width="40"
@@ -45,7 +45,7 @@ const cards = [
   {
     title: "Complete Transparency",
     description:
-      "View verified results, win rates, risk levels, and drawdowns before following.",
+      "View comprehensive performance analytics, win rates, and verified trading statistics before following any forex social trading platform strategy.",
     icon: (
       <svg
         width="40"
@@ -75,9 +75,9 @@ const cards = [
     ),
   },
   {
-    title: "Built-In Risk Controls",
+    title: "Built-In Risk Management",
     description:
-      "Set limits and stop-loss levels to manage risk with control.",
+      "Set strict drawdown limits, account balance protection thresholds, and custom stop-loss levels to manage risk with complete control.",
     icon: (
       <svg
         width="40"
@@ -106,7 +106,7 @@ const cards = [
   {
     title: "Become a Strategy Provider",
     description:
-      "Share your strategy, gain followers, and earn performance-based rewards.",
+      "Share your edge, gain followers on our global leaderboard, and earn transparent performance-based rewards monthly.",
     icon: (
       <svg
         width="40"
@@ -153,7 +153,7 @@ export default function SocialTradingFeaturesSection() {
           lineHeight: 1.2,
         }}
       >
-        Goodbye Complexity. Hello Easy Trading
+        Goodbye Complexity. Hello Smart Risk Management.
       </h2>
 
       <p
@@ -168,8 +168,8 @@ export default function SocialTradingFeaturesSection() {
           lineHeight: 1.6,
         }}
       >
-        Social Trading in Finsai Trade helps you trade with more confidence,
-        control, and transparency.
+        Our state-of-the-art social trading platform helps you navigate volatile
+        markets with more confidence, control, and transparency.
       </p>
 
       <div

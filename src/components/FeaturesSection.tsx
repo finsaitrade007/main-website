@@ -7,11 +7,11 @@ import FeaturesCryptoStack from "./FeaturesCryptoStack";
 
 const FALLBACK_FEATURES: StrapiFeatureItem[] = [
   { id: 1, iconKey: "transparency", title: "No Hidden Fees,\nTransparent Trades" },
-  { id: 2, iconKey: "assets", title: "1000+\nAssets" },
-  { id: 3, iconKey: "leverage", title: "Up to 500x\nLeverage" },
+  { id: 2, iconKey: "assets", title: "1000+ Assets Across an Online\nInvestment Platform Ecosystem" },
+  { id: 3, iconKey: "leverage", title: "Forex Trading Platform\nwith 500x Leverage" },
   { id: 4, iconKey: "deposits", title: "Instant Withdrawal \nand Deposits" },
-  { id: 5, iconKey: "learning", title: "Live\nLearning" },
-  { id: 6, iconKey: "social", title: "Social\ntrading" },
+  { id: 5, iconKey: "learning", title: "Live Learning &\nMarket Education" },
+  { id: 6, iconKey: "social", title: "Crypto and Forex Copy\nTrading Platform Features" },
 ];
 
 const FALLBACK_HEADER: Pick<
@@ -19,9 +19,9 @@ const FALLBACK_HEADER: Pick<
   "featuresBadge" | "featuresTitle" | "featuresDescription"
 > = {
   featuresBadge: "What Sets Us Apart ",
-  featuresTitle: "Why Top Traders Choose Finsai Trade",
+  featuresTitle: "Why Top Traders Choose Our Online Trading Platform",
   featuresDescription:
-    " Start trading online securely across 1,000+ assets on a globally regulated platform with transparent pricing and 24/7 expert support.",
+    "Start trading online securely across 1,000+ assets on a globally regulated financial trading platform with transparent pricing and 24/7 expert support.",
 };
 
 function FeatureIcon({ iconKey }: { iconKey: StrapiFeatureItem["iconKey"] }) {

@@ -12,14 +12,19 @@ import {
   resolvePageFaqs,
   resolveSeoText,
 } from "@/lib/page-seo";
+import { getCryptoPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return cmsPageMetadata(null, PAGE_SEO.crypto);
+  const data = await getCryptoPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.crypto);
 }
 
 export default async function CryptoPage() {
-  const faqs = await resolvePageFaqs("crypto");
-  const seo = resolveSeoText(null, PAGE_SEO.crypto);
+  const [data, faqs] = await Promise.all([
+    getCryptoPage(),
+    resolvePageFaqs("crypto"),
+  ]);
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.crypto);
 
   return (
     <>

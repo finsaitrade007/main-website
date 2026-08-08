@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { CSSProperties, MouseEvent, ReactNode } from "react";
 
@@ -33,8 +34,8 @@ export default function FAQLink({ children, style, className }: FAQLinkProps) {
   }
 
   return (
-    <a href="/#faq" onClick={handleClick} style={style} className={className}>
+    <Link href="/#faq" onClick={handleClick} style={style} className={className}>
       {children}
-    </a>
+    </Link>
   );
 }

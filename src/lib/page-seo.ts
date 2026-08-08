@@ -12,24 +12,23 @@ export type PageSeoFallback = {
   path: string;
   title: string;
   description: string;
-  /** Use absolute title (no layout template suffix). */
-  absoluteTitle?: boolean;
   faqSection?: FaqSection;
 };
 
 export const PAGE_SEO = {
   home: {
     path: "/",
-    title: "Multi-Asset Online Trading Platform | Finsai Trade",
+    title: "FSC Regulated Forex Broker & MT5 Multi-Asset Trading Platform",
     description:
-      "Multi-asset online trading platform designed for forex trading, market analysis, copy trading, and advanced trading strategies.",
+      "Trade forex, crypto, and CFDs with Finsai Trade, an FSC regulated forex broker offering MetaTrader 5 (MT5), raw ECN CFD trading, up to 500x leverage, and copy trading",
     faqSection: "homepage" as const,
   },
   about: {
     path: "/about",
-    title: "About Finsai Trade — Multi-Asset Broker & Trading Ecosystem",
+    title: "About Finsai Trade | Multi Asset Broker & Trading Ecosystem",
     description:
-      "Finsai Trade is a multi-asset broker built by traders. Discover our mission, vision, awards and the team driving financial growth in the digital era.",
+      "Finsai Trade is an FSC-regulated global multi-asset broker. Access Forex, Crypto, Equities, and Commodities with low-latency MetaTrader 5 execution.",
+    faqSection: "about" as const,
   },
   careers: {
     path: "/careers",
@@ -39,9 +38,9 @@ export const PAGE_SEO = {
   },
   accounts: {
     path: "/accounts",
-    title: "Trading Accounts | Finsai Trade — Smart Choice, Pro & ECN",
+    title: "Compare Forex Trading Account Types | ECN & Swap-Free",
     description:
-      "Compare Finsai Trade account types and pick the one that fits your style — Smart Choice, Smart Pro, and Smart ECN.",
+      "Explore multi-asset forex account types. Trade with 0.0 pips raw spreads, up to 1:500 leverage, zero swap fees, and low $100 minimum deposit on MT5.",
     faqSection: "accounts" as const,
   },
   payments: {
@@ -53,9 +52,9 @@ export const PAGE_SEO = {
   },
   platform: {
     path: "/platform",
-    title: "Trading Platforms | Finsai Trade — MT5, Social & Mobile",
+    title: "All-In-One Trading Platform for MT5 & Copy Trading | Finsai",
     description:
-      "Three trading environments built for every level. Trade with MT5, copy top performers via social trading, or stay connected with our upcoming mobile app.",
+      "Trade on an all-in-one trading platform with MT5, real-time copy trading, and mobile execution. Access Finsai's advanced forex trading platform online.",
     faqSection: "platform" as const,
   },
   mt5: {
@@ -63,7 +62,6 @@ export const PAGE_SEO = {
     title: "MT5 Trading Platform | Finsai Trade",
     description:
       "Trade forex, shares, indices, commodities and cryptocurrencies on MetaTrader 5 (MT5) with Finsai Trade. Fast execution, advanced charting, and multi-asset access.",
-    absoluteTitle: true,
     faqSection: "mt5" as const,
   },
   tools: {
@@ -71,7 +69,6 @@ export const PAGE_SEO = {
     title: "Trading Tools & Calculators | Finsai Trade",
     description:
       "Position size, lot size, margin, risk, profit target and pip value calculators, plus real-time market news, an economic calendar and a VIX tracker.",
-    absoluteTitle: true,
     faqSection: "tools" as const,
   },
   stocks: {
@@ -79,7 +76,6 @@ export const PAGE_SEO = {
     title: "Stock CFDs Trading | Finsai Trade",
     description:
       "Trade global stock CFDs on blue-chip companies with Finsai Trade. Ultra-fast execution, low trading costs, live price streaming, and the flexibility to go long or short.",
-    absoluteTitle: true,
     faqSection: "stocks" as const,
   },
   metals: {
@@ -87,7 +83,6 @@ export const PAGE_SEO = {
     title: "Spot Metals Trading | Finsai Trade",
     description:
       "Trade gold, silver, and platinum with Finsai Trade. Access precious metals markets with flexible pricing, professional tools, and fast order execution.",
-    absoluteTitle: true,
     faqSection: "metals" as const,
   },
   commodities: {
@@ -95,7 +90,6 @@ export const PAGE_SEO = {
     title: "Commodities Trading | Finsai Trade",
     description:
       "Trade oil, gas, and agricultural commodity markets with Finsai Trade. Access diverse assets, transparent pricing, and global market coverage from one platform.",
-    absoluteTitle: true,
     faqSection: "commodities" as const,
   },
   energies: {
@@ -103,7 +97,6 @@ export const PAGE_SEO = {
     title: "Energies Trading | Finsai Trade",
     description:
       "Trade CFDs on Brent Oil, Natural Gas, and key energy assets with Finsai Trade. Competitive spreads, fast execution, and round-the-clock market access.",
-    absoluteTitle: true,
     faqSection: "energies" as const,
   },
   forex: {
@@ -111,7 +104,6 @@ export const PAGE_SEO = {
     title: "Forex Trading | Finsai Trade",
     description:
       "Trade the global forex market with Finsai Trade. Access 40+ major, minor, and exotic currency pairs with ultra-low spreads and fast execution.",
-    absoluteTitle: true,
     faqSection: "forex" as const,
   },
   indices: {
@@ -119,7 +111,6 @@ export const PAGE_SEO = {
     title: "Indices Trading | Finsai Trade",
     description:
       "Trade major global indices including the S&P 500, NASDAQ, AUS 200, and DAX with Finsai Trade. Tight spreads, flexible sizes, and fast execution.",
-    absoluteTitle: true,
     faqSection: "indices" as const,
   },
   crypto: {
@@ -127,7 +118,6 @@ export const PAGE_SEO = {
     title: "Cryptocurrency Trading | Finsai Trade",
     description:
       "Trade top cryptocurrencies with Finsai Trade. Access 100+ digital assets with fast execution, transparent pricing, and secure fund storage.",
-    absoluteTitle: true,
     faqSection: "crypto" as const,
   },
   rewards: {
@@ -135,7 +125,6 @@ export const PAGE_SEO = {
     title: "Trading Rewards & IB Program | Finsai Trade",
     description:
       "Earn through trading milestones, seasonal promotions, and the Finsai Introducing Broker program with multi-tier commissions and partner tools.",
-    absoluteTitle: true,
   },
   partnerships: {
     path: "/partnerships",
@@ -158,9 +147,9 @@ export const PAGE_SEO = {
   },
   socialTrading: {
     path: "/social-trading",
-    title: "Social Trading — Copy Top Traders | Finsai Trade",
+    title: "Social Trading Platform: Copy Top Forex & Crypto Traders",
     description:
-      "Follow experienced traders or become a strategy provider. Copy trades live, share your strategy, and earn rewards with Finsai Trade Social Trading.",
+      "Join Finsai Trade's social trading platform. Automatically copy top forex & crypto strategy providers with full transparency and custom risk controls.",
     faqSection: "social-trading" as const,
   },
   glossary: {
@@ -173,7 +162,6 @@ export const PAGE_SEO = {
     path: "/regulations",
     title: "Finsai Trade Regulation & Compliance | Mauritius FSC Licensed",
     description: `Finsai Trade is regulated by the Financial Services Commission Mauritius (License ${FINSAI_LICENSE_NO}). Learn more about our legal framework and fund protection.`,
-    absoluteTitle: true,
   },
   privacyPolicy: {
     path: "/privacy-policy",
@@ -198,7 +186,6 @@ export const PAGE_SEO = {
     title: "Anti-Money Laundering (AML) Compliance | Finsai Trade",
     description:
       "Finsai Trade's AML compliance outlines mandatory client due diligence, transaction monitoring, and sanctions screening to ensure a secure trading environment.",
-    absoluteTitle: true,
   },
   refundPolicy: {
     path: "/refund-policy",
@@ -270,13 +257,11 @@ export function cmsPageMetadata(
   seo: StrapiSeo | null | undefined,
   fallback: PageSeoFallback,
 ): Metadata {
-  const metadata = seoToMetadata(seo, {
+  // `seoToMetadata` already returns an absolute title, so no page needs to opt
+  // out of a layout template — there isn't one any more.
+  return seoToMetadata(seo, {
     title: fallback.title,
     description: fallback.description,
     url: pageCanonicalUrl(fallback.path),
   });
-  if (fallback.absoluteTitle) {
-    return { ...metadata, title: { absolute: fallback.title } };
-  }
-  return metadata;
 }

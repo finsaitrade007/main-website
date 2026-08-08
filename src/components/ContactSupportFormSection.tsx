@@ -18,8 +18,6 @@ type Benefit = {
   description?: string;
 };
 
-const BENEFIT_ICONS: IconKey[] = ["quick", "transparency", "dedicated", "multilang"];
-
 const DEFAULT_BENEFITS: Benefit[] = [
   {
     icon: "quick",

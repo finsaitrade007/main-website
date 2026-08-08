@@ -14,9 +14,9 @@ const FALLBACK: Pick<
   | "heroStats"
 > = {
   heroBadge: "Social Trading · Now Live",
-  heroTitle: "Copy, Trade, or Earn\nwith Social Trading",
+  heroTitle: "The Institutional-Grade\nSocial Trading Platform",
   heroDescription:
-    "Follow experienced traders or become a strategy provider. Copy traders live, share your strategy, and earn rewards.",
+    "Follow experienced strategy providers or share your own trading edge. Master global financial markets by letting proven Forex and Crypto strategies work for you automatically.",
   heroPrimaryCtaLabel: "Become a Follower",
   heroPrimaryCtaHref:
     "https://social.finsaitrade.com/portal/registration/subscription?redirectUrl=%2F",

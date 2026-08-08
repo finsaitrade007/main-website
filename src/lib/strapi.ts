@@ -231,14 +231,6 @@ export type StrapiTestimonial = {
   order: number;
 };
 
-export type StrapiNavItem = {
-  id: number;
-  documentId: string;
-  label: string;
-  href: string;
-  order: number;
-};
-
 // ─── SEO types ───────────────────────────────────────────────────────
 
 export type StrapiMetaSocial = {
@@ -390,51 +382,6 @@ export type StrapiRewardsPage = {
   ctaDescription: string;
   ctaPrimaryLabel: string;
   ctaPrimaryHref: string;
-};
-
-export type StrapiToolsPage = {
-  id: number;
-  documentId: string;
-
-  heroBadge: string;
-  heroTitle: string;
-  heroDescription: string;
-  heroProofText: string;
-  heroPrimaryCtaLabel: string;
-  heroPrimaryCtaHref: string;
-  heroSecondaryCtaLabel: string;
-  heroSecondaryCtaHref: string;
-
-  builtForBadge: string;
-  builtForTitle: string;
-  builtForDescription: string;
-  builtForFeatures: StrapiIconFeature[];
-
-  chartingTitle: string;
-  chartingDescription: string;
-  chartingCards: StrapiImageCard[];
-
-  marketDataTitle: string;
-  marketDataDescription: string;
-
-  riskTitle: string;
-  riskDescription: string;
-  riskCards: StrapiImageCard[];
-
-  strategyTitle: string;
-  strategyDescription: string;
-  strategyCards: StrapiImageCard[];
-
-  communityTitle: string;
-  communityDescription: string;
-  communityCards: StrapiImageCard[];
-
-  ctaTitle: string;
-  ctaDescription: string;
-  ctaPrimaryLabel: string;
-  ctaPrimaryHref: string;
-  ctaSecondaryLabel: string;
-  ctaSecondaryHref: string;
 };
 
 export type StrapiAccountsPage = {
@@ -739,20 +686,6 @@ export function getCareersPage() {
   );
 }
 
-export function getRewardsPage() {
-  return strapiFetch<StrapiRewardsPage>(
-    "rewards-page?populate[promotionCards]=*&populate[loyaltyTiers]=*&populate[loyaltyPerks]=*&populate[ibFeatures]=*&populate[ibStats]=*",
-    { tags: ["rewards-page"] },
-  );
-}
-
-export function getToolsPage() {
-  return strapiFetch<StrapiToolsPage>(
-    "tools-page?populate[builtForFeatures]=*&populate[chartingCards]=*&populate[riskCards]=*&populate[strategyCards]=*&populate[communityCards]=*",
-    { tags: ["tools-page"] },
-  );
-}
-
 export function getAccountsPage() {
   return strapiFetch<StrapiAccountsPage>(
     "accounts-page?populate[whyFeatures]=*&populate[onboardingSteps]=*&populate[seo][populate]=*",
@@ -781,10 +714,6 @@ export function getPartnershipsPage() {
   );
 }
 
-export function getNavItems() {
-  return strapiFetch<StrapiNavItem[]>("nav-items?sort=order:asc", { tags: ["nav-items"] });
-}
-
 export function getBlogsPage() {
   return strapiFetch<StrapiBlogsPage>(
     "blogs-page?populate[seo][populate]=*",
@@ -803,6 +732,68 @@ function getLegalPage<T extends StrapiLegalPage>(slug: string) {
   return strapiFetch<T>(`${slug}?populate[seo][populate]=*`, {
     tags: [slug],
   });
+}
+
+// ─── SEO-only page single types ──────────────────────────────────────
+//
+// These content types exist in Strapi and are seeded by `backend/src/index.ts`,
+// but had no getter — the pages passed a literal `null` to `cmsPageMetadata`,
+// so an editor changing e.g. the /forex meta description saw no effect, ever,
+// with no error anywhere. They carry only a `seo` component.
+
+export type StrapiSeoOnlyPage = {
+  id: number;
+  documentId: string;
+  seo?: StrapiSeo;
+};
+
+function getSeoOnlyPage(slug: string) {
+  return strapiFetch<StrapiSeoOnlyPage>(`${slug}?populate[seo][populate]=*`, {
+    tags: [slug],
+  });
+}
+
+export function getMt5Page() {
+  return getSeoOnlyPage("mt5-page");
+}
+
+/** UID is `wordstock-page` for historical reasons; the route is `/stocks`. */
+export function getStocksPage() {
+  return getSeoOnlyPage("wordstock-page");
+}
+
+export function getMetalsPage() {
+  return getSeoOnlyPage("metals-page");
+}
+
+export function getCommoditiesPage() {
+  return getSeoOnlyPage("commodities-page");
+}
+
+export function getEnergiesPage() {
+  return getSeoOnlyPage("energies-page");
+}
+
+export function getForexPage() {
+  return getSeoOnlyPage("forex-page");
+}
+
+export function getIndicesPage() {
+  return getSeoOnlyPage("indices-page");
+}
+
+export function getCryptoPage() {
+  return getSeoOnlyPage("crypto-page");
+}
+
+/**
+ * The `rewards-page` content type only has a `seo` field. `StrapiRewardsPage`
+ * describes a much richer shape that was never added to the schema, so
+ * populating those component fields would 400. Treated as SEO-only until the
+ * schema catches up.
+ */
+export function getRewardsPage() {
+  return getSeoOnlyPage("rewards-page");
 }
 
 export function getSocialTradingPage() {
@@ -864,10 +855,6 @@ export function getConflictsOfInterestPolicyPage() {
   return getLegalPage<StrapiLegalPage>("conflicts-of-interest-policy-page");
 }
 
-export async function fetchOgImage(_url: string): Promise<string | null> {
-  return null;
-}
-
 // ─── SEO → Next.js Metadata adapter ──────────────────────────────────
 
 import type { Metadata } from "next";
@@ -899,7 +886,11 @@ export function seoToMetadata(
   const twitter = seo?.metaSocial?.find((s) => s.socialNetwork === "Twitter");
 
   return {
-    title,
+    // `absolute` is essential: a plain-string title inherits the root layout's
+    // title template. The CMS value is already the complete, length-optimised
+    // title the SEO team signed off on — appending a brand suffix to it breaks
+    // both the character budget and keyword placement.
+    title: { absolute: title },
     description,
     keywords,
     robots,

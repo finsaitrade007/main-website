@@ -11,9 +11,9 @@ const FALLBACK: Pick<
   | "heroPrimaryCtaHref"
 > = {
   heroBadge: "Professional Trading, Simplified ",
-  heroTitle: "Powerful Trading Platforms for Every Trader ",
+  heroTitle: "All-In-One Trading Platform Built for Every Market Trader",
   heroDescription:
-    "Discover three powerful trading environments built for ambitious beginners, active traders, and professional market participants.",
+    "Experience seamless all in one trading across Forex, Crypto, Commodities, and Indices. Finsai Trade delivers a unified trader platform ecosystem designed to bridge institutional execution with user-friendly accessibility for ambitious beginners and active traders alike.",
   heroPrimaryCtaLabel: "Start Trading →",
   heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
 };

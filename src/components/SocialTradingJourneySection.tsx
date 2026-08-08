@@ -2,8 +2,6 @@ import Image from "next/image";
 import SmartLink from "@/components/SmartLink";
 
 const REGISTER_HREF = "https://fx.finsaitrade.com/auth/register";
-const SOCIAL_TRADING_HREF = "https://social.finsaitrade.com";
-
 /** ── Icons ────────────────────────────────────────────────── */
 
 function MT5Icon() {
@@ -293,7 +291,7 @@ export default function SocialTradingJourneySection() {
             number={1}
             icon={<MT5Icon />}
             title="MT5 Account"
-            description="Connect your MT5 account and start social trading. "
+            description="Connect your MT5 account to activate robust automated copy trading instantly."
             ctaText="Connect MT5"
             ctaHref="https://social.finsaitrade.com/portal/login?redirectUrl=%2F"
           />
@@ -301,7 +299,7 @@ export default function SocialTradingJourneySection() {
             number={2}
             icon={<FinsaiIcon />}
             title="Finsai Account"
-            description="Log in and access social trading tools instantly."
+            description="Log in to your dashboard to unlock live market insights, leaderboard metrics, and execution tools."
             ctaText="Start Social Trading"
             ctaHref="https://social.finsaitrade.com/portal/registration/subscription?redirectUrl=%2F"
           />
@@ -309,7 +307,7 @@ export default function SocialTradingJourneySection() {
             number={3}
             icon={<LoginIcon />}
             title="New Account"
-            description="Create an account and start your trading journey"
+            description="Create a free account to easily copy professional traders and scale your portfolio across Forex, Crypto, and CFDs."
             ctaText="Create Account"
             ctaHref="https://social.finsaitrade.com/portal/registration/provider?redirectUrl=%2F"
           />

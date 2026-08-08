@@ -10,14 +10,19 @@ import {
   resolvePageFaqs,
   resolveSeoText,
 } from "@/lib/page-seo";
+import { getStocksPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return cmsPageMetadata(null, PAGE_SEO.stocks);
+  const data = await getStocksPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.stocks);
 }
 
 export default async function WordstockPage() {
-  const faqs = await resolvePageFaqs("stocks");
-  const seo = resolveSeoText(null, PAGE_SEO.stocks);
+  const [data, faqs] = await Promise.all([
+    getStocksPage(),
+    resolvePageFaqs("stocks"),
+  ]);
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.stocks);
 
   return (
     <>

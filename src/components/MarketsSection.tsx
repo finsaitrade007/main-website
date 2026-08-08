@@ -12,7 +12,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     slug: "forex",
     name: "Forex",
     description:
-      "Trade the global forex market with a trusted forex broker, offering major, minor, and exotic currency pairs, deep liquidity, competitive spreads, and ultra-fast execution.",
+      "Trade on a specialized forex trading platform with a trusted forex broker, offering major, minor, and exotic currency pairs, deep liquidity, competitive spreads, and ultra-fast execution.",
     localImage: "/markets/forex.png",
     order: 1,
   },
@@ -22,7 +22,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     slug: "crypto",
     name: "Crypto",
     description:
-      "Access leading cryptocurrency trading markets 24/7 with real-time pricing, advanced charting, and seamless execution on a professional trading platform.",
+      "Access leading cryptocurrency trading markets 24/7 with real-time pricing, advanced charting, and seamless execution on a professional online trading platform.",
     localImage: "/markets/crypto.png",
     order: 2,
   },
@@ -42,7 +42,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     slug: "metals",
     name: "Metals",
     description:
-      "Explore commodity trading opportunities with gold, silver, crude oil, natural gas, and other globally traded commodities from a single platform.",
+      "Explore commodity trading opportunities with gold, silver, crude oil, natural gas, and other globally traded commodities from a single CFD trading platform.",
     localImage: "/markets/metals.png",
     order: 4,
   },
@@ -52,7 +52,7 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
     slug: "stocks",
     name: "Stocks",
     description:
-      "Experience online stock trading with access to leading international companies listed on major global stock exchanges through one professional trading platform.",
+      "Experience online stock trading with access to leading international companies listed on major global stock exchanges through one online investment platform.",
     localImage: "/markets/stocks.png",
     order: 5,
   },
@@ -60,10 +60,10 @@ const FALLBACK_MARKETS: StrapiMarket[] = [
 
 const FALLBACK_HEADER = {
   marketsBadge: "Trade Without Limits ",
-  marketsTitlePrefix: "Trade Every Market That Matters",
+  marketsTitlePrefix: "Trade Every Market on a Multi Asset Trading Platform",
   marketsTitleAccent: "",
   marketsDescription:
-    "Finsai Trade gives modern traders access to 5,000+ trading instruments across forex, crypto, global stocks, indices, commodities, and CFDs.",
+    "Finsai Trade gives modern traders access to 5,000+ trading instruments across forex, crypto, global stocks, indices, commodities, and CFDs through a single global trading platform.",
 };
 
 export default async function MarketsSection() {

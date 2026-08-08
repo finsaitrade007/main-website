@@ -13,9 +13,9 @@ const FALLBACK: Pick<
   | "heroSecondaryCtaHref"
 > = {
   heroBadge: "Multi-Asset Trading Accounts",
-  heroTitle: "Find the Right Account for Your Trading Style",
+  heroTitle: "Choose the Right Forex Account Type",
   heroDescription:
-    "From first-time traders to advanced professionals, Finsai Trade offers flexible account types built for every stage of your trading journey.",
+    "Find the right Forex trading account tailored to your strategy. From first-time traders starting with a $100 minimum deposit to experienced market players seeking a raw spread ECN account, Finsai Trade offers multi-asset forex account types built for every stage of your trading journey.",
   heroPrimaryCtaLabel: "Open Live Account",
   heroPrimaryCtaHref: "https://fx.finsaitrade.com/auth/register",
   heroSecondaryCtaLabel: "Try Free Demo",

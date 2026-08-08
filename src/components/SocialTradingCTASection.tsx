@@ -1,7 +1,5 @@
 import SmartLink from "@/components/SmartLink";
 
-const REGISTER_HREF = "https://fx.finsaitrade.com/auth/register";
-
 export default function SocialTradingCTASection() {
   return (
     <section
@@ -63,8 +61,10 @@ export default function SocialTradingCTASection() {
               margin: "0 auto 32px",
             }}
           >
-            Stop watching markets from the sidelines. Join thousands of traders
-            who are already trading on proven strategies.
+            Stop watching markets from the sidelines. Join thousands of
+            individuals in our global trading community who are already
+            capitalizing on proven investment strategies using our powerful
+            social trading platform and copy trading app.
           </p>
 
           {/* CTA button */}

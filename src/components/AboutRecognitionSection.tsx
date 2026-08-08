@@ -10,10 +10,10 @@ const FALLBACK: Pick<
   | "recognitionStatPrimaryValue"
   | "recognitionStatPrimaryLabel"
 > = {
-  recognitionTitlePrefix: "Recognized for Elite Trading ",
-  recognitionTitleAccent: "Excellence",
+  recognitionTitlePrefix: "Recognized as a Trusted International ",
+  recognitionTitleAccent: "Brokerage",
   recognitionDescription:
-    " Trusted by a growing community of traders for reliable execution, modern trading tools, and scalable partnership opportunities. ",
+    "Awarded as an innovative leader in financial services, Finsai Trade is widely recognized as a trusted online forex broker built on reliable multi asset broker execution speed, institutional liquidity, and strict regulatory oversight.",
   recognitionStatPrimaryValue: "50k+",
   recognitionStatPrimaryLabel: "Registered Users",
 };

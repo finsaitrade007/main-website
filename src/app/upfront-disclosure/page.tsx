@@ -142,51 +142,6 @@ function KeyIndividualsTable({ products }: { products: string[] }) {
   );
 }
 
-function SignatureBlock({ fields }: { fields: string[] }) {
-  return (
-    <div
-      style={{
-        marginTop: "24px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "24px",
-      }}
-    >
-      {fields.map((label) => (
-        <div
-          key={label}
-          style={{
-            display: "flex",
-            alignItems: "flex-end",
-            gap: "24px",
-          }}
-        >
-          <div
-            style={{
-              minWidth: "200px",
-              fontFamily: "var(--font-inter, Inter)",
-              fontWeight: 400,
-              fontSize: "16px",
-              lineHeight: "28px",
-              color: "rgba(255,255,255,0.85)",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {label}
-          </div>
-          <div
-            style={{
-              flex: 1,
-              borderBottom: "1px solid rgba(255,255,255,0.5)",
-              height: "28px",
-            }}
-          />
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function RegionContactTable({
   regionLabel,
   rows,

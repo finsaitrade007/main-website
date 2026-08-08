@@ -27,12 +27,25 @@ const inter = Inter({
 
 // Site-wide metadata defaults. Per-page `generateMetadata()` (driven by the
 // Strapi `shared.seo` component on every page single-type) overrides these.
+//
+// NOTE: there is deliberately NO `title.template` here. Next.js applies a
+// parent template to any child that returns a plain-string title, and every
+// page's title already arrives complete from the CMS — the SEO team writes the
+// full string, brand suffix included or not, per page. With a template in place
+// those titles were silently getting " | Finsai Trade" appended a second time
+// ("Compare Forex Trading Account Types | ECN & Swap-Free | Finsai Trade |
+// Finsai Trade"), pushing them past the SERP truncation limit and burying the
+// keywords. Blog posts, which build their own suffix, were double-suffixed too.
+//
+// `seoToMetadata` now returns `title: { absolute }` so nothing is ever
+// re-templated. Do not reintroduce `template` without removing that.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: {
-    default: PAGE_SEO.home.title,
-    template: "%s | Finsai Trade",
-  },
+  // Plain string, not `{ default, template }`: Next requires `template`
+  // whenever `default` is used, and a template is precisely what we must not
+  // have. A plain string is inherited by pages that define no title of their
+  // own and is never appended to those that do.
+  title: PAGE_SEO.home.title,
   description: PAGE_SEO.home.description,
   applicationName: "Finsai Trade",
   authors: [{ name: "Finsai Trade", url: SITE_URL }],

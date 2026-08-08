@@ -1,5 +1,5 @@
 import Link from "@/components/SmartLink";
-import { withFallback } from "@/lib/cms-fallback";
+import { withFallback } from "@/lib/cms";
 import { getRegulationsPage } from "@/lib/strapi";
 
 const FALLBACK = {

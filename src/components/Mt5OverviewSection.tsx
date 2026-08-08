@@ -61,7 +61,7 @@ export default function Mt5OverviewSection() {
             margin: 0,
           }}
         >
-          MetaTrader 5 (MT5) is a powerful multi-asset trading platform built for today's financial markets. Whether you're new to online trading or an experienced trader, MT5 provides advanced charting, fast execution, and professional trading tools to help you trade with confidence.
+          MetaTrader 5 (MT5) is a powerful multi-asset trading platform built for today&rsquo;s financial markets. Whether you&rsquo;re new to online trading or an experienced trader, MT5 provides advanced charting, fast execution, and professional trading tools to help you trade with confidence.
         </p>
 
         <p

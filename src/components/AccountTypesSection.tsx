@@ -15,8 +15,8 @@ const accounts = [
       left: "-137.08px",
       stroke: "1.16px",
     },
-    desc: "A Beginner-Friendly Account With Low Entry Requirements - Ideal For New Traders Starting Their Journey.",
-    features: ["Low Minimum Deposit", "Competitive Spreads", "Zero Commission"],
+    desc: "A Beginner-Friendly Account With Low Entry Requirements — Ideal For New Traders Starting Their Journey.",
+    features: ["Low Minimum Deposit", "Competitive Spreads on a Secure Trading Platform", "Zero Commission"],
   },
   {
     id: "pro",
@@ -30,8 +30,8 @@ const accounts = [
       left: "50%",
       stroke: "1px",
     },
-    desc: "Built for experienced traders seeking , and professional-grade trading conditions.",
-    features: ["Lower Spreads", "Higher Leverage", "Priority Support"],
+    desc: "Built for experienced traders seeking professional-grade trading conditions and higher leverage.",
+    features: ["Lower Spreads on Major Currency Pairs", "Forex Trading Platform with 500x Leverage", "Priority Support"],
   },
   {
     id: "ecn",
@@ -45,8 +45,8 @@ const accounts = [
       left: "50%",
       stroke: "1px",
     },
-    desc: "A Professional Account With Raw ECN Spreads And Ultra-Fast Execution For Serious Traders.",
-    features: ["Raw ECN Spreads", "Fastest Execution", "Dedicated Manager"],
+    desc: "A Professional Account Functioning as a Raw ECN CFD Trading Platform with Ultra-Fast Execution for Serious Traders.",
+    features: ["Raw ECN Brokers Low Spread Conditions (From 0.0 Pips)", "Fastest Execution Speed via Direct Liquidity", "Dedicated Account Manager"],
   },
 ];
 
@@ -323,8 +323,8 @@ function AccountCard({
 
 export default function AccountTypesSection({
   badge = "Find Your Fit",
-  title = "Choose The Right Account For You.",
-  description = "Whether you’re just starting or trading at a higher level, find an account built to match your goals, experience, and trading style.",
+  title = "Choose the Right Account on Our CFD Trading Platform",
+  description = "Whether you’re just starting on an online investment platform or trading at a higher level, find an account built to match your goals, experience, and trading style.",
 }: {
   badge?: string;
   title?: string;

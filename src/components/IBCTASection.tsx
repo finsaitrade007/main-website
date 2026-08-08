@@ -1,5 +1,5 @@
 import Link from "@/components/SmartLink";
-import { mergeWithFallbacks } from "@/lib/cms";
+import { withFallback } from "@/lib/cms";
 import { getPartnershipsPage, type StrapiPartnershipsPage } from "@/lib/strapi";
 
 const BTN_TYPOGRAPHY = {
@@ -42,7 +42,7 @@ const FALLBACK: Pick<
 };
 
 export default async function IBCTASection() {
-  const data = mergeWithFallbacks(FALLBACK, await getPartnershipsPage());
+  const data = withFallback(FALLBACK, await getPartnershipsPage());
 
   const buttons = [
     { label: data.ctaButton1Label, href: data.ctaButton1Href },

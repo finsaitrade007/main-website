@@ -1,5 +1,6 @@
 export type FaqSection =
   | "homepage"
+  | "about"
   | "accounts"
   | "platform"
   | "payments"
@@ -17,6 +18,7 @@ export type FaqSection =
 
 export const FAQ_SECTIONS: FaqSection[] = [
   "homepage",
+  "about",
   "accounts",
   "platform",
   "payments",
@@ -36,11 +38,43 @@ export const FAQ_SECTIONS: FaqSection[] = [
 export type FaqItem = { question: string; answer: string };
 
 export const FAQ_FALLBACKS: Partial<Record<FaqSection, FaqItem[]>> = {
+  about: [
+    {
+      question: "Who is the most trusted forex broker for multi-asset trading?",
+      answer:
+        "Finsai Trade is widely recognized as a trusted multi-asset broker, offering institutional liquidity, ultra-fast execution, and access to over 10,000 instruments (Forex, Crypto, Indices, Stocks, Commodities) backed by strict regulatory oversight.",
+    },
+    {
+      question: "Is Finsai Trade a regulated international forex broker?",
+      answer:
+        "Yes. Finsai Trade operates among top regulated trading platforms and financial brokerages. Finsai Trade (Mauritius) Ltd is fully licensed and regulated by the Financial Services Commission (FSC) Mauritius under license number GB25204899. This regulatory framework guarantees strict compliance, client fund segregation, and transparent pricing execution standards.",
+    },
+    {
+      question: "Does Finsai Trade support trading as a MetaTrader 5 broker?",
+      answer:
+        "Yes. As a dedicated MetaTrader 5 broker, Finsai Trade integrates MT5's advanced charting tools, real-time depth of market (DOM), custom technical indicators, and automated algorithmic trading (EAs) with institutional execution speeds.",
+    },
+    {
+      question: "What asset classes can I trade with this multi asset broker?",
+      answer:
+        "As a full-service multi asset broker and forex and CFD broker, Finsai Trade allows you to trade Forex currency pairs, Crypto CFDs, major global indices, individual stocks, spot metals, and energies under one integrated trading ecosystem.",
+    },
+    {
+      question: "Why is Finsai Trade considered a most trusted forex broker 2026?",
+      answer:
+        "Recognized as a trusted multi-asset broker 2026, Finsai Trade combines regulatory protection, tier-1 institutional liquidity, and comprehensive 24/7 client support. Whether you need a trader-centric brokerage firm or an online multi asset broker, Finsai Trade prioritizes low latency, price integrity, and trader security.",
+    },
+    {
+      question: "Does Finsai Trade offer trader education and learning resources?",
+      answer:
+        "Yes. Finsai Trade provides comprehensive trader education through the Finsai Academy. Traders gain access to real-time market analysis, step-by-step trading guides, webinars, and risk management strategies to foster continuous skill development in any market condition.",
+    },
+  ],
   tools: [
     {
       question: "What is Finsai Trade?",
       answer:
-        "Finsai Trade is a multi-asset trading platform that provides access to forex, cryptocurrencies, global stocks, indices, commodities, and CFDs through one secure and professional trading ecosystem.",
+        "Finsai Trade is an MT5 multi asset trading platform that gives traders access to global financial markets through a single account. Trade forex, stocks, cryptocurrencies, commodities, indices, and CFDs using MetaTrader 5, advanced trading tools, and fast order execution.",
     },
     {
       question: "What markets can I trade on Finsai Trade?",
@@ -62,71 +96,92 @@ export const FAQ_FALLBACKS: Partial<Record<FaqSection, FaqItem[]>> = {
     {
       question: "What is Finsai Trade?",
       answer:
-        "Finsai Trade is a multi-asset trading platform that gives traders access to global financial markets through a single account. Trade forex, stocks, cryptocurrencies, commodities, indices, and CFDs using the powerful MetaTrader 5 (MT5) platform, advanced trading tools, and fast order execution.",
+        "Finsai Trade is an MT5 multi asset trading platform that gives traders access to global financial markets through a single account. Trade forex, stocks, cryptocurrencies, commodities, indices, and CFDs using MetaTrader 5, advanced trading tools, and fast order execution.",
     },
     {
-      question: "Why choose Finsai Trade for online trading?",
+      question: "Why choose Finsai Trade as an FSC regulated forex broker?",
       answer:
-        "Finsai Trade combines a professional online trading platform with access to multiple asset classes, competitive trading conditions, fast execution, advanced charting tools, copy trading, and secure trading infrastructure. Whether you're a beginner or an experienced trader, you can access global markets through one integrated platform.",
+        "Finsai Trade operates as a licensed FSC regulated forex broker, offering segregated client funds, transparent pricing, and access to raw ECN brokers low spread environments with up to 500x leverage.",
     },
     {
       question: "Does Finsai Trade use MetaTrader 5 (MT5)?",
       answer:
-        "Yes. Finsai Trade is powered by MetaTrader 5 (MT5), one of the world's leading trading platforms. MT5 provides advanced charting, technical indicators, algorithmic trading, Expert Advisors (EAs), real-time market data, and multi-asset trading capabilities from a single platform.",
+        "Yes. Finsai Trade operates as an MT5 multi asset trading platform, giving traders direct access to forex, crypto, stocks, indices, and commodities. Powered by MetaTrader 5, Finsai Trade supports up to 500x leverage, 44+ analytical charting tools, automated trading via MQL5 Expert Advisors (EAs), and seamless execution across desktop, web, and mobile devices.",
     },
     {
       question: "What are the benefits of a multi-asset trading platform?",
       answer:
-        "A multi-asset trading platform lets you trade multiple financial markets from a single account. This simplifies portfolio management, improves diversification, and allows you to capitalize on opportunities across forex, stocks, commodities, cryptocurrencies, indices, and CFDs without switching between platforms.",
+        "A multi asset trading platform allows investors to manage, diversify, and trade across 5,000+ global financial markets including forex currency pairs, stock indices, precious metals, and crypto CFDs from a single Finsai Trade account. This eliminates the friction of managing multiple brokers, unifies portfolio margin controls, and lowers transaction costs through competitive spreads.",
     },
     {
       question: "How do I open a trading account with Finsai Trade?",
       answer:
-        "Opening a trading account with Finsai Trade is simple. Register online, complete identity verification, fund your account, and start trading global markets using MetaTrader 5 (MT5). If you're new to trading, you can begin with a demo trading account before transitioning to live trading.",
+        "Opening an account with Finsai Trade takes 3 simple steps. Register: create your profile online and select your account tier (Smart Choice, Smart Pro, or Raw ECN CFD Trading Platform). Verify: submit your KYC documents to activate institutional-grade security and segregated fund protection. Fund & Trade: deposit via secure payment channels, connect to MetaTrader 5 (MT5) or our crypto and forex copy trading platform, and start trading live or on a demo account.",
     },
   ],
   accounts: [
     {
-      question: "Can I upgrade or switch my account type later?",
+      question: "Can I upgrade or switch my forex trading account types later?",
       answer:
-        "Yes. You can upgrade or switch your account type anytime as your trading needs evolve.",
+        "Yes. You can switch or upgrade your forex broker account at any time through your client portal as your trading capital and experience evolve. Traders often start with a low minimum deposit forex account (Smart Choice) and progress to a professional trading account (Smart ECN) for tighter spreads.",
     },
     {
-      question: "Are there any deposit or withdrawal fees?",
+      question: "Are there any deposit or withdrawal fees for an online trading account?",
       answer:
-        "Finsai Trade does not charge internal deposit or withdrawal fees. Third-party payment providers may apply transaction charges.",
+        "Finsai Trade charges zero internal fees to deposit or withdraw funds from your online investment account. While Finsai Trade provides fee-free transactions, third-party payment gateways, intermediary banks, or card issuers may impose independent processing fees.",
     },
     {
-      question: "What documents are required for account verification?",
+      question: "What documents are required for online investment account verification?",
       answer:
-        "You'll need a valid government-issued ID and proof of address, such as a utility bill or bank statement.",
+        "To complete KYC identity verification for a live forex trading account you must upload a valid, government-issued photo ID (passport, national ID, or driver's licence) as proof of identity, and a document issued within the last 3 months displaying your full legal name and address (utility bill, bank statement, or tax document) as proof of address.",
     },
     {
-      question: "What's the difference between Smart Pro and Smart ECN?",
+      question: "What is the difference between Smart Pro and the Smart ECN professional trading account?",
       answer:
-        "Smart ECN is designed for advanced traders, offering Raw spreads, enhanced execution conditions, VPS access, and support for advanced trading tools.",
+        "The primary difference lies in the execution model and fee structure. Smart Pro is a commission-free account offering floating spreads from 0.6 pips, ideal for active day traders wanting high leverage without per-trade commissions. Smart ECN is a raw spread ECN trading account designed for institutional and high-volume traders, offering raw spreads from 0.0 pips, a low $0.03 commission, enhanced liquidity execution, complementary forex account VPS access, and optimized infrastructure for bot trading MT5 forex accounts.",
+    },
+    {
+      question:
+        "Does Finsai Trade offer a swap free forex trading account option?",
+      answer:
+        "Yes. Finsai Trade provides a swap free forex account option across all major forex account types (Smart Choice, Smart Pro, and Smart ECN). These accounts carry zero overnight interest charges, making them ideal for long-term position traders and investors requiring Islamic Sharia-compliant trading conditions.",
     },
   ],
   platform: [
     {
-      question: "Which trading platform is best for beginners?",
+      question: "What is MetaTrader 5 (MT5)?",
       answer:
-        "If you're new to trading, the Finsai Trade App and Social Trading platform are great starting points. You can practice with demo accounts, copy experienced traders, and access user-friendly tools designed for beginners.",
+        "MetaTrader 5 (MT5) is a powerful multi-asset trading platform that enables traders to analyze markets, execute trades, and automate strategies. It offers advanced charting, technical indicators, Expert Advisors (EAs) for automated trading, and strategy back-testing, making it suitable for both beginner and professional traders.",
     },
     {
       question: "What makes MetaTrader 5 (MT5) different from other platforms?",
       answer:
-        "MT5 is one of the world's most advanced trading platforms, offering professional-grade charting, automated trading through Expert Advisors (EAs), multi-timeframe analysis, and advanced strategy testing tools.",
+        "MetaTrader 5 (MT5) is one of the world's most advanced trading platforms, offering professional-grade charting, powerful market analysis, automated trading through Expert Advisors (EAs), multi-timeframe analysis, and advanced strategy back-testing capabilities for traders of all experience levels.",
     },
     {
       question: "How does Social Trading work?",
       answer:
-        "Social Trading allows you to automatically copy trades from experienced traders in real time. You can review performance metrics, manage risk settings, and follow strategies that match your trading goals.",
+        "Social Trading enables you to automatically copy trades from experienced traders in real time. Review verified performance metrics, customize your risk management settings, and choose strategies that align with your financial goals using a trusted copy trading platform.",
     },
     {
       question: "Can experienced traders earn through the platform?",
       answer:
-        "Absolutely. With Social Trading, experienced traders can become strategy providers, build followers, and earn rewards based on their trading performance and community growth.",
+        "Absolutely. With Social Trading, experienced traders can become strategy providers, grow their community of followers, monetize their trading expertise, and earn rewards based on verified trading performance and long-term consistency.",
+    },
+    {
+      question: "What is Copy Trading?",
+      answer:
+        "Copy trading is a feature of social trading that automatically replicates the trades of experienced traders in your account. Instead of placing trades manually, you follow a strategy provider, allowing you to participate in the markets while benefiting from their trading expertise.",
+    },
+    {
+      question: "Can I earn from Copy Trading?",
+      answer:
+        "Yes. With Social Trading, you can earn in two ways: by using copy trading to follow successful strategy providers, or by becoming a strategy provider yourself. Experienced traders can build a following, share their strategies, and earn rewards based on their verified trading performance.",
+    },
+    {
+      question: "Can you use multiple trading platforms on Finsai Trade?",
+      answer:
+        "Yes. With a single Finsai Trade account, you can analyze and execute automated strategies on MetaTrader 5 (MT5), participate in real-time Copy Trading, and monitor positions on the mobile app simultaneously.",
     },
   ],
   payments: [
@@ -136,9 +191,9 @@ export const FAQ_FALLBACKS: Partial<Record<FaqSection, FaqItem[]>> = {
         "The minimum deposit amount may vary depending on your account type and selected payment method. You can review the exact requirements before completing your deposit.",
     },
     {
-      question: "Are there any deposit or withdrawal fees?",
+      question: "Are there any deposit or withdrawal fees for an online trading account?",
       answer:
-        "No. Finsai Trade charges no fees and only provides transparent funding.",
+        "Finsai Trade charges zero internal fees to deposit or withdraw funds from your online investment account. While Finsai Trade provides fee-free transactions, third-party payment gateways, intermediary banks, or card issuers may impose independent processing fees.",
     },
     {
       question: "How long do deposits take to process?",
@@ -373,39 +428,39 @@ export const FAQ_FALLBACKS: Partial<Record<FaqSection, FaqItem[]>> = {
   "social-trading": [
     {
       question:
-        "What is Social Trading and how is it different from a managed account?",
+        "What is a social trading platform and how is it different from a managed account?",
       answer:
-        "Social Trading lets you copy the trades of a strategy provider in real time through your own MT5 account — you retain full ownership and control. Unlike a managed account, no one has direct access to your funds. You can stop copying at any time, no notice required.",
+        "A social trading platform lets you copy the trades of an expert strategy provider in real time through your own trading account while retaining 100% ownership and control of your funds. Unlike traditional managed accounts (PAMM), no third party has direct withdrawal access to your capital, and you can stop copying or adjust your allocation at any time with no notice required.",
     },
     {
-      question: "Is my capital at risk?",
+      question: "Is my capital at risk when copy trading?",
       answer:
-        "Yes. Trading financial instruments involves significant risk and is not suitable for all investors. You can lose some or all of your invested capital. Social Trading does not eliminate market risk. Please read our full risk disclosure before proceeding.",
+        "Yes. All trading in financial markets involves risk. While choosing a verified copy trader allows you to mirror market pros, volatility remains a factor. This is why our social trading platform offers built-in risk management tools, allowing you to set custom drawdown limits and balance protection stop-losses.",
     },
     {
       question: "What is the minimum amount to start copying?",
       answer:
-        "The minimum allocation per copy relationship is $200. Each copied trade must be above the minimum lot size supported by your account type. Positions below this threshold will not be opened in your account.",
+        "The minimum deposit varies depending on the specific investment strategies deployed by your chosen provider. You can view each provider's required minimum copy amount directly on our Live Leaderboard, starting as low as $150 to ensure proportional margin management.",
     },
     {
-      question: "How is the provider's commission calculated?",
+      question: "How is the strategy provider's commission calculated?",
       answer:
-        "Providers earn a monthly performance-based commission set within a regulated range. The exact rate is disclosed on each provider's profile before you copy them. Commission is deducted from investor profits at the end of each billing cycle — providers only earn when you do.",
+        "Strategy providers set a percentage-based performance commission on the net profits generated from the trades you copy. If a strategy does not perform well during a trading cycle, no performance fee is charged.",
     },
     {
-      question: "Can I copy multiple providers at the same time?",
+      question: "Can I copy multiple strategy providers at the same time?",
       answer:
-        "Yes. You can copy up to 10 strategy providers simultaneously from a single account, each with its own allocation and stop-loss configuration. This allows you to diversify across multiple strategies, instruments, and risk profiles.",
+        "Yes. To achieve optimal portfolio diversification, you can allocate your capital across multiple experienced traders specializing in different asset classes, such as forex social trading, crypto copy trading, or commodities.",
     },
     {
-      question: "How do I qualify to become a strategy provider?",
+      question: "How do I qualify to become a strategy provider on the platform?",
       answer:
-        "You need a live Finsai Trade MT5 account with at least 90 days of verified trading history, a minimum of 50 closed trades, and a risk score within our approved parameters. Apply through your client portal and our team will review your account within 5 business days.",
+        "If you have a solid track record in trading financial markets, you can apply by connecting your account. Once your historical trading statistics and drawdown metrics are verified, your profile will be listed on our global leaderboard for followers to discover.",
     },
     {
       question: "How quickly are trades copied to my account?",
       answer:
-        "Trades are typically executed in your account within milliseconds of the provider's original order. Execution speed depends on server latency and market conditions, but the system is built for near-instantaneous replication.",
+        "Our ultra-fast execution engine mirrors trade signals instantly via cloud-based technology, minimizing slippage so your entry prices align seamlessly with the professional investors you follow.",
     },
   ],
 };

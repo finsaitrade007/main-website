@@ -11,14 +11,19 @@ import {
   resolvePageFaqs,
   resolveSeoText,
 } from "@/lib/page-seo";
+import { getIndicesPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return cmsPageMetadata(null, PAGE_SEO.indices);
+  const data = await getIndicesPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.indices);
 }
 
 export default async function IndicesPage() {
-  const faqs = await resolvePageFaqs("indices");
-  const seo = resolveSeoText(null, PAGE_SEO.indices);
+  const [data, faqs] = await Promise.all([
+    getIndicesPage(),
+    resolvePageFaqs("indices"),
+  ]);
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.indices);
 
   return (
     <>

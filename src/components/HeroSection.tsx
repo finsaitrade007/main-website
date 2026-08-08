@@ -11,13 +11,13 @@ const FALLBACK: Pick<
   | "heroCtaSecondaryLabel"
   | "heroCtaSecondaryHref"
 > = {
-  heroTitle: "Trade Global Markets on a Powerful Multi-Asset Trading Platform",
+  heroTitle: "Trade Global Markets on an MT5 Multi Asset Trading Platform",
   heroSubtitle:
-    "Finsai Trade is a secure online trading platform that gives modern traders access to forex, stocks, commodities, and indices through one advanced trading ecosystem.",
+    "Finsai Trade is a secure trading platform that gives modern traders access to forex, stocks, commodities, and indices through one advanced global trading platform ecosystem with up to 500x leverage.",
   heroTaglines: [
     { id: 1, label: "Fast Execution" },
     { id: 2, label: "Advanced Trading Tools" },
-    { id: 3, label: "Secure & Regulated Infrastructure" },
+    { id: 3, label: "Secure & FSC Regulated Forex Broker Infrastructure" },
   ],
   heroCtaPrimaryLabel: "Start Trading Now",
   heroCtaPrimaryHref: "https://fx.finsaitrade.com/auth/register",
@@ -26,7 +26,25 @@ const FALLBACK: Pick<
 };
 
 export default async function HeroSection() {
-  const data = (await getHomepage()) ?? FALLBACK;
+  const cms = await getHomepage();
+  // `?? FALLBACK` only covers a fully-null response. Strapi can also return a
+  // homepage document with individual fields unset (an editor clearing them, or
+  // a populate that didn't resolve), so each field falls back independently —
+  // otherwise `heroTaglines.map` below would throw and 500 the homepage.
+  const data = {
+    heroTitle: cms?.heroTitle || FALLBACK.heroTitle,
+    heroSubtitle: cms?.heroSubtitle || FALLBACK.heroSubtitle,
+    heroTaglines: cms?.heroTaglines?.length
+      ? cms.heroTaglines
+      : FALLBACK.heroTaglines,
+    heroCtaPrimaryLabel:
+      cms?.heroCtaPrimaryLabel || FALLBACK.heroCtaPrimaryLabel,
+    heroCtaPrimaryHref: cms?.heroCtaPrimaryHref || FALLBACK.heroCtaPrimaryHref,
+    heroCtaSecondaryLabel:
+      cms?.heroCtaSecondaryLabel || FALLBACK.heroCtaSecondaryLabel,
+    heroCtaSecondaryHref:
+      cms?.heroCtaSecondaryHref || FALLBACK.heroCtaSecondaryHref,
+  };
 
   return (
     <section className="hero">
@@ -35,7 +53,7 @@ export default async function HeroSection() {
         muted
         loop
         playsInline
-        poster="/video_001.png"
+        poster="/video_001.jpg"
         style={{
           position: "absolute",
           inset: 0,

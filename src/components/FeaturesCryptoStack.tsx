@@ -87,6 +87,7 @@ export default function FeaturesCryptoStack() {
   const tileRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [progress, setProgress] = useState(0);
   const [badgeY, setBadgeY] = useState(0);
+  const [offsets, setOffsets] = useState<number[]>([]);
   const [livePrices, setLivePrices] = useState<PriceMap>({});
 
   useEffect(() => {
@@ -117,8 +118,28 @@ export default function FeaturesCryptoStack() {
       const p = Math.max(0, Math.min(1, passed / total));
       const usableHeight = Math.max(0, rect.height - BADGE_TOP_INSET - BADGE_BOTTOM_INSET);
       const y = BADGE_TOP_INSET + p * usableHeight;
+
+      // Tile displacement is measured here, in the same rAF pass that already
+      // reads layout, rather than during render. Reading refs and calling
+      // getBoundingClientRect() while rendering is undefined behaviour under
+      // concurrent rendering and is flagged by react-hooks/refs.
+      const next = tileRefs.current.map((tile) => {
+        if (!tile) return 0;
+        const tileRect = tile.getBoundingClientRect();
+        const tileCenter = tileRect.top - rect.top + tileRect.height / 2;
+        const distance = Math.abs(tileCenter - y);
+        const proximity = Math.max(0, 1 - distance / FALLOFF);
+        const eased = proximity * proximity * (3 - 2 * proximity);
+        return eased * MAX_PUSH;
+      });
+
       setProgress(p);
       setBadgeY(y);
+      setOffsets((prev) =>
+        prev.length === next.length && prev.every((v, i) => v === next[i])
+          ? prev
+          : next,
+      );
     }
 
     function onScroll() {
@@ -135,19 +156,6 @@ export default function FeaturesCryptoStack() {
       if (frame != null) window.cancelAnimationFrame(frame);
     };
   }, []);
-
-  function getOffset(index: number) {
-    const tile = tileRefs.current[index];
-    const container = containerRef.current;
-    if (!tile || !container) return 0;
-    const containerTop = container.getBoundingClientRect().top;
-    const tileRect = tile.getBoundingClientRect();
-    const tileCenter = tileRect.top - containerTop + tileRect.height / 2;
-    const distance = Math.abs(tileCenter - badgeY);
-    const proximity = Math.max(0, 1 - distance / FALLOFF);
-    const eased = proximity * proximity * (3 - 2 * proximity);
-    return eased * MAX_PUSH;
-  }
 
   return (
     <div
@@ -232,7 +240,7 @@ export default function FeaturesCryptoStack() {
       </div>
 
       {buildRows(livePrices).map((row, i) => {
-        const offset = getOffset(i);
+        const offset = offsets[i] ?? 0;
         return (
           <div
             key={row.symbol}

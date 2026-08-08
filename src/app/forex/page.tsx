@@ -11,14 +11,19 @@ import {
   resolvePageFaqs,
   resolveSeoText,
 } from "@/lib/page-seo";
+import { getForexPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return cmsPageMetadata(null, PAGE_SEO.forex);
+  const data = await getForexPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.forex);
 }
 
 export default async function ForexPage() {
-  const faqs = await resolvePageFaqs("forex");
-  const seo = resolveSeoText(null, PAGE_SEO.forex);
+  const [data, faqs] = await Promise.all([
+    getForexPage(),
+    resolvePageFaqs("forex"),
+  ]);
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.forex);
 
   return (
     <>

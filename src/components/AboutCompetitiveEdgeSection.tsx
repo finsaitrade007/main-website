@@ -17,16 +17,16 @@ const CARDS: Card[] = [
     title: "About Finsai Trade",
     subtitle: "Global Trading Access Built for Modern Market Participation",
     description:
-      "Finsai Trade is a regulated multi-asset trading platform built for traders who demand more. We bring together Forex, Crypto, Indices, Stocks, Metals, and Energies under one roof, giving you seamless access to over 10,000 instruments from a single account. Beyond just execution, we are committed to long-term trader growth through Finsai Academy, structured IB partnerships, loyalty programs, and promotions designed to reward every level of participation. Whether you are just starting out or scaling a professional portfolio, Finsai Trade is built to grow with you.",
+      "Finsai Trade (Mauritius) Ltd is a regulated international forex broker operating under Financial Services Commission (FSC) license number GB25204899. We bring together Forex currency pairs, Crypto CFDs, Indices, Equities, Metals, and Energy commodities under one unified trading environment. Through the Finsai Academy, structured Introducing Broker (IB) programs, and high-tech tools, Finsai Trade delivers a complete environment for traders searching for a trusted multi-asset broker 2026.",
     ctaLabel: "Be Our Partner",
     ctaHref: "/partnerships",
   },
   {
     icon: "target",
     title: "Our Competitive Edge",
-    subtitle: "An Integrated Ecosystem for Modern Traders",
+    subtitle: "An Integrated Ecosystem Powered by MetaTrader 5",
     description:
-      "What sets Finsai Trade apart is not just what we offer but how everything works together. Our platform combines multi-asset market access with the power of MetaTrader 5, real-time analytical tools, and a social trading environment, all within a single connected ecosystem. We go beyond the trade itself by offering Finsai Academy for continuous learning, a loyalty rewards program, cashback incentives, and one of the most competitive IB commission structures in the industry. At Finsai Trade, every feature is built with one purpose: to give our traders and partners a genuine edge in the market.",
+      "What establishes Finsai Trade as a most trusted forex broker is our seamlessly integrated trading infrastructure. Finsai Trade operates as a dedicated MetaTrader 5 broker, offering ultra-low latency execution, real-time depth of market (DOM), custom algorithmic trading support (EAs), and advanced charting tools. Combined with cashback incentives, social trading networks, and industry-leading IB payouts, Finsai Trade provides an all-in-one environment engineered for sustainable trader success.",
     ctaLabel: "Be Our Partner",
     ctaHref: "/partnerships",
   },

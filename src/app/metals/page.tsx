@@ -10,14 +10,19 @@ import {
   resolvePageFaqs,
   resolveSeoText,
 } from "@/lib/page-seo";
+import { getMetalsPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return cmsPageMetadata(null, PAGE_SEO.metals);
+  const data = await getMetalsPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.metals);
 }
 
 export default async function MetalsPage() {
-  const faqs = await resolvePageFaqs("metals");
-  const seo = resolveSeoText(null, PAGE_SEO.metals);
+  const [data, faqs] = await Promise.all([
+    getMetalsPage(),
+    resolvePageFaqs("metals"),
+  ]);
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.metals);
 
   return (
     <>

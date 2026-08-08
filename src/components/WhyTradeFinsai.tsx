@@ -189,10 +189,10 @@ function ReasonCell({ reason }: { reason: Reason }) {
 
 export default async function WhyTradeFinsai() {
   const data = await getAccountsPage();
-  const title = data?.whyTitle ?? "Everything You Need to Trade with Confidence";
+  const title = data?.whyTitle ?? "Everything You Need in a Live Trading Account";
   const description =
     data?.whyDescription ??
-    "Choose an account designed for your trading style with competitive pricing, fast execution, and flexible trading conditions.";
+    "Trade global markets with confidence using a customized live trading account backed by institutional liquidity, rapid execution, and competitive pricing.";
   const cmsRows =
     data?.whyFeatures && data.whyFeatures.length >= 6
       ? reasonsFromCms(data.whyFeatures)

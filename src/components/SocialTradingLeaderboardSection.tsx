@@ -306,9 +306,15 @@ export default function SocialTradingLeaderboardSection() {
   useEffect(() => {
     let cancelled = false;
     const controller = new AbortController();
-    setLoading(true);
 
     const url = `${LEADERBOARD_API_URL}?tab=${activeTab.toLowerCase()}&page=${page}&limit=${PAGE_SIZE}`;
+
+    // Deferred to a microtask so the state update lands outside the effect
+    // body — a synchronous setState here triggers a cascading render pass
+    // (react-hooks/set-state-in-effect).
+    queueMicrotask(() => {
+      if (!cancelled) setLoading(true);
+    });
 
     fetch(url, { signal: controller.signal })
       .then((r) => {
@@ -341,7 +347,6 @@ export default function SocialTradingLeaderboardSection() {
           setRows(activeTab === "Trending" ? trendingData : topData);
         }
         setHasMore(false);
-        // eslint-disable-next-line no-console
         console.warn("[Leaderboard] fetch failed, using fallback:", err);
       })
       .finally(() => {

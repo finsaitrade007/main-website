@@ -11,14 +11,19 @@ import {
   resolvePageFaqs,
   resolveSeoText,
 } from "@/lib/page-seo";
+import { getMt5Page } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return cmsPageMetadata(null, PAGE_SEO.mt5);
+  const data = await getMt5Page();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.mt5);
 }
 
 export default async function Mt5Page() {
-  const faqs = await resolvePageFaqs("mt5");
-  const seo = resolveSeoText(null, PAGE_SEO.mt5);
+  const [data, faqs] = await Promise.all([
+    getMt5Page(),
+    resolvePageFaqs("mt5"),
+  ]);
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.mt5);
 
   return (
     <>

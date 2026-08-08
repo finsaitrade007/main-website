@@ -38,10 +38,11 @@ function isYes(value: string) {
 
 export default async function AccountsCompareTable() {
   const pageData = await getAccountsPage();
-  const compareTitle = pageData?.compareTitle ?? "Which Account Fits You Best?";
+  const compareTitle =
+    pageData?.compareTitle ?? "Which Forex Trading Account Fits You Best?";
   const compareDescription =
     pageData?.compareDescription ??
-    "Choose the trading conditions that match your goals, strategy, and experience level.";
+    "Compare our forex account types below, from zero-commission accounts to a zero spread ECN environment \u2014 choose your ideal forex broker account.";
 
   // Box geometry (gradient border = 3px wrapper padding around inner).
   const BORDER = 3;
@@ -77,10 +78,6 @@ export default async function AccountsCompareTable() {
     "linear-gradient(90deg, rgba(255,255,255,0.014) -2.94%, rgba(5,111,180,0.7) 51.23%, rgba(255,255,255,0.014) 102.37%)";
   const dividerGradient =
     "linear-gradient(180deg, rgba(255,255,255,0.014) -2.94%, rgba(5,111,180,0.7) 51.23%, rgba(255,255,255,0.014) 102.37%)";
-
-  const HEADING_BAND_H = 200;
-  const SECTION_BOTTOM_PAD = 80;
-  const SECTION_HEIGHT = HEADING_BAND_H + OUTER_HEIGHT + SECTION_BOTTOM_PAD;
 
   return (
     <section

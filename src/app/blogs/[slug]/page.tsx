@@ -235,7 +235,15 @@ function ArticleSection({
   section: BlogSection;
   isFirst: boolean;
 }) {
-  let leadAssigned = false;
+  // The first paragraph of the first, unheaded section renders as the article
+  // lead. Resolved up-front instead of by mutating a flag inside the map —
+  // reassigning during render is unsafe under concurrent rendering
+  // (react-hooks/immutability).
+  const leadIndex =
+    isFirst && !section.heading
+      ? section.blocks.findIndex((block) => block.type === "paragraph")
+      : -1;
+
   return (
     <section
       style={{ display: "flex", flexDirection: "column", gap: "16px" }}
@@ -256,12 +264,9 @@ function ArticleSection({
         </h2>
       ) : null}
 
-      {section.blocks.map((block, i) => {
-        const isLead =
-          isFirst && !section.heading && !leadAssigned && block.type === "paragraph";
-        if (isLead) leadAssigned = true;
-        return <Block key={i} block={block} isLeadParagraph={isLead} />;
-      })}
+      {section.blocks.map((block, i) => (
+        <Block key={i} block={block} isLeadParagraph={i === leadIndex} />
+      ))}
     </section>
   );
 }

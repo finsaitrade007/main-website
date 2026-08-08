@@ -639,7 +639,7 @@ export default function PaymentsFlowSection() {
             <span style={{ fontWeight: 400, color: "#FFFFFF" }}>
               Please note:
             </span>{" "}
-            Some payment options may be subject to regional availability. All withdrawals are processed in the base currency of your Wallet. For example, if your Wallet is denominated in USD, your withdrawal will be processed in USD. By using this service, users acknowledge the inherent risks associated with online payment systems, including potential delays, disruptions, or failures beyond Finsai Trade's control.
+            Some payment options may be subject to regional availability. All withdrawals are processed in the base currency of your Wallet. For example, if your Wallet is denominated in USD, your withdrawal will be processed in USD. By using this service, users acknowledge the inherent risks associated with online payment systems, including potential delays, disruptions, or failures beyond Finsai Trade&rsquo;s control.
           </p>
         </div>
       </section>

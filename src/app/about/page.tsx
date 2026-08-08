@@ -5,10 +5,12 @@ import AboutBuiltByTradersSection from "@/components/AboutBuiltByTradersSection"
 import AboutFinancialGrowthSection from "@/components/AboutFinancialGrowthSection";
 import AboutCompetitiveEdgeSection from "@/components/AboutCompetitiveEdgeSection";
 import AboutCTASection from "@/components/AboutCTASection";
+import FAQSection from "@/components/FAQSection";
 import PageJsonLd from "@/components/PageJsonLd";
 import {
   cmsPageMetadata,
   PAGE_SEO,
+  resolvePageFaqs,
   resolveSeoText,
 } from "@/lib/page-seo";
 import { getAboutPage } from "@/lib/strapi";
@@ -19,7 +21,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AboutPage() {
-  const data = await getAboutPage();
+  const [data, faqs] = await Promise.all([
+    getAboutPage(),
+    resolvePageFaqs("about"),
+  ]);
   const seo = resolveSeoText(data?.seo, PAGE_SEO.about);
 
   return (
@@ -28,12 +33,14 @@ export default async function AboutPage() {
         path={PAGE_SEO.about.path}
         title={seo.title}
         description={seo.description}
+        faqs={faqs}
       />
       <AboutHeroSection />
       <AboutRecognitionSection />
       <AboutBuiltByTradersSection />
       <AboutFinancialGrowthSection />
       <AboutCompetitiveEdgeSection />
+      <FAQSection section="about" faqs={faqs} />
       <AboutCTASection />
     </>
   );

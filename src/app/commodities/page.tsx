@@ -11,14 +11,19 @@ import {
   resolvePageFaqs,
   resolveSeoText,
 } from "@/lib/page-seo";
+import { getCommoditiesPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return cmsPageMetadata(null, PAGE_SEO.commodities);
+  const data = await getCommoditiesPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.commodities);
 }
 
 export default async function CommoditiesPage() {
-  const faqs = await resolvePageFaqs("commodities");
-  const seo = resolveSeoText(null, PAGE_SEO.commodities);
+  const [data, faqs] = await Promise.all([
+    getCommoditiesPage(),
+    resolvePageFaqs("commodities"),
+  ]);
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.commodities);
 
   return (
     <>

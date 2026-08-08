@@ -4,13 +4,16 @@ import RewardsIBSection from "@/components/RewardsIBSection";
 import RewardsCTASection from "@/components/RewardsCTASection";
 import PageJsonLd from "@/components/PageJsonLd";
 import { cmsPageMetadata, PAGE_SEO, resolveSeoText } from "@/lib/page-seo";
+import { getRewardsPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return cmsPageMetadata(null, PAGE_SEO.rewards);
+  const data = await getRewardsPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.rewards);
 }
 
 export default async function RewardsPage() {
-  const seo = resolveSeoText(null, PAGE_SEO.rewards);
+  const data = await getRewardsPage();
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.rewards);
 
   return (
     <>

@@ -30,19 +30,23 @@ const FALLBACK: Fallback = {
 const FALLBACK_FEATURES: { title: string; description: string }[] = [
   {
     title: "Transparent Trading",
-    description: "Clear pricing and straightforward trading conditions.",
+    description:
+      "As a trusted forex broker, we maintain clear pricing, zero hidden markups, and straightforward market conditions.",
   },
   {
     title: "Trader-First Experience",
-    description: "Built to make trading simple, smooth, and accessible.",
+    description:
+      "Built as a modern forex and CFD broker where managing multi-asset portfolios is simple, smooth, and accessible.",
   },
   {
     title: "Reliable Technology",
-    description: "Fast execution with dependable platform performance.",
+    description:
+      "Lightning-fast order routing powered by low-latency multi asset broker execution speed.",
   },
   {
     title: "Learn & Grow",
-    description: "Educational resources to help traders improve continuously.",
+    description:
+      "In-depth trader education and resources designed to help you continuously sharpen your market edge.",
   },
 ];
 
