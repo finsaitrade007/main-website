@@ -72,7 +72,7 @@ export default function Mt5FeaturesSection() {
           style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
-            fontSize: "clamp(14px, 1.1vw, 16px)",
+            fontSize: "clamp(15px, 1.25vw, 18px)",
             color: "#FFFFFF",
             textAlign: "center",
             maxWidth: 820,
@@ -182,8 +182,8 @@ export default function Mt5FeaturesSection() {
                 <div
                   style={{
                     position: "relative",
-                    width: 56,
-                    height: 56,
+                    width: 72,
+                    height: 72,
                     flexShrink: 0,
                   }}
                 >
@@ -191,7 +191,7 @@ export default function Mt5FeaturesSection() {
                     src={item.image}
                     alt=""
                     fill
-                    sizes="56px"
+                    sizes="72px"
                     style={{ objectFit: "contain" }}
                   />
                 </div>
@@ -199,7 +199,7 @@ export default function Mt5FeaturesSection() {
                   style={{
                     fontFamily: "var(--font-inter, Inter)",
                     fontWeight: 400,
-                    fontSize: 14,
+                    fontSize: 15.5,
                     color: "#94A3B8",
                     margin: 0,
                     lineHeight: 1.55,
@@ -248,22 +248,23 @@ function FeatureCard({
           overflow: "hidden",
         }}
       >
-        {/* Figma: 125.77×104.81 @ top 25.52, left 82.93 */}
+        {/* Enlarged from 125.77×104.81 — 168×118 keeps the source aspect
+            (855×601 = 1.4226) and re-centres: (310 − 168) / 2 = 71. */}
         <div
           className="mt5-feature-card-image"
           style={{
             position: "absolute",
-            top: 25.52,
-            left: 82.93,
-            width: 125.77,
-            height: 104.81,
+            top: 20,
+            left: 71,
+            width: 168,
+            height: 118,
           }}
         >
           <Image
             src={image}
             alt=""
             fill
-            sizes="126px"
+            sizes="168px"
             style={{ objectFit: "contain" }}
           />
         </div>
@@ -272,15 +273,15 @@ function FeatureCard({
           className="mt5-feature-card-text"
           style={{
             position: "absolute",
-            top: 162,
+            top: 158,
             left: 26.43,
             width: 260.65,
             height: 70,
             margin: 0,
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
-            fontSize: 14.58,
-            lineHeight: "23.04px",
+            fontSize: 16,
+            lineHeight: "25px",
             letterSpacing: "0%",
             color: "#7C828B",
           }}

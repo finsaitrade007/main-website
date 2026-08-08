@@ -4,35 +4,39 @@ const features = [
   {
     number: "01.",
     title: "Diversification Options",
-    description: "Trade multiple metals in one account.",
-    image:
-      "/spot%20metals/Why%20Choose%20Finsai%20Trade%20for%20Metals%20Trading/Diversification%20Options.jpg",
+    description:
+      "Access popular commodities like gold, silver, crude oil, and natural gas to diversify your portfolio.",
+    image: "/spot%20metals/why/diversification.png",
   },
   {
     number: "02.",
     title: "Intuitive Trading Platform",
-    description: "Easy market access with a powerful interface.",
+    description:
+      "Finsai Trade\u2019s platform makes it easy to monitor commodity markets and place trades with precision.",
     image:
       "/spot%20metals/Why%20Choose%20Finsai%20Trade%20for%20Metals%20Trading/Intuitive%20Trading%20Platform.jpg",
   },
   {
     number: "03.",
     title: "Professional Tools",
-    description: "Use real-time charts, market analysis, and trading tools.",
+    description:
+      "Use advanced charting, technical indicators, and market insights to track trends in metals and energy markets.",
     image:
       "/spot%20metals/Why%20Choose%20Finsai%20Trade%20for%20Metals%20Trading/Professional%20Tools.jpg",
   },
   {
     number: "04.",
     title: "Fast Order Execution",
-    description: "Execute metals trades with speed and precision.",
+    description:
+      "Commodities move fast, and Finsai Trade ensures quick and reliable trade execution at competitive spreads.",
     image:
       "/spot%20metals/Why%20Choose%20Finsai%20Trade%20for%20Metals%20Trading/Fast%20Order%20Execution_v2.jpg",
   },
   {
     number: "05.",
     title: "Built-In Risk Controls",
-    description: "Manage exposure using advanced protection tools.",
+    description:
+      "Protect your capital with stop-loss orders, margin alerts, and transparent rollover information when trading commodities.",
     image:
       "/spot%20metals/Why%20Choose%20Finsai%20Trade%20for%20Metals%20Trading/Built-In%20Risk%20Controls.jpg",
   },
@@ -75,7 +79,7 @@ export default function MetalsFeaturesSection() {
           color: "#94A3B8",
         }}
       >
-        Trade precious metals with an online broker providing flexible pricing, powerful tools, and multi-asset access.
+        Trade precious metals with competitive pricing, flexible trading options, and a reliable trading platform.
       </p>
 
       <div

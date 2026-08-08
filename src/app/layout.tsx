@@ -10,7 +10,7 @@ import { SITE_URL } from "@/lib/site";
 const sora = Sora({
   variable: "--font-sora",
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const dmSans = DM_Sans({
@@ -22,7 +22,7 @@ const dmSans = DM_Sans({
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 // Site-wide metadata defaults. Per-page `generateMetadata()` (driven by the

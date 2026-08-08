@@ -6,7 +6,9 @@ const featureCards = [
   {
     title: "Low Spreads",
     description: "Trade with spreads starting from 0.0 pips to help keep your trading costs low",
-    image: `${ASSET}/Low%20Spreads_v1.jpg`,
+    // Figma pairs this card with the toolbox artwork; the two JPGs were
+    // authored under the opposite names, so the paths are crossed here.
+    image: `${ASSET}/Free%20Trading%20Tools_v1.jpg`,
   },
   {
     title: "Fast Trade Execution",
@@ -21,7 +23,7 @@ const featureCards = [
   {
     title: "Free Trading Tools",
     description: "Access market insights and trading tools in one place.",
-    image: `${ASSET}/Free%20Trading%20Tools_v1.jpg`,
+    image: `${ASSET}/Low%20Spreads_v1.jpg`,
   },
   {
     title: "Transparent Pricing",

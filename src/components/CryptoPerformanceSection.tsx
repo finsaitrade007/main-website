@@ -5,28 +5,28 @@ const PERF = "/crypto-page/Real-Time%20Crypto%20Performance";
 const performanceItems = [
   {
     title: "Wide Selection of Cryptos",
-    description: "Choose from over 100+ popular digital assets.",
+    description: "Bitcoin, Ethereum, and popular altcoins.",
     image: `${PERF}/Wide%20Selection%20of%20Cryptos.jpg`,
     height: 105,
     borderRadius: 9,
   },
   {
     title: "Transparent Pricing",
-    description: "Clear spread and pricing for every asset traded.",
+    description: "Tight spreads and clear trading conditions.",
     image: `${PERF}/Transparent%20Pricing%20copy.jpg`,
     height: 105,
     borderRadius: 12,
   },
   {
     title: "Secure Trading Environment",
-    description: "Advanced security protocols and asset protection.",
+    description: "Advanced encryption and trusted protection.",
     image: `${PERF}/Secure%20Trading%20Environment.jpg`,
     height: 104,
     borderRadius: 7,
   },
   {
     title: "Fast Withdrawals",
-    description: "Quickly access your funds whenever you need them.",
+    description: "Smooth funding and withdrawal experience.",
     image: `${PERF}/Fast%20Withdrawals.jpg`,
     height: 104,
     borderRadius: 7,
@@ -53,8 +53,8 @@ export default function CryptoPerformanceSection() {
         style={{
           position: "absolute",
           top: 64,
-          left: 64,
-          width: 577,
+          left: 100,
+          width: 640,
           zIndex: 2,
         }}
       >
@@ -63,7 +63,9 @@ export default function CryptoPerformanceSection() {
             margin: "0 0 12px",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 700,
-            fontSize: "clamp(24px, 2.6vw, 36px)",
+            fontSize: "clamp(28px, 3vw, 40px)",
+            letterSpacing: "-0.01em",
+            whiteSpace: "nowrap",
             color: "#FFFFFF",
           }}
         >
@@ -74,10 +76,10 @@ export default function CryptoPerformanceSection() {
             margin: "0 0 28px",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
-            fontSize: 16,
+            fontSize: 17,
             lineHeight: 1.6,
             color: "#94A3B8",
-            maxWidth: 520,
+            maxWidth: 600,
           }}
         >
           Track live crypto prices and use our calculator to estimate your margin or potential
@@ -92,8 +94,8 @@ export default function CryptoPerformanceSection() {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 16,
-                width: 577,
+                gap: 18,
+                width: 640,
                 height: item.height,
                 borderRadius: item.borderRadius,
                 border: "2px solid #0C2238",
@@ -105,8 +107,8 @@ export default function CryptoPerformanceSection() {
               <div
                 style={{
                   position: "relative",
-                  width: 56,
-                  height: 56,
+                  width: 88,
+                  height: 57,
                   flexShrink: 0,
                 }}
               >
@@ -114,7 +116,7 @@ export default function CryptoPerformanceSection() {
                   src={item.image}
                   alt=""
                   fill
-                  sizes="56px"
+                  sizes="88px"
                   style={{ objectFit: "contain" }}
                 />
               </div>
@@ -124,7 +126,7 @@ export default function CryptoPerformanceSection() {
                     margin: "0 0 4px",
                     fontFamily: "var(--font-inter, Inter)",
                     fontWeight: 600,
-                    fontSize: 16,
+                    fontSize: 18,
                     color: "#D2D3D5",
                   }}
                 >
@@ -135,7 +137,7 @@ export default function CryptoPerformanceSection() {
                     margin: 0,
                     fontFamily: "var(--font-inter, Inter)",
                     fontWeight: 400,
-                    fontSize: 14,
+                    fontSize: 15,
                     lineHeight: "20px",
                     color: "#8D94A0",
                   }}
@@ -146,19 +148,24 @@ export default function CryptoPerformanceSection() {
               <span
                 aria-hidden
                 style={{
-                  width: 34,
-                  height: 34,
-                  borderRadius: "50%",
-                  background: "#011327",
-                  color: "#036FE3",
+                  width: 28,
+                  height: 28,
+                  color: "#3E9BE8",
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  fontWeight: 700,
                   flexShrink: 0,
                 }}
               >
-                →
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M9 5l7 7-7 7"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </span>
             </div>
           ))}
@@ -169,28 +176,21 @@ export default function CryptoPerformanceSection() {
         className="crypto-performance-visual"
         style={{
           position: "absolute",
-          top: 66,
-          left: 597,
-          width: 790,
-          height: 648.62,
+          top: 88,
+          left: 780,
+          width: 660,
+          height: 578,
+          overflow: "hidden",
           zIndex: 1,
         }}
       >
         <Image
           src={`${PERF}/Why%20Choose%20Finsai%20Trade%20for%20Crypto%20Trading_v1.jpeg`}
           alt=""
-          width={635}
-          height={564}
+          fill
+          sizes="(max-width: 900px) 100vw, 660px"
           className="crypto-performance-visual-img"
-          style={{
-            position: "absolute",
-            top: 23,
-            left: 111,
-            width: 635,
-            height: 564,
-            objectFit: "contain",
-            display: "block",
-          }}
+          style={{ objectFit: "cover", objectPosition: "center" }}
         />
       </div>
     </section>

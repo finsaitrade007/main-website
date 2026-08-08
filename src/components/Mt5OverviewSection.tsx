@@ -28,9 +28,9 @@ export default function Mt5OverviewSection() {
         className="mt5-overview-copy"
         style={{
           position: "absolute",
-          top: 120,
-          left: 64,
-          width: 500,
+          top: 96,
+          left: 100,
+          width: 560,
           zIndex: 2,
           display: "flex",
           flexDirection: "column",
@@ -41,9 +41,9 @@ export default function Mt5OverviewSection() {
           style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 700,
-            fontSize: "36px",
+            fontSize: "40px",
             lineHeight: "48px",
-            letterSpacing: 0,
+            letterSpacing: "-0.01em",
             color: "#FFFFFF",
             margin: 0,
           }}
@@ -55,7 +55,7 @@ export default function Mt5OverviewSection() {
           style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
-            fontSize: 15,
+            fontSize: 17,
             lineHeight: 1.7,
             color: "#94A3B8",
             margin: 0,
@@ -68,7 +68,7 @@ export default function Mt5OverviewSection() {
           style={{
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
-            fontSize: 15,
+            fontSize: 17,
             lineHeight: 1.7,
             color: "#94A3B8",
             margin: 0,
@@ -91,7 +91,7 @@ export default function Mt5OverviewSection() {
             color: "#FFFFFF",
             textDecoration: "none",
             fontFamily: "var(--font-inter, Inter)",
-            fontSize: 15,
+            fontSize: 16,
             fontWeight: 600,
           }}
         >
@@ -105,10 +105,11 @@ export default function Mt5OverviewSection() {
         className="mt5-overview-image"
         style={{
           position: "absolute",
-          top: 66,
-          left: 597,
-          width: 790,
-          height: 648.6240844726562,
+          top: 88,
+          left: 700,
+          width: 720,
+          height: 540,
+          overflow: "hidden",
           zIndex: 1,
         }}
       >
@@ -120,7 +121,7 @@ export default function Mt5OverviewSection() {
           style={{
             width: "100%",
             height: "100%",
-            objectFit: "contain",
+            objectFit: "cover",
             display: "block",
           }}
         />

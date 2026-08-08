@@ -16,6 +16,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "Platform", href: "/platform" },
       { label: "MT5", href: "/mt5" },
       { label: "Social Trading", href: "/social-trading" },
+      { label: "Tools", href: "/tools" },
       { label: "Account", href: "/accounts" },
       { label: "Payments", href: "/payments" },
       { label: "Rewards", href: "/rewards" },
