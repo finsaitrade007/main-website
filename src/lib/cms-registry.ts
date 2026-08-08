@@ -81,6 +81,7 @@ export const CMS_RESOURCES: CmsResource[] = [
   // ── SEO-only page single types ───────────────────────────────────
   // These were seeded by the backend but had no frontend getter, so editor
   // changes silently did nothing. Now wired.
+  page("tools-page", ["/tools"]),
   page("mt5-page", ["/mt5"]),
   // UID is historical; the route is /stocks.
   { uid: "api::wordstock-page.wordstock-page", tag: "wordstock-page", paths: ["/stocks"] },

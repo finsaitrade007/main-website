@@ -753,6 +753,10 @@ function getSeoOnlyPage(slug: string) {
   });
 }
 
+export function getToolsPage() {
+  return getSeoOnlyPage("tools-page");
+}
+
 export function getMt5Page() {
   return getSeoOnlyPage("mt5-page");
 }

@@ -13,14 +13,19 @@ import {
   resolvePageFaqs,
   resolveSeoText,
 } from "@/lib/page-seo";
+import { getToolsPage } from "@/lib/strapi";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return cmsPageMetadata(null, PAGE_SEO.tools);
+  const data = await getToolsPage();
+  return cmsPageMetadata(data?.seo, PAGE_SEO.tools);
 }
 
 export default async function ToolsPage() {
-  const faqs = await resolvePageFaqs("tools");
-  const seo = resolveSeoText(null, PAGE_SEO.tools);
+  const [data, faqs] = await Promise.all([
+    getToolsPage(),
+    resolvePageFaqs("tools"),
+  ]);
+  const seo = resolveSeoText(data?.seo, PAGE_SEO.tools);
 
   return (
     <>

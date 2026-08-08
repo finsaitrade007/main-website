@@ -42,7 +42,6 @@
   .commodities-explore {
     width: 1440px !important;
     max-width: none !important;
-    zoom: calc((100vw - var(--scrollbar)) / 1440);
   }
 }
 
@@ -2141,13 +2140,6 @@ body {
     justify-content: center !important;
   }
 
-  .mt5-feature-card {
-    width: 100% !important;
-    max-width: 310px !important;
-    height: auto !important;
-    min-height: 0 !important;
-    margin: 0 auto;
-  }
 
   .mt5-features-hero {
     position: relative !important;
@@ -2574,50 +2566,10 @@ body {
     gap: 14px !important;
   }
 
-  .commodities-explore-card-wrap {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    width: 100% !important;
-    max-width: 421px !important;
-    height: 122.78px !important;
-    margin: 0 auto !important;
-  }
 
-  .commodities-explore-card {
-    display: flex !important;
-    align-items: center !important;
-    gap: 16px !important;
-    padding: 0 16px !important;
-  }
 
-  .commodities-explore-card-icon {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    width: 96px !important;
-    height: 80px !important;
-    flex-shrink: 0;
-    overflow: hidden;
-  }
 
-  .commodities-explore-card-title {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    flex: 1;
-  }
 
-  .commodities-explore-card-arrow {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    margin-left: auto;
-    width: 48px !important;
-    height: 48px !important;
-    font-size: 22px !important;
-    flex-shrink: 0;
-  }
 
   .commodities-explore,
   .commodities-cta {
@@ -3017,25 +2969,7 @@ body {
  * ───────────────────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   /* card interior: absolute -> normal flow so nothing can overhang */
-  .mt5-feature-card-image {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    width: min(168px, 60%) !important;
-    height: auto !important;
-    aspect-ratio: 168 / 118;
-    margin: 22px auto 0;
-  }
 
-  .mt5-feature-card-text {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    width: 100% !important;
-    height: auto !important;
-    padding: 14px 18px 22px;
-    box-sizing: border-box;
-  }
 
   .mt5-features-hero {
     position: relative !important;
@@ -3055,5 +2989,393 @@ body {
   .mt5-webtrader {
     padding-left: 14px !important;
     padding-right: 14px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+ * MOBILE CARD LAYOUT (<=900px)
+ *
+ * All three card families are Figma exports: a fixed-size box whose children
+ * are absolutely positioned at fixed left/top/width. Shrinking the box alone
+ * does nothing — the interior keeps its desktop coordinates and is clipped by
+ * the box's `overflow: hidden`. Both halves have to be released.
+ *
+ * The Why Choose cards were the blocker: their <h3> and <p> carry NO class,
+ * so they can only be reached with descendant selectors. That is why every
+ * earlier attempt left their text cut off on the right.
+ * ═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+
+  /* ── 1. Why Choose cards (forex / commodities / energies / metals /
+         indices / stocks) ────────────────────────────────────────────── */
+  .commodities-feature-card,
+  .forex-feature-card,
+  .energies-feature-card,
+  .metals-feature-card,
+  .indices-feature-card,
+  .wordstock-feature-card {
+    width: 100% !important;
+    max-width: 395px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+
+  /* the inner panel becomes a normal column */
+  .commodities-feature-card > div,
+  .metals-feature-card > div,
+  .indices-feature-card > div,
+  .wordstock-feature-card > div {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 18px 20px 22px !important;
+    gap: 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* image, heading, underline and paragraph all leave absolute positioning.
+     The heading and paragraph have no class, hence the element selectors. */
+  .commodities-feature-image,
+  .commodities-feature-card > div > *,
+  .metals-feature-card > div > *,
+  .indices-feature-card > div > *,
+  .wordstock-feature-card > div > * {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+  }
+
+  .commodities-feature-card h3,
+  .metals-feature-card h3,
+  .indices-feature-card h3,
+  .wordstock-feature-card h3,
+  .commodities-feature-card p,
+  .metals-feature-card p,
+  .indices-feature-card p,
+  .wordstock-feature-card p {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    white-space: normal !important;       /* h3 is nowrap in the design */
+    overflow-wrap: anywhere;
+  }
+
+  .commodities-feature-card h3,
+  .metals-feature-card h3,
+  .indices-feature-card h3,
+  .wordstock-feature-card h3 {
+    display: block !important;            /* was flex + fixed height */
+    font-size: 20px !important;
+    line-height: 1.25 !important;
+  }
+
+  .commodities-feature-card p,
+  .metals-feature-card p,
+  .indices-feature-card p,
+  .wordstock-feature-card p {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
+
+  .commodities-feature-image,
+  .metals-feature-image,
+  .indices-feature-image,
+  .wordstock-feature-image {
+    width: 96px !important;
+    height: 80px !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* ── 2. MT5 / Crypto Key features ──────────────────────────────────── */
+  .mt5-features-main {
+    position: relative !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .mt5-features-cards {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    justify-items: center !important;
+    justify-content: stretch !important;
+    width: 100% !important;
+    gap: 16px !important;
+  }
+
+  .mt5-feature-card {
+    width: 100% !important;
+    max-width: 310px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .mt5-feature-card > div {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    height: auto !important;
+    padding: 18px 18px 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .mt5-feature-card-image {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: min(168px, 70%) !important;
+    height: auto !important;
+    aspect-ratio: 168 / 118;
+    flex: 0 0 auto !important;
+  }
+
+  .mt5-feature-card-text {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 14px !important;
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* ── 3. Explore other instruments ──────────────────────────────────── */
+  .commodities-explore-grid {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 14px !important;
+    height: auto !important;
+  }
+
+  .commodities-explore-card-wrap {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 421.31px !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .commodities-explore-card {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 14px !important;
+    height: auto !important;
+    min-height: 96px !important;
+    box-sizing: border-box !important;
+  }
+
+  .commodities-explore-card-icon {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 72px !important;
+    height: 64px !important;
+    flex: 0 0 auto !important;
+  }
+  .commodities-explore-card-icon img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .commodities-explore-card-title {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    font-size: 17px !important;
+    line-height: 1.2 !important;
+    white-space: normal !important;
+  }
+
+  .commodities-explore-card-arrow {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 42px !important;
+    height: 42px !important;
+    flex: 0 0 auto !important;
+  }
+  .commodities-explore-card-arrow svg { width: 20px !important; height: 20px !important; }
+}
+
+@media (max-width: 360px) {
+  .commodities-explore-card { padding: 12px !important; gap: 10px !important; }
+  .commodities-explore-card-icon { width: 58px !important; height: 52px !important; }
+  .commodities-explore-card-title { font-size: 15px !important; }
+  .commodities-explore-card-arrow { width: 36px !important; height: 36px !important; }
+  .commodities-explore-card-arrow svg { width: 16px !important; height: 16px !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+ * "READY TO START TRADING?" CTA — NARROW (<=961px)
+ *
+ * Breakpoint is 961 rather than 900: the box design is 962px wide, so between
+ * 901 and 961 it is already narrower than its contents and the button lands
+ * outside the panel.
+ *
+ * The box is 962x129 with every child absolutely positioned at desktop
+ * coordinates. Once `max-width: 100%` shrinks it to a phone width:
+ *   - .cta-copy has `right: 462px`, which on a 280px box resolves to a
+ *     NEGATIVE width, so the text collapses
+ *   - .cta-partition sits at left 516 and .cta-action at left 558, both far
+ *     outside the box, so the button is invisible on mobile
+ *   - the 962x129 background PNG is stretched with object-fit: fill
+ *
+ * Stacked into a column. The panel PNG is a flat #000614 rounded rectangle,
+ * so it is swapped for the CSS equivalent rather than being stretched.
+ * The heading <div> and <p> inside .cta-copy have no class — descendant
+ * selectors are the only way to reach them.
+ * ═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 961px) {
+  .commodities-cta {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .commodities-cta-box {
+    width: 100% !important;
+    max-width: 520px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 12px !important;
+    padding: 22px 18px 24px !important;
+    background: #000614 !important;
+    border: 1px solid rgba(5, 111, 180, 0.45) !important;
+    border-radius: 14px !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+  }
+
+  /* the stretched panel artwork is replaced by the border/background above */
+  .commodities-cta-box > img { display: none !important; }
+
+  .commodities-cta-icon,
+  .commodities-cta-copy,
+  .commodities-cta-partition,
+  .commodities-cta-action {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+
+  .commodities-cta-icon {
+    width: 58px !important;
+    height: 60px !important;
+    flex: 0 0 auto !important;
+  }
+  .commodities-cta-icon img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .commodities-cta-copy { width: 100% !important; }
+  .commodities-cta-copy > div {           /* heading — no class in the markup */
+    font-size: 18px !important;
+    line-height: 1.3 !important;
+    margin-bottom: 6px !important;
+  }
+  .commodities-cta-copy p {               /* body — no class in the markup */
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  .commodities-cta-partition {
+    width: 100% !important;
+    max-width: 220px !important;
+    height: 1px !important;
+    margin: 2px auto !important;
+    opacity: 0.55 !important;
+  }
+
+  .commodities-cta-action {
+    width: 100% !important;
+    height: auto !important;
+  }
+  .commodities-cta-action a {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    display: flex !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    height: 48px !important;
+    margin: 0 auto !important;
+    font-size: 15px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .commodities-cta-box { padding: 18px 14px 20px !important; }
+  .commodities-cta-copy > div { font-size: 17px !important; }
+  .commodities-cta-action a { height: 46px !important; font-size: 14px !important; }
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+ * Stocks / Metals feature cards — centred artwork (<=900px)
+ *
+ * These two cards centre their image with `left: 50%` + `translateX(-50%)`.
+ * The mobile rule reset `left` but not the transform, so the image kept its
+ * -50% shift and slid half its width off the left edge of the card.
+ *
+ * Left-aligned so the artwork sits above the divider rule, in line with the
+ * heading and body text.
+ *
+ * Also widens the unclassed text wrapper (fixed 176.6px in the design) so the
+ * heading and body can use the full card width.
+ * ─────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .wordstock-feature-image,
+  .metals-feature-image {
+    transform: none !important;
+    align-self: flex-start !important;  /* left-aligned, above the divider */
+    margin: 0 !important;
+  }
+
+  /* the h3 + p wrapper carries no class and a fixed 176.6px width */
+  .wordstock-feature-card > div > div:not([class]):not([aria-hidden]),
+  .metals-feature-card > div > div:not([class]):not([aria-hidden]) {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .wordstock-feature-card h3,
+  .metals-feature-card h3 {
+    min-height: 0 !important;
+    margin-bottom: 8px !important;
+  }
+  .wordstock-feature-card p,
+  .metals-feature-card p {
+    min-height: 0 !important;
+  }
+
+  /* the big "01." marker */
+  .wordstock-feature-number,
+  .metals-feature-number {
+    width: auto !important;
+    height: auto !important;
+    margin-top: 6px !important;
   }
 }
