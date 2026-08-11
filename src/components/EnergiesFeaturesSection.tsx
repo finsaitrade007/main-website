@@ -209,7 +209,7 @@ export default function EnergiesFeaturesSection() {
                   alt=""
                   fill
                   sizes="80px"
-                  style={{ objectFit: "contain" }}
+                  style={{ objectFit: "contain", mixBlendMode: "screen" }}
                 />
               </div>
               <div style={{ minWidth: 0 }}>
@@ -285,6 +285,7 @@ function FeatureCard({
           boxSizing: "border-box",
           display: "flex",
           flexDirection: "column",
+          alignItems: "flex-start",
           padding: "15px 29px 24px",
         }}
       >
@@ -294,11 +295,14 @@ function FeatureCard({
             position: "relative",
             width: 118,
             height: 97,
-            opacity: 0.9,
+            // No opacity here: any value below 1 creates a stacking context,
+            // which would isolate the image and stop mixBlendMode:"screen"
+            // from reaching the card background — leaving the icon's black
+            // JPEG square visible, which is the boxed look being fixed.
             flexShrink: 0,
           }}
         >
-          <Image src={image} alt="" fill sizes="118px" style={{ objectFit: "contain" }} />
+          <Image src={image} alt="" fill sizes="118px" style={{ objectFit: "contain", mixBlendMode: "screen" }} />
         </div>
 
         <h3

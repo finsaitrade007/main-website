@@ -90,7 +90,7 @@ export default function IndicesFeaturesSection() {
             alt=""
             fill
             sizes="560px"
-            style={{ objectFit: "contain" }}
+            style={{ objectFit: "contain", mixBlendMode: "screen" }}
           />
         </div>
 
@@ -132,8 +132,9 @@ function FeatureCard({
       className="indices-feature-card"
       style={{
         width: 274,
-        // minHeight, not height: a longer description was clipped by the fixed
-        // 238px box. The grid stretches so cards still finish level.
+        // Brought into the same structure as every other market card: flex
+        // column, minHeight so a longer description grows the card instead of
+        // being clipped, and the row stretched so cards finish level.
         minHeight: 238,
         borderRadius: 13.03,
         border: "0.87px solid #001E40",
@@ -141,6 +142,9 @@ function FeatureCard({
         boxSizing: "border-box",
         overflow: "hidden",
         padding: "22px 20px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
       }}
     >
       <div
@@ -148,31 +152,52 @@ function FeatureCard({
           position: "relative",
           width: 72,
           height: 60,
-          marginBottom: 16,
+          flexShrink: 0,
         }}
       >
-        <Image src={image} alt="" fill sizes="72px" style={{ objectFit: "contain" }} />
+        <Image
+          src={image}
+          alt=""
+          fill
+          sizes="72px"
+          style={{ objectFit: "contain", mixBlendMode: "screen" }}
+        />
       </div>
       <h3
         style={{
-          margin: "0 0 8px",
+          margin: "16px 0 0",
           fontFamily: "var(--font-inter, Inter)",
           fontWeight: 600,
           fontSize: 18,
           lineHeight: "120%",
           color: "#D2D3D5",
+          textAlign: "left",
         }}
       >
         {title}
       </h3>
+      {/* Divider: every other market card has one between heading and body.
+          Indices was the only page missing it. */}
+      <div
+        aria-hidden
+        style={{
+          marginTop: 9,
+          width: 42.81,
+          height: 2.68,
+          borderRadius: 999,
+          background: "#056FB4",
+          flexShrink: 0,
+        }}
+      />
       <p
         style={{
-          margin: 0,
+          margin: "14px 0 0",
           fontFamily: "var(--font-inter, Inter)",
           fontWeight: 400,
           fontSize: 14,
           lineHeight: "21px",
           color: "#8D94A0",
+          textAlign: "left",
         }}
       >
         {description}

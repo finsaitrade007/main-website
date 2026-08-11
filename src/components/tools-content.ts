@@ -15,46 +15,11 @@ export const TOOLS_INSIGHTS = [
 
 /** manage-risk-smarter.svg ships with its own 64px ring; the rest are bare glyphs. */
 export const TOOLS_WORKFLOW = [
-  {
-    step: "01",
-    title: "Find Better Trade Setups",
-    description:
-      "Scan live market news and the economic calendar to see which sessions and instruments are worth your attention today.",
-    icon: "/tools/icons/find-better-trade-setups.svg",
-    ring: true,
-  },
-  {
-    step: "02",
-    title: "Size Positions Instantly",
-    description:
-      "Work out lot size, margin and pip value before you commit, so every position matches the risk you actually planned for.",
-    icon: "/tools/icons/size-positions-instantly.svg",
-    ring: true,
-  },
-  {
-    step: "03",
-    title: "Time Market Entries",
-    description:
-      "Line entries up against scheduled high-impact releases instead of reacting once the move has already happened.",
-    icon: "/tools/icons/time-market-entries.svg",
-    ring: true,
-  },
-  {
-    step: "04",
-    title: "Execute with Precision",
-    description:
-      "Place the order on MetaTrader 5 with raw spreads and low-latency routing to keep slippage off your entry price.",
-    icon: "/tools/icons/execute-with-precision.svg",
-    ring: true,
-  },
-  {
-    step: "05",
-    title: "Manage Risk Smarter",
-    description:
-      "Set stop-loss levels, profit targets and exposure limits up front, then track them as the position runs.",
-    icon: "/tools/icons/manage-risk-smarter.svg",
-    ring: false,
-  },
+  { title: "Find Better Trade Setups", icon: "/tools/icons/find-better-trade-setups.svg", ring: true },
+  { title: "Size Positions Instantly", icon: "/tools/icons/size-positions-instantly.svg", ring: true },
+  { title: "Time Market Entries", icon: "/tools/icons/time-market-entries.svg", ring: true },
+  { title: "Execute with Precision", icon: "/tools/icons/execute-with-precision.svg", ring: true },
+  { title: "Manage Risk Smarter", icon: "/tools/icons/manage-risk-smarter.svg", ring: false },
 ];
 
 export const TOOLS_INSTRUMENTS = [

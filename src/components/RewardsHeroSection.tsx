@@ -36,15 +36,34 @@ export default function RewardsHeroSection() {
           height: 570,
           overflow: "hidden",
           zIndex: 1,
-          // Review fix: the artwork read as a hard-edged image dropped onto the
-          // section. The mask feathers the two edges that meet the background
-          // (left and bottom) into transparency; top/right are flush with the
-          // section bounds so they stay solid. Kept inline rather than in
-          // globals.css so the hero cannot end up half-styled.
+          // The wrapper is a stacking context (zIndex + mask), so the image's
+          // screen blend resolves against THIS element, not the section behind
+          // it. Painting the page colour here gives the blend the correct
+          // backdrop. Visually identical to the section, and the mask fades
+          // both the background and the artwork out together at the edges.
+          background: "#050208",
+          // Review fix — "boxed" hero graphic.
+          //
+          // Two things were wrong. First the edges: a rectangular JPEG cropped
+          // with objectFit:cover inside overflow:hidden has four hard borders.
+          // The mask below feathers ALL FOUR — the brief calls out left and
+          // right specifically, and the top/right are visible too because the
+          // image stops short of the viewport edge.
+          //
+          // Second the tone. Measured, the artwork's own background is
+          // rgb(2,7,10) at the top, rgb(2,10,15) left and rgb(5,17,28) along
+          // the bottom where the platform glow lifts it — against a page of
+          // rgb(5,2,8). That bottom band is the most visible seam. Feathering
+          // alone only softens a mismatch; mixBlendMode:"screen" on the image
+          // itself removes it, because screen against a near-black source
+          // resolves to the backdrop. The subject keeps its brightness.
+          //
+          // The subject (gift box, trophy, coins) sits well inside the frame,
+          // so these fade distances never cut into artwork.
           WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, #000 22%, #000 100%), linear-gradient(to top, transparent 0%, #000 18%, #000 100%)",
+            "linear-gradient(to right, transparent 0%, #000 17%, #000 87%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 11%, #000 85%, transparent 100%)",
           maskImage:
-            "linear-gradient(to right, transparent 0%, #000 22%, #000 100%), linear-gradient(to top, transparent 0%, #000 18%, #000 100%)",
+            "linear-gradient(to right, transparent 0%, #000 17%, #000 87%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 11%, #000 85%, transparent 100%)",
           WebkitMaskComposite: "source-in",
           maskComposite: "intersect",
         }}
@@ -59,6 +78,10 @@ export default function RewardsHeroSection() {
           style={{
             objectFit: "cover",
             objectPosition: "center",
+            // Screen against the section's near-black background: the
+            // artwork's own dark backdrop resolves to the page colour, so the
+            // rectangle stops reading as a placed asset.
+            mixBlendMode: "screen",
           }}
         />
         {/* Closes the remaining tonal gap between the artwork and #050208. */}
@@ -70,7 +93,7 @@ export default function RewardsHeroSection() {
             pointerEvents: "none",
             zIndex: 2,
             background:
-              "linear-gradient(to right, #050208 0%, rgba(5, 2, 8, 0) 26%), linear-gradient(to top, #050208 0%, rgba(5, 2, 8, 0) 20%)",
+              "linear-gradient(to right, #050208 0%, rgba(5, 2, 8, 0) 20%), linear-gradient(to left, #050208 0%, rgba(5, 2, 8, 0) 16%), linear-gradient(to top, #050208 0%, rgba(5, 2, 8, 0) 18%), linear-gradient(to bottom, #050208 0%, rgba(5, 2, 8, 0) 14%)",
           }}
         />
       </div>

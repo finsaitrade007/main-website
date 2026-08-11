@@ -160,7 +160,7 @@ function FeatureCard({
             flexShrink: 0,
           }}
         >
-          <Image src={image} alt="" fill sizes="99px" style={{ objectFit: "contain" }} />
+          <Image src={image} alt="" fill sizes="99px" style={{ objectFit: "contain", mixBlendMode: "screen" }} />
         </div>
 
         <div

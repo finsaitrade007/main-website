@@ -135,6 +135,7 @@ export default function Mt5FeaturesSection() {
               width: "100%",
               height: "100%",
               objectFit: "contain",
+              mixBlendMode: "screen",
               display: "block",
             }}
           />
@@ -196,7 +197,7 @@ export default function Mt5FeaturesSection() {
                     alt=""
                     fill
                     sizes="72px"
-                    style={{ objectFit: "contain" }}
+                    style={{ objectFit: "contain", mixBlendMode: "screen" }}
                   />
                 </div>
                 <p
@@ -276,7 +277,7 @@ function FeatureCard({
             alt=""
             fill
             sizes="168px"
-            style={{ objectFit: "contain" }}
+            style={{ objectFit: "contain", mixBlendMode: "screen" }}
           />
         </div>
         <p

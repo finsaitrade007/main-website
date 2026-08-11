@@ -142,6 +142,7 @@ export default function CryptoFeaturesSection() {
               width: "100%",
               height: "100%",
               objectFit: "contain",
+              mixBlendMode: "screen",
               display: "block",
             }}
           />
@@ -202,7 +203,7 @@ export default function CryptoFeaturesSection() {
                     alt=""
                     fill
                     sizes="44px"
-                    style={{ objectFit: "contain" }}
+                    style={{ objectFit: "contain", mixBlendMode: "screen" }}
                   />
                 </div>
                 <div>
@@ -296,7 +297,7 @@ function FeatureCard({
             alt=""
             fill
             sizes="126px"
-            style={{ objectFit: "contain" }}
+            style={{ objectFit: "contain", mixBlendMode: "screen" }}
           />
         </div>
         <h3
