@@ -45,7 +45,7 @@ const cards = [
   {
     title: "Complete Transparency",
     description:
-      "View comprehensive performance analytics, win rates, and verified trading statistics before following any forex social trading platform strategy.",
+      "View performance analytics, win rates, and verified trading statistics before following any forex social trading platform strategy.",
     icon: (
       <svg
         width="40"
@@ -77,7 +77,7 @@ const cards = [
   {
     title: "Built-In Risk Management",
     description:
-      "Set strict drawdown limits, account balance protection thresholds, and custom stop-loss levels to manage risk with complete control.",
+      "Set strict drawdown limits, account balance protection thresholds, and custom stop-loss levels to manage risks.",
     icon: (
       <svg
         width="40"
@@ -177,6 +177,9 @@ export default function SocialTradingFeaturesSection() {
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
+          // `stretch` makes every card in a row match the tallest, so cards
+          // stay level once minHeight lets them grow.
+          alignItems: "stretch",
           gap: "24px",
         }}
       >
@@ -185,7 +188,11 @@ export default function SocialTradingFeaturesSection() {
             key={card.title}
             style={{
               width: "302px",
-              height: "280px",
+              // Was a fixed 280px, which clipped the longer card copy
+              // ("Complete Transparency" / "Built-In Risk Management").
+              // minHeight lets a card grow; the grid stretches the row so all
+              // cards still finish level.
+              minHeight: "280px",
               borderRadius: "32px",
               padding: "1px",
               background:

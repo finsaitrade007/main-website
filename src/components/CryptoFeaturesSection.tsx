@@ -58,14 +58,17 @@ export default function CryptoFeaturesSection() {
         background: "#050208",
         width: "100%",
         maxWidth: 1440,
-        height: 944,
+        // minHeight, not height. The section carries overflow:hidden, so a
+        // fixed 944px would clip the feature cards now that they grow with
+        // their copy — the card fix would have been invisible without this.
+        minHeight: 944,
         margin: "0 auto",
         padding: "56px 64px 48px",
         boxSizing: "border-box",
         overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: 1312, margin: "0 auto", height: "100%" }}>
+      <div style={{ maxWidth: 1312, margin: "0 auto", minHeight: "100%" }}>
         <h2
           style={{
             fontFamily: "var(--font-inter, Inter)",
@@ -107,6 +110,7 @@ export default function CryptoFeaturesSection() {
             className="mt5-features-cards"
             style={{
               display: "grid",
+              alignItems: "stretch",
               gridTemplateColumns: "repeat(2, 310px)",
               gap: 16,
               justifyContent: "start",
@@ -249,7 +253,12 @@ function FeatureCard({
       className="mt5-feature-card"
       style={{
         width: 310,
-        height: 264,
+        // Was a fixed 264px with all three children absolutely positioned and
+        // the paragraph pinned to height:90, so longer copy was clipped. Flex
+        // column + minHeight lets the card grow; the row stretches so cards
+        // stay level. The icon now aligns left with the heading instead of
+        // sitting centred on its own.
+        minHeight: 264,
         borderRadius: 12,
         padding: 0.91,
         boxSizing: "border-box",
@@ -262,20 +271,24 @@ function FeatureCard({
           position: "relative",
           width: "100%",
           height: "100%",
+          minHeight: 262,
           borderRadius: 11.09,
           background: "#000713",
           boxSizing: "border-box",
           overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          padding: "18px 26.43px 24px",
         }}
       >
         <div
           className="mt5-feature-card-image"
           style={{
-            position: "absolute",
-            top: 18,
-            left: 82.93,
+            position: "relative",
             width: 125.77,
             height: 90,
+            flexShrink: 0,
           }}
         >
           <Image
@@ -288,16 +301,13 @@ function FeatureCard({
         </div>
         <h3
           style={{
-            position: "absolute",
-            top: 118,
-            left: 26.43,
-            width: 260.65,
-            margin: 0,
+            margin: "10px 0 0",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 600,
             fontSize: 16,
-            lineHeight: "100%",
+            lineHeight: "22px",
             color: "#D2D3D5",
+            textAlign: "left",
           }}
         >
           {title}
@@ -305,17 +315,13 @@ function FeatureCard({
         <p
           className="mt5-feature-card-text"
           style={{
-            position: "absolute",
-            top: 146,
-            left: 26.43,
-            width: 260.65,
-            height: 90,
-            margin: 0,
+            margin: "8px 0 0",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
             fontSize: 14,
             lineHeight: "22px",
             color: "#7C828B",
+            textAlign: "left",
           }}
         >
           {description}

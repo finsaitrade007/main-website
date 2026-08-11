@@ -15,7 +15,7 @@ const accounts = [
       left: "-137.08px",
       stroke: "1.16px",
     },
-    desc: "A Beginner-Friendly Account With Low Entry Requirements — Ideal For New Traders Starting Their Journey.",
+    desc: "Finsai Trade's Smart Choice account offers new traders a beginner-friendly platform with a low minimum deposit, micro-lot trading, and zero commission fees.",
     features: ["Low Minimum Deposit", "Competitive Spreads on a Secure Trading Platform", "Zero Commission"],
   },
   {
@@ -45,7 +45,7 @@ const accounts = [
       left: "50%",
       stroke: "1px",
     },
-    desc: "A Professional Account Functioning as a Raw ECN CFD Trading Platform with Ultra-Fast Execution for Serious Traders.",
+    desc: "A professional account functioning as a raw ECN CFD trading platform with ultra-fast execution for serious traders.",
     features: ["Raw ECN Brokers Low Spread Conditions (From 0.0 Pips)", "Fastest Execution Speed via Direct Liquidity", "Dedicated Account Manager"],
   },
 ];
@@ -171,7 +171,6 @@ function AccountCard({
             lineHeight: "32.15px",
             letterSpacing: 0,
             textAlign: "center",
-            textTransform: "capitalize",
             color: "#FFFFFF",
             maxWidth: "620px",
             marginBottom: "16px",
@@ -185,7 +184,13 @@ function AccountCard({
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "28px",
+            justifyContent: "center",
+            // Wrap instead of overflowing: the SMART ECN feature list is the
+            // longest and was running off both edges of the card.
+            flexWrap: "wrap",
+            rowGap: "8px",
+            columnGap: "28px",
+            maxWidth: "100%",
             marginBottom: "24px",
           }}
         >

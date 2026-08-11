@@ -97,6 +97,7 @@ export default function IndicesFeaturesSection() {
         <div
           className="indices-features-grid"
           style={{
+          alignItems: "stretch",
             display: "grid",
             gridTemplateColumns: "repeat(2, 274px)",
             gap: 16,
@@ -131,7 +132,9 @@ function FeatureCard({
       className="indices-feature-card"
       style={{
         width: 274,
-        height: 238,
+        // minHeight, not height: a longer description was clipped by the fixed
+        // 238px box. The grid stretches so cards still finish level.
+        minHeight: 238,
         borderRadius: 13.03,
         border: "0.87px solid #001E40",
         background: "#000817",

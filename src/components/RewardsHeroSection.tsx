@@ -36,6 +36,17 @@ export default function RewardsHeroSection() {
           height: 570,
           overflow: "hidden",
           zIndex: 1,
+          // Review fix: the artwork read as a hard-edged image dropped onto the
+          // section. The mask feathers the two edges that meet the background
+          // (left and bottom) into transparency; top/right are flush with the
+          // section bounds so they stay solid. Kept inline rather than in
+          // globals.css so the hero cannot end up half-styled.
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0%, #000 22%, #000 100%), linear-gradient(to top, transparent 0%, #000 18%, #000 100%)",
+          maskImage:
+            "linear-gradient(to right, transparent 0%, #000 22%, #000 100%), linear-gradient(to top, transparent 0%, #000 18%, #000 100%)",
+          WebkitMaskComposite: "source-in",
+          maskComposite: "intersect",
         }}
       >
         <Image
@@ -48,6 +59,18 @@ export default function RewardsHeroSection() {
           style={{
             objectFit: "cover",
             objectPosition: "center",
+          }}
+        />
+        {/* Closes the remaining tonal gap between the artwork and #050208. */}
+        <span
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            zIndex: 2,
+            background:
+              "linear-gradient(to right, #050208 0%, rgba(5, 2, 8, 0) 26%), linear-gradient(to top, #050208 0%, rgba(5, 2, 8, 0) 20%)",
           }}
         />
       </div>

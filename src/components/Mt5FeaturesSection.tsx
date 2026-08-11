@@ -48,14 +48,17 @@ export default function Mt5FeaturesSection() {
         background: "#050208",
         width: "100%",
         maxWidth: 1440,
-        height: 944,
+        // minHeight, not height. The section carries overflow:hidden, so a
+        // fixed 944px would clip the feature cards now that they grow with
+        // their copy — the card fix would have been invisible without this.
+        minHeight: 944,
         margin: "0 auto",
         padding: "56px 64px 48px",
         boxSizing: "border-box",
         overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: 1312, margin: "0 auto", height: "100%" }}>
+      <div style={{ maxWidth: 1312, margin: "0 auto", minHeight: "100%" }}>
         <h2
           style={{
             fontFamily: "var(--font-inter, Inter)",
@@ -99,6 +102,7 @@ export default function Mt5FeaturesSection() {
             className="mt5-features-cards"
             style={{
               display: "grid",
+              alignItems: "stretch",
               gridTemplateColumns: "repeat(2, 310px)",
               gap: 16,
               justifyContent: "start",
@@ -229,7 +233,12 @@ function FeatureCard({
       className="mt5-feature-card"
       style={{
         width: 310,
-        height: 264,
+        // Was a fixed 264px with absolutely-positioned children and the
+        // paragraph pinned to height:70 — six of the seven descriptions are
+        // longer than that and were being clipped. Flex column + minHeight
+        // lets the card grow; the grid stretches so cards stay level. The icon
+        // now aligns left with the copy instead of sitting centred on its own.
+        minHeight: 264,
         borderRadius: 12,
         padding: 0.91,
         boxSizing: "border-box",
@@ -242,22 +251,24 @@ function FeatureCard({
           position: "relative",
           width: "100%",
           height: "100%",
+          minHeight: 262,
           borderRadius: 11.09,
           background: "#000713",
           boxSizing: "border-box",
           overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          padding: "20px 26.43px 24px",
         }}
       >
-        {/* Enlarged from 125.77×104.81 — 168×118 keeps the source aspect
-            (855×601 = 1.4226) and re-centres: (310 − 168) / 2 = 71. */}
         <div
           className="mt5-feature-card-image"
           style={{
-            position: "absolute",
-            top: 20,
-            left: 71,
+            position: "relative",
             width: 168,
             height: 118,
+            flexShrink: 0,
           }}
         >
           <Image
@@ -268,22 +279,17 @@ function FeatureCard({
             style={{ objectFit: "contain" }}
           />
         </div>
-        {/* Figma: 260.65×70 @ top 162, left 26.43 — Inter 400 / 14.58 / 23.04 / #7C828B */}
         <p
           className="mt5-feature-card-text"
           style={{
-            position: "absolute",
-            top: 158,
-            left: 26.43,
-            width: 260.65,
-            height: 70,
-            margin: 0,
+            margin: "18px 0 0",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
             fontSize: 16,
             lineHeight: "25px",
             letterSpacing: "0%",
             color: "#7C828B",
+            textAlign: "left",
           }}
         >
           {description}

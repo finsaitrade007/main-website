@@ -2,7 +2,9 @@ export type BlogBlock =
   | { type: "paragraph"; text: string }
   | { type: "bullets"; items: string[] }
   | { type: "subheading"; text: string }
-  | { type: "table"; headers: string[]; rows: string[][] };
+  | { type: "table"; headers: string[]; rows: string[][] }
+  /** Inline figure. `alt` is required — these carry real analytical content. */
+  | { type: "image"; src: string; alt: string; caption?: string };
 
 export type BlogSection = {
   /** Heading rendered as an H2. Omit on the lead/intro section. */
@@ -35,6 +37,263 @@ export type BlogPost = {
 };
 
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    slug: "the-week-ahead-market-preview-august-2026",
+    category: "News & Analysis",
+    title:
+      "The Week Ahead Market Preview: Key Market Events That Could Move Your Trades (August 2026)",
+    excerpt:
+      "Key volatility drivers for the week ahead: the US CPI print, the RBI's rate hold, and the levels that matter on EUR/USD, Gold and the Nifty 50.",
+    image: "/blogs/week-ahead-august-2026/banner-us-cpi-preview.jpg",
+    readTime: "9 min read",
+    publishedAt: "2026-08-07",
+    author: "Finsai Trade Research",
+    metaTitle: "The Week Ahead Market Preview: Key Events | Finsai Trade",
+    metaDescription:
+      "Read The Week Ahead Market Preview on Finsai Trade. Explore key market events, US CPI data, central bank rate trends, and Nifty 50 key levels for August 2026.",
+    sections: [
+      {
+        blocks: [
+          {
+            type: "paragraph",
+            text: "The Week Ahead Market Preview highlights critical volatility drivers for day traders across global markets in August 2026. Key economic focus turns to the upcoming US CPI preview for traders, where core inflation is projected near 2.6% YoY, alongside crucial domestic inflation updates for India following the Reserve Bank of India's (RBI) decision to hold the repo rate at 5.25%. Traders on Finsai Trade should prepare for sharp price action in EUR/USD, Gold (XAU/USD), and the Nifty 50 as central bank rate expectations adjust to incoming macro data.",
+          },
+        ],
+      },
+      {
+        heading: "Key Market Events This Week: High-Impact Macro Overview",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Global financial markets are entering a high-stakes trading window driven by shifting rate differentials, commodity price adjustments, and institutional capital reallocations. Understanding market drivers for August 2026 requires tracking both top-tier economic statistics and cross-asset spillover effects.",
+          },
+          {
+            type: "paragraph",
+            text: "Whether you are scalping foreign exchange pairs or managing swing positions in equity market indices, aligning your order flow with macro catalysts is essential for effective risk management. Below is your structured roadmap of high-impact economic data releases this week.",
+          },
+          {
+            type: "table",
+            headers: [
+              "Date / Time",
+              "Event / Release",
+              "Country / Region",
+              "Target Assets",
+              "Consensus / Expectation",
+            ],
+            rows: [
+              ["Mon, Aug 10", "NY Fed 3-Year Inflation Expectations", "United States", "USD Index, Gold (XAU/USD)", "3.2% MoM"],
+              ["Tue, Aug 11", "UK Average Earnings & Labor Data", "United Kingdom", "GBP/USD, FTSE 100", "4.1% YoY"],
+              ["Wed, Aug 12", "US Consumer Price Index (CPI)", "United States", "EUR/USD, S&P 500, Gold", "Core 2.6% YoY, Headline 3.5% YoY"],
+              ["Wed, Aug 12", "India Consumer Price Index (CPI)", "India", "Nifty 50, Bank Nifty, USD/INR", "4.7% Q2 Average Target"],
+              ["Thu, Aug 13", "US Producer Price Index (PPI)", "United States", "DXY, Nasdaq 100, Brent Crude", "+0.2% MoM"],
+              ["Fri, Aug 14", "US Retail Sales & Consumer Sentiment", "United States", "USD/JPY, Gold, Global Indices", "+0.3% MoM"],
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Deep Dive: Central Bank Interest Rate Decisions and Macro Trends",
+        blocks: [
+          {
+            type: "image",
+            src: "/blogs/week-ahead-august-2026/us-cpi-inflation-scenarios-gold-usd.jpg",
+            alt: "Infographic illustrating US CPI inflation data scenarios showing higher than expected CPI causing USD to rise and Gold to fall versus lower than expected CPI causing USD to fall and Gold to rise.",
+          },
+          { type: "subheading", text: "1. US CPI Preview for Traders" },
+          {
+            type: "paragraph",
+            text: "The United States Consumer Price Index (CPI) report remains the single most impactful metric driving international market pricing. Following a notable drop in headline inflation to 3.5% YoY, market participants are watching closely to confirm whether disinflation in service sectors and shelter components is holding.",
+          },
+          {
+            type: "bullets",
+            items: [
+              "Why It Matters: The Federal Reserve's Monetary Policy Committee continues to benchmark its rate trajectory against core inflation pressures. A softer CPI reading reinforces rate-cut expectations, exerting downward pressure on US Treasury yields and the Greenback.",
+              "Traders' Focal Point: Compare Core CPI MoM against Headline numbers. Unanticipated spikes in energy or shelter services could spark rapid repricing across interest rate futures.",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "Key Takeaway: If US Core CPI prints below 0.2% MoM, expect the US Dollar Index (DXY) to test key downside support levels, giving non-USD currency pairs and Gold immediate upside momentum.",
+          },
+          {
+            type: "subheading",
+            text: "2. Central Bank Policy Aftermath: RBI Stance & Regional Stability",
+          },
+          {
+            type: "paragraph",
+            text: "Following recent central bank interest rate decisions this week, the Reserve Bank of India (RBI) maintained its benchmark repo rate at 5.25% with a neutral policy stance. At the same time, the central bank upgraded India's real GDP growth forecast for FY27 to 6.7%, citing strong domestic private consumption and capital expenditures.",
+          },
+          {
+            type: "bullets",
+            items: [
+              "Inflation Trajectory: The RBI revised its near-term domestic CPI forecast to 5.0% for FY27, noting that core inflation remains well-behaved.",
+              "Foreign Institutional Flows: FPI/FII capital returned strongly over recent weeks with net foreign inflows surpassing $7.0 billion, supporting equity valuations and stabilizing the local currency.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Multi-Market Correlation Insights & The Scenario Matrix",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Professional traders rarely look at asset classes in isolation. To build a distinct analytical advantage, evaluate how correlations ripple across foreign exchange, industrial commodities, and domestic equities.",
+          },
+          {
+            type: "subheading",
+            text: "The Macro Interconnection: Crude Oil, USD/INR, and Indian Equities",
+          },
+          {
+            type: "bullets",
+            items: [
+              "Crude Oil & Currency Impact: India imports nearly 85% of its crude requirements. Any sudden geopolitical flare-up or supply disruption that pushes Brent Crude above $85/barrel expands India's trade deficit.",
+              "FX Transmission: A rising oil bill increases corporate dollar demand, driving USD/INR toward upper resistance bounds.",
+              "Equities Response: Higher energy prices squeeze profit margins for automotive, paint, and manufacturing sectors on the National Stock Exchange (NSE), placing direct pressure on the Nifty 50.",
+            ],
+          },
+          {
+            type: "image",
+            src: "/blogs/week-ahead-august-2026/brent-crude-oil-impact-on-nifty-50.jpg",
+            alt: "Six step transmission rail visual showing how a Brent Crude price increase impacts India trade deficit, corporate USD demand, USD/INR rates and creates downside pressure on Nifty 50.",
+          },
+          {
+            type: "subheading",
+            text: "Scenario Matrix: Navigating Major Volatility Events",
+          },
+          {
+            type: "paragraph",
+            text: "Use this dual-scenario blueprint to prepare your trade parameters before economic reports go live.",
+          },
+          {
+            type: "table",
+            headers: [
+              "Data Release / Event",
+              "Scenario",
+              "Primary Market Shock",
+              "Recommended Execution Bias",
+            ],
+            rows: [
+              ["US CPI (MoM)", "Bullish USD Case: CPI MoM > 0.3%", "Treasury yields surge; Rate cuts delayed", "Long USD/JPY, Short EUR/USD, Short Gold"],
+              ["US CPI (MoM)", "Bearish USD Case: CPI MoM < 0.1%", "Treasury yields drop; Rate cuts priced in", "Short DXY, Long Gold (XAU/USD), Long S&P 500"],
+              ["India CPI / IIP", "Bullish Nifty Case: CPI < 4.5%", "Rate cut hopes rise; Bank Nifty rallies", "Long Bank Nifty, Short USD/INR"],
+              ["India CPI / IIP", "Bearish Nifty Case: CPI > 5.2%", "Squeezed real returns; FII profit taking", "Long USD/INR, Short Cyclical Equities"],
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Weekly Forex Market Outlook",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "The foreign exchange market is gearing up for expanded trading ranges as central bank divergence becomes clearer.",
+          },
+          {
+            type: "image",
+            src: "/blogs/week-ahead-august-2026/weekly-forex-market-outlook-target-ranges.jpg",
+            alt: "Weekly Forex Market Outlook target range chart showing EUR/USD trading between 1.0820 and 1.0980, GBP/USD between 1.2850 and 1.3020 and USD/JPY between 144.50 and 148.00.",
+          },
+          { type: "subheading", text: "EUR/USD" },
+          {
+            type: "bullets",
+            items: [
+              "Key Levels to Watch: Resistance at 1.0980; Support at 1.0820.",
+              "Analysis: EUR/USD is trading inside a tight consolidated channel. The ECB's dovish tone contrasts with sticky US inflation dynamics, making the pair extremely sensitive to US CPI outcomes.",
+            ],
+          },
+          { type: "subheading", text: "GBP/USD" },
+          {
+            type: "bullets",
+            items: [
+              "Key Levels to Watch: Resistance at 1.3020; Support at 1.2850.",
+              "Analysis: UK wage figures released mid-week will determine whether the Bank of England retains its hawkish tilt. A wage growth beat above 4.2% YoY could push Cable through key 1.3000 psychological resistance.",
+            ],
+          },
+          { type: "subheading", text: "USD/JPY" },
+          {
+            type: "bullets",
+            items: [
+              "Key Levels to Watch: Resistance at 148.00; Support at 144.50.",
+              "Analysis: Joint central bank communications and yield differentials keep USD/JPY in focus. Short-term spikes toward 148.00 may encounter seller interest if US yields cool off post-CPI.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Nifty 50 Weekly Preview and Key Levels",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Driven by solid domestic corporate balance sheets, comfortable banking system liquidity, and an upgraded GDP growth projection of 6.7%, the Indian equity benchmark exhibits structural strength.",
+          },
+          {
+            type: "image",
+            src: "/blogs/week-ahead-august-2026/nifty-50-technical-support-resistance-levels.jpg",
+            alt: "Nifty 50 Technical Structure infographic showing Upside Targets (Resistance 1: 24,650, Resistance 2: 24,850) and Key Support Levels (Support 1: 24,100, Support 2: 23,850).",
+          },
+          { type: "subheading", text: "Technical Landscape" },
+          {
+            type: "bullets",
+            items: [
+              "Primary Resistance: 24,650 / 24,850",
+              "Primary Support: 24,100 / 23,850",
+              "Market Structure: Nifty 50 is forming higher lows on daily charts, supported by steady FII inflows into domestic debt and equity markets.",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "Trading Insight: Bank Nifty continues to benefit from comfortable systemic liquidity surpluses averaging around 1 lakh crore. Look for buying opportunities on dips near the 24,100 zone, keeping strict stop-losses below 23,850.",
+          },
+        ],
+      },
+      {
+        heading: "Executing Your Weekly Strategy on Finsai Trade",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "When high-impact economic news releases create market volatility, execution quality, spread stability, and real-time monitoring are critical to protecting your capital.",
+          },
+          {
+            type: "subheading",
+            text: "How Finsai Trade Enhances Your Market Edge",
+          },
+          {
+            type: "bullets",
+            items: [
+              "Ultra-Low Spreads During News Events: Trade EUR/USD, Gold (XAU/USD), and major equity indices with institutional-grade raw spreads on Finsai's MetaTrader 5 (MT5) platform.",
+              "Instant Price Alerting: Set automated notifications for critical technical break-outs across major indices like the Nifty 50 or S&P 500 directly inside your trading terminal.",
+              "Fast Execution Speed: Protect your market orders against severe slippage during Tier-1 events like US CPI or central bank speeches using Finsai Trade's low-latency order routing.",
+            ],
+          },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What is the most important market event this week?",
+        answer:
+          "The US Consumer Price Index (CPI) release is widely recognized as the top global volatility driver this week. It directly dictates expectations for Federal Reserve interest rate policy, impacting the US Dollar, Gold, and global equity valuations.",
+      },
+      {
+        question:
+          "How do US economic events affect the Nifty 50 and Indian markets?",
+        answer:
+          "US economic data influences foreign portfolio investor (FPI) flows, global risk sentiment, and US Treasury yields. A lower US inflation print often encourages capital allocation toward emerging markets like India, supporting higher levels in the Nifty 50 and stabilizing the Rupee against the Dollar.",
+      },
+      {
+        question:
+          "How can day traders manage risk during high-impact news releases?",
+        answer:
+          "Day traders should avoid over-leveraging prior to Tier-1 economic releases, utilize hard stop-loss orders, and monitor spread widening on platforms like Finsai Trade to prevent unnecessary slippage during sharp price spikes.",
+      },
+      {
+        question:
+          "What platform tools does Finsai Trade offer for trading high-impact news events?",
+        answer:
+          "Finsai Trade provides low-latency order execution, real-time price alerts, and raw spreads on MetaTrader 5 (MT5), allowing traders to execute FX, Gold, and Index trades with minimal slippage during major news releases like US CPI or central bank decisions.",
+      },
+    ],
+  },
   {
     slug: "why-traditional-trading-strategies-are-failing",
     category: "News & Analysis",

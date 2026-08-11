@@ -118,6 +118,8 @@ export default function RewardsIBSection() {
           top: 48,
           left: 98,
           width: 657,
+          display: "flex",
+          flexDirection: "column",
           zIndex: 2,
         }}
       >
@@ -147,38 +149,43 @@ export default function RewardsIBSection() {
           every time a trader you refer starts trading. Our ecosystem provides tools to expand your
           reach and increase earnings.
         </p>
-      </div>
 
-      <SmartLink
-        href="/partnerships"
-        className="rewards-ib-cta"
-        style={{
-          position: "absolute",
-          top: 247,
-          left: 98,
-          boxSizing: "border-box",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 18,
-          width: 277.11,
-          height: 56,
-          borderRadius: 28.83,
-          padding: "14px 33px",
-          background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-          color: "#FFFFFF",
-          textDecoration: "none",
-          fontFamily: "var(--font-inter, Inter)",
-          fontSize: 15,
-          fontWeight: 600,
-          whiteSpace: "nowrap",
-          opacity: 1,
-          zIndex: 2,
-        }}
-      >
-        View All Promotions
-        <span aria-hidden>→</span>
-      </SmartLink>
+        {/* CTA sits in normal flow directly under the paragraph. It used to be
+            absolutely positioned at top:247 while the copy block ended around
+            y=210, leaving a ~40-70px gap that grew with the paragraph length
+            and visually detached the button from its message. A fixed
+            margin-top keeps the gap constant regardless of copy length. */}
+        <SmartLink
+          href="/partnerships"
+          className="rewards-ib-cta"
+          style={{
+            marginTop: 28,
+            alignSelf: "flex-start",
+            boxSizing: "border-box",
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 18,
+            width: 277.11,
+            height: 56,
+            borderRadius: 28.83,
+            padding: "14px 33px",
+            background:
+              "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+            color: "#FFFFFF",
+            textDecoration: "none",
+            fontFamily: "var(--font-inter, Inter)",
+            fontSize: 15,
+            fontWeight: 600,
+            whiteSpace: "nowrap",
+            opacity: 1,
+            zIndex: 2,
+          }}
+        >
+          View All Promotions
+          <span aria-hidden>→</span>
+        </SmartLink>
+      </div>
 
       <div
         className="rewards-ib-grid"

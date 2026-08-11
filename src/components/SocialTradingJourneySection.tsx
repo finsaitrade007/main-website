@@ -226,7 +226,8 @@ export default function SocialTradingJourneySection() {
           maxWidth: 740,
         }}
       >
-         No matter where you’re starting from, joining social trading is fast, simple, and hassle-free. 
+        No matter where you are starting from, joining our social trading
+        platform is fast, simple, and hassle-free.
       </p>
 
       {/* Card wrapper — Figma spec: 1270×404, 20px radius, blue gradient

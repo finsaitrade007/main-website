@@ -85,8 +85,6 @@ const miniCards = [
   },
 ];
 
-const miniPartitions = [292, 576, 956];
-
 export default function EnergiesFeaturesSection() {
   return (
     <section
@@ -133,6 +131,7 @@ export default function EnergiesFeaturesSection() {
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-between",
+          alignItems: "stretch",
           rowGap: 16,
           width: "100%",
           maxWidth: 1271,
@@ -167,64 +166,61 @@ export default function EnergiesFeaturesSection() {
           style={{
             position: "relative",
             width: "100%",
-            height: 152,
+            minHeight: 152,
             borderRadius: 11,
             background: "#050208",
             overflow: "hidden",
+            boxSizing: "border-box",
+            // Was four cards absolutely positioned at hand-tuned offsets
+            // (imageLeft 11 / 314 / 598 / 978) with divider lines at
+            // 292 / 576 / 956 — spacings of 303, 284 and 380px. That uneven
+            // rhythm is the imbalance flagged in review. Four equal grid
+            // columns with CSS dividers make the spacing identical by
+            // construction, whatever the copy length.
+            display: "grid",
+            gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+            alignItems: "center",
           }}
         >
-          {miniPartitions.map((left) => (
+          {miniCards.map((item, i) => (
             <div
-              key={left}
-              aria-hidden
+              key={item.title}
               style={{
-                position: "absolute",
-                top: 33,
-                left,
-                width: 0.5,
-                height: 79,
-                background: "#056FB4",
+                display: "flex",
+                alignItems: "center",
+                gap: 16,
+                minWidth: 0,
+                padding: "26px 20px",
+                boxSizing: "border-box",
+                borderLeft: i === 0 ? "none" : "0.5px solid #056FB4",
               }}
-            />
-          ))}
-
-          {miniCards.map((item) => (
-            <div key={item.title}>
+            >
               <div
                 className="energies-mini-image commodities-mini-image"
                 style={{
-                  position: "absolute",
-                  top: item.imageTop,
-                  left: item.imageLeft,
-                  width: item.imageWidth,
-                  height: item.imageHeight,
+                  position: "relative",
+                  width: 80,
+                  height: 81,
+                  flexShrink: 0,
                 }}
               >
                 <Image
                   src={item.image}
                   alt=""
                   fill
-                  sizes={`${item.imageWidth}px`}
+                  sizes="80px"
                   style={{ objectFit: "contain" }}
                 />
               </div>
-              <div
-                style={{
-                  position: "absolute",
-                  top: 36,
-                  left: item.textLeft,
-                  width: item.textWidth,
-                }}
-              >
+              <div style={{ minWidth: 0 }}>
                 <h3
                   style={{
                     margin: "0 0 6px",
                     fontFamily: "var(--font-inter, Inter)",
                     fontWeight: 400,
                     fontSize: 21,
-                    lineHeight: "100%",
+                    lineHeight: "125%",
                     color: "#036FE3",
-                    whiteSpace: "nowrap",
                   }}
                 >
                   {item.title}
@@ -237,12 +233,9 @@ export default function EnergiesFeaturesSection() {
                     fontSize: 16,
                     lineHeight: "24.77px",
                     color: "#7F8D9E",
-                    minHeight: "49.54px",
                   }}
                 >
-                  {item.descriptionLines[0]}
-                  <br />
-                  {item.descriptionLines[1]}
+                  {item.descriptionLines.join(" ")}
                 </p>
               </div>
             </div>
@@ -267,7 +260,13 @@ function FeatureCard({
       className="energies-feature-card commodities-feature-card"
       style={{
         width: 395,
-        height: 274,
+        // Was a fixed 274px with every child absolutely positioned and the
+        // heading/paragraph pinned to fixed heights. Any variance in copy
+        // length therefore broke the alignment between cards, which is the
+        // unevenness flagged in review. Now a flex column: one set of spacing
+        // rules, cards grow instead of clipping, and the row stretches so they
+        // all finish level.
+        minHeight: 274,
         borderRadius: 15,
         padding: 1,
         boxSizing: "border-box",
@@ -279,21 +278,24 @@ function FeatureCard({
           position: "relative",
           width: "100%",
           height: "100%",
+          minHeight: 272,
           borderRadius: 14,
           background: "#050208",
           overflow: "hidden",
           boxSizing: "border-box",
+          display: "flex",
+          flexDirection: "column",
+          padding: "15px 29px 24px",
         }}
       >
         <div
           className="energies-feature-image commodities-feature-image"
           style={{
-            position: "absolute",
-            top: 15,
-            left: 29,
+            position: "relative",
             width: 118,
             height: 97,
             opacity: 0.9,
+            flexShrink: 0,
           }}
         >
           <Image src={image} alt="" fill sizes="118px" style={{ objectFit: "contain" }} />
@@ -301,22 +303,15 @@ function FeatureCard({
 
         <h3
           style={{
-            position: "absolute",
-            top: 130,
-            left: 29,
-            width: 341,
-            height: 29,
-            margin: 0,
+            margin: "18px 0 0",
+            minHeight: 29,
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 600,
             fontSize: 24,
-            lineHeight: "100%",
+            lineHeight: "29px",
             letterSpacing: "0%",
             color: "#D2D3D5",
             textAlign: "left",
-            display: "flex",
-            alignItems: "center",
-            whiteSpace: "nowrap",
           }}
         >
           {title}
@@ -325,24 +320,18 @@ function FeatureCard({
         <div
           aria-hidden
           style={{
-            position: "absolute",
-            top: 168,
-            left: 29,
+            marginTop: 9,
             width: 42.81,
             height: 2.68,
             borderRadius: 999,
             background: "#056FB4",
+            flexShrink: 0,
           }}
         />
 
         <p
           style={{
-            position: "absolute",
-            top: 186,
-            left: 29,
-            width: 341,
-            height: 57,
-            margin: 0,
+            margin: "16px 0 0",
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 400,
             fontSize: 17,

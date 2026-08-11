@@ -118,6 +118,11 @@ export const FAQ_FALLBACKS: Partial<Record<FaqSection, FaqItem[]>> = {
       answer:
         "Opening an account with Finsai Trade takes 3 simple steps. Register: create your profile online and select your account tier (Smart Choice, Smart Pro, or Raw ECN CFD Trading Platform). Verify: submit your KYC documents to activate institutional-grade security and segregated fund protection. Fund & Trade: deposit via secure payment channels, connect to MetaTrader 5 (MT5) or our crypto and forex copy trading platform, and start trading live or on a demo account.",
     },
+    {
+      question: "Does Finsai Trade offer a raw ECN CFD trading platform?",
+      answer:
+        "Yes. The SMART ECN account is engineered specifically for active traders, operating as a raw ECN CFD trading platform with institutional-grade execution speeds and ultra-low spreads directly from liquidity providers.",
+    },
   ],
   accounts: [
     {
@@ -133,12 +138,12 @@ export const FAQ_FALLBACKS: Partial<Record<FaqSection, FaqItem[]>> = {
     {
       question: "What documents are required for online investment account verification?",
       answer:
-        "To complete KYC identity verification for a live forex trading account you must upload a valid, government-issued photo ID (passport, national ID, or driver's licence) as proof of identity, and a document issued within the last 3 months displaying your full legal name and address (utility bill, bank statement, or tax document) as proof of address.",
+        "To complete KYC identity verification for a live forex trading account, you must upload: Proof of Identity — a valid, government-issued photo ID (passport, national ID, or driver's license). Proof of Address — a document issued within the last 3 months displaying your full legal name and address (utility bill, bank statement, or tax document).",
     },
     {
       question: "What is the difference between Smart Pro and the Smart ECN professional trading account?",
       answer:
-        "The primary difference lies in the execution model and fee structure. Smart Pro is a commission-free account offering floating spreads from 0.6 pips, ideal for active day traders wanting high leverage without per-trade commissions. Smart ECN is a raw spread ECN trading account designed for institutional and high-volume traders, offering raw spreads from 0.0 pips, a low $0.03 commission, enhanced liquidity execution, complementary forex account VPS access, and optimized infrastructure for bot trading MT5 forex accounts.",
+        "The primary difference lies in the execution model and fee structure. Smart Pro is a commission-free account offering floating spreads from 0.6 pips, ideal for active day traders wanting high leverage without per-trade commissions. Smart ECN is a raw spread ECN trading account designed for institutional and high-volume traders, offering raw spreads starting from 0.0 pips, a low $0.03 commission, enhanced liquidity execution, complementary forex account VPS access, and optimized infrastructure for bot trading MT5 forex accounts.",
     },
     {
       question:
@@ -159,6 +164,16 @@ export const FAQ_FALLBACKS: Partial<Record<FaqSection, FaqItem[]>> = {
         "MetaTrader 5 (MT5) is one of the world's most advanced trading platforms, offering professional-grade charting, powerful market analysis, automated trading through Expert Advisors (EAs), multi-timeframe analysis, and advanced strategy back-testing capabilities for traders of all experience levels.",
     },
     {
+      question: "What is Copy Trading?",
+      answer:
+        "Copy trading is a feature of social trading that automatically replicates the trades of experienced traders in your account. Instead of placing trades manually, you follow a strategy provider, allowing you to participate in the markets while benefiting from their trading expertise.",
+    },
+    {
+      question: "Can I earn from Copy Trading?",
+      answer:
+        "Yes. With Social Trading, you can earn in two ways: by using copy trading to follow successful strategy providers or by becoming a strategy provider yourself. Experienced traders can build a following, share their strategies, and earn rewards based on their verified trading performance.",
+    },
+    {
       question: "How does Social Trading work?",
       answer:
         "Social Trading enables you to automatically copy trades from experienced traders in real time. Review verified performance metrics, customize your risk management settings, and choose strategies that align with your financial goals using a trusted copy trading platform.",
@@ -167,16 +182,6 @@ export const FAQ_FALLBACKS: Partial<Record<FaqSection, FaqItem[]>> = {
       question: "Can experienced traders earn through the platform?",
       answer:
         "Absolutely. With Social Trading, experienced traders can become strategy providers, grow their community of followers, monetize their trading expertise, and earn rewards based on verified trading performance and long-term consistency.",
-    },
-    {
-      question: "What is Copy Trading?",
-      answer:
-        "Copy trading is a feature of social trading that automatically replicates the trades of experienced traders in your account. Instead of placing trades manually, you follow a strategy provider, allowing you to participate in the markets while benefiting from their trading expertise.",
-    },
-    {
-      question: "Can I earn from Copy Trading?",
-      answer:
-        "Yes. With Social Trading, you can earn in two ways: by using copy trading to follow successful strategy providers, or by becoming a strategy provider yourself. Experienced traders can build a following, share their strategies, and earn rewards based on their verified trading performance.",
     },
     {
       question: "Can you use multiple trading platforms on Finsai Trade?",
@@ -440,7 +445,7 @@ export const FAQ_FALLBACKS: Partial<Record<FaqSection, FaqItem[]>> = {
     {
       question: "What is the minimum amount to start copying?",
       answer:
-        "The minimum deposit varies depending on the specific investment strategies deployed by your chosen provider. You can view each provider's required minimum copy amount directly on our Live Leaderboard, starting as low as $150 to ensure proportional margin management.",
+        "The minimum deposit varies depending on the specific investment strategies deployed by your chosen provider. You can view each provider's required minimum copy amount directly on our Live Leaderboard (starting as low as $150 to ensure proportional margin management).",
     },
     {
       question: "How is the strategy provider's commission calculated?",
@@ -450,7 +455,7 @@ export const FAQ_FALLBACKS: Partial<Record<FaqSection, FaqItem[]>> = {
     {
       question: "Can I copy multiple strategy providers at the same time?",
       answer:
-        "Yes. To achieve optimal portfolio diversification, you can allocate your capital across multiple experienced traders specializing in different asset classes, such as forex social trading, crypto copy trading, or commodities.",
+        "Yes! To achieve optimal portfolio diversification, you can allocate your capital across multiple experienced traders specializing in different asset classes, such as forex social trading, crypto copy trading, or commodities.",
     },
     {
       question: "How do I qualify to become a strategy provider on the platform?",

@@ -87,6 +87,9 @@ export default function MetalsFeaturesSection() {
         style={{
           display: "flex",
           justifyContent: "center",
+          // `stretch` makes every card in a row match the tallest one, so the
+          // cards stay level now that they grow with their content.
+          alignItems: "stretch",
           gap: 16,
           paddingLeft: 25,
           paddingTop: 5,
@@ -117,7 +120,7 @@ function FeatureCard({
       className="metals-feature-card"
       style={{
         width: 238,
-        height: 447,
+        minHeight: 447,
         borderRadius: 19.62,
         padding: 0.89,
         boxSizing: "border-box",
@@ -125,26 +128,40 @@ function FeatureCard({
         flexShrink: 0,
       }}
     >
+      {/*
+        Was a stack of absolutely-positioned children in a fixed 447px box:
+        image @35.68 (centred), divider @157.87, copy @170, number @377.23. The
+        copy used minHeight, so a longer description grew downwards and ran
+        straight through the decorative number.
+
+        Now a flex column. The number is pushed to the bottom with
+        margin-top:auto so it can never collide with the paragraph, and the card
+        grows instead of clipping. The icon is left-aligned with the heading,
+        divider and paragraph rather than centred on its own.
+      */}
       <div
         style={{
           position: "relative",
           width: "100%",
           height: "100%",
+          minHeight: 445,
           borderRadius: 18.73,
           background: "#050208",
           overflow: "hidden",
           boxSizing: "border-box",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          padding: "32px 20px 24px",
         }}
       >
         <div
           className="metals-feature-image"
           style={{
-            position: "absolute",
-            top: 35.68,
-            left: "50%",
-            transform: "translateX(-50%)",
+            position: "relative",
             width: 99,
             height: 100.79,
+            flexShrink: 0,
           }}
         >
           <Image src={image} alt="" fill sizes="99px" style={{ objectFit: "contain" }} />
@@ -153,75 +170,57 @@ function FeatureCard({
         <div
           aria-hidden
           style={{
-            position: "absolute",
-            top: 157.87,
-            left: 20,
+            marginTop: 21.4,
             width: 42.81,
             height: 2.68,
             borderRadius: 999,
             background: "#056FB4",
+            flexShrink: 0,
           }}
         />
 
-        <div
+        <h3
           style={{
-            position: "absolute",
-            top: 170,
-            left: 20,
-            width: 176.6,
+            minHeight: 60.65,
+            margin: "12.13px 0 14px",
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 600,
+            fontSize: 22,
+            lineHeight: "30.21px",
+            color: "#D2D3D5",
+            textAlign: "left",
           }}
         >
-          <h3
-            style={{
-              width: 156.98,
-              minHeight: 60.65,
-              margin: "0 0 14px",
-              fontFamily: "var(--font-inter, Inter)",
-              fontWeight: 600,
-              fontSize: 22,
-              lineHeight: "30.21px",
-              color: "#D2D3D5",
-              textAlign: "left",
-            }}
-          >
-            {title}
-          </h3>
-          <p
-            style={{
-              width: 176.6,
-              minHeight: 52,
-              margin: 0,
-              fontFamily: "var(--font-inter, Inter)",
-              fontWeight: 300,
-              fontSize: 16.05,
-              lineHeight: "25.66px",
-              color: "#7D7E85",
-              textAlign: "left",
-            }}
-          >
-            {description}
-          </p>
-        </div>
+          {title}
+        </h3>
+
+        <p
+          style={{
+            margin: 0,
+            fontFamily: "var(--font-inter, Inter)",
+            fontWeight: 300,
+            fontSize: 16.05,
+            lineHeight: "25.66px",
+            color: "#7D7E85",
+            textAlign: "left",
+          }}
+        >
+          {description}
+        </p>
 
         <span
           className="metals-feature-number"
           aria-hidden
           style={{
-            position: "absolute",
-            top: 377.23,
-            left: 20,
-            width: 63.33,
-            height: 48.16,
-            margin: 0,
+            marginTop: "auto",
+            paddingTop: 24,
             fontFamily: "var(--font-inter, Inter)",
             fontWeight: 700,
             fontSize: 42.81,
             lineHeight: "100%",
             letterSpacing: "0%",
             color: "#262D44",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-start",
+            textAlign: "left",
           }}
         >
           {number}

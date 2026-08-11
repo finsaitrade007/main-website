@@ -2738,7 +2738,10 @@ body {
 
   .rewards-ib-cta {
     display: inline-flex !important;
-    margin: 0 0 24px !important;
+    /* The CTA now sits inside .rewards-ib-copy in normal flow, so it needs the
+       same 28px breathing room above it that the desktop layout uses. The old
+       `margin: 0 0 24px` was written when the CTA was a positioned sibling. */
+    margin: 28px 0 24px !important;
   }
 
   .rewards-ib-grid {

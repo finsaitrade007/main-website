@@ -6,7 +6,10 @@ import SmartLink from "@/components/SmartLink";
 // background trick so the border can be a gradient while keeping the radius.
 const CARD_STYLE: React.CSSProperties = {
   width: "367px",
-  height: "545px",
+  // Was a fixed 545px. The bullet list + CTA exceeded it, so the CTA
+  // (marginTop: "auto") was pushed outside the card and overlapped the border.
+  // minHeight + a stretched grid row keeps both cards level and the CTA inside.
+  minHeight: "545px",
   borderRadius: "16.46px",
   border: "1.65px solid transparent",
   background:
@@ -379,8 +382,9 @@ export default function SocialTradingHowItWorksSection() {
           lineHeight: 1.6,
         }}
       >
-        A powerful way to connect those seeking easy market access with traders
-        sharing proven strategies.
+        A powerful way to connect investors seeking an automated approach to the
+        financial markets with professional traders sharing robust investment
+        strategies.
       </p>
 
       {/* Three-column grid */}
@@ -390,7 +394,7 @@ export default function SocialTradingHowItWorksSection() {
           display: "grid",
           gridTemplateColumns: "367px 1fr 367px",
           gap: "40px",
-          alignItems: "center",
+          alignItems: "stretch",
           justifyContent: "center",
           maxWidth: "1280px",
           margin: "0 auto",
@@ -418,7 +422,13 @@ export default function SocialTradingHowItWorksSection() {
         {/* Center column — Figma `connect.svg` (363×363). */}
         <div
           className="how-it-works-divider"
-          style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            // Grid row is `stretch` for the cards; keep the artwork centred.
+            alignSelf: "center",
+          }}
         >
           <Image
             src="/social-trading/connect.svg"

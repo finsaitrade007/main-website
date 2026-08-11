@@ -75,7 +75,7 @@ const FALLBACK_PLATFORMS: StrapiPlatform[] = [
     documentId: "fb-app",
     title: "App & More — Coming soon",
     description:
-      "Stay connected to global markets on the go with the Finsai Trade mobile trading app\u2014a fast, secure, and intuitive trading platform experience.",
+      "Stay connected to global markets wherever you are. The upcoming Finsai Trade mobile app will offer fast, secure, and intuitive mobile trading on iOS and Android.",
     size: "small",
     row: 2,
     order: 4,

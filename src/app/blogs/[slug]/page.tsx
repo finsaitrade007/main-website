@@ -207,6 +207,49 @@ function DataTable({
   );
 }
 
+function Figure({
+  src,
+  alt,
+  caption,
+}: {
+  src: string;
+  alt: string;
+  caption?: string;
+}) {
+  return (
+    <figure style={{ margin: "28px 0" }}>
+      <Image
+        src={src}
+        alt={alt}
+        width={1400}
+        height={788}
+        sizes="(max-width: 900px) 100vw, 860px"
+        style={{
+          width: "100%",
+          height: "auto",
+          borderRadius: "12px",
+          border: "1px solid rgba(56,130,246,.25)",
+          display: "block",
+        }}
+      />
+      {caption ? (
+        <figcaption
+          style={{
+            marginTop: "10px",
+            fontFamily: "var(--font-inter, Inter)",
+            fontSize: "14px",
+            lineHeight: 1.6,
+            color: "#7D7E85",
+            textAlign: "center",
+          }}
+        >
+          {caption}
+        </figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
 function Block({
   block,
   isLeadParagraph,
@@ -223,6 +266,8 @@ function Block({
       return <Subheading text={block.text} />;
     case "table":
       return <DataTable headers={block.headers} rows={block.rows} />;
+    case "image":
+      return <Figure src={block.src} alt={block.alt} caption={block.caption} />;
     default:
       return null;
   }
