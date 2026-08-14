@@ -211,12 +211,13 @@ export default async function AmlPolicyPage() {
         </P>
         <P>
           The Company has implemented policies, controls and procedures in
-          line with the Financial Intelligence Centre Act, No 38 of 2001 (The
-          FIC Act) together with the Prevention of Organized Crime Act, 1998
-          (POCA), the Prevention and Combatting of Corrupt Activities Act,
-          2004 (PRECCA) and the Protection of Constitutional Democracy
-          Against Terrorist and Related Activities Act, 2004 (POCDATARA)
-          under the guidance on how to comply with these requirements. The
+          line with the Financial Intelligence and Anti-Money Laundering Act 2002
+          (FIAMLA) and the Financial Intelligence and Anti-Money Laundering
+          Regulations 2018, together with the Prevention of Corruption Act
+          2002, the Prevention of Terrorism Act 2002, the United Nations
+          (Financial Prohibitions, Arms Embargo and Travel Ban) Sanctions Act
+          2019, and the AML/CFT Handbook issued by the Financial Services
+          Commission Mauritius. The
           phrase &ldquo;money laundering&rdquo; covers all procedures to
           conceal the origins of criminal proceeds so that they appear to
           originate from a legitimate source. The Company aims to detect,

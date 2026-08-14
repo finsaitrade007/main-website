@@ -50,7 +50,7 @@ export default async function ConflictsOfInterestPolicyPage() {
           Interest&rdquo; below.
         </P>
         <P>
-          <strong>&ldquo;FSP&rdquo; or &ldquo;Name of Company&rdquo;</strong>{" "}
+          <strong>&ldquo;FSP&rdquo; or &ldquo;Finsai Trade&rdquo;</strong>{" "}
           “FSP” or “Finsai Trade (Mauritius) Ltd (trading as FINSAI TRADE LTD)” is a Financial Services Provider authorized by the Financial Services Commission Mauritius under license number GB25204899 and company registration number C228371.
         </P>
         <P>
@@ -79,7 +79,9 @@ export default async function ConflictsOfInterestPolicyPage() {
         <P>
           <strong>&ldquo;Immaterial Financial Interest&rdquo;</strong> Any
           financial interest with a determinable monetary value, the
-          aggregate of which does not exceed KMF 1000 in any calendar year
+          aggregate of which does not exceed the threshold determined from time
+          to time by the Company&apos;s Compliance function in line with
+          Financial Services Commission Mauritius guidance, in any calendar year
           from the same third party in that calendar year received by a
           provider, who for its benefit or that or some or all of its
           representatives, aggregates the immaterial financial interest paid
@@ -244,9 +246,9 @@ export default async function ConflictsOfInterestPolicyPage() {
             "Comprehensive Training on the Conflicts of Interest Policy must be provided to Key Individuals and Representatives.",
             "All employees and representatives are required to read this policy and sign a statement to the effect that they have read and fully understand the provisions of the document and the application thereof.",
             "Internal compliance will on an ad-hoc basis check on financial records to ensure the policy is being complied with, specifically checking the accuracy of the Gift Register.",
-            "Non-compliance will be subject to disciplinary procedures in terms of FAIS and employment conditions and can ultimately result in debarment or dismissal as applicable.",
+            "Non-compliance will be subject to disciplinary procedures in terms of applicable Mauritius financial services legislation and employment conditions, and can ultimately result in debarment or dismissal as applicable.",
             "Avoidance, limitation or circumvention of this policy will be deemed non-compliance.",
-            "The external compliance officer will include monitoring of the Conflicts of Interest Policy as part of the general monitoring duties and will report thereon in the annual compliance report to the FSB.",
+            "The external compliance officer will include monitoring of the Conflicts of Interest Policy as part of the general monitoring duties and will report thereon in the annual compliance report to the Financial Services Commission Mauritius.",
           ]}
         />
       </LegalSection>

@@ -66,10 +66,8 @@ export default async function ComplaintsManagementPage() {
           complaint and includes a client, a person nominated as the person
           in respect of whom a product supplier should meet financial
           product benefits or that person&apos;s successor in title, a
-          person whose life is insured under a financial product that is an
-          insurance policy, a person that pays a premium or an investment
-          amount in respect of a financial product, a member, or a person
-          whose dissatisfaction relates to the approach, solicitation,
+          person that pays an investment amount in respect of a financial
+          product, or a person whose dissatisfaction relates to the approach, solicitation,
           marketing or advertising material or an advertisement in respect
           of a financial product, financial service or related service of
           the provider.
@@ -150,14 +148,15 @@ export default async function ComplaintsManagementPage() {
         />
         <P>
           The complaints framework will be updated according to any legal
-          determinations, publications and guidance issued by the Ombudsman,
+          determinations, publications and guidance issued by the Ombudsperson
+          for Financial Services,
           as and when necessary, or at least annually.
         </P>
       </LegalSection>
 
       <LegalSection title="4. Our Policy">
         <P>
-          Finsai Trade Ltd is committed to providing the highest standard of
+          Finsai Trade (Mauritius) Ltd is committed to providing the highest standard of
           service to its clients and customers. All complaints are taken
           seriously and resolved as soon as reasonably practical and as
           closely as possible to the allocated time frames. The governing
@@ -203,20 +202,20 @@ export default async function ComplaintsManagementPage() {
             Complaints may be submitted to the product supplier or Finsai
             Trade Ltd according to the nature of the complaint. You have a
             right to lodge a complaint should you feel that any
-            representative of Finsai Trade Ltd has contravened or failed to
+            representative of Finsai Trade (Mauritius) Ltd has contravened or failed to
             comply with a provision of this Act, and that as a result
             thereof you have suffered or are likely to suffer:
           </P>
           <UL
             items={[
               "Financial prejudice or damage;",
-              "If any representative of Finsai Trade Ltd has willfully or negligently rendered a financial service to you which has, or is likely to cause prejudice or damage to you;",
+              "If any representative of Finsai Trade (Mauritius) Ltd has willfully or negligently rendered a financial service to you which has, or is likely to cause prejudice or damage to you;",
               "Where you believe you have been treated unfairly.",
             ]}
           />
           <P>
             Your complaint must be lodged in writing with the internal
-            compliance officer or compliance department of Finsai Trade Ltd
+            compliance officer or compliance department of Finsai Trade (Mauritius) Ltd
             or product supplier and follow the internal complaints and
             escalation processes. Complaints are handled by a suitably
             qualified person.
@@ -232,17 +231,18 @@ export default async function ComplaintsManagementPage() {
       <LegalSection title="7. Complaints Review and Escalation">
         <LegalSubsection title="7.1 Acknowledgement of receipt">
           <P>
-            Finsai Trade Ltd will ensure that the complainant receives
+            Finsai Trade (Mauritius) Ltd will ensure that the complainant receives
             acknowledgement of the complaint using email communication
             within 48 hours of receipt of complaint. The email will indicate
             that a formal response will be provided within 7 days of the
             initial 48-hour communication. Depending on the complexity of
             the matter the response may extend to 14 days. Upon receipt of
             the response the complainant will have 7 days within which to
-            respond. Finsai Trade Ltd will endeavour to resolve all
+            respond. Finsai Trade (Mauritius) Ltd will endeavour to resolve all
             complaints within 6 weeks, failure of which the complainant may
-            approach the Ombudsman for determination. Complaints lodged
-            with the Ombudsman must be submitted within 6 months from the
+            approach the Office of the Ombudsperson for Financial Services for
+            determination. Complaints lodged with the Ombudsperson must be
+            submitted within 6 months from the
             date of the FSP&apos;s final response.
           </P>
         </LegalSubsection>
@@ -284,7 +284,6 @@ export default async function ComplaintsManagementPage() {
             "Complaints relating to a service to clients, including complaints relating to premium or investment contribution collection or lapsing of a financial product.",
             "Complaints relating to financial product accessibility, changes or switches, including complaints relating to redemptions of investments.",
             "Complaints relating to complaints handling.",
-            "Complaints relating to insurance risk claims, including non-payment of claims.",
           ]}
         />
       </LegalSection>
@@ -316,11 +315,11 @@ export default async function ComplaintsManagementPage() {
         <LegalSubsection title="9.2 Analysis and tracking of complaints">
           <UL
             items={[
-              "All complaints must be categorised correctly within the business, to allow for further analysis and decisions to eradicate certain complaints within the control of Finsai Trade Ltd.",
+              "All complaints must be categorised correctly within the business, to allow for further analysis and decisions to eradicate certain complaints within the control of Finsai Trade (Mauritius) Ltd.",
               "The report must differentiate the complaints resolved within timelines from those that exceeded the timeline.",
               "The Complaints management policy clearly depicts the procedures to be followed when handling complaints.",
               "The Complaints Manager is required to identify risks and place mitigating actions in place to reduce, manage, or avoid such risks.",
-              "Any complaint lodged with Finsai Trade Ltd through a client, or the ombudsman must be tracked, documented, and stored for safe keeping in line with legislation.",
+              "Any complaint lodged with Finsai Trade (Mauritius) Ltd through a client, or the ombudsman must be tracked, documented, and stored for safe keeping in line with legislation.",
               "A Complaints Risk Tracker will track against possible risk, based on the current and foreseeable complaints to be dealt with in by the business.",
               "Risk tracking will allow for the executive management to continuously review the framework in its entirety.",
             ]}
@@ -341,7 +340,7 @@ export default async function ComplaintsManagementPage() {
       <LegalSection title="11. Obtaining information from external sources">
         <LegalSubsection title="11.1 Obtaining information">
           <P>
-            Finsai Trade Ltd&apos;s complaints process provides mechanisms
+            Finsai Trade (Mauritius) Ltd&apos;s complaints process provides mechanisms
             to assist the manager to obtain information required to resolve
             the complaint. This entails dealing with both internal and
             external stakeholders in obtaining information required, within
@@ -360,7 +359,7 @@ export default async function ComplaintsManagementPage() {
 
         <LegalSubsection title="11.2 Reviewing the complaints policy and framework">
           <P>
-            Finsai Trade Ltd must ensure that during any review of the
+            Finsai Trade (Mauritius) Ltd must ensure that during any review of the
             Complaints Management Framework, all changes are tracked and
             documented during each update. There must be a high-level
             summary depicting the changes during the review and update of
@@ -391,7 +390,7 @@ export default async function ComplaintsManagementPage() {
 
         <LegalSubsection title="12.3 Obtaining information relating to a complaint">
           <P>
-            Finsai Trade Ltd will ensure that the process of obtaining
+            Finsai Trade (Mauritius) Ltd will ensure that the process of obtaining
             information relating to a complaint is efficient. The
             information will be scrutinised and analysed by a provider on an
             ongoing basis and utilised to manage conduct risks and effect
@@ -406,17 +405,46 @@ export default async function ComplaintsManagementPage() {
           upon receipt of a complaint and ensure that the complainant
           understands the information required to assist with the
           resolution together with the process of supplying such
-          information. Finsai Trade Ltd representatives must correspond
+          information. Finsai Trade (Mauritius) Ltd representatives must correspond
           with the complainant regarding the intended time or delays to
           resolve a complaint, and manage expectations with the
           complainant, until the complaint is finalised.
         </P>
         <P>
-          <strong>Contact details for Complaints department of FINSAI TRADE LTD:</strong>
+          <strong>Contact details for the Complaints department of FINSAI TRADE LTD:</strong>
           <br />
           Registered address: 3 Emerald Park, Trianon, Quatre Bornes 72257,
           MAURITIUS
+          <br />
+          Email:{" "}
+          <a
+            href="mailto:support@finsaitrade.com"
+            style={{ color: "#7DB9D6", textDecoration: "underline" }}
+          >
+            support@finsaitrade.com
+          </a>
         </P>
+        {/*
+          COMPLIANCE NOTE — CONFIRM THE COMPLAINTS INTAKE ADDRESS.
+          support@finsaitrade.com is the address this site already publishes
+          and is the CONTACT_TO_EMAIL default in lib/mailer.ts. If a dedicated
+          complaints mailbox exists (e.g. complaints@finsaitrade.com), swap it
+          in here. A monitored, legible address is required — the previous
+          version of this page carried an obfuscated link that rendered blank.
+        */}
+        {/*
+          BLOCKING — OMBUDSPERSON CONTACT DETAILS MUST BE ADDED.
+          Section 7.1 tells complainants they may approach the Office of the
+          Ombudsperson for Financial Services after 6 weeks, and Section 14
+          requires every written and telephonic communication to include the
+          Ombudsperson's details — yet those details appear nowhere in this
+          document. A complainant reading this page still has no actionable
+          external escalation route.
+
+          Insert the Ombudsperson's current registered address, telephone and
+          email here, verified against the Office's official website. These
+          were deliberately not invented.
+        */}
       </LegalSection>
 
       <LegalSection title="14. Engagement and Reporting to Authorities">
@@ -424,19 +452,20 @@ export default async function ComplaintsManagementPage() {
           A provider must have appropriate processes in place to ensure
           compliance with any prescribed requirements for reporting
           information relating to complaints to any relevant designated
-          authority or to the public as may be required by the Registrar.
+          authority or to the public as may be required by the Financial Services
+          Commission Mauritius.
         </P>
         <UL
           items={[
             "All complaints lodged and resolved must be tracked using the Complaints tracker and readily accessible to the complaints manager for risk mitigation and analysis and reporting purposes to the authorities.",
-            "All written communication during the complaint's resolution process must include the details for the financial services Ombudsman.",
-            "The resource dealing with telephonic communication with a complainant must furnish the complainant with details of the financial services ombudsman during all calls.",
-            "In the event the complaint has been attended to on behalf of a Product supplier, the relationship between Finsai Trade Ltd and the Product supplier must be shared with the complainant.",
-            "The Complaints manager will adhere to honest and reasonable communication with the Ombudsman, ensure they cooperate with the Ombudsman, product supplier and client.",
-            "The decisions of the Ombudsman are binding on Finsai Trade Ltd / product supplier but not the complainant.",
-            "The Ombudsman decisions may be based on law or equity.",
-            "The service of the Ombudsman is free to insured persons.",
-            "The Ombudsman does not provide legal advice.",
+            "All written communication during the complaint's resolution process must include the contact details for the Office of the Ombudsperson for Financial Services.",
+            "The resource dealing with telephonic communication with a complainant must furnish the complainant with the contact details of the Office of the Ombudsperson for Financial Services during all calls.",
+            "In the event the complaint has been attended to on behalf of a Product supplier, the relationship between Finsai Trade (Mauritius) Ltd and the Product supplier must be shared with the complainant.",
+            "The Complaints manager will adhere to honest and reasonable communication with the Ombudsperson, and will cooperate with the Ombudsperson, product supplier and client.",
+            "The decisions of the Ombudsperson for Financial Services are binding on Finsai Trade (Mauritius) Ltd but not on the complainant.",
+            "The decisions of the Ombudsperson may be based on law or equity.",
+            "The service of the Ombudsperson is provided free of charge to eligible complainants.",
+            "The Ombudsperson does not provide legal advice.",
           ]}
         />
       </LegalSection>
@@ -451,7 +480,6 @@ export default async function ComplaintsManagementPage() {
             "Complaints relating to a service to clients, including complaints relating to premium or investment contribution collection or lapsing of a financial product.",
             "Complaints relating to financial product accessibility, changes or switches, including complaints relating to redemptions of investments.",
             "Complaints relating to complaints handling.",
-            "Complaints relating to insurance risk claims, including non-payment of claims.",
             "Any other complaints.",
           ]}
         />

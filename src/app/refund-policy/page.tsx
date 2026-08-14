@@ -41,6 +41,17 @@ export default async function RefundPolicyPage() {
         </P>
       </LegalSection>
 
+      <LegalSection title="Scope of this Policy">
+        <P>
+          For the avoidance of doubt, the term &ldquo;refund&rdquo; in this
+          Policy refers only to the return of client funds to the original
+          payment method used to fund the Account, in accordance with the
+          procedures set out below. It does not create any right to a
+          refund on the basis of dissatisfaction, trading losses, or the
+          outcome of any Transaction. Trading losses are not refundable.
+        </P>
+      </LegalSection>
+
       <LegalSection title="Safeguarding of Clients Funds">
         <OL
           items={[
@@ -58,7 +69,7 @@ export default async function RefundPolicyPage() {
             items={[
               "All payments to the Company under this Policy shall be made in the currency that The Company will specify and in accordance with the bank account details provided by The Company for such purposes.",
               "Any amounts corresponding to liabilities you have towards us, including liabilities, may be deducted directly from the balance of any of your Account(s) under your profile.",
-              "Any monies you transfer to us for the purposes of funding your Account shall be deposited in your Account on the receival date, net of any transfer fees or other charges imposed by the financial institution(s), or any intermediary involved in the process of sending or receiving the funds. We may, at our sole discretion and under no obligation, credit funds which are still in transfer before the receival to your Account. In such instances, we may require you to sign additional agreements such as a Credit Agreement. We will try our best to ensure that any transfers are processed without any delay provided that this is within our reasonable control.",
+              "Any monies you transfer to us for the purposes of funding your Account shall be deposited in your Account on the receival date, net of any transfer fees or other charges imposed by the financial institution(s), or any intermediary involved in the process of sending or receiving the funds. We may, at our sole discretion and under no obligation, credit funds which are still in transfer before the receival to your Account. In such instances, we may require you to sign additional agreements such as a Credit Agreement. We will make all reasonable efforts to ensure that any transfers are processed without any delay provided that this is within our reasonable control.",
               "We will deposit funds into your Account only after we are satisfied, amongst other criteria, that the funds are being sent by you or your Authorized Representative from an account in your name, and that the funds do not breach any term contained within the Client Agreement and/or the law.",
               "Any transfers shall only be effective after our systems have made the relevant credit or debit of the funds to the relevant Account(s), and whilst we will make all reasonable efforts to ensure any transfers are made effective in a timely manner, we cannot guarantee how long this process may take. It is your responsibility to provide us with complete and accurate information in a prompt manner to ensure that you do not experience any delays or other losses.",
               "In the event when the Company receives funds in any currency other than the one in which the Account is denominated in, such funds will be credited to the Account on the basis of an internal exchange rate adopted by the Company at the date of deposit.",
@@ -66,6 +77,7 @@ export default async function RefundPolicyPage() {
               "Further, if we are not satisfied as to the above and reject an incoming transaction, we reserve the right to return the funds to the sender, net of any transfer fees or charges which we may incur.",
               "The Company does not accept cash deposits.",
               "It is our policy to ensure that all withdrawals, either in part or in full of the funds you deposit with us, are sent to the same source where the funds came from. We will only deviate from this policy where we have been satisfied that this will not be contrary to any of our policies and applicable legislation.",
+              "Where the original funding method is no longer available to receive funds (for example an expired, cancelled or closed card, or a closed payment-provider account), you should notify us so that an alternative method belonging to you can be verified and used. We will make all reasonable efforts to complete such verification and process the withdrawal without undue delay, and will keep you informed of the status of your request. If you are not satisfied with the handling of a withdrawal request, you may raise the matter under our Complaints Management framework.",
               "In order to withdraw funds Clients may request withdrawal through their Client Area.",
               "When withdrawing funds from the trading account, the Client is charged with all costs for funds transfer.",
               "When processing a withdrawal request, the Company shall use its internal currency rates at the date of withdrawal.",
@@ -120,18 +132,35 @@ export default async function RefundPolicyPage() {
             account (whether that is a bank account, a payment system account
             etc.) from which the money was originally deposited in the
             Account or at the Client&apos;s request to a bank account
-            belonging to the Client. In case of credit/debit card deposits,
-            where the refundable amount exceeds the deposited amount (i.e.
-            Client made profits), then the exceeding amount shall be sent by
-            bank wire or another payment method except credit card assuring
-            through supporting documents (i.e. account statement) that the
-            bank account or funding method account to which the profits will
-            be sent belongs to the Client.
+            belonging to the Client;
           </P>
           <P>(c) the account where the transfer is to be made belongs to the Client;</P>
           <P>(d) at the moment of payment, the Client&apos;s Balance exceeds the amount specified in the withdrawal instruction including all payment charges;</P>
           <P>(e) there is no Force Majeure event which prohibits the Company from effecting the withdrawal; and</P>
           <P>(f) the Client must be fully verified according to Verification guidelines set forth in this Policy and the Client Agreement.</P>
+        </LegalSubsection>
+
+        <LegalSubsection title="E.2 Withdrawal of Profits on Card-Funded Deposits">
+          <P>
+            Where an Account has been funded by credit or debit card and the
+            amount available for withdrawal exceeds the total amount
+            originally deposited by that card (that is, where the Client has
+            made profits), the deposited amount is returned to the card used
+            for funding, and only the amount in excess of that deposit is
+            paid out by an alternative method.
+          </P>
+          <P>
+            The excess amount shall be sent by bank wire or another agreed
+            payment method other than credit card, and the Company will
+            require supporting documentation (for example an account
+            statement) confirming that the bank account or funding account to
+            which the profits are to be sent belongs to the Client.
+          </P>
+          <P>
+            This is a requirement of the international card schemes and not a
+            restriction imposed by the Company. It applies to every
+            card-funded Account.
+          </P>
         </LegalSubsection>
       </LegalSection>
 
@@ -174,12 +203,12 @@ export default async function RefundPolicyPage() {
             The content of this document should be read together with the
             Client Agreement available on the Company&apos;s website at{" "}
             <a
-              href="https://www.finsaitrade.com"
+              href="https://finsaitrade.com"
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: "#7DB9D6", textDecoration: "underline" }}
             >
-              www.finsaitrade.com
+              finsaitrade.com
             </a>
             .
           </em>

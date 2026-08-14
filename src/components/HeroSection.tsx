@@ -1,6 +1,36 @@
 import Link from "@/components/SmartLink";
 import { getHomepage, type StrapiHomepage } from "@/lib/strapi";
 
+/**
+ * The secondary CTA renders a real arrow icon. Existing CMS copy still ends in
+ * a typed "->" (and the old fallback did too), which would render twice — once
+ * as characters, once as the icon. Strip any trailing arrow the editor typed.
+ */
+function stripTrailingArrow(label: string): string {
+  return label.replace(/\s*(->|-->|→|›|»)\s*$/, "").trim();
+}
+
+function ArrowRight() {
+  return (
+    <svg
+      className="hero-cta__arrow"
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M2.5 8h11m0 0L9.5 4m4 4-4 4"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 const FALLBACK: Pick<
   StrapiHomepage,
   | "heroTitle"
@@ -21,7 +51,7 @@ const FALLBACK: Pick<
   ],
   heroCtaPrimaryLabel: "Start Trading Now",
   heroCtaPrimaryHref: "https://fx.finsaitrade.com/auth/register",
-  heroCtaSecondaryLabel: "Try Demo ->",
+  heroCtaSecondaryLabel: "Try Demo",
   heroCtaSecondaryHref: "/contactus",
 };
 
@@ -84,13 +114,17 @@ export default async function HeroSection() {
         <div className="hero__text-wrap">
           <h1 className="hero__title">{data.heroTitle}</h1>
 
-          <p className="hero__subtitle">
-            {data.heroSubtitle}
-            <br />
+          <p className="hero__subtitle">{data.heroSubtitle}</p>
+
+          <p className="hero__taglines">
             {data.heroTaglines.map((t, i) => (
-              <span key={t.id}>
-                {i > 0 ? " | " : ""}
-                <span style={{ color: "#7DD5FF" }}>{t.label}</span>
+              <span key={t.id} style={{ display: "contents" }}>
+                {i > 0 ? (
+                  <span className="hero__tagline-sep" aria-hidden="true">
+                    |
+                  </span>
+                ) : null}
+                <span>{t.label}</span>
               </span>
             ))}
           </p>
@@ -98,26 +132,16 @@ export default async function HeroSection() {
           <div className="hero__ctas">
             <Link
               href={data.heroCtaPrimaryHref}
-              className="btn-text"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
-                borderRadius: "8px",
-                background:
-                  "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-                textDecoration: "none",
-                whiteSpace: "nowrap",
-              }}
+              className="hero-cta hero-cta--primary"
             >
-              {data.heroCtaPrimaryLabel}
+              {stripTrailingArrow(data.heroCtaPrimaryLabel)}
             </Link>
             <Link
               href={data.heroCtaSecondaryHref}
-              className="btn-secondary btn-text hero-try-demo-btn"
+              className="hero-cta hero-cta--secondary"
             >
-              {data.heroCtaSecondaryLabel}
+              {stripTrailingArrow(data.heroCtaSecondaryLabel)}
+              <ArrowRight />
             </Link>
           </div>
         </div>

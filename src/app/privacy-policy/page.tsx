@@ -166,8 +166,8 @@ export default async function PrivacyPolicyPage() {
         <UL
           items={[
             "In the event that this is necessary for the delivery of our products and/or services to you;",
-            "If Finsai Trade Ltd or substantially all of its assets are acquired by a third party, in which case personal data held by it about its customers will be one of the transferred assets;",
-            "If we are under a duty to disclose or share your personal data to comply with any legal and/or regulatory obligation, or to enforce or apply our terms of use and other agreements, or to protect the rights, property, or safety of Finsai Trade Ltd, our customers, or others. This includes exchanging information with other companies and organizations for the purposes of fraud protection, anti-money laundering and credit risk reduction.",
+            "If Finsai Trade (Mauritius) Ltd or substantially all of its assets are acquired by a third party, in which case personal data held by it about its customers will be one of the transferred assets;",
+            "If we are under a duty to disclose or share your personal data to comply with any legal and/or regulatory obligation, or to enforce or apply our terms of use and other agreements, or to protect the rights, property, or safety of Finsai Trade (Mauritius) Ltd, our customers, or others. This includes exchanging information with other companies and organizations for the purposes of fraud protection, anti-money laundering and credit risk reduction.",
           ]}
         />
         <P>
@@ -302,12 +302,12 @@ export default async function PrivacyPolicyPage() {
           will endeavor to publish any changes. You are advised to check our
           website{" "}
           <a
-            href="https://www.finsaitrade.com"
+            href="https://finsaitrade.com"
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: "#7DB9D6", textDecoration: "underline" }}
           >
-            www.finsaitrade.com
+            finsaitrade.com
           </a>{" "}
           regularly for any amendments.
         </P>

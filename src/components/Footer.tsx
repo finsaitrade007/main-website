@@ -183,7 +183,7 @@ export default function Footer() {
             color: "#8C8C8C",
             margin: 0,
           }}>
-            © Copyright 2026, All Rights Reserved by Finsai Trade
+            © Copyright {new Date().getFullYear()}, All Rights Reserved by Finsai Trade
           </p>
 
           {/* Social icons */}
@@ -214,14 +214,13 @@ export default function Footer() {
             "Finsai Trade (Mauritius) Ltd",
             `Incorporated on – 19th November 2025, main License no : ${FINSAI_LICENSE_NO}, Regulated by Financial Services Commission Mauritius`,
             "For Risk Disclosure and information __VISIT_HERE__",
-            "Trading and investing in derivatives involves substantial risk and may result in losses that exceed your initial investment. Anyone considering trading or investing in products offered through www.finsaitrade.com should obtain independent financial, legal, or professional advice before making any investment decisions.",
+            "Trading and investing in derivatives involves substantial risk and may result in losses that exceed your initial investment. Anyone considering trading or investing in products offered through finsaitrade.com should obtain independent financial, legal, or professional advice before making any investment decisions.",
             "Trading forex CFDs, stocks, commodities, options, futures, cryptocurrency CFDs, and other securities may not be suitable for all investors. These products are subject to market volatility and carry significant financial risk. Before engaging in any transaction, you should carefully assess your financial circumstances, investment objectives, trading experience, and risk tolerance.",
             "You must fully understand and accept the risks associated with trading financial markets before investing. Never trade with funds that you cannot afford to lose. Certain trading products and services may be restricted or prohibited in some jurisdictions. It is your responsibility to ensure that trading these products is permitted under the laws and regulations of your country of residence before opening an account or conducting any transactions.",
-            "Restricted Regions: Finsai Trade Ltd does not provide services for citizens/residents of the United States of America, Cuba, Iraq, Myanmar, North Korea, Sudan and UAE. The services of Finsai Trade Ltd are not intended for distribution to, or use by, any person in any country or jurisdiction where such distribution or use would be contrary to local law or regulation.",
-            "OR",
+            "Restricted Regions: Finsai Trade (Mauritius) Ltd does not provide services for citizens/residents of the United States of America, Cuba, Iraq, Myanmar, North Korea, Sudan and UAE. The services of Finsai Trade (Mauritius) Ltd are not intended for distribution to, or use by, any person in any country or jurisdiction where such distribution or use would be contrary to local law or regulation.",
             "Information on this site is not directed at residents in any country or jurisdiction where such distribution or use would be contrary to local law or regulation.",
             "We urge all users to undertake their own research and due diligence before making any investment decisions.",
-            "Thank you for choosing Finsai Trade Ltd. We prioritize the safety and well-being of our community and encourage informed and responsible trading.",
+            "Thank you for choosing Finsai Trade (Mauritius) Ltd. We prioritize the safety and well-being of our community and encourage informed and responsible trading.",
           ].map((text, i, arr) => (
             <p key={i} style={{
               fontFamily: "var(--font-inter, Inter)",

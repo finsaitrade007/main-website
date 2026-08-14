@@ -122,7 +122,7 @@ export default async function RiskDisclosurePage() {
             <strong>You must never trade with capital you cannot afford to lose.</strong>
           </P>
           <P>
-            By engaging in crypto CFD trading with Finsai Trade Ltd, you
+            By engaging in crypto CFD trading with Finsai Trade (Mauritius) Ltd, you
             confirm that you have reviewed and accepted these risk
             disclosures, and that such transactions are suitable for your
             investment profile.
@@ -131,47 +131,17 @@ export default async function RiskDisclosurePage() {
       </LegalSection>
 
       <LegalSection title="2. Charges and Taxes">
-        <LegalSubsection title="CFDs on Cryptocurrencies — Additional Risk Disclosure">
-          <P>
-            Trading Contracts for Difference (&ldquo;CFDs&rdquo;) on
-            cryptocurrencies involves significant risk and is not suitable
-            for all investors. These digital assets are highly speculative
-            and subject to extreme volatility, limited regulation,
-            potential technological failures, and security vulnerabilities.
-          </P>
-          <P>
-            By trading CFDs on cryptocurrencies with Finsai Trade Ltd, you
-            acknowledge and accept the following:
-          </P>
-          <UL
-            items={[
-              "You are not purchasing the underlying cryptocurrency but are instead speculating on its price movements via leveraged instruments.",
-              "Leverage can magnify your losses, and in some cases, you may lose more than your invested capital.",
-              "Market events such as forks, exchange outages, or cybersecurity breaches can materially affect the valuation and execution of crypto CFD trades.",
-              "Liquidity in cryptocurrency markets may decline sharply during periods of high volatility, resulting in delayed executions or wider spreads.",
-              "You must assess whether such trading is appropriate for you based on your financial condition, investment objectives, experience level, and risk appetite.",
-              "You must not trade with money you cannot afford to lose.",
-            ]}
-          />
-          <P>
-            By opening a trading account and initiating any CFD trades on
-            cryptocurrencies with Finsai Trade Ltd, you confirm that you
-            have read, understood, and agreed to the risks outlined in
-            this agreement and assume full responsibility for all related
-            trading outcomes.
-          </P>
-        </LegalSubsection>
 
         <P>
           2.1 The Provision of Services by the Company to the Client may be
           subject to fees, available on the Company&apos;s website{" "}
           <a
-            href="https://www.finsaitrade.com"
+            href="https://finsaitrade.com"
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: "#7DB9D6", textDecoration: "underline" }}
           >
-            www.finsaitrade.com
+            finsaitrade.com
           </a>{" "}
           (&ldquo;the Website&rdquo;). Before the Client begins to trade,
           he/she should obtain details of all fees, commissions, and
@@ -853,63 +823,7 @@ export default async function RiskDisclosurePage() {
           />
         </LegalSubsection>
 
-        <LegalSubsection title="25.2 PAMM & MAM Accounts">
-          <P>
-            PAMM (Percentage Allocation Management Module) and MAM
-            (Multi-Account Manager) accounts allow professional money
-            managers to trade on behalf of multiple investors. However,
-            investing in such accounts carries the following risks:
-          </P>
-          <UL
-            items={[
-              <>
-                <strong>Manager Risk:</strong> The success of your
-                investment depends on the skills and decisions of the
-                money manager. Poor performance by the manager can lead
-                to losses.
-              </>,
-              <>
-                <strong>Lack of Transparency:</strong> The trading
-                strategies and positions of the money manager may not
-                always be fully transparent.
-              </>,
-              <>
-                <strong>Potential Conflicts of Interest:</strong> The
-                money manager may have interests that differ from those
-                of the investors.
-              </>,
-            ]}
-          />
-        </LegalSubsection>
-
-        <LegalSubsection title="25.3 Real Estate Crowdfunding">
-          <P>
-            Real estate crowdfunding platforms allow you to invest in real
-            estate projects alongside other investors. While it presents
-            an opportunity to diversify, there are certain risks involved:
-          </P>
-          <UL
-            items={[
-              <>
-                <strong>Market Fluctuations:</strong> Real estate values
-                can fluctuate, affecting the potential return on your
-                investment.
-              </>,
-              <>
-                <strong>Liquidity Risk:</strong> Real estate investments
-                may not be easily liquidated, and you may not be able to
-                access your funds quickly.
-              </>,
-              <>
-                <strong>Project-Specific Risks:</strong> Each real estate
-                project may have its unique risks, such as construction
-                delays, regulatory changes, or tenant vacancies.
-              </>,
-            ]}
-          />
-        </LegalSubsection>
-
-        <LegalSubsection title="25.4 Crypto Spots Trading">
+        <LegalSubsection title="25.2 Crypto Spots Trading">
           <P>
             Cryptocurrencies are highly volatile and speculative assets.
             Spot trading involves buying and selling cryptocurrencies for
@@ -937,33 +851,6 @@ export default async function RiskDisclosurePage() {
           />
         </LegalSubsection>
 
-        <LegalSubsection title="25.5 Investment in Active and Passive Funds">
-          <P>
-            Active funds are managed by professional portfolio managers
-            who aim to outperform the market, while passive funds aim to
-            replicate the performance of a specific index. Consider the
-            following risks:
-          </P>
-          <UL
-            items={[
-              <>
-                <strong>Performance Risk:</strong> Active funds may not
-                always outperform the market, and passive funds may not
-                perfectly track their benchmark index.
-              </>,
-              <>
-                <strong>Management Fees:</strong> Both active and passive
-                funds may charge management fees that can impact your
-                overall returns.
-              </>,
-              <>
-                <strong>Market Risk:</strong> All investment funds are
-                subject to market fluctuations, which can affect the
-                value of your investment.
-              </>,
-            ]}
-          />
-        </LegalSubsection>
       </LegalSection>
 
       <LegalSection title="26. Advice and Recommendations">

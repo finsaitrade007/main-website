@@ -149,8 +149,11 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
 }
 
+/* NOTE: .btn-secondary's border is a masked ::before pseudo-element, not a
+   real `border`, so the previous `.btn-secondary:hover { border-color }`
+   rule here was inert. Tint the fill instead. */
 .btn-secondary:hover {
-  border-color: rgba(255,255,255,0.6);
+  background: rgba(125, 185, 214, 0.10);
 }
 
 /* ─── Hero (Figma spec) ───────────────────────────────────── */
@@ -195,8 +198,11 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   letter-spacing: -0.01em;
   color: #FFFFFF;
-  width: 1029px;
-  height: 124px;
+  /* Fixed `height` removed. These strings are CMS-editable, so a locked
+     height silently overflows the moment an editor lengthens the copy.
+     `max-width` keeps the Figma measure without capping the box. */
+  max-width: 1029px;
+  width: 100%;
   margin: 0;
 }
 
@@ -211,33 +217,169 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0;
   text-align: center;
   color: #E0E0E0;
-  width: 833px;
-  height: 96px;
+  /* Was `height: 96px` while holding ~130px of text (3 subtitle lines +
+     the tagline line at 18px/180%). The 34px overflow ate the 24px flex
+     gap and pushed the taglines ~10px into the CTA row — the buttons
+     looked like they were sitting on the text. */
+  max-width: 833px;
+  width: 100%;
   margin: 0;
 }
 
-/* CTA row: gap: 24px; width: 371px; height: 48px */
+/* Taglines: own element so they can't inherit the subtitle's box. */
+.hero__taglines {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 160%;
+  text-align: center;
+  color: #7DD5FF;
+  margin: 0;
+  max-width: 900px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 14px;
+}
+
+.hero__tagline-sep {
+  color: rgba(125, 213, 255, 0.35);
+  user-select: none;
+}
+
 .hero__ctas {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
+  margin-top: 8px;
 }
 
-/* Home hero — Try Demo (laptop / desktop) */
-@media (min-width: 1024px) {
-  .hero-try-demo-btn {
-    box-sizing: border-box;
-    width: 152px;
-    height: 48px;
-    padding: 11px 24px;
-    gap: 8px;
-    border-radius: 8px;
-    justify-content: center;
-    white-space: nowrap;
-  }
+/* ── Hero CTAs ──────────────────────────────────────────────
+   Both buttons share one box so they cannot drift apart. Previously the
+   primary was padding-sized (~47px tall) while the secondary was pinned to
+   a hard 152x48, so they were subtly mismatched and the 8px radius clashed
+   with the pill-shaped Login / Start Trading chips in the navbar directly
+   above. Radius now matches that pill language. */
+.hero-cta {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 26px;
+  font-family: var(--font-sora), 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  color: #FFFFFF;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+              background 0.18s ease, filter 0.18s ease;
+}
 
+/* Primary — gradient reversed from the site default so the deeper #056FB4
+   anchors the left edge and the button reads as solid against the video
+   rather than washing out into it. */
+.hero-cta--primary {
+  background: linear-gradient(90deg, #056FB4 0%, #7DB9D6 100%);
+  border: 1px solid rgba(125, 185, 214, 0.55);
+  box-shadow: 0 6px 20px rgba(5, 111, 180, 0.38);
+}
+
+.hero-cta--primary:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(5, 111, 180, 0.52);
+}
+
+.hero-cta--primary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgba(5, 111, 180, 0.4);
+}
+
+/* Secondary — keeps the existing masked gradient hairline, but adds a tinted
+   translucent fill + blur. Over a moving video a fully transparent button is
+   genuinely hard to read; the blur buys legibility without adding weight. */
+.hero-cta--secondary {
+  position: relative;
+  background: rgba(5, 24, 40, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Gradient hairline, self-contained. Previously this was borrowed from
+   .btn-secondary, whose padding / radius / background also applied and were
+   only overridden because .hero-cta happens to sit later in this file. */
+.hero-cta--secondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #056FB4 0%, #7DB9D6 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+.hero-cta--secondary:hover {
+  background: rgba(5, 111, 180, 0.22);
+  transform: translateY(-1px);
+}
+
+.hero-cta--secondary:active {
+  transform: translateY(0);
+}
+
+/* The arrow is an icon, not the characters "->". */
+.hero-cta__arrow {
+  flex: 0 0 auto;
+  transition: transform 0.18s ease;
+}
+
+.hero-cta:hover .hero-cta__arrow {
+  transform: translateX(3px);
+}
+
+/* Keyboard focus was previously invisible on both buttons. */
+.hero-cta:focus-visible {
+  outline: 2px solid #7DD5FF;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta,
+  .hero-cta__arrow {
+    transition: none;
+  }
+  .hero-cta:hover {
+    transform: none;
+  }
+  .hero-cta:hover .hero-cta__arrow {
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-cta {
+    height: 48px;
+    padding: 0 20px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1024px) {
   /* Social trading hero — 2nd CTA (Become a Provider) */
   .social-trading-hero-ctas {
     gap: 16px;

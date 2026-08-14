@@ -57,12 +57,12 @@ export default async function ClientAgreementPage() {
           the Client of the Company who is a licensed user of our trading
           platform or any visitor to our official website{" "}
           <a
-            href="https://www.finsaitrade.com"
+            href="https://finsaitrade.com"
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: "#7DB9D6", textDecoration: "underline" }}
           >
-            www.finsaitrade.com
+            finsaitrade.com
           </a>{" "}
           (&ldquo;Website&rdquo;) who is not a Client of the Company. If
           you decide to download our software to use the trading
@@ -170,8 +170,7 @@ export default async function ClientAgreementPage() {
           shall mean this &ldquo;Client Agreement&rdquo; with its
           Appendixes and any other legal document and agreement available
           in the Company&apos;s Website, including but not limited to the
-          risk disclosures, the PAMM account terms agreement, the MAM
-          agreement, and any other agreement entered into between the
+          risk disclosures, and any other agreement entered into between the
           Company and the Client, as amended from time to time and any
           subsequent Appendixes added thereto.
         </Definition>
@@ -182,10 +181,13 @@ export default async function ClientAgreementPage() {
         </Definition>
 
         <Definition term="Applicable Regulations">
-          shall mean (a) any rules of a relevant regulatory authority
-          having powers over the Company; (b) the rules of the relevant
-          market; and (c) all other applicable laws, rules and regulations
-          of the Mauritius.
+          shall mean (a) the Financial Services Act 2007, the Securities Act
+          2005, the Financial Intelligence and Anti-Money Laundering Act 2002,
+          and the rules, regulations, codes and guidelines issued thereunder
+          by the Financial Services Commission Mauritius; (b) any other rules
+          of a relevant regulatory authority having powers over the Company;
+          (c) the rules of the relevant market; and (d) all other applicable
+          laws, rules and regulations of Mauritius.
         </Definition>
 
         <Definition term="Base Currency">
@@ -562,12 +564,12 @@ export default async function ClientAgreementPage() {
         <Definition term="Website">
           shall mean the Company&apos;s website at{" "}
           <a
-            href="https://www.finsaitrade.com"
+            href="https://finsaitrade.com"
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: "#7DB9D6", textDecoration: "underline" }}
           >
-            www.finsaitrade.com
+            finsaitrade.com
           </a>{" "}
           or such other website as the Company may maintain from time to
           time.
@@ -606,7 +608,7 @@ export default async function ClientAgreementPage() {
           technological failures, and security vulnerabilities.
         </P>
         <P>
-          By trading CFDs on cryptocurrencies with Finsai Trade Ltd, you
+          By trading CFDs on cryptocurrencies with Finsai Trade (Mauritius) Ltd, you
           acknowledge and accept the following:
         </P>
         <UL
@@ -621,7 +623,7 @@ export default async function ClientAgreementPage() {
         />
         <P>
           By opening a trading account and initiating any CFD trades on
-          cryptocurrencies with Finsai Trade Ltd, you confirm that you
+          cryptocurrencies with Finsai Trade (Mauritius) Ltd, you confirm that you
           have read, understood, and agreed to the risks outlined in this
           agreement and assume full responsibility for all related trading
           outcomes.
@@ -908,7 +910,7 @@ export default async function ClientAgreementPage() {
             "(e) We may carry out credit and other checks from time to time as we deem appropriate. Your Registration Data or other information may be used in the prevention of money laundering as well as for the management of your account. You authorize us to use your Registration Data and other information to perform the above checks in relation to your application process.",
             "(f) In the event we become aware of any illegal activity, impropriety in the Registration Data or failure of any due diligence requirement, we may freeze your account. Should such an event occur we may not be in a position to release funds and may not be able to carry out subsequent instructions from you.",
             "(g) Represent & warrant that you are not, nor are you acting on behalf of an individual or entity that is listed on the Specially Designated Nationals & Blocked Persons List (SDN) or otherwise ineligible to engage in transactions due to Office of Foreign Assets Control (OFAC) sanctions.",
-            "(h) Comply with all the applicable OFAC laws and regulations. You acknowledge that Finsai Trade (CFD & Crypto Exchange) reserves the right to refuse registration or to suspend or terminate your account if you are determined to be, or if Finsai Trade suspects that you are, listed on the SDN list; located in, under the control of, or a national or resident of any country to which the United States has embargoed goods or services; or a person who is otherwise the target of OFAC sanctions or similar restrictive measures.",
+            "(h) Comply with all the applicable OFAC laws and regulations. You acknowledge that Finsai Trade (Mauritius) Ltd reserves the right to refuse registration or to suspend or terminate your account if you are determined to be, or if Finsai Trade suspects that you are, listed on the SDN list; located in, under the control of, or a national or resident of any country to which the United States has embargoed goods or services; or a person who is otherwise the target of OFAC sanctions or similar restrictive measures.",
             "(i) Undertake to provide all information and documentation requested by us to enable it to conduct and complete necessary checks in compliance with the OFAC regulations. You understand that we are required to seize and/or report assets and transactions that appear to involve sanctioned individuals or entities as per OFAC requirements.",
             "(j) Acknowledge that we cannot provide any legal or financial advice regarding OFAC or SDN regulations; and you are responsible for ensuring that your transactions comply with all applicable laws and regulations.",
             "(k) Agree to promptly notify us regarding any changes in circumstances that could potentially affect your status in relation to OFAC & SDN regulations.",
