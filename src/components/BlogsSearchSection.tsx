@@ -10,17 +10,19 @@ const cardPositions = [
   { top: "156px", left: "75px" },
   { top: "156px", left: "507px" },
   { top: "156px", left: "939px" },
-  { top: "465px", left: "75px" },
-  { top: "465px", left: "507px" },
-  { top: "465px", left: "939px" },
+  { top: "500px", left: "75px" },
+  { top: "500px", left: "507px" },
+  { top: "500px", left: "939px" },
 ];
 
 export type BlogCard = {
-  title:    string;
-  category: string;
-  image:    string;
-  desc:     string;
-  href:     string;
+  title:     string;
+  category:  string;
+  image:     string;
+  /** Listing-card override; falls back to `image`. */
+  thumbnail?: string;
+  desc:      string;
+  href:      string;
 };
 
 function useSearch(allCards: BlogCard[]) {
@@ -72,7 +74,7 @@ function DesktopArticleCard({ desc, href, image, top, left }: { desc: string; hr
   return (
     <div style={{
       position: "absolute", top, left,
-      width: "415px", height: "285px",
+      width: "415px", height: "320px",
       borderRadius: "21.32px",
       border: "1px solid transparent",
       background: `${CARD_INNER_BG} padding-box, ${BORDER_GRADIENT} border-box`,
@@ -80,11 +82,11 @@ function DesktopArticleCard({ desc, href, image, top, left }: { desc: string; hr
       overflow: "hidden",
     }}>
       <div style={{ width: "100%", height: "100%", position: "relative", boxSizing: "border-box" }}>
-        <div style={{ position: "absolute", top: "12px", left: "17px", width: "380px", height: "116px", borderRadius: "16px", overflow: "hidden" }}>
+        <div style={{ position: "absolute", top: "12px", left: "17px", width: "380px", height: "170px", borderRadius: "16px", overflow: "hidden" }}>
           <Image src={image} alt="" fill sizes="380px" style={{ objectFit: "cover" }} />
         </div>
         <p style={{
-          position: "absolute", top: "144px", left: "21px",
+          position: "absolute", top: "198px", left: "21px",
           width: "378px", height: "81px", margin: 0, overflow: "hidden",
           fontFamily: "var(--font-inter, Inter)", fontWeight: 400, fontSize: "18px", lineHeight: "27px",
           color: "rgba(255,255,255,0.7)",
@@ -92,7 +94,7 @@ function DesktopArticleCard({ desc, href, image, top, left }: { desc: string; hr
           {desc}
         </p>
         <Link href={href} style={{
-          position: "absolute", top: "238px", left: "21px",
+          position: "absolute", top: "292px", left: "21px",
           display: "inline-flex", alignItems: "center", gap: "8px",
           fontFamily: "var(--font-inter, Inter)", fontWeight: 400, fontSize: "18px", lineHeight: "27px",
           color: "#056FB4", textDecoration: "none",
@@ -115,7 +117,7 @@ function MobileArticleCard({ desc, href, image }: { desc: string; href: string; 
       background: `${CARD_INNER_BG} padding-box, ${BORDER_GRADIENT} border-box`,
       boxSizing: "border-box", overflow: "hidden",
     }}>
-      <div style={{ width: "100%", height: "120px", position: "relative" }}>
+      <div style={{ width: "100%", height: "170px", position: "relative" }}>
         <Image src={image} alt="" fill sizes="100vw" style={{ objectFit: "cover" }} />
       </div>
       <div style={{ padding: "16px" }}>
@@ -173,7 +175,7 @@ export function BlogsSearchDesktop({ allCards }: { allCards: BlogCard[] }) {
         visible.map((card, i) => (
           <DesktopArticleCard
             key={card.href}
-            image={card.image}
+            image={card.thumbnail ?? card.image}
             desc={card.desc}
             href={card.href}
             top={cardPositions[i].top}
@@ -250,7 +252,7 @@ export function BlogsSearchMobile({ allCards }: { allCards: BlogCard[] }) {
       {visible.length > 0 ? (
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
           {visible.map((card) => (
-            <MobileArticleCard key={card.href} desc={card.desc} href={card.href} image={card.image} />
+            <MobileArticleCard key={card.href} desc={card.desc} href={card.href} image={card.thumbnail ?? card.image} />
           ))}
         </div>
       ) : (

@@ -76,7 +76,7 @@ const socials = [
   },
   {
     label: "YouTube",
-    href: "https://www.youtube.com/@FinsaiTrade-UI",
+    href: "https://www.youtube.com/@FinsaiTradeOfficial",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width={16} height={16}>
         <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#050208"/>

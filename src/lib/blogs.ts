@@ -20,6 +20,12 @@ export type BlogPost = {
   title: string;
   excerpt: string;
   image: string;
+  /**
+   * Optional listing-card image. The card is only 380px wide, so a full
+   * banner's type renders too small to read there; a tighter, purpose-made
+   * crop can be supplied here. Falls back to `image` when omitted.
+   */
+  thumbnail?: string;
   readTime: string;
   publishedAt?: string;
   author?: string;
@@ -45,6 +51,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "Wondering why is gold price falling after record highs? Track crucial gold price H2 2026 trends, Fed pressure, and top CFD gold trading strategies H2 setups.",
     image: "/blogs/gold-h2-2026/banner-gold-h2-2026.jpg",
+    thumbnail: "/blogs/gold-h2-2026/thumb-gold-h2-2026.jpg",
     readTime: "5 min read",
     publishedAt: "2026-08-19",
     author: "Finsai Trade Team",

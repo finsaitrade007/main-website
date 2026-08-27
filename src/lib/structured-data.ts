@@ -71,7 +71,7 @@ export function organizationNode() {
       "https://x.com/FinsaiTrade",
       "https://www.instagram.com/finsai.trade",
       "https://www.linkedin.com/company/finsai-trade",
-      "https://www.youtube.com/@FinsaiTrade-UI",
+      "https://www.youtube.com/@FinsaiTradeOfficial",
     ],
     knowsAbout: [
       "Forex Trading",

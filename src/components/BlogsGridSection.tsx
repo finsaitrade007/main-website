@@ -6,6 +6,7 @@ const allBlogCards = BLOG_POSTS.map((post) => ({
   title: post.title,
   category: post.category,
   image: post.image,
+  thumbnail: post.thumbnail,
   desc: post.excerpt,
   href: `/blogs/${post.slug}`,
 }));

@@ -1,0 +1,49 @@
+# Finsai Trade
+
+> Finsai Trade (Mauritius) Ltd is an FSC-regulated multi-asset online trading broker offering Forex, Crypto, Stocks, Indices, and Metals CFDs through MetaTrader 5 (MT5), with account types from $100 minimum deposit, leverage up to 1:500, and an integrated social/copy trading platform.
+
+Finsai Trade (Mauritius) Ltd is regulated by the Financial Services Commission Mauritius (License No. GB25204899, company no. C228371), registered address 3 Emerald Park, Trianon, Quatre Bornes 72257, Mauritius. The platform gives retail traders access to global markets via MT5, with three account tiers (Smart Choice, Smart Pro, Smart ECN), a built-in social/copy trading environment, an Introducing Broker partner program, and Finsai Academy for trader education. Service is not offered to residents of the United States, Cuba, Iraq, Myanmar, North Korea, Sudan, or the UAE.
+
+## Company
+
+- [About Us](https://finsaitrade.com/about): Mission, story, awards, and company overview
+- [Regulations](https://finsaitrade.com/regulations): FSC Mauritius license details, segregated funds, and compliance framework
+- [Partnerships](https://finsaitrade.com/partnerships): Introducing Broker (IB) and affiliate commission program
+- [Careers](https://finsaitrade.com/careers): Open roles at Finsai Trade
+
+## Trading
+
+- [Platform Overview](https://finsaitrade.com/platform): Comparison of MT5, Social Trading, and the upcoming mobile app
+- [MT5](https://finsaitrade.com/mt5): MetaTrader 5 desktop, web, and mobile trading with EAs, VPS hosting, and 80+ indicators
+- [Social Trading](https://finsaitrade.com/social-trading): Copy trading and strategy-provider platform with live leaderboards
+- [Accounts](https://finsaitrade.com/accounts): Account types — Smart Choice ($100 min), Smart Pro ($1,000 min), Smart ECN ($5,000 min)
+- [Payments](https://finsaitrade.com/payments): Deposit and withdrawal methods, including crypto funding
+
+## Markets
+
+- Forex: Major, minor, and exotic currency pairs
+- Crypto: Bitcoin, Ethereum, and other major cryptocurrencies
+- Indices: Major global stock indices (US, Europe, Asia)
+- Metals & Commodities: Gold, silver, crude oil, natural gas
+- Stocks: CFDs on shares of major international companies
+
+## Legal
+
+- [Terms & Conditions](https://finsaitrade.com/terms-conditions)
+- [Risk Disclosure & Warnings Notice](https://finsaitrade.com/risk-disclosure)
+- [Upfront Disclosure](https://finsaitrade.com/upfront-disclosure)
+- [Conflicts of Interest Policy](https://finsaitrade.com/conflicts-of-interest-policy)
+- [Anti-Money Laundering Policy](https://finsaitrade.com/aml-policy)
+- [Refund Policy](https://finsaitrade.com/refund-policy)
+- [Complaints Management](https://finsaitrade.com/complaints-management)
+- [Client Agreement](https://finsaitrade.com/client-agreement)
+- [Privacy Policy](https://finsaitrade.com/privacy-policy)
+
+## Support
+
+- [Contact Us](https://finsaitrade.com/contactus): General inquiries and support
+- [FAQs](https://finsaitrade.com/#faq): Common questions about accounts, platform, and trading
+
+## Optional
+
+- [Blog](https://finsaitrade.com/blogs): Market analysis, trading education, and platform updates

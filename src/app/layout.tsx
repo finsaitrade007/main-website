@@ -56,6 +56,15 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+/**
+ * Google Tag Manager container.
+ *
+ * Declared once and used by both the loader script and the <noscript>
+ * fallback below — GTM's own install snippet repeats the ID in two places,
+ * which is a well-known way for the two to drift apart.
+ */
+const GTM_ID = "GTM-WBZW9L8T";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -67,6 +76,35 @@ export default function RootLayout({
       className={`${sora.variable} ${inter.variable} ${dmSans.variable} h-full antialiased bg-[#050208] overflow-x-clip`}
     >
       <body className="min-h-full flex flex-col bg-[#050208] w-full max-w-[1440px] mx-auto">
+        {/* Google Tag Manager (noscript) — must be the first node in <body> */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            title="Google Tag Manager"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+
+        {/*
+          Google Tag Manager loader.
+
+          GTM's instructions say to paste this as high in <head> as possible.
+          There is no hand-written <head> in the App Router, and Next
+          recommends "afterInteractive" for tag managers — the same strategy
+          @next/third-parties uses for its own GoogleTagManager component.
+          Tags still fire normally; the container is simply requested once
+          hydration starts rather than blocking first paint.
+        */}
+        <Script id="gtm-loader" strategy="afterInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');`}
+        </Script>
+
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

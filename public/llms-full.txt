@@ -1,0 +1,133 @@
+# Finsai Trade — Full Reference
+
+> Finsai Trade (Mauritius) Ltd is an FSC-regulated multi-asset online trading broker offering Forex, Crypto, Stocks, Indices, and Metals CFDs through MetaTrader 5 (MT5).
+
+This file expands on llms.txt with full page-level detail for language models and other automated readers that need more context than the summary file provides.
+
+---
+
+## Company Overview
+
+**Legal entity:** Finsai Trade (Mauritius) Ltd
+**Regulator:** Financial Services Commission Mauritius (FSC)
+**License No.:** GB25204899
+**Company No.:** C228371
+**Incorporated:** 19 November 2025
+**Registered address:** 3 Emerald Park, Trianon, Quatre Bornes 72257, Mauritius
+**Physical address:** 3rd Floor, Manor House, 30 St Georges Street, Port Louis, Mauritius
+
+Finsai Trade positions itself as a multi-asset broker "built by traders," combining execution, education (Finsai Academy), IB partnerships, loyalty rewards, and social trading into one ecosystem. Marketing claims include 50,000+ traders, 120+ countries served, and several industry awards (World Forex Award, Innovative Startup Award, World Finance Award 2024/2025).
+
+**Restricted regions:** Finsai Trade does not accept clients from the United States, Cuba, Iraq, Myanmar, North Korea, Sudan, or the UAE.
+
+Source: https://finsaitrade.com/about, https://finsaitrade.com/regulations
+
+---
+
+## Regulations & Compliance
+
+Finsai Trade holds an investment dealer license from the Financial Services Commission Mauritius. Stated compliance pillars: Security & Transparency, Regulated Trading, Secure Payments, Regular Audits & Reporting, Global Standards Compliance, and Financial Controls. The site states client funds are held in segregated accounts at tier-1 banking institutions, separate from corporate operating funds, and that the company applies SSL encryption, multi-factor authentication, and AML/KYC procedures.
+
+Source: https://finsaitrade.com/regulations
+
+---
+
+## MT5 Trading Platform
+
+MetaTrader 5 is offered as the core trading platform, available on Windows, Mac, Linux, web browser (MT5 WebTrader), and mobile. Stated features:
+
+- Trade Forex, Stocks, Indices, Commodities, CFDs, and Precious Metals from one platform
+- 80+ built-in technical indicators (platform overview page separately cites 38 built-in + 2,000+ custom indicators and 44+ charting tools)
+- 21 timeframes for market analysis
+- Algorithmic trading via MQL5, Expert Advisors (EAs), and custom indicators
+- VPS hosting for uninterrupted automated trading
+- Multi-Account Management (MAM) support
+
+Source: https://finsaitrade.com/mt5, https://finsaitrade.com/platform
+
+---
+
+## Platform Overview
+
+Three trading environments are presented:
+
+1. **MT5** — the primary desktop/web/mobile trading platform (see above).
+2. **Social Trading** — copy trading and strategy-provider platform (see below).
+3. **Finsai Trade App (Coming Soon)** — mobile app in development, planned to offer 1,000+ instruments, live news, demo trading, and copy trading/expert signals.
+
+Source: https://finsaitrade.com/platform
+
+---
+
+## Social Trading
+
+An integrated copy-trading platform, separate login portal at social.finsaitrade.com. Stated stats: 10,000+ active investors, 150+ strategy providers, $2.4M+ volume copied (marketing figures, not audited).
+
+**For investors:** browse strategy providers, view win rates/risk scores, auto-copy trades, set drawdown limits and risk controls, monitor via dashboard.
+**For strategy providers:** trade normally on your own account, followers mirror trades automatically, earn performance-based monthly payouts.
+
+The FAQ on this page states copy trading is distinct from a PAMM/managed account: the investor retains full ownership and withdrawal control of their own funds, and no third party has direct withdrawal access.
+
+Source: https://finsaitrade.com/social-trading
+
+---
+
+## Accounts
+
+| Tier | Target | Min. Deposit | Spread | Commission | Swap | VPS | Dedicated Manager |
+|---|---|---|---|---|---|---|---|
+| Smart Choice | New retail clients | $100 | 1.4 pips | None | Swap-free | No | No |
+| Smart Pro | Mid-tier traders | $1,000 | 0.6 pips | None | Swap-free | No | No |
+| Smart ECN | Advanced traders | $5,000 | 0.0–0.1 pips | $0.03 | Swap-free | Yes | Yes |
+
+All account types allow algo/bot trading and support hedging (Smart ECN also supports netting). Account opening flow: Sign Up → Verify (KYC) → Fund → Start Trading.
+
+Source: https://finsaitrade.com/accounts
+
+---
+
+## Payments
+
+Deposit/withdrawal channels referenced on-page: cards, UPI, e-wallets, cryptocurrency (BTC, ETH, USDT icons shown), and bank transfer. Claims: PCI DSS-compliant processing, 2FA on partner integrations, withdrawals processed within 1 working day (marketing claim, not a contractual SLA), and all withdrawals settled in the wallet's base currency.
+
+Source: https://finsaitrade.com/payments
+
+---
+
+## Partnerships (Introducing Broker Program)
+
+Finsai Trade's IB program offers rebate-based commissions, an earnings calculator (based on referred client trade volume — the site notes calculator output is illustrative, based on a single instrument (Gold), and not a guarantee), multi-tier structure, and reporting via a partner portal. Marketing stats cited: 20,000+ active partners, $10,000+ in partner revenue generated (figure appears low/placeholder relative to other stats and may need verification with the client), 330+ markets, 230+ "partner milestones."
+
+Source: https://finsaitrade.com/partnerships
+
+---
+
+## Legal Documents
+
+The following legal pages exist on-site and should be treated as the authoritative source for any compliance-sensitive claims (entity name, jurisdiction, complaint escalation paths, and risk language have shown inconsistencies in past internal audits and should be re-verified against the live page before citing):
+
+- [Terms & Conditions](https://finsaitrade.com/terms-conditions)
+- [Risk Disclosure & Warnings Notice](https://finsaitrade.com/risk-disclosure)
+- [Upfront Disclosure](https://finsaitrade.com/upfront-disclosure)
+- [Conflicts of Interest Policy](https://finsaitrade.com/conflicts-of-interest-policy)
+- [Anti-Money Laundering Policy](https://finsaitrade.com/aml-policy)
+- [Refund Policy](https://finsaitrade.com/refund-policy)
+- [Complaints Management](https://finsaitrade.com/complaints-management)
+- [Client Agreement](https://finsaitrade.com/client-agreement)
+- [Privacy Policy](https://finsaitrade.com/privacy-policy)
+
+**Known inconsistencies as of this file's creation (Aug 2026):**
+- Entity name alternates between "Finsai Trade (Mauritius) Ltd" and "Finsai Trade Ltd" in different footer/disclaimer blocks across the site.
+- Total tradable instrument count is inconsistent: About page states 10,000+; MT5/App marketing states 1,000+; Partnerships states 330+ "global markets."
+
+---
+
+## Support
+
+- [Contact Us](https://finsaitrade.com/contactus)
+- [FAQs](https://finsaitrade.com/#faq)
+- [Careers](https://finsaitrade.com/careers)
+
+## Blog
+
+- [Blog](https://finsaitrade.com/blogs): Market analysis, trading education, and platform updates
