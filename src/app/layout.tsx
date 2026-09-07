@@ -54,6 +54,13 @@ export const metadata: Metadata = {
   formatDetection: { email: false, address: false, telephone: false },
   icons: { icon: "/favicon.ico" },
   robots: { index: true, follow: true },
+  verification: {
+    // Pinterest domain claim. Renders as
+    //   <meta name="p:domain_verify" content="..." />
+    // Declared here rather than as a raw tag because the App Router owns
+    // <head>; anything hand-written there is dropped on re-render.
+    other: { "p:domain_verify": "8ef6f1756584a342d0a675cd9b058915" },
+  },
 };
 
 /**
