@@ -198,7 +198,7 @@ export function BlogsSearchDesktop({ allCards }: { allCards: BlogCard[] }) {
         href="https://fx.finsaitrade.com/auth/register"
         style={{
           position: "absolute",
-          top: "796px",
+          top: "866px",   /* row 2 ends at 500 + 320 = 820; keep the original 46px gap */
           left: "582px",
           width: "276px",
           height: "57px",

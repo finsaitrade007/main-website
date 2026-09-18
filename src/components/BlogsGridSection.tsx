@@ -24,7 +24,7 @@ export default function BlogsGridSection() {
     >
       <div className="steps-horizontal">
         <ResponsiveScale designWidth={1440}>
-          <div style={{ position: "relative", width: "1440px", minHeight: "880px" }}>
+          <div style={{ position: "relative", width: "1440px", minHeight: "950px" }}>
             <BlogsSearchDesktop allCards={allBlogCards} />
           </div>
         </ResponsiveScale>

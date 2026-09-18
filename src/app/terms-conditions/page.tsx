@@ -211,6 +211,70 @@ export default async function TermsConditionsPage() {
           />
         </LegalSubsection>
       </LegalSection>
+
+      <LegalSection title="Section 3: Prohibited Trading Activities">
+        <P>
+          Finsai does not permit trading strategies or activities that are
+          designed to exploit pricing, execution, promotional, or system-related
+          inefficiencies, or that may adversely affect the integrity of its
+          trading environment.
+        </P>
+        <P>The following activities are prohibited:</P>
+
+        <LegalSubsection title="1. Scalping">
+          <P>
+            Scalping, including high-frequency or ultra-short-term trading
+            strategies designed to exploit very small price movements or
+            temporary market conditions, is not permitted.
+          </P>
+          <P>
+            Finsai reserves the right to determine whether a trading pattern
+            constitutes scalping based on factors including, but not limited
+            to, trade duration, frequency of transactions, order patterns, and
+            the overall nature of the trading activity.
+          </P>
+        </LegalSubsection>
+
+        <LegalSubsection title="2. Arbitrage">
+          <P>
+            Arbitrage trading is prohibited where it involves exploiting price
+            discrepancies, execution delays, latency, differences between
+            liquidity providers or trading venues, or other discrepancies in
+            Finsai&apos;s pricing, execution, or trading infrastructure.
+          </P>
+          <P>This includes, but is not limited to:</P>
+          <UL
+            items={[
+              "Price or latency arbitrage;",
+              "Exploiting delayed or erroneous quotes;",
+              "Cross-account or cross-platform arbitrage intended to exploit pricing discrepancies;",
+              "Arbitrage involving promotional bonuses or other Finsai offers; and",
+              "Any strategy designed primarily to exploit technical, pricing, or execution discrepancies rather than genuine market exposure.",
+            ]}
+          />
+        </LegalSubsection>
+
+        <LegalSubsection title="Enforcement">
+          <P>
+            If Finsai determines, at its reasonable discretion, that a client
+            has engaged in prohibited trading activities, Finsai may take
+            appropriate action, including cancelling or voiding affected
+            trades, withholding or cancelling promotional bonuses or
+            competition prizes, disqualifying the client from a competition,
+            restricting or suspending trading activity, or terminating the
+            client&apos;s account, subject to applicable laws and regulations.
+          </P>
+          <P>
+            Finsai may review trading activity, order history, execution
+            patterns, account relationships, and other relevant information
+            when determining whether prohibited activity has occurred.
+          </P>
+          <P>
+            Clients are responsible for ensuring that their trading strategies
+            and activities comply with these Terms &amp; Conditions.
+          </P>
+        </LegalSubsection>
+      </LegalSection>
     </LegalLayout>
     </>
   );
