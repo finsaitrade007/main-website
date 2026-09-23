@@ -44,7 +44,15 @@ const NAV_ITEMS: NavItem[] = [
       { label: "Glossary", href: "/glossary" },
     ],
   },
-  { kind: "link", label: "Partnerships", href: "/partnerships" },
+  {
+    kind: "dropdown",
+    label: "Partnerships",
+    items: [
+      { label: "IB Programme", href: "/partnerships" },
+      // External subdomain — SmartLink opens it in a new tab, as with Webinar.
+      { label: "SP Programme", href: "https://partners.finsaitrade.com/" },
+    ],
+  },
   {
     kind: "dropdown",
     label: "Company",

@@ -46,6 +46,34 @@ export async function generateMetadata({
 
 /* ----------------------------- Block primitives ---------------------------- */
 
+/**
+ * Minimal inline markup for post text: `[label](href)` becomes a link and
+ * `**text**` becomes bold. Everything else is emitted as plain text, so
+ * existing posts (which use neither) render exactly as before. Internal hrefs
+ * use next/link; external ones open in a new tab.
+ */
+const INLINE_RE = /(\[[^\]]+\]\([^)]+\))|(\*\*[^*]+\*\*)/g;
+
+function renderInline(text: string): React.ReactNode {
+  const parts = text.split(INLINE_RE).filter((p) => p !== undefined && p !== "");
+  return parts.map((part, i) => {
+    const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (link) {
+      const [, label, href] = link;
+      const external = /^https?:\/\//.test(href);
+      const style = { color: "#7DB9D6", textDecoration: "underline", textUnderlineOffset: "3px" };
+      return external ? (
+        <a key={i} href={href} target="_blank" rel="noopener noreferrer" style={style}>{label}</a>
+      ) : (
+        <Link key={i} href={href} style={style}>{label}</Link>
+      );
+    }
+    const bold = part.match(/^\*\*([^*]+)\*\*$/);
+    if (bold) return <strong key={i} style={{ color: "#FFFFFF", fontWeight: 600 }}>{bold[1]}</strong>;
+    return part;
+  });
+}
+
 function Paragraph({ text, lead = false }: { text: string; lead?: boolean }) {
   return (
     <p
@@ -58,7 +86,7 @@ function Paragraph({ text, lead = false }: { text: string; lead?: boolean }) {
         color: lead ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.82)",
       }}
     >
-      {text}
+      {renderInline(text)}
     </p>
   );
 }
@@ -100,7 +128,7 @@ function Bullets({ items }: { items: string[] }) {
                 "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
             }}
           />
-          {item}
+          {renderInline(item)}
         </li>
       ))}
     </ul>
@@ -410,7 +438,7 @@ function FAQSection({
                 color: "rgba(255,255,255,0.78)",
               }}
             >
-              {faq.answer}
+              {renderInline(faq.answer)}
             </p>
           </details>
         ))}
