@@ -173,7 +173,7 @@ export const PAGE_SEO = {
     path: "/terms-conditions",
     title: "Terms & Conditions",
     description:
-      "Finsai Trade Terms & Conditions covering Welcome Bonus eligibility, usage, expiry and Trading Competition rules.",
+      "Finsai Trade Terms & Conditions covering Trading Competition rules and prohibited trading activities, including scalping and arbitrage.",
   },
   riskDisclosure: {
     path: "/risk-disclosure",

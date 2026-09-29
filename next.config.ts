@@ -23,6 +23,18 @@ const nextConfig: NextConfig = {
         destination: "/platform/:path*",
         permanent: true,
       },
+      // Pre-revamp regulation page. The current page with up-to-date licence
+      // information is /regulations; the old URL must never serve content.
+      {
+        source: "/regulation",
+        destination: "/regulations",
+        permanent: true,
+      },
+      {
+        source: "/regulation/:path*",
+        destination: "/regulations",
+        permanent: true,
+      },
     ];
   },
 };

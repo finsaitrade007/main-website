@@ -31,95 +31,7 @@ export default async function TermsConditionsPage() {
         description={seo.description}
       />
     <LegalLayout title={pageTitle}>
-      <LegalSection title="Section 1: Welcome Bonus Terms and Conditions">
-        <LegalSubsection title="Eligibility">
-          <P>
-            The welcome bonus is available to all new registered clients of
-            Finsai. Existing clients or clients who have previously closed an
-            account and are opening a new one are not eligible for this bonus.
-          </P>
-        </LegalSubsection>
-
-        <LegalSubsection title="Bonus Amount">
-          <P>
-            Eligible clients will receive a one-time welcome bonus of $50
-            credited to their trading account.
-          </P>
-        </LegalSubsection>
-
-        <LegalSubsection title="Usage of Bonus">
-          <UL
-            items={[
-              "The welcome bonus can only be used for trading purposes on Finsai.",
-              "The bonus amount cannot be withdrawn, transferred to another account, or exchanged for other offers.",
-              "Any trades or orders that are opened using the bonus amount are deemed to be \u201cbonus trades\u201d.",
-            ]}
-          />
-        </LegalSubsection>
-
-        <LegalSubsection title="Profits from Bonus">
-          <UL
-            items={[
-              "Profits earned from trading with the bonus amount can be withdrawn without any restrictions.",
-            ]}
-          />
-        </LegalSubsection>
-
-        <LegalSubsection title="Losses and Margin Calls">
-          <P>
-            In the event of losses, the bonus amount will act as a buffer. If
-            the account balance drops to the bonus amount or below, a margin
-            call may be triggered. The bonus cannot be used to save a trade
-            from a margin call beyond the bonus amount.
-          </P>
-        </LegalSubsection>
-
-        <LegalSubsection title="Bonus Expiry">
-          <P>
-            The welcome bonus will expire 60 days after it has been credited
-            to the client&rsquo;s account. Post expiration, the bonus amount
-            will be removed from the account, but any profits earned from it
-            will remain.
-          </P>
-        </LegalSubsection>
-
-        <LegalSubsection title="Account Verification">
-          <P>
-            Clients are required to verify their account by providing the
-            necessary identification documents before they can withdraw
-            profits earned from the bonus.
-          </P>
-        </LegalSubsection>
-
-        <LegalSubsection title="Abuse and Fraud">
-          <P>
-            Any indication or suspicion of fraud, manipulation, cash-back
-            arbitrage, or other forms of deceitful or fraudulent activity
-            related to the welcome bonus will result in the immediate
-            termination of the bonus and may also lead to account
-            termination.
-          </P>
-        </LegalSubsection>
-
-        <LegalSubsection title="Amendments">
-          <P>
-            Finsai reserves the right to update or modify these terms and
-            conditions without prior notice. It is the responsibility of the
-            client to regularly check for any updates.
-          </P>
-        </LegalSubsection>
-
-        <LegalSubsection title="Acceptance of Terms">
-          <P>
-            By accepting the welcome bonus, clients also accept the terms and
-            conditions associated with it. It is recommended for clients to
-            read and understand these terms thoroughly before opting for the
-            bonus.
-          </P>
-        </LegalSubsection>
-      </LegalSection>
-
-      <LegalSection title="Section 2: Trading Competition">
+      <LegalSection title="Section 1: Trading Competition">
         <LegalSubsection title="Eligibility">
           <UL
             items={[
@@ -212,7 +124,7 @@ export default async function TermsConditionsPage() {
         </LegalSubsection>
       </LegalSection>
 
-      <LegalSection title="Section 3: Prohibited Trading Activities">
+      <LegalSection title="Section 2: Prohibited Trading Activities">
         <P>
           Finsai does not permit trading strategies or activities that are
           designed to exploit pricing, execution, promotional, or system-related

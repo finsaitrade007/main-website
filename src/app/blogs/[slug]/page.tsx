@@ -271,7 +271,7 @@ function Figure({
             textAlign: "center",
           }}
         >
-          {caption}
+          {renderInline(caption)}
         </figcaption>
       ) : null}
     </figure>
