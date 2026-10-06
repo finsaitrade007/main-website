@@ -55,11 +55,14 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.ico" },
   robots: { index: true, follow: true },
   verification: {
-    // Pinterest domain claim. Renders as
-    //   <meta name="p:domain_verify" content="..." />
-    // Declared here rather than as a raw tag because the App Router owns
+    // Domain-ownership tags. Each key renders as
+    //   <meta name="<key>" content="<value>" />
+    // Declared here rather than as raw tags because the App Router owns
     // <head>; anything hand-written there is dropped on re-render.
-    other: { "p:domain_verify": "8ef6f1756584a342d0a675cd9b058915" },
+    other: {
+      "p:domain_verify": "8ef6f1756584a342d0a675cd9b058915", // Pinterest
+      "facebook-domain-verification": "yr904b8iia11rh0vfvp29sr8ee0e65", // Facebook / Meta
+    },
   },
 };
 
