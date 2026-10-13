@@ -1,5 +1,8 @@
-import Link from "next/link";
+import type { CSSProperties } from "react";
 import Image from "next/image";
+import SmartLink from "@/components/SmartLink";
+import ScrollLink from "@/components/blog/ScrollLink";
+import { SITE_URL } from "@/lib/site";
 import { getBlogsPage, type StrapiBlogsPage } from "@/lib/strapi";
 
 const FALLBACK: Pick<
@@ -15,11 +18,38 @@ const FALLBACK: Pick<
   heroDescription:
     "Sharp market insights, real trading education, and analysis you can actually act on.",
   heroPrimaryCtaLabel: "Explore Insights",
-  heroPrimaryCtaHref: "/blogs",
+  heroPrimaryCtaHref: "#articles",
+};
+
+/**
+ * "Explore Insights" used to link to /blogs — the page it sits on — so a
+ * click did nothing. Any value pointing back at this page (including the one
+ * stored in Strapi) now scrolls to the article grid instead.
+ */
+function resolveHeroCta(href: string | undefined): { anchor: string } | { href: string } {
+  const h = (href ?? "").trim();
+  const self = ["", "/blogs", "/blogs/", "#", `${SITE_URL}/blogs`, `${SITE_URL}/blogs/`];
+  if (self.includes(h)) return { anchor: "articles" };
+  if (h.startsWith("#")) return { anchor: h.slice(1) };
+  return { href: h };
+}
+
+const CTA_STYLE: CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  alignSelf: "flex-start",
+  borderRadius: "8px",
+  padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
+  gap: "16px",
+  background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
+  textDecoration: "none",
+  whiteSpace: "nowrap",
 };
 
 export default async function BlogsHeroSection() {
   const data = (await getBlogsPage()) ?? FALLBACK;
+  const cta = resolveHeroCta(data.heroPrimaryCtaHref);
 
   return (
     <section style={{
@@ -106,20 +136,15 @@ export default async function BlogsHeroSection() {
           {data.heroDescription}
         </p>
 
-        <Link href={data.heroPrimaryCtaHref} className="btn-text" style={{
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          alignSelf: "flex-start",
-          borderRadius: "8px",
-          padding: "clamp(9px, 0.8vw, 11px) clamp(16px, 1.7vw, 24px)",
-          gap: "16px",
-          background: "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-          textDecoration: "none",
-          whiteSpace: "nowrap",
-        }}>
-          {data.heroPrimaryCtaLabel}
-        </Link>
+        {"anchor" in cta ? (
+          <ScrollLink targetId={cta.anchor} className="btn-text" style={CTA_STYLE}>
+            {data.heroPrimaryCtaLabel}
+          </ScrollLink>
+        ) : (
+          <SmartLink href={cta.href} className="btn-text" style={CTA_STYLE}>
+            {data.heroPrimaryCtaLabel}
+          </SmartLink>
+        )}
       </div>
     </section>
   );

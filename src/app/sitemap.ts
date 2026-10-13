@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { BLOG_POSTS } from "@/lib/blogs";
+import { blogsHref, categorySlug, getCategories } from "@/lib/blog-helpers";
 import { PAGE_SEO } from "@/lib/page-seo";
 import { SITE_URL } from "@/lib/site";
 
@@ -10,7 +11,8 @@ import { SITE_URL } from "@/lib/site";
  * without also appearing here — `PAGE_SEO` is already the single source of
  * truth for canonical paths, and `generateMetadata` on every page reads from
  * it. Blog detail routes are appended from `BLOG_POSTS`, matching
- * `generateStaticParams` in `app/blogs/[slug]/page.tsx`.
+ * `generateStaticParams` in `app/blogs/[slug]/page.tsx`, along with one
+ * listing URL per blog category (/blogs?category=…).
  */
 
 /** Pages that change often enough to be worth re-crawling frequently. */
@@ -58,12 +60,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
+  const lastChange = (post: (typeof BLOG_POSTS)[number]) => {
+    const date = post.updatedAt ?? post.publishedAt;
+    return date ? new Date(date) : now;
+  };
+
   const posts: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: absolute(`/blogs/${post.slug}`),
-    lastModified: post.publishedAt ? new Date(post.publishedAt) : now,
+    lastModified: lastChange(post),
     changeFrequency: "monthly" as const,
     priority: 0.5,
   }));
 
-  return [...pages, ...posts];
+  // A category listing changes whenever one of its posts does.
+  const categories: MetadataRoute.Sitemap = getCategories().map((category) => {
+    const times = BLOG_POSTS.filter((p) => categorySlug(p.category) === category.slug).map((p) =>
+      lastChange(p).getTime(),
+    );
+    return {
+      url: absolute(blogsHref({ category: category.slug })),
+      lastModified: new Date(Math.max(...times)),
+      changeFrequency: "weekly" as const,
+      priority: 0.5,
+    };
+  });
+
+  return [...pages, ...categories, ...posts];
 }

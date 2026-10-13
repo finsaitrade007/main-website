@@ -1,38 +1,33 @@
-import ResponsiveScale from "@/components/ResponsiveScale";
-import { BLOG_POSTS } from "@/lib/blogs";
-import { BlogsSearchDesktop, BlogsSearchMobile } from "@/components/BlogsSearchSection";
+import BlogListing, { type ListingCard } from "@/components/blog/BlogListing";
+import { formatBlogDate } from "@/lib/blogs";
+import { categorySlug, getCategories, getSortedPosts } from "@/lib/blog-helpers";
 
-const allBlogCards = BLOG_POSTS.map((post) => ({
-  title: post.title,
-  category: post.category,
-  image: post.image,
-  thumbnail: post.thumbnail,
-  desc: post.excerpt,
-  href: `/blogs/${post.slug}`,
-}));
+/**
+ * Blog listing: search, category filter, paginated card grid.
+ *
+ * `page` and `category` come from the URL (/blogs?category=…&page=…), so every
+ * page of the archive is a real, crawlable address that renders on the
+ * server.
+ */
+export default function BlogsGridSection({
+  page = 1,
+  category = null,
+}: {
+  page?: number;
+  category?: string | null;
+}) {
+  const cards: ListingCard[] = getSortedPosts().map((post) => ({
+    slug: post.slug,
+    href: `/blogs/${post.slug}`,
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category,
+    categorySlug: categorySlug(post.category),
+    image: post.image,
+    date: formatBlogDate(post.publishedAt),
+    readTime: post.readTime,
+    searchText: `${post.title} ${post.excerpt} ${post.category}`.toLowerCase(),
+  }));
 
-export default function BlogsGridSection() {
-  return (
-    <section
-      className="page-section"
-      style={{
-        background: "#050208",
-        overflow: "hidden",
-        paddingLeft: 0,
-        paddingRight: 0,
-      }}
-    >
-      <div className="steps-horizontal">
-        <ResponsiveScale designWidth={1440}>
-          <div style={{ position: "relative", width: "1440px", minHeight: "950px" }}>
-            <BlogsSearchDesktop allCards={allBlogCards} />
-          </div>
-        </ResponsiveScale>
-      </div>
-
-      <div className="steps-vertical" style={{ padding: "48px 20px" }}>
-        <BlogsSearchMobile allCards={allBlogCards} />
-      </div>
-    </section>
-  );
+  return <BlogListing cards={cards} categories={getCategories()} activeCategory={category} page={page} />;
 }

@@ -279,38 +279,103 @@ export function buildRegulationsStructuredData(
 }
 
 /** Blog article graph. */
+export type ArticleAuthorInput = {
+  name: string;
+  kind: "Person" | "Organization";
+  jobTitle?: string;
+  /** Site-relative or absolute. */
+  image?: string;
+  /** Public profile URLs (LinkedIn, Medium…). */
+  sameAs?: string[];
+};
+
+/**
+ * Blog post graph: BlogPosting + WebPage, plus BreadcrumbList and FAQPage
+ * when the page shows breadcrumbs / an FAQ. Team and desk bylines are typed
+ * Organization — marking "Finsai Trade Team" up as a Person is incorrect.
+ */
 export function buildArticleStructuredData(args: {
   slug: string;
   title: string;
   description: string;
   image: string;
   datePublished: string;
-  author?: string;
+  /** Defaults to datePublished. */
+  dateModified?: string;
+  /** A bare string is treated as a Person, as before. */
+  author?: ArticleAuthorInput | string;
+  /** Category, emitted as articleSection. */
+  section?: string;
+  breadcrumbs?: { name: string; path: string }[];
+  faqs?: FaqItem[];
 }) {
   const path = `/blogs/${args.slug}`;
   const url = pageUrl(path);
+  const absolute = (p: string) => (p.startsWith("http") ? p : `${SITE_URL}${p}`);
+
+  const author: ArticleAuthorInput | undefined =
+    typeof args.author === "string" ? { name: args.author, kind: "Person" } : args.author;
+  const authorNode = !author
+    ? { "@id": ORGANIZATION_ID }
+    : author.kind === "Organization"
+      ? {
+          "@type": "Organization",
+          name: author.name,
+          url: `${SITE_URL}/`,
+          ...(author.image ? { logo: absolute(author.image) } : {}),
+          ...(author.sameAs?.length ? { sameAs: author.sameAs } : {}),
+        }
+      : {
+          "@type": "Person",
+          name: author.name,
+          ...(author.jobTitle ? { jobTitle: author.jobTitle } : {}),
+          ...(author.image ? { image: absolute(author.image) } : {}),
+          ...(author.sameAs?.length ? { sameAs: author.sameAs } : {}),
+        };
+
+  const breadcrumbId = `${url}#breadcrumb`;
+  const hasCrumbs = Boolean(args.breadcrumbs?.length);
+  const faqs = args.faqs?.length ? args.faqs : undefined;
+
   return {
     "@context": "https://schema.org",
     "@graph": [
       organizationNode(),
       websiteNode(),
       {
-        "@type": "Article",
+        "@type": "BlogPosting",
         "@id": `${url}#article`,
+        url,
         headline: args.title,
         description: args.description,
-        image: args.image.startsWith("http")
-          ? args.image
-          : `${SITE_URL}${args.image}`,
+        image: absolute(args.image),
         datePublished: args.datePublished,
-        author: args.author
-          ? { "@type": "Person", name: args.author }
-          : { "@id": ORGANIZATION_ID },
+        dateModified: args.dateModified ?? args.datePublished,
+        author: authorNode,
         publisher: { "@id": ORGANIZATION_ID },
         mainEntityOfPage: { "@id": webpageId(path) },
+        ...(args.section ? { articleSection: args.section } : {}),
         inLanguage: "en",
       },
-      webPageNode(path, args.title, args.description),
+      {
+        ...webPageNode(path, args.title, args.description, faqs),
+        ...(hasCrumbs ? { breadcrumb: { "@id": breadcrumbId } } : {}),
+      },
+      ...(hasCrumbs
+        ? [
+            {
+              "@type": "BreadcrumbList",
+              "@id": breadcrumbId,
+              itemListElement: args.breadcrumbs!.map((crumb, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                name: crumb.name,
+                item: pageUrl(crumb.path),
+              })),
+            },
+          ]
+        : []),
+      ...(faqs ? [faqPageNode(path, faqs)!] : []),
     ],
   };
 }

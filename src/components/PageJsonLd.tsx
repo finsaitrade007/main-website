@@ -2,6 +2,7 @@ import JsonLd from "@/components/JsonLd";
 import type { FaqItem, FaqSection } from "@/lib/faq-fallbacks";
 import { resolvePageFaqs } from "@/lib/page-seo";
 import {
+  type ArticleAuthorInput,
   buildArticleStructuredData,
   buildPageStructuredData,
   buildRegulationsStructuredData,
@@ -31,7 +32,11 @@ type ArticleProps = {
   description: string;
   image: string;
   datePublished: string;
-  author?: string;
+  dateModified?: string;
+  author?: ArticleAuthorInput | string;
+  section?: string;
+  breadcrumbs?: { name: string; path: string }[];
+  faqs?: FaqItem[];
 };
 
 type PageJsonLdProps = StandardProps | RegulationsProps | ArticleProps;

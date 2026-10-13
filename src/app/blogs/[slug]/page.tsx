@@ -1,16 +1,44 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageJsonLd from "@/components/PageJsonLd";
+import AuthorBox from "@/components/blog/AuthorBox";
+import BlogCard from "@/components/blog/BlogCard";
+import BlogImage from "@/components/blog/BlogImage";
+import Breadcrumbs, { type Crumb } from "@/components/blog/Breadcrumbs";
+import CtaBanner from "@/components/blog/CtaBanner";
+import TableOfContents from "@/components/blog/TableOfContents";
+import s from "@/components/blog/blog.module.css";
+import { getAuthor } from "@/lib/authors";
 import {
   BLOG_POSTS,
   formatBlogDate,
   getBlogBySlug,
   type BlogBlock,
   type BlogPost,
-  type BlogSection,
 } from "@/lib/blogs";
+import {
+  FAQ_ID,
+  blogsHref,
+  categorySlug,
+  getDisclaimer,
+  getPostCta,
+  getPostOutline,
+  getRelatedPosts,
+  hasUpdate,
+  stripInlineMarkup,
+} from "@/lib/blog-helpers";
+import { SITE_URL } from "@/lib/site";
+
+/*
+ * Single post template, top to bottom:
+ *   breadcrumbs → hero (H1, description, byline, 16:9 image)
+ *   → article body with table of contents (sticky sidebar on desktop,
+ *     collapsible block below 1100px) → FAQ → author box → CTA → disclaimer
+ *   → related articles.
+ */
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -30,556 +58,151 @@ export async function generateMetadata({
   }
   const title = post.metaTitle ?? post.title;
   const description = post.metaDescription ?? post.excerpt;
+  const url = `${SITE_URL}/blogs/${post.slug}`;
   return {
     title: `${title} | Finsai Trade`,
     description,
+    alternates: { canonical: url },
     openGraph: {
       title,
       description,
+      url,
       images: [post.image],
       type: "article",
       publishedTime: post.publishedAt,
+      modifiedTime: hasUpdate(post) ? post.updatedAt : undefined,
+      section: post.category,
       authors: post.author ? [post.author] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [post.image],
     },
   };
 }
 
-/* ----------------------------- Block primitives ---------------------------- */
+/* ----------------------------- Inline markup ------------------------------ */
 
 /**
  * Minimal inline markup for post text: `[label](href)` becomes a link and
- * `**text**` becomes bold. Everything else is emitted as plain text, so
- * existing posts (which use neither) render exactly as before. Internal hrefs
- * use next/link; external ones open in a new tab.
+ * `**text**` becomes bold. Everything else is plain text. Internal hrefs use
+ * next/link; external ones open in a new tab.
  */
 const INLINE_RE = /(\[[^\]]+\]\([^)]+\))|(\*\*[^*]+\*\*)/g;
 
-function renderInline(text: string): React.ReactNode {
+function renderInline(text: string): ReactNode {
   const parts = text.split(INLINE_RE).filter((p) => p !== undefined && p !== "");
   return parts.map((part, i) => {
     const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if (link) {
       const [, label, href] = link;
-      const external = /^https?:\/\//.test(href);
-      const style = { color: "#7DB9D6", textDecoration: "underline", textUnderlineOffset: "3px" };
-      return external ? (
-        <a key={i} href={href} target="_blank" rel="noopener noreferrer" style={style}>{label}</a>
+      return /^https?:\/\//.test(href) ? (
+        <a key={i} href={href} target="_blank" rel="noopener noreferrer" className={s.inlineLink}>
+          {label}
+        </a>
       ) : (
-        <Link key={i} href={href} style={style}>{label}</Link>
+        <Link key={i} href={href} className={s.inlineLink}>
+          {label}
+        </Link>
       );
     }
     const bold = part.match(/^\*\*([^*]+)\*\*$/);
-    if (bold) return <strong key={i} style={{ color: "#FFFFFF", fontWeight: 600 }}>{bold[1]}</strong>;
+    if (bold) {
+      return (
+        <strong key={i} className={s.strong}>
+          {bold[1]}
+        </strong>
+      );
+    }
     return part;
   });
 }
 
-function Paragraph({ text, lead = false }: { text: string; lead?: boolean }) {
-  return (
-    <p
-      style={{
-        margin: 0,
-        fontFamily: "var(--font-inter, Inter)",
-        fontWeight: 400,
-        fontSize: lead ? "20px" : "17px",
-        lineHeight: lead ? "32px" : "30px",
-        color: lead ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.82)",
-      }}
-    >
-      {renderInline(text)}
-    </p>
-  );
-}
+/* ------------------------------ Body blocks ------------------------------- */
 
-function Bullets({ items }: { items: string[] }) {
-  return (
-    <ul
-      style={{
-        margin: "4px 0 0",
-        padding: 0,
-        listStyle: "none",
-        display: "flex",
-        flexDirection: "column",
-        gap: "12px",
-      }}
-    >
-      {items.map((item, i) => (
-        <li
-          key={i}
-          style={{
-            position: "relative",
-            paddingLeft: "24px",
-            fontFamily: "var(--font-inter, Inter)",
-            fontSize: "17px",
-            lineHeight: "28px",
-            color: "rgba(255,255,255,0.82)",
-          }}
-        >
-          <span
-            aria-hidden
-            style={{
-              position: "absolute",
-              left: 0,
-              top: "11px",
-              width: "8px",
-              height: "8px",
-              borderRadius: "50%",
-              background:
-                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-            }}
-          />
-          {renderInline(item)}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function Subheading({ text }: { text: string }) {
-  return (
-    <h3
-      style={{
-        margin: "12px 0 0",
-        fontFamily: "var(--font-sora, Sora)",
-        fontWeight: 600,
-        fontSize: "22px",
-        lineHeight: "130%",
-        letterSpacing: "-0.005em",
-        color: "#FFFFFF",
-      }}
-    >
-      {text}
-    </h3>
-  );
-}
-
-function DataTable({
-  headers,
-  rows,
-}: {
-  headers: string[];
-  rows: string[][];
-}) {
-  return (
-    <div
-      style={{
-        width: "100%",
-        overflowX: "auto",
-        borderRadius: "12px",
-        border: "1px solid rgba(125, 185, 214, 0.18)",
-        background: "rgba(255,255,255,0.02)",
-      }}
-    >
-      <table
-        style={{
-          width: "100%",
-          borderCollapse: "collapse",
-          fontFamily: "var(--font-inter, Inter)",
-          fontSize: "15px",
-          color: "rgba(255,255,255,0.85)",
-        }}
-      >
-        <thead>
-          <tr>
-            {headers.map((h, i) => (
-              <th
-                key={i}
-                style={{
-                  textAlign: "left",
-                  padding: "14px 18px",
-                  fontWeight: 600,
-                  fontFamily: "var(--font-sora, Sora)",
-                  fontSize: "14px",
-                  letterSpacing: "0.02em",
-                  textTransform: "uppercase",
-                  color: "#7DB9D6",
-                  borderBottom: "1px solid rgba(125, 185, 214, 0.25)",
-                  background:
-                    "linear-gradient(180deg, rgba(5,111,180,0.12) 0%, rgba(5,111,180,0) 100%)",
-                }}
-              >
-                {h}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, ri) => (
-            <tr key={ri}>
-              {row.map((cell, ci) => (
-                <td
-                  key={ci}
-                  style={{
-                    padding: "14px 18px",
-                    verticalAlign: "top",
-                    lineHeight: "24px",
-                    borderTop:
-                      ri === 0
-                        ? "none"
-                        : "1px solid rgba(255,255,255,0.06)",
-                    fontWeight: ci === 0 ? 500 : 400,
-                    color:
-                      ci === 0
-                        ? "rgba(255,255,255,0.92)"
-                        : "rgba(255,255,255,0.78)",
-                  }}
-                >
-                  {cell}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-function Figure({
-  src,
-  alt,
-  caption,
-}: {
-  src: string;
-  alt: string;
-  caption?: string;
-}) {
-  return (
-    <figure style={{ margin: "28px 0" }}>
-      <Image
-        src={src}
-        alt={alt}
-        width={1400}
-        height={788}
-        sizes="(max-width: 900px) 100vw, 860px"
-        style={{
-          width: "100%",
-          height: "auto",
-          borderRadius: "12px",
-          border: "1px solid rgba(56,130,246,.25)",
-          display: "block",
-        }}
-      />
-      {caption ? (
-        <figcaption
-          style={{
-            marginTop: "10px",
-            fontFamily: "var(--font-inter, Inter)",
-            fontSize: "14px",
-            lineHeight: 1.6,
-            color: "#7D7E85",
-            textAlign: "center",
-          }}
-        >
-          {renderInline(caption)}
-        </figcaption>
-      ) : null}
-    </figure>
-  );
-}
-
-function Block({
-  block,
-  isLeadParagraph,
-}: {
-  block: BlogBlock;
-  isLeadParagraph?: boolean;
-}) {
+function Block({ block, headingId }: { block: BlogBlock; headingId?: string }) {
   switch (block.type) {
     case "paragraph":
-      return <Paragraph text={block.text} lead={isLeadParagraph} />;
+      return <p className={s.p}>{renderInline(block.text)}</p>;
     case "bullets":
-      return <Bullets items={block.items} />;
+      return (
+        <ul className={s.ul}>
+          {block.items.map((item, i) => (
+            <li key={i} className={s.li}>
+              {renderInline(item)}
+            </li>
+          ))}
+        </ul>
+      );
     case "subheading":
-      return <Subheading text={block.text} />;
+      return (
+        <h3 id={headingId} className={s.h3}>
+          {block.text}
+        </h3>
+      );
     case "table":
-      return <DataTable headers={block.headers} rows={block.rows} />;
+      return (
+        <div className={s.tableWrap}>
+          <table className={s.table}>
+            <thead>
+              <tr>
+                {block.headers.map((h, i) => (
+                  <th key={i} scope="col">
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, ri) => (
+                <tr key={ri}>
+                  {row.map((cell, ci) => (
+                    <td key={ci}>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
     case "image":
-      return <Figure src={block.src} alt={block.alt} caption={block.caption} />;
+      return (
+        <figure className={s.figure}>
+          <Image
+            src={block.src}
+            alt={block.alt}
+            width={1400}
+            height={788}
+            sizes="(max-width: 860px) 100vw, 780px"
+            className={s.figureImg}
+          />
+          {block.caption ? <figcaption className={s.figcaption}>{renderInline(block.caption)}</figcaption> : null}
+        </figure>
+      );
     default:
       return null;
   }
 }
 
-function ArticleSection({
-  section,
-  isFirst,
-}: {
-  section: BlogSection;
-  isFirst: boolean;
-}) {
-  // The first paragraph of the first, unheaded section renders as the article
-  // lead. Resolved up-front instead of by mutating a flag inside the map —
-  // reassigning during render is unsafe under concurrent rendering
-  // (react-hooks/immutability).
-  const leadIndex =
-    isFirst && !section.heading
-      ? section.blocks.findIndex((block) => block.type === "paragraph")
-      : -1;
-
+function FAQSection({ faqs }: { faqs: NonNullable<BlogPost["faqs"]> }) {
   return (
-    <section
-      style={{ display: "flex", flexDirection: "column", gap: "16px" }}
-    >
-      {section.heading ? (
-        <h2
-          style={{
-            margin: "8px 0 0",
-            fontFamily: "var(--font-sora, Sora)",
-            fontWeight: 700,
-            fontSize: "30px",
-            lineHeight: "120%",
-            letterSpacing: "-0.01em",
-            color: "#FFFFFF",
-          }}
-        >
-          {section.heading}
-        </h2>
-      ) : null}
-
-      {section.blocks.map((block, i) => (
-        <Block key={i} block={block} isLeadParagraph={i === leadIndex} />
-      ))}
-    </section>
-  );
-}
-
-function FAQSection({
-  faqs,
-}: {
-  faqs: NonNullable<BlogPost["faqs"]>;
-}) {
-  return (
-    <section
-      style={{
-        marginTop: "16px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "16px",
-      }}
-    >
-      <h2
-        style={{
-          margin: 0,
-          fontFamily: "var(--font-sora, Sora)",
-          fontWeight: 700,
-          fontSize: "30px",
-          lineHeight: "120%",
-          letterSpacing: "-0.01em",
-          color: "#FFFFFF",
-        }}
-      >
-        Frequently Asked Questions
-      </h2>
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "12px",
-        }}
-      >
+    <section id={FAQ_ID} className={s.section}>
+      <h2 className={s.h2}>Frequently Asked Questions</h2>
+      <div className={s.faqList}>
         {faqs.map((faq, i) => (
-          <details
-            key={i}
-            style={{
-              borderRadius: "12px",
-              border: "1px solid rgba(125, 185, 214, 0.18)",
-              background:
-                "linear-gradient(157.26deg, rgba(5,111,180,0.06) -0.93%, rgba(5,2,8,0) 444.35%)",
-              padding: "16px 20px",
-            }}
-          >
-            <summary
-              style={{
-                listStyle: "none",
-                cursor: "pointer",
-                fontFamily: "var(--font-sora, Sora)",
-                fontWeight: 600,
-                fontSize: "17px",
-                lineHeight: "26px",
-                color: "#FFFFFF",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                gap: "16px",
-              }}
-            >
-              <span>{faq.question}</span>
-              <span
-                aria-hidden
-                style={{
-                  flex: "0 0 auto",
-                  width: "20px",
-                  height: "20px",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#7DB9D6",
-                }}
-              >
+          <details key={i} className={s.faqItem}>
+            <summary className={s.faqSummary}>
+              <h3 className={s.faqQ}>{faq.question}</h3>
+              <span className={s.faqChevron} aria-hidden>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path
-                    d="M3 5l4 4 4-4"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                  <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </span>
             </summary>
-            <p
-              style={{
-                margin: "12px 0 0",
-                fontFamily: "var(--font-inter, Inter)",
-                fontSize: "16px",
-                lineHeight: "28px",
-                color: "rgba(255,255,255,0.78)",
-              }}
-            >
-              {renderInline(faq.answer)}
-            </p>
+            <p className={s.faqA}>{renderInline(faq.answer)}</p>
           </details>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Disclaimer({ text }: { text: string }) {
-  return (
-    <aside
-      style={{
-        marginTop: "32px",
-        padding: "20px 24px",
-        borderRadius: "12px",
-        border: "1px solid rgba(255,255,255,0.08)",
-        background: "rgba(255,255,255,0.02)",
-        fontFamily: "var(--font-inter, Inter)",
-        fontSize: "13px",
-        lineHeight: "22px",
-        color: "rgba(255,255,255,0.55)",
-      }}
-    >
-      <div
-        style={{
-          fontFamily: "var(--font-sora, Sora)",
-          fontWeight: 600,
-          fontSize: "12px",
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-          color: "rgba(125, 185, 214, 0.85)",
-          marginBottom: "8px",
-        }}
-      >
-        Disclaimer
-      </div>
-      {text}
-    </aside>
-  );
-}
-
-/* ------------------------------ Related posts ----------------------------- */
-
-function RelatedPosts({ currentSlug }: { currentSlug: string }) {
-  const related = BLOG_POSTS.filter((p) => p.slug !== currentSlug).slice(0, 3);
-  if (related.length === 0) return null;
-
-  return (
-    <section style={{ marginTop: "80px" }}>
-      <h2
-        style={{
-          margin: "0 0 24px",
-          fontFamily: "var(--font-sora, Sora)",
-          fontWeight: 700,
-          fontSize: "28px",
-          lineHeight: "120%",
-          color: "#FFFFFF",
-        }}
-      >
-        Continue reading
-      </h2>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-          gap: "20px",
-        }}
-      >
-        {related.map((post) => (
-          <Link
-            key={post.slug}
-            href={`/blogs/${post.slug}`}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "12px",
-              padding: "1px",
-              borderRadius: "16px",
-              background:
-                "linear-gradient(269.63deg, #7DB9D6 -35.69%, #056FB4 99.68%)",
-              textDecoration: "none",
-              color: "inherit",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "12px",
-                padding: "16px",
-                borderRadius: "15px",
-                background:
-                  "linear-gradient(157.26deg, #050208 -0.93%, #056FB4 444.35%)",
-                height: "100%",
-              }}
-            >
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  aspectRatio: "16 / 9",
-                  borderRadius: "10px",
-                  overflow: "hidden",
-                  background: "#0A0E1A",
-                }}
-              >
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 380px"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-              <span
-                style={{
-                  fontFamily: "var(--font-sora, Sora)",
-                  fontWeight: 500,
-                  fontSize: "12px",
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase",
-                  color: "#7DB9D6",
-                }}
-              >
-                {post.category}
-              </span>
-              <h3
-                style={{
-                  margin: 0,
-                  fontFamily: "var(--font-sora, Sora)",
-                  fontWeight: 600,
-                  fontSize: "18px",
-                  lineHeight: "26px",
-                  color: "#FFFFFF",
-                }}
-              >
-                {post.title}
-              </h3>
-            </div>
-          </Link>
         ))}
       </div>
     </section>
@@ -593,155 +216,143 @@ export default async function BlogPostPage({ params }: PageProps) {
   const post: BlogPost | undefined = getBlogBySlug(slug);
   if (!post) notFound();
 
-  const date = formatBlogDate(post.publishedAt);
-  const title = post.metaTitle ?? post.title;
+  const outline = getPostOutline(post);
+  const author = getAuthor(post.author);
+  const related = getRelatedPosts(post, 3);
+  const updated = hasUpdate(post);
   const description = post.metaDescription ?? post.excerpt;
+  // The excerpt is shown as the hero description; if the article opens with
+  // exactly the same sentence, don't print it twice.
+  const normalize = (t: string) => stripInlineMarkup(t).replace(/\s+/g, " ").trim().toLowerCase();
+  const opening = post.sections[0]?.blocks[0];
+  const skipOpening = opening?.type === "paragraph" && normalize(opening.text) === normalize(post.excerpt);
+
+  const crumbs: Crumb[] = [
+    { name: "Home", href: "/" },
+    { name: "Blog", href: "/blogs" },
+    { name: post.category, href: blogsHref({ category: categorySlug(post.category) }) },
+    { name: post.title, href: `/blogs/${post.slug}` },
+  ];
 
   return (
     <>
       <PageJsonLd
         variant="article"
         slug={post.slug}
-        title={title}
+        title={post.title}
         description={description}
         image={post.image}
         datePublished={post.publishedAt ?? "2026-01-01"}
-        author={post.author}
+        dateModified={updated ? post.updatedAt : undefined}
+        author={
+          author
+            ? {
+                name: author.name,
+                kind: author.kind,
+                jobTitle: author.kind === "Person" ? author.role : undefined,
+                image: author.photo,
+                sameAs: author.links?.map((l) => l.href),
+              }
+            : undefined
+        }
+        section={post.category}
+        breadcrumbs={crumbs.map((c) => ({ name: c.name, path: c.href }))}
+        faqs={post.faqs?.map((f) => ({ question: f.question, answer: stripInlineMarkup(f.answer) }))}
       />
-    <article
-      style={{
-        background: "#050208",
-        width: "100%",
-        maxWidth: "1440px",
-        margin: "0 auto",
-        paddingTop: "48px",
-        paddingBottom: "96px",
-        paddingLeft: "80px",
-        paddingRight: "80px",
-        boxSizing: "border-box",
-      }}
-    >
-      {/* Back link */}
-      <Link
-        href="/blogs"
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: "8px",
-          fontFamily: "var(--font-inter, Inter)",
-          fontSize: "14px",
-          color: "rgba(255,255,255,0.6)",
-          textDecoration: "none",
-          marginBottom: "32px",
-        }}
-      >
-        <svg width="14" height="14" viewBox="0 0 12 12" fill="none">
-          <path
-            d="M10 6H2M6 2 2 6l4 4"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-        Back to Blogs
-      </Link>
 
-      {/* Banner image — sits at the top of the article */}
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          maxWidth: "1100px",
-          aspectRatio: "16 / 8",
-          maxHeight: "560px",
-          margin: "0 auto",
-          borderRadius: "20px",
-          overflow: "hidden",
-          background: "#0A0E1A",
-        }}
-      >
-        <Image
-          src={post.image}
-          alt={post.title}
-          fill
-          priority
-          sizes="(max-width: 768px) 100vw, 1100px"
-          style={{ objectFit: "cover" }}
-        />
-      </div>
+      <div className={s.post}>
+        <div className={s.container}>
+          <Breadcrumbs items={crumbs} />
 
-      {/* Article header — heading + byline */}
-      <header
-        style={{
-          maxWidth: "820px",
-          margin: "40px auto 0",
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-        }}
-      >
-        <h1
-          style={{
-            margin: 0,
-            fontFamily: "var(--font-sora, Sora)",
-            fontWeight: 700,
-            fontSize: "48px",
-            lineHeight: "112%",
-            letterSpacing: "-0.01em",
-            color: "#FFFFFF",
-          }}
-        >
-          {post.title}
-        </h1>
+          <article>
+            <header className={s.hero}>
+              <h1 className={s.title}>{post.title}</h1>
+              <p className={s.dek}>{post.excerpt}</p>
+              <div className={s.byline}>
+                <div className={s.bylineList}>
+                  {author ? (
+                    <span className={s.bylineItem}>
+                      By <a href="#author">{author.name}</a>
+                    </span>
+                  ) : null}
+                  {post.publishedAt ? (
+                    <span className={s.bylineItem}>
+                      Published: <time dateTime={post.publishedAt}>{formatBlogDate(post.publishedAt)}</time>
+                    </span>
+                  ) : null}
+                  {updated ? (
+                    <span className={s.bylineItem}>
+                      Updated: <time dateTime={post.updatedAt}>{formatBlogDate(post.updatedAt)}</time>
+                    </span>
+                  ) : null}
+                  {post.readTime ? <span className={s.bylineItem}>{post.readTime}</span> : null}
+                </div>
+              </div>
+              <BlogImage
+                src={post.image}
+                alt={post.title}
+                priority
+                sizes="(max-width: 1280px) 100vw, 1200px"
+                className={s.heroImage}
+              />
+            </header>
 
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            gap: "12px",
-            fontFamily: "var(--font-inter, Inter)",
-            fontSize: "14px",
-            color: "rgba(255,255,255,0.55)",
-          }}
-        >
-          {post.author ? <span>{post.author}</span> : null}
-          {post.author && (date || post.readTime) ? (
-            <span aria-hidden>·</span>
+            <div className={s.layout}>
+              <div className={s.article}>
+                <TableOfContents entries={outline.toc} variant="mobile" />
+
+                {post.sections.map((section, si) => (
+                  <section key={si} id={outline.sectionIds[si]} className={s.section}>
+                    {section.heading ? <h2 className={s.h2}>{section.heading}</h2> : null}
+                    {section.blocks.map((block, bi) =>
+                      skipOpening && si === 0 && bi === 0 ? null : (
+                        <Block key={bi} block={block} headingId={outline.subheadingIds[`${si}:${bi}`]} />
+                      ),
+                    )}
+                  </section>
+                ))}
+
+                {post.faqs?.length ? <FAQSection faqs={post.faqs} /> : null}
+
+                {author ? <AuthorBox author={author} /> : null}
+
+                <CtaBanner cta={getPostCta(post)} />
+
+                <aside className={s.disclaimer}>
+                  <span className={s.disclaimerLabel}>Disclaimer</span>
+                  {getDisclaimer(post)}
+                </aside>
+              </div>
+
+              <TableOfContents entries={outline.toc} variant="desktop" />
+            </div>
+          </article>
+
+          {related.length > 0 ? (
+            <section className={s.related} aria-labelledby="related-heading">
+              <h2 id="related-heading" className={s.relatedTitle}>
+                Related Articles
+              </h2>
+              <div className={s.relatedGrid}>
+                {related.map((p) => (
+                  <BlogCard
+                    key={p.slug}
+                    post={{
+                      href: `/blogs/${p.slug}`,
+                      title: p.title,
+                      excerpt: p.excerpt,
+                      category: p.category,
+                      image: p.image,
+                      date: formatBlogDate(p.publishedAt),
+                      readTime: p.readTime,
+                    }}
+                  />
+                ))}
+              </div>
+            </section>
           ) : null}
-          {date ? <span>{date}</span> : null}
-          {date && post.readTime ? <span aria-hidden>·</span> : null}
-          {post.readTime ? <span>{post.readTime}</span> : null}
         </div>
-      </header>
-
-      {/* Article body */}
-      <div
-        style={{
-          maxWidth: "780px",
-          margin: "48px auto 0",
-          display: "flex",
-          flexDirection: "column",
-          gap: "28px",
-        }}
-      >
-        {post.sections.map((section, i) => (
-          <ArticleSection key={i} section={section} isFirst={i === 0} />
-        ))}
-
-        {post.faqs && post.faqs.length > 0 ? (
-          <FAQSection faqs={post.faqs} />
-        ) : null}
-
-        {post.disclaimer ? <Disclaimer text={post.disclaimer} /> : null}
       </div>
-
-      {/* Related posts */}
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        <RelatedPosts currentSlug={post.slug} />
-      </div>
-    </article>
     </>
   );
 }

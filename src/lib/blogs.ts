@@ -14,21 +14,36 @@ export type BlogSection = {
 
 export type BlogFAQ = { question: string; answer: string };
 
+/** End-of-article call to action. Omit to use the category default. */
+export type BlogCta = {
+  heading: string;
+  text: string;
+  primary: { label: string; href: string };
+  secondary?: { label: string; href: string };
+};
+
 export type BlogPost = {
   slug: string;
   category: string;
   title: string;
   excerpt: string;
-  image: string;
   /**
-   * Optional listing-card image. The card is only 380px wide, so a full
-   * banner's type renders too small to read there; a tighter, purpose-made
-   * crop can be supplied here. Falls back to `image` when omitted.
+   * Featured image. Every blog image container is 16:9, so supply 16:9 —
+   * 1200 × 675 minimum, 1920 × 1080 ideal. Other ratios still display in full
+   * (never cropped) over a blurred fill, but a 16:9 file fills edge to edge.
    */
-  thumbnail?: string;
+  image: string;
   readTime: string;
+  /** ISO date, YYYY-MM-DD. */
   publishedAt?: string;
+  /**
+   * ISO date of the last substantive edit. Shown as "Updated" in the byline
+   * and emitted as dateModified, but only when it differs from publishedAt.
+   */
+  updatedAt?: string;
+  /** Must match a key in AUTHORS (src/lib/authors.ts) for the author box. */
   author?: string;
+  cta?: BlogCta;
   /** Browser/<title> override. Falls back to `title` if not supplied. */
   metaTitle?: string;
   /** <meta name="description"> override. Falls back to `excerpt`. */
@@ -48,11 +63,18 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Trading Education",
     title: "Can You Trade on Multiple Platforms at the Same Time? (Rules, Strategy & MT5 Setup)",
     excerpt: "Can you trade on multiple platforms legally? Learn the rules, margin risks, tax wash sales, and how to simplify multi-asset execution on MT5.",
-    image: "/blogs/can-you-trade-on-multiple-platforms/banner-trade-multiple-platforms.jpg",
-    thumbnail: "/blogs/can-you-trade-on-multiple-platforms/thumb-trade-multiple-platforms.jpg",
+    image: "/blogs/can-you-trade-on-multiple-platforms/banner-trade-multiple-platforms-16x9.jpg",
     readTime: "7 min read",
     publishedAt: "2026-10-05",
     author: "Finsai Trade Team",
+    // The article's closing call to action, shown in the CTA banner slot
+    // after the author box rather than as a body section.
+    cta: {
+      heading: "Ready to Simplify Your Trading Strategy?",
+      text: "Stop switching between different trading apps. Experience unified execution across Forex, Crypto, Stocks, Commodities, and Indices with up to 500x leverage and 0.0 pip raw ECN spreads.",
+      primary: { label: "Open a Trading Account", href: "https://fx.finsaitrade.com/auth/register" },
+      secondary: { label: "Explore MT5 Account Types", href: "/mt5" },
+    },
     metaTitle: "Can You Trade on Multiple Platforms? Rules & MT5 Setup",
     metaDescription: "Can you trade on multiple platforms legally? Learn the rules, margin risks, tax wash sales, and how to simplify multi-asset execution on MT5.",
     sections: [
@@ -229,19 +251,6 @@ export const BLOG_POSTS: BlogPost[] = [
           },
         ]
       },
-      {
-        heading: "Ready to Simplify Your Trading Strategy?",
-        blocks: [
-          {
-            type: "paragraph",
-            text: "Stop switching between different trading apps. Experience unified execution across Forex, Crypto, Stocks, Commodities, and Indices with up to **500x leverage** and **0.0 pip raw ECN spreads**."
-          },
-          {
-            type: "paragraph",
-            text: "👉 [Explore Finsai Trade's MT5 Account Types](/mt5) to test multi-asset market execution today."
-          },
-        ]
-      },
     ],
     faqs: [
       {
@@ -267,8 +276,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Trading Education",
     title: "Data Ethics in Modern Trading: Why User Trust Is the Ultimate Fintech Asset",
     excerpt: "How trading platforms handle your data, AI decisions & regulations like SEC Reg S-P, GDPR & UAE PDPL and what real data ethics in trading looks like.",
-    image: "/blogs/data-ethics-trading-user-trust/banner-data-ethics-trading.jpg",
-    thumbnail: "/blogs/data-ethics-trading-user-trust/thumb-data-ethics-trading.jpg",
+    image: "/blogs/data-ethics-trading-user-trust/banner-data-ethics-trading-16x9.jpg",
     readTime: "6 min read",
     publishedAt: "2026-09-29",
     author: "Finsai Trade Team",
@@ -454,11 +462,16 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Trading Education",
     title: "From Assistants to Agents: How Agentic AI is Transforming Trade Execution",
     excerpt: "Discover how Agentic AI moves beyond basic chatbots to automate multi-step trading strategies, manage dynamic risk, and execute trades on Finsai Trade.",
-    image: "/blogs/agentic-ai-trade-execution/banner-agentic-ai-trade-execution.jpg",
-    thumbnail: "/blogs/agentic-ai-trade-execution/thumb-agentic-ai-trade-execution.jpg",
+    image: "/blogs/agentic-ai-trade-execution/banner-agentic-ai-trade-execution-16x9.jpg",
     readTime: "6 min read",
     publishedAt: "2026-09-21",
     author: "Finsai Trade Team",
+    cta: {
+      heading: "Automate your strategy on MT5",
+      text: "Run Expert Advisors on MetaTrader 5, with your own risk limits in place.",
+      primary: { label: "Open a Trading Account", href: "https://fx.finsaitrade.com/auth/register" },
+      secondary: { label: "Explore MT5", href: "/mt5" },
+    },
     metaTitle: "Agentic AI in Trading: Transforming Autonomous Execution",
     metaDescription: "Discover how Agentic AI moves beyond basic chatbots to automate multi-step trading strategies, manage dynamic risk, and execute trades on Finsai Trade.",
     sections: [
@@ -647,11 +660,16 @@ export const BLOG_POSTS: BlogPost[] = [
       "Gold in H2 2026: Why Prices Fell and What CFD Traders Should Watch Now",
     excerpt:
       "Wondering why is gold price falling after record highs? Track crucial gold price H2 2026 trends, Fed pressure, and top CFD gold trading strategies H2 setups.",
-    image: "/blogs/gold-h2-2026/banner-gold-h2-2026.jpg",
-    thumbnail: "/blogs/gold-h2-2026/thumb-gold-h2-2026.jpg",
+    image: "/blogs/gold-h2-2026/banner-gold-h2-2026-16x9.jpg",
     readTime: "5 min read",
     publishedAt: "2026-08-19",
     author: "Finsai Trade Team",
+    cta: {
+      heading: "Trade gold with Finsai Trade",
+      text: "Follow XAU/USD and other precious metals from one MetaTrader 5 account.",
+      primary: { label: "Start Trading Today", href: "https://fx.finsaitrade.com/auth/register" },
+      secondary: { label: "Explore Metals", href: "/metals" },
+    },
     metaTitle:
       "Gold Price H2 2026: Why Prices Fell & What Traders Must Know",
     metaDescription:
@@ -1326,6 +1344,12 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: "11 min read",
     publishedAt: "2026-05-10",
     author: "Finsai Trade Research",
+    cta: {
+      heading: "Trade gold with Finsai Trade",
+      text: "Follow XAU/USD and other precious metals from one MetaTrader 5 account.",
+      primary: { label: "Start Trading Today", href: "https://fx.finsaitrade.com/auth/register" },
+      secondary: { label: "Explore Metals", href: "/metals" },
+    },
     metaTitle:
       "Gold vs Other Assets: The Role of Gold in Modern Portfolios",
     metaDescription:
