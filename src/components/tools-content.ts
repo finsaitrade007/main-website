@@ -10,7 +10,7 @@ export const TOOLS_CALCULATORS = [
 export const TOOLS_INSIGHTS = [
   { no: "01", title: "Real-Time Market News", description: "Stay ahead with live global market news. Filter by asset class for relevant insights and sentiment tailored to your portfolio.", image: "/tools/panel-market-news.png" },
   { no: "02", title: "Interactive Economic Calendar", description: "Track key economic events, live countdowns, and expected vs. actual data to plan smarter trades.", image: "/tools/panel-economic-calendar.png", href: "/tools/economic-calendar", cta: "Open the live calendar" },
-  { no: "03", title: "Volatility Index (VIX) Tracker", description: "Monitor market sentiment in real time to manage risk, adjust leverage, and spot trading opportunities.", image: "/tools/panel-vix-tracker.png" },
+  { no: "03", title: "Volatility Index (VIX) Tracker", description: "Monitor market sentiment in real time to manage risk, adjust leverage, and spot trading opportunities.", image: "/tools/panel-vix-tracker-framed.png" },
 ];
 
 /** manage-risk-smarter.svg ships with its own 64px ring; the rest are bare glyphs. */

@@ -20,14 +20,17 @@ export default function ToolsInsightsSection() {
               <h3 className="tl-insight-title">{c.title}</h3>
             </div>
             <p className="tl-insight-desc">{c.description}</p>
-            {c.href && (
-              <Link href={c.href} className="tl-insight-link">
-                {c.cta}
-                <svg width="16" height="12" viewBox="0 0 20 14" fill="none" aria-hidden>
-                  <path d="M1 7h16m0 0-5.5-5.5M17 7l-5.5 5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-            )}
+            {/* every card keeps this row, empty or not, so the three panels line up exactly */}
+            <div className="tl-insight-action">
+              {c.href && (
+                <Link href={c.href} className="tl-insight-link">
+                  {c.cta}
+                  <svg width="16" height="12" viewBox="0 0 20 14" fill="none" aria-hidden>
+                    <path d="M1 7h16m0 0-5.5-5.5M17 7l-5.5 5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+              )}
+            </div>
             <Image src={c.image} alt="" width={509} height={885} quality={100} className="tl-insight-img" />
           </article>
         ))}

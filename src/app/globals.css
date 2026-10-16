@@ -3050,6 +3050,18 @@ body {
 .ec-credit a:hover, .ec-credit a:focus-visible { color: #7DB9D6; }
 .ec-guide { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.5vw, 22px); max-width: 1340px; margin: clamp(32px, 3.7vw, 53px) auto 0; }
 .ec-guide-title { min-height: 0; align-self: center; }
+/* Tools page insight cards: the three cards share one set of rows (title, text, link, panel), so every
+   panel starts at the same height in every card whatever the wording or the screen width. Browsers
+   without subgrid keep the plain column with the panel pushed to the bottom. */
+.tl-insights > .tl-insight-card .tl-insight-img { margin-top: auto; }
+@supports (grid-template-rows: subgrid) {
+  .tl-insights > .tl-insight-card { display: grid; grid-template-rows: subgrid; grid-row: span 4; row-gap: 0; align-content: start; }
+  .tl-insights > .tl-insight-card .tl-insight-title,
+  .tl-insights > .tl-insight-card .tl-insight-desc { min-height: 0; }
+  .tl-insights > .tl-insight-card .tl-insight-img { margin-top: 18px; align-self: end; }
+}
+.tl-insight-action { display: flex; align-items: center; min-height: 0; }
+.tl-insight-action:empty { display: block; }
 .tl-insight-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; color: #7DB9D6; font-family: var(--font-sora, Sora); font-weight: 600; font-size: clamp(13px, 1.04vw, 15px); text-decoration: none; }
 .tl-insight-link:hover, .tl-insight-link:focus-visible { color: #fff; }
 .ec-guide-text { min-height: 0; }

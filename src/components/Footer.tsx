@@ -14,6 +14,7 @@ const quickLinks = [
   { label: "Partnerships", href: "/partnerships" },
   { label: "Accounts",     href: "/accounts" },
   { label: "Payments",     href: "/payments" },
+  { label: "Economic Calendar", href: "/tools/economic-calendar" },
   { label: "Blogs",        href: "/blogs" },
 ];
 
