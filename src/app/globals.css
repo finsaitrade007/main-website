@@ -3012,6 +3012,58 @@ body {
 .tl-cta-bg { object-fit: cover; z-index: 0; }
 .tl-cta > *:not(.tl-cta-bg) { position: relative; z-index: 1; }
 
+/* Economic calendar page (/tools/economic-calendar): the Tools page look, around the TradingView widget */
+.ec-hero {
+  box-sizing: border-box; width: 100%; max-width: 1500px; margin: 0 auto; background: #050208;
+  display: flex; flex-direction: column; align-items: flex-start; gap: clamp(14px, 1.6vw, 22px);
+  padding: clamp(118px, 10vw, 150px) clamp(20px, 5.5vw, 80px) clamp(24px, 2.5vw, 36px);
+}
+.ec-crumbs { display: flex; gap: 10px; align-items: center; font-family: var(--font-inter, Inter); font-size: 14px; color: #94A3B8; }
+.ec-crumbs a { color: #7DB9D6; text-decoration: none; }
+.ec-crumbs a:hover, .ec-crumbs a:focus-visible { text-decoration: underline; }
+.ec-title { margin-top: 2px; }
+.ec-desc { max-width: 780px; }
+.ec-calendar-section { background: #050208; padding: 0 clamp(12px, 5.5vw, 80px) clamp(24px, 3vw, 40px); }
+.ec-widget { max-width: 1340px; margin: 0 auto; }
+.ec-widget-frame {
+  position: relative; box-sizing: border-box; height: clamp(600px, 74vh, 860px); overflow: hidden;
+  border: 1px solid rgba(56,130,246,.55); border-radius: 16px; background: #010712; padding: clamp(6px, 1vw, 14px);
+}
+.ec-widget-host, .ec-widget-host .tradingview-widget-container__widget { width: 100%; height: 100%; }
+.ec-widget-host iframe { display: block; }
+.ec-widget-skeleton { position: absolute; inset: clamp(6px, 1vw, 14px); display: flex; flex-direction: column; gap: 14px; padding: 16px; pointer-events: none; }
+.ec-skeleton-row {
+  height: 44px; border-radius: 8px; background-size: 200% 100%;
+  background-image: linear-gradient(90deg, rgba(148,163,184,.05) 0%, rgba(148,163,184,.13) 50%, rgba(148,163,184,.05) 100%);
+  animation: ec-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes ec-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .ec-skeleton-row { animation: none; } }
+.ec-widget-fallback {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 18px; padding: 24px; text-align: center; background: #010712; color: #94A3B8;
+  font-family: var(--font-inter, Inter); font-size: 15px; line-height: 160%;
+}
+.ec-widget-fallback p { margin: 0; max-width: 460px; }
+.ec-credit { margin: 10px 4px 0; text-align: right; font-family: var(--font-inter, Inter); font-size: 12px; }
+.ec-credit a { color: #64748B; text-decoration: none; }
+.ec-credit a:hover, .ec-credit a:focus-visible { color: #7DB9D6; }
+.ec-guide { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.5vw, 22px); max-width: 1340px; margin: clamp(32px, 3.7vw, 53px) auto 0; }
+.ec-guide-title { min-height: 0; align-self: center; }
+.tl-insight-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; color: #7DB9D6; font-family: var(--font-sora, Sora); font-weight: 600; font-size: clamp(13px, 1.04vw, 15px); text-decoration: none; }
+.tl-insight-link:hover, .tl-insight-link:focus-visible { color: #fff; }
+.ec-guide-text { min-height: 0; }
+.ec-note { max-width: 900px; margin: clamp(24px, 2.5vw, 36px) auto 0; text-align: center; font-family: var(--font-inter, Inter); font-size: 13px; line-height: 165%; color: #64748B; }
+.ec-note a { color: #7DB9D6; }
+@media (max-width: 900px) {
+  .ec-guide { grid-template-columns: minmax(0, 1fr); }
+  .ec-widget-frame { height: 680px; }
+}
+@media (max-width: 600px) {
+  .ec-widget-frame { height: 620px; border-radius: 12px; padding: 4px; }
+  .ec-credit { text-align: center; }
+}
+
 /* ─────────────────────────────────────────────────────────────────────────
  * MOBILE HERO FIXES (<=900px)
  *

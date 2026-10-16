@@ -71,6 +71,12 @@ export const PAGE_SEO = {
       "Position size, lot size, margin, risk, profit target and pip value calculators, plus real-time market news, an economic calendar and a VIX tracker.",
     faqSection: "tools" as const,
   },
+  economicCalendar: {
+    path: "/tools/economic-calendar",
+    title: "Economic Calendar: Live Market Events & Data | Finsai Trade",
+    description:
+      "Live economic calendar: central bank decisions, inflation, jobs and GDP releases with forecast, previous and actual figures. Plan forex, gold and index trades around the news.",
+  },
   stocks: {
     path: "/stocks",
     title: "Stock CFDs Trading | Finsai Trade",
