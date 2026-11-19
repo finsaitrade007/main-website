@@ -70,7 +70,7 @@ export function organizationNode() {
       "https://www.facebook.com/people/Finsai/61551284008485/",
       "https://x.com/FinsaiTrade",
       "https://www.instagram.com/finsai.trade",
-      "https://www.linkedin.com/company/finsai-trade",
+      "https://www.linkedin.com/company/finsaitrade/",
       "https://www.youtube.com/@FinsaiTradeOfficial",
     ],
     knowsAbout: [

@@ -30,7 +30,7 @@ export type Author = {
   links?: AuthorLink[];
 };
 
-const FINSAI_LINKEDIN = "https://www.linkedin.com/company/finsai-trade";
+const FINSAI_LINKEDIN = "https://www.linkedin.com/company/finsaitrade/";
 
 export const AUTHORS: Record<string, Author> = {
   "Finsai Trade Team": {
